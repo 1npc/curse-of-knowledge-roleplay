@@ -1,0 +1,7 @@
+{
+ "note": "12 formal values and 4 backups per type (proposal 5.4). Backups are the candidates most at risk in the Spanish guessability test (escuela, cocina, pasillo, biblioteca; paraguas, manta) plus basket and the plural-only scissors. A formal value that fails the test in one language is replaced by a backup in that language's slots only. Chosen 2026-09-28; revisit when the guessability results arrive (by 10/2).",
+ "PLACE": {"formal": ["bridge", "church", "roof", "pier", "basement", "warehouse", "stairwell", "sewer", "pawnshop", "boat", "junkyard", "parking_lot"],
+           "backup": ["school", "kitchen", "hallway", "library"]},
+ "OBJECT": {"formal": ["bag", "box", "glove", "envelope", "hammer", "pillow", "shoe", "broom", "coat", "mirror", "wallet", "chair"],
+            "backup": ["umbrella", "blanket", "basket", "scissors"]}
+}

@@ -1,0 +1,183 @@
+"""Write items/main/skeletons_en.json: the 64 main-set skeletons in English (proposal 5.3, 5.5).
+
+32 direct-address (DA) and 32 overheard (OH) skeletons; characters from the declared main set
+(Kerry 22, Rogue 21, Panam 21; see docs/eligibility.md). S07, S12, S20 and S31 carry the
+proposal's example frames (S12 moves from Viktor to Rogue). Every frame must read naturally
+with any PLACE and any OBJECT value; translations and per-slot gold come in the next step.
+Usage: python3 tools/make_main_skeletons.py
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+NOISE = {  # e_inaud templates by what drowns the speech out
+    "street": "{Speaker} shouts to {name} from across a wide, roaring street; the traffic drowns it out and {name} cannot hear a word.",
+    "room": "{Speaker} calls out to {name} from across the packed, deafening room; the music drowns it out and {name} cannot hear a word.",
+    "highway": "{Speaker} shouts to {name} from across the highway; a passing convoy drowns it out and {name} cannot hear a word.",
+    "glass": "Behind a soundproof glass wall, two {people} talk to each other; {name} cannot hear a word.",
+    "window": "Outside, beyond the window, two {people} talk to each other; the glass and the traffic drown it out and {name} cannot hear a word.",
+}
+SINGULAR = {"waitresses": "waitress", "mercenaries": "mercenary", "old women": "old woman", "old men": "old man",
+            "men": "man"}
+# (id, character, mode, location, speaker or people, nearby (OH), noise, frame lines, Q-content noun (DA), Q-task)
+TABLE = [
+ ("S01", "Kerry", "DA", "The sidewalk outside a recording studio in North Oak", "A street kid", None, "street",
+  ["A man paid me to tell you the {OBJECT} is at the {PLACE}."], "kid", "So what's waiting, and where?"),
+ ("S02", "Rogue", "DA", "A booth at the Afterlife, a mercenary bar in Night City", "A mercenary", None, "room",
+  ["The job's changed. Leave the {OBJECT} at the {PLACE} and walk away."], "merc", "So what do we leave, and where?"),
+ ("S03", "Panam", "DA", "A gas station on the edge of the Badlands", "A gas station clerk", None, "highway",
+  ["A trucker left {OBJECT_a} for you at the {PLACE}."], "clerk", "So what did the trucker leave, and where?"),
+ ("S04", "Kerry", "OH", "Backstage at a concert venue in Night City", "roadies", "A few steps away", "glass",
+  ["Where did the drummer leave his {OBJECT}?", "At the {PLACE}. Again."], None, "So what did the drummer leave, and where?"),
+ ("S05", "Rogue", "OH", "A late-night noodle bar in Kabuki", "waiters", "Behind the counter", "glass",
+  ["The boss hid {OBJECT_a} at the {PLACE}.", "Then don't touch it."], None, "So what did the boss hide, and where?"),
+ ("S06", "Panam", "OH", "A repair shop on the edge of the Badlands", "mechanics", "By the next workbench", "window",
+  ["Where's the {OBJECT}?", "At the {PLACE}. Don't tell anyone."], None, "So what are they talking about, and where is it?"),
+ ("S07", "Kerry", "DA", "The service entrance behind a nightclub in Night City", "A courier", None, "street",
+  ["The {OBJECT} has been left by the {PLACE}. Come and get it tonight."], "courier", "So where do we go, and what are we picking up?"),
+ ("S08", "Rogue", "DA", "A dim street corner in Watson", "A nervous informant", None, "street",
+  ["They moved the {OBJECT} to the {PLACE} last night."], "informant", "So what got moved, and where?"),
+ ("S09", "Panam", "DA", "A farmhouse porch in the Badlands", "An old farmer", None, "highway",
+  ["My dog dragged {OBJECT_a} over to the {PLACE}. Take it away."], "farmer", "So what did the dog drag off, and where to?"),
+ ("S10", "Kerry", "OH", "A crowded bar in North Oak", "waitresses", "At the service counter", "glass",
+  ["A customer forgot {OBJECT_a}.", "Put it at the {PLACE} with the rest."], None, "So what did the customer forget, and where does it go?"),
+ ("S11", "Rogue", "OH", "The Afterlife, a mercenary bar in Night City", "mercenaries", "At the next table", "glass",
+  ["The {OBJECT} goes to the {PLACE} tonight.", "Who's taking it?"], None, "So what's going out tonight, and where?"),
+ ("S12", "Rogue", "DA", "An alley behind a market in Kabuki", "A courier", None, "street",
+  ["The {OBJECT} is at the {PLACE}. Don't let anyone see you."], "courier", "So what's waiting for us, and where?"),
+ ("S13", "Panam", "OH", "A roadside diner outside Night City", "waitresses", "At the counter", "window",
+  ["A customer left {OBJECT_a} at the {PLACE}.", "She'll come back for it."], None, "So what did the customer leave, and where?"),
+ ("S14", "Kerry", "DA", "A green room at a concert venue in Night City", "A stagehand", None, "room",
+  ["Your manager left the {OBJECT} at the {PLACE}. She says don't forget it."], "stagehand", "So what did my manager leave, and where?"),
+ ("S15", "Panam", "DA", "The front office of a motel off the highway", "A motel manager", None, "highway",
+  ["I put your {OBJECT} at the {PLACE}. Take it when you leave."], "manager", "So what did he put away, and where?"),
+ ("S16", "Kerry", "OH", "The gate of a mansion in North Oak", "security guards", "By the gatehouse", "window",
+  ["Someone hid {OBJECT_a} near the {PLACE}.", "Check it before the boss sees."], None, "So what did someone hide, and where?"),
+ ("S17", "Rogue", "OH", "A back room in a Watson club", "smugglers", "At the next table", "glass",
+  ["Did anyone see the {OBJECT}?", "No. It's safe at the {PLACE}."], None, "So what are they keeping safe, and where?"),
+ ("S18", "Panam", "OH", "A ranch fence in the Badlands", "ranchers", "A few steps away", "window",
+  ["The storm blew my {OBJECT} over to the {PLACE}.", "Then go fetch it."], None, "So what blew away, and where to?"),
+ ("S19", "Kerry", "DA", "A limousine stop in front of a hotel in City Center", "A limousine driver", None, "street",
+  ["I dropped your {OBJECT} off at the {PLACE}. It's safe there."], "driver", "So what did he drop off, and where?"),
+ ("S20", "Kerry", "DA", "A street stall in Kabuki", "A vendor", None, "street",
+  ["The {OBJECT} you wanted is over at the {PLACE}. Go get it yourself."], "vendor", "So what did I want, and where is it?"),
+ ("S21", "Rogue", "DA", "A noodle cart in Watson", "A kid selling noodles", None, "street",
+  ["A man said to bring the {OBJECT} to the {PLACE} at midnight."], "kid", "So what do we bring, and where?"),
+ ("S22", "Panam", "DA", "A scrap heap beside the highway in the Badlands", "A scavenger", None, "highway",
+  ["Somebody dumped {OBJECT_a} near the {PLACE}. It's still there."], "scavenger", "So what got dumped, and where?"),
+ ("S23", "Kerry", "OH", "The line outside a concert venue in Night City", "young fans", "A few steps away", "window",
+  ["Meet me at the {PLACE} after the show.", "Okay. I'll bring the {OBJECT}."], None, "So where are they meeting, and what are they bringing?"),
+ ("S24", "Rogue", "OH", "A netrunner den in Watson", "netrunners", "Across the room", "glass",
+  ["Leave the {OBJECT} at the {PLACE}.", "Understood."], None, "So what are they leaving, and where?"),
+ ("S25", "Panam", "OH", "A campfire by an abandoned gas station in the Badlands", "drifters", "Across the fire", "window",
+  ["There's {OBJECT_a} at the {PLACE}.", "Worth anything?"], None, "So what did they find, and where?"),
+ ("S26", "Kerry", "DA", "A bar in North Oak", "A fan", None, "room",
+  ["My sister found your {OBJECT} near the {PLACE}. She kept it for you."], "fan", "So what did her sister find, and where?"),
+ ("S27", "Rogue", "DA", "The door of the Afterlife, a mercenary bar in Night City", "An old doorman", None, "street",
+  ["Your guest is waiting at the {PLACE}. She has the {OBJECT}."], "doorman", "So where's the guest waiting, and what does she have?"),
+ ("S28", "Panam", "DA", "A roadside stand on the highway out of Night City", "A roadside vendor", None, "highway",
+  ["Your {OBJECT} is ready. It's waiting at the {PLACE}."], "vendor", "So what's ready, and where?"),
+ ("S29", "Kerry", "OH", "A sound booth at a concert venue in Night City", "sound technicians", "Behind the mixing desk", "glass",
+  ["The {OBJECT} is still at the {PLACE}.", "Leave it. It's not our problem."], None, "So what's still there, and where?"),
+ ("S30", "Panam", "OH", "A gas station on the edge of the Badlands", "gas station attendants", "By the pumps", "window",
+  ["Put the {OBJECT} at the {PLACE} for the delivery.", "Fine."], None, "So what's going out for the delivery, and where?"),
+ ("S31", "Rogue", "OH", "A crowded bar in Watson", "men", "At the next table", "glass",
+  ["Where did you leave the {OBJECT}?", "At the {PLACE}, behind the old shop."], None, "So what did he leave, and where?"),
+ ("S32", "Kerry", "DA", "The entrance of a hotel in City Center", "A hotel security guard", None, "street",
+  ["Take the {OBJECT} to the {PLACE} before the party starts."], "guard", "So what are we taking, and where to?"),
+ ("S33", "Rogue", "DA", "A sidewalk in Kabuki", "A fixer's runner", None, "street",
+  ["The client says look at the {PLACE}. The {OBJECT} is there."], "runner", "So where do we look, and what for?"),
+ ("S34", "Panam", "DA", "The shoulder of the highway outside Night City", "A tow-truck driver", None, "highway",
+  ["I left your {OBJECT} at the {PLACE}. Call me if it's gone."], "driver", "So what did he leave, and where?"),
+ ("S35", "Kerry", "OH", "A street corner in Japantown", "couriers", "Across the sidewalk", "window",
+  ["The client wants the {OBJECT} at the {PLACE} by morning.", "Then we'd better move."], None, "So what does the client want, and where?"),
+ ("S36", "Rogue", "OH", "A night market in Kabuki", "street vendors", "At the next stall", "window",
+  ["The inspector took my {OBJECT} to the {PLACE}.", "Go get it back tomorrow."], None, "So what did the inspector take, and where?"),
+ ("S37", "Panam", "OH", "A motel walkway off the highway", "motel guests", "By the next room", "window",
+  ["I left my {OBJECT} at the {PLACE}.", "We're not going back tonight."], None, "So what did she leave, and where?"),
+ ("S38", "Kerry", "DA", "A recording studio lobby in North Oak", "An old sound engineer", None, "room",
+  ["I put the {OBJECT} at the {PLACE}, like you asked."], "engineer", "So what did he put away, and where?"),
+ ("S39", "Rogue", "DA", "A street clinic in Watson", "A street medic", None, "street",
+  ["I left your friend's {OBJECT} at the {PLACE}."], "medic", "So what did the medic leave, and where?"),
+ ("S40", "Panam", "DA", "A dirt road through the Badlands", "A kid on a bike", None, "highway",
+  ["My mom says your {OBJECT} is at the {PLACE}."], "kid", "So what's his mom talking about, and where is it?"),
+ ("S41", "Kerry", "OH", "A noodle bar in Japantown", "old women", "At the next table", "glass",
+  ["My grandson lost his {OBJECT} at the {PLACE}.", "Children lose everything."], None, "So what did her grandson lose, and where?"),
+ ("S42", "Rogue", "OH", "A card table in a Watson bar", "old men", "At the next table", "glass",
+  ["My son left his {OBJECT} near the {PLACE}.", "He'll never find it now."], None, "So what did his son leave, and where?"),
+ ("S43", "Panam", "OH", "A roadside fruit stand in the Badlands", "kids", "Behind the stand", "window",
+  ["Let's hide the {OBJECT} at the {PLACE}.", "Nobody will find it there."], None, "So what are they hiding, and where?"),
+ ("S44", "Kerry", "DA", "A sidewalk in City Center", "A delivery drone operator", None, "street",
+  ["Your {OBJECT} will be waiting at the {PLACE} after midnight."], "operator", "So what's coming, and where?"),
+ ("S45", "Rogue", "DA", "An empty plaza in Pacifica", "A scavenger", None, "street",
+  ["I saw them bury {OBJECT_a} near the {PLACE}."], "scavenger", "So what did they bury, and where?"),
+ ("S46", "Panam", "DA", "A repair shop on the edge of the Badlands", "A mechanic", None, "highway",
+  ["Hide the {OBJECT} at the {PLACE} before they come."], "mechanic", "So what do we hide, and where?"),
+ ("S47", "Kerry", "OH", "A hotel lobby in City Center", "cleaners", "Near the front desk", "glass",
+  ["Who left this {OBJECT} at the {PLACE}?", "Not me. Ask the night shift."], None, "So what did someone leave, and where?"),
+ ("S48", "Rogue", "OH", "A terrace bar high above Kabuki", "gang lookouts", "At the rail", "glass",
+  ["Put the {OBJECT} back at the {PLACE}.", "Why? Nobody's looking."], None, "So what goes back, and where?"),
+ ("S49", "Panam", "OH", "A checkpoint on the road into Night City", "smugglers", "In the next car", "window",
+  ["The {OBJECT} is waiting at the {PLACE}.", "Good. Pick it up after dark."], None, "So what's waiting, and where?"),
+ ("S50", "Kerry", "DA", "A cocktail bar in North Oak", "A bartender", None, "room",
+  ["The lady from yesterday wants her {OBJECT} back. Bring it to the {PLACE}."], "bartender", "So what does she want back, and where do we take it?"),
+ ("S51", "Rogue", "DA", "A patrol stop on a Watson street", "An NCPD officer", None, "street",
+  ["We found {OBJECT_a} at the {PLACE}. Stay away from there."], "officer", "So what did they find, and where?"),
+ ("S52", "Panam", "DA", "A roadside diner outside Night City", "A diner cook", None, "room",
+  ["Someone lost {OBJECT_a} at the {PLACE}. Is it yours?"], "cook", "So what did someone lose, and where?"),
+ ("S53", "Kerry", "OH", "A photo studio in North Oak", "photographers", "Across the studio", "glass",
+  ["They moved the {OBJECT} to the {PLACE}.", "Who told them to?"], None, "So what got moved, and where to?"),
+ ("S54", "Rogue", "OH", "A street clinic in Watson", "nurses", "Behind the curtain", "glass",
+  ["The patient's {OBJECT} is at the {PLACE}.", "I'll bring it later."], None, "So what's the patient's, and where is it?"),
+ ("S55", "Panam", "OH", "A laundromat in Santo Domingo", "sisters", "By the next machine", "window",
+  ["Mom's {OBJECT} is at the {PLACE}.", "I'll bring it home."], None, "So what's their mom's, and where is it?"),
+ ("S56", "Kerry", "OH", "A dive bar in Japantown", "gangers", "At the next table", "glass",
+  ["Is the {OBJECT} still at the {PLACE}?", "Yes. Nobody's touched it."], None, "So what are they checking on, and where is it?"),
+ ("S57", "Rogue", "DA", "A shop counter in Kabuki", "A shopkeeper", None, "street",
+  ["Two men carried {OBJECT_a} to the {PLACE}. I saw them."], "shopkeeper", "So what did they carry, and where?"),
+ ("S58", "Panam", "DA", "A checkpoint on the road into Night City", "A checkpoint guard", None, "highway",
+  ["Your {OBJECT} is at the {PLACE}. Pick it up in the morning."], "guard", "So what's there, and where?"),
+ ("S59", "Kerry", "OH", "The door of a nightclub in Night City", "bouncers", "A few steps away", "window",
+  ["Bring the {OBJECT} to the {PLACE} tonight.", "Fine, but you owe me."], None, "So what's being brought, and where?"),
+ ("S60", "Rogue", "OH", "A food court in Watson", "teenagers", "At the next table", "glass",
+  ["Bring the {OBJECT} to the {PLACE}.", "Okay, after dinner."], None, "So what are they bringing, and where?"),
+ ("S61", "Panam", "OH", "A roadside diner outside Night City", "NCPD officers", "At the next booth", "window",
+  ["We found {OBJECT_a} near the {PLACE}.", "Log it and forget it."], None, "So what did they find, and where?"),
+ ("S62", "Kerry", "DA", "A taxi stand in City Center", "A taxi driver", None, "street",
+  ["You forgot your {OBJECT} in my cab. I left it at the {PLACE}."], "driver", "So what did I forget, and where did he leave it?"),
+ ("S63", "Rogue", "DA", "A curb outside the Afterlife, a mercenary bar in Night City", "A cab driver", None, "street",
+  ["Your contact dropped {OBJECT_a} off at the {PLACE}. Go now."], "driver", "So what did the contact drop off, and where?"),
+ ("S64", "Panam", "OH", "A tin shack in the Badlands", "scavengers", "Across the shack", "window",
+  ["Somebody stole {OBJECT_a} from the {PLACE}.", "Again? This town..."], None, "So what got stolen, and from where?"),
+]
+
+
+def main():
+    personas = json.loads((ROOT / "data" / "personas.json").read_text(encoding="utf-8"))["characters"]
+    items = []
+    for sid, char, mode, loc, who, nearby, noise, frame, noun, q_task in TABLE:
+        name = personas[char]["short_name"]
+        scene = {"location": loc}
+        if mode == "DA":
+            scene.update(speaker=who, speaker_label=who.split(" ", 1)[1] if who.startswith(("A ", "An ")) else who,
+                         e_inaud_description=NOISE[noise].format(Speaker=who, name=name))
+            q_content = f"What did the {noun} say?"
+        else:
+            one = SINGULAR.get(who, who[:-1] if who.endswith("s") else who)
+            scene.update(people=who, nearby=nearby, speaker_labels=[f"first {one}", f"second {one}"],
+                         e_inaud_description=NOISE[noise].format(people=who, name=name))
+            q_content = "What were those two saying?"
+        items.append({"id": sid, "set": "main", "world": "cyberpunk", "mode": mode, "character": char, "scene": scene,
+                      "skeleton_en": frame, "questions": {"content": q_content, "task": q_task}})
+    out = ROOT / "items" / "main" / "skeletons_en.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"version": "main-en-0.1-draft", "note": __doc__.strip().splitlines()[0], "items": items},
+                              ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    from collections import Counter
+    print(len(items), "skeletons;", dict(Counter((i["character"], i["mode"]) for i in items)))
+
+
+if __name__ == "__main__":
+    main()

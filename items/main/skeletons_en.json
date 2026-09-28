@@ -1,0 +1,1446 @@
+{
+ "version": "main-en-0.1-draft",
+ "note": "Write items/main/skeletons_en.json: the 64 main-set skeletons in English (proposal 5.3, 5.5).",
+ "items": [
+  {
+   "id": "S01",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The sidewalk outside a recording studio in North Oak",
+    "speaker": "A street kid",
+    "speaker_label": "street kid",
+    "e_inaud_description": "A street kid shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "A man paid me to tell you the {OBJECT} is at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what's waiting, and where?"
+   }
+  },
+  {
+   "id": "S02",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A booth at the Afterlife, a mercenary bar in Night City",
+    "speaker": "A mercenary",
+    "speaker_label": "mercenary",
+    "e_inaud_description": "A mercenary calls out to Rogue from across the packed, deafening room; the music drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The job's changed. Leave the {OBJECT} at the {PLACE} and walk away."
+   ],
+   "questions": {
+    "content": "What did the merc say?",
+    "task": "So what do we leave, and where?"
+   }
+  },
+  {
+   "id": "S03",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A gas station on the edge of the Badlands",
+    "speaker": "A gas station clerk",
+    "speaker_label": "gas station clerk",
+    "e_inaud_description": "A gas station clerk shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "A trucker left {OBJECT_a} for you at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the clerk say?",
+    "task": "So what did the trucker leave, and where?"
+   }
+  },
+  {
+   "id": "S04",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "Backstage at a concert venue in Night City",
+    "people": "roadies",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first roadie",
+     "second roadie"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two roadies talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did the drummer leave his {OBJECT}?",
+    "At the {PLACE}. Again."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the drummer leave, and where?"
+   }
+  },
+  {
+   "id": "S05",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A late-night noodle bar in Kabuki",
+    "people": "waiters",
+    "nearby": "Behind the counter",
+    "speaker_labels": [
+     "first waiter",
+     "second waiter"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two waiters talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The boss hid {OBJECT_a} at the {PLACE}.",
+    "Then don't touch it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the boss hide, and where?"
+   }
+  },
+  {
+   "id": "S06",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A repair shop on the edge of the Badlands",
+    "people": "mechanics",
+    "nearby": "By the next workbench",
+    "speaker_labels": [
+     "first mechanic",
+     "second mechanic"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two mechanics talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where's the {OBJECT}?",
+    "At the {PLACE}. Don't tell anyone."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they talking about, and where is it?"
+   }
+  },
+  {
+   "id": "S07",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The service entrance behind a nightclub in Night City",
+    "speaker": "A courier",
+    "speaker_label": "courier",
+    "e_inaud_description": "A courier shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} has been left by the {PLACE}. Come and get it tonight."
+   ],
+   "questions": {
+    "content": "What did the courier say?",
+    "task": "So where do we go, and what are we picking up?"
+   }
+  },
+  {
+   "id": "S08",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A dim street corner in Watson",
+    "speaker": "A nervous informant",
+    "speaker_label": "nervous informant",
+    "e_inaud_description": "A nervous informant shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "They moved the {OBJECT} to the {PLACE} last night."
+   ],
+   "questions": {
+    "content": "What did the informant say?",
+    "task": "So what got moved, and where?"
+   }
+  },
+  {
+   "id": "S09",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A farmhouse porch in the Badlands",
+    "speaker": "An old farmer",
+    "speaker_label": "old farmer",
+    "e_inaud_description": "An old farmer shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "My dog dragged {OBJECT_a} over to the {PLACE}. Take it away."
+   ],
+   "questions": {
+    "content": "What did the farmer say?",
+    "task": "So what did the dog drag off, and where to?"
+   }
+  },
+  {
+   "id": "S10",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A crowded bar in North Oak",
+    "people": "waitresses",
+    "nearby": "At the service counter",
+    "speaker_labels": [
+     "first waitress",
+     "second waitress"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two waitresses talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "A customer forgot {OBJECT_a}.",
+    "Put it at the {PLACE} with the rest."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the customer forget, and where does it go?"
+   }
+  },
+  {
+   "id": "S11",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "The Afterlife, a mercenary bar in Night City",
+    "people": "mercenaries",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first mercenary",
+     "second mercenary"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two mercenaries talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} goes to the {PLACE} tonight.",
+    "Who's taking it?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's going out tonight, and where?"
+   }
+  },
+  {
+   "id": "S12",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "An alley behind a market in Kabuki",
+    "speaker": "A courier",
+    "speaker_label": "courier",
+    "e_inaud_description": "A courier shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} is at the {PLACE}. Don't let anyone see you."
+   ],
+   "questions": {
+    "content": "What did the courier say?",
+    "task": "So what's waiting for us, and where?"
+   }
+  },
+  {
+   "id": "S13",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "people": "waitresses",
+    "nearby": "At the counter",
+    "speaker_labels": [
+     "first waitress",
+     "second waitress"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two waitresses talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "A customer left {OBJECT_a} at the {PLACE}.",
+    "She'll come back for it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the customer leave, and where?"
+   }
+  },
+  {
+   "id": "S14",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A green room at a concert venue in Night City",
+    "speaker": "A stagehand",
+    "speaker_label": "stagehand",
+    "e_inaud_description": "A stagehand calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your manager left the {OBJECT} at the {PLACE}. She says don't forget it."
+   ],
+   "questions": {
+    "content": "What did the stagehand say?",
+    "task": "So what did my manager leave, and where?"
+   }
+  },
+  {
+   "id": "S15",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "The front office of a motel off the highway",
+    "speaker": "A motel manager",
+    "speaker_label": "motel manager",
+    "e_inaud_description": "A motel manager shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I put your {OBJECT} at the {PLACE}. Take it when you leave."
+   ],
+   "questions": {
+    "content": "What did the manager say?",
+    "task": "So what did he put away, and where?"
+   }
+  },
+  {
+   "id": "S16",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The gate of a mansion in North Oak",
+    "people": "security guards",
+    "nearby": "By the gatehouse",
+    "speaker_labels": [
+     "first security guard",
+     "second security guard"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two security guards talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone hid {OBJECT_a} near the {PLACE}.",
+    "Check it before the boss sees."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone hide, and where?"
+   }
+  },
+  {
+   "id": "S17",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A back room in a Watson club",
+    "people": "smugglers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first smuggler",
+     "second smuggler"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two smugglers talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did anyone see the {OBJECT}?",
+    "No. It's safe at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they keeping safe, and where?"
+   }
+  },
+  {
+   "id": "S18",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A ranch fence in the Badlands",
+    "people": "ranchers",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first rancher",
+     "second rancher"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two ranchers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "The storm blew my {OBJECT} over to the {PLACE}.",
+    "Then go fetch it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what blew away, and where to?"
+   }
+  },
+  {
+   "id": "S19",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A limousine stop in front of a hotel in City Center",
+    "speaker": "A limousine driver",
+    "speaker_label": "limousine driver",
+    "e_inaud_description": "A limousine driver shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "I dropped your {OBJECT} off at the {PLACE}. It's safe there."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did he drop off, and where?"
+   }
+  },
+  {
+   "id": "S20",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A street stall in Kabuki",
+    "speaker": "A vendor",
+    "speaker_label": "vendor",
+    "e_inaud_description": "A vendor shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} you wanted is over at the {PLACE}. Go get it yourself."
+   ],
+   "questions": {
+    "content": "What did the vendor say?",
+    "task": "So what did I want, and where is it?"
+   }
+  },
+  {
+   "id": "S21",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A noodle cart in Watson",
+    "speaker": "A kid selling noodles",
+    "speaker_label": "kid selling noodles",
+    "e_inaud_description": "A kid selling noodles shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "A man said to bring the {OBJECT} to the {PLACE} at midnight."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what do we bring, and where?"
+   }
+  },
+  {
+   "id": "S22",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A scrap heap beside the highway in the Badlands",
+    "speaker": "A scavenger",
+    "speaker_label": "scavenger",
+    "e_inaud_description": "A scavenger shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Somebody dumped {OBJECT_a} near the {PLACE}. It's still there."
+   ],
+   "questions": {
+    "content": "What did the scavenger say?",
+    "task": "So what got dumped, and where?"
+   }
+  },
+  {
+   "id": "S23",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The line outside a concert venue in Night City",
+    "people": "young fans",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first young fan",
+     "second young fan"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two young fans talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Meet me at the {PLACE} after the show.",
+    "Okay. I'll bring the {OBJECT}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So where are they meeting, and what are they bringing?"
+   }
+  },
+  {
+   "id": "S24",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A netrunner den in Watson",
+    "people": "netrunners",
+    "nearby": "Across the room",
+    "speaker_labels": [
+     "first netrunner",
+     "second netrunner"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two netrunners talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Leave the {OBJECT} at the {PLACE}.",
+    "Understood."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they leaving, and where?"
+   }
+  },
+  {
+   "id": "S25",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A campfire by an abandoned gas station in the Badlands",
+    "people": "drifters",
+    "nearby": "Across the fire",
+    "speaker_labels": [
+     "first drifter",
+     "second drifter"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two drifters talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "There's {OBJECT_a} at the {PLACE}.",
+    "Worth anything?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they find, and where?"
+   }
+  },
+  {
+   "id": "S26",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A bar in North Oak",
+    "speaker": "A fan",
+    "speaker_label": "fan",
+    "e_inaud_description": "A fan calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "My sister found your {OBJECT} near the {PLACE}. She kept it for you."
+   ],
+   "questions": {
+    "content": "What did the fan say?",
+    "task": "So what did her sister find, and where?"
+   }
+  },
+  {
+   "id": "S27",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "The door of the Afterlife, a mercenary bar in Night City",
+    "speaker": "An old doorman",
+    "speaker_label": "old doorman",
+    "e_inaud_description": "An old doorman shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your guest is waiting at the {PLACE}. She has the {OBJECT}."
+   ],
+   "questions": {
+    "content": "What did the doorman say?",
+    "task": "So where's the guest waiting, and what does she have?"
+   }
+  },
+  {
+   "id": "S28",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside stand on the highway out of Night City",
+    "speaker": "A roadside vendor",
+    "speaker_label": "roadside vendor",
+    "e_inaud_description": "A roadside vendor shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your {OBJECT} is ready. It's waiting at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the vendor say?",
+    "task": "So what's ready, and where?"
+   }
+  },
+  {
+   "id": "S29",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A sound booth at a concert venue in Night City",
+    "people": "sound technicians",
+    "nearby": "Behind the mixing desk",
+    "speaker_labels": [
+     "first sound technician",
+     "second sound technician"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two sound technicians talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} is still at the {PLACE}.",
+    "Leave it. It's not our problem."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's still there, and where?"
+   }
+  },
+  {
+   "id": "S30",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A gas station on the edge of the Badlands",
+    "people": "gas station attendants",
+    "nearby": "By the pumps",
+    "speaker_labels": [
+     "first gas station attendant",
+     "second gas station attendant"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two gas station attendants talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put the {OBJECT} at the {PLACE} for the delivery.",
+    "Fine."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's going out for the delivery, and where?"
+   }
+  },
+  {
+   "id": "S31",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A crowded bar in Watson",
+    "people": "men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first man",
+     "second man"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two men talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did you leave the {OBJECT}?",
+    "At the {PLACE}, behind the old shop."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave, and where?"
+   }
+  },
+  {
+   "id": "S32",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The entrance of a hotel in City Center",
+    "speaker": "A hotel security guard",
+    "speaker_label": "hotel security guard",
+    "e_inaud_description": "A hotel security guard shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Take the {OBJECT} to the {PLACE} before the party starts."
+   ],
+   "questions": {
+    "content": "What did the guard say?",
+    "task": "So what are we taking, and where to?"
+   }
+  },
+  {
+   "id": "S33",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A sidewalk in Kabuki",
+    "speaker": "A fixer's runner",
+    "speaker_label": "fixer's runner",
+    "e_inaud_description": "A fixer's runner shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The client says look at the {PLACE}. The {OBJECT} is there."
+   ],
+   "questions": {
+    "content": "What did the runner say?",
+    "task": "So where do we look, and what for?"
+   }
+  },
+  {
+   "id": "S34",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "The shoulder of the highway outside Night City",
+    "speaker": "A tow-truck driver",
+    "speaker_label": "tow-truck driver",
+    "e_inaud_description": "A tow-truck driver shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left your {OBJECT} at the {PLACE}. Call me if it's gone."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did he leave, and where?"
+   }
+  },
+  {
+   "id": "S35",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A street corner in Japantown",
+    "people": "couriers",
+    "nearby": "Across the sidewalk",
+    "speaker_labels": [
+     "first courier",
+     "second courier"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two couriers talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The client wants the {OBJECT} at the {PLACE} by morning.",
+    "Then we'd better move."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what does the client want, and where?"
+   }
+  },
+  {
+   "id": "S36",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A night market in Kabuki",
+    "people": "street vendors",
+    "nearby": "At the next stall",
+    "speaker_labels": [
+     "first street vendor",
+     "second street vendor"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two street vendors talk to each other; the glass and the traffic drown it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The inspector took my {OBJECT} to the {PLACE}.",
+    "Go get it back tomorrow."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the inspector take, and where?"
+   }
+  },
+  {
+   "id": "S37",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A motel walkway off the highway",
+    "people": "motel guests",
+    "nearby": "By the next room",
+    "speaker_labels": [
+     "first motel guest",
+     "second motel guest"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two motel guests talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left my {OBJECT} at the {PLACE}.",
+    "We're not going back tonight."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did she leave, and where?"
+   }
+  },
+  {
+   "id": "S38",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A recording studio lobby in North Oak",
+    "speaker": "An old sound engineer",
+    "speaker_label": "old sound engineer",
+    "e_inaud_description": "An old sound engineer calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "I put the {OBJECT} at the {PLACE}, like you asked."
+   ],
+   "questions": {
+    "content": "What did the engineer say?",
+    "task": "So what did he put away, and where?"
+   }
+  },
+  {
+   "id": "S39",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A street clinic in Watson",
+    "speaker": "A street medic",
+    "speaker_label": "street medic",
+    "e_inaud_description": "A street medic shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left your friend's {OBJECT} at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the medic say?",
+    "task": "So what did the medic leave, and where?"
+   }
+  },
+  {
+   "id": "S40",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A dirt road through the Badlands",
+    "speaker": "A kid on a bike",
+    "speaker_label": "kid on a bike",
+    "e_inaud_description": "A kid on a bike shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "My mom says your {OBJECT} is at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what's his mom talking about, and where is it?"
+   }
+  },
+  {
+   "id": "S41",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A noodle bar in Japantown",
+    "people": "old women",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old woman",
+     "second old woman"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two old women talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "My grandson lost his {OBJECT} at the {PLACE}.",
+    "Children lose everything."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did her grandson lose, and where?"
+   }
+  },
+  {
+   "id": "S42",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A card table in a Watson bar",
+    "people": "old men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old man",
+     "second old man"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two old men talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "My son left his {OBJECT} near the {PLACE}.",
+    "He'll never find it now."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did his son leave, and where?"
+   }
+  },
+  {
+   "id": "S43",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside fruit stand in the Badlands",
+    "people": "kids",
+    "nearby": "Behind the stand",
+    "speaker_labels": [
+     "first kid",
+     "second kid"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two kids talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Let's hide the {OBJECT} at the {PLACE}.",
+    "Nobody will find it there."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they hiding, and where?"
+   }
+  },
+  {
+   "id": "S44",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A sidewalk in City Center",
+    "speaker": "A delivery drone operator",
+    "speaker_label": "delivery drone operator",
+    "e_inaud_description": "A delivery drone operator shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your {OBJECT} will be waiting at the {PLACE} after midnight."
+   ],
+   "questions": {
+    "content": "What did the operator say?",
+    "task": "So what's coming, and where?"
+   }
+  },
+  {
+   "id": "S45",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "An empty plaza in Pacifica",
+    "speaker": "A scavenger",
+    "speaker_label": "scavenger",
+    "e_inaud_description": "A scavenger shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "I saw them bury {OBJECT_a} near the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the scavenger say?",
+    "task": "So what did they bury, and where?"
+   }
+  },
+  {
+   "id": "S46",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A repair shop on the edge of the Badlands",
+    "speaker": "A mechanic",
+    "speaker_label": "mechanic",
+    "e_inaud_description": "A mechanic shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Hide the {OBJECT} at the {PLACE} before they come."
+   ],
+   "questions": {
+    "content": "What did the mechanic say?",
+    "task": "So what do we hide, and where?"
+   }
+  },
+  {
+   "id": "S47",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A hotel lobby in City Center",
+    "people": "cleaners",
+    "nearby": "Near the front desk",
+    "speaker_labels": [
+     "first cleaner",
+     "second cleaner"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two cleaners talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Who left this {OBJECT} at the {PLACE}?",
+    "Not me. Ask the night shift."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone leave, and where?"
+   }
+  },
+  {
+   "id": "S48",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A terrace bar high above Kabuki",
+    "people": "gang lookouts",
+    "nearby": "At the rail",
+    "speaker_labels": [
+     "first gang lookout",
+     "second gang lookout"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two gang lookouts talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put the {OBJECT} back at the {PLACE}.",
+    "Why? Nobody's looking."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what goes back, and where?"
+   }
+  },
+  {
+   "id": "S49",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A checkpoint on the road into Night City",
+    "people": "smugglers",
+    "nearby": "In the next car",
+    "speaker_labels": [
+     "first smuggler",
+     "second smuggler"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two smugglers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "The {OBJECT} is waiting at the {PLACE}.",
+    "Good. Pick it up after dark."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's waiting, and where?"
+   }
+  },
+  {
+   "id": "S50",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A cocktail bar in North Oak",
+    "speaker": "A bartender",
+    "speaker_label": "bartender",
+    "e_inaud_description": "A bartender calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The lady from yesterday wants her {OBJECT} back. Bring it to the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the bartender say?",
+    "task": "So what does she want back, and where do we take it?"
+   }
+  },
+  {
+   "id": "S51",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A patrol stop on a Watson street",
+    "speaker": "An NCPD officer",
+    "speaker_label": "NCPD officer",
+    "e_inaud_description": "An NCPD officer shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "We found {OBJECT_a} at the {PLACE}. Stay away from there."
+   ],
+   "questions": {
+    "content": "What did the officer say?",
+    "task": "So what did they find, and where?"
+   }
+  },
+  {
+   "id": "S52",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "speaker": "A diner cook",
+    "speaker_label": "diner cook",
+    "e_inaud_description": "A diner cook calls out to Panam from across the packed, deafening room; the music drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone lost {OBJECT_a} at the {PLACE}. Is it yours?"
+   ],
+   "questions": {
+    "content": "What did the cook say?",
+    "task": "So what did someone lose, and where?"
+   }
+  },
+  {
+   "id": "S53",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A photo studio in North Oak",
+    "people": "photographers",
+    "nearby": "Across the studio",
+    "speaker_labels": [
+     "first photographer",
+     "second photographer"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two photographers talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "They moved the {OBJECT} to the {PLACE}.",
+    "Who told them to?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what got moved, and where to?"
+   }
+  },
+  {
+   "id": "S54",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A street clinic in Watson",
+    "people": "nurses",
+    "nearby": "Behind the curtain",
+    "speaker_labels": [
+     "first nurse",
+     "second nurse"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two nurses talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The patient's {OBJECT} is at the {PLACE}.",
+    "I'll bring it later."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's the patient's, and where is it?"
+   }
+  },
+  {
+   "id": "S55",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A laundromat in Santo Domingo",
+    "people": "sisters",
+    "nearby": "By the next machine",
+    "speaker_labels": [
+     "first sister",
+     "second sister"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two sisters talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Mom's {OBJECT} is at the {PLACE}.",
+    "I'll bring it home."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's their mom's, and where is it?"
+   }
+  },
+  {
+   "id": "S56",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A dive bar in Japantown",
+    "people": "gangers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first ganger",
+     "second ganger"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two gangers talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Is the {OBJECT} still at the {PLACE}?",
+    "Yes. Nobody's touched it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they checking on, and where is it?"
+   }
+  },
+  {
+   "id": "S57",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A shop counter in Kabuki",
+    "speaker": "A shopkeeper",
+    "speaker_label": "shopkeeper",
+    "e_inaud_description": "A shopkeeper shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Two men carried {OBJECT_a} to the {PLACE}. I saw them."
+   ],
+   "questions": {
+    "content": "What did the shopkeeper say?",
+    "task": "So what did they carry, and where?"
+   }
+  },
+  {
+   "id": "S58",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A checkpoint on the road into Night City",
+    "speaker": "A checkpoint guard",
+    "speaker_label": "checkpoint guard",
+    "e_inaud_description": "A checkpoint guard shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your {OBJECT} is at the {PLACE}. Pick it up in the morning."
+   ],
+   "questions": {
+    "content": "What did the guard say?",
+    "task": "So what's there, and where?"
+   }
+  },
+  {
+   "id": "S59",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The door of a nightclub in Night City",
+    "people": "bouncers",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first bouncer",
+     "second bouncer"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two bouncers talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Bring the {OBJECT} to the {PLACE} tonight.",
+    "Fine, but you owe me."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's being brought, and where?"
+   }
+  },
+  {
+   "id": "S60",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A food court in Watson",
+    "people": "teenagers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first teenager",
+     "second teenager"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two teenagers talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Bring the {OBJECT} to the {PLACE}.",
+    "Okay, after dinner."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they bringing, and where?"
+   }
+  },
+  {
+   "id": "S61",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "people": "NCPD officers",
+    "nearby": "At the next booth",
+    "speaker_labels": [
+     "first NCPD officer",
+     "second NCPD officer"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two NCPD officers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "We found {OBJECT_a} near the {PLACE}.",
+    "Log it and forget it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they find, and where?"
+   }
+  },
+  {
+   "id": "S62",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A taxi stand in City Center",
+    "speaker": "A taxi driver",
+    "speaker_label": "taxi driver",
+    "e_inaud_description": "A taxi driver shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "You forgot your {OBJECT} in my cab. I left it at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did I forget, and where did he leave it?"
+   }
+  },
+  {
+   "id": "S63",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A curb outside the Afterlife, a mercenary bar in Night City",
+    "speaker": "A cab driver",
+    "speaker_label": "cab driver",
+    "e_inaud_description": "A cab driver shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your contact dropped {OBJECT_a} off at the {PLACE}. Go now."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did the contact drop off, and where?"
+   }
+  },
+  {
+   "id": "S64",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A tin shack in the Badlands",
+    "people": "scavengers",
+    "nearby": "Across the shack",
+    "speaker_labels": [
+     "first scavenger",
+     "second scavenger"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two scavengers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Somebody stole {OBJECT_a} from the {PLACE}.",
+    "Again? This town..."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what got stolen, and from where?"
+   }
+  }
+ ]
+}

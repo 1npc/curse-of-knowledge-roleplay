@@ -1,0 +1,2060 @@
+{
+ "version": "assignment-0.1",
+ "seed": 20260928,
+ "iterations": 8000,
+ "scores": {
+  "PLACE": 88,
+  "OBJECT": 153
+ },
+ "max_place_object_cooccurrence": 5,
+ "slots": {
+  "S01": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "chair"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "wallet"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "envelope"
+    }
+   }
+  },
+  "S02": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "coat"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "broom"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "mirror"
+    }
+   }
+  },
+  "S03": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "wallet"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "envelope"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "chair"
+    }
+   }
+  },
+  "S04": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "coat"
+    }
+   }
+  },
+  "S05": {
+   "zh": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "bag"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "hammer"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "box"
+    }
+   }
+  },
+  "S06": {
+   "zh": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S07": {
+   "zh": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S08": {
+   "zh": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "glove"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "shoe"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "pillow"
+    }
+   }
+  },
+  "S09": {
+   "zh": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "pillow"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "glove"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "shoe"
+    }
+   }
+  },
+  "S10": {
+   "zh": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "box"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "bag"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "hammer"
+    }
+   }
+  },
+  "S11": {
+   "zh": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S12": {
+   "zh": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "coat"
+    }
+   }
+  },
+  "S13": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "chair"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "wallet"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "envelope"
+    }
+   }
+  },
+  "S14": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "glove"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "shoe"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "pillow"
+    }
+   }
+  },
+  "S15": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "chair"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "wallet"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "envelope"
+    }
+   }
+  },
+  "S16": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S17": {
+   "zh": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "wallet"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "envelope"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "chair"
+    }
+   }
+  },
+  "S18": {
+   "zh": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "box"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "bag"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "hammer"
+    }
+   }
+  },
+  "S19": {
+   "zh": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "mirror"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "coat"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "broom"
+    }
+   }
+  },
+  "S20": {
+   "zh": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "pillow"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "glove"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "shoe"
+    }
+   }
+  },
+  "S21": {
+   "zh": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "glove"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "shoe"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "pillow"
+    }
+   }
+  },
+  "S22": {
+   "zh": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "wallet"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "envelope"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "chair"
+    }
+   }
+  },
+  "S23": {
+   "zh": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S24": {
+   "zh": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "bag"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "hammer"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "box"
+    }
+   }
+  },
+  "S25": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "coat"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "broom"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "mirror"
+    }
+   }
+  },
+  "S26": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "box"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "bag"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "hammer"
+    }
+   }
+  },
+  "S27": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S28": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "bag"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "hammer"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "box"
+    }
+   }
+  },
+  "S29": {
+   "zh": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S30": {
+   "zh": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S31": {
+   "zh": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "chair"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "wallet"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "envelope"
+    }
+   }
+  },
+  "S32": {
+   "zh": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "mirror"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "coat"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "broom"
+    }
+   }
+  },
+  "S33": {
+   "zh": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "mirror"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "coat"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "broom"
+    }
+   }
+  },
+  "S34": {
+   "zh": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "pillow"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "glove"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "shoe"
+    }
+   }
+  },
+  "S35": {
+   "zh": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S36": {
+   "zh": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "coat"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "broom"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "mirror"
+    }
+   }
+  },
+  "S37": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "coat"
+    }
+   }
+  },
+  "S38": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S39": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "pillow"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "glove"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "shoe"
+    }
+   }
+  },
+  "S40": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "glove"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "shoe"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "pillow"
+    }
+   }
+  },
+  "S41": {
+   "zh": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "coat"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "broom"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "mirror"
+    }
+   }
+  },
+  "S42": {
+   "zh": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "wallet"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "envelope"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "chair"
+    }
+   }
+  },
+  "S43": {
+   "zh": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S44": {
+   "zh": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S45": {
+   "zh": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "wallet"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "envelope"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "chair"
+    }
+   }
+  },
+  "S46": {
+   "zh": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "box"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "chair"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "bag"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "wallet"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "hammer"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "envelope"
+    }
+   }
+  },
+  "S47": {
+   "zh": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "coat"
+    }
+   }
+  },
+  "S48": {
+   "zh": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "coat"
+    }
+   }
+  },
+  "S49": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S50": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "pillow"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "glove"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "shoe"
+    }
+   }
+  },
+  "S51": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "coat"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "broom"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "mirror"
+    }
+   }
+  },
+  "S52": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "box"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "bag"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "hammer"
+    }
+   }
+  },
+  "S53": {
+   "zh": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S54": {
+   "zh": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "mirror"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "coat"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "broom"
+    }
+   }
+  },
+  "S55": {
+   "zh": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "bag"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "hammer"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "box"
+    }
+   }
+  },
+  "S56": {
+   "zh": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "broom"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "glove"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "mirror"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "shoe"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "coat"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "pillow"
+    }
+   }
+  },
+  "S57": {
+   "zh": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "bag"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "hammer"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "box"
+    }
+   }
+  },
+  "S58": {
+   "zh": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "envelope"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "chair"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "wallet"
+    }
+   }
+  },
+  "S59": {
+   "zh": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "mirror"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "coat"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "broom"
+    }
+   }
+  },
+  "S60": {
+   "zh": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "box"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "bag"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "hammer"
+    }
+   }
+  },
+  "S61": {
+   "zh": {
+    "A": {
+     "PLACE": "church",
+     "OBJECT": "chair"
+    },
+    "B": {
+     "PLACE": "pier",
+     "OBJECT": "shoe"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "parking_lot",
+     "OBJECT": "wallet"
+    },
+    "B": {
+     "PLACE": "basement",
+     "OBJECT": "pillow"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "junkyard",
+     "OBJECT": "envelope"
+    },
+    "B": {
+     "PLACE": "boat",
+     "OBJECT": "glove"
+    }
+   }
+  },
+  "S62": {
+   "zh": {
+    "A": {
+     "PLACE": "bridge",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "warehouse",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "stairwell",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "pawnshop",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "roof",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "sewer",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S63": {
+   "zh": {
+    "A": {
+     "PLACE": "pier",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "parking_lot",
+     "OBJECT": "hammer"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "basement",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "junkyard",
+     "OBJECT": "box"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "boat",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "church",
+     "OBJECT": "bag"
+    }
+   }
+  },
+  "S64": {
+   "zh": {
+    "A": {
+     "PLACE": "sewer",
+     "OBJECT": "shoe"
+    },
+    "B": {
+     "PLACE": "stairwell",
+     "OBJECT": "broom"
+    }
+   },
+   "ja": {
+    "A": {
+     "PLACE": "warehouse",
+     "OBJECT": "pillow"
+    },
+    "B": {
+     "PLACE": "roof",
+     "OBJECT": "mirror"
+    }
+   },
+   "es": {
+    "A": {
+     "PLACE": "pawnshop",
+     "OBJECT": "glove"
+    },
+    "B": {
+     "PLACE": "bridge",
+     "OBJECT": "coat"
+    }
+   }
+  }
+ }
+}
