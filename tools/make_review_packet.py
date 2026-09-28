@@ -77,7 +77,8 @@ def main():
                 lines.append(f"- canaries: {canaries}")
                 lines.append("")
                 bt.append(f"{it['id']}-{ver}: " + " / ".join(v["lines"]))
-            lines += [f"- {c}" for c in CHECKS[lang]]
+            has_reading = any(it["langs"][lang][v].get("reading") for v in ("A", "B"))
+            lines += [f"- {c}" for c in CHECKS[lang] if has_reading or not c.startswith(("拼音读音", "The kana reading"))]
             lines.append("")
         (out / f"{tag}-{lang}.md").write_text("\n".join(lines), encoding="utf-8")
         (out / f"{tag}-{lang}-backtranslation.md").write_text("\n".join(bt) + "\n", encoding="utf-8")

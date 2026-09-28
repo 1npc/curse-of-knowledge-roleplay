@@ -16,7 +16,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S02
@@ -33,7 +32,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S03
@@ -50,7 +48,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S04
@@ -67,7 +64,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S05
@@ -84,7 +80,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S06
@@ -101,7 +96,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S07
@@ -118,7 +112,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S08
@@ -135,7 +128,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S09
@@ -152,7 +144,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S10
@@ -169,7 +160,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S11
@@ -186,7 +176,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S12
@@ -203,7 +192,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S13
@@ -220,7 +208,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S14
@@ -237,7 +224,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S15
@@ -254,7 +240,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S16
@@ -271,7 +256,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S17
@@ -288,7 +272,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S18
@@ -305,7 +288,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S19
@@ -322,7 +304,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S20
@@ -339,7 +320,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S21
@@ -356,7 +336,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S22
@@ -373,7 +352,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S23
@@ -390,7 +368,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S24
@@ -407,7 +384,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S25
@@ -424,7 +400,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S26
@@ -441,7 +416,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S27
@@ -458,7 +432,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S28
@@ -475,7 +448,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S29
@@ -492,7 +464,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S30
@@ -509,7 +480,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S31
@@ -526,7 +496,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S32
@@ -543,7 +512,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S33
@@ -560,7 +528,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S34
@@ -577,7 +544,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S35
@@ -594,7 +560,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S36
@@ -611,7 +576,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S37
@@ -628,7 +592,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S38
@@ -645,7 +608,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S39
@@ -662,7 +624,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S40
@@ -679,7 +640,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S41
@@ -696,7 +656,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S42
@@ -713,7 +672,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S43
@@ -730,7 +688,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S44
@@ -747,7 +704,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S45
@@ -764,7 +720,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S46
@@ -781,7 +736,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S47
@@ -798,7 +752,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S48
@@ -815,7 +768,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S49
@@ -832,7 +784,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S50
@@ -849,7 +800,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S51
@@ -866,7 +816,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S52
@@ -883,7 +832,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S53
@@ -900,7 +848,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S54
@@ -917,7 +864,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S55
@@ -934,7 +880,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S56
@@ -951,7 +896,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S57
@@ -968,7 +912,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S58
@@ -985,7 +928,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S59
@@ -1002,7 +944,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S60
@@ -1019,7 +960,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S61
@@ -1036,7 +976,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S62
@@ -1053,7 +992,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S63
@@ -1070,7 +1008,6 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
 
 ## S64
@@ -1087,5 +1024,4 @@ Please check each item. Each has an A and a B version and the intended meaning.
 - Each bold canary word is a native (non-katakana) word and is the only word carrying that meaning: yes / no
 - No loanwords, proper nouns, or numbers: yes / no
 - A and B are identical except for the canary words: yes / no
-- The kana reading is correct: yes / no
 - Suggested fix:
