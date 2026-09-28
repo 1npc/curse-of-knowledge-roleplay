@@ -41,13 +41,14 @@ def main():
         rows = [json.loads(l) for l in (mdir / "responses.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
         scored = []
         for r in rows:
-            p = plan[r["prompt_id"]]
+            base_id, _, step = r["prompt_id"].partition("#")  # "#2" marks the second step of a two-step arm (M1)
+            p = plan[base_id]
             key = (p["item"], p["lang"])
             if key not in ctxs:
                 ctxs[key] = ItemContext(items[p["item"]], p["lang"], vs)
             cell = {"C": p["C"], "T": p["T"], "S": p["S"]}
             s = score_reply(r.get("text", ""), ctxs[key], p["version"], cell, r.get("finish_reason"))
-            rec = {"prompt_id": r["prompt_id"], "model": model, "status": r["status"],
+            rec = {"prompt_id": r["prompt_id"], "model": model, "status": r["status"], "step": int(step or 1),
                    **{k: p[k] for k in ("item", "lang", "version", "arm", "S", "cell", "D", "Q", "C")},
                    "T": p["T"], "score": s, "text": r.get("text", "")}
             if p["arm"] == "probe_state":
@@ -57,7 +58,9 @@ def main():
         (mdir / "scored.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in scored), encoding="utf-8")
         agg = defaultdict(lambda: defaultdict(float))
         for x in scored:
-            if x["arm"] == "main":
+            if x["arm"] in ("M1", "FS"):
+                k = f"{x['arm']}{'' if x['arm'] == 'FS' else '-step' + str(x['step'])}:{x['cell']}:{x['version']}"
+            elif x["arm"] == "main":
                 k = f"{x['S']}:{x['cell']}:{x['D']}"
             elif x["arm"] == "probe_translate":
                 k = f"probe_translate:{x['S']}"

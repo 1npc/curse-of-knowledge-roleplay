@@ -10,7 +10,7 @@
 Intervals resample skeletons (the pilot has 10), keeping each skeleton's languages, cells and
 A/B versions together. OC_swap = mean(hit_t) - mean(hit_f) over the same replies.
 Writes docs/pilot-report.md and docs/review/pilot-human-check.{md,csv}.
-Usage: python3 tools/pilot_gates.py runs/pilot-20260928 items/pilot/skeletons.json
+Usage: python3 tools/pilot_gates.py runs/pilot-20260928 items/pilot/skeletons.json [report-name.md]
 """
 from __future__ import annotations
 
@@ -96,6 +96,7 @@ def ci(t):
 
 def main():
     run, items_path = Path(sys.argv[1]), Path(sys.argv[2])
+    report_name = sys.argv[3] if len(sys.argv) > 3 else "pilot-report.md"  # a custom name also skips the human-check sample
     items = {it["id"]: it for it in json.loads(items_path.read_text(encoding="utf-8"))["items"]}
     data = load(run)
     models = list(data)
@@ -247,9 +248,11 @@ def main():
         sd = pstdev([mean(v) for v in by.values()]) * (len(by) / (len(by) - 1)) ** 0.5
         L.append(f"| {m} | {sd:.3f} | ±{100 * 1.96 * sd / 96 ** 0.5:.1f} |")
     L.append("")
-    out = ROOT / "docs" / "pilot-report.md"
+    out = ROOT / "docs" / report_name
     out.write_text("\n".join(L), encoding="utf-8")
     print("\n".join(L))
+    if report_name != "pilot-report.md":
+        return
 
     # ---------------- stratified sample for the author's 100-reply check
     rng = random.Random(SEED)
