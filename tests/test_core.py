@@ -90,6 +90,12 @@ class TestGate(unittest.TestCase):
             r = screen_item(it, VS)
             self.assertFalse(rejected(r), json.dumps(r, ensure_ascii=False)[:600])
 
+    def test_es_agreement_allowed(self):
+        from oc.gate import ab_identity
+        self.assertEqual(ab_identity("es", "¿Quién dejó este sobre en el muelle?", "¿Quién dejó esta caja en la iglesia?",
+                                     ["sobre", "muelle"], ["caja", "iglesia"]),
+                         [{"level": "warn", "rule": "AB", "text": "A/B differ in agreement only (checker confirms)"}])
+
     def test_rule_1_to_3(self):
         self.assertTrue(any(m["rule"] == 3 for m in screen_text("ja", "タクシーは橋のそばにある。")))
         self.assertTrue(any(m["rule"] == 1 for m in screen_text("zh", "一个箱子在桥那边。")))

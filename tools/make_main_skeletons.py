@@ -1,7 +1,8 @@
-"""Write items/main/skeletons_en.json: the 64 main-set skeletons in English (proposal 5.3, 5.5).
+"""Write items/main/skeletons_en.json: the 96 main-set skeletons in English (proposal 5.3, 5.5).
 
-32 direct-address (DA) and 32 overheard (OH) skeletons; characters from the declared main set
-(Kerry 22, Rogue 21, Panam 21; see docs/eligibility.md). S07, S12, S20 and S31 carry the
+48 direct-address (DA) and 48 overheard (OH) skeletons; characters from the declared main set
+(Kerry, Rogue, Panam, 32 each and 16/16 DA/OH each; see docs/eligibility.md). The set was
+expanded from 64 to 96 skeletons on 2026-09-28 at the user's request. S07, S12, S20 and S31 carry the
 proposal's example frames (S12 moves from Viktor to Rogue). Every frame must read naturally
 with any PLACE and any OBJECT value; translations and per-slot gold come in the next step.
 Usage: python3 tools/make_main_skeletons.py
@@ -20,7 +21,7 @@ NOISE = {  # e_inaud templates by what drowns the speech out
     "window": "Outside, beyond the window, two {people} talk to each other; the glass and the traffic drown it out and {name} cannot hear a word.",
 }
 SINGULAR = {"waitresses": "waitress", "mercenaries": "mercenary", "old women": "old woman", "old men": "old man",
-            "men": "man"}
+            "men": "man", "patients": "patient", "kids": "kid", "stranded travelers": "stranded traveler"}
 # (id, character, mode, location, speaker or people, nearby (OH), noise, frame lines, Q-content noun (DA), Q-task)
 TABLE = [
  ("S01", "Kerry", "DA", "The sidewalk outside a recording studio in North Oak", "A street kid", None, "street",
@@ -151,6 +152,71 @@ TABLE = [
   ["Your contact dropped {OBJECT_a} off at the {PLACE}. Go now."], "driver", "So what did the contact drop off, and where?"),
  ("S64", "Panam", "OH", "A tin shack in the Badlands", "scavengers", "Across the shack", "window",
   ["Somebody stole {OBJECT_a} from the {PLACE}.", "Again? This town..."], None, "So what got stolen, and from where?"),
+ # --- expansion to 96 skeletons (user decision 2026-09-28): Kerry +5/+5, Rogue +5/+6, Panam +6/+5
+ ("S65", "Kerry", "DA", "A rehearsal space in Japantown", "A session drummer", None, "room",
+  ["Your tech put the {OBJECT} at the {PLACE}. He says you'll need it tonight."], "drummer", "So what did the tech put away, and where?"),
+ ("S66", "Kerry", "DA", "The back door of a karaoke bar in Japantown", "A nervous bartender", None, "street",
+  ["Someone was asking for you. They left the {OBJECT} at the {PLACE}."], "bartender", "So what did they leave, and where?"),
+ ("S67", "Kerry", "DA", "A hotel suite door in City Center", "A room service waiter", None, "room",
+  ["Your {OBJECT} was found at the {PLACE}. Reception is holding it."], "waiter", "So what was found, and where?"),
+ ("S68", "Kerry", "DA", "A merch stand outside a concert venue", "A merch seller", None, "street",
+  ["A fan wants to give you the {OBJECT}. She's waiting at the {PLACE}."], "seller", "So what does the fan have, and where is she?"),
+ ("S69", "Kerry", "DA", "The lobby of a record label office in City Center", "A receptionist", None, "room",
+  ["Your lawyer called. He left the {OBJECT} for you at the {PLACE}."], "receptionist", "So what did the lawyer leave, and where?"),
+ ("S70", "Kerry", "OH", "An open-air bar in Japantown", "bartenders", "Behind the bar", "glass",
+  ["The singer's {OBJECT} is at the {PLACE}.", "Should we call her?"], None, "So what's the singer's, and where is it?"),
+ ("S71", "Kerry", "OH", "A limousine parked outside a club in Night City", "chauffeurs", "By the next car", "window",
+  ["The boss forgot the {OBJECT} at the {PLACE}.", "Then we drive back."], None, "So what did the boss forget, and where?"),
+ ("S72", "Kerry", "OH", "A tattoo parlor in Japantown", "tattoo artists", "At the next station", "glass",
+  ["My client left the {OBJECT} at the {PLACE}.", "She'll be back for it."], None, "So what did the client leave, and where?"),
+ ("S73", "Kerry", "OH", "A vinyl record shop in North Oak", "shop clerks", "Behind the counter", "glass",
+  ["Did the courier bring the {OBJECT}?", "Yes, it's at the {PLACE}."], None, "So what did the courier bring, and where is it?"),
+ ("S74", "Kerry", "OH", "A green room at a TV studio in City Center", "makeup artists", "Across the room", "glass",
+  ["Who moved my {OBJECT} to the {PLACE}?", "Not me, I swear."], None, "So what got moved, and where to?"),
+ ("S75", "Rogue", "DA", "A service elevator in Kabuki", "A building janitor", None, "room",
+  ["Somebody hid the {OBJECT} at the {PLACE}. I didn't touch it."], "janitor", "So what did somebody hide, and where?"),
+ ("S76", "Rogue", "DA", "A braindance den in Kabuki", "A braindance dealer", None, "room",
+  ["Your buyer wants the {OBJECT} at the {PLACE} tonight."], "dealer", "So what does the buyer want, and where?"),
+ ("S77", "Rogue", "DA", "A fixer's back office in Westbrook", "An old fixer", None, "room",
+  ["Don't go near the {PLACE}. Someone is watching the {OBJECT}."], "fixer", "So where shouldn't we go, and what's being watched?"),
+ ("S78", "Rogue", "DA", "A seawall walkway in Pacifica", "A fisherman", None, "street",
+  ["I saw that woman drop the {OBJECT} at the {PLACE}. Then she ran off."], "fisherman", "So what did the woman drop, and where?"),
+ ("S79", "Rogue", "DA", "A pachinko parlor in Kabuki", "A floor manager", None, "room",
+  ["Your runner asked me to tell you: the {OBJECT} is at the {PLACE}."], "manager", "So what's waiting, and where?"),
+ ("S80", "Rogue", "OH", "A fight club in Watson", "fight promoters", "Ringside", "glass",
+  ["Put the {OBJECT} at the {PLACE} before the fight.", "Why there?"], None, "So what are they putting away, and where?"),
+ ("S81", "Rogue", "OH", "A ripperdoc waiting room in Watson", "patients", "In the next seats", "glass",
+  ["The doc keeps the {OBJECT} at the {PLACE}.", "Weird place for it."], None, "So what does the doc keep, and where?"),
+ ("S82", "Rogue", "OH", "A stall in a Kabuki night market", "stall owners", "At the next stall", "window",
+  ["The cops took the {OBJECT} to the {PLACE}.", "They'll never give it back."], None, "So what did the cops take, and where?"),
+ ("S83", "Rogue", "OH", "A cheap motel in Watson", "maids", "In the next doorway", "window",
+  ["The guest left the {OBJECT} at the {PLACE}.", "Throw it out."], None, "So what did the guest leave, and where?"),
+ ("S84", "Rogue", "OH", "An arcade in Watson", "kids", "At the next machine", "glass",
+  ["I hid the {OBJECT} at the {PLACE}.", "Show me later."], None, "So what's hidden, and where?"),
+ ("S85", "Rogue", "OH", "The Afterlife, a mercenary bar in Night City", "fixers", "In the next booth", "glass",
+  ["Our client left the {OBJECT} at the {PLACE} as a signal.", "Then the deal is on."], None, "So what was left as a signal, and where?"),
+ ("S86", "Panam", "DA", "A windmill farm in the Badlands", "A wind farm worker", None, "highway",
+  ["Your cousin left the {OBJECT} at the {PLACE}. Get it before the storm."], "worker", "So what did the cousin leave, and where?"),
+ ("S87", "Panam", "DA", "A dusty crossroads in the Badlands", "A hitchhiker", None, "highway",
+  ["That truck dropped the {OBJECT} at the {PLACE}. Nobody came for it."], "hitchhiker", "So what got dropped, and where?"),
+ ("S88", "Panam", "DA", "A nomad camp gate in the Badlands", "A camp guard", None, "highway",
+  ["The elders want the {OBJECT} brought to the {PLACE}."], "guard", "So what do the elders want, and where?"),
+ ("S89", "Panam", "DA", "A roadside bar in the Badlands", "A drunk rancher", None, "room",
+  ["I lost the {OBJECT} at the {PLACE}. If you find it, keep it."], "rancher", "So what did he lose, and where?"),
+ ("S90", "Panam", "DA", "A water pump station in the Badlands", "An old engineer", None, "highway",
+  ["Don't use the {PLACE} tonight. Somebody left the {OBJECT} there."], "engineer", "So where shouldn't we go, and what's there?"),
+ ("S91", "Panam", "DA", "A salvage camp in the Badlands", "A scrap dealer", None, "highway",
+  ["I'll offer you the {OBJECT} in trade. It's at the {PLACE}."], "dealer", "So what's he offering, and where is it?"),
+ ("S92", "Panam", "OH", "A truck stop on the highway", "truckers", "At the next table", "window",
+  ["Somebody left the {OBJECT} at the {PLACE} last night.", "Not our business."], None, "So what got left, and where?"),
+ ("S93", "Panam", "OH", "A nomad workshop tent in the Badlands", "nomad mechanics", "By the next truck", "window",
+  ["Where did you put the {OBJECT}?", "At the {PLACE}. Like always."], None, "So what are they looking for, and where is it?"),
+ ("S94", "Panam", "OH", "A motel office in the Badlands", "motel owners", "Behind the counter", "window",
+  ["The biker left the {OBJECT} at the {PLACE}.", "He'll be back. They always are."], None, "So what did the biker leave, and where?"),
+ ("S95", "Panam", "OH", "An old drive-in theater in the Badlands", "teenagers", "In the next car", "window",
+  ["Grab the {OBJECT} from the {PLACE} before your dad sees.", "Okay, okay."], None, "So what's being grabbed, and from where?"),
+ ("S96", "Panam", "OH", "A dust-storm shelter by the highway", "stranded travelers", "Across the shelter", "window",
+  ["My {OBJECT} is still at the {PLACE}.", "Wait until the storm ends."], None, "So what's still out there, and where?"),
 ]
 
 

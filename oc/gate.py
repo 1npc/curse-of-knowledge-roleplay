@@ -205,8 +205,15 @@ def _es_normalize_agreement(tokens: list[str]) -> list[str]:
         if t == "del":
             out += ["de", "el"]
             continue
-        # articles and clitics may change gender and number with the canary noun (tijeras is plural)
-        t = {"la": "el", "las": "el", "los": "el", "lo": "el", "una": "un", "unas": "un", "unos": "un"}.get(t, t)
+        # articles, clitics, demonstratives and possessives may agree with the canary noun (tijeras is plural)
+        t = {"la": "el", "las": "el", "los": "el", "lo": "el", "una": "un", "unas": "un", "unos": "un",
+             "esta": "este", "estas": "este", "estos": "este", "esa": "ese", "esas": "ese", "esos": "ese",
+             "aquella": "aquel", "aquellas": "aquel", "aquellos": "aquel", "tuya": "tuyo", "tuyas": "tuyo",
+             "tuyos": "tuyo", "suya": "suyo", "suyas": "suyo", "suyos": "suyo", "mía": "mío", "mías": "mío",
+             "míos": "mío"}.get(t, t)
+        if t in ("este", "ese", "aquel", "tuyo", "suyo", "mío"):
+            out.append(t)
+            continue
         m = re.match(r"^(\w+?(?:ar|er|ir|ando|iendo))(la|lo|las|los)$", t)
         if m:
             t = m.group(1) + "lo"
