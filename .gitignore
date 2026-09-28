@@ -1,7 +1,7 @@
-__pycache__/
 *.pyc
 .DS_Store
 .venv/
+__pycache__/
 items/**/prompts.jsonl
 runs/
 scratch/

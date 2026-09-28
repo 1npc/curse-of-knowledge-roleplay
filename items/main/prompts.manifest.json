@@ -1,0 +1,23 @@
+{
+ "items_file": "items/main/skeletons.json",
+ "items_sha256": "62c5adf05f4094771ff3d7756d0ee9e3a6813ab01a4229443f4ba623c2ea3f91",
+ "prompts": 24000,
+ "prompts_sha256": "b74814b1eb12878eeea12267db5910bf9bbfc626fde478d763abc4d394bc4edc",
+ "by_arm": {
+  "main": 21504,
+  "probe_translate": 576,
+  "probe_state": 1920
+ },
+ "by_lang": {
+  "zh": 8000,
+  "ja": 8000,
+  "es": 8000
+ },
+ "by_S": {
+  "real": 16512,
+  "english": 3456,
+  "noise": 4032
+ },
+ "pilot": false,
+ "robustness": false
+}

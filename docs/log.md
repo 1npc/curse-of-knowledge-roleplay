@@ -15,3 +15,10 @@
 9. 测试：`python3 -m unittest discover -s tests`，20 项全过。
 
 待用户：见 `decisions.md` A 节标"待用户"的各项。
+
+## 9/28（周一）晚：Snellius、权重迁移、冒烟、主集初稿
+
+1. 用户授权后用密钥登录 Snellius 做只读检查（`snellius-2026-09-28.md`）。Gemma-4-31B 权重和 vLLM venv 约 10/2 会被 scratch 的 14 天规则删除，其余 A 档权重约 10/6 过期。
+2. 用户同意后提交 staging 作业 27308307：把本文用的 7 个模型（152.3 GiB，解引用成普通目录）和 venv 复制到 `/projects/prjs1226/qmeng1/over-comprehension/`，逐文件核对通过。用时 16.5 分钟，约 2 SBU。项目空间占用升到 87.1%。scratch 原件未动。
+3. 运行脚本 `harness/generate.py` 与作业脚本 `harness/run.slurm`，以 P0 的离线 generate.py 为模板。冒烟作业 27308409 用 3 个模型各跑 54 个提示（结果见下一条日志）。
+4. 主集 64 个英文骨架（Kerry 22、Rogue 21、Panam 21，直接对话与旁听各 32）与取值轮换（`assignment-report.md`），三语模板渲染成 384 句，全部过闸。
