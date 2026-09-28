@@ -1,0 +1,6182 @@
+{
+ "version": "main-0.1-draft",
+ "note": "Render the main-set items: per-skeleton translation templates x the value rotation.",
+ "items": [
+  {
+   "id": "S01",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The sidewalk outside a recording studio in North Oak",
+    "speaker": "A street kid",
+    "speaker_label": "street kid",
+    "e_inaud_description": "A street kid shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone paid me to tell you {the_O} is {at_P}."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what's waiting, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "bag",
+      "lines": [
+       "有人给了我钱，让我来告诉你袋子在教堂那儿。"
+      ],
+      "gold": [
+       "Someone paid me to tell you the bag is at the church."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "chair",
+      "lines": [
+       "有人给了我钱，让我来告诉你椅子在屋顶那儿。"
+      ],
+      "gold": [
+       "Someone paid me to tell you the chair is on the roof."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "頼まれて伝えに来た。金槌は駐車場にあるってさ。"
+      ],
+      "gold": [
+       "I was asked to come and tell you: the hammer is in the parking lot."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "頼まれて伝えに来た。財布は橋にあるってさ。"
+      ],
+      "gold": [
+       "I was asked to come and tell you: the wallet is at the bridge."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "Me pagaron para decirte que la caja está en la chatarrería."
+      ],
+      "gold": [
+       "They paid me to tell you the box is at the junkyard."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "Me pagaron para decirte que el sobre está en la escalera."
+      ],
+      "gold": [
+       "They paid me to tell you the envelope is in the stairwell."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S02",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A booth at the Afterlife, a mercenary bar in Night City",
+    "speaker": "A mercenary",
+    "speaker_label": "mercenary",
+    "e_inaud_description": "A mercenary calls out to Rogue from across the packed, deafening room; the music drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The job's changed. Leave {the_O} {at_P} and walk away."
+   ],
+   "questions": {
+    "content": "What did the merc say?",
+    "task": "So what do we leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "hammer",
+      "lines": [
+       "活儿变了。把锤子放在桥那儿，然后走人。"
+      ],
+      "gold": [
+       "The job's changed. Leave the hammer at the bridge and walk away."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "coat",
+      "lines": [
+       "活儿变了。把外套放在码头那儿，然后走人。"
+      ],
+      "gold": [
+       "The job's changed. Leave the coat at the pier and walk away."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "box",
+      "lines": [
+       "仕事が変わった。箱を階段に置いて、立ち去れ。"
+      ],
+      "gold": [
+       "The job's changed. Leave the box in the stairwell and walk away."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "broom",
+      "lines": [
+       "仕事が変わった。ほうきを地下室に置いて、立ち去れ。"
+      ],
+      "gold": [
+       "The job's changed. Leave the broom in the basement and walk away."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "bag",
+      "lines": [
+       "El trabajo cambió. Deja la bolsa en el tejado y vete."
+      ],
+      "gold": [
+       "The job's changed. Leave the bag on the roof and walk away."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "mirror",
+      "lines": [
+       "El trabajo cambió. Deja el espejo en el barco y vete."
+      ],
+      "gold": [
+       "The job's changed. Leave the mirror on the boat and walk away."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S03",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A gas station on the edge of the Badlands",
+    "speaker": "A gas station clerk",
+    "speaker_label": "gas station clerk",
+    "e_inaud_description": "A gas station clerk shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "The trucker from yesterday left {the_O} for you {at_P}."
+   ],
+   "questions": {
+    "content": "What did the clerk say?",
+    "task": "So what did the trucker leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "box",
+      "lines": [
+       "昨天那个货车司机给你留了箱子，放在码头那儿。"
+      ],
+      "gold": [
+       "The trucker from yesterday left the box for you at the pier."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "wallet",
+      "lines": [
+       "昨天那个货车司机给你留了钱包，放在仓库那儿。"
+      ],
+      "gold": [
+       "The trucker from yesterday left the wallet for you at the warehouse."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "bag",
+      "lines": [
+       "昨日の運送屋が、あんたにかばんを置いていった。地下室にある。"
+      ],
+      "gold": [
+       "Yesterday's hauler left the bag for you. It's in the basement."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "envelope",
+      "lines": [
+       "昨日の運送屋が、あんたに封筒を置いていった。質屋にある。"
+      ],
+      "gold": [
+       "Yesterday's hauler left the envelope for you. It's at the pawnshop."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "hammer",
+      "lines": [
+       "El camionero de ayer te dejó el martillo en el barco."
+      ],
+      "gold": [
+       "The trucker from yesterday left the hammer for you on the boat."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "chair",
+      "lines": [
+       "El camionero de ayer te dejó la silla en la alcantarilla."
+      ],
+      "gold": [
+       "The trucker from yesterday left the chair for you in the sewer."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S04",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "Backstage at a concert venue in Night City",
+    "people": "roadies",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first roadie",
+     "second roadie"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two roadies talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did the singer leave her {O}?",
+    "{At_P}. Again."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the singer leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "pillow",
+      "lines": [
+       "歌手又把枕头落哪儿了？",
+       "落在下水道那儿了，又来。"
+      ],
+      "gold": [
+       "Where did the singer leave her pillow?",
+       "In the sewer. Again."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "broom",
+      "lines": [
+       "歌手又把扫帚落哪儿了？",
+       "落在地下室那儿了，又来。"
+      ],
+      "gold": [
+       "Where did the singer leave her broom?",
+       "In the basement. Again."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "glove",
+      "lines": [
+       "歌手はまた手袋をどこに置き忘れた？",
+       "倉庫だよ。またか。"
+      ],
+      "gold": [
+       "Where did the singer leave her glove?",
+       "At the warehouse. Again."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "mirror",
+      "lines": [
+       "歌手はまた鏡をどこに置き忘れた？",
+       "船だよ。またか。"
+      ],
+      "gold": [
+       "Where did the singer leave her mirror?",
+       "On the boat. Again."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "shoe",
+      "lines": [
+       "¿Dónde dejó la cantante el zapato?",
+       "En la casa de empeño. Otra vez."
+      ],
+      "gold": [
+       "Where did the singer leave her shoe?",
+       "At the pawnshop. Again."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "coat",
+      "lines": [
+       "¿Dónde dejó la cantante el abrigo?",
+       "En el muelle. Otra vez."
+      ],
+      "gold": [
+       "Where did the singer leave her coat?",
+       "At the pier. Again."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S05",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A late-night noodle bar in Kabuki",
+    "people": "waiters",
+    "nearby": "Behind the counter",
+    "speaker_labels": [
+     "first waiter",
+     "second waiter"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two waiters talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The owner hid {the_O} {at_P}.",
+    "Then don't touch it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the owner hide, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "broom",
+      "lines": [
+       "老板把扫帚藏在废车场那儿了。",
+       "那你别碰。"
+      ],
+      "gold": [
+       "The owner hid the broom at the junkyard.",
+       "Then don't touch it."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "bag",
+      "lines": [
+       "老板把袋子藏在当铺那儿了。",
+       "那你别碰。"
+      ],
+      "gold": [
+       "The owner hid the bag at the pawnshop.",
+       "Then don't touch it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "mirror",
+      "lines": [
+       "店長が鏡を教会に隠した。",
+       "じゃあ触るなよ。"
+      ],
+      "gold": [
+       "The manager hid the mirror at the church.",
+       "Then don't touch it."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "hammer",
+      "lines": [
+       "店長が金槌を下水道に隠した。",
+       "じゃあ触るなよ。"
+      ],
+      "gold": [
+       "The manager hid the hammer in the sewer.",
+       "Then don't touch it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "coat",
+      "lines": [
+       "El dueño escondió el abrigo en el estacionamiento.",
+       "Entonces no lo toques."
+      ],
+      "gold": [
+       "The owner hid the coat in the parking lot.",
+       "Then don't touch it."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "box",
+      "lines": [
+       "El dueño escondió la caja en el almacén.",
+       "Entonces no la toques."
+      ],
+      "gold": [
+       "The owner hid the box at the warehouse.",
+       "Then don't touch it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S06",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A repair shop on the edge of the Badlands",
+    "people": "mechanics",
+    "nearby": "By the next workbench",
+    "speaker_labels": [
+     "first mechanic",
+     "second mechanic"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two mechanics talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where's {the_O}?",
+    "{At_P}. Don't tell anyone."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they talking about, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "镜子呢？",
+       "放在屋顶那儿了。别跟别人说。"
+      ],
+      "gold": [
+       "Where's the mirror?",
+       "On the roof. Don't tell anyone."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "envelope",
+      "lines": [
+       "信封呢？",
+       "放在停车场那儿了。别跟别人说。"
+      ],
+      "gold": [
+       "Where's the envelope?",
+       "In the parking lot. Don't tell anyone."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "上着はどこだ？",
+       "橋だ。誰にも言うな。"
+      ],
+      "gold": [
+       "Where's the coat?",
+       "At the bridge. Don't tell anyone."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子はどこだ？",
+       "廃車置き場だ。誰にも言うな。"
+      ],
+      "gold": [
+       "Where's the chair?",
+       "At the junkyard. Don't tell anyone."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "broom",
+      "lines": [
+       "¿Dónde está la escoba?",
+       "En la escalera. No se lo digas a nadie."
+      ],
+      "gold": [
+       "Where's the broom?",
+       "In the stairwell. Don't tell anyone."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "wallet",
+      "lines": [
+       "¿Dónde está la cartera?",
+       "En la iglesia. No se lo digas a nadie."
+      ],
+      "gold": [
+       "Where's the wallet?",
+       "At the church. Don't tell anyone."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S07",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The service entrance behind a nightclub in Night City",
+    "speaker": "A courier",
+    "speaker_label": "courier",
+    "e_inaud_description": "A courier shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} has been left {at_P}. Come and get it tonight."
+   ],
+   "questions": {
+    "content": "What did the courier say?",
+    "task": "So where do we go, and what are we picking up?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "glove",
+      "lines": [
+       "手套放在船旁边了，今晚过来拿走。"
+      ],
+      "gold": [
+       "The glove has been left on the boat. Come and get it tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "hammer",
+      "lines": [
+       "锤子放在楼梯旁边了，今晚过来拿走。"
+      ],
+      "gold": [
+       "The hammer has been left in the stairwell. Come and get it tonight."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "靴は桟橋のそばに置いてある。今夜のうちに取りに来い。"
+      ],
+      "gold": [
+       "The shoe has been left at the pier. Come and get it tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "box",
+      "lines": [
+       "箱は屋上のそばに置いてある。今夜のうちに取りに来い。"
+      ],
+      "gold": [
+       "The box has been left on the roof. Come and get it tonight."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "pillow",
+      "lines": [
+       "La almohada está en el sótano. Ven a buscarla esta noche."
+      ],
+      "gold": [
+       "The pillow has been left in the basement. Come and get it tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "bag",
+      "lines": [
+       "La bolsa está en el puente. Ven a buscarla esta noche."
+      ],
+      "gold": [
+       "The bag has been left at the bridge. Come and get it tonight."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S08",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A dim street corner in Watson",
+    "speaker": "A nervous informant",
+    "speaker_label": "nervous informant",
+    "e_inaud_description": "A nervous informant shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Last night they moved {the_O} to {the_P}. Nobody saw them."
+   ],
+   "questions": {
+    "content": "What did the informant say?",
+    "task": "So what got moved, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "coat",
+      "lines": [
+       "他们昨晚把外套搬到当铺那儿去了，没人看见。"
+      ],
+      "gold": [
+       "Last night they moved the coat to the pawnshop. Nobody saw them."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "glove",
+      "lines": [
+       "他们昨晚把手套搬到船那儿去了，没人看见。"
+      ],
+      "gold": [
+       "Last night they moved the glove to the boat. Nobody saw them."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "broom",
+      "lines": [
+       "奴らは昨夜、ほうきを下水道に移した。誰にも見られずにな。"
+      ],
+      "gold": [
+       "Last night they moved the broom to the sewer, without anyone seeing."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "奴らは昨夜、靴を桟橋に移した。誰にも見られずにな。"
+      ],
+      "gold": [
+       "Last night they moved the shoe to the pier, without anyone seeing."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "mirror",
+      "lines": [
+       "Anoche se llevaron el espejo al almacén. Nadie los vio."
+      ],
+      "gold": [
+       "Last night they moved the mirror to the warehouse. Nobody saw them."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "pillow",
+      "lines": [
+       "Anoche se llevaron la almohada al sótano. Nadie los vio."
+      ],
+      "gold": [
+       "Last night they moved the pillow to the basement. Nobody saw them."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S09",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A farmhouse porch in the Badlands",
+    "speaker": "An old farmer",
+    "speaker_label": "old farmer",
+    "e_inaud_description": "An old farmer shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "My dog dragged {the_O} over to {the_P}. Take it away."
+   ],
+   "questions": {
+    "content": "What did the farmer say?",
+    "task": "So what did the dog drag off, and where to?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "我家狗把椅子拖到停车场那边去了，你拿走吧。"
+      ],
+      "gold": [
+       "My dog dragged the chair over to the parking lot. Take it away."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "pillow",
+      "lines": [
+       "我家狗把枕头拖到下水道那边去了，你拿走吧。"
+      ],
+      "gold": [
+       "My dog dragged the pillow over to the sewer. Take it away."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "うちの犬が財布を廃車置き場まで引きずっていった。持っていってくれ。"
+      ],
+      "gold": [
+       "My dog dragged the wallet over to the junkyard. Take it away."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "glove",
+      "lines": [
+       "うちの犬が手袋を倉庫まで引きずっていった。持っていってくれ。"
+      ],
+      "gold": [
+       "My dog dragged the glove over to the warehouse. Take it away."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "envelope",
+      "lines": [
+       "Mi perro arrastró el sobre hasta la iglesia. Llévatelo."
+      ],
+      "gold": [
+       "My dog dragged the envelope over to the church. Take it away."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "shoe",
+      "lines": [
+       "Mi perro arrastró el zapato hasta la casa de empeño. Llévatelo."
+      ],
+      "gold": [
+       "My dog dragged the shoe over to the pawnshop. Take it away."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S10",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A crowded bar in North Oak",
+    "people": "waitresses",
+    "nearby": "At the service counter",
+    "speaker_labels": [
+     "first waitress",
+     "second waitress"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two waitresses talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone forgot {the_O}.",
+    "Put it {at_P} with the other lost things."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone forget, and where does it go?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "glove",
+      "lines": [
+       "有客人把手套忘在这儿了。",
+       "放到楼梯那儿，跟其他失物放着。"
+      ],
+      "gold": [
+       "Someone forgot the glove.",
+       "Put it in the stairwell with the other lost things."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "box",
+      "lines": [
+       "有客人把箱子忘在这儿了。",
+       "放到码头那儿，跟其他失物放着。"
+      ],
+      "gold": [
+       "Someone forgot the box.",
+       "Put it at the pier with the other lost things."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "shoe",
+      "lines": [
+       "客が靴を忘れていった。",
+       "屋上に置いといて、他の落とし物と。"
+      ],
+      "gold": [
+       "Someone forgot the shoe.",
+       "Put it on the roof with the other lost things."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "bag",
+      "lines": [
+       "客がかばんを忘れていった。",
+       "地下室に置いといて、他の落とし物と。"
+      ],
+      "gold": [
+       "Someone forgot the bag.",
+       "Put it in the basement with the other lost things."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "pillow",
+      "lines": [
+       "Alguien olvidó la almohada.",
+       "Ponla en el puente con lo demás."
+      ],
+      "gold": [
+       "Someone forgot the pillow.",
+       "Put it at the bridge with the other lost things."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "hammer",
+      "lines": [
+       "Alguien olvidó el martillo.",
+       "Ponlo en el barco con lo demás."
+      ],
+      "gold": [
+       "Someone forgot the hammer.",
+       "Put it on the boat with the other lost things."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S11",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "The Afterlife, a mercenary bar in Night City",
+    "people": "mercenaries",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first mercenary",
+     "second mercenary"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two mercenaries talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Tonight {the_O} goes to {the_P}.",
+    "Who's taking it?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's going out tonight, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "broom",
+      "lines": [
+       "今晚要把扫帚送到地下室那儿。",
+       "谁去送？"
+      ],
+      "gold": [
+       "Tonight the broom goes to the basement.",
+       "Who's taking it?"
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "hammer",
+      "lines": [
+       "今晚要把锤子送到教堂那儿。",
+       "谁去送？"
+      ],
+      "gold": [
+       "Tonight the hammer goes to the church.",
+       "Who's taking it?"
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "mirror",
+      "lines": [
+       "今夜、鏡を船に運ぶ。",
+       "誰が持っていく？"
+      ],
+      "gold": [
+       "Tonight the mirror goes to the boat.",
+       "Who's taking it?"
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "box",
+      "lines": [
+       "今夜、箱を駐車場に運ぶ。",
+       "誰が持っていく？"
+      ],
+      "gold": [
+       "Tonight the box goes to the parking lot.",
+       "Who's taking it?"
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "coat",
+      "lines": [
+       "Esta noche el abrigo va al muelle.",
+       "¿Quién lo lleva?"
+      ],
+      "gold": [
+       "Tonight the coat goes to the pier.",
+       "Who's taking it?"
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "bag",
+      "lines": [
+       "Esta noche la bolsa va a la chatarrería.",
+       "¿Quién la lleva?"
+      ],
+      "gold": [
+       "Tonight the bag goes to the junkyard.",
+       "Who's taking it?"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S12",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "An alley behind a market in Kabuki",
+    "speaker": "A courier",
+    "speaker_label": "courier",
+    "e_inaud_description": "A courier shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is {at_P}. Don't let anyone see you."
+   ],
+   "questions": {
+    "content": "What did the courier say?",
+    "task": "So what's waiting for us, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "信封在仓库那儿。去拿的时候别让人看见。"
+      ],
+      "gold": [
+       "The envelope is at the warehouse. Don't let anyone see you."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "扫帚在桥那儿。去拿的时候别让人看见。"
+      ],
+      "gold": [
+       "The broom is at the bridge. Don't let anyone see you."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子は質屋にある。誰にも見られるな。"
+      ],
+      "gold": [
+       "The chair is at the pawnshop. Don't let anyone see you."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "鏡は階段にある。誰にも見られるな。"
+      ],
+      "gold": [
+       "The mirror is in the stairwell. Don't let anyone see you."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "wallet",
+      "lines": [
+       "La cartera está en la alcantarilla. Que nadie te vea."
+      ],
+      "gold": [
+       "The wallet is in the sewer. Don't let anyone see you."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "El abrigo está en el tejado. Que nadie te vea."
+      ],
+      "gold": [
+       "The coat is on the roof. Don't let anyone see you."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S13",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "people": "waitresses",
+    "nearby": "At the counter",
+    "speaker_labels": [
+     "first waitress",
+     "second waitress"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two waitresses talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "The lady from earlier left {the_O} {at_P}.",
+    "She'll come back for it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the lady leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "box",
+      "lines": [
+       "刚才那位女士把箱子落在教堂那儿了。",
+       "她会回来拿的。"
+      ],
+      "gold": [
+       "The lady from earlier left the box at the church.",
+       "She'll come back for it."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "刚才那位女士把椅子落在船那儿了。",
+       "她会回来拿的。"
+      ],
+      "gold": [
+       "The lady from earlier left the chair on the boat.",
+       "She'll come back for it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "bag",
+      "lines": [
+       "さっきの女の人がかばんを駐車場に置き忘れた。",
+       "取りに戻ってくるよ。"
+      ],
+      "gold": [
+       "The lady from earlier left the bag in the parking lot.",
+       "She'll come back for it."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "さっきの女の人が財布を桟橋に置き忘れた。",
+       "取りに戻ってくるよ。"
+      ],
+      "gold": [
+       "The lady from earlier left the wallet at the pier.",
+       "She'll come back for it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "hammer",
+      "lines": [
+       "La señora de antes dejó el martillo en la chatarrería.",
+       "Ya vendrá a buscarlo."
+      ],
+      "gold": [
+       "The lady from earlier left the hammer at the junkyard.",
+       "She'll come back for it."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "La señora de antes dejó el sobre en el sótano.",
+       "Ya vendrá a buscarlo."
+      ],
+      "gold": [
+       "The lady from earlier left the envelope in the basement.",
+       "She'll come back for it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S14",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A green room at a concert venue in Night City",
+    "speaker": "A stagehand",
+    "speaker_label": "stagehand",
+    "e_inaud_description": "A stagehand calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your manager left {the_O} {at_P}. She says don't forget it."
+   ],
+   "questions": {
+    "content": "What did the stagehand say?",
+    "task": "So what got left for me, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "你的经纪人把扫帚放在桥那儿了，她说别忘了。"
+      ],
+      "gold": [
+       "Your manager left the broom at the bridge. She says don't forget it."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "glove",
+      "lines": [
+       "你的经纪人把手套放在下水道那儿了，她说别忘了。"
+      ],
+      "gold": [
+       "Your manager left the glove in the sewer. She says don't forget it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "事務所の人が鏡を階段に置いていった。忘れるなってさ。"
+      ],
+      "gold": [
+       "Someone from your agency left the mirror in the stairwell. They say don't forget it."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "shoe",
+      "lines": [
+       "事務所の人が靴を倉庫に置いていった。忘れるなってさ。"
+      ],
+      "gold": [
+       "Someone from your agency left the shoe at the warehouse. They say don't forget it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "Tu representante dejó el abrigo en el tejado. Dice que no lo olvides."
+      ],
+      "gold": [
+       "Your manager left the coat on the roof. She says don't forget it."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "pillow",
+      "lines": [
+       "Tu representante dejó la almohada en la casa de empeño. Dice que no la olvides."
+      ],
+      "gold": [
+       "Your manager left the pillow at the pawnshop. She says don't forget it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S15",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "The front office of a motel off the highway",
+    "speaker": "A motel manager",
+    "speaker_label": "motel manager",
+    "e_inaud_description": "A motel manager shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I put your {O} {at_P}. Take it when you leave."
+   ],
+   "questions": {
+    "content": "What did the manager say?",
+    "task": "So what did he put away, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "broom",
+      "lines": [
+       "你的扫帚我放在码头那儿了，走的时候带上。"
+      ],
+      "gold": [
+       "I put your broom at the pier. Take it when you leave."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "chair",
+      "lines": [
+       "你的椅子我放在教堂那儿了，走的时候带上。"
+      ],
+      "gold": [
+       "I put your chair at the church. Take it when you leave."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "mirror",
+      "lines": [
+       "あんたの鏡は地下室に置いておいた。帰るときに持っていけ。"
+      ],
+      "gold": [
+       "I put your mirror in the basement. Take it when you leave."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "wallet",
+      "lines": [
+       "あんたの財布は駐車場に置いておいた。帰るときに持っていけ。"
+      ],
+      "gold": [
+       "I put your wallet in the parking lot. Take it when you leave."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "coat",
+      "lines": [
+       "Dejé tu abrigo en el barco. Llévatelo cuando te vayas."
+      ],
+      "gold": [
+       "I put your coat on the boat. Take it when you leave."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "envelope",
+      "lines": [
+       "Dejé tu sobre en la chatarrería. Llévatelo cuando te vayas."
+      ],
+      "gold": [
+       "I put your envelope at the junkyard. Take it when you leave."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S16",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The gate of a mansion in North Oak",
+    "people": "security guards",
+    "nearby": "By the gatehouse",
+    "speaker_labels": [
+     "first security guard",
+     "second security guard"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two security guards talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone hid {the_O} near {the_P}.",
+    "Check it before the boss sees."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone hide, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "wallet",
+      "lines": [
+       "有人在下水道附近藏了钱包。",
+       "趁老板没看见，去查查。"
+      ],
+      "gold": [
+       "Someone hid the wallet near the sewer.",
+       "Check it before the boss sees."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "有人在废车场附近藏了鞋。",
+       "趁老板没看见，去查查。"
+      ],
+      "gold": [
+       "Someone hid the shoe near the junkyard.",
+       "Check it before the boss sees."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "誰かが封筒を倉庫の近くに隠した。",
+       "旦那様に見られる前に確かめろ。"
+      ],
+      "gold": [
+       "Someone hid the envelope near the warehouse.",
+       "Check it before the boss sees."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "誰かが枕を教会の近くに隠した。",
+       "旦那様に見られる前に確かめろ。"
+      ],
+      "gold": [
+       "Someone hid the pillow near the church.",
+       "Check it before the boss sees."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "Alguien escondió la silla cerca de la casa de empeño.",
+       "Revísala antes de que la vea el patrón."
+      ],
+      "gold": [
+       "Someone hid the chair near the pawnshop.",
+       "Check it before the boss sees."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "Alguien escondió el guante cerca del estacionamiento.",
+       "Revísalo antes de que lo vea el patrón."
+      ],
+      "gold": [
+       "Someone hid the glove near the parking lot.",
+       "Check it before the boss sees."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S17",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A back room in a Watson club",
+    "people": "smugglers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first smuggler",
+     "second smuggler"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two smugglers talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did anyone see {the_O}?",
+    "No. It's safe {at_P}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they keeping safe, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "pillow",
+      "lines": [
+       "有人看见枕头了吗？",
+       "没有，放在废车场那儿，很安全。"
+      ],
+      "gold": [
+       "Did anyone see the pillow?",
+       "No. It's safe at the junkyard."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "wallet",
+      "lines": [
+       "有人看见钱包了吗？",
+       "没有，放在屋顶那儿，很安全。"
+      ],
+      "gold": [
+       "Did anyone see the wallet?",
+       "No. It's safe on the roof."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "glove",
+      "lines": [
+       "誰か手袋を見たか？",
+       "いや。教会にあるから安全だ。"
+      ],
+      "gold": [
+       "Did anyone see the glove?",
+       "No. It's safe at the church."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "envelope",
+      "lines": [
+       "誰か封筒を見たか？",
+       "いや。橋にあるから安全だ。"
+      ],
+      "gold": [
+       "Did anyone see the envelope?",
+       "No. It's safe at the bridge."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "shoe",
+      "lines": [
+       "¿Alguien vio el zapato?",
+       "No. Está a salvo en el estacionamiento."
+      ],
+      "gold": [
+       "Did anyone see the shoe?",
+       "No. It's safe in the parking lot."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "chair",
+      "lines": [
+       "¿Alguien vio la silla?",
+       "No. Está a salvo en la escalera."
+      ],
+      "gold": [
+       "Did anyone see the chair?",
+       "No. It's safe in the stairwell."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S18",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A ranch fence in the Badlands",
+    "people": "ranchers",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first rancher",
+     "second rancher"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two ranchers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "The storm blew my {O} over to {the_P}.",
+    "Then go fetch it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what blew away, and where to?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "broom",
+      "lines": [
+       "暴风把我的扫帚吹到屋顶那边去了。",
+       "那你去捡回来。"
+      ],
+      "gold": [
+       "The storm blew my broom over to the roof.",
+       "Then go fetch it."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "box",
+      "lines": [
+       "暴风把我的箱子吹到仓库那边去了。",
+       "那你去捡回来。"
+      ],
+      "gold": [
+       "The storm blew my box over to the warehouse.",
+       "Then go fetch it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "mirror",
+      "lines": [
+       "嵐で俺の鏡が橋まで飛ばされた。",
+       "じゃあ取ってこいよ。"
+      ],
+      "gold": [
+       "The storm blew my mirror over to the bridge.",
+       "Then go fetch it."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "bag",
+      "lines": [
+       "嵐で俺のかばんが質屋まで飛ばされた。",
+       "じゃあ取ってこいよ。"
+      ],
+      "gold": [
+       "The storm blew my bag over to the pawnshop.",
+       "Then go fetch it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "coat",
+      "lines": [
+       "La tormenta llevó mi abrigo hasta la escalera.",
+       "Pues ve a buscarlo."
+      ],
+      "gold": [
+       "The storm blew my coat over to the stairwell.",
+       "Then go fetch it."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "hammer",
+      "lines": [
+       "La tormenta llevó mi martillo hasta la alcantarilla.",
+       "Pues ve a buscarlo."
+      ],
+      "gold": [
+       "The storm blew my hammer over to the sewer.",
+       "Then go fetch it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S19",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A limousine stop in front of a hotel in City Center",
+    "speaker": "A limousine driver",
+    "speaker_label": "limousine driver",
+    "e_inaud_description": "A limousine driver shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "I dropped your {O} off {at_P}. It's safe there."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did he drop off, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "envelope",
+      "lines": [
+       "你的信封我送到船那儿了，放在那儿很安全。"
+      ],
+      "gold": [
+       "I dropped your envelope off on the boat. It's safe there."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "mirror",
+      "lines": [
+       "你的镜子我送到停车场那儿了，放在那儿很安全。"
+      ],
+      "gold": [
+       "I dropped your mirror off in the parking lot. It's safe there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "chair",
+      "lines": [
+       "あんたの椅子は桟橋に届けておいた。そこなら安全だ。"
+      ],
+      "gold": [
+       "I dropped your chair off at the pier. It's safe there."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "coat",
+      "lines": [
+       "あんたの上着は廃車置き場に届けておいた。そこなら安全だ。"
+      ],
+      "gold": [
+       "I dropped your coat off at the junkyard. It's safe there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "wallet",
+      "lines": [
+       "Dejé tu cartera en el sótano. Ahí no corre peligro."
+      ],
+      "gold": [
+       "I dropped your wallet off in the basement. It's safe there."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "broom",
+      "lines": [
+       "Dejé tu escoba en la iglesia. Ahí no corre peligro."
+      ],
+      "gold": [
+       "I dropped your broom off at the church. It's safe there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S20",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A street stall in Kabuki",
+    "speaker": "A vendor",
+    "speaker_label": "vendor",
+    "e_inaud_description": "A vendor shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} you wanted is over {at_P}. Go get it yourself."
+   ],
+   "questions": {
+    "content": "What did the vendor say?",
+    "task": "So what did I want, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "coat",
+      "lines": [
+       "你要的外套在当铺那边，自己去拿。"
+      ],
+      "gold": [
+       "The coat you wanted is over at the pawnshop. Go get it yourself."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "pillow",
+      "lines": [
+       "你要的枕头在桥那边，自己去拿。"
+      ],
+      "gold": [
+       "The pillow you wanted is over at the bridge. Go get it yourself."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "broom",
+      "lines": [
+       "頼まれてたほうきは下水道にある。自分で取りに行きな。"
+      ],
+      "gold": [
+       "The broom you wanted is over in the sewer. Go get it yourself."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "glove",
+      "lines": [
+       "頼まれてた手袋は階段にある。自分で取りに行きな。"
+      ],
+      "gold": [
+       "The glove you wanted is over in the stairwell. Go get it yourself."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "mirror",
+      "lines": [
+       "El espejo que querías está en el almacén. Ve tú a buscarlo."
+      ],
+      "gold": [
+       "The mirror you wanted is over at the warehouse. Go get it yourself."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "shoe",
+      "lines": [
+       "El zapato que querías está en el tejado. Ve tú a buscarlo."
+      ],
+      "gold": [
+       "The shoe you wanted is over on the roof. Go get it yourself."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S21",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A noodle cart in Watson",
+    "speaker": "A kid selling noodles",
+    "speaker_label": "kid selling noodles",
+    "e_inaud_description": "A kid selling noodles shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "That man says to bring {the_O} to {the_P} at midnight."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what do we bring, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "bag",
+      "lines": [
+       "那个男人说，半夜把袋子送到停车场那儿去。"
+      ],
+      "gold": [
+       "That man says to bring the bag to the parking lot at midnight."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "glove",
+      "lines": [
+       "那个男人说，半夜把手套送到地下室那儿去。"
+      ],
+      "gold": [
+       "That man says to bring the glove to the basement at midnight."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "hammer",
+      "lines": [
+       "あの男が、真夜中に金槌を廃車置き場へ持ってこいって。"
+      ],
+      "gold": [
+       "That man says to bring the hammer to the junkyard at midnight."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "shoe",
+      "lines": [
+       "あの男が、真夜中に靴を船へ持ってこいって。"
+      ],
+      "gold": [
+       "That man says to bring the shoe to the boat at midnight."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "box",
+      "lines": [
+       "Ese señor dice que lleves la caja a la iglesia a medianoche."
+      ],
+      "gold": [
+       "That man says to bring the box to the church at midnight."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "pillow",
+      "lines": [
+       "Ese señor dice que lleves la almohada al muelle a medianoche."
+      ],
+      "gold": [
+       "That man says to bring the pillow to the pier at midnight."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S22",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A scrap heap beside the highway in the Badlands",
+    "speaker": "A scavenger",
+    "speaker_label": "scavenger",
+    "e_inaud_description": "A scavenger shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Somebody dumped {the_O} near {the_P}. It's still there."
+   ],
+   "questions": {
+    "content": "What did the scavenger say?",
+    "task": "So what got dumped, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "有人把镜子扔在楼梯附近了，现在还在那儿。"
+      ],
+      "gold": [
+       "Somebody dumped the mirror near the stairwell. It's still there."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "wallet",
+      "lines": [
+       "有人把钱包扔在当铺附近了，现在还在那儿。"
+      ],
+      "gold": [
+       "Somebody dumped the wallet near the pawnshop. It's still there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "誰かが上着を屋上の近くに捨てていった。まだそこにある。"
+      ],
+      "gold": [
+       "Somebody dumped the coat near the roof. It's still there."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "envelope",
+      "lines": [
+       "誰かが封筒を下水道の近くに捨てていった。まだそこにある。"
+      ],
+      "gold": [
+       "Somebody dumped the envelope near the sewer. It's still there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "Alguien tiró la escoba cerca del puente. Todavía sigue ahí."
+      ],
+      "gold": [
+       "Somebody dumped the broom near the bridge. It's still there."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "chair",
+      "lines": [
+       "Alguien tiró la silla cerca del almacén. Todavía sigue ahí."
+      ],
+      "gold": [
+       "Somebody dumped the chair near the warehouse. It's still there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S23",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The line outside a concert venue in Night City",
+    "people": "young fans",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first young fan",
+     "second young fan"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two young fans talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Meet me {at_P} after the show.",
+    "Okay. I'll bring {the_O}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So where are they meeting, and what are they bringing?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "演出结束后在地下室那儿见。",
+       "好，我把信封带上。"
+      ],
+      "gold": [
+       "Meet me in the basement after the show.",
+       "Okay. I'll bring the envelope."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "shoe",
+      "lines": [
+       "演出结束后在楼梯那儿见。",
+       "好，我把鞋带上。"
+      ],
+      "gold": [
+       "Meet me in the stairwell after the show.",
+       "Okay. I'll bring the shoe."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "公演のあと、船で会おう。",
+       "わかった。椅子を持っていく。"
+      ],
+      "gold": [
+       "Meet me on the boat after the show.",
+       "Okay. I'll bring the chair."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "pillow",
+      "lines": [
+       "公演のあと、屋上で会おう。",
+       "わかった。枕を持っていく。"
+      ],
+      "gold": [
+       "Meet me on the roof after the show.",
+       "Okay. I'll bring the pillow."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "Nos vemos en el muelle después de la función.",
+       "Está bien. Yo llevo la cartera."
+      ],
+      "gold": [
+       "Meet me at the pier after the show.",
+       "Okay. I'll bring the wallet."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "glove",
+      "lines": [
+       "Nos vemos en el puente después de la función.",
+       "Está bien. Yo llevo el guante."
+      ],
+      "gold": [
+       "Meet me at the bridge after the show.",
+       "Okay. I'll bring the glove."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S24",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A netrunner den in Watson",
+    "people": "netrunners",
+    "nearby": "Across the room",
+    "speaker_labels": [
+     "first netrunner",
+     "second netrunner"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two netrunners talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Leave {the_O} {at_P}, and don't get seen.",
+    "Understood."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they leaving, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "把信封留在仓库那儿，别让人发现。",
+       "明白。"
+      ],
+      "gold": [
+       "Leave the envelope at the warehouse, and don't get seen.",
+       "Understood."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "bag",
+      "lines": [
+       "把袋子留在废车场那儿，别让人发现。",
+       "明白。"
+      ],
+      "gold": [
+       "Leave the bag at the junkyard, and don't get seen.",
+       "Understood."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子は質屋に置いていけ。見つかるなよ。",
+       "了解。"
+      ],
+      "gold": [
+       "Leave the chair at the pawnshop, and don't get seen.",
+       "Understood."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "hammer",
+      "lines": [
+       "金槌は教会に置いていけ。見つかるなよ。",
+       "了解。"
+      ],
+      "gold": [
+       "Leave the hammer at the church, and don't get seen.",
+       "Understood."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "wallet",
+      "lines": [
+       "Deja la cartera en la alcantarilla y que no te vean.",
+       "Entendido."
+      ],
+      "gold": [
+       "Leave the wallet in the sewer, and don't get seen.",
+       "Understood."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "box",
+      "lines": [
+       "Deja la caja en el estacionamiento y que no te vean.",
+       "Entendido."
+      ],
+      "gold": [
+       "Leave the box in the parking lot, and don't get seen.",
+       "Understood."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S25",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A campfire by an abandoned gas station in the Badlands",
+    "people": "drifters",
+    "nearby": "Across the fire",
+    "speaker_labels": [
+     "first drifter",
+     "second drifter"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two drifters talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I saw {the_O} {at_P}.",
+    "Worth anything?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they come across, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "bag",
+      "lines": [
+       "我在教堂那儿看到了袋子。",
+       "能卖几个钱吗？"
+      ],
+      "gold": [
+       "I saw the bag at the church.",
+       "Worth anything?"
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "我在桥那儿看到了外套。",
+       "能卖几个钱吗？"
+      ],
+      "gold": [
+       "I saw the coat at the bridge.",
+       "Worth anything?"
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "駐車場に金槌があったぞ。",
+       "金になるか？"
+      ],
+      "gold": [
+       "There was the hammer in the parking lot.",
+       "Worth any money?"
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "broom",
+      "lines": [
+       "階段にほうきがあったぞ。",
+       "金になるか？"
+      ],
+      "gold": [
+       "There was the broom in the stairwell.",
+       "Worth any money?"
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "Encontré la caja en la chatarrería.",
+       "¿Vale algo?"
+      ],
+      "gold": [
+       "I found the box at the junkyard.",
+       "Is it worth anything?"
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "Encontré el espejo en el tejado.",
+       "¿Vale algo?"
+      ],
+      "gold": [
+       "I found the mirror on the roof.",
+       "Is it worth anything?"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S26",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A bar in North Oak",
+    "speaker": "A fan",
+    "speaker_label": "fan",
+    "e_inaud_description": "A fan calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "My sister found your {O} near {the_P}. She kept it for you."
+   ],
+   "questions": {
+    "content": "What did the fan say?",
+    "task": "So what did her sister find, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "我姐姐在桥附近捡到了你的外套，替你收着呢。"
+      ],
+      "gold": [
+       "My sister found your coat near the bridge. She kept it for you."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "我姐姐在废车场附近捡到了你的箱子，替你收着呢。"
+      ],
+      "gold": [
+       "My sister found your box near the junkyard. She kept it for you."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "broom",
+      "lines": [
+       "姉が階段の近くであんたのほうきを拾ったの。取っておいてあるよ。"
+      ],
+      "gold": [
+       "My sister found your broom near the stairwell. She kept it for you."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "bag",
+      "lines": [
+       "姉が教会の近くであんたのかばんを拾ったの。取っておいてあるよ。"
+      ],
+      "gold": [
+       "My sister found your bag near the church. She kept it for you."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "Mi hermana encontró tu espejo cerca del tejado. Te lo guardó."
+      ],
+      "gold": [
+       "My sister found your mirror near the roof. She kept it for you."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "Mi hermana encontró tu martillo cerca del estacionamiento. Te lo guardó."
+      ],
+      "gold": [
+       "My sister found your hammer near the parking lot. She kept it for you."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S27",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "The door of the Afterlife, a mercenary bar in Night City",
+    "speaker": "An old doorman",
+    "speaker_label": "old doorman",
+    "e_inaud_description": "An old doorman shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your guest is waiting {at_P}. She has {the_O}."
+   ],
+   "questions": {
+    "content": "What did the doorman say?",
+    "task": "So where's the guest waiting, and what does she have?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "pillow",
+      "lines": [
+       "你的客人在码头那儿等你，枕头在她手上。"
+      ],
+      "gold": [
+       "Your guest is waiting at the pier. She has the pillow."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "你的客人在楼梯那儿等你，信封在她手上。"
+      ],
+      "gold": [
+       "Your guest is waiting in the stairwell. She has the envelope."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "glove",
+      "lines": [
+       "客が地下室で待ってる。手袋を持ってるそうだ。"
+      ],
+      "gold": [
+       "Your guest is waiting in the basement. She has the glove."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "chair",
+      "lines": [
+       "客が屋上で待ってる。椅子を持ってるそうだ。"
+      ],
+      "gold": [
+       "Your guest is waiting on the roof. She has the chair."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "shoe",
+      "lines": [
+       "Tu invitada te espera en el barco. Trae el zapato."
+      ],
+      "gold": [
+       "Your guest is waiting on the boat. She has the shoe."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "Tu invitada te espera en el puente. Trae la cartera."
+      ],
+      "gold": [
+       "Your guest is waiting at the bridge. She has the wallet."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S28",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside stand on the highway out of Night City",
+    "speaker": "A roadside vendor",
+    "speaker_label": "roadside vendor",
+    "e_inaud_description": "A roadside vendor shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your {O} is ready. It's waiting for you {at_P}."
+   ],
+   "questions": {
+    "content": "What did the vendor say?",
+    "task": "So what's ready, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "shoe",
+      "lines": [
+       "你的鞋好了，放在下水道那儿等你拿。"
+      ],
+      "gold": [
+       "Your shoe is ready. It's waiting for you in the sewer."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "bag",
+      "lines": [
+       "你的袋子好了，放在船那儿等你拿。"
+      ],
+      "gold": [
+       "Your bag is ready. It's waiting for you on the boat."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "pillow",
+      "lines": [
+       "あんたの枕、できてるよ。倉庫に置いてある。"
+      ],
+      "gold": [
+       "Your pillow is ready. It's waiting for you at the warehouse."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "あんたの金槌、できてるよ。桟橋に置いてある。"
+      ],
+      "gold": [
+       "Your hammer is ready. It's waiting for you at the pier."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "glove",
+      "lines": [
+       "Tu guante ya está. Te espera en la casa de empeño."
+      ],
+      "gold": [
+       "Your glove is ready. It's waiting for you at the pawnshop."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "box",
+      "lines": [
+       "Tu caja ya está. Te espera en el sótano."
+      ],
+      "gold": [
+       "Your box is ready. It's waiting for you in the basement."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S29",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A sound booth at a concert venue in Night City",
+    "people": "sound technicians",
+    "nearby": "Behind the mixing desk",
+    "speaker_labels": [
+     "first sound technician",
+     "second sound technician"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two sound technicians talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is still {at_P}.",
+    "Leave it. It's not our business."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's still there, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "箱子还在废车场那儿。",
+       "别管了，不关我们的事。"
+      ],
+      "gold": [
+       "The box is still at the junkyard.",
+       "Leave it. It's not our business."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "shoe",
+      "lines": [
+       "鞋还在地下室那儿。",
+       "别管了，不关我们的事。"
+      ],
+      "gold": [
+       "The shoe is still in the basement.",
+       "Leave it. It's not our business."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "bag",
+      "lines": [
+       "かばんがまだ教会にある。",
+       "ほっとけ。俺たちの知ったことじゃない。"
+      ],
+      "gold": [
+       "The bag is still at the church.",
+       "Leave it. It's not our business."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕がまだ船にある。",
+       "ほっとけ。俺たちの知ったことじゃない。"
+      ],
+      "gold": [
+       "The pillow is still on the boat.",
+       "Leave it. It's not our business."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "El martillo sigue en el estacionamiento.",
+       "Déjalo. No es asunto nuestro."
+      ],
+      "gold": [
+       "The hammer is still in the parking lot.",
+       "Leave it. It's not our business."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "glove",
+      "lines": [
+       "El guante sigue en el muelle.",
+       "Déjalo. No es asunto nuestro."
+      ],
+      "gold": [
+       "The glove is still at the pier.",
+       "Leave it. It's not our business."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S30",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A gas station on the edge of the Badlands",
+    "people": "gas station attendants",
+    "nearby": "By the pumps",
+    "speaker_labels": [
+     "first gas station attendant",
+     "second gas station attendant"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two gas station attendants talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put {the_O} {at_P} for the delivery.",
+    "Fine."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's going out for the delivery, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "shoe",
+      "lines": [
+       "把鞋放到屋顶那儿，等着送货。",
+       "行。"
+      ],
+      "gold": [
+       "Put the shoe on the roof for the delivery.",
+       "Fine."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "hammer",
+      "lines": [
+       "把锤子放到当铺那儿，等着送货。",
+       "行。"
+      ],
+      "gold": [
+       "Put the hammer at the pawnshop for the delivery.",
+       "Fine."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "pillow",
+      "lines": [
+       "配達用に枕を橋に置いといて。",
+       "了解。"
+      ],
+      "gold": [
+       "Put the pillow at the bridge for the delivery.",
+       "Fine."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "box",
+      "lines": [
+       "配達用に箱を下水道に置いといて。",
+       "了解。"
+      ],
+      "gold": [
+       "Put the box in the sewer for the delivery.",
+       "Fine."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "glove",
+      "lines": [
+       "Pon el guante en la escalera para el reparto.",
+       "Bueno."
+      ],
+      "gold": [
+       "Put the glove in the stairwell for the delivery.",
+       "Fine."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "bag",
+      "lines": [
+       "Pon la bolsa en el almacén para el reparto.",
+       "Bueno."
+      ],
+      "gold": [
+       "Put the bag at the warehouse for the delivery.",
+       "Fine."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S31",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A crowded bar in Watson",
+    "people": "men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first man",
+     "second man"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two men talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did you leave {the_O}?",
+    "{At_P}, behind the old shop."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "bag",
+      "lines": [
+       "你把袋子放哪儿了？",
+       "船那儿，就在旧店后面。"
+      ],
+      "gold": [
+       "Where did you leave the bag?",
+       "On the boat, behind the old shop."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "chair",
+      "lines": [
+       "你把椅子放哪儿了？",
+       "仓库那儿，就在旧店后面。"
+      ],
+      "gold": [
+       "Where did you leave the chair?",
+       "At the warehouse, behind the old shop."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "金槌はどこに置いた？",
+       "古い店の裏の桟橋だ。"
+      ],
+      "gold": [
+       "Where did you leave the hammer?",
+       "At the pier, behind the old shop."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "wallet",
+      "lines": [
+       "財布はどこに置いた？",
+       "古い店の裏の質屋だ。"
+      ],
+      "gold": [
+       "Where did you leave the wallet?",
+       "At the pawnshop, behind the old shop."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "box",
+      "lines": [
+       "¿Dónde dejaste la caja?",
+       "En el sótano, detrás de la tienda vieja."
+      ],
+      "gold": [
+       "Where did you leave the box?",
+       "In the basement, behind the old shop."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "envelope",
+      "lines": [
+       "¿Dónde dejaste el sobre?",
+       "En la alcantarilla, detrás de la tienda vieja."
+      ],
+      "gold": [
+       "Where did you leave the envelope?",
+       "In the sewer, behind the old shop."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S32",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The entrance of a hotel in City Center",
+    "speaker": "A hotel security guard",
+    "speaker_label": "hotel security guard",
+    "e_inaud_description": "A hotel security guard shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Take {the_O} to {the_P} before the party starts."
+   ],
+   "questions": {
+    "content": "What did the guard say?",
+    "task": "So what are we taking, and where to?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "box",
+      "lines": [
+       "聚会开始前，把箱子送到当铺那儿去。"
+      ],
+      "gold": [
+       "Take the box to the pawnshop before the party starts."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "mirror",
+      "lines": [
+       "聚会开始前，把镜子送到停车场那儿去。"
+      ],
+      "gold": [
+       "Take the mirror to the parking lot before the party starts."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "bag",
+      "lines": [
+       "宴会が始まる前に、かばんを下水道へ運んでくれ。"
+      ],
+      "gold": [
+       "Take the bag to the sewer before the party starts."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "coat",
+      "lines": [
+       "宴会が始まる前に、上着を廃車置き場へ運んでくれ。"
+      ],
+      "gold": [
+       "Take the coat to the junkyard before the party starts."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "hammer",
+      "lines": [
+       "Lleva el martillo al almacén antes de que empiece la reunión."
+      ],
+      "gold": [
+       "Take the hammer to the warehouse before the party starts."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "broom",
+      "lines": [
+       "Lleva la escoba a la iglesia antes de que empiece la reunión."
+      ],
+      "gold": [
+       "Take the broom to the church before the party starts."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S33",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A sidewalk in Kabuki",
+    "speaker": "A fixer's runner",
+    "speaker_label": "fixer's runner",
+    "e_inaud_description": "A fixer's runner shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The client says look {at_P}. {The_O} is there."
+   ],
+   "questions": {
+    "content": "What did the runner say?",
+    "task": "So where do we look, and what for?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "客户说去停车场那儿找，椅子就在那儿。"
+      ],
+      "gold": [
+       "The client says look in the parking lot. The chair is there."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "mirror",
+      "lines": [
+       "客户说去仓库那儿找，镜子就在那儿。"
+      ],
+      "gold": [
+       "The client says look at the warehouse. The mirror is there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "依頼人が言うには、廃車置き場を探せって。財布はそこにある。"
+      ],
+      "gold": [
+       "The client says look at the junkyard. The wallet is there."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "coat",
+      "lines": [
+       "依頼人が言うには、質屋を探せって。上着はそこにある。"
+      ],
+      "gold": [
+       "The client says look at the pawnshop. The coat is there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "envelope",
+      "lines": [
+       "El cliente dice que busques en la iglesia. Ahí está el sobre."
+      ],
+      "gold": [
+       "The client says look at the church. The envelope is there."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "broom",
+      "lines": [
+       "El cliente dice que busques en la alcantarilla. Ahí está la escoba."
+      ],
+      "gold": [
+       "The client says look in the sewer. The broom is there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S34",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "The shoulder of the highway outside Night City",
+    "speaker": "A tow-truck driver",
+    "speaker_label": "tow-truck driver",
+    "e_inaud_description": "A tow-truck driver shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left your {O} {at_P}. Call me if it's gone."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did he leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "wallet",
+      "lines": [
+       "你的钱包我留在楼梯那儿了，要是不见了就打给我。"
+      ],
+      "gold": [
+       "I left your wallet in the stairwell. Call me if it's gone."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "pillow",
+      "lines": [
+       "你的枕头我留在船那儿了，要是不见了就打给我。"
+      ],
+      "gold": [
+       "I left your pillow on the boat. Call me if it's gone."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "envelope",
+      "lines": [
+       "あんたの封筒は屋上に置いてきた。なくなってたら電話しろ。"
+      ],
+      "gold": [
+       "I left your envelope on the roof. Call me if it's gone."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "glove",
+      "lines": [
+       "あんたの手袋は桟橋に置いてきた。なくなってたら電話しろ。"
+      ],
+      "gold": [
+       "I left your glove at the pier. Call me if it's gone."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "chair",
+      "lines": [
+       "Dejé tu silla en el puente. Llámame si ya no está."
+      ],
+      "gold": [
+       "I left your chair at the bridge. Call me if it's gone."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "shoe",
+      "lines": [
+       "Dejé tu zapato en el sótano. Llámame si ya no está."
+      ],
+      "gold": [
+       "I left your shoe in the basement. Call me if it's gone."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S35",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A street corner in Japantown",
+    "people": "couriers",
+    "nearby": "Across the sidewalk",
+    "speaker_labels": [
+     "first courier",
+     "second courier"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two couriers talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The client wants {the_O} {at_P} by morning.",
+    "Then we'd better move."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what does the client want, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "hammer",
+      "lines": [
+       "客户要我们天亮前把锤子送到地下室那儿。",
+       "那得赶紧走了。"
+      ],
+      "gold": [
+       "The client wants the hammer in the basement by morning.",
+       "Then we'd better move."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "客户要我们天亮前把信封送到仓库那儿。",
+       "那得赶紧走了。"
+      ],
+      "gold": [
+       "The client wants the envelope at the warehouse by morning.",
+       "Then we'd better move."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "box",
+      "lines": [
+       "依頼人は朝までに箱を船に届けろって。",
+       "じゃあ急がないと。"
+      ],
+      "gold": [
+       "The client wants the box on the boat by morning.",
+       "Then we'd better move."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "依頼人は朝までに椅子を質屋に届けろって。",
+       "じゃあ急がないと。"
+      ],
+      "gold": [
+       "The client wants the chair at the pawnshop by morning.",
+       "Then we'd better move."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "bag",
+      "lines": [
+       "El cliente quiere la bolsa en el muelle antes del amanecer.",
+       "Entonces hay que moverse."
+      ],
+      "gold": [
+       "The client wants the bag at the pier by morning.",
+       "Then we'd better move."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "wallet",
+      "lines": [
+       "El cliente quiere la cartera en la alcantarilla antes del amanecer.",
+       "Entonces hay que moverse."
+      ],
+      "gold": [
+       "The client wants the wallet in the sewer by morning.",
+       "Then we'd better move."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S36",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A night market in Kabuki",
+    "people": "street vendors",
+    "nearby": "At the next stall",
+    "speaker_labels": [
+     "first street vendor",
+     "second street vendor"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two street vendors talk to each other; the glass and the traffic drown it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The inspector took my {O} to {the_P}.",
+    "Go get it back tomorrow."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did the inspector take, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "hammer",
+      "lines": [
+       "检查员把我的锤子拿到仓库那儿去了。",
+       "明天去要回来。"
+      ],
+      "gold": [
+       "The inspector took my hammer to the warehouse.",
+       "Go get it back tomorrow."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "检查员把我的外套拿到屋顶那儿去了。",
+       "明天去要回来。"
+      ],
+      "gold": [
+       "The inspector took my coat to the roof.",
+       "Go get it back tomorrow."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "box",
+      "lines": [
+       "検査官に箱を質屋へ持っていかれた。",
+       "明日取り返しに行けよ。"
+      ],
+      "gold": [
+       "The inspector took my box to the pawnshop.",
+       "Go get it back tomorrow."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "検査官にほうきを橋へ持っていかれた。",
+       "明日取り返しに行けよ。"
+      ],
+      "gold": [
+       "The inspector took my broom to the bridge.",
+       "Go get it back tomorrow."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "bag",
+      "lines": [
+       "El inspector se llevó mi bolsa a la alcantarilla.",
+       "Mañana vas a recuperarla."
+      ],
+      "gold": [
+       "The inspector took my bag to the sewer.",
+       "Go get it back tomorrow."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "El inspector se llevó mi espejo a la escalera.",
+       "Mañana vas a recuperarlo."
+      ],
+      "gold": [
+       "The inspector took my mirror to the stairwell.",
+       "Go get it back tomorrow."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S37",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A motel walkway off the highway",
+    "people": "motel guests",
+    "nearby": "By the next room",
+    "speaker_labels": [
+     "first motel guest",
+     "second motel guest"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two motel guests talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left my {O} {at_P}.",
+    "We're not going back tonight."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did she leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "我把枕头忘在教堂那儿了。",
+       "今晚我们不回去了。"
+      ],
+      "gold": [
+       "I left my pillow at the church.",
+       "We're not going back tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "broom",
+      "lines": [
+       "我把扫帚忘在屋顶那儿了。",
+       "今晚我们不回去了。"
+      ],
+      "gold": [
+       "I left my broom on the roof.",
+       "We're not going back tonight."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "手袋を駐車場に忘れてきちゃった。",
+       "今夜はもう戻らないよ。"
+      ],
+      "gold": [
+       "I left my glove in the parking lot.",
+       "We're not going back tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "mirror",
+      "lines": [
+       "鏡を橋に忘れてきちゃった。",
+       "今夜はもう戻らないよ。"
+      ],
+      "gold": [
+       "I left my mirror at the bridge.",
+       "We're not going back tonight."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "Olvidé mi zapato en la chatarrería.",
+       "Esta noche ya no regresamos."
+      ],
+      "gold": [
+       "I left my shoe at the junkyard.",
+       "We're not going back tonight."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "coat",
+      "lines": [
+       "Olvidé mi abrigo en la escalera.",
+       "Esta noche ya no regresamos."
+      ],
+      "gold": [
+       "I left my coat in the stairwell.",
+       "We're not going back tonight."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S38",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A recording studio lobby in North Oak",
+    "speaker": "An old sound engineer",
+    "speaker_label": "old sound engineer",
+    "e_inaud_description": "An old sound engineer calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Like you asked, I put {the_O} {at_P}."
+   ],
+   "questions": {
+    "content": "What did the engineer say?",
+    "task": "So what did he put away, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "bag",
+      "lines": [
+       "按你说的，我把袋子放在桥那儿了。"
+      ],
+      "gold": [
+       "Like you asked, I put the bag at the bridge."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "envelope",
+      "lines": [
+       "按你说的，我把信封放在下水道那儿了。"
+      ],
+      "gold": [
+       "Like you asked, I put the envelope in the sewer."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "hammer",
+      "lines": [
+       "言われた通り、金槌は階段に置いておいたよ。"
+      ],
+      "gold": [
+       "Like you asked, I put the hammer in the stairwell."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "chair",
+      "lines": [
+       "言われた通り、椅子は倉庫に置いておいたよ。"
+      ],
+      "gold": [
+       "Like you asked, I put the chair at the warehouse."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "box",
+      "lines": [
+       "Como me pediste, dejé la caja en el tejado."
+      ],
+      "gold": [
+       "Like you asked, I put the box on the roof."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "wallet",
+      "lines": [
+       "Como me pediste, dejé la cartera en la casa de empeño."
+      ],
+      "gold": [
+       "Like you asked, I put the wallet at the pawnshop."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S39",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A street clinic in Watson",
+    "speaker": "A street medic",
+    "speaker_label": "street medic",
+    "e_inaud_description": "A street medic shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left your friend's {O} {at_P}. Remember to get it."
+   ],
+   "questions": {
+    "content": "What did the medic say?",
+    "task": "So what did the medic leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "mirror",
+      "lines": [
+       "你朋友的镜子我放在码头那儿了，记得去拿。"
+      ],
+      "gold": [
+       "I left your friend's mirror at the pier. Remember to get it."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "你朋友的枕头我放在教堂那儿了，记得去拿。"
+      ],
+      "gold": [
+       "I left your friend's pillow at the church. Remember to get it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "coat",
+      "lines": [
+       "あんたの友達の上着、地下室に置いておいたよ。忘れずに取りに行って。"
+      ],
+      "gold": [
+       "I left your friend's coat in the basement. Remember to get it."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "あんたの友達の手袋、駐車場に置いておいたよ。忘れずに取りに行って。"
+      ],
+      "gold": [
+       "I left your friend's glove in the parking lot. Remember to get it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "broom",
+      "lines": [
+       "Dejé la escoba de tu amigo en el barco. Acuérdate de recogerla."
+      ],
+      "gold": [
+       "I left your friend's broom on the boat. Remember to get it."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "Dejé el zapato de tu amigo en la chatarrería. Acuérdate de recogerlo."
+      ],
+      "gold": [
+       "I left your friend's shoe at the junkyard. Remember to get it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S40",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A dirt road through the Badlands",
+    "speaker": "A kid on a bike",
+    "speaker_label": "kid on a bike",
+    "e_inaud_description": "A kid on a bike shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "My mom sent me to tell you your {O} is {at_P}."
+   ],
+   "questions": {
+    "content": "What did the kid say?",
+    "task": "So what's his mom talking about, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "hammer",
+      "lines": [
+       "我妈让我来告诉你，你的锤子在下水道那儿。"
+      ],
+      "gold": [
+       "My mom sent me to tell you your hammer is in the sewer."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "glove",
+      "lines": [
+       "我妈让我来告诉你，你的手套在码头那儿。"
+      ],
+      "gold": [
+       "My mom sent me to tell you your glove is at the pier."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "box",
+      "lines": [
+       "母ちゃんが言ってた。あんたの箱は倉庫にあるって。"
+      ],
+      "gold": [
+       "My mom said so: your box is at the warehouse."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "shoe",
+      "lines": [
+       "母ちゃんが言ってた。あんたの靴は地下室にあるって。"
+      ],
+      "gold": [
+       "My mom said so: your shoe is in the basement."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "bag",
+      "lines": [
+       "Mi mamá dice que tu bolsa está en la casa de empeño."
+      ],
+      "gold": [
+       "My mom says your bag is at the pawnshop."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "pillow",
+      "lines": [
+       "Mi mamá dice que tu almohada está en el barco."
+      ],
+      "gold": [
+       "My mom says your pillow is on the boat."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S41",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A noodle bar in Japantown",
+    "people": "old women",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old woman",
+     "second old woman"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two old women talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "My grandson lost his {O} {at_P}.",
+    "Kids lose everything."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did her grandson lose, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "glove",
+      "lines": [
+       "我孙子把手套丢在废车场那儿了。",
+       "小孩子什么都丢。"
+      ],
+      "gold": [
+       "My grandson lost his glove at the junkyard.",
+       "Kids lose everything."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "coat",
+      "lines": [
+       "我孙子把外套丢在码头那儿了。",
+       "小孩子什么都丢。"
+      ],
+      "gold": [
+       "My grandson lost his coat at the pier.",
+       "Kids lose everything."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "shoe",
+      "lines": [
+       "孫が靴を教会でなくしたのよ。",
+       "子供は何でもなくすからね。"
+      ],
+      "gold": [
+       "My grandson lost his shoe at the church.",
+       "Kids lose everything."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "broom",
+      "lines": [
+       "孫がほうきを地下室でなくしたのよ。",
+       "子供は何でもなくすからね。"
+      ],
+      "gold": [
+       "My grandson lost his broom in the basement.",
+       "Kids lose everything."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "pillow",
+      "lines": [
+       "Mi nieto perdió su almohada en el estacionamiento.",
+       "Los niños pierden todo."
+      ],
+      "gold": [
+       "My grandson lost his pillow in the parking lot.",
+       "Kids lose everything."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "mirror",
+      "lines": [
+       "Mi nieto perdió su espejo en el barco.",
+       "Los niños pierden todo."
+      ],
+      "gold": [
+       "My grandson lost his mirror on the boat.",
+       "Kids lose everything."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S42",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A card table in a Watson bar",
+    "people": "old men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old man",
+     "second old man"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two old men talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "My son left his {O} near {the_P}.",
+    "He'll never find it now."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did his son leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "hammer",
+      "lines": [
+       "我儿子把锤子落在屋顶附近了。",
+       "他再也找不回来了。"
+      ],
+      "gold": [
+       "My son left his hammer near the roof.",
+       "He'll never find it now."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "wallet",
+      "lines": [
+       "我儿子把钱包落在教堂附近了。",
+       "他再也找不回来了。"
+      ],
+      "gold": [
+       "My son left his wallet near the church.",
+       "He'll never find it now."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "box",
+      "lines": [
+       "息子が箱を橋の近くに置き忘れた。",
+       "もう見つからんだろう。"
+      ],
+      "gold": [
+       "My son left his box near the bridge.",
+       "He'll never find it now."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "envelope",
+      "lines": [
+       "息子が封筒を駐車場の近くに置き忘れた。",
+       "もう見つからんだろう。"
+      ],
+      "gold": [
+       "My son left his envelope near the parking lot.",
+       "He'll never find it now."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "bag",
+      "lines": [
+       "Mi hijo dejó su bolsa cerca de la escalera.",
+       "Ya nunca la va a encontrar."
+      ],
+      "gold": [
+       "My son left his bag near the stairwell.",
+       "He'll never find it now."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "chair",
+      "lines": [
+       "Mi hijo dejó su silla cerca de la chatarrería.",
+       "Ya nunca la va a encontrar."
+      ],
+      "gold": [
+       "My son left his chair near the junkyard.",
+       "He'll never find it now."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S43",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside fruit stand in the Badlands",
+    "people": "kids",
+    "nearby": "Behind the stand",
+    "speaker_labels": [
+     "first kid",
+     "second kid"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two kids talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Let's hide {the_O} {at_P}.",
+    "Nobody will find it there."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they hiding, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "bag",
+      "lines": [
+       "我们把袋子藏到船那儿去吧。",
+       "那儿谁也找不到。"
+      ],
+      "gold": [
+       "Let's hide the bag on the boat.",
+       "Nobody will find it there."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "shoe",
+      "lines": [
+       "我们把鞋藏到桥那儿去吧。",
+       "那儿谁也找不到。"
+      ],
+      "gold": [
+       "Let's hide the shoe at the bridge.",
+       "Nobody will find it there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "金槌を桟橋に隠そうよ。",
+       "あそこなら誰にも見つからない。"
+      ],
+      "gold": [
+       "Let's hide the hammer at the pier.",
+       "Nobody will find it there."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕を階段に隠そうよ。",
+       "あそこなら誰にも見つからない。"
+      ],
+      "gold": [
+       "Let's hide the pillow in the stairwell.",
+       "Nobody will find it there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "box",
+      "lines": [
+       "Escondamos la caja en el sótano.",
+       "Ahí nadie la va a encontrar."
+      ],
+      "gold": [
+       "Let's hide the box in the basement.",
+       "Nobody will find it there."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "glove",
+      "lines": [
+       "Escondamos el guante en el tejado.",
+       "Ahí nadie lo va a encontrar."
+      ],
+      "gold": [
+       "Let's hide the glove on the roof.",
+       "Nobody will find it there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S44",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A sidewalk in City Center",
+    "speaker": "A delivery drone operator",
+    "speaker_label": "delivery drone operator",
+    "e_inaud_description": "A delivery drone operator shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "After midnight your {O} will be waiting {at_P}."
+   ],
+   "questions": {
+    "content": "What did the operator say?",
+    "task": "So what's coming, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "mirror",
+      "lines": [
+       "半夜以后，你的镜子会放在当铺那儿等你。"
+      ],
+      "gold": [
+       "After midnight your mirror will be waiting at the pawnshop."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "hammer",
+      "lines": [
+       "半夜以后，你的锤子会放在地下室那儿等你。"
+      ],
+      "gold": [
+       "After midnight your hammer will be waiting in the basement."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "coat",
+      "lines": [
+       "真夜中を過ぎたら、あんたの上着は下水道に届いてる。"
+      ],
+      "gold": [
+       "After midnight your coat will be waiting in the sewer."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "box",
+      "lines": [
+       "真夜中を過ぎたら、あんたの箱は船に届いてる。"
+      ],
+      "gold": [
+       "After midnight your box will be waiting on the boat."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "broom",
+      "lines": [
+       "Después de medianoche tu escoba estará en el almacén."
+      ],
+      "gold": [
+       "After midnight your broom will be waiting at the warehouse."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "bag",
+      "lines": [
+       "Después de medianoche tu bolsa estará en el muelle."
+      ],
+      "gold": [
+       "After midnight your bag will be waiting at the pier."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S45",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "An empty plaza in Pacifica",
+    "speaker": "A scavenger",
+    "speaker_label": "scavenger",
+    "e_inaud_description": "A scavenger shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "I saw them bury {the_O} near {the_P}."
+   ],
+   "questions": {
+    "content": "What did the scavenger say?",
+    "task": "So what did they bury, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "coat",
+      "lines": [
+       "我亲眼看见他们在停车场附近埋了外套。"
+      ],
+      "gold": [
+       "I saw them bury the coat near the parking lot."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "wallet",
+      "lines": [
+       "我亲眼看见他们在当铺附近埋了钱包。"
+      ],
+      "gold": [
+       "I saw them bury the wallet near the pawnshop."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "broom",
+      "lines": [
+       "奴らがほうきを廃車置き場の近くに埋めるのを見たんだ。"
+      ],
+      "gold": [
+       "I saw them bury the broom near the junkyard."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "envelope",
+      "lines": [
+       "奴らが封筒を下水道の近くに埋めるのを見たんだ。"
+      ],
+      "gold": [
+       "I saw them bury the envelope near the sewer."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "mirror",
+      "lines": [
+       "Los vi enterrar el espejo cerca de la iglesia."
+      ],
+      "gold": [
+       "I saw them bury the mirror near the church."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "chair",
+      "lines": [
+       "Los vi enterrar la silla cerca del almacén."
+      ],
+      "gold": [
+       "I saw them bury the chair near the warehouse."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S46",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A repair shop on the edge of the Badlands",
+    "speaker": "A mechanic",
+    "speaker_label": "mechanic",
+    "e_inaud_description": "A mechanic shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Hide {the_O} {at_P} before they come."
+   ],
+   "questions": {
+    "content": "What did the mechanic say?",
+    "task": "So what do we hide, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "box",
+      "lines": [
+       "趁他们还没来，把箱子藏到楼梯那儿去。"
+      ],
+      "gold": [
+       "Hide the box in the stairwell before they come."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "趁他们还没来，把椅子藏到停车场那儿去。"
+      ],
+      "gold": [
+       "Hide the chair in the parking lot before they come."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "bag",
+      "lines": [
+       "奴らが来る前に、かばんを屋上に隠せ。"
+      ],
+      "gold": [
+       "Hide the bag on the roof before they come."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "奴らが来る前に、財布を廃車置き場に隠せ。"
+      ],
+      "gold": [
+       "Hide the wallet at the junkyard before they come."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "hammer",
+      "lines": [
+       "Esconde el martillo en el puente antes de que lleguen."
+      ],
+      "gold": [
+       "Hide the hammer at the bridge before they come."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "envelope",
+      "lines": [
+       "Esconde el sobre en la iglesia antes de que lleguen."
+      ],
+      "gold": [
+       "Hide the envelope at the church before they come."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S47",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A hotel lobby in City Center",
+    "people": "cleaners",
+    "nearby": "Near the front desk",
+    "speaker_labels": [
+     "first cleaner",
+     "second cleaner"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two cleaners talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Who left this {O} {at_P}?",
+    "Not me. Ask the night shift."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "chair",
+      "lines": [
+       "谁把这个椅子放在地下室那儿的？",
+       "不是我，去问夜班的。"
+      ],
+      "gold": [
+       "Who left this chair in the basement?",
+       "Not me. Ask the night shift."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "broom",
+      "lines": [
+       "谁把这个扫帚放在楼梯那儿的？",
+       "不是我，去问夜班的。"
+      ],
+      "gold": [
+       "Who left this broom in the stairwell?",
+       "Not me. Ask the night shift."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "wallet",
+      "lines": [
+       "誰がこの財布を船に置いたの？",
+       "私じゃない。夜勤の人に聞いて。"
+      ],
+      "gold": [
+       "Who left this wallet on the boat?",
+       "Not me. Ask the night shift."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "誰がこの鏡を屋上に置いたの？",
+       "私じゃない。夜勤の人に聞いて。"
+      ],
+      "gold": [
+       "Who left this mirror on the roof?",
+       "Not me. Ask the night shift."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "envelope",
+      "lines": [
+       "¿Quién dejó este sobre en el muelle?",
+       "Yo no. Pregúntale al turno de noche."
+      ],
+      "gold": [
+       "Who left this envelope at the pier?",
+       "Not me. Ask the night shift."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "¿Quién dejó este abrigo en el puente?",
+       "Yo no. Pregúntale al turno de noche."
+      ],
+      "gold": [
+       "Who left this coat at the bridge?",
+       "Not me. Ask the night shift."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S48",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A terrace bar high above Kabuki",
+    "people": "gang lookouts",
+    "nearby": "At the rail",
+    "speaker_labels": [
+     "first gang lookout",
+     "second gang lookout"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two gang lookouts talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put {the_O} back {at_P}.",
+    "Why? Nobody's looking."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what goes back, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "wallet",
+      "lines": [
+       "把钱包放回仓库那儿去。",
+       "为什么？又没人看。"
+      ],
+      "gold": [
+       "Put the wallet back at the warehouse.",
+       "Why? Nobody's looking."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "broom",
+      "lines": [
+       "把扫帚放回废车场那儿去。",
+       "为什么？又没人看。"
+      ],
+      "gold": [
+       "Put the broom back at the junkyard.",
+       "Why? Nobody's looking."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "envelope",
+      "lines": [
+       "封筒を質屋に戻しておけ。",
+       "なんで？誰も見てないぜ。"
+      ],
+      "gold": [
+       "Put the envelope back at the pawnshop.",
+       "Why? Nobody's looking."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "mirror",
+      "lines": [
+       "鏡を教会に戻しておけ。",
+       "なんで？誰も見てないぜ。"
+      ],
+      "gold": [
+       "Put the mirror back at the church.",
+       "Why? Nobody's looking."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "chair",
+      "lines": [
+       "Regresa la silla a la alcantarilla.",
+       "¿Para qué? Nadie está mirando."
+      ],
+      "gold": [
+       "Put the chair back in the sewer.",
+       "Why? Nobody's looking."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "coat",
+      "lines": [
+       "Regresa el abrigo al estacionamiento.",
+       "¿Para qué? Nadie está mirando."
+      ],
+      "gold": [
+       "Put the coat back in the parking lot.",
+       "Why? Nobody's looking."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S49",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A checkpoint on the road into Night City",
+    "people": "smugglers",
+    "nearby": "In the next car",
+    "speaker_labels": [
+     "first smuggler",
+     "second smuggler"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two smugglers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is waiting {at_P}.",
+    "Good. Pick it up after dark."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's waiting, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "mirror",
+      "lines": [
+       "镜子放在教堂那儿等着呢。",
+       "好，天黑以后去拿。"
+      ],
+      "gold": [
+       "The mirror is waiting at the church.",
+       "Good. Pick it up after dark."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "shoe",
+      "lines": [
+       "鞋放在下水道那儿等着呢。",
+       "好，天黑以后去拿。"
+      ],
+      "gold": [
+       "The shoe is waiting in the sewer.",
+       "Good. Pick it up after dark."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "coat",
+      "lines": [
+       "上着は駐車場に置いてある。",
+       "よし、暗くなってから取りに行け。"
+      ],
+      "gold": [
+       "The coat is waiting in the parking lot.",
+       "Good. Pick it up after dark."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕は倉庫に置いてある。",
+       "よし、暗くなってから取りに行け。"
+      ],
+      "gold": [
+       "The pillow is waiting at the warehouse.",
+       "Good. Pick it up after dark."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "broom",
+      "lines": [
+       "La escoba está esperando en la chatarrería.",
+       "Bien. Recógela cuando oscurezca."
+      ],
+      "gold": [
+       "The broom is waiting at the junkyard.",
+       "Good. Pick it up after dark."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "glove",
+      "lines": [
+       "El guante está esperando en la casa de empeño.",
+       "Bien. Recógelo cuando oscurezca."
+      ],
+      "gold": [
+       "The glove is waiting at the pawnshop.",
+       "Good. Pick it up after dark."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S50",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A cocktail bar in North Oak",
+    "speaker": "A bartender",
+    "speaker_label": "bartender",
+    "e_inaud_description": "A bartender calls out to Kerry from across the packed, deafening room; the music drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "The lady from yesterday wants her {O} back. Take it to {the_P}."
+   ],
+   "questions": {
+    "content": "What did the bartender say?",
+    "task": "So what does she want back, and where do we take it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "昨天那位女士想要回她的钱包，你把它送到桥那儿去。"
+      ],
+      "gold": [
+       "The lady from yesterday wants her wallet back. Take it to the bridge."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "pillow",
+      "lines": [
+       "昨天那位女士想要回她的枕头，你把它送到废车场那儿去。"
+      ],
+      "gold": [
+       "The lady from yesterday wants her pillow back. Take it to the junkyard."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "昨日の女の人が封筒を返してほしいって。階段まで持ってきて。"
+      ],
+      "gold": [
+       "The lady from yesterday wants her envelope back. Take it to the stairwell."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "glove",
+      "lines": [
+       "昨日の女の人が手袋を返してほしいって。教会まで持ってきて。"
+      ],
+      "gold": [
+       "The lady from yesterday wants her glove back. Take it to the church."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "chair",
+      "lines": [
+       "La señora de ayer quiere que le devuelvas la silla. Llévala al tejado."
+      ],
+      "gold": [
+       "The lady from yesterday wants her chair back. Take it to the roof."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "shoe",
+      "lines": [
+       "La señora de ayer quiere que le devuelvas el zapato. Llévalo al estacionamiento."
+      ],
+      "gold": [
+       "The lady from yesterday wants her shoe back. Take it to the parking lot."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S51",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A patrol stop on a Watson street",
+    "speaker": "An NCPD officer",
+    "speaker_label": "NCPD officer",
+    "e_inaud_description": "An NCPD officer shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "We found {the_O} {at_P}. Stay away from there."
+   ],
+   "questions": {
+    "content": "What did the officer say?",
+    "task": "So what did they find, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "我们在码头那儿发现了鞋，你离那儿远点。"
+      ],
+      "gold": [
+       "We found the shoe at the pier. Stay away from there."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "我们在屋顶那儿发现了外套，你离那儿远点。"
+      ],
+      "gold": [
+       "We found the coat on the roof. Stay away from there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕が地下室で見つかった。あそこには近づくな。"
+      ],
+      "gold": [
+       "We found the pillow in the basement. Stay away from there."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "ほうきが橋で見つかった。あそこには近づくな。"
+      ],
+      "gold": [
+       "We found the broom at the bridge. Stay away from there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "glove",
+      "lines": [
+       "Encontramos el guante en el barco. No te acerques por ahí."
+      ],
+      "gold": [
+       "We found the glove on the boat. Stay away from there."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "Encontramos el espejo en la escalera. No te acerques por ahí."
+      ],
+      "gold": [
+       "We found the mirror in the stairwell. Stay away from there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S52",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "speaker": "A diner cook",
+    "speaker_label": "diner cook",
+    "e_inaud_description": "A diner cook calls out to Panam from across the packed, deafening room; the music drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone lost {the_O} {at_P}. Is it yours?"
+   ],
+   "questions": {
+    "content": "What did the cook say?",
+    "task": "So what did someone lose, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "coat",
+      "lines": [
+       "有人在下水道那儿丢了外套，是你的吗？"
+      ],
+      "gold": [
+       "Someone lost the coat in the sewer. Is it yours?"
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "box",
+      "lines": [
+       "有人在地下室那儿丢了箱子，是你的吗？"
+      ],
+      "gold": [
+       "Someone lost the box in the basement. Is it yours?"
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "broom",
+      "lines": [
+       "誰かがほうきを倉庫でなくしたらしい。あんたのか？"
+      ],
+      "gold": [
+       "Someone lost the broom at the warehouse. Is it yours?"
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "bag",
+      "lines": [
+       "誰かがかばんを船でなくしたらしい。あんたのか？"
+      ],
+      "gold": [
+       "Someone lost the bag on the boat. Is it yours?"
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "mirror",
+      "lines": [
+       "Alguien perdió el espejo en la casa de empeño. ¿Es tuyo?"
+      ],
+      "gold": [
+       "Someone lost the mirror at the pawnshop. Is it yours?"
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "Alguien perdió el martillo en el muelle. ¿Es tuyo?"
+      ],
+      "gold": [
+       "Someone lost the hammer at the pier. Is it yours?"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S53",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A photo studio in North Oak",
+    "people": "photographers",
+    "nearby": "Across the studio",
+    "speaker_labels": [
+     "first photographer",
+     "second photographer"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two photographers talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "They moved {the_O} to {the_P}.",
+    "Who told them to?"
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what got moved, and where to?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "pillow",
+      "lines": [
+       "他们把枕头挪到废车场那儿去了。",
+       "谁让他们挪的？"
+      ],
+      "gold": [
+       "They moved the pillow to the junkyard.",
+       "Who told them to?"
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "他们把信封挪到地下室那儿去了。",
+       "谁让他们挪的？"
+      ],
+      "gold": [
+       "They moved the envelope to the basement.",
+       "Who told them to?"
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "glove",
+      "lines": [
+       "手袋が教会に移されてた。",
+       "誰の指示だ？"
+      ],
+      "gold": [
+       "They moved the glove to the church.",
+       "Who told them to?"
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子が船に移されてた。",
+       "誰の指示だ？"
+      ],
+      "gold": [
+       "They moved the chair to the boat.",
+       "Who told them to?"
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "shoe",
+      "lines": [
+       "Llevaron el zapato al estacionamiento.",
+       "¿Quién les dijo?"
+      ],
+      "gold": [
+       "They moved the shoe to the parking lot.",
+       "Who told them to?"
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "Llevaron la cartera al muelle.",
+       "¿Quién les dijo?"
+      ],
+      "gold": [
+       "They moved the wallet to the pier.",
+       "Who told them to?"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S54",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A street clinic in Watson",
+    "people": "nurses",
+    "nearby": "Behind the curtain",
+    "speaker_labels": [
+     "first nurse",
+     "second nurse"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two nurses talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "The patient's {O} is {at_P}.",
+    "I'll bring it over later."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's the patient's, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "chair",
+      "lines": [
+       "那个病人的椅子在屋顶那儿。",
+       "我待会儿给他拿过去。"
+      ],
+      "gold": [
+       "The patient's chair is on the roof.",
+       "I'll bring it over later."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "mirror",
+      "lines": [
+       "那个病人的镜子在下水道那儿。",
+       "我待会儿给他拿过去。"
+      ],
+      "gold": [
+       "The patient's mirror is in the sewer.",
+       "I'll bring it over later."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "患者さんの財布は橋にあります。",
+       "あとで持っていきます。"
+      ],
+      "gold": [
+       "The patient's wallet is at the bridge.",
+       "I'll bring it over later."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "coat",
+      "lines": [
+       "患者さんの上着は倉庫にあります。",
+       "あとで持っていきます。"
+      ],
+      "gold": [
+       "The patient's coat is at the warehouse.",
+       "I'll bring it over later."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "El sobre del paciente está en la escalera.",
+       "Luego se lo llevo."
+      ],
+      "gold": [
+       "The patient's envelope is in the stairwell.",
+       "I'll bring it over later."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "broom",
+      "lines": [
+       "La escoba del paciente está en la casa de empeño.",
+       "Luego se la llevo."
+      ],
+      "gold": [
+       "The patient's broom is at the pawnshop.",
+       "I'll bring it over later."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S55",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A laundromat in Santo Domingo",
+    "people": "sisters",
+    "nearby": "By the next machine",
+    "speaker_labels": [
+     "first sister",
+     "second sister"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two sisters talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Mom's {O} is {at_P}.",
+    "I'll bring it home."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's their mom's, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "妈妈的椅子在船那儿。",
+       "我把它带回家。"
+      ],
+      "gold": [
+       "Mom's chair is on the boat.",
+       "I'll bring it home."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "bag",
+      "lines": [
+       "妈妈的袋子在桥那儿。",
+       "我把它带回家。"
+      ],
+      "gold": [
+       "Mom's bag is at the bridge.",
+       "I'll bring it home."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "お母さんの財布、桟橋にあるよ。",
+       "私が家に持って帰る。"
+      ],
+      "gold": [
+       "Mom's wallet is at the pier.",
+       "I'll bring it home."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "hammer",
+      "lines": [
+       "お母さんの金槌、階段にあるよ。",
+       "私が家に持って帰る。"
+      ],
+      "gold": [
+       "Mom's hammer is in the stairwell.",
+       "I'll bring it home."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "El sobre de mamá está en el sótano.",
+       "Yo lo llevo a casa."
+      ],
+      "gold": [
+       "Mom's envelope is in the basement.",
+       "I'll bring it home."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "box",
+      "lines": [
+       "La caja de mamá está en el tejado.",
+       "Yo la llevo a casa."
+      ],
+      "gold": [
+       "Mom's box is on the roof.",
+       "I'll bring it home."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S56",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "A dive bar in Japantown",
+    "people": "gangers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first ganger",
+     "second ganger"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two gangers talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Is {the_O} still {at_P}?",
+    "Yes. Nobody's touched it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they checking on, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "broom",
+      "lines": [
+       "扫帚还在当铺那儿吗？",
+       "在，没人动过。"
+      ],
+      "gold": [
+       "Is the broom still at the pawnshop?",
+       "Yes. Nobody's touched it."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "手套还在停车场那儿吗？",
+       "在，没人动过。"
+      ],
+      "gold": [
+       "Is the glove still in the parking lot?",
+       "Yes. Nobody's touched it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "mirror",
+      "lines": [
+       "鏡はまだ下水道にあるか？",
+       "ああ。誰も触ってない。"
+      ],
+      "gold": [
+       "Is the mirror still in the sewer?",
+       "Yes. Nobody's touched it."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "靴はまだ廃車置き場にあるか？",
+       "ああ。誰も触ってない。"
+      ],
+      "gold": [
+       "Is the shoe still at the junkyard?",
+       "Yes. Nobody's touched it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "coat",
+      "lines": [
+       "¿El abrigo sigue en el almacén?",
+       "Sí. Nadie lo ha tocado."
+      ],
+      "gold": [
+       "Is the coat still at the warehouse?",
+       "Yes. Nobody's touched it."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "¿La almohada sigue en la iglesia?",
+       "Sí. Nadie la ha tocado."
+      ],
+      "gold": [
+       "Is the pillow still at the church?",
+       "Yes. Nobody's touched it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S57",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A shop counter in Kabuki",
+    "speaker": "A shopkeeper",
+    "speaker_label": "shopkeeper",
+    "e_inaud_description": "A shopkeeper shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Some men carried {the_O} to {the_P}. I saw them."
+   ],
+   "questions": {
+    "content": "What did the shopkeeper say?",
+    "task": "So what did they carry, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "有几个人把手套拿到停车场那儿去了，我亲眼看见的。"
+      ],
+      "gold": [
+       "Some men carried the glove to the parking lot. I saw them."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "bag",
+      "lines": [
+       "有几个人把袋子拿到船那儿去了，我亲眼看见的。"
+      ],
+      "gold": [
+       "Some men carried the bag to the boat. I saw them."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "男たちが靴を廃車置き場へ運んでいった。この目で見たよ。"
+      ],
+      "gold": [
+       "Some men carried the shoe to the junkyard. I saw them."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "男たちが金槌を桟橋へ運んでいった。この目で見たよ。"
+      ],
+      "gold": [
+       "Some men carried the hammer to the pier. I saw them."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "Unos hombres llevaron la almohada a la iglesia. Yo los vi."
+      ],
+      "gold": [
+       "Some men carried the pillow to the church. I saw them."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "box",
+      "lines": [
+       "Unos hombres llevaron la caja al sótano. Yo los vi."
+      ],
+      "gold": [
+       "Some men carried the box to the basement. I saw them."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S58",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A checkpoint on the road into Night City",
+    "speaker": "A checkpoint guard",
+    "speaker_label": "checkpoint guard",
+    "e_inaud_description": "A checkpoint guard shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your {O} is {at_P}. Pick it up in the morning."
+   ],
+   "questions": {
+    "content": "What did the guard say?",
+    "task": "So what's there, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "shoe",
+      "lines": [
+       "你的鞋在楼梯那儿，明天早上来取。"
+      ],
+      "gold": [
+       "Your shoe is in the stairwell. Pick it up in the morning."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "envelope",
+      "lines": [
+       "你的信封在教堂那儿，明天早上来取。"
+      ],
+      "gold": [
+       "Your envelope is at the church. Pick it up in the morning."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "pillow",
+      "lines": [
+       "あんたの枕は屋上にある。朝になったら取りに来い。"
+      ],
+      "gold": [
+       "Your pillow is on the roof. Pick it up in the morning."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "あんたの椅子は駐車場にある。朝になったら取りに来い。"
+      ],
+      "gold": [
+       "Your chair is in the parking lot. Pick it up in the morning."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "glove",
+      "lines": [
+       "Tu guante está en el puente. Recógelo en la mañana."
+      ],
+      "gold": [
+       "Your glove is at the bridge. Pick it up in the morning."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "Tu cartera está en la chatarrería. Recógela en la mañana."
+      ],
+      "gold": [
+       "Your wallet is at the junkyard. Pick it up in the morning."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S59",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The door of a nightclub in Night City",
+    "people": "bouncers",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first bouncer",
+     "second bouncer"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two bouncers talk to each other; the glass and the traffic drown it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Bring {the_O} to {the_P} tonight.",
+    "Fine, but you owe me."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's being brought, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "今晚把信封拿到地下室那儿去。",
+       "行，不过你欠我个人情。"
+      ],
+      "gold": [
+       "Bring the envelope to the basement tonight.",
+       "Fine, but you owe me."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "mirror",
+      "lines": [
+       "今晚把镜子拿到当铺那儿去。",
+       "行，不过你欠我个人情。"
+      ],
+      "gold": [
+       "Bring the mirror to the pawnshop tonight.",
+       "Fine, but you owe me."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "今夜、椅子を船へ持っていけ。",
+       "いいけど、貸しだぞ。"
+      ],
+      "gold": [
+       "Bring the chair to the boat tonight.",
+       "Fine, but you owe me."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "coat",
+      "lines": [
+       "今夜、上着を下水道へ持っていけ。",
+       "いいけど、貸しだぞ。"
+      ],
+      "gold": [
+       "Bring the coat to the sewer tonight.",
+       "Fine, but you owe me."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "Lleva la cartera al muelle esta noche.",
+       "Está bien, pero me debes el favor."
+      ],
+      "gold": [
+       "Bring the wallet to the pier tonight.",
+       "Fine, but you owe me."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "broom",
+      "lines": [
+       "Lleva la escoba al almacén esta noche.",
+       "Está bien, pero me debes el favor."
+      ],
+      "gold": [
+       "Bring the broom to the warehouse tonight.",
+       "Fine, but you owe me."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S60",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A food court in Watson",
+    "people": "teenagers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first teenager",
+     "second teenager"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two teenagers talk to each other; Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Bring {the_O} to {the_P}.",
+    "Okay, after dinner."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they bringing, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "wallet",
+      "lines": [
+       "把钱包带到仓库那儿来。",
+       "好，吃完晚饭就去。"
+      ],
+      "gold": [
+       "Bring the wallet to the warehouse.",
+       "Okay, after dinner."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "box",
+      "lines": [
+       "把箱子带到楼梯那儿来。",
+       "好，吃完晚饭就去。"
+      ],
+      "gold": [
+       "Bring the box to the stairwell.",
+       "Okay, after dinner."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "envelope",
+      "lines": [
+       "封筒を質屋に持ってきて。",
+       "うん、晩ご飯のあとでね。"
+      ],
+      "gold": [
+       "Bring the envelope to the pawnshop.",
+       "Okay, after dinner."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "bag",
+      "lines": [
+       "かばんを屋上に持ってきて。",
+       "うん、晩ご飯のあとでね。"
+      ],
+      "gold": [
+       "Bring the bag to the roof.",
+       "Okay, after dinner."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "chair",
+      "lines": [
+       "Trae la silla a la alcantarilla.",
+       "Sale, después de cenar."
+      ],
+      "gold": [
+       "Bring the chair to the sewer.",
+       "Okay, after dinner."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "hammer",
+      "lines": [
+       "Trae el martillo al puente.",
+       "Sale, después de cenar."
+      ],
+      "gold": [
+       "Bring the hammer to the bridge.",
+       "Okay, after dinner."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S61",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside diner outside Night City",
+    "people": "NCPD officers",
+    "nearby": "At the next booth",
+    "speaker_labels": [
+     "first NCPD officer",
+     "second NCPD officer"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two NCPD officers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "We found {the_O} near {the_P}.",
+    "Log it and forget about it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they find, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "chair",
+      "lines": [
+       "我们在教堂附近找到了椅子。",
+       "先登记，然后别管了。"
+      ],
+      "gold": [
+       "We found the chair near the church.",
+       "Log it and forget about it."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "我们在码头附近找到了鞋。",
+       "先登记，然后别管了。"
+      ],
+      "gold": [
+       "We found the shoe near the pier.",
+       "Log it and forget about it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "wallet",
+      "lines": [
+       "財布が駐車場の近くで見つかった。",
+       "記録して、あとは忘れろ。"
+      ],
+      "gold": [
+       "We found the wallet near the parking lot.",
+       "Log it and forget about it."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕が地下室の近くで見つかった。",
+       "記録して、あとは忘れろ。"
+      ],
+      "gold": [
+       "We found the pillow near the basement.",
+       "Log it and forget about it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "envelope",
+      "lines": [
+       "Encontramos el sobre cerca de la chatarrería.",
+       "Regístralo y olvídate."
+      ],
+      "gold": [
+       "We found the envelope near the junkyard.",
+       "Log it and forget about it."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "glove",
+      "lines": [
+       "Encontramos el guante cerca del barco.",
+       "Regístralo y olvídate."
+      ],
+      "gold": [
+       "We found the glove near the boat.",
+       "Log it and forget about it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S62",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A taxi stand in City Center",
+    "speaker": "A taxi driver",
+    "speaker_label": "taxi driver",
+    "e_inaud_description": "A taxi driver shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "You forgot your {O} in my car. I left it for you {at_P}."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did I forget, and where did he leave it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "glove",
+      "lines": [
+       "你把手套忘在我车上了，我把它放在桥那儿了。"
+      ],
+      "gold": [
+       "You forgot your glove in my car. I left it for you at the bridge."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "hammer",
+      "lines": [
+       "你把锤子忘在我车上了，我把它放在仓库那儿了。"
+      ],
+      "gold": [
+       "You forgot your hammer in my car. I left it for you at the warehouse."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "shoe",
+      "lines": [
+       "あんた、俺の車に靴を忘れてったろ。階段に置いといたぞ。"
+      ],
+      "gold": [
+       "You forgot your shoe in my car. I left it for you in the stairwell."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "box",
+      "lines": [
+       "あんた、俺の車に箱を忘れてったろ。質屋に置いといたぞ。"
+      ],
+      "gold": [
+       "You forgot your box in my car. I left it for you at the pawnshop."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "pillow",
+      "lines": [
+       "Olvidaste tu almohada en mi carro. Te la dejé en el tejado."
+      ],
+      "gold": [
+       "You forgot your pillow in my car. I left it for you on the roof."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "bag",
+      "lines": [
+       "Olvidaste tu bolsa en mi carro. Te la dejé en la alcantarilla."
+      ],
+      "gold": [
+       "You forgot your bag in my car. I left it for you in the sewer."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S63",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A curb outside the Afterlife, a mercenary bar in Night City",
+    "speaker": "A cab driver",
+    "speaker_label": "cab driver",
+    "e_inaud_description": "A cab driver shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your contact dropped {the_O} off {at_P}. Go now."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did the contact drop off, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "pillow",
+      "lines": [
+       "你的联系人把枕头放在码头那儿了，现在就去。"
+      ],
+      "gold": [
+       "Your contact dropped the pillow off at the pier. Go now."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "你的联系人把锤子放在停车场那儿了，现在就去。"
+      ],
+      "gold": [
+       "Your contact dropped the hammer off in the parking lot. Go now."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "glove",
+      "lines": [
+       "あんたの連絡役が手袋を地下室に置いていった。今すぐ行け。"
+      ],
+      "gold": [
+       "Your contact dropped the glove off in the basement. Go now."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "あんたの連絡役が箱を廃車置き場に置いていった。今すぐ行け。"
+      ],
+      "gold": [
+       "Your contact dropped the box off at the junkyard. Go now."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "shoe",
+      "lines": [
+       "Tu contacto dejó el zapato en el barco. Ve ahora mismo."
+      ],
+      "gold": [
+       "Your contact dropped the shoe off on the boat. Go now."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "bag",
+      "lines": [
+       "Tu contacto dejó la bolsa en la iglesia. Ve ahora mismo."
+      ],
+      "gold": [
+       "Your contact dropped the bag off at the church. Go now."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "S64",
+   "set": "main",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A tin shack in the Badlands",
+    "people": "scavengers",
+    "nearby": "Across the shack",
+    "speaker_labels": [
+     "first scavenger",
+     "second scavenger"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two scavengers talk to each other; the glass and the traffic drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Somebody stole {the_O} from {the_P}.",
+    "Again? This town..."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what got stolen, and from where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "shoe",
+      "lines": [
+       "有人从下水道那儿偷走了鞋。",
+       "又来？这地方真是……"
+      ],
+      "gold": [
+       "Somebody stole the shoe from the sewer.",
+       "Again? This town..."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "broom",
+      "lines": [
+       "有人从楼梯那儿偷走了扫帚。",
+       "又来？这地方真是……"
+      ],
+      "gold": [
+       "Somebody stole the broom from the stairwell.",
+       "Again? This town..."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "pillow",
+      "lines": [
+       "誰かが枕を倉庫から盗んだ。",
+       "またか？この町は……"
+      ],
+      "gold": [
+       "Somebody stole the pillow from the warehouse.",
+       "Again? This town..."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "誰かが鏡を屋上から盗んだ。",
+       "またか？この町は……"
+      ],
+      "gold": [
+       "Somebody stole the mirror from the roof.",
+       "Again? This town..."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "glove",
+      "lines": [
+       "Alguien se robó el guante de la casa de empeño.",
+       "¿Otra vez? Este pueblo..."
+      ],
+      "gold": [
+       "Somebody stole the glove from the pawnshop.",
+       "Again? This town..."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "Alguien se robó el abrigo del puente.",
+       "¿Otra vez? Este pueblo..."
+      ],
+      "gold": [
+       "Somebody stole the coat from the bridge.",
+       "Again? This town..."
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
