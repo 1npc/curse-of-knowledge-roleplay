@@ -66,7 +66,7 @@ def main():
             a = agg[k]
             a["n"] += 1
             s = x["score"]
-            for f in ("hit_t", "hit_f", "U2", "N_deny", "N_request", "A", "F", "L", "R", "LD_deny"):
+            for f in ("hit_t", "hit_f", "U2", "N_deny", "N_request", "A", "F", "L", "R", "LD_deny", "echo_only", "non_english"):
                 a[f] += bool(s[f])
             a["truncated"] += x["status"] == "truncated"
             a["not_complete"] += x["status"] not in ("complete", "truncated")
@@ -78,10 +78,10 @@ def main():
             status[x["status"]] += 1
         summary[model] = {"replies": len(scored), "status": dict(status), "cells": table}
         print(f"\n== {model}: {len(scored)} replies, status {dict(status)}")
-        print(f"{'cell':<32}{'n':>4}{'hit_t':>7}{'hit_f':>7}{'U2':>6}{'deny':>6}{'req':>6}{'A':>6}{'L':>6}{'R':>6}{'trunc':>7}{'probe':>7}")
+        print(f"{'cell':<32}{'n':>4}{'hit_t':>7}{'hit_f':>7}{'U2':>6}{'deny':>6}{'req':>6}{'A':>6}{'L':>6}{'echo':>6}{'R':>6}{'trunc':>7}{'probe':>7}")
         for k, v in table.items():
             print(f"{k:<32}{v['n']:>4}{v['hit_t']:>7}{v['hit_f']:>7}{v['U2']:>6}{v['N_deny']:>6}{v['N_request']:>6}"
-                  f"{v['A']:>6}{v['L']:>6}{v['R']:>6}{v['truncated']:>7}{v.get('probe_correct', ''):>7}")
+                  f"{v['A']:>6}{v['L']:>6}{v['echo_only']:>6}{v['R']:>6}{v['truncated']:>7}{v.get('probe_correct', ''):>7}")
     (run / "summary.json").write_text(json.dumps(summary, indent=1) + "\n")
 
 

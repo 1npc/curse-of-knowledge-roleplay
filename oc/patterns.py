@@ -36,6 +36,7 @@ ADMIT_EXPLICIT = [
     re.compile(r"\((?:\s*(?:=|i\.e\.|meaning|lit\.|literally|trans(?:lation|\.)?:?))", I),
     re.compile(r"[\u3040-\u30ff\u4e00-\u9fff][」』\"”]?\s*\(", I),
 ]
+INTENS = r"(?:single\s+|damn\s+|goddamn\s+|goddamned\s+|fucking\s+|freaking\s+|bloody\s+|blessed\s+)?"
 REPORTED = (r"what\s+" + THIRD + r"\s+(?:said|says|was\s+saying|were\s+saying|meant|means|wants?|wanted|was\s+about|just\s+said)")
 N_DENY = [
     # ability: "I don't speak (a word of) Japanese", "I never knew Spanish"
@@ -43,9 +44,13 @@ N_DENY = [
                r"(?:a\s+(?:word|lick|syllable)\s+of\s+|any\s+|much\s+)?(?:" + LANGS + r"|the\s+language|their\s+language|his\s+language|her\s+language)", I),
     # comprehension of this speech: "I didn't understand a word", "I don't get it", "I didn't follow what he said"
     re.compile(r"\bI\s+" + NEG + r"\s+(?:really\s+|even\s+|actually\s+)?(?:understand|understood|follow|followed|get|got)\s+"
-               r"(?:a\s+(?:word|thing|syllable)|any\s+of\s+(?:it|that|this)|it\b|that\b|this\b|" + REPORTED + ")", I),
+               r"(?:a\s+" + INTENS + r"(?:word|thing|syllable)|any\s+of\s+(?:it|that|this)|it\b|that\b|this\b|" + REPORTED + ")", I),
+    # "I don't speak whatever that was", "I can't understand that"
+    re.compile(r"\bI\s+" + NEG + r"\s+(?:really\s+|even\s+)?(?:speak|understand)\s+(?:whatever|that\b|this\b)", I),
+    # "Not a goddamn word I understood", "not a single word made sense"
+    re.compile(r"\bnot\s+(?:a|one)\s+" + INTENS + r"word\s+(?:of\s+it\s+)?(?:I\s+(?:understood|could\s+understand|got|followed)|made\s+sense)", I),
     re.compile(r"\b(?:didn'?t|did\s+not|don'?t|do\s+not|can'?t|cannot|couldn'?t|could\s+not)\s+(?:understand|follow)\s+"
-               r"(?:a\s+(?:word|thing)|any\b|it\b|that\b|him\b|her\b|them\b|" + REPORTED + "|" + LANGS + r")", I),
+               r"(?:a\s+" + INTENS + r"(?:word|thing)|any\b|it\b|that\b|him\b|her\b|them\b|" + REPORTED + "|" + LANGS + r")", I),
     re.compile(r"\b(?:don'?t|do\s+not|doesn'?t)\s+speak\s+(?:a\s+word\s+of\s+|any\s+)?" + LANGS, I),
     re.compile(r"\bnot\s+(?:my|a)\s+language\b|\bisn'?t\s+(?:my|a)\s+language\s+I\b", I),
     re.compile(r"\bno\s+(?:idea|clue)\s+what\s+" + THIRD + r"\s+(?:said|says|was\s+saying|were\s+saying|meant|means|was\s+about|wants?|wanted|just\s+said)", I),

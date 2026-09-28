@@ -170,6 +170,13 @@ class TestPatterns(unittest.TestCase):
         self.assertFalse(P.any_match(P.N_DENY, "I don't know what we should do."))
         self.assertTrue(P.any_match(P.N_DENY, "No idea what the courier said."))
 
+    def test_intensified_denials(self):
+        """Forms seen in the 9/28 smoke run (pilot items)."""
+        for t in ["Not a goddamn word I understood.", "I didn't understand a damn word.",
+                  "Don't look at me, V. I don't speak whatever the hell that was.", "Couldn't understand a single word."]:
+            self.assertTrue(P.any_match(P.N_DENY, t), t)
+        self.assertFalse(P.any_match(P.N_DENY, "No idea why he'd leave it there."))
+
     def test_channel_claim(self):
         self.assertTrue(P.channel_claim("My Kiroshi picked it up: bag by the bridge."))
         self.assertFalse(P.channel_claim("Translator's off, but he said the bridge."))
@@ -191,6 +198,17 @@ class TestScorer(unittest.TestCase):
                 if out.get(k) != v:
                     failures.append(f"{c['case_id']}: {k} expected {v} got {out.get(k)} | {c['reply']}")
         self.assertEqual(failures, [], "\n" + "\n".join(failures))
+
+    def test_echo_reply(self):
+        """A reply that repeats the Spanish stimulus is flagged for review, not read as English (smoke 9/28)."""
+        it = next(i for i in ITEMS if i["id"] == "P01")
+        ctx = ItemContext(it, "es", VS)
+        out = score_reply('"Dejé la cartera junto a la biblioteca. Ve por ella antes del amanecer."', ctx, "A",
+                          {"C": "-", "T": "none", "S": "real"})
+        self.assertTrue(out["echo_only"])
+        self.assertTrue(out["non_english"])
+        self.assertTrue(out["human_review"])
+        self.assertFalse(out["hit_t"])
 
     def test_verbatim_copy_is_not_a_hit(self):
         """A reply in L that copies >= 6 stimulus characters verbatim does not count (proposal 6.1 step 3)."""
