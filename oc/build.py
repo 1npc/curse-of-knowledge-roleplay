@@ -29,8 +29,9 @@ USER_PREFIX = {"cyberpunk": "Sorry, I was on a holocall and missed that.",
                "real": "Sorry, I was on the phone and missed that."}
 
 MAIN_SYSTEM = ("You are playing {full} in an ongoing scene. The character sheet and the scene state below "
-               "describe who {name} is and what is happening around {them}. Reply to V as {name}, in English, "
+               "describe who {name} is and what is happening around {them}. Reply to {addressee} as {name}, in English, "
                "in one short spoken turn. Return only {name}'s spoken words.")
+NO_DEVICE = " {name} has no phone or translation app with {them} in this scene."  # non-Cyberpunk arm (proposal 5.3)
 # prompt-robustness arm (proposal 5.5, 7.3)
 C1_GENERATOR_PROMPT = ("Respond naturally as the specified NPC using only the supplied agent-visible\n"
                        "context and eligible dialogue history. Keep identity stable while responding to the\n"
@@ -57,6 +58,10 @@ D1 = {
     "Einaud": ["{name} could not hear what was said.",
                "{name} was unable to hear any of the words spoken."],
 }
+D1_REAL = {  # present-day world: there is no device to name, only the absence of a phone or app
+    "C-T-": ["{name} does not speak or understand {L}, and no phone or translation app is available to {them} in this scene.",
+             "{name} cannot speak or understand {L}, and there is no phone or translation app for {them} in this scene."],
+}
 D2 = "Only information that {name} can actually hear and understand may shape {their} reply."
 STATE_PROBE = {"DA": "Based on the state, could {name} hear and understand what the {speaker} said? Answer yes or no.",
                "OH": "Based on the state, could {name} hear and understand what the two {people} said to each other? Answer yes or no."}
@@ -66,7 +71,10 @@ TRANSLATE = {"DA": "Translate the following {L} sentence into English:\n{text}",
 
 @lru_cache(maxsize=None)
 def load_personas() -> dict:
-    return json.loads((ROOT / "data" / "personas.json").read_text(encoding="utf-8"))["characters"]
+    d = json.loads((ROOT / "data" / "personas.json").read_text(encoding="utf-8"))
+    out = dict(d["characters"])
+    out.update({k: v for k, v in d.get("original", {}).items() if k != "note"})
+    return out
 
 
 def pron(persona: dict) -> dict:
@@ -92,11 +100,12 @@ def d1_version(lang: str, mode: str) -> int:
 
 def describe(item: dict, name: str, pr: dict, L: str, audible: bool) -> str:
     sc = item["scene"]
+    note = NO_DEVICE.format(name=name, them=pr["them"]) if item["world"] == "real" else ""
     if not audible:
-        return sc["e_inaud_description"]
+        return sc["e_inaud_description"] + note
     if item["mode"] == "DA":
-        return f"{sc['speaker']} walks up to {name} and speaks directly to {pr['them']}, aloud, in {L}."
-    return f"{sc['nearby']}, two {sc['people']} talk quietly to each other in {L}. They are not addressing {name}."
+        return f"{sc['speaker']} walks up to {name} and speaks directly to {pr['them']}, aloud, in {L}." + note
+    return f"{sc['nearby']}, two {sc['people']} talk quietly to each other in {L}. They are not addressing {name}." + note
 
 
 def speech_events(item: dict, name: str, lines: list[str], L: str, audible: bool) -> list[dict]:
@@ -121,7 +130,7 @@ def state_json(item, name, pr, lines, L_speech, audible, lstate) -> str:
 def system_message(item, persona, lines, L_item, cell, D, variant="main", fewshot=None) -> str:
     name, full = persona["short_name"], persona["full_name"]
     pr = pron(persona)
-    fmt = {"name": name, "full": full, "L": L_item, **pr}
+    fmt = {"name": name, "full": full, "L": L_item, "addressee": persona.get("companion_name", "V"), **pr}
     english = cell in ("E", "Einaud")
     audible = cell != "Einaud"
     L_speech = "English" if english else L_item
@@ -146,7 +155,8 @@ def system_message(item, persona, lines, L_item, cell, D, variant="main", fewsho
     if D in ("D1", "D2"):
         key = {"C+T-": "C+", "C+T+": "C+", "C-T+": "C-T+", "C-T-": "C-T-", "C-Toff": "C-Toff", "Einaud": "Einaud"}.get(cell)
         if key:
-            parts.append(D1[key][d1_version(item["_lang"], item["mode"])].format(**fmt))
+            table = D1_REAL if item["world"] == "real" and key in D1_REAL else D1
+            parts.append(table[key][d1_version(item["_lang"], item["mode"])].format(**fmt))
     if D == "D2":
         parts.append(D2.format(**fmt))
     return "\n".join(parts)
@@ -174,7 +184,15 @@ CELL_FLAGS = {"C+T-": ("+", "none"), "C+T+": ("+", "on"), "C-T+": ("-", "on"), "
               "C-Toff": ("-", "off"), "E": ("+", "none"), "Einaud": ("+", "none"), "spoken_only": (None, None)}
 
 
+# non-Cyberpunk arm (proposal 5.3): 10 cells x {content, plan} + 4 probes = 24 prompts per item
+REAL_NC_A = [("C+T-", "D0"), ("C-T-", "D0"), ("C-T-", "D1"), ("C-T-", "U"), ("E", "D0"), ("Einaud", "D0")]
+REAL_NC_B = [("C-T-", "D0"), ("C-T-", "D1"), ("C+T-", "D0"), ("Einaud", "D0")]
+REAL_NC_STATE = [("C+T-", "D0"), ("C-T-", "D0")]
+
+
 def build_item(item: dict, lang: str, *, pilot: bool = False) -> list[dict]:
+    if item["world"] == "real":
+        return build_real(item, lang)
     persona = load_personas()[item["character"]]
     L = LANG_NAME[lang]
     it = dict(item, _lang=lang)
@@ -256,4 +274,45 @@ def build_robustness(item: dict, lang: str) -> list[dict]:
                             "mode": item["mode"], "character": item["character"], "version": version,
                             "arm": "robust:" + variant, "S": "real", "cell": cell, "C": C, "T": T, "D": D, "Q": Q,
                             "audible": True, "messages": msgs})
+    return out
+
+
+def build_real(item: dict, lang: str) -> list[dict]:
+    persona = load_personas()[item["character"]]
+    L = LANG_NAME[lang]
+    it = dict(item, _lang=lang)
+    ver = item["langs"][lang]
+    out = []
+    for version, cells in (("A", REAL_NC_A), ("B", REAL_NC_B)):
+        for cell, D in cells:
+            english = cell in ("E", "Einaud")
+            shown = ver[version]["gold"] if english else ver[version]["lines"]
+            for Q in ("content", "plan"):
+                msgs = [{"role": "system", "content": system_message(it, persona, shown, L, cell, D)},
+                        {"role": "user", "content": user_message(item, Q)}]
+                C, T = CELL_FLAGS[cell]
+                out.append({"prompt_id": _pid(item["id"], lang, version, "main", "english" if english else "real", cell, D, Q),
+                            "item": item["id"], "lang": lang, "set": item["set"], "world": item["world"], "mode": item["mode"],
+                            "character": item["character"], "version": version, "arm": "main",
+                            "S": "english" if english else "real", "cell": cell, "C": C, "T": T, "D": D, "Q": Q,
+                            "audible": cell != "Einaud", "messages": msgs})
+    for version in ("A", "B"):
+        out.append({"prompt_id": _pid(item["id"], lang, version, "probe_translate", "real", "C+T-", "D0", "translate"),
+                    "item": item["id"], "lang": lang, "set": item["set"], "world": item["world"], "mode": item["mode"],
+                    "character": item["character"], "version": version, "arm": "probe_translate", "S": "real",
+                    "cell": "C+T-", "C": "+", "T": "none", "D": "D0", "Q": "translate", "audible": True,
+                    "messages": [{"role": "user", "content": TRANSLATE[item["mode"]].format(L=L, text="\n".join(ver[version]["lines"]))}]})
+    name = persona["short_name"]
+    sc = item["scene"]
+    for cell, D in REAL_NC_STATE:
+        q = STATE_PROBE[item["mode"]].format(name=name, speaker=sc.get("speaker_label", ""), people=sc.get("people", ""))
+        out.append({"prompt_id": _pid(item["id"], lang, "A", "probe_state", "real", cell, D, "state"),
+                    "item": item["id"], "lang": lang, "set": item["set"], "world": item["world"], "mode": item["mode"],
+                    "character": item["character"], "version": "A", "arm": "probe_state", "S": "real", "cell": cell,
+                    "C": CELL_FLAGS[cell][0], "T": "none", "D": D, "Q": "state", "audible": True,
+                    "expected": "no" if cell == "C-T-" else "yes",
+                    "messages": [{"role": "system", "content": system_message(it, persona, ver["A"]["lines"], L, cell, D, "probe")},
+                                 {"role": "user", "content": q}]})
+    for r in out:
+        r["messages_sha256"] = hashlib.sha256(json.dumps(r["messages"], ensure_ascii=False, sort_keys=True).encode()).hexdigest()
     return out

@@ -160,6 +160,45 @@ class TestBuild(unittest.TestCase):
                             self.assertEqual(len(src), len(out))
 
 
+class TestMainAndRealSets(unittest.TestCase):
+    """The main set (64 skeletons) and the non-Cyberpunk arm (16) pass the screen and build cleanly."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.main = json.loads((ROOT / "items" / "main" / "skeletons.json").read_text(encoding="utf-8"))["items"]
+        cls.real = json.loads((ROOT / "items" / "real" / "skeletons.json").read_text(encoding="utf-8"))["items"]
+
+    def test_screen(self):
+        for it in self.main + self.real:
+            r = screen_item(it, VS)
+            self.assertFalse(rejected(r), it["id"])
+
+    def test_counts_and_leaks(self):
+        for items, per_item in ((self.main, 125), (self.real, 24)):
+            for it in items[:8]:
+                for lang in ("zh", "ja", "es"):
+                    recs = build_item(it, lang)
+                    self.assertEqual(len(recs), per_item, (it["id"], lang))
+                    for r in recs:
+                        if r["arm"] == "probe_translate":
+                            continue
+                        for m in r["messages"]:
+                            text = m["content"]
+                            st = re.search(r"\[State\] (\{.*\})", text)
+                            if st:
+                                d = json.loads(st.group(1))
+                                d["scene"]["speech_events"] = []
+                                text = text.replace(st.group(1), json.dumps(d))
+                            self.assertEqual(en_alias_hits(VS, text), [], r["prompt_id"])
+
+    def test_rotation(self):
+        for items in (self.main, self.real):
+            for it in items:
+                for t in ("PLACE", "OBJECT"):
+                    vals = [it["langs"][l][v][t] for l in ("zh", "ja", "es") for v in "AB"]
+                    self.assertEqual(len(set(vals)), 6, (it["id"], t))
+
+
 class TestPatterns(unittest.TestCase):
     def test_deny_vs_admit(self):
         self.assertTrue(P.any_match(P.N_DENY, "I don't speak Japanese."))

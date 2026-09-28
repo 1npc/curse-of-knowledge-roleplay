@@ -1,0 +1,365 @@
+{
+ "version": "real-en-0.1-draft",
+ "items": [
+  {
+   "id": "N01",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Margaret",
+   "scene": {
+    "location": "A bus stop in a small town abroad",
+    "speaker": "An old man",
+    "speaker_label": "old man",
+    "e_inaud_description": "An old man calls out to Margaret from across a wide, busy street; the traffic drowns it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is {at_P}. Ask the caretaker."
+   ],
+   "questions": {
+    "content": "What did the old man say?",
+    "task": "So what's he talking about, and where?"
+   }
+  },
+  {
+   "id": "N02",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Margaret",
+   "scene": {
+    "location": "The front steps of a small guesthouse abroad",
+    "speaker": "The landlady",
+    "speaker_label": "landlady",
+    "e_inaud_description": "The landlady calls out to Margaret from across a wide, busy street; the traffic drowns it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your friend's {O} is {at_P}. I put it there this morning."
+   ],
+   "questions": {
+    "content": "What did the landlady say?",
+    "task": "So what did she put away, and where?"
+   }
+  },
+  {
+   "id": "N03",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Margaret",
+   "scene": {
+    "location": "A village café abroad",
+    "people": "old men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old man",
+     "second old man"
+    ],
+    "e_inaud_description": "Behind a glass partition, two old men talk to each other; Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you leave {the_O} {at_P}?",
+    "Yes, and nobody took it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave, and where?"
+   }
+  },
+  {
+   "id": "N04",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Margaret",
+   "scene": {
+    "location": "A train platform abroad",
+    "people": "travelers",
+    "nearby": "On the next bench",
+    "speaker_labels": [
+     "first traveler",
+     "second traveler"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two travelers talk to each other; the glass and the traffic drown it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "I think I left my {O} {at_P}.",
+    "Then go back quickly."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave behind, and where?"
+   }
+  },
+  {
+   "id": "N05",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Daniel",
+   "scene": {
+    "location": "The front desk of a small city hotel at night",
+    "speaker": "A guest",
+    "speaker_label": "guest",
+    "e_inaud_description": "A guest calls out to Daniel from across the noisy room; the din drowns it out and Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left my {O} {at_P}. Please send someone for it."
+   ],
+   "questions": {
+    "content": "What did the guest say?",
+    "task": "So what did the guest leave, and where?"
+   }
+  },
+  {
+   "id": "N06",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Daniel",
+   "scene": {
+    "location": "The entrance of a small city hotel at night",
+    "speaker": "A cab driver",
+    "speaker_label": "cab driver",
+    "e_inaud_description": "A cab driver calls out to Daniel from across a wide, busy street; the traffic drowns it out and Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your guest from last night dropped {the_O} {at_P}."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did the guest drop, and where?"
+   }
+  },
+  {
+   "id": "N07",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Daniel",
+   "scene": {
+    "location": "A small city hotel lobby at night",
+    "people": "guests",
+    "nearby": "By the elevators",
+    "speaker_labels": [
+     "first guest",
+     "second guest"
+    ],
+    "e_inaud_description": "Behind a glass partition, two guests talk to each other; Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did you put {the_O}?",
+    "{At_P}, like the manager said."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he put away, and where?"
+   }
+  },
+  {
+   "id": "N08",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Daniel",
+   "scene": {
+    "location": "A hotel breakfast room early in the morning",
+    "people": "cleaners",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first cleaner",
+     "second cleaner"
+    ],
+    "e_inaud_description": "Behind a glass partition, two cleaners talk to each other; Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone left {the_O} {at_P}.",
+    "Tell reception."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone leave, and where?"
+   }
+  },
+  {
+   "id": "N09",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Ana",
+   "scene": {
+    "location": "The front yard of a house in a residential neighborhood",
+    "speaker": "A resident",
+    "speaker_label": "resident",
+    "e_inaud_description": "A resident calls out to Ana from across a wide, busy street; the traffic drowns it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "My husband took {the_O} to {the_P}. Come back later."
+   ],
+   "questions": {
+    "content": "What did the resident say?",
+    "task": "So what did her husband take, and where?"
+   }
+  },
+  {
+   "id": "N10",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Ana",
+   "scene": {
+    "location": "A shopping street",
+    "speaker": "A shopkeeper",
+    "speaker_label": "shopkeeper",
+    "e_inaud_description": "A shopkeeper calls out to Ana from across a wide, busy street; the traffic drowns it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your colleague left {the_O} {at_P}. Go and get it."
+   ],
+   "questions": {
+    "content": "What did the shopkeeper say?",
+    "task": "So what did I leave, and where?"
+   }
+  },
+  {
+   "id": "N11",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Ana",
+   "scene": {
+    "location": "A park bench in a residential neighborhood",
+    "people": "neighbors",
+    "nearby": "On the next bench",
+    "speaker_labels": [
+     "first neighbor",
+     "second neighbor"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two neighbors talk to each other; the glass and the traffic drown it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you see {the_O} {at_P}?",
+    "Yes, someone left it there."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they see, and where?"
+   }
+  },
+  {
+   "id": "N12",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Ana",
+   "scene": {
+    "location": "The entrance of a community center",
+    "people": "volunteers",
+    "nearby": "By the door",
+    "speaker_labels": [
+     "first volunteer",
+     "second volunteer"
+    ],
+    "e_inaud_description": "Behind a glass partition, two volunteers talk to each other; Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Take {the_O} to {the_P}.",
+    "After lunch."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they taking, and where?"
+   }
+  },
+  {
+   "id": "N13",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Tom",
+   "scene": {
+    "location": "The loading area behind a grocery store",
+    "speaker": "A store worker",
+    "speaker_label": "store worker",
+    "e_inaud_description": "A store worker calls out to Tom from across a wide, busy street; the traffic drowns it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put {the_O} {at_P}. The owner will sign later."
+   ],
+   "questions": {
+    "content": "What did the worker say?",
+    "task": "So what do we drop off, and where?"
+   }
+  },
+  {
+   "id": "N14",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Tom",
+   "scene": {
+    "location": "The doorstep of a house",
+    "speaker": "An elderly woman",
+    "speaker_label": "elderly woman",
+    "e_inaud_description": "An elderly woman calls out to Tom from across a wide, busy street; the traffic drowns it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Leave {the_O} {at_P}, please. My knees are bad."
+   ],
+   "questions": {
+    "content": "What did the old lady say?",
+    "task": "So what does she want left, and where?"
+   }
+  },
+  {
+   "id": "N15",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Tom",
+   "scene": {
+    "location": "A parcel depot yard",
+    "people": "drivers",
+    "nearby": "By the next van",
+    "speaker_labels": [
+     "first driver",
+     "second driver"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two drivers talk to each other; the glass and the traffic drown it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you drop {the_O} off {at_P}?",
+    "Not yet. I'm going now."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's being dropped off, and where?"
+   }
+  },
+  {
+   "id": "N16",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Tom",
+   "scene": {
+    "location": "A roadside café",
+    "people": "mechanics",
+    "nearby": "At the counter",
+    "speaker_labels": [
+     "first mechanic",
+     "second mechanic"
+    ],
+    "e_inaud_description": "Behind a glass partition, two mechanics talk to each other; Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is still {at_P}.",
+    "Then the customer can wait."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's still there, and where?"
+   }
+  }
+ ]
+}

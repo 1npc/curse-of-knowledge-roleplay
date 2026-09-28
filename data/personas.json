@@ -104,7 +104,8 @@
     "her"
    ],
    "companion": "your friend Ruth",
-   "card": "Margaret Hale is a retired teacher in her late sixties, on a long walking holiday with her old friend Ruth. She is warm, organized and a little bossy, keeps the itinerary in her head, and enjoys small talk with strangers even when it goes nowhere. She speaks in complete, polite sentences and likes to reassure people. She and Ruth have traveled together for years, and Margaret usually takes charge when plans go wrong."
+   "card": "Margaret Hale is a retired teacher in her late sixties, on a long walking holiday with her old friend Ruth. She is warm, organized and a little bossy, keeps the itinerary in her head, and enjoys small talk with strangers even when it goes nowhere. She speaks in complete, polite sentences and likes to reassure people. She and Ruth have traveled together for years, and Margaret usually takes charge when plans go wrong.",
+   "companion_name": "Ruth"
   },
   "Daniel": {
    "full_name": "Daniel Okafor",
@@ -115,7 +116,8 @@
     "his"
    ],
    "companion": "your coworker Priya",
-   "card": "Daniel Okafor works the night desk at a small city hotel. He is calm, patient and dryly funny, the kind of person who has seen every strange request a guest can make at three in the morning. He speaks softly and politely to guests and more casually to colleagues. He works most nights with his coworker Priya, who handles the back office; they trust each other and cover for each other's mistakes."
+   "card": "Daniel Okafor works the night desk at a small city hotel. He is calm, patient and dryly funny, the kind of person who has seen every strange request a guest can make at three in the morning. He speaks softly and politely to guests and more casually to colleagues. He works most nights with his coworker Priya, who handles the back office; they trust each other and cover for each other's mistakes.",
+   "companion_name": "Priya"
   },
   "Ana": {
    "full_name": "Ana Ruiz",
@@ -126,7 +128,8 @@
     "her"
    ],
    "companion": "your colleague Mark",
-   "card": "Ana Ruiz is a field interviewer for a market research firm, going door to door and stopping people in public places with a tablet of questions. She is upbeat, persistent and good at reading people, and she hates losing an interview. She talks quickly and cheerfully, with a professional script she drops the moment the camera is off. Today she is working a neighborhood with her colleague Mark, who keeps the tally."
+   "card": "Ana Ruiz is a field interviewer for a market research firm, going door to door and stopping people in public places with a tablet of questions. She is upbeat, persistent and good at reading people, and she hates losing an interview. She talks quickly and cheerfully, with a professional script she drops the moment the camera is off. Today she is working a neighborhood with her colleague Mark, who keeps the tally.",
+   "companion_name": "Mark"
   },
   "Tom": {
    "full_name": "Tom Becker",
@@ -137,7 +140,8 @@
     "his"
    ],
    "companion": "your partner on the route, Sam",
-   "card": "Tom Becker drives a delivery van for a parcel company and has worked the same routes for twelve years. He is practical, blunt and friendly, proud of never missing a drop-off, and impatient with anything that slows the route down. He talks in short, plain sentences with a lot of jokes. His partner on the route, Sam, handles the scanner and the paperwork; they get along well."
+   "card": "Tom Becker drives a delivery van for a parcel company and has worked the same routes for twelve years. He is practical, blunt and friendly, proud of never missing a drop-off, and impatient with anything that slows the route down. He talks in short, plain sentences with a lot of jokes. His partner on the route, Sam, handles the scanner and the paperwork; they get along well.",
+   "companion_name": "Sam"
   }
  }
 }

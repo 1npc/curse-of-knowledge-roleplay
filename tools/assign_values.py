@@ -67,7 +67,7 @@ def score(assign, skeletons, typ):
     def spread(counter, keys):
         return sum(max(counter[(k, v)] for k in keys) - min(counter[(k, v)] for k in keys) for v in vals)
     return (3 * spread(lang, LANGS) + 3 * spread(role, ("A", "B")) + spread(mode, ("DA", "OH"))
-            + spread(char, ("Kerry", "Rogue", "Panam")) + 4 * max(pair.values()))
+            + spread(char, tuple(sorted({s["character"] for s in skeletons}))) + 4 * max(pair.values()))
 
 
 def cooccurrence(pa, oa):
@@ -83,8 +83,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--iterations", type=int, default=20000)
     ap.add_argument("--seed", type=int, default=20260928)
+    ap.add_argument("--set", default="main", help="items/<set>/skeletons_en.json -> items/<set>/assignment.json")
     a = ap.parse_args()
-    skeletons = json.loads((ROOT / "items" / "main" / "skeletons_en.json").read_text(encoding="utf-8"))["items"]
+    skeletons = json.loads((ROOT / "items" / a.set / "skeletons_en.json").read_text(encoding="utf-8"))["items"]
     split = json.loads((ROOT / "data" / "value_split.json").read_text(encoding="utf-8"))
     vs = json.loads((ROOT / "data" / "valueset.json").read_text(encoding="utf-8"))
     conf = {l: {frozenset(p[:2]) for p in vs["confusable_pairs"].get(l, [])} for l in LANGS}
@@ -113,9 +114,9 @@ def main():
                                for i, v in enumerate(("A", "B"))} for l in LANGS}
     out = {"version": "assignment-0.1", "seed": a.seed, "iterations": a.iterations,
            "scores": {t: best[t][0] for t in best}, "max_place_object_cooccurrence": co, "slots": assignment}
-    (ROOT / "items" / "main" / "assignment.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")
+    (ROOT / "items" / a.set / "assignment.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")
     # report
-    lines = ["# 主集取值分配报告", "", f"由 `tools/assign_values.py` 生成（seed {a.seed}，{a.iterations} 次搜索）。", ""]
+    lines = [f"# 取值分配报告（{a.set}）", "", f"由 `tools/assign_values.py --set {a.set}` 生成（seed {a.seed}，{a.iterations} 次搜索）。", ""]
     for typ in ("PLACE", "OBJECT"):
         cnt = Counter()
         pairs = Counter()
@@ -135,7 +136,8 @@ def main():
         lines += ["", f"A/B 配对共 {len(pairs)} 种，单一配对最多出现 {max(pairs.values())} 次。", ""]
     lines += [f"同一槽位的 PLACE 与 OBJECT 组合最多重复 {co} 次。", "",
               "硬约束已满足：同一骨架 6 个槽位的取值两两不同；易混配对（valueset.json 的 confusable_pairs）没有出现在任何语种的 A/B 之间。", ""]
-    (ROOT / "docs" / "assignment-report.md").write_text("\n".join(lines), encoding="utf-8")
+    name = "assignment-report.md" if a.set == "main" else f"assignment-report-{a.set}.md"
+    (ROOT / "docs" / name).write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines[-3:]))
 
 

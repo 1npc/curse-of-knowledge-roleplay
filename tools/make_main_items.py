@@ -314,7 +314,7 @@ def es_tokens(vs, place, obj):
     return {"O": o["form"], "el_O": eo, "El_O": eo[0].upper() + eo[1:], "el_P": ep,
             "al_P": ("al " if p["gender"] == "m" else "a la ") + p["form"],
             "del_P": ("del " if p["gender"] == "m" else "de la ") + p["form"],
-            "lo_O": "lo" if o["gender"] == "m" else "la",
+            "lo_O": "lo" if o["gender"] == "m" else "la", "Lo_O": "Lo" if o["gender"] == "m" else "La",
             "este_O": ("este " if o["gender"] == "m" else "esta ") + o["form"],
             "es_tuyo_O": "¿Es tuyo?" if o["gender"] == "m" else "¿Es tuya?"}
 

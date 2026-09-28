@@ -1,0 +1,1549 @@
+{
+ "version": "real-0.1-draft",
+ "items": [
+  {
+   "id": "N01",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Margaret",
+   "scene": {
+    "location": "A bus stop in a small town abroad",
+    "speaker": "An old man",
+    "speaker_label": "old man",
+    "e_inaud_description": "An old man calls out to Margaret from across a wide, busy street; the traffic drowns it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is {at_P}. Ask the caretaker."
+   ],
+   "questions": {
+    "content": "What did the old man say?",
+    "task": "So what's he talking about, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "broom",
+      "lines": [
+       "扫帚在船那儿。去问问看门的人。"
+      ],
+      "gold": [
+       "The broom is on the boat. Ask the caretaker."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子在当铺那儿。去问问看门的人。"
+      ],
+      "gold": [
+       "The chair is at the pawnshop. Ask the caretaker."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "coat",
+      "lines": [
+       "上着は倉庫にある。管理人に聞きなさい。"
+      ],
+      "gold": [
+       "The coat is at the warehouse. Ask the caretaker."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "鏡は屋上にある。管理人に聞きなさい。"
+      ],
+      "gold": [
+       "The mirror is on the roof. Ask the caretaker."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "bag",
+      "lines": [
+       "La bolsa está en la chatarrería. Pregunte al encargado."
+      ],
+      "gold": [
+       "The bag is at the junkyard. Ask the caretaker."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "La cartera está en el puente. Pregunte al encargado."
+      ],
+      "gold": [
+       "The wallet is at the bridge. Ask the caretaker."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N02",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Margaret",
+   "scene": {
+    "location": "The front steps of a small guesthouse abroad",
+    "speaker": "The landlady",
+    "speaker_label": "landlady",
+    "e_inaud_description": "The landlady calls out to Margaret from across a wide, busy street; the traffic drowns it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your friend's {O} is {at_P}. I put it there this morning."
+   ],
+   "questions": {
+    "content": "What did the landlady say?",
+    "task": "So what did she put away, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "broom",
+      "lines": [
+       "你朋友的扫帚在教堂那儿，是我今天早上放的。"
+      ],
+      "gold": [
+       "Your friend's broom is at the church. I put it there this morning."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "glove",
+      "lines": [
+       "你朋友的手套在码头那儿，是我今天早上放的。"
+      ],
+      "gold": [
+       "Your friend's glove is at the pier. I put it there this morning."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "coat",
+      "lines": [
+       "お友達の上着は駐車場にありますよ。今朝、私が置いておきました。"
+      ],
+      "gold": [
+       "Your friend's coat is in the parking lot. I put it there this morning."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "shoe",
+      "lines": [
+       "お友達の靴は下水道にありますよ。今朝、私が置いておきました。"
+      ],
+      "gold": [
+       "Your friend's shoe is in the sewer. I put it there this morning."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "bag",
+      "lines": [
+       "La bolsa de su amiga está en el sótano. La puse ahí esta mañana."
+      ],
+      "gold": [
+       "Your friend's bag is in the basement. I put it there this morning."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "box",
+      "lines": [
+       "La caja de su amiga está en la escalera. La puse ahí esta mañana."
+      ],
+      "gold": [
+       "Your friend's box is in the stairwell. I put it there this morning."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N03",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Margaret",
+   "scene": {
+    "location": "A village café abroad",
+    "people": "old men",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first old man",
+     "second old man"
+    ],
+    "e_inaud_description": "Behind a glass partition, two old men talk to each other; Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you leave {the_O} {at_P}?",
+    "Yes, and nobody took it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "mirror",
+      "lines": [
+       "你把镜子落在码头那儿了？",
+       "是啊，也没人拿走。"
+      ],
+      "gold": [
+       "Did you leave the mirror at the pier?",
+       "Yes, and nobody took it."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "box",
+      "lines": [
+       "你把箱子落在船那儿了？",
+       "是啊，也没人拿走。"
+      ],
+      "gold": [
+       "Did you leave the box on the boat?",
+       "Yes, and nobody took it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "wallet",
+      "lines": [
+       "財布を下水道に置いてきたのか？",
+       "ああ、誰も持っていかなかったよ。"
+      ],
+      "gold": [
+       "Did you leave the wallet in the sewer?",
+       "Yes, and nobody took it."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "glove",
+      "lines": [
+       "手袋を倉庫に置いてきたのか？",
+       "ああ、誰も持っていかなかったよ。"
+      ],
+      "gold": [
+       "Did you leave the glove at the warehouse?",
+       "Yes, and nobody took it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "chair",
+      "lines": [
+       "¿Dejaste la silla en la escalera?",
+       "Sí, y nadie se la llevó."
+      ],
+      "gold": [
+       "Did you leave the chair in the stairwell?",
+       "Yes, and nobody took it."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "¿Dejaste el zapato en la chatarrería?",
+       "Sí, y nadie se lo llevó."
+      ],
+      "gold": [
+       "Did you leave the shoe at the junkyard?",
+       "Yes, and nobody took it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N04",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Margaret",
+   "scene": {
+    "location": "A train platform abroad",
+    "people": "travelers",
+    "nearby": "On the next bench",
+    "speaker_labels": [
+     "first traveler",
+     "second traveler"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two travelers talk to each other; the glass and the traffic drown it out and Margaret cannot hear a word."
+   },
+   "skeleton_en": [
+    "I think I left my {O} {at_P}.",
+    "Then go back quickly."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he leave behind, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "hammer",
+      "lines": [
+       "我好像把锤子落在屋顶那儿了。",
+       "那快回去拿。"
+      ],
+      "gold": [
+       "I think I left my hammer on the roof.",
+       "Then go back quickly."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "coat",
+      "lines": [
+       "我好像把外套落在教堂那儿了。",
+       "那快回去拿。"
+      ],
+      "gold": [
+       "I think I left my coat at the church.",
+       "Then go back quickly."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕を橋に置き忘れたみたいだ。",
+       "じゃあ早く戻りなよ。"
+      ],
+      "gold": [
+       "I think I left my pillow at the bridge.",
+       "Then go back quickly."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "bag",
+      "lines": [
+       "かばんを駐車場に置き忘れたみたいだ。",
+       "じゃあ早く戻りなよ。"
+      ],
+      "gold": [
+       "I think I left my bag in the parking lot.",
+       "Then go back quickly."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "envelope",
+      "lines": [
+       "Creo que olvidé mi sobre en la casa de empeño.",
+       "Pues regresa rápido."
+      ],
+      "gold": [
+       "I think I left my envelope at the pawnshop.",
+       "Then go back quickly."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "broom",
+      "lines": [
+       "Creo que olvidé mi escoba en el sótano.",
+       "Pues regresa rápido."
+      ],
+      "gold": [
+       "I think I left my broom in the basement.",
+       "Then go back quickly."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N05",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Daniel",
+   "scene": {
+    "location": "The front desk of a small city hotel at night",
+    "speaker": "A guest",
+    "speaker_label": "guest",
+    "e_inaud_description": "A guest calls out to Daniel from across the noisy room; the din drowns it out and Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left my {O} {at_P}. Please send someone for it."
+   ],
+   "questions": {
+    "content": "What did the guest say?",
+    "task": "So what did the guest leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "shoe",
+      "lines": [
+       "我把鞋落在仓库那儿了，麻烦派人去帮我拿。"
+      ],
+      "gold": [
+       "I left my shoe at the warehouse. Please send someone for it."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "hammer",
+      "lines": [
+       "我把锤子落在地下室那儿了，麻烦派人去帮我拿。"
+      ],
+      "gold": [
+       "I left my hammer in the basement. Please send someone for it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "box",
+      "lines": [
+       "箱を廃車置き場に置き忘れてしまいました。誰か取りに行ってもらえますか。"
+      ],
+      "gold": [
+       "I left my box at the junkyard. Please send someone for it."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕を教会に置き忘れてしまいました。誰か取りに行ってもらえますか。"
+      ],
+      "gold": [
+       "I left my pillow at the church. Please send someone for it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "glove",
+      "lines": [
+       "Dejé mi guante en el barco. ¿Puede mandar a alguien a buscarlo?"
+      ],
+      "gold": [
+       "I left my glove on the boat. Please send someone for it."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "envelope",
+      "lines": [
+       "Dejé mi sobre en el estacionamiento. ¿Puede mandar a alguien a buscarlo?"
+      ],
+      "gold": [
+       "I left my envelope in the parking lot. Please send someone for it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N06",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Daniel",
+   "scene": {
+    "location": "The entrance of a small city hotel at night",
+    "speaker": "A cab driver",
+    "speaker_label": "cab driver",
+    "e_inaud_description": "A cab driver calls out to Daniel from across a wide, busy street; the traffic drowns it out and Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your guest from last night dropped {the_O} {at_P}."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what did the guest drop, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "你们昨晚那位客人把椅子掉在停车场那儿了。"
+      ],
+      "gold": [
+       "Your guest from last night dropped the chair in the parking lot."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "pillow",
+      "lines": [
+       "你们昨晚那位客人把枕头掉在仓库那儿了。"
+      ],
+      "gold": [
+       "Your guest from last night dropped the pillow at the warehouse."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "mirror",
+      "lines": [
+       "昨夜のお客さんが鏡を地下室に落としていきましたよ。"
+      ],
+      "gold": [
+       "Your guest from last night dropped the mirror in the basement."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "envelope",
+      "lines": [
+       "昨夜のお客さんが封筒を廃車置き場に落としていきましたよ。"
+      ],
+      "gold": [
+       "Your guest from last night dropped the envelope at the junkyard."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "wallet",
+      "lines": [
+       "Su huésped de anoche dejó caer la cartera en la iglesia."
+      ],
+      "gold": [
+       "Your guest from last night dropped the wallet at the church."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "hammer",
+      "lines": [
+       "Su huésped de anoche dejó caer el martillo en el barco."
+      ],
+      "gold": [
+       "Your guest from last night dropped the hammer on the boat."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N07",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Daniel",
+   "scene": {
+    "location": "A small city hotel lobby at night",
+    "people": "guests",
+    "nearby": "By the elevators",
+    "speaker_labels": [
+     "first guest",
+     "second guest"
+    ],
+    "e_inaud_description": "Behind a glass partition, two guests talk to each other; Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did you put {the_O}?",
+    "{At_P}, like the manager said."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did he put away, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "pillow",
+      "lines": [
+       "你把枕头放哪儿了？",
+       "下水道那儿，经理说的。"
+      ],
+      "gold": [
+       "Where did you put the pillow?",
+       "In the sewer, like the manager said."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "shoe",
+      "lines": [
+       "你把鞋放哪儿了？",
+       "桥那儿，经理说的。"
+      ],
+      "gold": [
+       "Where did you put the shoe?",
+       "At the bridge, like the manager said."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "封筒はどこに置いた？",
+       "階段だよ。支配人に言われた通り。"
+      ],
+      "gold": [
+       "Where did you put the envelope?",
+       "In the stairwell, like the manager said."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "box",
+      "lines": [
+       "箱はどこに置いた？",
+       "質屋だよ。支配人に言われた通り。"
+      ],
+      "gold": [
+       "Where did you put the box?",
+       "At the pawnshop, like the manager said."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "¿Dónde pusiste el martillo?",
+       "En el muelle, como dijo el gerente."
+      ],
+      "gold": [
+       "Where did you put the hammer?",
+       "At the pier, like the manager said."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "glove",
+      "lines": [
+       "¿Dónde pusiste el guante?",
+       "En el tejado, como dijo el gerente."
+      ],
+      "gold": [
+       "Where did you put the glove?",
+       "On the roof, like the manager said."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N08",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Daniel",
+   "scene": {
+    "location": "A hotel breakfast room early in the morning",
+    "people": "cleaners",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first cleaner",
+     "second cleaner"
+    ],
+    "e_inaud_description": "Behind a glass partition, two cleaners talk to each other; Daniel cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone left {the_O} {at_P}.",
+    "Tell reception."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did someone leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "wallet",
+      "lines": [
+       "有人把钱包落在桥那儿了。",
+       "去告诉前台。"
+      ],
+      "gold": [
+       "Someone left the wallet at the bridge.",
+       "Tell reception."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "有人把信封落在楼梯那儿了。",
+       "去告诉前台。"
+      ],
+      "gold": [
+       "Someone left the envelope in the stairwell.",
+       "Tell reception."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "誰かが椅子を質屋に置き忘れてる。",
+       "受付に知らせて。"
+      ],
+      "gold": [
+       "Someone left the chair at the pawnshop.",
+       "Tell reception."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "hammer",
+      "lines": [
+       "誰かが金槌を桟橋に置き忘れてる。",
+       "受付に知らせて。"
+      ],
+      "gold": [
+       "Someone left the hammer at the pier.",
+       "Tell reception."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "mirror",
+      "lines": [
+       "Alguien dejó el espejo en el tejado.",
+       "Avísale a recepción."
+      ],
+      "gold": [
+       "Someone left the mirror on the roof.",
+       "Tell reception."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "pillow",
+      "lines": [
+       "Alguien dejó la almohada en la alcantarilla.",
+       "Avísale a recepción."
+      ],
+      "gold": [
+       "Someone left the pillow in the sewer.",
+       "Tell reception."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N09",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Ana",
+   "scene": {
+    "location": "The front yard of a house in a residential neighborhood",
+    "speaker": "A resident",
+    "speaker_label": "resident",
+    "e_inaud_description": "A resident calls out to Ana from across a wide, busy street; the traffic drowns it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "My husband took {the_O} to {the_P}. Come back later."
+   ],
+   "questions": {
+    "content": "What did the resident say?",
+    "task": "So what did her husband take, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "glove",
+      "lines": [
+       "我丈夫把手套拿到废车场那儿去了，你晚点再来吧。"
+      ],
+      "gold": [
+       "My husband took the glove to the junkyard. Come back later."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "bag",
+      "lines": [
+       "我丈夫把袋子拿到屋顶那儿去了，你晚点再来吧。"
+      ],
+      "gold": [
+       "My husband took the bag to the roof. Come back later."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "shoe",
+      "lines": [
+       "夫が靴を船へ持っていきました。また後で来てください。"
+      ],
+      "gold": [
+       "My husband took the shoe to the boat. Come back later."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "夫がほうきを橋へ持っていきました。また後で来てください。"
+      ],
+      "gold": [
+       "My husband took the broom to the bridge. Come back later."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "box",
+      "lines": [
+       "Mi esposo se llevó la caja al almacén. Vuelva más tarde."
+      ],
+      "gold": [
+       "My husband took the box to the warehouse. Come back later."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "coat",
+      "lines": [
+       "Mi esposo se llevó el abrigo a la casa de empeño. Vuelva más tarde."
+      ],
+      "gold": [
+       "My husband took the coat to the pawnshop. Come back later."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N10",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Ana",
+   "scene": {
+    "location": "A shopping street",
+    "speaker": "A shopkeeper",
+    "speaker_label": "shopkeeper",
+    "e_inaud_description": "A shopkeeper calls out to Ana from across a wide, busy street; the traffic drowns it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Your colleague left {the_O} {at_P}. Go and get it."
+   ],
+   "questions": {
+    "content": "What did the shopkeeper say?",
+    "task": "So what did I leave, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "你同事把信封落在地下室那儿了，快去拿吧。"
+      ],
+      "gold": [
+       "Your colleague left the envelope in the basement. Go and get it."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "chair",
+      "lines": [
+       "你同事把椅子落在下水道那儿了，快去拿吧。"
+      ],
+      "gold": [
+       "Your colleague left the chair in the sewer. Go and get it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "hammer",
+      "lines": [
+       "お連れの方が金槌を教会に置いていきましたよ。取りに行ってください。"
+      ],
+      "gold": [
+       "Your colleague left the hammer at the church. Go and get it."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "mirror",
+      "lines": [
+       "お連れの方が鏡を階段に置いていきましたよ。取りに行ってください。"
+      ],
+      "gold": [
+       "Your colleague left the mirror in the stairwell. Go and get it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "pillow",
+      "lines": [
+       "Su compañero dejó la almohada en el estacionamiento. Vaya a buscarla."
+      ],
+      "gold": [
+       "Your colleague left the pillow in the parking lot. Go and get it."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "wallet",
+      "lines": [
+       "Su compañero dejó la cartera en el muelle. Vaya a buscarla."
+      ],
+      "gold": [
+       "Your colleague left the wallet at the pier. Go and get it."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N11",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Ana",
+   "scene": {
+    "location": "A park bench in a residential neighborhood",
+    "people": "neighbors",
+    "nearby": "On the next bench",
+    "speaker_labels": [
+     "first neighbor",
+     "second neighbor"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two neighbors talk to each other; the glass and the traffic drown it out and Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you see {the_O} {at_P}?",
+    "Yes, someone left it there."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they see, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "box",
+      "lines": [
+       "你看见楼梯那儿的箱子了吗？",
+       "看见了，不知道谁放的。"
+      ],
+      "gold": [
+       "Did you see the box in the stairwell?",
+       "Yes, someone left it there."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "wallet",
+      "lines": [
+       "你看见停车场那儿的钱包了吗？",
+       "看见了，不知道谁放的。"
+      ],
+      "gold": [
+       "Did you see the wallet in the parking lot?",
+       "Yes, someone left it there."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "glove",
+      "lines": [
+       "桟橋にあった手袋、見た？",
+       "見たよ。誰かが置いていったみたい。"
+      ],
+      "gold": [
+       "Did you see the glove at the pier?",
+       "Yes, someone left it there."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "chair",
+      "lines": [
+       "地下室にあった椅子、見た？",
+       "見たよ。誰かが置いていったみたい。"
+      ],
+      "gold": [
+       "Did you see the chair in the basement?",
+       "Yes, someone left it there."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "shoe",
+      "lines": [
+       "¿Viste el zapato que está en la alcantarilla?",
+       "Sí, alguien lo dejó ahí."
+      ],
+      "gold": [
+       "Did you see the shoe in the sewer?",
+       "Yes, someone left it there."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "mirror",
+      "lines": [
+       "¿Viste el espejo que está en la iglesia?",
+       "Sí, alguien lo dejó ahí."
+      ],
+      "gold": [
+       "Did you see the mirror at the church?",
+       "Yes, someone left it there."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N12",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Ana",
+   "scene": {
+    "location": "The entrance of a community center",
+    "people": "volunteers",
+    "nearby": "By the door",
+    "speaker_labels": [
+     "first volunteer",
+     "second volunteer"
+    ],
+    "e_inaud_description": "Behind a glass partition, two volunteers talk to each other; Ana cannot hear a word."
+   },
+   "skeleton_en": [
+    "Take {the_O} to {the_P}.",
+    "After lunch."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they taking, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "pillow",
+      "lines": [
+       "把枕头送到当铺那儿去。",
+       "吃完午饭再说。"
+      ],
+      "gold": [
+       "Take the pillow to the pawnshop.",
+       "After lunch."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "broom",
+      "lines": [
+       "把扫帚送到废车场那儿去。",
+       "吃完午饭再说。"
+      ],
+      "gold": [
+       "Take the broom to the junkyard.",
+       "After lunch."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "envelope",
+      "lines": [
+       "封筒を屋上へ運んでおいて。",
+       "昼ご飯のあとでね。"
+      ],
+      "gold": [
+       "Take the envelope to the roof.",
+       "After lunch."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "coat",
+      "lines": [
+       "上着を船へ運んでおいて。",
+       "昼ご飯のあとでね。"
+      ],
+      "gold": [
+       "Take the coat to the boat.",
+       "After lunch."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "hammer",
+      "lines": [
+       "Lleva el martillo al puente.",
+       "Después del almuerzo."
+      ],
+      "gold": [
+       "Take the hammer to the bridge.",
+       "After lunch."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "bag",
+      "lines": [
+       "Lleva la bolsa al almacén.",
+       "Después del almuerzo."
+      ],
+      "gold": [
+       "Take the bag to the warehouse.",
+       "After lunch."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N13",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Tom",
+   "scene": {
+    "location": "The loading area behind a grocery store",
+    "speaker": "A store worker",
+    "speaker_label": "store worker",
+    "e_inaud_description": "A store worker calls out to Tom from across a wide, busy street; the traffic drowns it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Put {the_O} {at_P}. The owner will sign later."
+   ],
+   "questions": {
+    "content": "What did the worker say?",
+    "task": "So what do we drop off, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "box",
+      "lines": [
+       "把箱子放在船那儿，老板待会儿签字。"
+      ],
+      "gold": [
+       "Put the box on the boat. The owner will sign later."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "hammer",
+      "lines": [
+       "把锤子放在下水道那儿，老板待会儿签字。"
+      ],
+      "gold": [
+       "Put the hammer in the sewer. The owner will sign later."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "glove",
+      "lines": [
+       "手袋は倉庫に置いといて。店主があとで署名する。"
+      ],
+      "gold": [
+       "Put the glove at the warehouse. The owner will sign later."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕は階段に置いといて。店主があとで署名する。"
+      ],
+      "gold": [
+       "Put the pillow in the stairwell. The owner will sign later."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "shoe",
+      "lines": [
+       "Deja el zapato en la chatarrería. El dueño firma más tarde."
+      ],
+      "gold": [
+       "Put the shoe at the junkyard. The owner will sign later."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "envelope",
+      "lines": [
+       "Deja el sobre en el muelle. El dueño firma más tarde."
+      ],
+      "gold": [
+       "Put the envelope at the pier. The owner will sign later."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N14",
+   "set": "real",
+   "world": "real",
+   "mode": "DA",
+   "character": "Tom",
+   "scene": {
+    "location": "The doorstep of a house",
+    "speaker": "An elderly woman",
+    "speaker_label": "elderly woman",
+    "e_inaud_description": "An elderly woman calls out to Tom from across a wide, busy street; the traffic drowns it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Leave {the_O} {at_P}, please. My knees are bad."
+   ],
+   "questions": {
+    "content": "What did the old lady say?",
+    "task": "So what does she want left, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "wallet",
+      "lines": [
+       "请把钱包放在教堂那儿吧，我的膝盖不好。"
+      ],
+      "gold": [
+       "Leave the wallet at the church, please. My knees are bad."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "coat",
+      "lines": [
+       "请把外套放在桥那儿吧，我的膝盖不好。"
+      ],
+      "gold": [
+       "Leave the coat at the bridge, please. My knees are bad."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子は駐車場に置いてくださいな。膝が悪くてね。"
+      ],
+      "gold": [
+       "Leave the chair in the parking lot, please. My knees are bad."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "bag",
+      "lines": [
+       "かばんは質屋に置いてくださいな。膝が悪くてね。"
+      ],
+      "gold": [
+       "Leave the bag at the pawnshop, please. My knees are bad."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "mirror",
+      "lines": [
+       "Deje el espejo en el sótano, por favor. Me duelen las rodillas."
+      ],
+      "gold": [
+       "Leave the mirror in the basement, please. My knees are bad."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "broom",
+      "lines": [
+       "Deje la escoba en el tejado, por favor. Me duelen las rodillas."
+      ],
+      "gold": [
+       "Leave the broom on the roof, please. My knees are bad."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N15",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Tom",
+   "scene": {
+    "location": "A parcel depot yard",
+    "people": "drivers",
+    "nearby": "By the next van",
+    "speaker_labels": [
+     "first driver",
+     "second driver"
+    ],
+    "e_inaud_description": "Outside, beyond the window, two drivers talk to each other; the glass and the traffic drown it out and Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you drop {the_O} off {at_P}?",
+    "Not yet. I'm going now."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's being dropped off, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "bag",
+      "lines": [
+       "袋子送到码头那儿了吗？",
+       "还没，马上去。"
+      ],
+      "gold": [
+       "Did you drop the bag off at the pier?",
+       "Not yet. I'm going now."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "mirror",
+      "lines": [
+       "镜子送到仓库那儿了吗？",
+       "还没，马上去。"
+      ],
+      "gold": [
+       "Did you drop the mirror off at the warehouse?",
+       "Not yet. I'm going now."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "broom",
+      "lines": [
+       "ほうきは下水道に届けた？",
+       "まだだ。これから行く。"
+      ],
+      "gold": [
+       "Did you drop the broom off in the sewer?",
+       "Not yet. I'm going now."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "財布は廃車置き場に届けた？",
+       "まだだ。これから行く。"
+      ],
+      "gold": [
+       "Did you drop the wallet off at the junkyard?",
+       "Not yet. I'm going now."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "coat",
+      "lines": [
+       "¿Ya entregaste el abrigo en la escalera?",
+       "Todavía no. Voy para allá."
+      ],
+      "gold": [
+       "Did you drop the coat off in the stairwell?",
+       "Not yet. I'm going now."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "¿Ya entregaste la silla en el barco?",
+       "Todavía no. Voy para allá."
+      ],
+      "gold": [
+       "Did you drop the chair off on the boat?",
+       "Not yet. I'm going now."
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "N16",
+   "set": "real",
+   "world": "real",
+   "mode": "OH",
+   "character": "Tom",
+   "scene": {
+    "location": "A roadside café",
+    "people": "mechanics",
+    "nearby": "At the counter",
+    "speaker_labels": [
+     "first mechanic",
+     "second mechanic"
+    ],
+    "e_inaud_description": "Behind a glass partition, two mechanics talk to each other; Tom cannot hear a word."
+   },
+   "skeleton_en": [
+    "{The_O} is still {at_P}.",
+    "Then the customer can wait."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's still there, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "外套还在屋顶那儿。",
+       "那就让客人等着吧。"
+      ],
+      "gold": [
+       "The coat is still on the roof.",
+       "Then the customer can wait."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "glove",
+      "lines": [
+       "手套还在停车场那儿。",
+       "那就让客人等着吧。"
+      ],
+      "gold": [
+       "The glove is still in the parking lot.",
+       "Then the customer can wait."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "bag",
+      "lines": [
+       "かばんはまだ橋にある。",
+       "なら客には待ってもらおう。"
+      ],
+      "gold": [
+       "The bag is still at the bridge.",
+       "Then the customer can wait."
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "shoe",
+      "lines": [
+       "靴はまだ地下室にある。",
+       "なら客には待ってもらおう。"
+      ],
+      "gold": [
+       "The shoe is still in the basement.",
+       "Then the customer can wait."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "broom",
+      "lines": [
+       "La escoba sigue en la casa de empeño.",
+       "Entonces que espere el cliente."
+      ],
+      "gold": [
+       "The broom is still at the pawnshop.",
+       "Then the customer can wait."
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "box",
+      "lines": [
+       "La caja sigue en la iglesia.",
+       "Entonces que espere el cliente."
+      ],
+      "gold": [
+       "The box is still at the church.",
+       "Then the customer can wait."
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
