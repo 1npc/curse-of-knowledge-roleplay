@@ -98,9 +98,20 @@ def d1_version(lang: str, mode: str) -> int:
     return (("zh", "ja", "es").index(lang) + (0 if mode == "DA" else 1)) % 2
 
 
-def describe(item: dict, name: str, pr: dict, L: str, audible: bool) -> str:
+# matched structured cells (storyline.md 3): the boundary is only a per-utterance flag, and the
+# description says neither "aloud" nor "could not hear"
+FLAG_CELLS = ("Einaud_S", "C-T-_flag")
+ENGLISH_CELLS = ("E", "Einaud", "Einaud_S")
+INAUDIBLE_CELLS = ("Einaud", "Einaud_S")
+
+
+def describe(item: dict, name: str, pr: dict, L: str, audible: bool, neutral: bool = False) -> str:
     sc = item["scene"]
     note = NO_DEVICE.format(name=name, them=pr["them"]) if item["world"] == "real" else ""
+    if neutral:
+        if item["mode"] == "DA":
+            return f"{sc['speaker']} speaks to {name} in {L}." + note
+        return f"{sc['nearby']}, two {sc['people']} talk to each other in {L}. They are not addressing {name}." + note
     if not audible:
         return sc["e_inaud_description"] + note
     if item["mode"] == "DA":
@@ -108,20 +119,25 @@ def describe(item: dict, name: str, pr: dict, L: str, audible: bool) -> str:
     return f"{sc['nearby']}, two {sc['people']} talk quietly to each other in {L}. They are not addressing {name}." + note
 
 
-def speech_events(item: dict, name: str, lines: list[str], L: str, audible: bool) -> list[dict]:
+def speech_events(item: dict, name: str, lines: list[str], L: str, audible: bool,
+                  understood: bool | None = None) -> list[dict]:
     sc = item["scene"]
     key = f"audible_to_{name}"
+    flags = {key: audible}
+    if understood is not None:
+        flags[f"understood_by_{name}"] = understood
     if item["mode"] == "DA":
-        return [{"speaker": sc["speaker_label"], "addressee": name, "language": L, key: audible, "text": " ".join(lines)}]
+        return [{"speaker": sc["speaker_label"], "addressee": name, "language": L, **flags, "text": " ".join(lines)}]
     a, b = sc["speaker_labels"]
-    return [{"speaker": a, "addressee": b, "language": L, key: audible, "text": lines[0]},
-            {"speaker": b, "addressee": a, "language": L, key: audible, "text": lines[1]}]
+    return [{"speaker": a, "addressee": b, "language": L, **flags, "text": lines[0]},
+            {"speaker": b, "addressee": a, "language": L, **flags, "text": lines[1]}]
 
 
-def state_json(item, name, pr, lines, L_speech, audible, lstate) -> str:
+def state_json(item, name, pr, lines, L_speech, audible, lstate, cell=None) -> str:
+    understood = False if cell == "C-T-_flag" else None
     state = {"scene": {"location": item["scene"]["location"],
-                       "description": describe(item, name, pr, L_speech, audible),
-                       "speech_events": speech_events(item, name, lines, L_speech, audible)}}
+                       "description": describe(item, name, pr, L_speech, audible, neutral=cell in FLAG_CELLS),
+                       "speech_events": speech_events(item, name, lines, L_speech, audible, understood)}}
     if lstate is not None:
         state["language_state"] = lstate
     return json.dumps(state, ensure_ascii=False, sort_keys=True)
@@ -131,8 +147,8 @@ def system_message(item, persona, lines, L_item, cell, D, variant="main", fewsho
     name, full = persona["short_name"], persona["full_name"]
     pr = pron(persona)
     fmt = {"name": name, "full": full, "L": L_item, "addressee": persona.get("companion_name", "V"), **pr}
-    english = cell in ("E", "Einaud")
-    audible = cell != "Einaud"
+    english = cell in ENGLISH_CELLS
+    audible = cell not in INAUDIBLE_CELLS
     L_speech = "English" if english else L_item
     if D == "U":
         lstate = None
@@ -142,7 +158,7 @@ def system_message(item, persona, lines, L_item, cell, D, variant="main", fewsho
         lstate = language_state("+", "none", L_item)
     else:
         C, T = {"C+T-": ("+", "none"), "C+T+": ("+", "on"), "C-T+": ("-", "on"), "C-T-": ("-", "none"),
-                "C-Toff": ("-", "off")}[cell]
+                "C-T-_flag": ("-", "none"), "C-Toff": ("-", "off")}[cell]
         lstate = language_state(C, T, L_item)
     head = {"main": MAIN_SYSTEM.format(**fmt), "c1": C1_GENERATOR_PROMPT.rstrip("\n"),
             "minimal": MINIMAL_SYSTEM.format(**fmt), "community": COMMUNITY_SYSTEM.format(**fmt),
@@ -151,7 +167,7 @@ def system_message(item, persona, lines, L_item, cell, D, variant="main", fewsho
     if fewshot:
         parts.append(fewshot)
     parts.append("[Character] " + persona["card"])
-    parts.append("[State] " + state_json(item, name, pr, lines, L_speech, audible, lstate))
+    parts.append("[State] " + state_json(item, name, pr, lines, L_speech, audible, lstate, cell))
     if D in ("D1", "D2"):
         key = {"C+T-": "C+", "C+T+": "C+", "C-T+": "C-T+", "C-T-": "C-T-", "C-Toff": "C-Toff", "Einaud": "Einaud"}.get(cell)
         if key:
@@ -174,14 +190,17 @@ def _pid(*parts) -> str:
 # (cell, D) lists from proposal 5.1
 REAL_A = [("C+T-", "D0"), ("C+T-", "D1"), ("C+T+", "D0"), ("C-T+", "D0"), ("C-T+", "D1"),
           ("C-T-", "D0"), ("C-T-", "D1"), ("C-T-", "U"), ("C-Toff", "D0"), ("C-Toff", "D1"),
-          ("C-T-", "D2"), ("C-T+", "D2"), ("E", "D0"), ("Einaud", "D0"), ("Einaud", "D1")]
+          ("C-T-", "D2"), ("C-T+", "D2"), ("E", "D0"), ("Einaud", "D0"), ("Einaud", "D1"),
+          ("Einaud_S", "D0"), ("C-T-_flag", "D0")]
 SWAP_B = [("C-T-", "D0"), ("C-T-", "D1"), ("C-T-", "U"), ("C-Toff", "D0"), ("C-Toff", "D1"),
-          ("C+T-", "D0"), ("Einaud", "D0")]
+          ("C+T-", "D0"), ("Einaud", "D0"), ("Einaud_S", "D0"), ("C-T-_flag", "D0")]
 NOISE = [("C-T-", "D0"), ("C-T-", "D1"), ("C-T-", "U"), ("C+T-", "D0"), ("C-T+", "D0")]
 STATE_PROBE_CELLS = [("C+T-", "D0"), ("C+T-", "D1"), ("C-T+", "D0"), ("C-T+", "D1"), ("C-T-", "D0"), ("C-T-", "D1"),
-                     ("C-Toff", "D0"), ("C-Toff", "D1"), ("Einaud", "D0"), ("Einaud", "D1")]
+                     ("C-Toff", "D0"), ("C-Toff", "D1"), ("Einaud", "D0"), ("Einaud", "D1"),
+                     ("Einaud_S", "D0"), ("C-T-_flag", "D0")]
 CELL_FLAGS = {"C+T-": ("+", "none"), "C+T+": ("+", "on"), "C-T+": ("-", "on"), "C-T-": ("-", "none"),
-              "C-Toff": ("-", "off"), "E": ("+", "none"), "Einaud": ("+", "none"), "spoken_only": (None, None)}
+              "C-Toff": ("-", "off"), "E": ("+", "none"), "Einaud": ("+", "none"), "Einaud_S": ("+", "none"),
+              "C-T-_flag": ("-", "none"), "spoken_only": (None, None)}
 
 
 # non-Cyberpunk arm (proposal 5.3): 10 cells x {content, plan} + 4 probes = 24 prompts per item
@@ -205,14 +224,14 @@ def build_item(item: dict, lang: str, *, pilot: bool = False) -> list[dict]:
         rec = {"prompt_id": _pid(item["id"], lang, version, arm, S, cell, D, Q), "item": item["id"], "lang": lang,
                "set": item["set"], "world": item["world"], "mode": item["mode"], "character": item["character"],
                "version": version, "arm": arm, "S": S, "cell": cell, "C": C, "T": T, "D": D, "Q": Q,
-               "audible": cell != "Einaud", "messages": messages}
+               "audible": cell not in INAUDIBLE_CELLS, "messages": messages}
         if extra:
             rec.update(extra)
         rec["messages_sha256"] = hashlib.sha256(json.dumps(messages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
         out.append(rec)
 
     def chat(version, cell, D, Q, lines, S="real", variant="main", arm="main", fewshot=None):
-        english = cell in ("E", "Einaud")
+        english = cell in ENGLISH_CELLS
         shown = ver[version]["gold"] if english else lines
         msgs = [{"role": "system", "content": system_message(it, persona, shown, L, cell, D, variant, fewshot)},
                 {"role": "user", "content": user_message(item, Q)}]
@@ -244,14 +263,14 @@ def build_item(item: dict, lang: str, *, pilot: bool = False) -> list[dict]:
         [{"role": "user", "content": TRANSLATE[item["mode"]].format(L=L, text="\n".join(n1))}])
     name = persona["short_name"]
     for cell, D in STATE_PROBE_CELLS:
-        english = cell == "Einaud"
+        english = cell in INAUDIBLE_CELLS
         shown = ver["A"]["gold"] if english else ver["A"]["lines"]
         sysmsg = system_message(it, persona, shown, L, cell, D, "probe")
         sc = item["scene"]
         q = STATE_PROBE[item["mode"]].format(name=name, speaker=sc.get("speaker_label", ""), people=sc.get("people", ""))
         add("probe_state", "A", cell, D, "state", "english" if english else "real", ver["A"]["lines"],
             [{"role": "system", "content": sysmsg}, {"role": "user", "content": q}],
-            {"expected": "no" if cell in ("C-T-", "C-Toff", "Einaud") else "yes"})
+            {"expected": "no" if cell in ("C-T-", "C-Toff", "Einaud", "Einaud_S", "C-T-_flag") else "yes"})
     return out
 
 

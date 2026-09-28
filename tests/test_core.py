@@ -110,11 +110,11 @@ class TestBuild(unittest.TestCase):
                 recs = build_item(it, lang)
                 main = [r for r in recs if not r["arm"].startswith("probe")]
                 probes = [r for r in recs if r["arm"].startswith("probe")]
-                self.assertEqual(len(main), 112, (it["id"], lang))
-                self.assertEqual(len(probes), 13, (it["id"], lang))
+                self.assertEqual(len(main), 128, (it["id"], lang))
+                self.assertEqual(len(probes), 15, (it["id"], lang))
                 self.assertEqual(len({r["prompt_id"] for r in recs}), len(recs))
                 pilot = build_item(it, lang, pilot=True)
-                self.assertEqual(len(pilot), 145)
+                self.assertEqual(len(pilot), 163)
                 self.assertEqual(len(build_robustness(it, lang)), 30)
 
     def test_no_value_words_outside_speech(self):
@@ -180,7 +180,7 @@ class TestMainAndRealSets(unittest.TestCase):
             self.assertFalse(rejected(r), it["id"])
 
     def test_counts_and_leaks(self):
-        for items, per_item in ((self.main, 125), (self.real, 24)):
+        for items, per_item in ((self.main, 143), (self.real, 24)):
             for it in items[:8]:
                 for lang in ("zh", "ja", "es"):
                     recs = build_item(it, lang)
