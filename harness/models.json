@@ -104,7 +104,9 @@
    "chat_template_kwargs": {},
    "roles": [
     "main"
-   ]
+   ],
+   "template_fixed_date": "2026-09-29",
+   "note": "chat template read from chat_template.json; its default system prompt stamps a date, fixed to 2026-09-29 (only prompts without a system message see it)"
   },
   "gpt_oss_20b": {
    "repo": "openai/gpt-oss-20b",

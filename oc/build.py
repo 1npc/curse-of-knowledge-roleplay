@@ -364,6 +364,8 @@ def build_canon(entry: dict, base: dict) -> list[dict]:
 
 # ---------------------------------------------------------------- mitigation arms (proposal 5.1, 5.5)
 MITIGATION_CELLS = [("A", "C-T-"), ("B", "C-T-"), ("A", "C-T+")]  # x D0 x {content, plan}
+# added 9/29: the same M1 on the inaudible-by-flag cell (FS's examples are about language, so M1 only)
+MITIGATION_M1_ONLY = [("A", "Einaud_S"), ("B", "Einaud_S")]
 M1_STEP1 = "List only what {name} can perceive and understand right now. Leave out anything {name} cannot understand."
 M1_TOKEN = "<<M1_STEP1_OUTPUT>>"
 FS_BLOCK = (
@@ -388,8 +390,11 @@ def _m1_step2_system(item: dict, persona: dict, L: str, cell: str) -> str:
         who, to = sc["speaker_label"], name
     else:
         who, to = f"the two {sc['people']}", "each other"
-    state = {"scene": {"location": sc["location"], "description": describe(it, name, pr, L, True),
-                       "speech_events": [{"speaker": who, "addressee": to, "language": L, f"audible_to_{name}": True,
+    L_speech = "English" if cell in ENGLISH_CELLS else L
+    audible = cell not in INAUDIBLE_CELLS
+    state = {"scene": {"location": sc["location"],
+                       "description": describe(it, name, pr, L_speech, audible, neutral=cell in FLAG_CELLS),
+                       "speech_events": [{"speaker": who, "addressee": to, "language": L_speech, f"audible_to_{name}": audible,
                                           "text": M1_TOKEN}]},
              "language_state": lstate}
     fmt = {"name": name, "full": persona["full_name"], "L": L, "addressee": persona.get("companion_name", "V"), **pr}
@@ -417,25 +422,31 @@ def build_mitigation(item: dict, lang: str, arms=("M1", "FS")) -> list[dict]:
     name = persona["short_name"]
     pr = pron(persona)
     out = []
-    for version, cell in MITIGATION_CELLS:
+    cells = [(v, c, arms) for v, c in MITIGATION_CELLS]
+    if "M1" in arms:
+        cells += [(v, c, ("M1",)) for v, c in MITIGATION_M1_ONLY]
+    for version, cell, cell_arms in cells:
         C, T = CELL_FLAGS[cell]
+        english = cell in ENGLISH_CELLS
+        lines = ver[version]["gold"] if english else ver[version]["lines"]
+        S = "english" if english else "real"
         for Q in ("content", "plan"):
             base = {"item": item["id"], "lang": lang, "set": item["set"], "world": item["world"], "mode": item["mode"],
-                    "character": item["character"], "version": version, "S": "real", "cell": cell, "C": C, "T": T,
-                    "D": "D0", "Q": Q, "audible": True}
-            if "FS" in arms:
+                    "character": item["character"], "version": version, "S": S, "cell": cell, "C": C, "T": T,
+                    "D": "D0", "Q": Q, "audible": cell not in INAUDIBLE_CELLS}
+            if "FS" in cell_arms:
                 fs = FS_BLOCK.format(name=name, they=pr["they"])
-                msgs = [{"role": "system", "content": system_message(it, persona, ver[version]["lines"], L, cell, "D0",
+                msgs = [{"role": "system", "content": system_message(it, persona, lines, L, cell, "D0",
                                                                      fewshot=fs)},
                         {"role": "user", "content": user_message(item, Q)}]
-                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "FS", "real", cell, "D0", Q), "arm": "FS",
+                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "FS", S, cell, "D0", Q), "arm": "FS",
                             "messages": msgs})
-            if "M1" in arms:
-                step1 = [{"role": "system", "content": system_message(it, persona, ver[version]["lines"], L, cell, "D0", "probe")},
+            if "M1" in cell_arms:
+                step1 = [{"role": "system", "content": system_message(it, persona, lines, L, cell, "D0", "probe")},
                          {"role": "user", "content": M1_STEP1.format(name=name)}]
                 step2 = [{"role": "system", "content": _m1_step2_system(item, persona, L, cell)},
                          {"role": "user", "content": user_message(item, Q)}]
-                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "M1", "real", cell, "D0", Q), "arm": "M1",
+                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "M1", S, cell, "D0", Q), "arm": "M1",
                             "messages": step1, "next_step": {"kind": "m1", "messages": step2}})
     for r in out:
         r["messages_sha256"] = hashlib.sha256(json.dumps(r["messages"], ensure_ascii=False, sort_keys=True).encode()).hexdigest()

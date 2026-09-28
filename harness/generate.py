@@ -163,12 +163,20 @@ def main():
     from vllm.inputs import TokensPrompt
 
     tok = AutoTokenizer.from_pretrained(str(path), trust_remote_code=False)
+    template_source = "tokenizer"
+    if not tok.chat_template and (path / "chat_template.json").exists():  # e.g. Mistral-Small-3.1 keeps it with the processor
+        tok.chat_template = json.loads((path / "chat_template.json").read_text())["chat_template"]
+        template_source = "chat_template.json"
+    if spec.get("template_fixed_date"):  # a template that stamps today's date would make renders depend on the run day
+        tok.chat_template = tok.chat_template.replace('strftime_now("%Y-%m-%d")', json.dumps(spec["template_fixed_date"]))
+        template_source += f", date fixed to {spec['template_fixed_date']}"
     if not tok.chat_template:
         raise SystemExit("pinned tokenizer has no chat template")
     kwargs = spec.get("chat_template_kwargs", {})
     frozen = {"version": "oc-generation-1", "model": a.model, "repo": spec["repo"],
               "revision": reference["models"][a.model]["revision"], "weights_path": str(path), "location": a.location,
-              "chat_template_sha256": text_sha(tok.chat_template), "chat_template_kwargs": kwargs,
+              "chat_template_sha256": text_sha(tok.chat_template), "chat_template_source": template_source,
+              "chat_template_kwargs": kwargs,
               "engine": {"vllm": vllm.__version__, "torch": torch.__version__, "transformers": transformers.__version__},
               "protocol": PROTOCOL, "prompts_file": str(a.prompts), "prompts_sha256": file_sha(a.prompts),
               "subset_sha256": file_sha(a.subset) if a.subset else None, "n_prompts": len(prompts),
