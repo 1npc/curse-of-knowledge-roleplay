@@ -316,3 +316,28 @@ def build_real(item: dict, lang: str) -> list[dict]:
     for r in out:
         r["messages_sha256"] = hashlib.sha256(json.dumps(r["messages"], ensure_ascii=False, sort_keys=True).encode()).hexdigest()
     return out
+
+
+def build_canon(entry: dict, base: dict) -> list[dict]:
+    """Canon/character-layer subset (proposal 5.3): {U, declared D0} x {A, B} x {content, plan} = 8 prompts."""
+    item = dict(base, character=entry["character"], id=entry["id"])
+    persona = load_personas()[entry["character"]]
+    lang = entry["lang"]
+    L = LANG_NAME[lang]
+    it = dict(item, _lang=lang)
+    ver = base["langs"][lang]
+    declared = "C+T-" if entry["declared_C"] == "+" else "C-T-"
+    out = []
+    for version in ("A", "B"):
+        for cell, D in ((declared, "U"), (declared, "D0")):
+            for Q in ("content", "plan"):
+                msgs = [{"role": "system", "content": system_message(it, persona, ver[version]["lines"], L, cell, D)},
+                        {"role": "user", "content": user_message(item, Q)}]
+                C, T = CELL_FLAGS[cell]
+                rec = {"prompt_id": _pid(entry["id"], lang, version, "canon", "real", cell, D, Q), "item": base["id"],
+                       "canon_id": entry["id"], "group": entry["group"], "lang": lang, "set": "canon", "world": base["world"],
+                       "mode": base["mode"], "character": entry["character"], "version": version, "arm": "canon", "S": "real",
+                       "cell": cell, "C": C if D != "U" else None, "T": T, "D": D, "Q": Q, "audible": True, "messages": msgs}
+                rec["messages_sha256"] = hashlib.sha256(json.dumps(msgs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+                out.append(rec)
+    return out

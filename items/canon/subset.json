@@ -1,0 +1,421 @@
+{
+ "version": "canon-0.1",
+ "entries": [
+  {
+   "id": "K-Takemura-S02",
+   "base": "S02",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S07",
+   "base": "S07",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S08",
+   "base": "S08",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S12",
+   "base": "S12",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S21",
+   "base": "S21",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S27",
+   "base": "S27",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S05",
+   "base": "S05",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S11",
+   "base": "S11",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S17",
+   "base": "S17",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S24",
+   "base": "S24",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S31",
+   "base": "S31",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Takemura-S36",
+   "base": "S36",
+   "character": "Takemura",
+   "lang": "ja",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S02",
+   "base": "S02",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S07",
+   "base": "S07",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S08",
+   "base": "S08",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S12",
+   "base": "S12",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S21",
+   "base": "S21",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S27",
+   "base": "S27",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S05",
+   "base": "S05",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S11",
+   "base": "S11",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S17",
+   "base": "S17",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S24",
+   "base": "S24",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S31",
+   "base": "S31",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Jackie-S36",
+   "base": "S36",
+   "character": "Jackie",
+   "lang": "es",
+   "declared_C": "+",
+   "group": "canon_C+"
+  },
+  {
+   "id": "K-Johnny-S33",
+   "base": "S33",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S39",
+   "base": "S39",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S45",
+   "base": "S45",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S51",
+   "base": "S51",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S57",
+   "base": "S57",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S63",
+   "base": "S63",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S42",
+   "base": "S42",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S48",
+   "base": "S48",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S54",
+   "base": "S54",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S60",
+   "base": "S60",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S41",
+   "base": "S41",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Johnny-S56",
+   "base": "S56",
+   "character": "Johnny",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "canon_weak_C-"
+  },
+  {
+   "id": "K-Maiko-S02",
+   "base": "S02",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S08",
+   "base": "S08",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S21",
+   "base": "S21",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S33",
+   "base": "S33",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S35",
+   "base": "S35",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S59",
+   "base": "S59",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S10",
+   "base": "S10",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Maiko-S47",
+   "base": "S47",
+   "character": "Maiko",
+   "lang": "ja",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S33",
+   "base": "S33",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S39",
+   "base": "S39",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S45",
+   "base": "S45",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S51",
+   "base": "S51",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S42",
+   "base": "S42",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S48",
+   "base": "S48",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S54",
+   "base": "S54",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  },
+  {
+   "id": "K-Judy-S60",
+   "base": "S60",
+   "character": "Judy",
+   "lang": "es",
+   "declared_C": "-",
+   "group": "name_prior_C-"
+  }
+ ]
+}
