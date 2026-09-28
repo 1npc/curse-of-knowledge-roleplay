@@ -20,6 +20,7 @@ import fcntl
 import hashlib
 import json
 import os
+import re
 import socket
 import subprocess
 import sys
@@ -85,6 +86,10 @@ def status_of(text: str, finish: str | None) -> str:
 
 def locate(key: str, location: str, oc: Path, reference: dict) -> Path:
     ref = reference["models"][key]
+    if location == "auto":  # the verified project copy when there is one, else the pinned scratch download
+        ver = oc / "weights" / "verification.json"
+        listed = ver.exists() and key in json.loads(ver.read_text()).get("models", {})
+        location = "project" if listed else "scratch"
     path = Path(ref["scratch_snapshot"]) if location == "scratch" else oc / "weights" / key
     if not path.is_dir():
         raise SystemExit(f"{key}: weights not found at {path}")
@@ -97,6 +102,16 @@ def locate(key: str, location: str, oc: Path, reference: dict) -> Path:
         if size != info["bytes"]:
             raise SystemExit(f"{key}: {name} has {size} bytes, reference {info['bytes']}")
     return path
+
+
+HARMONY_FINAL = re.compile(r"<\|channel\|>final<\|message\|>(.*?)(?:<\|return\|>|<\|end\|>|$)", re.S)
+HARMONY_ANALYSIS = re.compile(r"<\|channel\|>analysis<\|message\|>(.*?)(?:<\|end\|>|$)", re.S)
+
+
+def parse_harmony(raw: str) -> tuple[str | None, str]:
+    """gpt-oss answers in channels: return (final text or None, analysis text)."""
+    m = HARMONY_FINAL.search(raw)
+    return (m.group(1).strip() if m else None), "\n".join(x.strip() for x in HARMONY_ANALYSIS.findall(raw))
 
 
 def gpu_info() -> dict:
@@ -115,7 +130,7 @@ def main():
     ap.add_argument("--model", required=True)
     ap.add_argument("--models", type=Path, required=True)
     ap.add_argument("--reference", type=Path, required=True)
-    ap.add_argument("--location", choices=("project", "scratch"), default="project")
+    ap.add_argument("--location", choices=("auto", "project", "scratch"), default="auto")
     ap.add_argument("--out", type=Path, required=True, help="run directory; results go to <out>/<model>/")
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--chunk", type=int, default=512)
@@ -186,8 +201,9 @@ def main():
               seed=PROTOCOL["seed"], enable_prefix_caching=False, enforce_eager=True,
               gpu_memory_utilization=PROTOCOL["gpu_memory_utilization"], tensor_parallel_size=1,
               trust_remote_code=False, max_num_seqs=PROTOCOL["max_num_seqs"])
+    harmony = spec.get("output_parser") == "harmony"  # keep channel markers so the final answer can be separated
     sampling = SamplingParams(temperature=0.0, top_p=1.0, seed=PROTOCOL["seed"],
-                              max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=True)
+                              max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=not harmony)
     state.update(load_seconds=round(time.time() - t_load, 1), sampling=repr(sampling))
     (out / f"runtime-{a.run_id}.json").write_text(json.dumps({**state, "status": "generating"}, indent=1))
 
@@ -231,10 +247,18 @@ def main():
                 else:
                     o = by_id[pid]
                     comp = o.outputs[0]
-                    st = status_of(comp.text, comp.finish_reason)
+                    text = comp.text
+                    if harmony:
+                        final, analysis = parse_harmony(comp.text)
+                        rec.update(raw_text=comp.text, reasoning=analysis)
+                        text = final if final is not None else ""
+                        st = status_of(text, comp.finish_reason) if final is not None else (
+                            "truncated" if comp.finish_reason == "length" else "no_final")
+                    else:
+                        st = status_of(text, comp.finish_reason)
                     if list(o.prompt_token_ids) != ids:
                         st = "tokenization_mismatch"
-                    rec.update(status=st, text=comp.text, text_sha256=text_sha(comp.text), finish_reason=comp.finish_reason,
+                    rec.update(status=st, text=text, text_sha256=text_sha(text), finish_reason=comp.finish_reason,
                                stop_reason=repr(comp.stop_reason), output_tokens=len(comp.token_ids),
                                output_token_ids_sha256=digest(list(comp.token_ids)))
                 lines.append(canonical(rec))

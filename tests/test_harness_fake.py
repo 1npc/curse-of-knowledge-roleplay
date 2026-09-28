@@ -61,6 +61,18 @@ FAKES = {
 }
 
 
+class TestHarmony(unittest.TestCase):
+    def test_parse(self):
+        sys.path.insert(0, str(ROOT / "harness"))
+        from generate import parse_harmony
+        raw = ("<|channel|>analysis<|message|>The character does not understand Spanish.<|end|>"
+               "<|start|>assistant<|channel|>final<|message|>No idea what he said, V.<|return|>")
+        final, analysis = parse_harmony(raw)
+        self.assertEqual(final, "No idea what he said, V.")
+        self.assertIn("does not understand", analysis)
+        self.assertEqual(parse_harmony("<|channel|>analysis<|message|>still thinking")[0], None)
+
+
 class TestHarnessDryRun(unittest.TestCase):
     def test_two_pass_m1(self):
         from oc.build import build_mitigation

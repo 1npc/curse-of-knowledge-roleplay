@@ -1,13 +1,158 @@
 {
  "version": "oc-models-1",
- "note": "A-tier models on Snellius (proposal 7.1). Paths: 'project' = $OC/weights/<key> (copied and verified by the staging job), 'scratch' = the pinned snapshot in weights_reference.json (expires under the 14-day rule). Thinking is disabled through the chat template for every model.",
+ "note": "Models up to 40B total parameters (user decision 2026-09-28). A-tier copies live in the project space; the eight added on 9/28 are on scratch (pinned revisions, re-downloadable). Thinking is disabled through the chat template where the model allows it.",
  "models": {
-  "qwen38_27b": {"repo": "Qwen/Qwen3.8-27B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "mitigation"]},
-  "gemma4_31b": {"repo": "google/gemma-4-31B-it", "family": "gemma", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "mitigation"]},
-  "qwen35_9b": {"repo": "Qwen/Qwen3.5-9B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "scale"]},
-  "qwen35_4b": {"repo": "Qwen/Qwen3.5-4B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
-  "qwen35_2b": {"repo": "Qwen/Qwen3.5-2B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
-  "qwen35_08b": {"repo": "Qwen/Qwen3.5-0.8B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
-  "gemma4_e2b": {"repo": "google/gemma-4-E2B-it", "family": "gemma", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]}
+  "qwen38_27b": {
+   "repo": "Qwen/Qwen3.8-27B",
+   "family": "qwen",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main",
+    "robustness",
+    "mitigation"
+   ]
+  },
+  "gemma4_31b": {
+   "repo": "google/gemma-4-31B-it",
+   "family": "gemma",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main",
+    "robustness",
+    "mitigation"
+   ]
+  },
+  "qwen35_9b": {
+   "repo": "Qwen/Qwen3.5-9B",
+   "family": "qwen",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main",
+    "robustness",
+    "scale"
+   ]
+  },
+  "qwen35_4b": {
+   "repo": "Qwen/Qwen3.5-4B",
+   "family": "qwen",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "scale"
+   ]
+  },
+  "qwen35_2b": {
+   "repo": "Qwen/Qwen3.5-2B",
+   "family": "qwen",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "scale"
+   ]
+  },
+  "qwen35_08b": {
+   "repo": "Qwen/Qwen3.5-0.8B",
+   "family": "qwen",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "scale"
+   ]
+  },
+  "gemma4_e2b": {
+   "repo": "google/gemma-4-E2B-it",
+   "family": "gemma",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "scale"
+   ]
+  },
+  "gemma4_12b": {
+   "repo": "google/gemma-4-12B-it",
+   "family": "gemma",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main"
+   ]
+  },
+  "glm47_flash": {
+   "repo": "zai-org/GLM-4.7-Flash",
+   "family": "glm",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main"
+   ]
+  },
+  "mistral_small31": {
+   "repo": "mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+   "family": "mistral",
+   "chat_template_kwargs": {},
+   "roles": [
+    "main"
+   ]
+  },
+  "gpt_oss_20b": {
+   "repo": "openai/gpt-oss-20b",
+   "family": "gpt-oss",
+   "chat_template_kwargs": {
+    "reasoning_effort": "low"
+   },
+   "output_parser": "harmony",
+   "roles": [
+    "main"
+   ],
+   "note": "reasoning cannot be turned off; lowest effort, final channel scored, analysis kept separately"
+  },
+  "phi4": {
+   "repo": "microsoft/phi-4",
+   "family": "phi",
+   "chat_template_kwargs": {},
+   "roles": [
+    "main"
+   ]
+  },
+  "seed_oss_36b": {
+   "repo": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+   "family": "seed",
+   "chat_template_kwargs": {
+    "thinking_budget": 0
+   },
+   "roles": [
+    "main"
+   ]
+  },
+  "nemotron3_nano30b": {
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+   "family": "nemotron",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   },
+   "roles": [
+    "main"
+   ]
+  },
+  "falcon_h1_34b": {
+   "repo": "tiiuae/Falcon-H1-34B-Instruct",
+   "family": "falcon",
+   "chat_template_kwargs": {},
+   "roles": [
+    "main"
+   ]
+  }
  }
 }

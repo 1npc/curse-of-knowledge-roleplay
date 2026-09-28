@@ -9,13 +9,13 @@
 #SBATCH --output=/scratch-shared/%u/over-comprehension/logs/gen-%j.log
 # Generate replies for several models, one after another, on one H100.
 # Usage (from $OC/code/<commit>):
-#   sbatch [--time=HH:MM:SS] harness/run.slurm <run_id> <prompts.jsonl> <location: project|scratch> <model,model,...> [subset.txt]
+#   sbatch [--time=HH:MM:SS] harness/run.slurm <run_id> <prompts.jsonl> <location: auto|project|scratch> <model,model,...> [subset.txt]
+# "auto" uses the verified project copy of a model when there is one and the pinned scratch download otherwise.
 # Each model runs in its own Python process (a fresh vLLM engine). The finished run directory is
 # copied from scratch to the project space at the end, so nothing depends on the 14-day scratch rule.
 set -eo pipefail
-RUN_ID=${1:?run id}; PROMPTS=${2:?prompts}; LOCATION=${3:?project|scratch}; MODELS=${4:?models}; SUBSET=${5:-}
+RUN_ID=${1:?run id}; PROMPTS=${2:?prompts}; LOCATION=${3:?auto|project|scratch}; MODELS=${4:?models}; SUBSET=${5:-}
 CODE=${SLURM_SUBMIT_DIR:?}
-if [ "$LOCATION" = scratch ]; then export OC_VENV=/gpfs/scratch1/shared/qmeng1/npcbank-judge/venv; fi
 source "$CODE/harness/env.sh"
 set -u
 UUID=$(nvidia-smi --query-gpu=uuid --format=csv,noheader)
