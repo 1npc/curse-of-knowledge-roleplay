@@ -1,0 +1,38 @@
+{
+ "note": "Idioms and names masked from the canary-matching copy before alias matching (proposal 6.1 step 4). Each entry is a case-insensitive regular expression; a match is replaced by a placeholder so its value word is not counted. Drafted 2026-09-28; reviewed by the conductor before the 10/3 freeze.",
+ "idioms": [
+  "cross (?:that|the|this) bridge", "burn(?:ed|t|ing|s)? (?:my|your|his|her|our|their|the|those|that|any|all|no) bridges?",
+  "bridges? (?:the|a) gap", "water under the bridge", "bridges? to nowhere",
+  "hit(?:s|ting)? the roof", "rais(?:e|ed|es|ing) the roof", "through the roof",
+  "roofs? over (?:my|your|his|her|our|their|a) heads?", "under (?:one|the same|my|your|our|this) roof",
+  "poor as a church mouse", "church and state",
+  "old[- ]school", "school of hard knocks", "school(?:s|ed|ing)? (?:you|him|her|them|me|us)\\b",
+  "kitchen sink", "hell'?s kitchen", "out of the kitchen", "(?:too many )?cooks in the kitchen",
+  "sewer rats?",
+  "in the same boat", "rock(?:s|ed|ing)? the boat", "miss(?:ed|es|ing)? the boat", "float(?:s)? (?:your|my|his|her|their|our) boat",
+  "ship(?:s)? (?:out|off|it|them|this|that|him|her|you|me|us)\\b", "shape up or ship out",
+  "dock(?:s|ed|ing)? (?:my|your|his|her|our|their) pay",
+  "corporate ladder", "(?:climb|climbs|climbed|climbing) the (?:corporate |social )?ladder",
+  "junkyard dogs?", "bargain basement",
+  "umbrella (?:term|corporation|organization|group)", "under the umbrella of",
+  "kid gloves", "gloves? (?:are|come|came|is) off", "(?:take|took|taking) the gloves off", "fits? like a glove", "hand in glove",
+  "push(?:es|ed|ing)? the envelope", "back[- ]of[- ]the[- ]envelope", "back of an envelope",
+  "wet blankets?", "blanket (?:statement|ban|approach|policy|immunity|coverage)", "security blanket",
+  "hammer(?:s|ed|ing)? (?:it )?home", "hammer(?:s|ed|ing)? (?:it |this |that |things )?out", "under the hammer",
+  "hammer and sickle", "hammer time", "when all you have is a hammer",
+  "pillow talk",
+  "if the shoe fits", "the other shoe", "shoe-?in", "in (?:my|your|his|her|their|our) shoes", "on a shoestring",
+  "new broom",
+  "coats? of paint", "sugar-coat(?:s|ed|ing)?", "samurai jackets?",
+  "smoke and mirrors", "mirror images?",
+  "basket cases?", "eggs in (?:one|the same) basket",
+  "rock,? paper,? scissors",
+  "(?:in|out of|let the cat out of) the bag", "bags? of (?:tricks|bones)", "mixed bag", "body ?bags?", "douche ?bags?", "old bag",
+  "(?:think|thinking) outside (?:of )?the box", "out of the box", "(?:check|checks|checked|checking|tick|ticks|ticked|ticking) (?:all |off )?(?:the |those )?boxes",
+  "black box(?:es)?", "box(?:es)? (?:him|her|them|us|you|me) in", "box office",
+  "(?:pull|pulls|pulled) up a chair"
+ ],
+ "names": [
+  "Arasaka Waterfront", "Kabuki Market", "Cherry Blossom Market", "Grand Imperial Mall", "Konpeki Plaza"
+ ]
+}

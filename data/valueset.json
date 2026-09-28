@@ -1,0 +1,911 @@
+{
+ "version": "valueset-0.1-draft",
+ "note": "32 candidate values (16 PLACE, 16 OBJECT). 12 per type become formal values and 4 stay as backups after the word-form guessability test (proposal 5.4 rule 9). ja readings are hiragana, zh readings are toneless pinyin with space-separated syllables. 'en' lists every English alias the scorer matches (inflections spelled out; no lemmatizer). 'alt' forms are accepted by the L-language alias table only; stimuli use 'form'. Drafted 2026-09-28 by the item session; not yet native-checked.",
+ "es_variety": "neutral Latin American (Night City); the es checker may substitute regional forms, which then re-enter the screen",
+ "values": [
+  {
+   "id": "bridge",
+   "type": "PLACE",
+   "en": [
+    "bridge",
+    "bridges"
+   ],
+   "ja": {
+    "form": "橋",
+    "reading": "はし"
+   },
+   "zh": {
+    "form": "桥",
+    "reading": "qiao"
+   },
+   "es": {
+    "form": "puente",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "church",
+   "type": "PLACE",
+   "en": [
+    "church",
+    "churches",
+    "chapel",
+    "chapels",
+    "cathedral",
+    "cathedrals"
+   ],
+   "ja": {
+    "form": "教会",
+    "reading": "きょうかい"
+   },
+   "zh": {
+    "form": "教堂",
+    "reading": "jiao tang"
+   },
+   "es": {
+    "form": "iglesia",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "roof",
+   "type": "PLACE",
+   "en": [
+    "roof",
+    "roofs",
+    "rooftop",
+    "rooftops"
+   ],
+   "ja": {
+    "form": "屋上",
+    "reading": "おくじょう",
+    "alt": [
+     {
+      "form": "屋根",
+      "reading": "やね"
+     }
+    ]
+   },
+   "zh": {
+    "form": "屋顶",
+    "reading": "wu ding",
+    "alt": [
+     {
+      "form": "楼顶",
+      "reading": "lou ding"
+     },
+     {
+      "form": "天台",
+      "reading": "tian tai"
+     }
+    ]
+   },
+   "es": {
+    "form": "tejado",
+    "gender": "m",
+    "alt": [
+     {
+      "form": "azotea"
+     },
+     {
+      "form": "techo"
+     }
+    ]
+   }
+  },
+  {
+   "id": "pier",
+   "type": "PLACE",
+   "en": [
+    "pier",
+    "piers",
+    "dock",
+    "docks",
+    "wharf",
+    "wharves",
+    "jetty",
+    "jetties"
+   ],
+   "ja": {
+    "form": "桟橋",
+    "reading": "さんばし",
+    "alt": [
+     {
+      "form": "埠頭",
+      "reading": "ふとう"
+     }
+    ]
+   },
+   "zh": {
+    "form": "码头",
+    "reading": "ma tou"
+   },
+   "es": {
+    "form": "muelle",
+    "gender": "m"
+   },
+   "notes": "Scene text must not say 'dock' (loading dock etc.): it is an alias."
+  },
+  {
+   "id": "basement",
+   "type": "PLACE",
+   "en": [
+    "basement",
+    "basements",
+    "cellar",
+    "cellars"
+   ],
+   "ja": {
+    "form": "地下室",
+    "reading": "ちかしつ"
+   },
+   "zh": {
+    "form": "地下室",
+    "reading": "di xia shi"
+   },
+   "es": {
+    "form": "sótano",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "warehouse",
+   "type": "PLACE",
+   "en": [
+    "warehouse",
+    "warehouses",
+    "storehouse",
+    "storehouses",
+    "storeroom",
+    "storerooms",
+    "storage room",
+    "storage rooms"
+   ],
+   "ja": {
+    "form": "倉庫",
+    "reading": "そうこ"
+   },
+   "zh": {
+    "form": "仓库",
+    "reading": "cang ku"
+   },
+   "es": {
+    "form": "almacén",
+    "gender": "m",
+    "alt": [
+     {
+      "form": "bodega"
+     }
+    ]
+   }
+  },
+  {
+   "id": "stairwell",
+   "type": "PLACE",
+   "en": [
+    "stairwell",
+    "stairwells",
+    "stairs",
+    "staircase",
+    "staircases",
+    "stairway",
+    "stairways",
+    "ladder",
+    "ladders"
+   ],
+   "ja": {
+    "form": "階段",
+    "reading": "かいだん"
+   },
+   "zh": {
+    "form": "楼梯",
+    "reading": "lou ti"
+   },
+   "es": {
+    "form": "escalera",
+    "gender": "f"
+   },
+   "notes": "'ladder' is listed because escalera also means ladder; a reply saying ladder shows the Spanish was understood."
+  },
+  {
+   "id": "school",
+   "type": "PLACE",
+   "en": [
+    "school",
+    "schools",
+    "schoolyard",
+    "schoolhouse"
+   ],
+   "ja": {
+    "form": "学校",
+    "reading": "がっこう"
+   },
+   "zh": {
+    "form": "学校",
+    "reading": "xue xiao"
+   },
+   "es": {
+    "form": "escuela",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "kitchen",
+   "type": "PLACE",
+   "en": [
+    "kitchen",
+    "kitchens"
+   ],
+   "ja": {
+    "form": "台所",
+    "reading": "だいどころ",
+    "alt": [
+     {
+      "form": "厨房",
+      "reading": "ちゅうぼう"
+     }
+    ]
+   },
+   "zh": {
+    "form": "厨房",
+    "reading": "chu fang"
+   },
+   "es": {
+    "form": "cocina",
+    "gender": "f"
+   },
+   "familiarity_warning": {
+    "es": "cocina appears in US restaurant names"
+   }
+  },
+  {
+   "id": "sewer",
+   "type": "PLACE",
+   "en": [
+    "sewer",
+    "sewers",
+    "storm drain",
+    "storm drains"
+   ],
+   "ja": {
+    "form": "下水道",
+    "reading": "げすいどう"
+   },
+   "zh": {
+    "form": "下水道",
+    "reading": "xia shui dao"
+   },
+   "es": {
+    "form": "alcantarilla",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "hallway",
+   "type": "PLACE",
+   "en": [
+    "hallway",
+    "hallways",
+    "corridor",
+    "corridors"
+   ],
+   "ja": {
+    "form": "廊下",
+    "reading": "ろうか"
+   },
+   "zh": {
+    "form": "走廊",
+    "reading": "zou lang"
+   },
+   "es": {
+    "form": "pasillo",
+    "gender": "m"
+   },
+   "notes": "'hall' is not an alias (town hall, concert hall).",
+   "guessability_flag": {
+    "es": "pasillo shares pas- with English passage; the guessability test decides"
+   }
+  },
+  {
+   "id": "library",
+   "type": "PLACE",
+   "en": [
+    "library",
+    "libraries"
+   ],
+   "ja": {
+    "form": "図書館",
+    "reading": "としょかん"
+   },
+   "zh": {
+    "form": "图书馆",
+    "reading": "tu shu guan"
+   },
+   "es": {
+    "form": "biblioteca",
+    "gender": "f"
+   },
+   "familiarity_warning": {
+    "es": "biblioteca may be guessed via bibliography"
+   }
+  },
+  {
+   "id": "pawnshop",
+   "type": "PLACE",
+   "en": [
+    "pawnshop",
+    "pawnshops",
+    "pawn shop",
+    "pawn shops",
+    "pawnbroker",
+    "pawnbrokers"
+   ],
+   "ja": {
+    "form": "質屋",
+    "reading": "しちや"
+   },
+   "zh": {
+    "form": "当铺",
+    "reading": "dang pu"
+   },
+   "es": {
+    "form": "casa de empeño",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "boat",
+   "type": "PLACE",
+   "en": [
+    "boat",
+    "boats",
+    "ship",
+    "ships"
+   ],
+   "ja": {
+    "form": "船",
+    "reading": "ふね"
+   },
+   "zh": {
+    "form": "船",
+    "reading": "chuan"
+   },
+   "es": {
+    "form": "barco",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "junkyard",
+   "type": "PLACE",
+   "en": [
+    "junkyard",
+    "junkyards",
+    "scrapyard",
+    "scrapyards",
+    "scrap yard",
+    "scrap yards",
+    "salvage yard",
+    "salvage yards",
+    "wrecking yard"
+   ],
+   "ja": {
+    "form": "廃車置き場",
+    "reading": "はいしゃおきば"
+   },
+   "zh": {
+    "form": "废车场",
+    "reading": "fei che chang"
+   },
+   "es": {
+    "form": "chatarrería",
+    "gender": "f",
+    "alt": [
+     {
+      "form": "deshuesadero"
+     },
+     {
+      "form": "desguace"
+     }
+    ]
+   }
+  },
+  {
+   "id": "parking_lot",
+   "type": "PLACE",
+   "en": [
+    "parking lot",
+    "parking lots",
+    "parking garage",
+    "parking garages",
+    "car park",
+    "car parks",
+    "parking structure",
+    "parking structures"
+   ],
+   "ja": {
+    "form": "駐車場",
+    "reading": "ちゅうしゃじょう"
+   },
+   "zh": {
+    "form": "停车场",
+    "reading": "ting che chang"
+   },
+   "es": {
+    "form": "estacionamiento",
+    "gender": "m",
+    "alt": [
+     {
+      "form": "aparcamiento"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bag",
+   "type": "OBJECT",
+   "en": [
+    "bag",
+    "bags",
+    "sack",
+    "sacks",
+    "handbag",
+    "handbags",
+    "briefcase",
+    "briefcases",
+    "satchel",
+    "satchels",
+    "pouch",
+    "pouches"
+   ],
+   "ja": {
+    "form": "かばん",
+    "reading": "かばん",
+    "alt": [
+     {
+      "form": "鞄",
+      "reading": "かばん"
+     }
+    ]
+   },
+   "zh": {
+    "form": "袋子",
+    "reading": "dai zi"
+   },
+   "es": {
+    "form": "bolsa",
+    "gender": "f",
+    "alt": [
+     {
+      "form": "bolso"
+     }
+    ]
+   },
+   "notes": "zh 包 rejected (bao vs bag 0.67)."
+  },
+  {
+   "id": "umbrella",
+   "type": "OBJECT",
+   "en": [
+    "umbrella",
+    "umbrellas",
+    "brolly"
+   ],
+   "ja": {
+    "form": "傘",
+    "reading": "かさ"
+   },
+   "zh": {
+    "form": "伞",
+    "reading": "san",
+    "alt": [
+     {
+      "form": "雨伞",
+      "reading": "yu san"
+     }
+    ]
+   },
+   "es": {
+    "form": "paraguas",
+    "gender": "m"
+   },
+   "guessability_flag": {
+    "es": "paraguas shares para- with English parasol; the guessability test decides"
+   }
+  },
+  {
+   "id": "box",
+   "type": "OBJECT",
+   "en": [
+    "box",
+    "boxes",
+    "crate",
+    "crates",
+    "carton",
+    "cartons"
+   ],
+   "ja": {
+    "form": "箱",
+    "reading": "はこ"
+   },
+   "zh": {
+    "form": "箱子",
+    "reading": "xiang zi"
+   },
+   "es": {
+    "form": "caja",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "glove",
+   "type": "OBJECT",
+   "en": [
+    "glove",
+    "gloves",
+    "mitten",
+    "mittens"
+   ],
+   "ja": {
+    "form": "手袋",
+    "reading": "てぶくろ"
+   },
+   "zh": {
+    "form": "手套",
+    "reading": "shou tao"
+   },
+   "es": {
+    "form": "guante",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "envelope",
+   "type": "OBJECT",
+   "en": [
+    "envelope",
+    "envelopes"
+   ],
+   "ja": {
+    "form": "封筒",
+    "reading": "ふうとう"
+   },
+   "zh": {
+    "form": "信封",
+    "reading": "xin feng"
+   },
+   "es": {
+    "form": "sobre",
+    "gender": "m"
+   },
+   "notes": "es sobre is also a preposition; stimuli always use it with an article."
+  },
+  {
+   "id": "blanket",
+   "type": "OBJECT",
+   "en": [
+    "blanket",
+    "blankets",
+    "rug",
+    "rugs"
+   ],
+   "ja": {
+    "form": "毛布",
+    "reading": "もうふ"
+   },
+   "zh": {
+    "form": "毯子",
+    "reading": "tan zi"
+   },
+   "es": {
+    "form": "manta",
+    "gender": "f",
+    "alt": [
+     {
+      "form": "cobija"
+     }
+    ]
+   },
+   "familiarity_warning": {
+    "es": "manta is also an English word (manta ray)"
+   },
+   "notes": "zh 毯子 also covers rugs, so 'rug' is an alias."
+  },
+  {
+   "id": "hammer",
+   "type": "OBJECT",
+   "en": [
+    "hammer",
+    "hammers",
+    "mallet",
+    "mallets"
+   ],
+   "ja": {
+    "form": "金槌",
+    "reading": "かなづち"
+   },
+   "zh": {
+    "form": "锤子",
+    "reading": "chui zi"
+   },
+   "es": {
+    "form": "martillo",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "pillow",
+   "type": "OBJECT",
+   "en": [
+    "pillow",
+    "pillows"
+   ],
+   "ja": {
+    "form": "枕",
+    "reading": "まくら"
+   },
+   "zh": {
+    "form": "枕头",
+    "reading": "zhen tou"
+   },
+   "es": {
+    "form": "almohada",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "shoe",
+   "type": "OBJECT",
+   "en": [
+    "shoe",
+    "shoes",
+    "sneaker",
+    "sneakers",
+    "footwear"
+   ],
+   "ja": {
+    "form": "靴",
+    "reading": "くつ"
+   },
+   "zh": {
+    "form": "鞋",
+    "reading": "xie",
+    "alt": [
+     {
+      "form": "鞋子",
+      "reading": "xie zi"
+     }
+    ]
+   },
+   "es": {
+    "form": "zapato",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "broom",
+   "type": "OBJECT",
+   "en": [
+    "broom",
+    "brooms"
+   ],
+   "ja": {
+    "form": "ほうき",
+    "reading": "ほうき",
+    "alt": [
+     {
+      "form": "箒",
+      "reading": "ほうき"
+     }
+    ]
+   },
+   "zh": {
+    "form": "扫帚",
+    "reading": "sao zhou",
+    "alt": [
+     {
+      "form": "扫把",
+      "reading": "sao ba"
+     }
+    ]
+   },
+   "es": {
+    "form": "escoba",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "coat",
+   "type": "OBJECT",
+   "en": [
+    "coat",
+    "coats",
+    "jacket",
+    "jackets",
+    "overcoat",
+    "overcoats"
+   ],
+   "ja": {
+    "form": "上着",
+    "reading": "うわぎ"
+   },
+   "zh": {
+    "form": "外套",
+    "reading": "wai tao"
+   },
+   "es": {
+    "form": "abrigo",
+    "gender": "m",
+    "alt": [
+     {
+      "form": "chamarra"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mirror",
+   "type": "OBJECT",
+   "en": [
+    "mirror",
+    "mirrors",
+    "looking glass"
+   ],
+   "ja": {
+    "form": "鏡",
+    "reading": "かがみ"
+   },
+   "zh": {
+    "form": "镜子",
+    "reading": "jing zi"
+   },
+   "es": {
+    "form": "espejo",
+    "gender": "m"
+   }
+  },
+  {
+   "id": "basket",
+   "type": "OBJECT",
+   "en": [
+    "basket",
+    "baskets"
+   ],
+   "ja": {
+    "form": "かご",
+    "reading": "かご",
+    "alt": [
+     {
+      "form": "籠",
+      "reading": "かご"
+     }
+    ]
+   },
+   "zh": {
+    "form": "篮子",
+    "reading": "lan zi"
+   },
+   "es": {
+    "form": "cesta",
+    "gender": "f",
+    "alt": [
+     {
+      "form": "canasta"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wallet",
+   "type": "OBJECT",
+   "en": [
+    "wallet",
+    "wallets",
+    "billfold",
+    "billfolds",
+    "purse",
+    "purses"
+   ],
+   "ja": {
+    "form": "財布",
+    "reading": "さいふ"
+   },
+   "zh": {
+    "form": "钱包",
+    "reading": "qian bao"
+   },
+   "es": {
+    "form": "cartera",
+    "gender": "f",
+    "alt": [
+     {
+      "form": "billetera"
+     }
+    ]
+   },
+   "notes": "es cartera can mean handbag in Spain; in Latin American usage it is mainly wallet. 'purse' is a wallet alias and not a bag alias. The es checker decides between cartera and billetera."
+  },
+  {
+   "id": "chair",
+   "type": "OBJECT",
+   "en": [
+    "chair",
+    "chairs",
+    "armchair",
+    "armchairs"
+   ],
+   "ja": {
+    "form": "椅子",
+    "reading": "いす"
+   },
+   "zh": {
+    "form": "椅子",
+    "reading": "yi zi"
+   },
+   "es": {
+    "form": "silla",
+    "gender": "f"
+   }
+  },
+  {
+   "id": "scissors",
+   "type": "OBJECT",
+   "en": [
+    "scissors",
+    "shears"
+   ],
+   "ja": {
+    "form": "はさみ",
+    "reading": "はさみ",
+    "alt": [
+     {
+      "form": "鋏",
+      "reading": "はさみ"
+     }
+    ]
+   },
+   "zh": {
+    "form": "剪刀",
+    "reading": "jian dao"
+   },
+   "es": {
+    "form": "tijeras",
+    "gender": "f",
+    "number": "pl"
+   },
+   "notes": "ja はさみ after the particle に reads as には+さみ; stimuli must not place it right after に."
+  }
+ ],
+ "confusable_pairs": {
+  "ja": [
+   [
+    "pier",
+    "bridge",
+    "桟橋 contains 橋"
+   ],
+   [
+    "glove",
+    "bag",
+    "手袋 contains 袋 (bag)"
+   ],
+   [
+    "parking_lot",
+    "junkyard",
+    "駐車場 and 廃車置き場 share 車"
+   ]
+  ],
+  "zh": [
+   [
+    "wallet",
+    "bag",
+    "钱包 contains 包 (bag)"
+   ],
+   [
+    "parking_lot",
+    "junkyard",
+    "停车场 and 废车场 share 车场"
+   ]
+  ],
+  "es": []
+ }
+}

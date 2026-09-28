@@ -1,0 +1,482 @@
+{
+ "Q01": {
+  "value": "blanket",
+  "lang": "zh",
+  "answer": "blanket"
+ },
+ "Q02": {
+  "value": "envelope",
+  "lang": "zh",
+  "answer": "envelope"
+ },
+ "Q03": {
+  "value": "pillow",
+  "lang": "zh",
+  "answer": "pillow"
+ },
+ "Q04": {
+  "value": "library",
+  "lang": "es",
+  "answer": "library"
+ },
+ "Q05": {
+  "value": "chair",
+  "lang": "zh",
+  "answer": "chair"
+ },
+ "Q06": {
+  "value": "glove",
+  "lang": "zh",
+  "answer": "glove"
+ },
+ "Q07": {
+  "value": "parking_lot",
+  "lang": "zh",
+  "answer": "parking lot"
+ },
+ "Q08": {
+  "value": "broom",
+  "lang": "es",
+  "answer": "broom"
+ },
+ "Q09": {
+  "value": "basket",
+  "lang": "ja",
+  "answer": "basket"
+ },
+ "Q10": {
+  "value": "pawnshop",
+  "lang": "es",
+  "answer": "pawnshop"
+ },
+ "Q11": {
+  "value": "kitchen",
+  "lang": "es",
+  "answer": "kitchen"
+ },
+ "Q12": {
+  "value": "church",
+  "lang": "ja",
+  "answer": "church"
+ },
+ "Q13": {
+  "value": "sewer",
+  "lang": "zh",
+  "answer": "sewer"
+ },
+ "Q14": {
+  "value": "coat",
+  "lang": "es",
+  "answer": "coat"
+ },
+ "Q15": {
+  "value": "library",
+  "lang": "zh",
+  "answer": "library"
+ },
+ "Q16": {
+  "value": "roof",
+  "lang": "ja",
+  "answer": "roof"
+ },
+ "Q17": {
+  "value": "pillow",
+  "lang": "es",
+  "answer": "pillow"
+ },
+ "Q18": {
+  "value": "hammer",
+  "lang": "zh",
+  "answer": "hammer"
+ },
+ "Q19": {
+  "value": "library",
+  "lang": "ja",
+  "answer": "library"
+ },
+ "Q20": {
+  "value": "box",
+  "lang": "es",
+  "answer": "box"
+ },
+ "Q21": {
+  "value": "pillow",
+  "lang": "ja",
+  "answer": "pillow"
+ },
+ "Q22": {
+  "value": "basement",
+  "lang": "zh",
+  "answer": "basement"
+ },
+ "Q23": {
+  "value": "bag",
+  "lang": "ja",
+  "answer": "bag"
+ },
+ "Q24": {
+  "value": "school",
+  "lang": "zh",
+  "answer": "school"
+ },
+ "Q25": {
+  "value": "umbrella",
+  "lang": "es",
+  "answer": "umbrella"
+ },
+ "Q26": {
+  "value": "pawnshop",
+  "lang": "zh",
+  "answer": "pawnshop"
+ },
+ "Q27": {
+  "value": "hammer",
+  "lang": "ja",
+  "answer": "hammer"
+ },
+ "Q28": {
+  "value": "glove",
+  "lang": "ja",
+  "answer": "glove"
+ },
+ "Q29": {
+  "value": "roof",
+  "lang": "es",
+  "answer": "roof"
+ },
+ "Q30": {
+  "value": "shoe",
+  "lang": "es",
+  "answer": "shoe"
+ },
+ "Q31": {
+  "value": "roof",
+  "lang": "zh",
+  "answer": "roof"
+ },
+ "Q32": {
+  "value": "pier",
+  "lang": "zh",
+  "answer": "pier"
+ },
+ "Q33": {
+  "value": "basket",
+  "lang": "es",
+  "answer": "basket"
+ },
+ "Q34": {
+  "value": "mirror",
+  "lang": "es",
+  "answer": "mirror"
+ },
+ "Q35": {
+  "value": "glove",
+  "lang": "es",
+  "answer": "glove"
+ },
+ "Q36": {
+  "value": "umbrella",
+  "lang": "ja",
+  "answer": "umbrella"
+ },
+ "Q37": {
+  "value": "broom",
+  "lang": "ja",
+  "answer": "broom"
+ },
+ "Q38": {
+  "value": "sewer",
+  "lang": "ja",
+  "answer": "sewer"
+ },
+ "Q39": {
+  "value": "box",
+  "lang": "zh",
+  "answer": "box"
+ },
+ "Q40": {
+  "value": "wallet",
+  "lang": "zh",
+  "answer": "wallet"
+ },
+ "Q41": {
+  "value": "boat",
+  "lang": "ja",
+  "answer": "boat"
+ },
+ "Q42": {
+  "value": "school",
+  "lang": "ja",
+  "answer": "school"
+ },
+ "Q43": {
+  "value": "wallet",
+  "lang": "es",
+  "answer": "wallet"
+ },
+ "Q44": {
+  "value": "bag",
+  "lang": "zh",
+  "answer": "bag"
+ },
+ "Q45": {
+  "value": "junkyard",
+  "lang": "ja",
+  "answer": "junkyard"
+ },
+ "Q46": {
+  "value": "coat",
+  "lang": "ja",
+  "answer": "coat"
+ },
+ "Q47": {
+  "value": "chair",
+  "lang": "ja",
+  "answer": "chair"
+ },
+ "Q48": {
+  "value": "hammer",
+  "lang": "es",
+  "answer": "hammer"
+ },
+ "Q49": {
+  "value": "junkyard",
+  "lang": "es",
+  "answer": "junkyard"
+ },
+ "Q50": {
+  "value": "kitchen",
+  "lang": "zh",
+  "answer": "kitchen"
+ },
+ "Q51": {
+  "value": "envelope",
+  "lang": "es",
+  "answer": "envelope"
+ },
+ "Q52": {
+  "value": "coat",
+  "lang": "zh",
+  "answer": "coat"
+ },
+ "Q53": {
+  "value": "umbrella",
+  "lang": "zh",
+  "answer": "umbrella"
+ },
+ "Q54": {
+  "value": "basement",
+  "lang": "es",
+  "answer": "basement"
+ },
+ "Q55": {
+  "value": "stairwell",
+  "lang": "zh",
+  "answer": "stairwell"
+ },
+ "Q56": {
+  "value": "blanket",
+  "lang": "ja",
+  "answer": "blanket"
+ },
+ "Q57": {
+  "value": "pier",
+  "lang": "es",
+  "answer": "pier"
+ },
+ "Q58": {
+  "value": "pawnshop",
+  "lang": "ja",
+  "answer": "pawnshop"
+ },
+ "Q59": {
+  "value": "warehouse",
+  "lang": "es",
+  "answer": "warehouse"
+ },
+ "Q60": {
+  "value": "stairwell",
+  "lang": "es",
+  "answer": "stairwell"
+ },
+ "Q61": {
+  "value": "blanket",
+  "lang": "es",
+  "answer": "blanket"
+ },
+ "Q62": {
+  "value": "wallet",
+  "lang": "ja",
+  "answer": "wallet"
+ },
+ "Q63": {
+  "value": "scissors",
+  "lang": "zh",
+  "answer": "scissors"
+ },
+ "Q64": {
+  "value": "sewer",
+  "lang": "es",
+  "answer": "sewer"
+ },
+ "Q65": {
+  "value": "warehouse",
+  "lang": "ja",
+  "answer": "warehouse"
+ },
+ "Q66": {
+  "value": "bridge",
+  "lang": "ja",
+  "answer": "bridge"
+ },
+ "Q67": {
+  "value": "box",
+  "lang": "ja",
+  "answer": "box"
+ },
+ "Q68": {
+  "value": "mirror",
+  "lang": "ja",
+  "answer": "mirror"
+ },
+ "Q69": {
+  "value": "junkyard",
+  "lang": "zh",
+  "answer": "junkyard"
+ },
+ "Q70": {
+  "value": "parking_lot",
+  "lang": "es",
+  "answer": "parking lot"
+ },
+ "Q71": {
+  "value": "church",
+  "lang": "zh",
+  "answer": "church"
+ },
+ "Q72": {
+  "value": "school",
+  "lang": "es",
+  "answer": "school"
+ },
+ "Q73": {
+  "value": "boat",
+  "lang": "zh",
+  "answer": "boat"
+ },
+ "Q74": {
+  "value": "shoe",
+  "lang": "ja",
+  "answer": "shoe"
+ },
+ "Q75": {
+  "value": "warehouse",
+  "lang": "zh",
+  "answer": "warehouse"
+ },
+ "Q76": {
+  "value": "scissors",
+  "lang": "es",
+  "answer": "scissors"
+ },
+ "Q77": {
+  "value": "envelope",
+  "lang": "ja",
+  "answer": "envelope"
+ },
+ "Q78": {
+  "value": "kitchen",
+  "lang": "ja",
+  "answer": "kitchen"
+ },
+ "Q79": {
+  "value": "broom",
+  "lang": "zh",
+  "answer": "broom"
+ },
+ "Q80": {
+  "value": "basket",
+  "lang": "zh",
+  "answer": "basket"
+ },
+ "Q81": {
+  "value": "basement",
+  "lang": "ja",
+  "answer": "basement"
+ },
+ "Q82": {
+  "value": "bridge",
+  "lang": "zh",
+  "answer": "bridge"
+ },
+ "Q83": {
+  "value": "parking_lot",
+  "lang": "ja",
+  "answer": "parking lot"
+ },
+ "Q84": {
+  "value": "chair",
+  "lang": "es",
+  "answer": "chair"
+ },
+ "Q85": {
+  "value": "bag",
+  "lang": "es",
+  "answer": "bag"
+ },
+ "Q86": {
+  "value": "scissors",
+  "lang": "ja",
+  "answer": "scissors"
+ },
+ "Q87": {
+  "value": "pier",
+  "lang": "ja",
+  "answer": "pier"
+ },
+ "Q88": {
+  "value": "hallway",
+  "lang": "zh",
+  "answer": "hallway"
+ },
+ "Q89": {
+  "value": "church",
+  "lang": "es",
+  "answer": "church"
+ },
+ "Q90": {
+  "value": "bridge",
+  "lang": "es",
+  "answer": "bridge"
+ },
+ "Q91": {
+  "value": "boat",
+  "lang": "es",
+  "answer": "boat"
+ },
+ "Q92": {
+  "value": "hallway",
+  "lang": "es",
+  "answer": "hallway"
+ },
+ "Q93": {
+  "value": "mirror",
+  "lang": "zh",
+  "answer": "mirror"
+ },
+ "Q94": {
+  "value": "hallway",
+  "lang": "ja",
+  "answer": "hallway"
+ },
+ "Q95": {
+  "value": "stairwell",
+  "lang": "ja",
+  "answer": "stairwell"
+ },
+ "Q96": {
+  "value": "shoe",
+  "lang": "zh",
+  "answer": "shoe"
+ }
+}

@@ -1,0 +1,97 @@
+qid,word,romanization,language,option_1,option_2,option_3,option_4,option_5,option_6,option_7,option_8
+Q01,毯子,tanzi,Chinese,hammer,blanket,bag,shoe,coat,box,mirror,chair
+Q02,信封,xinfeng,Chinese,glove,mirror,basket,envelope,hammer,chair,broom,wallet
+Q03,枕头,zhentou,Chinese,envelope,umbrella,pillow,wallet,basket,bag,chair,glove
+Q04,biblioteca,,Spanish,pawnshop,library,church,hallway,parking lot,pier,basement,warehouse
+Q05,椅子,yizi,Chinese,glove,envelope,wallet,umbrella,hammer,blanket,basket,chair
+Q06,手套,shoutao,Chinese,wallet,scissors,box,basket,glove,broom,chair,coat
+Q07,停车场,tingchechang,Chinese,pier,stairwell,parking lot,pawnshop,warehouse,junkyard,sewer,roof
+Q08,escoba,,Spanish,envelope,box,shoe,mirror,wallet,coat,broom,glove
+Q09,かご,kago,Japanese,pillow,wallet,blanket,basket,mirror,broom,shoe,bag
+Q10,casa de empeño,,Spanish,library,pier,church,pawnshop,junkyard,bridge,school,stairwell
+Q11,cocina,,Spanish,pawnshop,school,kitchen,basement,church,hallway,sewer,stairwell
+Q12,教会,kyoukai,Japanese,boat,stairwell,bridge,church,sewer,library,school,warehouse
+Q13,下水道,xiashuidao,Chinese,pawnshop,pier,bridge,warehouse,hallway,roof,sewer,boat
+Q14,abrigo,,Spanish,glove,hammer,envelope,coat,box,mirror,basket,scissors
+Q15,图书馆,tushuguan,Chinese,hallway,junkyard,boat,kitchen,roof,bridge,pawnshop,library
+Q16,屋上,okujou,Japanese,roof,warehouse,parking lot,junkyard,sewer,pier,bridge,boat
+Q17,almohada,,Spanish,shoe,umbrella,pillow,hammer,mirror,basket,chair,blanket
+Q18,锤子,chuizi,Chinese,coat,envelope,bag,shoe,hammer,wallet,box,chair
+Q19,図書館,toshokan,Japanese,pawnshop,kitchen,stairwell,sewer,library,church,school,hallway
+Q20,caja,,Spanish,broom,coat,basket,scissors,envelope,box,mirror,pillow
+Q21,枕,makura,Japanese,wallet,pillow,umbrella,basket,box,broom,mirror,blanket
+Q22,地下室,dixiashi,Chinese,kitchen,sewer,junkyard,hallway,church,basement,boat,pawnshop
+Q23,かばん,kaban,Japanese,pillow,basket,envelope,mirror,glove,scissors,bag,box
+Q24,学校,xuexiao,Chinese,pawnshop,bridge,boat,roof,sewer,junkyard,school,library
+Q25,paraguas,,Spanish,broom,box,hammer,umbrella,wallet,shoe,mirror,pillow
+Q26,当铺,dangpu,Chinese,bridge,hallway,pier,library,boat,sewer,pawnshop,kitchen
+Q27,金槌,kanazuchi,Japanese,glove,envelope,chair,mirror,broom,hammer,bag,box
+Q28,手袋,tebukuro,Japanese,blanket,hammer,scissors,glove,mirror,pillow,coat,basket
+Q29,tejado,,Spanish,warehouse,bridge,pawnshop,basement,library,junkyard,roof,parking lot
+Q30,zapato,,Spanish,pillow,chair,umbrella,basket,scissors,shoe,box,envelope
+Q31,屋顶,wuding,Chinese,pawnshop,sewer,church,stairwell,boat,roof,pier,hallway
+Q32,码头,matou,Chinese,pawnshop,hallway,pier,sewer,school,library,boat,parking lot
+Q33,cesta,,Spanish,scissors,blanket,coat,broom,glove,basket,mirror,chair
+Q34,espejo,,Spanish,umbrella,blanket,pillow,envelope,chair,glove,basket,mirror
+Q35,guante,,Spanish,coat,hammer,mirror,wallet,box,blanket,envelope,glove
+Q36,傘,kasa,Japanese,umbrella,chair,glove,coat,wallet,shoe,hammer,mirror
+Q37,ほうき,houki,Japanese,coat,scissors,glove,pillow,mirror,umbrella,broom,wallet
+Q38,下水道,gesuidou,Japanese,bridge,warehouse,sewer,school,basement,kitchen,hallway,stairwell
+Q39,箱子,xiangzi,Chinese,mirror,umbrella,scissors,wallet,basket,box,blanket,coat
+Q40,钱包,qianbao,Chinese,basket,mirror,wallet,bag,pillow,glove,blanket,broom
+Q41,船,fune,Japanese,library,kitchen,boat,warehouse,pier,stairwell,bridge,school
+Q42,学校,gakkou,Japanese,pier,church,hallway,warehouse,library,school,bridge,parking lot
+Q43,cartera,,Spanish,glove,coat,scissors,blanket,envelope,mirror,wallet,broom
+Q44,袋子,daizi,Chinese,bag,pillow,chair,box,mirror,hammer,envelope,umbrella
+Q45,廃車置き場,haishaokiba,Japanese,basement,stairwell,boat,bridge,roof,warehouse,school,junkyard
+Q46,上着,uwagi,Japanese,coat,blanket,shoe,wallet,glove,envelope,mirror,broom
+Q47,椅子,isu,Japanese,pillow,wallet,chair,bag,broom,mirror,glove,envelope
+Q48,martillo,,Spanish,hammer,box,chair,basket,broom,wallet,umbrella,bag
+Q49,chatarrería,,Spanish,roof,stairwell,sewer,kitchen,warehouse,basement,junkyard,school
+Q50,厨房,chufang,Chinese,library,school,boat,pawnshop,parking lot,junkyard,kitchen,sewer
+Q51,sobre,,Spanish,coat,hammer,envelope,broom,wallet,blanket,shoe,glove
+Q52,外套,waitao,Chinese,broom,scissors,pillow,glove,wallet,coat,mirror,umbrella
+Q53,伞,san,Chinese,umbrella,envelope,wallet,coat,hammer,blanket,mirror,scissors
+Q54,sótano,,Spanish,church,library,basement,kitchen,sewer,roof,hallway,junkyard
+Q55,楼梯,louti,Chinese,library,stairwell,junkyard,bridge,basement,church,kitchen,sewer
+Q56,毛布,moufu,Japanese,bag,box,envelope,broom,chair,shoe,basket,blanket
+Q57,muelle,,Spanish,school,kitchen,pier,warehouse,boat,library,roof,church
+Q58,質屋,shichiya,Japanese,sewer,pawnshop,warehouse,library,stairwell,church,roof,kitchen
+Q59,almacén,,Spanish,pawnshop,roof,pier,boat,stairwell,library,warehouse,church
+Q60,escalera,,Spanish,school,boat,stairwell,library,kitchen,junkyard,warehouse,sewer
+Q61,manta,,Spanish,blanket,envelope,broom,shoe,scissors,umbrella,mirror,hammer
+Q62,財布,saifu,Japanese,hammer,blanket,pillow,mirror,box,broom,coat,wallet
+Q63,剪刀,jiandao,Chinese,blanket,chair,box,bag,shoe,scissors,wallet,umbrella
+Q64,alcantarilla,,Spanish,kitchen,junkyard,basement,library,hallway,school,sewer,roof
+Q65,倉庫,souko,Japanese,church,warehouse,boat,parking lot,roof,basement,junkyard,school
+Q66,橋,hashi,Japanese,basement,library,pawnshop,roof,sewer,church,warehouse,bridge
+Q67,箱,hako,Japanese,basket,broom,bag,wallet,glove,chair,mirror,box
+Q68,鏡,kagami,Japanese,basket,mirror,pillow,shoe,bag,glove,blanket,broom
+Q69,废车场,feichechang,Chinese,pier,library,basement,stairwell,roof,boat,school,junkyard
+Q70,estacionamiento,,Spanish,parking lot,pier,sewer,stairwell,church,boat,pawnshop,school
+Q71,教堂,jiaotang,Chinese,boat,hallway,pawnshop,junkyard,church,school,library,parking lot
+Q72,escuela,,Spanish,school,junkyard,library,kitchen,pier,parking lot,church,basement
+Q73,船,chuan,Chinese,school,warehouse,sewer,hallway,parking lot,pier,pawnshop,boat
+Q74,靴,kutsu,Japanese,envelope,pillow,broom,wallet,shoe,umbrella,basket,blanket
+Q75,仓库,cangku,Chinese,church,library,warehouse,pawnshop,sewer,parking lot,kitchen,school
+Q76,tijeras,,Spanish,scissors,pillow,box,envelope,mirror,glove,basket,umbrella
+Q77,封筒,fuutou,Japanese,envelope,broom,shoe,basket,mirror,pillow,glove,blanket
+Q78,台所,daidokoro,Japanese,boat,school,library,kitchen,parking lot,pier,roof,stairwell
+Q79,扫帚,saozhou,Chinese,glove,mirror,broom,coat,bag,shoe,envelope,hammer
+Q80,篮子,lanzi,Chinese,blanket,coat,basket,broom,scissors,umbrella,wallet,glove
+Q81,地下室,chikashitsu,Japanese,roof,basement,boat,bridge,kitchen,stairwell,parking lot,hallway
+Q82,桥,qiao,Chinese,school,hallway,library,sewer,warehouse,bridge,kitchen,church
+Q83,駐車場,chuushajou,Japanese,library,kitchen,school,hallway,stairwell,basement,junkyard,parking lot
+Q84,silla,,Spanish,chair,coat,box,glove,blanket,mirror,broom,wallet
+Q85,bolsa,,Spanish,wallet,shoe,box,blanket,basket,chair,scissors,bag
+Q86,はさみ,hasami,Japanese,chair,hammer,shoe,scissors,mirror,glove,box,coat
+Q87,桟橋,sanbashi,Japanese,junkyard,pier,church,basement,kitchen,stairwell,hallway,school
+Q88,走廊,zoulang,Chinese,sewer,roof,hallway,kitchen,warehouse,junkyard,pawnshop,pier
+Q89,iglesia,,Spanish,pier,boat,parking lot,library,hallway,church,roof,sewer
+Q90,puente,,Spanish,junkyard,stairwell,bridge,pier,basement,library,hallway,warehouse
+Q91,barco,,Spanish,roof,pier,pawnshop,boat,bridge,warehouse,church,junkyard
+Q92,pasillo,,Spanish,church,parking lot,hallway,junkyard,sewer,library,pawnshop,basement
+Q93,镜子,jingzi,Chinese,wallet,envelope,basket,broom,umbrella,box,mirror,blanket
+Q94,廊下,rouka,Japanese,bridge,sewer,library,kitchen,school,parking lot,hallway,warehouse
+Q95,階段,kaidan,Japanese,stairwell,school,bridge,sewer,pawnshop,church,basement,parking lot
+Q96,鞋,xie,Chinese,envelope,hammer,basket,glove,box,broom,umbrella,shoe

@@ -1,0 +1,397 @@
+[
+ {
+  "character": "Goro_Takemura",
+  "files_scanned": 26,
+  "mentions": {
+   "zh": {
+    "count": 10,
+    "files": [
+     "arasaka.html",
+     "arasaka.json"
+    ]
+   },
+   "ja": {
+    "count": 103,
+    "files": [
+     "arasaka.html",
+     "arasaka.json",
+     "goro_takemura.html",
+     "goro_takemura.json",
+     "hanako_arasaka.html",
+     "hanako_arasaka.json",
+     "saburo_arasaka.html",
+     "saburo_arasaka.json",
+     "sandayu_oda.html",
+     "sandayu_oda.json"
+    ]
+   },
+   "es": {
+    "count": 2,
+    "files": [
+     "arasaka.html",
+     "arasaka.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {
+   "ja": {
+    "kiroshi": 40
+   }
+  },
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {
+   "jpn": 40
+  },
+  "heard_kiroshi": {
+   "jpn": 10
+  },
+  "transcript": {
+   "own_lines": 523,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 25,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Jackie_Welles",
+  "files_scanned": 37,
+  "mentions": {
+   "ja": {
+    "count": 57,
+    "files": [
+     "extracted_ir.json",
+     "normalized_sources.json",
+     "source:html_page:html:667cbfc802225566aa25fb9b.json",
+     "source:html_page:html:d7503dcb6c91afc0efa5e5e9.json",
+     "source:wikipedia:json:1411e511164f45d85ca8bda8.json",
+     "source:wikipedia:json:b3092151cb14d1e878d26621.json"
+    ]
+   },
+   "es": {
+    "count": 14,
+    "files": [
+     "persona_compiled.json",
+     "source:html_page:html:b3f1053ca54026914b65ab6a.json",
+     "source:html_page:html:c0177fe2a12c85faca1b2364.json"
+    ]
+   },
+   "zh": {
+    "count": 12,
+    "files": [
+     "normalized_sources.json",
+     "source:html_page:html:667cbfc802225566aa25fb9b.json",
+     "source:wikipedia:json:1411e511164f45d85ca8bda8.json"
+    ]
+   },
+   "ru": {
+    "count": 13,
+    "files": [
+     "source:html_page:html:381368c5a8646c0988f164d1.json",
+     "source:wikipedia:json:1411e511164f45d85ca8bda8.json"
+    ]
+   },
+   "ht": {
+    "count": 11,
+    "files": [
+     "source:html_page:html:667cbfc802225566aa25fb9b.json",
+     "source:wikipedia:json:1411e511164f45d85ca8bda8.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 274,
+   "lines_with_spanish_words": 35,
+   "spanish_words": {
+    "compa": 1,
+    "mama": 1,
+    "cabrón": 2,
+    "chica": 1,
+    "oye": 1,
+    "madre": 5,
+    "hermano": 1,
+    "vato": 1,
+    "¡": 13,
+    "mano": 6,
+    "chingado": 2,
+    "puta": 1,
+    "mierda": 2,
+    "señor": 1,
+    "ñ": 2,
+    "gracias": 1,
+    "orale": 1,
+    "vamonos": 1,
+    "señora": 1,
+    "chico": 1,
+    "carnal": 1,
+    "cállate": 1,
+    "pinche": 1,
+    "chingada": 1
+   },
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Johnny_Silverhand",
+  "files_scanned": 17,
+  "mentions": {},
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {
+   "jpn": 6
+  },
+  "transcript": {
+   "own_lines": 963,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Judy_Alvarez",
+  "files_scanned": 58,
+  "mentions": {
+   "zh": {
+    "count": 13,
+    "files": [
+     "cyberpunk_2077.json",
+     "extracted_ir.json",
+     "normalized_sources.json"
+    ]
+   },
+   "ja": {
+    "count": 41,
+    "files": [
+     "cyberpunk_2077.json",
+     "cyberpunk_edgerunners.json",
+     "extracted_ir.json",
+     "maiko_maeda.json",
+     "normalized_sources.json",
+     "shards_index.json"
+    ]
+   },
+   "ht": {
+    "count": 49,
+    "files": [
+     "cyberpunk_2077.json",
+     "extracted_ir.json",
+     "normalized_sources.json",
+     "target_evidence_bundle.json",
+     "target_ir_projection.json"
+    ]
+   },
+   "es": {
+    "count": 12,
+    "files": [
+     "normalized_sources.json",
+     "ultimate_edition_booklet.json",
+     "update_2_3_patch_notes.json"
+    ]
+   },
+   "ru": {
+    "count": 17,
+    "files": [
+     "cyberpunk_2077.json",
+     "news_broadcasts.json",
+     "normalized_sources.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 377,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Kerry_Eurodyne",
+  "files_scanned": 22,
+  "mentions": {
+   "ja": {
+    "count": 8,
+    "files": [
+     "samurai.html",
+     "samurai.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 243,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Maiko_Maeda",
+  "files_scanned": 35,
+  "mentions": {
+   "es": {
+    "count": 2,
+    "files": [
+     "normalized_sources.json"
+    ]
+   },
+   "ja": {
+    "count": 3,
+    "files": [
+     "hiromi_sato.json",
+     "jun_azegami.json",
+     "maiko_maeda.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 50,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Misty_Olszewski",
+  "files_scanned": 18,
+  "mentions": {},
+  "sounddb_own_lines": {
+   "es": {
+    "kiroshi": 1,
+    "spanish_words": 7
+   }
+  },
+  "sounddb_spanish_words": {
+   "mama": 4,
+   "chica": 1,
+   "señora": 1,
+   "ñ": 1,
+   "abuela": 1
+  },
+  "sounddb_spanish_item_ids": [
+   "1756116010501414944",
+   "1756116010518192156",
+   "1886638313002815488",
+   "1927296936741629952",
+   "1937459761608826880",
+   "1937461963651981312",
+   "1937552315450847232"
+  ],
+  "kiroshi_codes_own": {
+   "mex": 1
+  },
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 107,
+   "lines_with_spanish_words": 10,
+   "spanish_words": {
+    "mama": 5,
+    "¿": 1,
+    "abuela": 1,
+    "mamá": 1,
+    "chica": 1,
+    "señora": 1,
+    "ñ": 1
+   },
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Panam_Palmer",
+  "files_scanned": 51,
+  "mentions": {},
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 855,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Rogue_Amendiares",
+  "files_scanned": 20,
+  "mentions": {
+   "ja": {
+    "count": 2,
+    "files": [
+     "never_fade_away.html",
+     "never_fade_away.json"
+    ]
+   }
+  },
+  "sounddb_own_lines": {},
+  "sounddb_spanish_words": {},
+  "sounddb_spanish_item_ids": [],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 247,
+   "lines_with_spanish_words": 0,
+   "spanish_words": {},
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ },
+ {
+  "character": "Viktor_Vektor",
+  "files_scanned": 16,
+  "mentions": {},
+  "sounddb_own_lines": {
+   "es": {
+    "spanish_words": 2
+   }
+  },
+  "sounddb_spanish_words": {
+   "chica": 1,
+   "cabrón": 1
+  },
+  "sounddb_spanish_item_ids": [
+   "1702264302851760128"
+  ],
+  "kiroshi_codes_own": {},
+  "heard_kiroshi": {},
+  "transcript": {
+   "own_lines": 113,
+   "lines_with_spanish_words": 2,
+   "spanish_words": {
+    "mamá": 1,
+    "cabrón": 1
+   },
+   "lines_with_cjk": 0,
+   "lines_with_cyrillic": 0
+  }
+ }
+]

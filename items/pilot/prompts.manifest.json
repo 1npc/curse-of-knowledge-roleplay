@@ -1,0 +1,24 @@
+{
+ "items_file": "items/pilot/skeletons.json",
+ "items_sha256": "2ba25d4d5710313f08c8cbdb03d584d967acbd6c3c941ba68c8c351b1f5ac5a3",
+ "prompts": 4350,
+ "prompts_sha256": "deb1944db9b22534d3365f329e08b3a54abaa8509f0e42549340718976f304d2",
+ "by_arm": {
+  "main": 3960,
+  "probe_translate": 90,
+  "probe_state": 300
+ },
+ "by_lang": {
+  "zh": 1450,
+  "ja": 1450,
+  "es": 1450
+ },
+ "by_S": {
+  "real": 2580,
+  "english": 540,
+  "noise": 630,
+  "noise2": 600
+ },
+ "pilot": true,
+ "robustness": false
+}

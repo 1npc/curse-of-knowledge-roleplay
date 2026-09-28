@@ -1,0 +1,1415 @@
+{
+ "version": "pilot-0.1-draft",
+ "note": "Independent pilot skeletons P01-P10 (proposal 9.1). Not used in confirmatory analysis; the scorer freezes having seen only these. Foreign sentences drafted by the item session on 2026-09-28: zh to be checked by the author, ja/es by back-translation and a bilingual spot check. ja/zh readings are per line, words separated by spaces. Gold translations are hidden from models.",
+ "items": [
+  {
+   "id": "P01",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "The stage door of a concert venue in Night City",
+    "speaker": "A delivery driver",
+    "speaker_label": "delivery driver",
+    "e_inaud_description": "A delivery driver shouts to Kerry from across a wide, roaring street; the traffic drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "I left the {OBJECT} over by the {PLACE}. Go get it before dawn."
+   ],
+   "questions": {
+    "content": "What did the driver say?",
+    "task": "So what are we picking up, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "我把信封放在仓库那边了，天亮前去拿。"
+      ],
+      "reading": [
+       "wo ba xin feng fang zai cang ku na bian le tian liang qian qu na"
+      ],
+      "gold": [
+       "I left the envelope over by the warehouse. Go get it before dawn."
+      ]
+     },
+     "B": {
+      "PLACE": "hallway",
+      "OBJECT": "pillow",
+      "lines": [
+       "我把枕头放在走廊那边了，天亮前去拿。"
+      ],
+      "reading": [
+       "wo ba zhen tou fang zai zou lang na bian le tian liang qian qu na"
+      ],
+      "gold": [
+       "I left the pillow over by the hallway. Go get it before dawn."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "school",
+      "OBJECT": "coat",
+      "lines": [
+       "上着は学校のそばに置いておいた。夜明け前に取りに来てくれ。"
+      ],
+      "reading": [
+       "うわぎ は がっこう の そば に おいて おいた よあけまえ に とりに きてくれ"
+      ],
+      "gold": [
+       "I left the coat by the school. Come get it before dawn."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "broom",
+      "lines": [
+       "ほうきは下水道のそばに置いておいた。夜明け前に取りに来てくれ。"
+      ],
+      "reading": [
+       "ほうき は げすいどう の そば に おいて おいた よあけまえ に とりに きてくれ"
+      ],
+      "gold": [
+       "I left the broom by the sewer. Come get it before dawn."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "library",
+      "OBJECT": "wallet",
+      "lines": [
+       "Dejé la cartera junto a la biblioteca. Ve por ella antes del amanecer."
+      ],
+      "gold": [
+       "I left the wallet next to the library. Go get it before dawn."
+      ],
+      "content_words": [
+       {
+        "form": "dejé",
+        "gloss": "left"
+       },
+       {
+        "form": "junto",
+        "gloss": "next"
+       },
+       {
+        "form": "antes",
+        "gloss": "before"
+       },
+       {
+        "form": "amanecer",
+        "gloss": "dawn"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "kitchen",
+      "OBJECT": "chair",
+      "lines": [
+       "Dejé la silla junto a la cocina. Ve por ella antes del amanecer."
+      ],
+      "gold": [
+       "I left the chair next to the kitchen. Go get it before dawn."
+      ],
+      "content_words": [
+       {
+        "form": "dejé",
+        "gloss": "left"
+       },
+       {
+        "form": "junto",
+        "gloss": "next"
+       },
+       {
+        "form": "antes",
+        "gloss": "before"
+       },
+       {
+        "form": "amanecer",
+        "gloss": "dawn"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P02",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "The street outside the Afterlife, a mercenary bar in Night City",
+    "speaker": "A young runner",
+    "speaker_label": "runner",
+    "e_inaud_description": "A young runner shouts to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "Word for you: the {OBJECT} is at the {PLACE}. Hurry, don't be late."
+   ],
+   "questions": {
+    "content": "What did the runner say?",
+    "task": "So what's waiting for us, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "library",
+      "OBJECT": "box",
+      "lines": [
+       "给你带个话：箱子在图书馆，快去，别迟到。"
+      ],
+      "reading": [
+       "gei ni dai ge hua xiang zi zai tu shu guan kuai qu bie chi dao"
+      ],
+      "gold": [
+       "A message for you: the box is at the library. Go quickly, don't be late."
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "mirror",
+      "lines": [
+       "给你带个话：镜子在下水道，快去，别迟到。"
+      ],
+      "reading": [
+       "gei ni dai ge hua jing zi zai xia shui dao kuai qu bie chi dao"
+      ],
+      "gold": [
+       "A message for you: the mirror is in the sewer. Go quickly, don't be late."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "envelope",
+      "lines": [
+       "伝言だ。封筒は倉庫にある。急げ、遅れるな。"
+      ],
+      "reading": [
+       "でんごん だ ふうとう は そうこ に ある いそげ おくれる な"
+      ],
+      "gold": [
+       "A message: the envelope is in the warehouse. Hurry, don't be late."
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "blanket",
+      "lines": [
+       "伝言だ。毛布は質屋にある。急げ、遅れるな。"
+      ],
+      "reading": [
+       "でんごん だ もうふ は しちや に ある いそげ おくれる な"
+      ],
+      "gold": [
+       "A message: the blanket is at the pawnshop. Hurry, don't be late."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "bridge",
+      "OBJECT": "basket",
+      "lines": [
+       "Te mandan decir que la cesta está en el puente. Apúrate, no llegues tarde."
+      ],
+      "gold": [
+       "Word for you: the basket is on the bridge. Hurry, don't be late."
+      ],
+      "content_words": [
+       {
+        "form": "mandan",
+        "gloss": "send"
+       },
+       {
+        "form": "decir",
+        "gloss": "say"
+       },
+       {
+        "form": "apúrate",
+        "gloss": "hurry"
+       },
+       {
+        "form": "llegues",
+        "gloss": "arrive"
+       },
+       {
+        "form": "tarde",
+        "gloss": "late"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "umbrella",
+      "lines": [
+       "Te mandan decir que el paraguas está en la chatarrería. Apúrate, no llegues tarde."
+      ],
+      "gold": [
+       "Word for you: the umbrella is at the junkyard. Hurry, don't be late."
+      ],
+      "content_words": [
+       {
+        "form": "mandan",
+        "gloss": "send"
+       },
+       {
+        "form": "decir",
+        "gloss": "say"
+       },
+       {
+        "form": "apúrate",
+        "gloss": "hurry"
+       },
+       {
+        "form": "llegues",
+        "gloss": "arrive"
+       },
+       {
+        "form": "tarde",
+        "gloss": "late"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P03",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Panam",
+   "scene": {
+    "location": "A roadside repair shop at the edge of the Badlands",
+    "speaker": "An old mechanic",
+    "speaker_label": "mechanic",
+    "e_inaud_description": "An old mechanic shouts to Panam from across the highway; a passing convoy drowns it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I hid your {OBJECT} in the {PLACE}. Tell no one."
+   ],
+   "questions": {
+    "content": "What did the old man say?",
+    "task": "So what did he hide, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "hammer",
+      "lines": [
+       "你的锤子我藏在地下室里了，别告诉任何人。"
+      ],
+      "reading": [
+       "ni de chui zi wo cang zai di xia shi li le bie gao su ren he ren"
+      ],
+      "gold": [
+       "I hid your hammer in the basement. Don't tell anyone."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "scissors",
+      "lines": [
+       "你的剪刀我藏在船里了，别告诉任何人。"
+      ],
+      "reading": [
+       "ni de jian dao wo cang zai chuan li le bie gao su ren he ren"
+      ],
+      "gold": [
+       "I hid your scissors in the boat. Don't tell anyone."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "kitchen",
+      "OBJECT": "wallet",
+      "lines": [
+       "お前の財布は台所に隠しておいた。誰にも言うなよ。"
+      ],
+      "reading": [
+       "おまえ の さいふ は だいどころ に かくして おいた だれ にも いう な よ"
+      ],
+      "gold": [
+       "I hid your wallet in the kitchen. Don't tell anyone."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "pillow",
+      "lines": [
+       "お前の枕は階段に隠しておいた。誰にも言うなよ。"
+      ],
+      "reading": [
+       "おまえ の まくら は かいだん に かくして おいた だれ にも いう な よ"
+      ],
+      "gold": [
+       "I hid your pillow on the stairs. Don't tell anyone."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "warehouse",
+      "OBJECT": "coat",
+      "lines": [
+       "Escondí tu abrigo en el almacén. No se lo digas a nadie."
+      ],
+      "gold": [
+       "I hid your coat in the warehouse. Don't tell anyone."
+      ],
+      "content_words": [
+       {
+        "form": "escondí",
+        "gloss": "hid"
+       },
+       {
+        "form": "digas",
+        "gloss": "tell"
+       },
+       {
+        "form": "nadie",
+        "gloss": "nobody"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "church",
+      "OBJECT": "glove",
+      "lines": [
+       "Escondí tu guante en la iglesia. No se lo digas a nadie."
+      ],
+      "gold": [
+       "I hid your glove in the church. Don't tell anyone."
+      ],
+      "content_words": [
+       {
+        "form": "escondí",
+        "gloss": "hid"
+       },
+       {
+        "form": "digas",
+        "gloss": "tell"
+       },
+       {
+        "form": "nadie",
+        "gloss": "nobody"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P04",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Kerry",
+   "scene": {
+    "location": "A noodle stand in Kabuki, Night City",
+    "speaker": "A street vendor",
+    "speaker_label": "vendor",
+    "e_inaud_description": "A street vendor calls out to Kerry from across the packed, roaring street market; the noise drowns it out and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Someone left a {OBJECT} for you and is waiting at the {PLACE}."
+   ],
+   "questions": {
+    "content": "What did the vendor say?",
+    "task": "So what did someone leave, and where are they waiting?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "umbrella",
+      "lines": [
+       "有人给你留了伞，说在教堂等你。"
+      ],
+      "reading": [
+       "you ren gei ni liu le san shuo zai jiao tang deng ni"
+      ],
+      "gold": [
+       "Someone left an umbrella for you and said they'd wait for you at the church."
+      ]
+     },
+     "B": {
+      "PLACE": "parking_lot",
+      "OBJECT": "basket",
+      "lines": [
+       "有人给你留了篮子，说在停车场等你。"
+      ],
+      "reading": [
+       "you ren gei ni liu le lan zi shuo zai ting che chang deng ni"
+      ],
+      "gold": [
+       "Someone left a basket for you and said they'd wait for you at the parking lot."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "hallway",
+      "OBJECT": "box",
+      "lines": [
+       "誰かがあんたに箱を置いていった。廊下で待ってるってさ。"
+      ],
+      "reading": [
+       "だれか が あんた に はこ を おいて いった ろうか で まってる って さ"
+      ],
+      "gold": [
+       "Someone left a box for you. They say they're waiting in the hallway."
+      ]
+     },
+     "B": {
+      "PLACE": "library",
+      "OBJECT": "shoe",
+      "lines": [
+       "誰かがあんたに靴を置いていった。図書館で待ってるってさ。"
+      ],
+      "reading": [
+       "だれか が あんた に くつ を おいて いった としょかん で まってる って さ"
+      ],
+      "gold": [
+       "Someone left shoes for you. They say they're waiting at the library."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "envelope",
+      "lines": [
+       "Alguien te dejó el sobre y te está esperando en el sótano."
+      ],
+      "gold": [
+       "Someone left you the envelope and is waiting for you in the basement."
+      ],
+      "content_words": [
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "dejó",
+        "gloss": "left"
+       },
+       {
+        "form": "esperando",
+        "gloss": "waiting"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "pillow",
+      "lines": [
+       "Alguien te dejó la almohada y te está esperando en la escalera."
+      ],
+      "gold": [
+       "Someone left you the pillow and is waiting for you on the stairs."
+      ],
+      "content_words": [
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "dejó",
+        "gloss": "left"
+       },
+       {
+        "form": "esperando",
+        "gloss": "waiting"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P05",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "DA",
+   "character": "Rogue",
+   "scene": {
+    "location": "A crowded sidewalk in Watson, Night City",
+    "speaker": "A frightened woman",
+    "speaker_label": "woman",
+    "e_inaud_description": "A frightened woman calls out to Rogue from across a wide, roaring street; the traffic drowns it out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "My son lost his {OBJECT} near the {PLACE}. Please help me find it."
+   ],
+   "questions": {
+    "content": "What did the woman say?",
+    "task": "So what did her son lose, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "stairwell",
+      "OBJECT": "glove",
+      "lines": [
+       "我儿子把手套掉在楼梯那边了，求你帮我找找。"
+      ],
+      "reading": [
+       "wo er zi ba shou tao diao zai lou ti na bian le qiu ni bang wo zhao zhao"
+      ],
+      "gold": [
+       "My son dropped his glove over by the stairs. Please help me look for it."
+      ]
+     },
+     "B": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "我儿子把鞋掉在码头那边了，求你帮我找找。"
+      ],
+      "reading": [
+       "wo er zi ba xie diao zai ma tou na bian le qiu ni bang wo zhao zhao"
+      ],
+      "gold": [
+       "My son dropped his shoe over by the pier. Please help me look for it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "mirror",
+      "lines": [
+       "息子が駐車場で鏡をなくしたの。探すのを手伝って。"
+      ],
+      "reading": [
+       "むすこ が ちゅうしゃじょう で かがみ を なくした の さがす の を てつだって"
+      ],
+      "gold": [
+       "My son lost a mirror at the parking lot. Help me look for it."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "hammer",
+      "lines": [
+       "息子が橋で金槌をなくしたの。探すのを手伝って。"
+      ],
+      "reading": [
+       "むすこ が はし で かなづち を なくした の さがす の を てつだって"
+      ],
+      "gold": [
+       "My son lost a hammer on the bridge. Help me look for it."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "school",
+      "OBJECT": "bag",
+      "lines": [
+       "Mi hijo perdió la bolsa cerca de la escuela. Ayúdame a buscarla."
+      ],
+      "gold": [
+       "My son lost the bag near the school. Help me look for it."
+      ],
+      "content_words": [
+       {
+        "form": "hijo",
+        "gloss": "son"
+       },
+       {
+        "form": "perdió",
+        "gloss": "lost"
+       },
+       {
+        "form": "cerca",
+        "gloss": "near"
+       },
+       {
+        "form": "ayúdame",
+        "gloss": "help"
+       },
+       {
+        "form": "buscarla",
+        "gloss": "look"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "sewer",
+      "OBJECT": "blanket",
+      "lines": [
+       "Mi hijo perdió la manta cerca de la alcantarilla. Ayúdame a buscarla."
+      ],
+      "gold": [
+       "My son lost the blanket near the sewer. Help me look for it."
+      ],
+      "content_words": [
+       {
+        "form": "hijo",
+        "gloss": "son"
+       },
+       {
+        "form": "perdió",
+        "gloss": "lost"
+       },
+       {
+        "form": "cerca",
+        "gloss": "near"
+       },
+       {
+        "form": "ayúdame",
+        "gloss": "help"
+       },
+       {
+        "form": "buscarla",
+        "gloss": "look"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P06",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A diner off the highway outside Night City",
+    "people": "truck drivers",
+    "nearby": "At the next table",
+    "speaker_labels": [
+     "first driver",
+     "second driver"
+    ],
+    "e_inaud_description": "Outside the diner's window, two truck drivers talk to each other by their rigs; the glass and the engines drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where did you put the {OBJECT}?",
+    "In the {PLACE}, like the boss said."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what were they hiding, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "junkyard",
+      "OBJECT": "bag",
+      "lines": [
+       "袋子你放哪儿了？",
+       "放在废车场了，按老板说的。"
+      ],
+      "reading": [
+       "dai zi ni fang na er le",
+       "fang zai fei che chang le an lao ban shuo de"
+      ],
+      "gold": [
+       "Where did you put the bag?",
+       "At the junkyard, like the boss said."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "coat",
+      "lines": [
+       "外套你放哪儿了？",
+       "放在屋顶了，按老板说的。"
+      ],
+      "reading": [
+       "wai tao ni fang na er le",
+       "fang zai wu ding le an lao ban shuo de"
+      ],
+      "gold": [
+       "Where did you put the coat?",
+       "On the roof, like the boss said."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "basement",
+      "OBJECT": "basket",
+      "lines": [
+       "かごはどこに置いた？",
+       "地下室だ。言われた通りにな。"
+      ],
+      "reading": [
+       "かご は どこ に おいた",
+       "ちかしつ だ いわれた とおり に な"
+      ],
+      "gold": [
+       "Where did you put the basket?",
+       "In the basement. Like I was told."
+      ]
+     },
+     "B": {
+      "PLACE": "boat",
+      "OBJECT": "chair",
+      "lines": [
+       "椅子はどこに置いた？",
+       "船だ。言われた通りにな。"
+      ],
+      "reading": [
+       "いす は どこ に おいた",
+       "ふね だ いわれた とおり に な"
+      ],
+      "gold": [
+       "Where did you put the chair?",
+       "On the boat. Like I was told."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "parking_lot",
+      "OBJECT": "hammer",
+      "lines": [
+       "¿Dónde pusiste el martillo?",
+       "En el estacionamiento, como nos dijeron."
+      ],
+      "gold": [
+       "Where did you put the hammer?",
+       "In the parking lot, like they told us."
+      ],
+      "content_words": [
+       {
+        "form": "pusiste",
+        "gloss": "put"
+       },
+       {
+        "form": "dijeron",
+        "gloss": "told"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "hallway",
+      "OBJECT": "mirror",
+      "lines": [
+       "¿Dónde pusiste el espejo?",
+       "En el pasillo, como nos dijeron."
+      ],
+      "gold": [
+       "Where did you put the mirror?",
+       "In the hallway, like they told us."
+      ],
+      "content_words": [
+       {
+        "form": "pusiste",
+        "gloss": "put"
+       },
+       {
+        "form": "dijeron",
+        "gloss": "told"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P07",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "Backstage at a club in Night City",
+    "people": "stagehands",
+    "nearby": "A few steps away",
+    "speaker_labels": [
+     "first stagehand",
+     "second stagehand"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two stagehands talk to each other; the band is playing and Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Did you bring the {OBJECT}?",
+    "Yes. It's in the {PLACE}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did they bring, and where is it?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "kitchen",
+      "OBJECT": "blanket",
+      "lines": [
+       "毯子带来了吗？",
+       "带来了，在厨房里。"
+      ],
+      "reading": [
+       "tan zi dai lai le ma",
+       "dai lai le zai chu fang li"
+      ],
+      "gold": [
+       "Did you bring the blanket?",
+       "I did. It's in the kitchen."
+      ]
+     },
+     "B": {
+      "PLACE": "school",
+      "OBJECT": "wallet",
+      "lines": [
+       "钱包带来了吗？",
+       "带来了，在学校里。"
+      ],
+      "reading": [
+       "qian bao dai lai le ma",
+       "dai lai le zai xue xiao li"
+      ],
+      "gold": [
+       "Did you bring the wallet?",
+       "I did. It's at the school."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "glove",
+      "lines": [
+       "手袋は持ってきた？",
+       "ああ、屋上に置いてある。"
+      ],
+      "reading": [
+       "てぶくろ は もって きた",
+       "ああ おくじょう に おいて ある"
+      ],
+      "gold": [
+       "Did you bring the gloves?",
+       "Yeah, they're up on the roof."
+      ]
+     },
+     "B": {
+      "PLACE": "warehouse",
+      "OBJECT": "shoe",
+      "lines": [
+       "靴は持ってきた？",
+       "ああ、倉庫に置いてある。"
+      ],
+      "reading": [
+       "くつ は もって きた",
+       "ああ そうこ に おいて ある"
+      ],
+      "gold": [
+       "Did you bring the shoes?",
+       "Yeah, they're in the warehouse."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "boat",
+      "OBJECT": "broom",
+      "lines": [
+       "¿Trajiste la escoba?",
+       "La dejé en el barco."
+      ],
+      "gold": [
+       "Did you bring the broom?",
+       "I left it on the boat."
+      ],
+      "content_words": [
+       {
+        "form": "trajiste",
+        "gloss": "brought"
+       },
+       {
+        "form": "dejé",
+        "gloss": "left"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "pawnshop",
+      "OBJECT": "box",
+      "lines": [
+       "¿Trajiste la caja?",
+       "La dejé en la casa de empeño."
+      ],
+      "gold": [
+       "Did you bring the box?",
+       "I left it at the pawnshop."
+      ],
+      "content_words": [
+       {
+        "form": "trajiste",
+        "gloss": "brought"
+       },
+       {
+        "form": "dejé",
+        "gloss": "left"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P08",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Rogue",
+   "scene": {
+    "location": "A bar in Watson, Night City",
+    "people": "bartenders",
+    "nearby": "Across the counter",
+    "speaker_labels": [
+     "first bartender",
+     "second bartender"
+    ],
+    "e_inaud_description": "Behind a soundproof glass wall, two bartenders talk to each other; the music drowns everything out and Rogue cannot hear a word."
+   },
+   "skeleton_en": [
+    "We were told to carry the {OBJECT} to the {PLACE}.",
+    "Tonight? Fine."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what's getting moved, and where to?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "chair",
+      "lines": [
+       "上面让我们把椅子搬到当铺那边去。",
+       "今晚？行吧。"
+      ],
+      "reading": [
+       "shang mian rang wo men ba yi zi ban dao dang pu na bian qu",
+       "jin wan xing ba"
+      ],
+      "gold": [
+       "We've been told to move the chair over to the pawnshop.",
+       "Tonight? Fine."
+      ]
+     },
+     "B": {
+      "PLACE": "bridge",
+      "OBJECT": "broom",
+      "lines": [
+       "上面让我们把扫帚搬到桥那边去。",
+       "今晚？行吧。"
+      ],
+      "reading": [
+       "shang mian rang wo men ba sao zhou ban dao qiao na bian qu",
+       "jin wan xing ba"
+      ],
+      "gold": [
+       "We've been told to move the broom over to the bridge.",
+       "Tonight? Fine."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "umbrella",
+      "lines": [
+       "傘を桟橋まで運べって言われた。",
+       "今夜か？わかったよ。"
+      ],
+      "reading": [
+       "かさ を さんばし まで はこべ って いわれた",
+       "こんや か わかった よ"
+      ],
+      "gold": [
+       "I was told to carry the umbrella to the pier.",
+       "Tonight? All right."
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "coat",
+      "lines": [
+       "上着を廃車置き場まで運べって言われた。",
+       "今夜か？わかったよ。"
+      ],
+      "reading": [
+       "うわぎ を はいしゃおきば まで はこべ って いわれた",
+       "こんや か わかった よ"
+      ],
+      "gold": [
+       "I was told to carry the coat to the junkyard.",
+       "Tonight? All right."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "roof",
+      "OBJECT": "scissors",
+      "lines": [
+       "Nos pidieron llevar las tijeras al tejado.",
+       "¿Esta noche? Bueno."
+      ],
+      "gold": [
+       "They asked us to take the scissors to the roof.",
+       "Tonight? Fine."
+      ],
+      "content_words": [
+       {
+        "form": "pidieron",
+        "gloss": "asked"
+       },
+       {
+        "form": "llevar",
+        "gloss": "take/carry"
+       },
+       {
+        "form": "noche",
+        "gloss": "night"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "library",
+      "OBJECT": "glove",
+      "lines": [
+       "Nos pidieron llevar el guante a la biblioteca.",
+       "¿Esta noche? Bueno."
+      ],
+      "gold": [
+       "They asked us to take the glove to the library.",
+       "Tonight? Fine."
+      ],
+      "content_words": [
+       {
+        "form": "pidieron",
+        "gloss": "asked"
+       },
+       {
+        "form": "llevar",
+        "gloss": "take/carry"
+       },
+       {
+        "form": "noche",
+        "gloss": "night"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P09",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Panam",
+   "scene": {
+    "location": "A laundromat in Santo Domingo, Night City",
+    "people": "women",
+    "nearby": "By the next machine",
+    "speaker_labels": [
+     "first woman",
+     "second woman"
+    ],
+    "e_inaud_description": "Behind the laundromat's glass door, two women talk to each other on the sidewalk; the machines drown it out and Panam cannot hear a word."
+   },
+   "skeleton_en": [
+    "I forgot my {OBJECT} at the {PLACE} again.",
+    "Then go back before someone takes it."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what did she forget, and where?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "library",
+      "OBJECT": "coat",
+      "lines": [
+       "我又把外套忘在图书馆那儿了。",
+       "那快回去拿，别让人拿走了。"
+      ],
+      "reading": [
+       "wo you ba wai tao wang zai tu shu guan na er le",
+       "na kuai hui qu na bie rang ren na zou le"
+      ],
+      "gold": [
+       "I left my coat at the library again.",
+       "Then hurry back and get it before someone takes it."
+      ]
+     },
+     "B": {
+      "PLACE": "stairwell",
+      "OBJECT": "envelope",
+      "lines": [
+       "我又把信封忘在楼梯那儿了。",
+       "那快回去拿，别让人拿走了。"
+      ],
+      "reading": [
+       "wo you ba xin feng wang zai lou ti na er le",
+       "na kuai hui qu na bie rang ren na zou le"
+      ],
+      "gold": [
+       "I left my envelope on the stairs again.",
+       "Then hurry back and get it before someone takes it."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "wallet",
+      "lines": [
+       "また財布を教会に忘れちゃった。",
+       "早く取りに戻りなよ、盗られる前に。"
+      ],
+      "reading": [
+       "また さいふ を きょうかい に わすれちゃった",
+       "はやく とりに もどりな よ とられる まえ に"
+      ],
+      "gold": [
+       "I left my wallet at the church again.",
+       "Hurry back and get it before it's stolen."
+      ]
+     },
+     "B": {
+      "PLACE": "school",
+      "OBJECT": "bag",
+      "lines": [
+       "またかばんを学校に忘れちゃった。",
+       "早く取りに戻りなよ、盗られる前に。"
+      ],
+      "reading": [
+       "また かばん を がっこう に わすれちゃった",
+       "はやく とりに もどりな よ とられる まえ に"
+      ],
+      "gold": [
+       "I left my bag at the school again.",
+       "Hurry back and get it before it's stolen."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "pier",
+      "OBJECT": "shoe",
+      "lines": [
+       "Otra vez olvidé mi zapato en el muelle.",
+       "Pues regresa antes de que alguien se lo lleve."
+      ],
+      "gold": [
+       "I forgot my shoe at the pier again.",
+       "Then go back before someone takes it."
+      ],
+      "content_words": [
+       {
+        "form": "olvidé",
+        "gloss": "forgot"
+       },
+       {
+        "form": "regresa",
+        "gloss": "return"
+       },
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "lleve",
+        "gloss": "take"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "junkyard",
+      "OBJECT": "wallet",
+      "lines": [
+       "Otra vez olvidé mi cartera en la chatarrería.",
+       "Pues regresa antes de que alguien se la lleve."
+      ],
+      "gold": [
+       "I forgot my wallet at the junkyard again.",
+       "Then go back before someone takes it."
+      ],
+      "content_words": [
+       {
+        "form": "olvidé",
+        "gloss": "forgot"
+       },
+       {
+        "form": "regresa",
+        "gloss": "return"
+       },
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "lleve",
+        "gloss": "take"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "P10",
+   "set": "pilot",
+   "world": "cyberpunk",
+   "mode": "OH",
+   "character": "Kerry",
+   "scene": {
+    "location": "The lobby of a hotel in City Center, Night City",
+    "people": "security guards",
+    "nearby": "Near the elevators",
+    "speaker_labels": [
+     "first guard",
+     "second guard"
+    ],
+    "e_inaud_description": "Behind the lobby's soundproof glass, two security guards talk to each other; Kerry cannot hear a word."
+   },
+   "skeleton_en": [
+    "Where is the {OBJECT}?",
+    "Somebody carried it off to the {PLACE}."
+   ],
+   "questions": {
+    "content": "What were those two saying?",
+    "task": "So what are they looking for, and where did it go?"
+   },
+   "langs": {
+    "zh": {
+     "A": {
+      "PLACE": "sewer",
+      "OBJECT": "box",
+      "lines": [
+       "箱子呢？",
+       "有人把它搬到下水道去了。"
+      ],
+      "reading": [
+       "xiang zi ne",
+       "you ren ba ta ban dao xia shui dao qu le"
+      ],
+      "gold": [
+       "Where's the box?",
+       "Somebody carried it off to the sewer."
+      ]
+     },
+     "B": {
+      "PLACE": "roof",
+      "OBJECT": "pillow",
+      "lines": [
+       "枕头呢？",
+       "有人把它搬到屋顶去了。"
+      ],
+      "reading": [
+       "zhen tou ne",
+       "you ren ba ta ban dao wu ding qu le"
+      ],
+      "gold": [
+       "Where's the pillow?",
+       "Somebody carried it off to the roof."
+      ]
+     }
+    },
+    "ja": {
+     "A": {
+      "PLACE": "pawnshop",
+      "OBJECT": "hammer",
+      "lines": [
+       "金槌はどこだ？",
+       "誰かが質屋に持っていったよ。"
+      ],
+      "reading": [
+       "かなづち は どこ だ",
+       "だれか が しちや に もって いった よ"
+      ],
+      "gold": [
+       "Where's the hammer?",
+       "Someone took it to the pawnshop."
+      ]
+     },
+     "B": {
+      "PLACE": "kitchen",
+      "OBJECT": "box",
+      "lines": [
+       "箱はどこだ？",
+       "誰かが台所に持っていったよ。"
+      ],
+      "reading": [
+       "はこ は どこ だ",
+       "だれか が だいどころ に もって いった よ"
+      ],
+      "gold": [
+       "Where's the box?",
+       "Someone took it to the kitchen."
+      ]
+     }
+    },
+    "es": {
+     "A": {
+      "PLACE": "church",
+      "OBJECT": "umbrella",
+      "lines": [
+       "¿Dónde está el paraguas?",
+       "Alguien se lo llevó a la iglesia."
+      ],
+      "gold": [
+       "Where's the umbrella?",
+       "Someone took it to the church."
+      ],
+      "content_words": [
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "llevó",
+        "gloss": "took"
+       }
+      ]
+     },
+     "B": {
+      "PLACE": "basement",
+      "OBJECT": "chair",
+      "lines": [
+       "¿Dónde está la silla?",
+       "Alguien se la llevó al sótano."
+      ],
+      "gold": [
+       "Where's the chair?",
+       "Someone took it to the basement."
+      ],
+      "content_words": [
+       {
+        "form": "alguien",
+        "gloss": "someone"
+       },
+       {
+        "form": "llevó",
+        "gloss": "took"
+       }
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
