@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from oc.build import build_item, build_robustness  # noqa: E402
+from oc.build import build_item, build_mitigation, build_robustness  # noqa: E402
 
 
 def main():
@@ -26,11 +26,15 @@ def main():
     ap.add_argument("--pilot", action="store_true", help="add the N2 noise cells")
     ap.add_argument("--robustness", action="store_true", help="also write the prompt-robustness arm")
     ap.add_argument("--langs", default="zh,ja,es")
+    ap.add_argument("--only-mitigation", action="store_true", help="write only the M1 and FS arms")
     a = ap.parse_args()
     items = json.loads(a.items.read_text(encoding="utf-8"))["items"]
     recs = []
     for it in items:
         for lang in a.langs.split(","):
+            if a.only_mitigation:
+                recs += build_mitigation(it, lang)
+                continue
             recs += build_item(it, lang, pilot=a.pilot)
             if a.robustness:
                 recs += build_robustness(it, lang)
@@ -43,7 +47,8 @@ def main():
     manifest = {"items_file": str(a.items), "items_sha256": hashlib.sha256(a.items.read_bytes()).hexdigest(),
                 "prompts": len(recs), "prompts_sha256": hashlib.sha256(data.encode()).hexdigest(),
                 "by_arm": dict(Counter(r["arm"] for r in recs)), "by_lang": dict(Counter(r["lang"] for r in recs)),
-                "by_S": dict(Counter(r["S"] for r in recs)), "pilot": a.pilot, "robustness": a.robustness}
+                "by_S": dict(Counter(r["S"] for r in recs)), "pilot": a.pilot, "robustness": a.robustness,
+                "only_mitigation": a.only_mitigation}
     a.out.with_suffix(".manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=1))
 

@@ -27,6 +27,8 @@ import time
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # code root, for oc.build (standard library only)
+
 PROTOCOL = {"temperature": 0.0, "top_p": 1.0, "seed": 20260916, "max_output_tokens": 400, "max_model_len": 8192,
             "dtype": "bfloat16", "enforce_eager": True, "prefix_caching": False, "max_num_seqs": 256,
             "gpu_memory_utilization": 0.85, "tensor_parallel_size": 1, "thinking": "disabled via chat template",
@@ -162,11 +164,9 @@ def main():
              "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"), "slurm_job": os.environ.get("SLURM_JOB_ID"),
              "started": now()}
 
-    # render every prompt once; the token ids are what the engine receives
-    rendered = {}
     notes = Counter()
-    for p in prompts:
-        msgs = p["messages"]
+
+    def render(msgs):
         try:
             text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True, **kwargs)
         except Exception as e:  # a template without a system role: fold it into the first user turn, and record that
@@ -176,10 +176,10 @@ def main():
                 notes["system_folded_into_user"] += 1
             else:
                 raise
-        ids = tok.encode(text, add_special_tokens=False)
-        rendered[p["prompt_id"]] = (text, ids)
-    too_long = {pid for pid, (_, ids) in rendered.items()
-                if len(ids) + PROTOCOL["max_output_tokens"] > PROTOCOL["max_model_len"]}
+        return text, tok.encode(text, add_special_tokens=False)
+
+    # render every prompt once; the token ids are what the engine receives
+    rendered = {p["prompt_id"]: render(p["messages"]) for p in prompts}
 
     t_load = time.time()
     llm = LLM(model=str(path), tokenizer=str(path), dtype="bfloat16", max_model_len=PROTOCOL["max_model_len"],
@@ -188,67 +188,97 @@ def main():
               trust_remote_code=False, max_num_seqs=PROTOCOL["max_num_seqs"])
     sampling = SamplingParams(temperature=0.0, top_p=1.0, seed=PROTOCOL["seed"],
                               max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=True)
-    state.update(load_seconds=round(time.time() - t_load, 1), sampling=repr(sampling), notes=dict(notes))
+    state.update(load_seconds=round(time.time() - t_load, 1), sampling=repr(sampling))
     (out / f"runtime-{a.run_id}.json").write_text(json.dumps({**state, "status": "generating"}, indent=1))
 
+    def run_pass(prefix, batch, rend, step):
+        too_long = {pid for pid, (_, ids) in rend.items() if len(ids) + PROTOCOL["max_output_tokens"] > PROTOCOL["max_model_len"]}
+        for ci in range(0, len(batch), a.chunk):
+            chunk = batch[ci:ci + a.chunk]
+            cid = f"{prefix}-{ci // a.chunk:04d}"
+            ids_in_chunk = [p["prompt_id"] for p in chunk]
+            binding = {"run_sha256": run_sha, "chunk": cid, "prompt_ids_sha256": digest(ids_in_chunk),
+                       "messages_sha256": digest([p["messages"] for p in chunk])}
+            res_path, int_path = out / "chunks" / f"{cid}.jsonl", out / "chunks" / f"{cid}.intent.json"
+            if res_path.exists():
+                continue
+            if int_path.exists() and not a.retry_interrupted:
+                marker = out / "chunks" / f"{cid}.interrupted.json"
+                if not marker.exists():
+                    write_immutable(marker, json.dumps({"binding": binding, "status": "interrupted_uncertain", "recorded": now()}))
+                continue
+            attempt = "retry" if int_path.exists() else "first"
+            write_immutable(int_path if attempt == "first" else out / "chunks" / f"{cid}.retry-intent.json",
+                            json.dumps({"binding": binding, "started": now(), "run_id": a.run_id}))
+            todo = [p for p in chunk if p["prompt_id"] not in too_long]
+            t0 = time.time()
+            outputs = llm.generate([TokensPrompt(prompt_token_ids=rend[p["prompt_id"]][1]) for p in todo],
+                                   sampling, use_tqdm=False) if todo else []
+            dt = time.time() - t0
+            if len(outputs) != len(todo):
+                raise RuntimeError("engine returned a different number of outputs")
+            by_id = {p["prompt_id"]: o for p, o in zip(todo, outputs)}
+            lines = []
+            for p in chunk:
+                pid = p["prompt_id"]
+                text_r, ids = rend[pid]
+                rec = {"prompt_id": pid, "model": a.model, "run_sha256": run_sha, "chunk": cid, "attempt": attempt, "step": step,
+                       "prompt_tokens": len(ids), "rendered_sha256": text_sha(text_r), "token_ids_sha256": digest(ids)}
+                if step == 2:
+                    rec["messages"] = p["messages"]  # built from the step-1 output, so it is kept with the result
+                if pid in too_long:
+                    rec.update(status="context_overflow")
+                else:
+                    o = by_id[pid]
+                    comp = o.outputs[0]
+                    st = status_of(comp.text, comp.finish_reason)
+                    if list(o.prompt_token_ids) != ids:
+                        st = "tokenization_mismatch"
+                    rec.update(status=st, text=comp.text, text_sha256=text_sha(comp.text), finish_reason=comp.finish_reason,
+                               stop_reason=repr(comp.stop_reason), output_tokens=len(comp.token_ids),
+                               output_token_ids_sha256=digest(list(comp.token_ids)))
+                lines.append(canonical(rec))
+            write_immutable(res_path, "\n".join(lines) + "\n")
+            print(canonical({"chunk": cid, "n": len(chunk), "seconds": round(dt, 1),
+                             "status": dict(Counter(json.loads(l)["status"] for l in lines))}), flush=True)
+
     t_gen = time.time()
-    for ci in range(0, len(prompts), a.chunk):
-        chunk = prompts[ci:ci + a.chunk]
-        cid = f"chunk-{ci // a.chunk:04d}"
-        ids_in_chunk = [p["prompt_id"] for p in chunk]
-        binding = {"run_sha256": run_sha, "chunk": cid, "prompt_ids_sha256": digest(ids_in_chunk)}
-        res_path, int_path = out / "chunks" / f"{cid}.jsonl", out / "chunks" / f"{cid}.intent.json"
-        if res_path.exists():
-            continue
-        if int_path.exists() and not a.retry_interrupted:
-            marker = out / "chunks" / f"{cid}.interrupted.json"
-            if not marker.exists():
-                write_immutable(marker, json.dumps({"binding": binding, "status": "interrupted_uncertain", "recorded": now()}))
-            continue
-        attempt = "retry" if int_path.exists() else "first"
-        write_immutable(int_path if attempt == "first" else out / "chunks" / f"{cid}.retry-intent.json",
-                        json.dumps({"binding": binding, "started": now(), "run_id": a.run_id}))
-        todo = [p for p in chunk if p["prompt_id"] not in too_long]
-        t0 = time.time()
-        outputs = llm.generate([TokensPrompt(prompt_token_ids=rendered[p["prompt_id"]][1]) for p in todo],
-                               sampling, use_tqdm=False) if todo else []
-        dt = time.time() - t0
-        if len(outputs) != len(todo):
-            raise RuntimeError("engine returned a different number of outputs")
-        by_id = {p["prompt_id"]: o for p, o in zip(todo, outputs)}
-        lines = []
-        for p in chunk:
-            pid = p["prompt_id"]
-            text_r, ids = rendered[pid]
-            rec = {"prompt_id": pid, "model": a.model, "run_sha256": run_sha, "chunk": cid, "attempt": attempt,
-                   "prompt_tokens": len(ids), "rendered_sha256": text_sha(text_r), "token_ids_sha256": digest(ids)}
-            if pid in too_long:
-                rec.update(status="context_overflow")
+    run_pass("chunk", prompts, rendered, 1)
+
+    # second steps (M1 perspective filtering): built from the step-1 outputs, then generated in their own chunks
+    two = [p for p in prompts if p.get("next_step")]
+    if two:
+        from oc.build import fill_next_step
+        step1 = {}
+        for f in sorted((out / "chunks").glob("chunk-*.jsonl")):
+            for l in f.read_text(encoding="utf-8").splitlines():
+                if l.strip():
+                    r = json.loads(l)
+                    step1[r["prompt_id"]] = r
+        second, skipped = [], []
+        for p in two:
+            r1 = step1.get(p["prompt_id"])
+            if r1 and r1["status"] in ("complete", "truncated"):
+                second.append({"prompt_id": p["prompt_id"] + "#2", "messages": fill_next_step(p, r1["text"])})
             else:
-                o = by_id[pid]
-                comp = o.outputs[0]
-                st = status_of(comp.text, comp.finish_reason)
-                if list(o.prompt_token_ids) != ids:
-                    st = "tokenization_mismatch"
-                rec.update(status=st, text=comp.text, text_sha256=text_sha(comp.text), finish_reason=comp.finish_reason,
-                           stop_reason=repr(comp.stop_reason), output_tokens=len(comp.token_ids),
-                           output_token_ids_sha256=digest(list(comp.token_ids)))
-            lines.append(canonical(rec))
-        write_immutable(res_path, "\n".join(lines) + "\n")
-        print(canonical({"chunk": cid, "n": len(chunk), "seconds": round(dt, 1),
-                         "status": dict(Counter(json.loads(l)["status"] for l in lines))}), flush=True)
+                skipped.append(p["prompt_id"])
+        if skipped:
+            write_immutable(out / "chunks" / "s2-skipped.json", json.dumps({"step1_not_usable": skipped}))
+        run_pass("s2chunk", second, {q["prompt_id"]: render(q["messages"]) for q in second}, 2)
 
     # merge (sorted, deterministic) and summarize
     recs = []
-    for f in sorted((out / "chunks").glob("chunk-*.jsonl")):
+    for f in sorted((out / "chunks").glob("*chunk-*.jsonl")):
         recs += [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
     recs.sort(key=lambda r: r["prompt_id"])
     data = "".join(canonical(r) + "\n" for r in recs)
     (out / "responses.jsonl").write_text(data, encoding="utf-8")
-    summary = {"model": a.model, "run_sha256": run_sha, "records": len(recs), "planned": len(prompts),
+    summary = {"model": a.model, "run_sha256": run_sha, "records": len(recs),
+               "planned": len(prompts) + sum(1 for p in prompts if p.get("next_step")),
                "status": dict(Counter(r["status"] for r in recs)), "responses_sha256": text_sha(data),
                "interrupted_chunks": len(list((out / "chunks").glob("*.interrupted.json"))),
-               "generation_seconds": round(time.time() - t_gen, 1), "run_id": a.run_id, "finished": now()}
+               "generation_seconds": round(time.time() - t_gen, 1), "notes": dict(notes), "run_id": a.run_id,
+               "finished": now()}
     (out / f"summary-{a.run_id}.json").write_text(json.dumps(summary, indent=1) + "\n")
     (out / f"runtime-{a.run_id}.json").write_text(json.dumps({**state, "status": "finished", "summary": summary}, indent=1))
     print(canonical(summary), flush=True)

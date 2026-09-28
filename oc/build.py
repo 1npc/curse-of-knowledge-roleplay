@@ -341,3 +341,83 @@ def build_canon(entry: dict, base: dict) -> list[dict]:
                 rec["messages_sha256"] = hashlib.sha256(json.dumps(msgs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
                 out.append(rec)
     return out
+
+
+# ---------------------------------------------------------------- mitigation arms (proposal 5.1, 5.5)
+MITIGATION_CELLS = [("A", "C-T-"), ("B", "C-T-"), ("A", "C-T+")]  # x D0 x {content, plan}
+M1_STEP1 = "List only what {name} can perceive and understand right now. Leave out anything {name} cannot understand."
+M1_TOKEN = "<<M1_STEP1_OUTPUT>>"
+FS_BLOCK = (
+    "[Examples] Two short examples of how {name} responds to speech {they} cannot understand.\n"
+    "Example 1. State: a street vendor speaks to {name} in Portuguese: \"Amanhã vou visitar a minha irmã.\" "
+    "{name} does not speak or understand Portuguese and has no translator. V: \"What did she say?\" "
+    "{name}: \"No idea. That was Portuguese, and I don't speak a word of it. Let's get her to point or write it down.\"\n"
+    "Example 2. State: two strangers nearby talk to each other in Portuguese: \"Ela chega amanhã cedo.\" "
+    "\"Então esperamos por ela.\" {name} does not speak or understand Portuguese. V: \"So what's our move?\" "
+    "{name}: \"Couldn't tell you what they're planning. I didn't understand any of it, so we play it safe and keep moving.\"")
+
+
+def _m1_step2_system(item: dict, persona: dict, L: str, cell: str) -> str:
+    """The D0 system message with the speech replaced by one event whose text is the step-1 output."""
+    it = dict(item)
+    name = persona["short_name"]
+    pr = pron(persona)
+    C, T = CELL_FLAGS[cell]
+    lstate = language_state(C, T, L)
+    sc = item["scene"]
+    if item["mode"] == "DA":
+        who, to = sc["speaker_label"], name
+    else:
+        who, to = f"the two {sc['people']}", "each other"
+    state = {"scene": {"location": sc["location"], "description": describe(it, name, pr, L, True),
+                       "speech_events": [{"speaker": who, "addressee": to, "language": L, f"audible_to_{name}": True,
+                                          "text": M1_TOKEN}]},
+             "language_state": lstate}
+    fmt = {"name": name, "full": persona["full_name"], "L": L, "addressee": persona.get("companion_name", "V"), **pr}
+    return "\n".join([MAIN_SYSTEM.format(**fmt), "[Character] " + persona["card"],
+                      "[State] " + json.dumps(state, ensure_ascii=False, sort_keys=True)])
+
+
+def fill_next_step(record: dict, text: str) -> list[dict]:
+    """Second-step messages for a two-step record: the step-1 output goes into the JSON state, escaped."""
+    esc = json.dumps(text.strip(), ensure_ascii=False)[1:-1]
+    msgs = json.loads(json.dumps(record["next_step"]["messages"]))
+    hits = sum(m["content"].count(M1_TOKEN) for m in msgs)
+    if hits != 1:
+        raise ValueError(f"{record['prompt_id']}: next-step template must hold the token once, found {hits}")
+    for m in msgs:
+        m["content"] = m["content"].replace(M1_TOKEN, esc)
+    return msgs
+
+
+def build_mitigation(item: dict, lang: str, arms=("M1", "FS")) -> list[dict]:
+    persona = load_personas()[item["character"]]
+    L = LANG_NAME[lang]
+    it = dict(item, _lang=lang)
+    ver = item["langs"][lang]
+    name = persona["short_name"]
+    pr = pron(persona)
+    out = []
+    for version, cell in MITIGATION_CELLS:
+        C, T = CELL_FLAGS[cell]
+        for Q in ("content", "plan"):
+            base = {"item": item["id"], "lang": lang, "set": item["set"], "world": item["world"], "mode": item["mode"],
+                    "character": item["character"], "version": version, "S": "real", "cell": cell, "C": C, "T": T,
+                    "D": "D0", "Q": Q, "audible": True}
+            if "FS" in arms:
+                fs = FS_BLOCK.format(name=name, they=pr["they"])
+                msgs = [{"role": "system", "content": system_message(it, persona, ver[version]["lines"], L, cell, "D0",
+                                                                     fewshot=fs)},
+                        {"role": "user", "content": user_message(item, Q)}]
+                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "FS", "real", cell, "D0", Q), "arm": "FS",
+                            "messages": msgs})
+            if "M1" in arms:
+                step1 = [{"role": "system", "content": system_message(it, persona, ver[version]["lines"], L, cell, "D0", "probe")},
+                         {"role": "user", "content": M1_STEP1.format(name=name)}]
+                step2 = [{"role": "system", "content": _m1_step2_system(item, persona, L, cell)},
+                         {"role": "user", "content": user_message(item, Q)}]
+                out.append({**base, "prompt_id": _pid(item["id"], lang, version, "M1", "real", cell, "D0", Q), "arm": "M1",
+                            "messages": step1, "next_step": {"kind": "m1", "messages": step2}})
+    for r in out:
+        r["messages_sha256"] = hashlib.sha256(json.dumps(r["messages"], ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    return out

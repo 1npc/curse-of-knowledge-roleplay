@@ -205,6 +205,27 @@ class TestMainAndRealSets(unittest.TestCase):
                     self.assertEqual(len(set(vals)), 6, (it["id"], t))
 
 
+class TestMitigation(unittest.TestCase):
+    def test_arms(self):
+        from oc.build import FS_BLOCK, M1_TOKEN, build_mitigation, fill_next_step
+        self.assertEqual(en_alias_hits(VS, FS_BLOCK), [])
+        for it in ITEMS[:3]:
+            for lang in ("zh", "ja", "es"):
+                recs = build_mitigation(it, lang)
+                self.assertEqual(sum(r["arm"] == "M1" for r in recs), 6)
+                self.assertEqual(sum(r["arm"] == "FS" for r in recs), 6)
+                for r in recs:
+                    if r["arm"] != "M1":
+                        continue
+                    # the foreign speech must not survive into step 2, and the filled state must stay valid JSON
+                    step2 = fill_next_step(r, 'He said "hi" and left.\nNothing else.')
+                    sysmsg = step2[0]["content"]
+                    self.assertNotIn(M1_TOKEN, sysmsg)
+                    for line in it["langs"][lang]["A"]["lines"] + it["langs"][lang]["B"]["lines"]:
+                        self.assertNotIn(line, sysmsg)
+                    json.loads(re.search(r"\[State\] (\{.*\})", sysmsg).group(1))
+
+
 class TestPatterns(unittest.TestCase):
     def test_deny_vs_admit(self):
         self.assertTrue(P.any_match(P.N_DENY, "I don't speak Japanese."))
