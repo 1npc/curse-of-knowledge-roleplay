@@ -1,0 +1,13 @@
+{
+ "version": "oc-models-1",
+ "note": "A-tier models on Snellius (proposal 7.1). Paths: 'project' = $OC/weights/<key> (copied and verified by the staging job), 'scratch' = the pinned snapshot in weights_reference.json (expires under the 14-day rule). Thinking is disabled through the chat template for every model.",
+ "models": {
+  "qwen38_27b": {"repo": "Qwen/Qwen3.8-27B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "mitigation"]},
+  "gemma4_31b": {"repo": "google/gemma-4-31B-it", "family": "gemma", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "mitigation"]},
+  "qwen35_9b": {"repo": "Qwen/Qwen3.5-9B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["main", "robustness", "scale"]},
+  "qwen35_4b": {"repo": "Qwen/Qwen3.5-4B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
+  "qwen35_2b": {"repo": "Qwen/Qwen3.5-2B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
+  "qwen35_08b": {"repo": "Qwen/Qwen3.5-0.8B", "family": "qwen", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]},
+  "gemma4_e2b": {"repo": "google/gemma-4-E2B-it", "family": "gemma", "chat_template_kwargs": {"enable_thinking": false}, "roles": ["scale"]}
+ }
+}
