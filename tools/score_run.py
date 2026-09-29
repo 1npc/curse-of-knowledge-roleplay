@@ -58,7 +58,7 @@ def main():
         (mdir / "scored.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in scored), encoding="utf-8")
         agg = defaultdict(lambda: defaultdict(float))
         for x in scored:
-            if x["arm"] in ("M1", "FS"):
+            if x["arm"] in ("M1", "M1g", "FS"):
                 k = f"{x['arm']}{'' if x['arm'] == 'FS' else '-step' + str(x['step'])}:{x['cell']}:{x['version']}"
             elif x["arm"] == "main":
                 k = f"{x['S']}:{x['cell']}:{x['D']}"

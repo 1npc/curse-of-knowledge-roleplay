@@ -98,7 +98,7 @@ class TestHarnessDryRun(unittest.TestCase):
             p = subprocess.run(cmd, env=env, capture_output=True, text=True)
             self.assertEqual(p.returncode, 0, p.stderr[-2000:])
             out = [json.loads(l) for l in (tmp / "run" / "fake" / "responses.jsonl").read_text(encoding="utf-8").splitlines()]
-            n_m1 = sum(r["arm"] == "M1" for r in recs)
+            n_m1 = sum("next_step" in r for r in recs)  # M1 and M1g are two-step
             self.assertEqual(len(out), len(recs) + n_m1)
             step2 = [r for r in out if r["step"] == 2]
             self.assertEqual(len(step2), n_m1)

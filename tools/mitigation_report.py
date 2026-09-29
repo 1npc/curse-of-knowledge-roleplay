@@ -54,7 +54,7 @@ def main():
     out, runs = Path(sys.argv[1]), [Path(a) for a in sys.argv[2:]]
     models = sorted({p.name for run in runs for p in run.iterdir() if (p / "scored.jsonl").exists()})
     data = {m: load(runs, m) for m in models}
-    models = [m for m in models if any(r["arm"] == "M1" for r in data[m])]
+    models = [m for m in models if any(r["arm"] in ("M1", "M1g") for r in data[m])]
     L = ["# 缓解实验（试点条目）", "", "由 `tools/mitigation_report.py` 生成。格：C−T− 的 A/B 两版（不应使用内容）与 C−T+ 的 A 版（经翻译器应使用内容），"
          "都是 D0，内容追问与计划追问合并。数值为百分比；方括号为按骨架重抽的 95% 区间。", "",
          "| 模型 | 条件 | OC_swap(C−T−) | C−T+ 命中率 | M1 第一步泄漏（C−T−） | 相对降幅 [95%] |", "|---|---|---|---|---|---|"]
@@ -64,14 +64,14 @@ def main():
         b_tp = pick(base, "main", "C-T+", ("A",))
         oc0 = oc(b_ct)
         L.append(f"| {m} | D0 基线 | {pct(oc0)} | {pct(mean(r['score']['hit_t'] for r in b_tp))} | – | – |")
-        for arm, step in (("M1", 2), ("FS", None)):
+        for arm, step in (("M1", 2), ("M1g", 2), ("FS", None)):
             ct = pick(mit, arm, "C-T-", ("A", "B"), step)
             tp = pick(mit, arm, "C-T+", ("A",), step)
             if not ct:
                 continue
             leak = "–"
-            if arm == "M1":
-                s1 = pick(mit, "M1", "C-T-", ("A", "B"), 1)
+            if arm in ("M1", "M1g"):
+                s1 = pick(mit, arm, "C-T-", ("A", "B"), 1)
                 leak = pct(mean(r["score"]["hit_t"] for r in s1))
             both = b_ct + ct
             red = boot(both, stat=lambda rs: (lambda o0, o1: (o0 - o1) / o0 if o0 else 0.0)(
@@ -79,18 +79,19 @@ def main():
             red_s = "–" if red is None else f"{100 * red[0]:.0f} [{100 * red[2]:.0f}, {100 * red[3]:.0f}]"
             L.append(f"| {m} | {arm} | {pct(oc(ct))} | {pct(mean(r['score']['hit_t'] for r in tp))} | {leak} | {red_s} |")
     L += ["", "H4b 的判据（proposal 2.2）：相对降幅的下界 ≥ 50%，且 C−T+ 命中率的变化在 ±5 个百分点内。试点每格约 120 条回复、10 个骨架，只看方向。", "",
-          "## M1 用在“只标记听不见”（E_inaud_S，A/B 两版，D0）", "",
-          "| 模型 | 基线 LEAK_swap | M1 第二步 | M1 第一步泄漏 | 相对降幅 [95%] |", "|---|---|---|---|---|"]
-    for m in models:
+          "## M1 与 M1g 用在“只标记听不见”（E_inaud_S，A/B 两版，D0）", "",
+          "M1 第一步只说“略去听不懂的”，对这一格不公平；M1g 说“略去听不见或听不懂的”。", "",
+          "| 模型 | 条件 | 基线 LEAK_swap | 第二步 | 第一步泄漏 | 相对降幅 [95%] |", "|---|---|---|---|---|---|"]
+    for m, arm in ((m, a) for m in models for a in ("M1", "M1g")):
         rows = data[m]
         b = pick(rows, "main", "Einaud_S", ("A", "B"))
-        m2 = pick(rows, "M1", "Einaud_S", ("A", "B"), 2)
+        m2 = pick(rows, arm, "Einaud_S", ("A", "B"), 2)
         if not b or not m2:
             continue
-        s1 = pick(rows, "M1", "Einaud_S", ("A", "B"), 1)
+        s1 = pick(rows, arm, "Einaud_S", ("A", "B"), 1)
         red = boot(b + m2, stat=lambda rs: (lambda o0, o1: (o0 - o1) / o0 if o0 else 0.0)(
             oc([r for r in rs if r["arm"] == "main"]), oc([r for r in rs if r["arm"] != "main"])))
-        L.append(f"| {m} | {pct(oc(b))} | {pct(oc(m2))} | {pct(mean(r['score']['hit_t'] for r in s1))} | "
+        L.append(f"| {m} | {arm} | {pct(oc(b))} | {pct(oc(m2))} | {pct(mean(r['score']['hit_t'] for r in s1))} | "
                  f"{100 * red[0]:.0f} [{100 * red[2]:.0f}, {100 * red[3]:.0f}] |")
     L.append("")
     out.write_text("\n".join(L), encoding="utf-8")

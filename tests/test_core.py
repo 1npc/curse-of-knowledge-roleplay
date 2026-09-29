@@ -213,9 +213,10 @@ class TestMitigation(unittest.TestCase):
             for lang in ("zh", "ja", "es"):
                 recs = build_mitigation(it, lang)
                 self.assertEqual(sum(r["arm"] == "M1" for r in recs), 10)  # 6 language cells + 4 on the inaudible flag cell
+                self.assertEqual(sum(r["arm"] == "M1g" for r in recs), 10)
                 self.assertEqual(sum(r["arm"] == "FS" for r in recs), 6)
                 for r in recs:
-                    if r["arm"] != "M1":
+                    if r["arm"] not in ("M1", "M1g"):
                         continue
                     # the original speech (foreign, or English for the inaudible cell) must not survive into step 2,
                     # and the filled state must stay valid JSON
