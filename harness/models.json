@@ -162,7 +162,13 @@
    "roles": [
     "main"
    ],
-   "note": "text-only Small 3; its template stamps today's date into the default system prompt (only prompts without a system message), fixed to 2026-09-29"
+   "note": "text-only Small 3; its template stamps today's date into the default system prompt (only prompts without a system message), fixed to 2026-09-29; AutoTokenizer returns the mistral-common backend without a Jinja template, so the fast tokenizer is used (with the regex fix); on a pilot prompt its ids equal mistral-common's",
+   "tokenizer": {
+    "class": "fast",
+    "kwargs": {
+     "fix_mistral_regex": true
+    }
+   }
   }
  }
 }

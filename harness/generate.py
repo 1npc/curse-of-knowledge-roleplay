@@ -162,7 +162,12 @@ def main():
     from vllm import LLM, SamplingParams
     from vllm.inputs import TokensPrompt
 
-    tok = AutoTokenizer.from_pretrained(str(path), trust_remote_code=False)
+    tspec = spec.get("tokenizer", {})
+    if tspec.get("class") == "fast":  # Mistral-Small-3: AutoTokenizer gives the mistral-common backend, which has no
+        from transformers import PreTrainedTokenizerFast  # Jinja template; the fast tokenizer's ids were checked
+        tok = PreTrainedTokenizerFast.from_pretrained(str(path), **tspec.get("kwargs", {}))  # equal to it (9/29)
+    else:
+        tok = AutoTokenizer.from_pretrained(str(path), trust_remote_code=False)
     template_source = "tokenizer"
     if not tok.chat_template and (path / "chat_template.json").exists():  # e.g. Mistral-Small-3.1 keeps it with the processor
         tok.chat_template = json.loads((path / "chat_template.json").read_text())["chat_template"]
@@ -175,7 +180,7 @@ def main():
     kwargs = spec.get("chat_template_kwargs", {})
     frozen = {"version": "oc-generation-1", "model": a.model, "repo": spec["repo"],
               "revision": reference["models"][a.model]["revision"], "weights_path": str(path), "location": a.location,
-              "chat_template_sha256": text_sha(tok.chat_template), "chat_template_source": template_source,
+              "chat_template_sha256": text_sha(tok.chat_template), "chat_template_source": template_source, "tokenizer": tspec or "auto",
               "chat_template_kwargs": kwargs,
               "engine": {"vllm": vllm.__version__, "torch": torch.__version__, "transformers": transformers.__version__},
               "protocol": PROTOCOL, "prompts_file": str(a.prompts), "prompts_sha256": file_sha(a.prompts),
