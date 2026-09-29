@@ -3,13 +3,14 @@
 Writes harness/downloads.json (read by harness/download_weights.py on a Snellius staging node)
 and adds the models to harness/weights_reference.json with their scratch locations.
 Only public (ungated) repositories are listed. Uses the system curl (read-only GETs).
-Usage: python3 tools/make_download_plan.py
+Usage: python3 tools/make_download_plan.py [key ...]   (keys given: only those are (re)pinned, the rest is kept)
 """
 from __future__ import annotations
 
 import fnmatch
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +24,9 @@ NEW = {  # key -> (repo, files to skip)
     "seed_oss_36b": ("ByteDance-Seed/Seed-OSS-36B-Instruct", []),
     "nemotron3_nano30b": ("nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16", []),
     "falcon_h1_34b": ("tiiuae/Falcon-H1-34B-Instruct", []),
+    # 9/29: Mistral-Small-3.1 (Mistral3ForConditionalGeneration) does not load in the pinned vLLM/transformers
+    # pair (PixtralRotaryEmbedding import error); the text-only Small 3 of the same size replaces it
+    "mistral_small3": ("mistralai/Mistral-Small-24B-Instruct-2501", ["consolidated*"]),
 }
 
 
@@ -32,8 +36,12 @@ def api(path: str):
 
 
 def main():
-    plan, refs = {}, json.loads((ROOT / "harness" / "weights_reference.json").read_text())
-    for key, (repo, skip) in NEW.items():
+    keys = sys.argv[1:] or list(NEW)
+    plan_path = ROOT / "harness" / "downloads.json"
+    plan = json.loads(plan_path.read_text()) if sys.argv[1:] and plan_path.exists() else {}
+    refs = json.loads((ROOT / "harness" / "weights_reference.json").read_text())
+    for key in keys:
+        repo, skip = NEW[key]
         meta = api(f"models/{repo}")
         if meta.get("gated"):
             raise SystemExit(f"{repo} is gated; it needs the user's acceptance first")
@@ -55,7 +63,7 @@ def main():
         print(f"{key:<18} {repo:<48} rev {rev[:10]}  {len(files):>3} files  {gib:6.1f} GiB")
     (ROOT / "harness" / "downloads.json").write_text(json.dumps(plan, indent=1) + "\n")
     (ROOT / "harness" / "weights_reference.json").write_text(json.dumps(refs, indent=1) + "\n")
-    print("total", round(sum(sum(v["bytes"] for v in p["files"].values()) for p in plan.values()) / 2 ** 30, 1), "GiB")
+    print("total", round(sum(sum(v["bytes"] for v in plan[k]["files"].values()) for k in keys) / 2 ** 30, 1), "GiB")
 
 
 if __name__ == "__main__":

@@ -59,7 +59,8 @@ def main():
         print(json.dumps({"model": key, "files": len(res), "problems": len(bad), "seconds": secs}), flush=True)
     report["ok"] = all(not m["problems"] for m in report["models"].values())
     report["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
-    (root / "verification-downloads.json").write_text(json.dumps(report, indent=1))
+    name = "verification-downloads.json" if len(sys.argv) == 2 else f"verification-downloads-{'-'.join(keys)}.json"
+    (root / name).write_text(json.dumps(report, indent=1))  # a partial download keeps the earlier full report
     sys.exit(0 if report["ok"] else 1)
 
 

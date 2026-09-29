@@ -102,11 +102,9 @@
    "repo": "mistralai/Mistral-Small-3.1-24B-Instruct-2503",
    "family": "mistral",
    "chat_template_kwargs": {},
-   "roles": [
-    "main"
-   ],
+   "roles": [],
    "template_fixed_date": "2026-09-29",
-   "note": "chat template read from chat_template.json; its default system prompt stamps a date, fixed to 2026-09-29 (only prompts without a system message see it)"
+   "note": "excluded 9/29: Mistral3ForConditionalGeneration fails to load in the pinned vLLM/transformers pair (PixtralRotaryEmbedding import error); replaced by mistral_small3"
   },
   "gpt_oss_20b": {
    "repo": "openai/gpt-oss-20b",
@@ -155,6 +153,16 @@
    "roles": [
     "main"
    ]
+  },
+  "mistral_small3": {
+   "repo": "mistralai/Mistral-Small-24B-Instruct-2501",
+   "family": "mistral",
+   "chat_template_kwargs": {},
+   "template_fixed_date": "2026-09-29",
+   "roles": [
+    "main"
+   ],
+   "note": "text-only Small 3; its template stamps today's date into the default system prompt (only prompts without a system message), fixed to 2026-09-29"
   }
  }
 }
