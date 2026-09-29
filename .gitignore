@@ -5,3 +5,7 @@ __pycache__/
 items/**/prompts.jsonl
 runs/
 scratch/
+items/**/mitigation*.jsonl
+items/main/prompts_side.jsonl
+items/main/robustness.jsonl
+items/main/plan_all.jsonl

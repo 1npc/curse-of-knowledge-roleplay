@@ -1,23 +1,22 @@
 {
- "items_file": "items/main/skeletons.json",
- "items_sha256": "f7095501ef8457aef55f3b69a6b138fffd306a032eaac4f6e62422e2e2786390",
- "prompts": 36000,
- "prompts_sha256": "c6e5930fc091d47593c20fdb69514313e40ecd441b8e32ff2ce13402ec442d0f",
+ "sources": {
+  "items/main/skeletons.json": "f7095501ef8457aef55f3b69a6b138fffd306a032eaac4f6e62422e2e2786390"
+ },
+ "prompts": 41184,
+ "prompts_sha256": "324ccfe56302e9b38f874ea90cb6129c7039a596810e1a26173d209a719ed14f",
  "by_arm": {
-  "main": 32256,
+  "main": 36864,
   "probe_translate": 864,
-  "probe_state": 2880
+  "probe_state": 3456
  },
  "by_lang": {
-  "zh": 12000,
-  "ja": 12000,
-  "es": 12000
+  "zh": 13728,
+  "ja": 13728,
+  "es": 13728
  },
  "by_S": {
-  "real": 24768,
-  "english": 5184,
+  "real": 27360,
+  "english": 7776,
   "noise": 6048
- },
- "pilot": false,
- "robustness": false
+ }
 }

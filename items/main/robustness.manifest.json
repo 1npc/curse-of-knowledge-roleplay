@@ -1,0 +1,20 @@
+{
+ "sources": {
+  "items/main/skeletons.json": "f7095501ef8457aef55f3b69a6b138fffd306a032eaac4f6e62422e2e2786390"
+ },
+ "prompts": 8640,
+ "prompts_sha256": "1809995b1da23733a2a543929ef81d5979b13ab2714b200553dc4ade38cc8deb",
+ "by_arm": {
+  "robust:c1": 2880,
+  "robust:minimal": 2880,
+  "robust:community": 2880
+ },
+ "by_lang": {
+  "zh": 2880,
+  "ja": 2880,
+  "es": 2880
+ },
+ "by_S": {
+  "real": 8640
+ }
+}

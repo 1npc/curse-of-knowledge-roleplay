@@ -1,0 +1,18 @@
+{
+ "sources": {
+  "items/main/skeletons.json": "f7095501ef8457aef55f3b69a6b138fffd306a032eaac4f6e62422e2e2786390"
+ },
+ "prompts": 1728,
+ "prompts_sha256": "80b0cbcca27f2539bb8e1d3c1dfe6d5049b17ce12c7d173972811332f1456171",
+ "by_arm": {
+  "FS": 1728
+ },
+ "by_lang": {
+  "zh": 576,
+  "ja": 576,
+  "es": 576
+ },
+ "by_S": {
+  "real": 1728
+ }
+}

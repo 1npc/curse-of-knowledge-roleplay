@@ -1,0 +1,26 @@
+{
+ "sources": {
+  "items/main/skeletons.json": "f7095501ef8457aef55f3b69a6b138fffd306a032eaac4f6e62422e2e2786390",
+  "items/real/skeletons.json": "454f825f7ca129d5de5319d6306d97f478aaf6e3af986c338ee8b352fa5deb63",
+  "items/canon/subset.json": "212e9736464677bfaa96a3783cd9603443a4af19f3ad5b678819d8e798499e84"
+ },
+ "prompts": 45632,
+ "prompts_sha256": "cc9919028ac9d7324bbc8bd288ea342b5e2e6f410c8739664ef781b31c2c3ba6",
+ "by_arm": {
+  "main": 37824,
+  "probe_translate": 960,
+  "probe_state": 3552,
+  "canon": 416,
+  "M1g": 2880
+ },
+ "by_lang": {
+  "zh": 15072,
+  "ja": 15328,
+  "es": 15232
+ },
+ "by_S": {
+  "real": 30368,
+  "english": 9216,
+  "noise": 6048
+ }
+}
