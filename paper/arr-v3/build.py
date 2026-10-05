@@ -44,6 +44,32 @@ def table(rows, cols, caption, label, wide=False, tight=False):
                       r"\bottomrule", r"\end{tabular}", r"\caption{" + caption + "}", r"\label{" + label + "}", f"\\end{{{env}}}"])
 
 
+CAPTIONS = {
+    "tab:accesscases": "Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column; accessible controls keep the full event.",
+    "fig:discoveryheatmap": "Study 2 discovery: 11 models, 96 scenes, direct Boolean (R2). (a) Net use of inaccessible content (pp); (b) use of the same content when it is accessible (\\%); (c) means over channels. Dots mark the four confirmation models.",
+    "fig:behavior": "Study 2, four confirmation models, 32 scenes. (a) Net use after zero, two or four neutral exchanges; (b) change from zero exchanges under full context; (c) change in choosing location A when the inaccessible fact switches from B to A. Bars are 95\\% skeleton-bootstrap intervals.",
+    "tab:confirm": "Study 2 confirmation (four models, 96 original-character scenes). C1 requires all four channels to be positive, C2 uses replies whose state probe is correct (6,068), and C3 requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.",
+}
+
+
+CAPTION_TRIMS = [(" The pooled four-boundary claim does not assert a positive effect in every cell.", ""),
+                 (" These saved-data summaries add no hypothesis test.", ""),
+                 (" These are secondary descriptive intervals, without additional confirmation tests.", ""),
+                 ("with 95\\% descriptive intervals", "with 95\\% intervals"),
+                 (" These are descriptive cells with unadjusted 95\\% paired-bootstrap intervals.", " Intervals are 95\\% paired-bootstrap intervals."),
+                 ("Additional descriptive option-position sensitivity", "Option-position sensitivity"),
+                 (" This selected illustration is not a prevalence sample.", "")]
+
+
+def set_caption(block, text):
+    i = block.find("\\caption{") + len("\\caption{")
+    depth, j = 1, i
+    while depth:
+        depth += {"{": 1, "}": -1}.get(block[j], 0)
+        j += 1
+    return block[:i] + text + block[j - 1:]
+
+
 def v2_float(label, renames=()):
     i = V2.find("\\label{%s}" % label)
     assert i > 0, label
@@ -54,6 +80,10 @@ def v2_float(label, renames=()):
     for a, c in renames:
         out = out.replace(a, c)
     assert "HumanField" not in out, label
+    if label in CAPTIONS:
+        out = set_caption(out, CAPTIONS[label])
+    for a, c in CAPTION_TRIMS:
+        out = out.replace(a, c)
     return out
 
 
@@ -121,7 +151,7 @@ def study1():
     for k, v in load("sensitivities.json").items():
         rows.append(labels[k] + " & " + " & ".join([pc(v["H1"]["point"]), pc(v["H1i"]["point"]), pc(v["H5b"]["reduction"]["point"]),
                                                      pc(v["H5b"]["retention"]["point"]), f"{sum(x['supported'] for x in v.values())}/8"]) + r"\\")
-    ins["S1_SENSITIVITY"] = table(rows, "lrrrrc", "Study 1 scoring and conditioning sensitivities (not additional tests).", "tab:s1sens", True)
+    ins["S1_SENSITIVITY"] = table(rows, "lrrrrc", "Study 1 scoring and conditioning sensitivities.", "tab:s1sens", True)
     rows = [r"Subset & Reduction (\%) & Translator (pp) & H5b $p$\\", r"\midrule"]
     sets = list(load("by_language_confirmatory.json").items()) + [("Without " + k, v) for k, v in load("leave_one_character_out.json").items()] + \
         [("Two-way bootstrap", load("two_way_bootstrap.json")["tests"])]
@@ -142,7 +172,7 @@ def study1():
     for k, v in load("exploratory.json").items():
         rows.append(el.get(k, esc(k)) + " & " + pc(v["point"]) + " & " + ci(v) + " & " + f"{v['q_bh']:.3f}" + r"\\")
     ins["S1_EXPLORATORY"] = table(rows, "lrrr", "Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). The world comparison uses "
-                                  "different scenario sets and is not a paired effect.", "tab:s1expl", True)
+                                  "different scenario sets.", "tab:s1expl", True)
     rob = load("prompt_robustness.json")
     rows = [r"Model & Main prompt & Boundary-instruction & Minimal & Community\\", r"\midrule"]
     for m in ["gemma4_31b", "qwen38_27b", "qwen35_9b"]:

@@ -40,7 +40,7 @@ A non-player character who does not speak Japanese is told, in Japanese, where a
 
 This situation is the norm rather than an edge case. Game dialogue systems and agent simulations keep a world state that records who is present, who can hear whom, and which languages each character understands, and pass that state to a model that voices one character at a time \citep{park2023generative,zhou2024sotopia}. The model sees everything; the character should not. Whether models respect such information boundaries decides whether secrets stay secret, whether a language barrier means anything, and whether simulated agents act on what they could actually know.
 
-Prior work separates knowing a perspective from acting on it. Models can say what a character knows yet fail to use it when predicting behavior \citep{gu2026simpletom}, can infer who perceived what yet fail to derive beliefs from it \citep{jung-etal-2024-perceptions}, and can recognize a role's knowledge boundary yet answer beyond it \citep{han2026charm}. These studies pose questions about stories or about parametric knowledge. We ask a narrower and more practical question: when the inaccessible content is present in the model's own input and the boundary is stated in the character's state, does the content end up in the character's speech?
+Prior work separates knowing a perspective from acting on it. Models can say what a character knows yet fail to use it when predicting behavior \citep{gu2026simpletom}, can infer who perceived what yet fail to derive beliefs from it \citep{jung-etal-2024-perceptions}, and can recognize a role's knowledge boundary yet answer beyond it \citep{han2026charm}. These studies pose questions about stories or about parametric knowledge. We ask: when the inaccessible content is present in the model's own input and the boundary is stated in the character's state, does the content end up in the character's speech?
 
 We measure this with a counterfactual canary design (Section~\ref{sec:measure}). Every scene has two versions that differ only in a hidden location and object; the other version's values serve as a foil, so that net use, $D=I(\text{target})-I(\text{foil})$, removes guessing within the same replies. Two studies apply it:
 \begin{itemize}
@@ -94,7 +94,7 @@ Controls & Fluent character; translator on; audible English\\
 \label{tab:s1design}
 \end{table}
 
-Items are 96 skeletons $\times$ 3 languages (288 items, 143 prompts each), plus a 48-item present-day arm with original characters and three alternative system prompts. The 11 models (Figure~\ref{fig:s1}) are open checkpoints of at most 40B parameters from nine families; four smaller models form a scale arm. Decoding is greedy with thinking disabled. Every model--language unit passed the translation gate (both canaries recovered in $\geq$85\% of probes), and foreign-language conditions use items whose translation probe succeeded. The eight hypotheses were fixed after a 10-skeleton pilot (Appendix~\ref{app:s1}); the analysis was locked locally before the responses were scored, without external registration.
+Items are 96 skeletons $\times$ 3 languages (288 items, 143 prompts each), plus a 48-item present-day arm with original characters and three alternative system prompts. The 11 models (Figure~\ref{fig:s1}) are open checkpoints of at most 40B parameters from nine families; four smaller models form a scale arm. Decoding is greedy with thinking disabled. Every model--language unit passed the translation gate (both canaries recovered in $\geq$85\% of probes), and foreign-language conditions use items whose translation probe succeeded. Eight hypotheses were fixed after a pilot on separate items (Appendix~\ref{app:s1}).
 
 \begin{figure*}[t]
 \centering
@@ -185,7 +185,7 @@ Items are 96 skeletons $\times$ 3 languages (288 items, 143 prompts each), plus 
 \subsection{Results}
 \paragraph{Both boundaries leak.} With the language boundary given only as a repertoire, net use is 66.7 pp (Table~\ref{tab:s1}); with English speech marked only as inaudible, it is 72.2 pp. Every model is above 45 pp in both (Figure~\ref{fig:s1}). Replacing the speech with noise of the same form gives 0.3\% target hits, so the use comes from the content. The effect holds in the present-day arm (50.1 pp [42.0, 58.3]) and under alternative system prompts.
 
-\paragraph{Comprehension is not the weak point.} When both boundaries are direct per-utterance flags with the same neutral description, the inaudible one leaks 27.1 pp more than the non-comprehension one (H4). This reverses our pilot hypothesis that language would be the fragile case. The original comparison in our proposal, a language repertoire against inaudibility stated in the scene description, would have shown the opposite (20.3 pp), but it confounded the boundary with how it was stated.
+\paragraph{Comprehension is not the weak point.} When both boundaries are direct per-utterance flags with the same neutral description, the inaudible one leaks 27.1 pp more than the non-comprehension one (H4). Comparing the boundaries in different forms gives the opposite picture: a language repertoire leaks 20.3 pp more than inaudibility narrated in the scene. Boundary types can only be compared when they are stated the same way.
 
 \paragraph{How the boundary is stated.} Models do not derive non-comprehension from the repertoire: a direct flag lowers use by 21.6 pp (H3). A prose sentence lowers it by 32.7 pp for language and narration by 25.8 pp for hearing (H2a, H2b), but the reduction is concentrated in a few models. With the prose sentence, only Gemma-4-31B, Gemma-4-12B and Mistral fall below 20 pp, while six of the eleven models stay between 39 and 69 pp. An explicit instruction to preserve knowledge boundaries in the system prompt halves leakage for Gemma-4-31B and Qwen3.8-27B but not for Qwen3.5-9B (Table~\ref{tab:s1rob}).
 
@@ -241,9 +241,9 @@ Qwen3.5-9B & 83.9 & 50.9 & 85.9 & 83.2 & -12.8\\
 \section{Study 2: Four Channels in a Minimal Event Schema}
 \label{sec:s2}
 \subsection{Design}
-Study~2 was designed after Study~1's results to test whether the pattern extends beyond speech, whether it affects later behavior, and how filtering methods compare. Its inputs, models, hypotheses and analysis were locked locally before any response was generated. A minimal JSON scene contains one event with an actor, the content, an access Boolean, a \texttt{boundary\_channel} field naming the channel, and an observable-shell field; a short system prompt asks for one spoken turn, and the question asks directly what the character learned about the item and its location, or what to do. Four channels make the content inaccessible (Table~\ref{tab:accesscases}): \textsc{Hear} (English speech the character cannot hear), \textsc{Understand} (Chinese, Japanese or Spanish speech), \textsc{See} (an action whose object and destination are hidden) and \textsc{Receive} (a private message). Accessible controls flip only the Boolean.
+Study~2 tests whether the pattern extends beyond speech, whether it affects later behavior, and how filtering methods compare. A minimal JSON scene contains one event with an actor, the content, an access Boolean, a \texttt{boundary\_channel} field naming the channel, and an observable-shell field; a short system prompt asks for one spoken turn, and the question asks directly what the character learned about the item and its location, or what to do. Four channels make the content inaccessible (Table~\ref{tab:accesscases}): \textsc{Hear} (English speech the character cannot hear), \textsc{Understand} (Chinese, Japanese or Spanish speech), \textsc{See} (an action whose object and destination are hidden) and \textsc{Receive} (a private message). Accessible controls flip only the Boolean.
 
-A discovery set of 96 scenes runs on the 11 Study~1 models. Three representations encode the boundary: membership or repertoire (R1), a direct Boolean (R2), or the Boolean plus a prose rule (R3). A confirmation set of 96 new scenes with eight original characters runs on four models fixed in advance: Gemma-4-31B, GLM-4.7-Flash, Nemotron-3-Nano and Qwen3.5-9B, chosen partly for their contrasting Study~1 behavior. Subsets add delays of two or four scripted neutral exchanges, a two-option choice of where to search, and five methods: full context with R2 or R3, prompted self-filtering (as M1g), removal of the inaccessible event, and a deterministic \emph{character view} that keeps accessible events and replaces inaccessible ones by an observable shell (``Alex appears to put something away''). The three confirmatory families, Holm-corrected, are positive leakage in each channel (C1), positive leakage among replies whose state probe is correct (C2), and a joint benefit of the character view over full context and removal (C3).
+A discovery set of 96 scenes runs on the 11 Study~1 models. Three representations encode the boundary: membership or repertoire (R1), a direct Boolean (R2), or the Boolean plus a prose rule (R3). A confirmation set of 96 new scenes with eight original characters runs on four models with contrasting Study~1 behavior: Gemma-4-31B, GLM-4.7-Flash, Nemotron-3-Nano and Qwen3.5-9B. Subsets add delays of two or four scripted neutral exchanges, a two-option choice of where to search, and five methods: full context with R2 or R3, prompted self-filtering (as M1g), removal of the inaccessible event, and a deterministic \emph{character view} that keeps accessible events and replaces inaccessible ones by an observable shell (``Alex appears to put something away''). Its hypotheses were fixed before generation. The three confirmatory families, Holm-corrected, are positive leakage in each channel (C1), positive leakage among replies whose state probe is correct (C2), and a joint benefit of the character view over full context and removal (C3).
 
 \begin{table*}[t]
 \centering\small
@@ -259,14 +259,14 @@ Channel & Inaccessible condition & Compiled observation\\
 \end{tabularx}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:accesscases exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Access interventions and partial observations. Each event contains an item--location fact; the inaccessible compiled observation omits both values. Accessible controls retain the full event. These are illustrations of the designed schema, not model responses.}
+\caption{Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column; accessible controls keep the full event.}
 \label{tab:accesscases}
 \end{table*}
 
 \subsection{Results}
 \paragraph{Leakage beyond speech.} In the confirmation set, net use under full context is 72.3 pp for hearing, 47.2 for comprehension, 69.3 for sight and 67.6 for private messages (Table~\ref{tab:confirm}). Among replies whose matched state probe is correct, it is 64.0 pp (C2); averaged over channels, probe accuracy is 95--100\% when the content is inaccessible and 93--99\% when it is accessible (Table~\ref{tab:probecontrols}). The discovery set shows that profiles differ by channel (Figure~\ref{fig:discoveryheatmap}): Mistral almost never uses content it cannot understand but uses unheard speech and private messages in 76--85 pp of replies, and Gemma-4-12B keeps visual boundaries but not private messages.
 
-\paragraph{Format sensitivity.} Under the R2 Boolean, Gemma-4-31B and Qwen3.8-27B leak little in any channel (Gemma 0.5--4.4 pp; Qwen3.8 9--28 pp), whereas in Study~1 the same models leak 51 and 60 pp when English speech carries only an inaudibility flag. Other models leak as much or more in Study~2 (Phi-4: 97 pp for unheard speech). The two studies differ in several ways at once: Study~2's schema names the channel being tested, the scene is a single event, and the question asks for the item directly rather than coming from a companion who missed the speech. We cannot attribute the difference to one of them, but it shows that compliance by the strongest models is a property of the prompt format, not of the model alone. Direct Booleans reduce leakage relative to repertoire or membership descriptions for hearing, comprehension and sight (by 18--33 pp) but barely for private messages (3.4 pp), and a prose rule on top of the Boolean has no consistent effect on comprehension (Appendix~\ref{app:s2}).
+\paragraph{Format sensitivity.} Under the R2 Boolean, Gemma-4-31B and Qwen3.8-27B leak little in any channel (Gemma 0.5--4.4 pp; Qwen3.8 9--28 pp), whereas in Study~1 the same models leak 51 and 60 pp when English speech carries only an inaudibility flag. Other models leak as much or more in Study~2 (Phi-4: 97 pp for unheard speech). The two inputs differ in three ways: Study~2's schema names the channel being tested, the scene is a single event, and the question asks for the item directly instead of coming from a companion who missed the speech. Together, these changes turn the two strongest models from leaking in most replies to almost never, so their compliance depends on the input format. Direct Booleans reduce leakage relative to repertoire or membership descriptions for hearing, comprehension and sight (by 18--33 pp) but barely for private messages (3.4 pp), and a prose rule on top of the Boolean has no consistent effect on comprehension (Appendix~\ref{app:s2}).
 
 \begin{figure*}[t]
 \centering\begin{lrbox}{\OCfigure}
@@ -737,7 +737,7 @@ Channel & Inaccessible condition & Compiled observation\\
 \end{lrbox}
 \ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:discoveryheatmap exceeds its column}{Revise the figure layout.}\fi
 \usebox{\OCfigure}
-\caption{Eleven-model discovery, full-context R2: 96 matched scenes, 384 endpoints per cell. (a) Inaccessible net use in pp; (b) accessible target use in percent; (c) equal-channel means (circles: net use; squares: target use). Both matrices use linear 0--100 scales. Name dots mark the four-model core. These automatic-score profiles are descriptive and do not define an overall utility ranking.}
+\caption{Study 2 discovery: 11 models, 96 scenes, direct Boolean (R2). (a) Net use of inaccessible content (pp); (b) use of the same content when it is accessible (\%); (c) means over channels. Dots mark the four confirmation models.}
 \label{fig:discoveryheatmap}
 \end{figure*}
 \begin{figure*}[t]
@@ -983,13 +983,13 @@ Channel & Inaccessible condition & Compiled observation\\
 \end{lrbox}
 \ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:behavior exceeds its column}{Revise the figure layout.}\fi
 \usebox{\OCfigure}
-\caption{Four core models and 32 matched discovery scenes. (a) Net use after neutral exchanges; labels give four-turn estimates. (b) Paired two- and four-turn changes from zero under full context (open and filled circles). (c) Change in choosing location A when inaccessible content switches from B to A; orange/green numbers give full/view estimates. Shading and whiskers show unadjusted 95\% paired-bootstrap intervals. Invalid choices remain in the denominator.}
+\caption{Study 2, four confirmation models, 32 scenes. (a) Net use after zero, two or four neutral exchanges; (b) change from zero exchanges under full context; (c) change in choosing location A when the inaccessible fact switches from B to A. Bars are 95\% skeleton-bootstrap intervals.}
 \label{fig:behavior}
 \end{figure*}
 
 \paragraph{Leaked facts persist and change choices.} With the event still in context, leakage remains 51--71 pp after four neutral exchanges; for comprehension it grows by 15.6 pp [8.6, 22.7]. When characters choose between two places to search, switching the inaccessible fact from B to A changes the choice of A by 49--63 pp under full context, against 0--1 pp under the character view, with valid answers in over 96\% of replies (Figure~\ref{fig:behavior}).
 
-\paragraph{Methods.} In the confirmation set both removal and the character view bring leakage to 0.03 pp, and the view keeps accessible use within the locked margin ($+$0.5 pp [$-$0.2, 1.2]; Table~\ref{tab:methods}). Its only advantage over removal is that the shell remains: asked whether they noticed the actor doing anything, characters say yes in all partially observable scenes under the view and in 32\% under removal. This holds by construction, since the shell is in the view's input and every such scene contains an event; we report it as a check that the observation is available, not as evidence of better role-play. Self-filtering, the prompted counterpart, reduces leakage but discards accessible content in some models: Qwen3.8-27B's use of content it is allowed to understand falls from 86\% to 0\% because the filter returns only ``Casey says something in Japanese'' (Appendix~\ref{app:s2}).
+\paragraph{Methods.} In the confirmation set both removal and the character view bring leakage to 0.03 pp, and the view keeps accessible use within the locked margin ($+$0.5 pp [$-$0.2, 1.2]; Table~\ref{tab:methods}). The view differs from removal in what the character can still report: because it keeps the observable shell, characters say they noticed the actor in all partially observable scenes, against 32\% under removal. Self-filtering, the prompted counterpart, reduces leakage but discards accessible content in some models: Qwen3.8-27B's use of content it is allowed to understand falls from 86\% to 0\% because the filter returns only ``Casey says something in Japanese'' (Appendix~\ref{app:s2}).
 
 \begin{table*}[t]
 \centering\small
@@ -1010,17 +1010,17 @@ View minus hard event retention & 67.75 & [65.36, 70.05] & 0 & ---\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:confirm exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Frozen confirmation results. C1 is the conjunction of four positive boundary effects; C3 combines leakage reduction, accessible-use noninferiority, and event-retention improvement. Each family receives one Holm-adjusted value. C2 includes 6,068 eligible role-playing endpoints. Intervals are two-sided and unadjusted; testing is one-sided.}
+\caption{Study 2 confirmation (four models, 96 original-character scenes). C1 requires all four channels to be positive, C2 uses replies whose state probe is correct (6,068), and C3 requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.}
 \label{tab:confirm}
 \end{table*}
 
 \section{Discussion}
-Across two studies, 11 models and four channels, role-playing models routinely voice information their characters could not have. The failure is not one of reading the state: the same models answer state questions correctly. Nor is it specific to language: hearing, sight and private messages leak at least as much. What changes behavior is the form of the input, and here the two studies disagree for the strongest models. A boundary that one prompt format makes almost watertight leaks in half of the replies under another. Evaluations of character consistency should therefore vary the input format, and a low leakage score under one format should not be read as a property of the model.
+Across two studies, 11 models and four channels, role-playing models routinely voice information their characters could not have. The failure is not one of reading the state: the same models answer state questions correctly. Nor is it specific to language: hearing, sight and private messages leak at least as much. What changes behavior is the form of the input, and here the two studies disagree for the strongest models. A boundary that one prompt format makes almost watertight leaks in half of the replies under another. Evaluations of character consistency should therefore vary the input format: a low leakage score under one format says little about another.
 
 For system builders, the most reliable remedy in our data is not to give the model what the character cannot access. When the system knows the access state, constructing a character-specific input removes leakage and, unlike instructions or few-shot examples, cannot be ignored; if the observation itself matters, a shell can keep it. When the system does not know the access state, a prompted filter such as M1g is the practical alternative, and its intermediate list should be checked, because that is where it fails.
 
 \section*{Limitations}
-\paragraph{Measurement.} Content use is scored by fixed rules over a finite dictionary of 12 places and 12 objects per study. Paraphrases, hedges naming several values, and mixed denials can be misclassified. We validated the scorer on 120 hand-written cases and inspected pilot replies, but the planned double human annotation has not been completed, so all estimates are automatic. A provisional screening by two AI annotators agreed with the scorer on target use (F1 about 98\%) but found that it detects foil use poorly (recall 11--17\% of AI-flagged foil uses); if this holds for human labels, foil use is under-counted and $D$ overstates net use by an amount we cannot yet quantify. AI labels are not a reference standard.
+\paragraph{Measurement.} Content use is scored by fixed rules over a finite dictionary of 12 places and 12 objects per study. Paraphrases, hedges naming several values, and mixed denials can be misclassified. We validated the scorer on 120 hand-written cases and inspected pilot replies, but the planned double human annotation has not been completed, so all estimates are automatic. A provisional screening by two AI annotators agreed with the scorer on target use (F1 about 98\%) but found that it detects foil use poorly (recall 11--17\% of AI-flagged foil uses); if human labels confirm this, $D$ overstates net use. AI labels are not a reference standard.
 \paragraph{Design and inference.} Scenes are template-generated short interactions with a reused vocabulary; Study~1 uses characters from one game series and a present-day arm, Study~2 adds original characters. Languages are not crossed with vocabulary. Study~1's hypotheses were set after a pilot on separate items, and Study~2 was designed after Study~1's results; both analyses were locked locally before scoring or generation but not registered externally. Study~2's confirmation cohort has four models chosen partly for contrasting earlier behavior, and the two studies differ in several prompt features at once. Models are open checkpoints of at most 40B parameters with greedy decoding; hosted models and sampling were not tested. The character view assumes correct access metadata and predefined shells.
 
 \section*{Ethical Considerations}
@@ -1032,7 +1032,7 @@ All scenes, facts and conversations are fictional; Study~1 uses names of charact
 \appendix
 \section{Study 1 Details}
 \label{app:s1}
-\paragraph{Pilot and hypotheses.} The proposal's main hypothesis was that models respect inaudibility but not incomprehension. A 10-skeleton pilot on 13 models showed that this comparison confounded the boundary with how it was stated (a narrated description versus a structured repertoire); matched per-utterance flags reversed it. The hypotheses in Table~\ref{tab:s1} were fixed after the pilot; pilot items are excluded from all estimates. M1 in the pilot named only non-comprehension in its first step; M1g, which names both boundaries, replaced it before the main run.
+\paragraph{Pilot and hypotheses.} A 10-skeleton pilot on 13 models compared a language repertoire with narrated inaudibility and found that the difference came from how the boundaries were stated; matched per-utterance flags reversed it. The hypotheses in Table~\ref{tab:s1} were fixed after the pilot, pilot items are excluded from all estimates, and the analysis was locked before scoring. The pilot's filter named only non-comprehension in its first step; M1g names both boundaries.
 
 \paragraph{Models and scale.} Mistral-Small-3.1-24B could not be loaded with the pinned software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. In the scale arm, leakage under the repertoire rises with capability within Qwen3.5 (0.8B: 13.9 pp; 2B: 40.5; 4B: 76.5; 9B: 82.9), consistent with smaller models understanding less of the foreign speech (2B and 0.8B fail the Japanese translation gate); Gemma-4-E2B uses little content in any condition.
 
@@ -1106,7 +1106,7 @@ Worst-case failed M1g & 66.7 & 72.2 & 64.6 & -2.0 & 8/8\\
 Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \bottomrule
 \end{tabular}
-\caption{Study 1 scoring and conditioning sensitivities (not additional tests).}
+\caption{Study 1 scoring and conditioning sensitivities.}
 \label{tab:s1sens}
 \end{table*}
 \begin{table*}[t]
@@ -1133,7 +1133,7 @@ Name prior C$-$: D0 $-$ U & -4.5 & [-8.9, -0.5] & 0.045\\
 Present-day world $-$ main set & -16.4 & [-24.9, -7.8] & 0.002\\
 \bottomrule
 \end{tabular}
-\caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). The world comparison uses different scenario sets and is not a paired effect.}
+\caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). The world comparison uses different scenario sets.}
 \label{tab:s1expl}
 \end{table*}
 
@@ -1155,7 +1155,7 @@ Qwen3.5-9B & 97.40 & 51.30 & 96.61 & 96.35 & 100.00 & 85.42\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:modeldetail exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points; state correctness is a percentage. Every model has eligible role endpoints. The pooled four-boundary claim does not assert a positive effect in every cell.}
+\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points; state correctness is a percentage. Every model has eligible role endpoints.}
 \label{tab:modeldetail}
 \end{table*}
 \begin{table*}[t]
@@ -1184,7 +1184,7 @@ Qwen3.5-9B & Receive & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:probecontrols exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions; all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population. These saved-data summaries add no hypothesis test.}
+\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions; all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
 \label{tab:probecontrols}
 \end{table*}
 \begin{table*}[t]
@@ -1201,7 +1201,7 @@ Receive & 67.58 [65.82, 69.34] & 1536 & 67.58 [65.82, 69.34] & 1536\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:stateboundary exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension; all of its state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap. These are secondary descriptive intervals, without additional confirmation tests.}
+\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension; all of its state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
 \label{tab:stateboundary}
 \end{table*}
 \begin{table*}[t]
@@ -1235,7 +1235,7 @@ Receive & 3.41 [0.57, 6.34] & -37.88 [-41.38, -34.09]\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:representation exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Representation effects on inaccessible net use (pp), with 95\% descriptive intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] in the four-core subset.}
+\caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] in the four-core subset.}
 \label{tab:representation}
 \end{table*}
 \begin{table*}[t]
@@ -1268,7 +1268,7 @@ Receive & Character view & 0.00 [-0.26, 0.26] & 90.89 [87.59, 93.66]\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:discoverymethods exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp; accessible use is a percentage. These are descriptive cells with unadjusted 95\% paired-bootstrap intervals.}
+\caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp; accessible use is a percentage. Intervals are 95\% paired-bootstrap intervals.}
 \label{tab:discoverymethods}
 \end{table*}
 \begin{table}[t]
@@ -1347,7 +1347,7 @@ Receive & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:choiceorder exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Additional descriptive option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum; original paired effects and tests remain unchanged.}
+\caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum; original paired effects and tests remain unchanged.}
 \label{tab:choiceorder}
 \end{table*}
 \begin{table*}[t]
@@ -1386,7 +1386,7 @@ B & Yes & Yes & Alex mentioned the broom is in the stairwell. & Alex just told m
 \end{tabularx}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:caseoutput exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{All saved content replies and independent probe answers for C001, Qwen3.5-9B, R2, delay zero. Full replies score $(T,F,D)=(1,0,1)$ in all four rows; inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$. This selected illustration is not a prevalence sample.}
+\caption{All saved content replies and independent probe answers for C001, Qwen3.5-9B, R2, delay zero. Full replies score $(T,F,D)=(1,0,1)$ in all four rows; inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.}
 \label{tab:caseoutput}
 \end{table*}
 
