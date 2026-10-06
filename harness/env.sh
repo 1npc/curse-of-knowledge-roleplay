@@ -16,6 +16,8 @@ export HF_HOME=$OCS/cache/hf XDG_CACHE_HOME=$OCS/cache/xdg TRITON_CACHE_DIR=$OCS
 export TORCHINDUCTOR_CACHE_DIR=$OCS/cache/inductor VLLM_CACHE_ROOT=$OCS/cache/vllm CUDA_CACHE_PATH=$OCS/cache/nv
 export FLASHINFER_CACHE_DIR=$OCS/cache/flashinfer
 export TMPDIR=${TMPDIR:-$OCS/cache/tmp}
+# Node-local /scratch-local counts against the same scratch inode quota, so an override also moves TMPDIR.
+if [ -n "${OCS_OVERRIDE:-}" ]; then export TMPDIR=$OCS/cache/tmp; fi
 mkdir -p $HF_HOME $XDG_CACHE_HOME $TRITON_CACHE_DIR $TORCHINDUCTOR_CACHE_DIR $VLLM_CACHE_ROOT $CUDA_CACHE_PATH \
   $FLASHINFER_CACHE_DIR $TMPDIR
 # CUDA 13 toolchain ships inside the pip wheels (no matching system module); see the NPCBank judge env.sh.
