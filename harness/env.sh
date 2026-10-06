@@ -5,7 +5,8 @@ source /usr/share/lmod/lmod/init/bash
 module use /sw/arch/RHEL9/EB_production/2024/modulefiles/all
 module load Python/3.12.3-GCCcore-13.3.0
 export OC=/gpfs/work4/0/prjs1226/qmeng1/over-comprehension
-export OCS=/scratch-shared/$USER/over-comprehension
+# OCS_OVERRIDE moves live runs and caches off scratch (used 10/6 when the scratch inode quota was exceeded).
+export OCS=${OCS_OVERRIDE:-/scratch-shared/$USER/over-comprehension}
 # The staging job copies the venv to $OC/venv; until it has verified, OC_VENV may point at the
 # original scratch venv (same torch 2.13.0 / transformers 5.17.0 / vLLM 0.29.0 build).
 export VENV=${OC_VENV:-$OC/venv}
