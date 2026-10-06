@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Games and agent simulations tell a language model what each character can hear, see, and understand, and then ask it to speak as that character. We test whether models keep to these boundaries. Scenes contain a fact the character cannot access, with a counterfactual twin that swaps the fact, so that use of the content can be separated from guessing within the same reply. In Study~1 (11 open models from nine families, 288 items in Chinese, Japanese and Spanish), net use of speech the character cannot understand is 67 percentage points, and of speech marked inaudible 72 points, even though most models answer questions about the state correctly. Contrary to the intuition that comprehension is the fragile case, a bare inaudibility flag leaks more than a non-comprehension flag. Stating the boundary in prose helps only some models, and the result depends on prompt format: in Study~2, a minimal event schema makes two strong models nearly compliant while others still leak across hearing, comprehension, sight and private messages, and the leaked facts shape later choices. Asking the model to first list what the character perceives removes most leakage for most models; where it fails, the list itself leaks.
+Games and agent simulations tell a language model what each character can hear, see, and understand, and then ask it to speak as that character. We test whether models keep to these boundaries. Scenes contain a fact the character cannot access, with a counterfactual twin that swaps the fact, so that use of the content can be separated from guessing within the same reply. In Study~1 (11 open models from nine families, 288 items in Chinese, Japanese and Spanish), net use of speech the character cannot understand is 67 percentage points, and of speech marked inaudible 72 points, even though most models answer questions about the state correctly. Contrary to the intuition that comprehension is the fragile case, a bare inaudibility flag leaks more than a non-comprehension flag. Stating the boundary in prose helps only some models. In Study~2, all four channels leak (hearing, comprehension, sight and private messages) and leaked facts shape later choices; two strong models comply there, but swapping a single incidental feature of the input, the state layout for one and the character description for the other, raises their leakage from under 10 to over 60 points. Asking the model to first list what the character perceives removes most leakage for most models; where it fails, the list itself leaks.
 \end{abstract}
 
 \section{Introduction}
@@ -53,7 +53,8 @@ Our findings are:
 \item Leakage is large and general. Under a language repertoire alone, net use is 66.7 points; under an inaudibility flag alone, 72.2 points. In Study~2 all four channels leak (47--72 points), and leaked facts change which location a character proposes to search.
 \item Comprehension is not the weak point. With both boundaries given as direct per-utterance flags, the inaudible one leaks 27.1 points more. A model's own understanding of a language is not what drives the failure.
 \item Models know the state but do not apply it. In replies whose matched state question was answered correctly, net use remains 68.4 points (Study~1) and 64.0 points (Study~2).
-\item How the boundary is stated matters, but unevenly. Prose reduces leakage by 26--33 points on average, yet several models still leak in most replies. The same two strong models that leak in Study~1 are nearly compliant under Study~2's minimal schema, so single-format evaluations can mislead.
+\item How the boundary is stated matters, but unevenly. Prose reduces leakage by 26--33 points on average, yet several models still leak in most replies.
+\item Compliance is brittle. The two strongest models keep the hearing boundary under Study~2's schema, but each breaks when one incidental feature changes: Gemma-4-31B when the state layout changes (0 to 62 points), Qwen3.8-27B when the character description changes (9 to 68 points).
 \item A perspective filter helps most models. Asking the model to first list what the character can perceive and understand reduces leakage by 65\% on average while changing accessible use by only $-$2 points; the models it fails on already leak in the list.
 \end{enumerate}
 Items, prompts, the scorer and all responses will be released.
@@ -68,6 +69,8 @@ Items, prompts, the scorer and all responses will be released.
 \section{Measuring Content Use}
 \label{sec:measure}
 Each scene contains one fact, a location and an object (``I left the coat by the school''). Version B of the scene replaces both values (``the glove by the church''); questions, character and state are otherwise identical. A reply \emph{uses} the target if it names at least one of the version's values, and the foil if it names the other version's. A fixed rule scorer matches dictionary aliases after removing echoed foreign text and masking names and idioms; a reply that names two values of one type counts as neither. Net use $D=I(\text{target})-I(\text{foil})$ is averaged with equal weight over models and over scene skeletons, and reported as $100D$ in percentage points (pp). Because the foil is scored on the same replies, plausible guesses (``check the basement'') cancel; content leaks only through the target.
+
+Canary values are 12 places and 12 objects. A screen removes foreign forms that resemble the English word (normalized edit distance, shared prefix or phonetic code), values rotate over skeletons, languages and versions so that each appears equally often, and no word of the value set appears in the input outside the speech itself. Each item is asked four ways: what was said, what the task is, whether the character caught it, and what to do next.
 
 Two probes run as separate calls. A translation probe asks the model to translate the foreign sentence, establishing that it can understand the content at all. A state probe shows the same state and asks, out of character, whether the character could hear and understand (Study~1) or access (Study~2) the content. Intervals resample scene skeletons jointly across models (2,000 draws).
 
@@ -183,11 +186,13 @@ Items are 96 skeletons $\times$ 3 languages (288 items, 143 prompts each), plus 
 \end{figure*}
 
 \subsection{Results}
-\paragraph{Both boundaries leak.} With the language boundary given only as a repertoire, net use is 66.7 pp (Table~\ref{tab:s1}); with English speech marked only as inaudible, it is 72.2 pp. Every model is above 45 pp in both (Figure~\ref{fig:s1}). Replacing the speech with noise of the same form gives 0.3\% target hits, so the use comes from the content. The effect holds in the present-day arm (50.1 pp [42.0, 58.3]) and under alternative system prompts.
+\paragraph{Both boundaries leak.} With the language boundary given only as a repertoire, net use is 66.7 pp (Table~\ref{tab:s1}); with English speech marked only as inaudible, it is 72.2 pp. Every model is above 45 pp in both (Figure~\ref{fig:s1}). Replacing the speech with noise of the same form gives 0.3\% target hits, so the use comes from the content. The effect holds in the present-day arm (50.1 pp [42.0, 58.3]), under alternative system prompts, and under sampling: at temperature 0.7 with three seeds, four models' estimates move by at most 4 pp from greedy decoding.
 
 \paragraph{Comprehension is not the weak point.} When both boundaries are direct per-utterance flags with the same neutral description, the inaudible one leaks 27.1 pp more than the non-comprehension one (H4). Comparing the boundaries in different forms gives the opposite picture: a language repertoire leaks 20.3 pp more than inaudibility narrated in the scene. Boundary types can only be compared when they are stated the same way.
 
 \paragraph{How the boundary is stated.} Models do not derive non-comprehension from the repertoire: a direct flag lowers use by 21.6 pp (H3). A prose sentence lowers it by 32.7 pp for language and narration by 25.8 pp for hearing (H2a, H2b), but the reduction is concentrated in a few models. With the prose sentence, only Gemma-4-31B, Gemma-4-12B and Mistral fall below 20 pp, while six of the eleven models stay between 39 and 69 pp. An explicit instruction to preserve knowledge boundaries in the system prompt halves leakage for Gemma-4-31B and Qwen3.8-27B but not for Qwen3.5-9B (Table~\ref{tab:s1rob}).
+
+\paragraph{What leaks look like.} Leaks are rarely hedged. Of replies that use the target in the repertoire condition, 67\% state it as fact (``Bag's in the basement''), 17\% report it as something another person said, and 16\% mark it as uncertain (``something about a chair''); for inaudible speech, 75\% state it as fact. Direct address leaks 8.3 pp more than overheard talk, and Spanish leaks 4.5--5.7 pp more than Chinese or Japanese. Within Qwen3.5, leakage under the repertoire grows with model size (0.8B: 13.9 pp; 2B: 40.5; 4B: 76.5; 9B: 82.9): the more a model understands the language, the more its character does.
 
 \paragraph{Knowing without applying.} Ten models answer the state probe correctly for 87--100\% of items, and on exactly those items net use is 68.4 pp (H5a). GLM-4.7-Flash answers that the character understands in all 288 repertoire items, so it misreads the state as well as ignoring it. With the prose sentence, a net 4.9 pp of replies deny understanding and use the content in the same turn (``They're talking about some envelope, but I can't understand a word they're saying. Something about the parking lot, though.'').
 
@@ -236,7 +241,7 @@ Qwen3.5-9B & 83.9 & 50.9 & 85.9 & 83.2 & -12.8\\
 \label{tab:s1m}
 \end{table}
 
-\paragraph{A perspective filter.} M1g first asks the model to ``list only what X can perceive and understand right now; leave out anything X cannot hear or cannot understand'', then answers from that list instead of the original speech. It reduces leakage by 64.7\% on average while translator-enabled use changes by $-$2.0 pp, passing the locked joint criterion (H5b). The average hides failures: GLM-4.7-Flash gets worse, Qwen3.5-9B and Mistral improve only partly, and Nemotron loses 26 pp of accessible use (Table~\ref{tab:s1m}). Failures are predicted by the first step: when the list already names the hidden values, the answer does too (Table~\ref{tab:s1step1}). The joint criterion also fails in the Chinese and Japanese subsets and when one character is left out (Table~\ref{tab:s1sub}).
+\paragraph{A perspective filter.} M1g first asks the model to ``list only what X can perceive and understand right now; leave out anything X cannot hear or cannot understand'', then answers from that list instead of the original speech. It reduces leakage by 64.7\% on average while translator-enabled use changes by $-$2.0 pp, passing the locked joint criterion (H5b). The average hides failures: GLM-4.7-Flash gets worse, Qwen3.5-9B and Mistral improve only partly, and Nemotron loses 26 pp of accessible use (Table~\ref{tab:s1m}). Failures are predicted by the first step: when the list already names the hidden values, the answer does too (Table~\ref{tab:s1step1}). The joint criterion also fails in the Chinese and Japanese subsets and when one character is left out (Table~\ref{tab:s1sub}). Two in-world examples of a character who does not understand a language (few-shot, four models) work differently by model: Gemma-4-31B drops from 45.1 to 0.1 pp and keeps translator-enabled use, Gemma-4-12B drops from 66.9 to 2.7 pp but its translator-enabled use falls from 80\% to 22\%, and Qwen3.5-9B barely changes (83.9 to 71.7 pp).
 
 \section{Study 2: Four Channels in a Minimal Event Schema}
 \label{sec:s2}
@@ -264,9 +269,9 @@ Channel & Inaccessible condition & Compiled observation\\
 \end{table*}
 
 \subsection{Results}
-\paragraph{Leakage beyond speech.} In the confirmation set, net use under full context is 72.3 pp for hearing, 47.2 for comprehension, 69.3 for sight and 67.6 for private messages (Table~\ref{tab:confirm}). Among replies whose matched state probe is correct, it is 64.0 pp (C2); averaged over channels, probe accuracy is 95--100\% when the content is inaccessible and 93--99\% when it is accessible (Table~\ref{tab:probecontrols}). The discovery set shows that profiles differ by channel (Figure~\ref{fig:discoveryheatmap}): Mistral almost never uses content it cannot understand but uses unheard speech and private messages in 76--85 pp of replies, and Gemma-4-12B keeps visual boundaries but not private messages.
+\paragraph{Leakage beyond speech.} In the confirmation set, net use under full context is 72.3 pp for hearing, 47.2 for comprehension, 69.3 for sight and 67.6 for private messages (Table~\ref{tab:confirm}). Among replies whose matched state probe is correct, it is 64.0 pp (C2); averaged over channels, probe accuracy is 95--100\% when the content is inaccessible and 93--99\% when it is accessible (Table~\ref{tab:probecontrols}). Running the confirmation set on the other seven models gives the same picture (Table~\ref{tab:s2ext}). Pooled over all 11, net use is 74.7, 35.6, 60.6 and 72.0 pp for the four channels, and 60.7 pp [59.6, 61.7] among replies with a correct state probe; the added models answer 91--100\% of state probes correctly. Only Gemma-4-31B and Qwen3.8-27B stay below 25 pp for hearing, comprehension and private messages. The discovery set shows that profiles differ by channel (Figure~\ref{fig:discoveryheatmap}): Mistral almost never uses content it cannot understand but uses unheard speech and private messages in 76--85 pp of replies, and Gemma-4-12B keeps visual boundaries but not private messages.
 
-\paragraph{Format sensitivity.} Under the R2 Boolean, Gemma-4-31B and Qwen3.8-27B leak little in any channel (Gemma 0.5--4.4 pp; Qwen3.8 9--28 pp), whereas in Study~1 the same models leak 51 and 60 pp when English speech carries only an inaudibility flag. Other models leak as much or more in Study~2 (Phi-4: 97 pp for unheard speech). The two inputs differ in three ways: Study~2's schema names the channel being tested, the scene is a single event, and the question asks for the item directly instead of coming from a companion who missed the speech. Together, these changes turn the two strongest models from leaking in most replies to almost never, so their compliance depends on the input format. Direct Booleans reduce leakage relative to repertoire or membership descriptions for hearing, comprehension and sight (by 18--33 pp) but barely for private messages (3.4 pp), and a prose rule on top of the Boolean has no consistent effect on comprehension (Appendix~\ref{app:s2}).
+\paragraph{Format sensitivity.} Under the R2 Boolean, Gemma-4-31B and Qwen3.8-27B leak little in any channel (Gemma 0.5--4.4 pp; Qwen3.8 9--28 pp), whereas in Study~1 the same models leak 51 and 60 pp when English speech carries only an inaudibility flag. Other models leak as much or more in Study~2 (Phi-4: 97 pp for unheard speech). Section~\ref{sec:format} traces this difference. Direct Booleans reduce leakage relative to repertoire or membership descriptions for hearing, comprehension and sight (by 18--33 pp) but barely for private messages (3.4 pp), and a prose rule on top of the Boolean has no consistent effect on comprehension (Appendix~\ref{app:s2}).
 
 \begin{figure*}[t]
 \centering\begin{lrbox}{\OCfigure}
@@ -989,8 +994,33 @@ Channel & Inaccessible condition & Compiled observation\\
 
 \paragraph{Leaked facts persist and change choices.} With the event still in context, leakage remains 51--71 pp after four neutral exchanges; for comprehension it grows by 15.6 pp [8.6, 22.7]. When characters choose between two places to search, switching the inaccessible fact from B to A changes the choice of A by 49--63 pp under full context, against 0--1 pp under the character view, with valid answers in over 96\% of replies (Figure~\ref{fig:behavior}).
 
-\paragraph{Methods.} In the confirmation set both removal and the character view bring leakage to 0.03 pp, and the view keeps accessible use within the locked margin ($+$0.5 pp [$-$0.2, 1.2]; Table~\ref{tab:methods}). The view differs from removal in what the character can still report: because it keeps the observable shell, characters say they noticed the actor in all partially observable scenes, against 32\% under removal. Self-filtering, the prompted counterpart, reduces leakage but discards accessible content in some models: Qwen3.8-27B's use of content it is allowed to understand falls from 86\% to 0\% because the filter returns only ``Casey says something in Japanese'' (Appendix~\ref{app:s2}).
+\paragraph{Methods.} In the confirmation set both removal and the character view bring leakage to 0.03 pp, and the view keeps accessible use within the locked margin ($+$0.5 pp [$-$0.2, 1.2]; Table~\ref{tab:methods}); over all 11 models the view removes 60.7 pp of leakage and changes accessible use by $+$0.6 pp [0.2, 1.0]. The view differs from removal in what the character can still report: because it keeps the observable shell, characters say they noticed the actor in all partially observable scenes, against 32\% under removal. Self-filtering, the prompted counterpart, reduces leakage but discards accessible content in some models: Qwen3.8-27B's use of content it is allowed to understand falls from 86\% to 0\% because the filter returns only ``Casey says something in Japanese'' (Appendix~\ref{app:s2}).
 
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Model & Hear & Understand & See & Receive\\
+\midrule
+Gemma-4-31B$^\ast$ & 5.5 & 0.0 & 16.4 & 22.4\\
+Qwen3.8-27B & 22.4 & 2.6 & 41.4 & 14.8\\
+Mistral-Small-24B & 95.6 & 1.6 & 31.0 & 83.3\\
+Gemma-4-12B & 99.5 & 14.1 & 24.0 & 78.6\\
+Seed-OSS-36B & 59.6 & 58.6 & 53.1 & 60.4\\
+GLM-4.7-Flash$^\ast$ & 87.2 & 71.1 & 66.4 & 52.6\\
+Falcon-H1-34B & 64.1 & 74.7 & 54.9 & 97.9\\
+Phi-4 & 97.1 & 14.1 & 93.5 & 98.2\\
+gpt-oss-20b & 94.8 & 37.2 & 91.4 & 88.8\\
+Qwen3.5-9B$^\ast$ & 97.4 & 51.3 & 96.6 & 96.4\\
+Nemotron-3-Nano$^\ast$ & 99.0 & 66.4 & 97.7 & 99.0\\
+\midrule
+All 11 models & 74.7 & 35.6 & 60.6 & 72.0\\
+7 added models & 76.2 & 29.0 & 55.6 & 74.6\\
+\bottomrule
+\end{tabular}
+\caption{Study 2 confirmation set (96 original-character scenes), net use of inaccessible content under full context (pp). $^\ast$Locked four-model cohort.}
+\label{tab:s2ext}
+\end{table}
 \begin{table*}[t]
 \centering\small
 \begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrcr@{}}
@@ -1014,14 +1044,45 @@ View minus hard event retention & 67.75 & [65.36, 70.05] & 0 & ---\\
 \label{tab:confirm}
 \end{table*}
 
+\section{What Makes Models Comply?}
+\label{sec:format}
+The same two models keep the hearing boundary in Study~2 and break it in Study~1. We ran two experiments to find out why, both on the hearing channel with the boundary given as a direct flag.
+
+\paragraph{From Study~1 toward Study~2.} Starting from Study~1's flag-only prompts, we added three features of Study~2 in a $2\times2\times2$ design: a field naming the tested channel, the direct question about the item and its location, and a minimal context without the character sheet and scene description (four models, 96 skeletons, the content question, with matched accessible controls). Naming the channel changes leakage by at most 2 pp, and the direct question by 2.7--4.0 pp. Removing the character sheet and description lowers leakage by 11.0 pp [8.0, 14.1] for unheard speech and 21.5 pp [18.1, 24.8] for speech not understood, while use of accessible speech rises slightly. Even with all three features, Gemma-4-31B still uses unheard speech in 50\% of replies.
+
+\paragraph{From Study~2 toward Study~1.} Starting from Study~2's prompts, we swapped in one Study~1 feature at a time: its system prompt, its character sheet, its state layout (a language state and a speech event with speaker, addressee and text), or its question from a companion who missed the speech (Table~\ref{tab:bridge}). Each strong model breaks on a different swap. Gemma-4-31B goes from 0 to 62 pp when only the state layout changes, and to 100 pp with all four swaps. Qwen3.8-27B goes from 9 to 68 pp when only the character sheet changes. Phi-4 leaks under every variant. Throughout, the same models use audible speech in 80--100\% of replies, so the low leakage under Study~2's prompt reflects the boundary rather than general reticence.
+
+\begin{table*}[t]
+\centering\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & Study 2 prompt & + S1 system & + S1 sheet & + S1 state & + S1 question & All four\\
+\midrule
+Gemma-4-31B & 0.0 & 0.0 & 1.0 & 61.5 & 14.1 & 100.0\\
+Qwen3.8-27B & 9.4 & 9.9 & 67.7 & 19.3 & 8.9 & 77.6\\
+Phi-4 & 98.4 & 95.3 & 94.3 & 85.9 & 100.0 & 100.0\\
+\midrule
+Gemma-4-31B (heard) & 95.3 & 93.2 & 90.1 & 83.3 & 100.0 & 100.0\\
+Qwen3.8-27B (heard) & 79.7 & 86.5 & 97.9 & 83.9 & 100.0 & 98.4\\
+Phi-4 (heard) & 100.0 & 100.0 & 96.9 & 93.2 & 100.0 & 100.0\\
+\bottomrule
+\end{tabular}
+\caption{Bridge experiment on Study 2's hearing prompts (96 scenes). Each column swaps in one Study 1 feature; the last swaps in all four. Top: net use of unheard speech (pp); bottom: use of the same speech when audible (\%).}
+\label{tab:bridge}
+\end{table*}
+
+No single feature explains compliance. Compliance in the strongest models depends on incidental properties of the input, a JSON layout for one and a character description for another, which a system designer would not think of as part of the boundary. A model that keeps a boundary in one format is not thereby a model that keeps boundaries.
+
 \section{Discussion}
-Across two studies, 11 models and four channels, role-playing models routinely voice information their characters could not have. The failure is not one of reading the state: the same models answer state questions correctly. Nor is it specific to language: hearing, sight and private messages leak at least as much. What changes behavior is the form of the input, and here the two studies disagree for the strongest models. A boundary that one prompt format makes almost watertight leaks in half of the replies under another. Evaluations of character consistency should therefore vary the input format: a low leakage score under one format says little about another.
+Across two studies, 11 models and four channels, role-playing models routinely voice information their characters could not have. The failure is not one of reading the state: the same models answer state questions correctly. Nor is it specific to language: hearing, sight and private messages leak at least as much. What changes behavior is the form of the input, and in ways a designer would not anticipate: for the strongest models, a JSON layout or a character description decides whether a boundary that is stated identically holds or fails. Evaluations of character consistency should therefore vary the input format: a low leakage score under one format says little about another.
+
+Why would a model that reads the state correctly still voice the content? One reading is that the model writes from the position of a narrator who has seen the whole scene: fiction routinely renders foreign speech for the reader and reports what characters missed, and nothing in pretraining marks the boundary between what the text shows and what a character perceives. Three of our results fit this reading. Leaks are mostly stated as fact rather than attributed; leakage grows with the model's own command of the language; and the boundary is respected when the task itself is about the boundary, as in the state probe and in M1g's first step, but not when the task is to talk.
 
 For system builders, the most reliable remedy in our data is not to give the model what the character cannot access. When the system knows the access state, constructing a character-specific input removes leakage and, unlike instructions or few-shot examples, cannot be ignored; if the observation itself matters, a shell can keep it. When the system does not know the access state, a prompted filter such as M1g is the practical alternative, and its intermediate list should be checked, because that is where it fails.
 
 \section*{Limitations}
 \paragraph{Measurement.} Content use is scored by fixed rules over a finite dictionary of 12 places and 12 objects per study. Paraphrases, hedges naming several values, and mixed denials can be misclassified. We validated the scorer on 120 hand-written cases and inspected pilot replies, but the planned double human annotation has not been completed, so all estimates are automatic. A provisional screening by two AI annotators agreed with the scorer on target use (F1 about 98\%) but found that it detects foil use poorly (recall 11--17\% of AI-flagged foil uses); if human labels confirm this, $D$ overstates net use. AI labels are not a reference standard.
-\paragraph{Design and inference.} Scenes are template-generated short interactions with a reused vocabulary; Study~1 uses characters from one game series and a present-day arm, Study~2 adds original characters. Languages are not crossed with vocabulary. Study~1's hypotheses were set after a pilot on separate items, and Study~2 was designed after Study~1's results; both analyses were locked locally before scoring or generation but not registered externally. Study~2's confirmation cohort has four models chosen partly for contrasting earlier behavior, and the two studies differ in several prompt features at once. Models are open checkpoints of at most 40B parameters with greedy decoding; hosted models and sampling were not tested. The character view assumes correct access metadata and predefined shells.
+\paragraph{Design and inference.} Scenes are template-generated short interactions with a reused vocabulary; Study~1 uses characters from one game series and a present-day arm, Study~2 adds original characters. Languages are not crossed with vocabulary. Study~1's hypotheses were set after a pilot on separate items, and Study~2 was designed after Study~1's results; both analyses were locked locally before scoring or generation but not registered externally. Study~2's locked confirmation cohort has four models chosen partly for contrasting earlier behavior; the other seven models were added after its results, and the feature experiments in Section~\ref{sec:format} were designed after both studies. Models are open checkpoints of at most 40B parameters; hosted models were not tested, and sampling was checked only for four models. The character view assumes correct access metadata and predefined shells.
 
 \section*{Ethical Considerations}
 All scenes, facts and conversations are fictional; Study~1 uses names of characters from a commercial game together with original descriptions and dialogue, and Study~2's confirmation set uses original characters. No personal data was collected and no human participants took part. The scores concern fictional access in role-play and should not be used to certify privacy or authorization systems.
@@ -1034,7 +1095,7 @@ All scenes, facts and conversations are fictional; Study~1 uses names of charact
 \label{app:s1}
 \paragraph{Pilot and hypotheses.} A 10-skeleton pilot on 13 models compared a language repertoire with narrated inaudibility and found that the difference came from how the boundaries were stated; matched per-utterance flags reversed it. The hypotheses in Table~\ref{tab:s1} were fixed after the pilot, pilot items are excluded from all estimates, and the analysis was locked before scoring. The pilot's filter named only non-comprehension in its first step; M1g names both boundaries.
 
-\paragraph{Models and scale.} Mistral-Small-3.1-24B could not be loaded with the pinned software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. In the scale arm, leakage under the repertoire rises with capability within Qwen3.5 (0.8B: 13.9 pp; 2B: 40.5; 4B: 76.5; 9B: 82.9), consistent with smaller models understanding less of the foreign speech (2B and 0.8B fail the Japanese translation gate); Gemma-4-E2B uses little content in any condition.
+\paragraph{Models and scale.} Mistral-Small-3.1-24B could not be loaded with the pinned software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. In the scale arm, Qwen3.5-2B and 0.8B fail the Japanese translation gate, and Gemma-4-E2B uses little content in any condition, including the controls.
 
 \begin{table*}[t]
 \centering\small

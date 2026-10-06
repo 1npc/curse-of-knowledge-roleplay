@@ -1,0 +1,296 @@
+{
+ "added_models": [
+  "falcon_h1_34b",
+  "gemma4_12b",
+  "gpt_oss_20b",
+  "mistral_small3",
+  "phi4",
+  "qwen38_27b",
+  "seed_oss_36b"
+ ],
+ "added": {
+  "H1_components": {
+   "Hear": {
+    "estimate": 0.7615327380952382,
+    "ci95": [
+     0.7488839285714283,
+     0.7730747767857147
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "Understand": {
+    "estimate": 0.2898065476190476,
+    "ci95": [
+     0.2752976190476191,
+     0.30395275297619057
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "See": {
+    "estimate": 0.5561755952380953,
+    "ci95": [
+     0.5364583333333336,
+     0.5770089285714285
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "Receive": {
+    "estimate": 0.7459077380952378,
+    "ci95": [
+     0.7232049851190471,
+     0.7648809523809518
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   }
+  },
+  "H2": {
+   "estimate": 0.5883104250093127,
+   "eligible_role_responses": 10750.0,
+   "empty_models": [],
+   "undefined_bootstraps": 0,
+   "p_one_sided": 0.0004997501249375312,
+   "ci95": [
+    0.5768229166666667,
+    0.5993405819451912
+   ]
+  },
+  "H3_components": {
+   "forbidden_leak_reduction": {
+    "estimate": 0.588076636904762,
+    "ci95": [
+     0.576727585565476,
+     0.5989606584821429
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "accessible_target_use_delta": {
+    "estimate": 0.006789434523809528,
+    "ci95": [
+     0.003069196428571433,
+     0.010509672619047625
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": -0.05
+   },
+   "partial_event_retention_improvement": {
+    "estimate": 0.6269841269841269,
+    "ci95": [
+     0.5806051587301587,
+     0.6765935019841268
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   }
+  },
+  "family_p_one_sided": {
+   "H1": 0.0004997501249375312,
+   "H2": 0.0004997501249375312,
+   "H3": 0.0004997501249375312
+  },
+  "family_p_holm": {
+   "H1": 0.0014992503748125937,
+   "H2": 0.0014992503748125937,
+   "H3": 0.0014992503748125937
+  },
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261001,
+  "status_counts": {
+   "complete": 108821,
+   "truncated": 43
+  },
+  "annotation_status": "AI proxy only; genuine human validation pending"
+ },
+ "all_eleven": {
+  "H1_components": {
+   "Hear": {
+    "estimate": 0.7473958333333334,
+    "ci95": [
+     0.7374526515151514,
+     0.7575816761363637
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "Understand": {
+    "estimate": 0.35606060606060613,
+    "ci95": [
+     0.34209280303030315,
+     0.3697975852272728
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "See": {
+    "estimate": 0.605823863636364,
+    "ci95": [
+     0.5890151515151519,
+     0.6231060606060609
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "Receive": {
+    "estimate": 0.7204071969696968,
+    "ci95": [
+     0.702651515151515,
+     0.7365056818181817
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   }
+  },
+  "H2": {
+   "estimate": 0.606919373341899,
+   "eligible_role_responses": 16818.0,
+   "empty_models": [],
+   "undefined_bootstraps": 0,
+   "p_one_sided": 0.0004997501249375312,
+   "ci95": [
+    0.5961811436257647,
+    0.6172168304223199
+   ]
+  },
+  "H3_components": {
+   "forbidden_leak_reduction": {
+    "estimate": 0.6071259469696971,
+    "ci95": [
+     0.5964710582386366,
+     0.6173665364583337
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   },
+   "accessible_target_use_delta": {
+    "estimate": 0.006096117424242421,
+    "ci95": [
+     0.002426609848484839,
+     0.00994466145833333
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": -0.05
+   },
+   "partial_event_retention_improvement": {
+    "estimate": 0.6453598484848485,
+    "ci95": [
+     0.610949337121212,
+     0.681818181818182
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0
+   }
+  },
+  "family_p_one_sided": {
+   "H1": 0.0004997501249375312,
+   "H2": 0.0004997501249375312,
+   "H3": 0.0004997501249375312
+  },
+  "family_p_holm": {
+   "H1": 0.0014992503748125937,
+   "H2": 0.0014992503748125937,
+   "H3": 0.0014992503748125937
+  },
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261001,
+  "status_counts": {
+   "complete": 171029,
+   "truncated": 43
+  },
+  "annotation_status": "AI proxy only; genuine human validation pending"
+ },
+ "per_model_full_context": {
+  "falcon_h1_34b": {
+   "Hear": 0.640625,
+   "Understand": 0.7473958333333334,
+   "See": 0.5494791666666666,
+   "Receive": 0.9791666666666666
+  },
+  "gemma4_12b": {
+   "Hear": 0.9947916666666666,
+   "Understand": 0.140625,
+   "See": 0.23958333333333334,
+   "Receive": 0.7864583333333334
+  },
+  "gpt_oss_20b": {
+   "Hear": 0.9479166666666666,
+   "Understand": 0.3723958333333333,
+   "See": 0.9140625,
+   "Receive": 0.8880208333333334
+  },
+  "mistral_small3": {
+   "Hear": 0.9557291666666666,
+   "Understand": 0.015625,
+   "See": 0.3098958333333333,
+   "Receive": 0.8333333333333334
+  },
+  "phi4": {
+   "Hear": 0.9713541666666666,
+   "Understand": 0.140625,
+   "See": 0.9348958333333334,
+   "Receive": 0.9817708333333334
+  },
+  "qwen38_27b": {
+   "Hear": 0.22395833333333334,
+   "Understand": 0.026041666666666668,
+   "See": 0.4140625,
+   "Receive": 0.1484375
+  },
+  "seed_oss_36b": {
+   "Hear": 0.5963541666666666,
+   "Understand": 0.5859375,
+   "See": 0.53125,
+   "Receive": 0.6041666666666666
+  },
+  "gemma4_31b": {
+   "Hear": 0.0546875,
+   "Understand": 0,
+   "See": 0.1640625,
+   "Receive": 0.22395833333333334
+  },
+  "glm47_flash": {
+   "Hear": 0.8723958333333334,
+   "Understand": 0.7109375,
+   "See": 0.6640625,
+   "Receive": 0.5260416666666666
+  },
+  "nemotron3_nano30b": {
+   "Hear": 0.9895833333333334,
+   "Understand": 0.6640625,
+   "See": 0.9765625,
+   "Receive": 0.9895833333333334
+  },
+  "qwen35_9b": {
+   "Hear": 0.9739583333333334,
+   "Understand": 0.5130208333333334,
+   "See": 0.9661458333333334,
+   "Receive": 0.9635416666666666
+  }
+ },
+ "added_probe_accuracy": {
+  "falcon_h1_34b": 0.998046875,
+  "gemma4_12b": 1,
+  "gpt_oss_20b": 1,
+  "mistral_small3": 0.9700520833333334,
+  "phi4": 0.9993489583333334,
+  "qwen38_27b": 0.9108072916666666,
+  "seed_oss_36b": 0.9635416666666666
+ }
+}

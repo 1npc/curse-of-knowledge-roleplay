@@ -183,6 +183,36 @@ def study1():
     return ins
 
 
+def added():
+    """Tables for the experiments added on 10/6 (bridge, format ablation, sampling, Study 2 extension)."""
+    ins = {}
+    br = json.loads((ROOT / "analysis/results/added-1006/bridge.json").read_text())
+    cols = [("base", "Study 2 prompt"), ("sys", "+ S1 system"), ("card", "+ S1 sheet"), ("schema", "+ S1 state"), ("ask", "+ S1 question"), ("all", "All four")]
+    rows = [r"Model & " + " & ".join(c for _, c in cols) + r"\\", r"\midrule"]
+    for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
+        rows.append(NAMES[m] + " & " + " & ".join(pc(br[m][f"{k}:inaccessible"]["estimate"]) for k, _ in cols) + r"\\")
+    rows.append(r"\midrule")
+    for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
+        rows.append(NAMES[m] + " (heard) & " + " & ".join(pc(br[m][f"{k}:accessible"]["estimate"]) for k, _ in cols) + r"\\")
+    ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Bridge experiment on Study 2's hearing prompts (96 scenes). Each column swaps in one Study 1 feature; "
+                                "the last swaps in all four. Top: net use of unheard speech (pp); bottom: use of the same speech when audible (\\%).", "tab:bridge", True)
+    ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
+    chans = ["Hear", "Understand", "See", "Receive"]
+    per = ext["per_model_full_context"]
+    core = {"gemma4_31b", "glm47_flash", "nemotron3_nano30b", "qwen35_9b"}
+    order = sorted(per, key=lambda m: sum(per[m].values()))
+    rows = [r"Model & Hear & Understand & See & Receive\\", r"\midrule"]
+    for m in order:
+        rows.append(NAMES[m] + (r"$^\ast$" if m in core else "") + " & " + " & ".join(pc(per[m][c]) for c in chans) + r"\\")
+    rows.append(r"\midrule")
+    for key, label in (("all_eleven", "All 11 models"), ("added", "7 added models")):
+        h = ext[key]["H1_components"]
+        rows.append(label + " & " + " & ".join(pc(h[c]["estimate"]) for c in chans) + r"\\")
+    ins["S2_EXT_TABLE"] = table(rows, "lrrrr", "Study 2 confirmation set (96 original-character scenes), net use of inaccessible content under full "
+                                "context (pp). $^\\ast$Locked four-model cohort.", "tab:s2ext", tight=True)
+    return ins
+
+
 def study2():
     ren = [("H1: ", "C1: "), ("H2: ", "C2: "), ("H3: ", "C3: "), ("H1 is", "C1 is"), ("H3 combines", "C3 combines"), ("H2 includes", "C2 includes")]
     labels = {"S2_ACCESS": "tab:accesscases", "S2_CONFIRM": "tab:confirm", "S2_HEATMAP": "fig:discoveryheatmap", "S2_METHODS": "tab:methods",
@@ -213,7 +243,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 
 def main():
     body = (P / "body.tex").read_text(encoding="utf-8")
-    ins = {**study1(), **study2()}
+    ins = {**study1(), **study2(), **added()}
     for k, v in ins.items():
         body = body.replace(f"% INSERT {k}\n", v + "\n")
     left = re.findall(r"^% INSERT (\w+)$", body, re.M)
