@@ -135,7 +135,17 @@ def main():
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--chunk", type=int, default=512)
     ap.add_argument("--retry-interrupted", action="store_true")
+    # 10/6: overrides for the added experiments (access-v2 seed; sampling robustness). Defaults keep the frozen protocol.
+    ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--temperature", type=float, default=None)
+    ap.add_argument("--top-p", type=float, default=None)
     a = ap.parse_args()
+    if a.seed is not None:
+        PROTOCOL["seed"] = a.seed
+    if a.temperature is not None:
+        PROTOCOL["temperature"] = a.temperature
+    if a.top_p is not None:
+        PROTOCOL["top_p"] = a.top_p
 
     oc = Path(os.environ.get("OC", "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension"))
     spec = json.loads(a.models.read_text())["models"][a.model]
@@ -215,7 +225,7 @@ def main():
               gpu_memory_utilization=PROTOCOL["gpu_memory_utilization"], tensor_parallel_size=1,
               trust_remote_code=False, max_num_seqs=PROTOCOL["max_num_seqs"])
     harmony = spec.get("output_parser") == "harmony"  # keep channel markers so the final answer can be separated
-    sampling = SamplingParams(temperature=0.0, top_p=1.0, seed=PROTOCOL["seed"],
+    sampling = SamplingParams(temperature=PROTOCOL["temperature"], top_p=PROTOCOL["top_p"], seed=PROTOCOL["seed"],
                               max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=not harmony)
     state.update(load_seconds=round(time.time() - t_load, 1), sampling=repr(sampling))
     (out / f"runtime-{a.run_id}.json").write_text(json.dumps({**state, "status": "generating"}, indent=1))

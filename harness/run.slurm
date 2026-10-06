@@ -11,6 +11,7 @@
 # Usage (from $OC/code/<commit>):
 #   sbatch [--time=HH:MM:SS] harness/run.slurm <run_id> <prompts.jsonl> <location: auto|project|scratch> <model,model,...> [subset.txt]
 # "auto" uses the verified project copy of a model when there is one and the pinned scratch download otherwise.
+# Optional GEN_ARGS (e.g. "--seed 20261001" or "--temperature 0.7 --top-p 0.95 --seed 1") pass through to generate.py.
 # Each model runs in its own Python process (a fresh vLLM engine). The finished run directory is
 # copied from scratch to the project space at the end, so nothing depends on the 14-day scratch rule.
 set -eo pipefail
@@ -30,7 +31,7 @@ for M in ${MODELS//,/ }; do
   echo "=== $M $(date -Is)"
   python "$CODE/harness/generate.py" --prompts "$PROMPTS" ${SUBSET:+--subset "$SUBSET"} --model "$M" \
     --models "$CODE/harness/models.json" --reference "$CODE/harness/weights_reference.json" \
-    --location "$LOCATION" --out "$RUN" --run-id "$RUN_ID-$SLURM_JOB_ID" || { echo "model $M failed"; status=1; }
+    --location "$LOCATION" --out "$RUN" --run-id "$RUN_ID-$SLURM_JOB_ID" ${GEN_ARGS:-} || { echo "model $M failed"; status=1; }
 done
 mkdir -p "$OC/runs"
 rsync -a "$RUN/" "$OC/runs/$RUN_ID/"
