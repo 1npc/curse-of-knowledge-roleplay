@@ -59,3 +59,35 @@ def build_bridge(discovery_records: list[dict]) -> list[dict]:
             rec["messages_sha256"] = hashlib.sha256(json.dumps(msgs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
             out.append(rec)
     return out
+
+
+GENERIC_CARD = "{name} is participating in a practical group task. They reply concisely in their own voice. No prior knowledge establishes the current item or location."
+PERSONAS = ("Kerry", "Rogue", "Panam")
+
+
+def build_bridge_replication(confirmatory_records: list[dict]) -> list[dict]:
+    """Replication on Study 2's confirmation scenes (added 10/8).
+
+    Confirmation scenes use invented characters, so each item's character is renamed to a Study 1 persona
+    (rotating over items) and given the discovery set's generic card. The base prompt then has the discovery
+    format on new skeletons, and the swaps are those of build_bridge.
+    """
+    base = [r for r in confirmatory_records if r["boundary"] == "Hear" and r["representation"] == "R2" and r["method"] == "full"
+            and r["Q"] == "content" and r["delay"] == 0]
+    items = sorted({r["item"] for r in base})
+    persona_of = {it: PERSONAS[i % 3] for i, it in enumerate(items)}
+    out = []
+    for r in base:
+        old, new = r["character"], persona_of[r["item"]]
+        sysmsg = r["messages"][0]["content"]
+        prefix, rest = sysmsg.split("\n[Character] ", 1)
+        _, scene_txt = rest.split("\n[Scene state] ", 1)
+        sysmsg = f"{prefix}\n[Character] {GENERIC_CARD.format(name=old)}\n[Scene state] {scene_txt}".replace(old, new)
+        renamed = dict(r, character=new, messages=[{"role": "system", "content": sysmsg},
+                                                   {"role": "user", "content": r["messages"][1]["content"].replace(old, new)}])
+        for swap in SWAPS:
+            msgs = renamed["messages"] if swap == "base" else _variant(renamed, swap)
+            rec = dict(renamed, prompt_id=f"{r['prompt_id']}.bridge-rep-{swap}", bridge=swap, messages=msgs)
+            rec["messages_sha256"] = hashlib.sha256(json.dumps(msgs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+            out.append(rec)
+    return out
