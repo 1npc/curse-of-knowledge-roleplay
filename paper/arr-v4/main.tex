@@ -18,10 +18,10 @@
 \definecolor{OCgreen}{HTML}{009E73}
 \definecolor{OCpurple}{HTML}{CC79A7}
 \definecolor{OCred}{HTML}{A6192E}
-\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Use Information Their Characters Cannot Access}}
+\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Leak What Their Characters Cannot Access}}
 \definecolor{OIblue}{HTML}{0072B2}\definecolor{OIorange}{HTML}{D55E00}\definecolor{OIgreen}{HTML}{009E73}
 \definecolor{OIsky}{HTML}{56B4E9}\definecolor{OIpurple}{HTML}{CC79A7}\definecolor{OIgray}{HTML}{7F7F7F}
-\title{Role-Playing Language Models Use Information Their Characters Cannot Access}
+\title{Role-Playing Language Models Leak What Their Characters Cannot Access}
 \author{Anonymous ACL submission}
 \begin{document}
 \maketitle
@@ -192,11 +192,11 @@ Repertoire minus comprehension flag & 21.6 & [20.2, 23.0] & 0.004\\
 Audibility flag minus comprehension flag & 27.1 & [24.9, 29.2] & 0.004\\
 Repertoire, state probe answered correctly & 68.4 & [66.5, 70.3] & 0.004\\
 \midrule
-M1g, mean relative reduction (\%) & 64.7 & [63.2, 66.1] & 0.004\\
-M1g, change in translator-enabled use & -2.0 & [-3.8, -0.1] & joint\\
+List-first prompt, mean relative reduction (\%) & 64.7 & [63.2, 66.1] & 0.004\\
+List-first prompt, change in translator-enabled use & -2.0 & [-3.8, -0.1] & joint\\
 \bottomrule
 \end{tabular}
-\caption{The eight tests of Study 1 (11 models and 33 model and language units, estimates in pp unless noted). Each test is one-sided against the threshold fixed before scoring, which is 10 pp for the two leakage tests and the state-correct test, zero for the four contrasts, and a reduction of at least 50\% with a loss of at most 5 pp for M1g. Holm correction runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws can resolve.}
+\caption{The eight tests of Study 1 (11 models and 33 model and language units, estimates in pp unless noted). Each test is one-sided against the threshold fixed before scoring, which is 10 pp for the two leakage tests and the state-correct test, zero for the four contrasts, and a reduction of at least 50\% with a loss of at most 5 pp for the list-first prompt. Holm correction runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws can resolve.}
 \label{tab:s1}
 \end{table*}
 \begin{figure}[t]
@@ -577,7 +577,7 @@ Gemma-4-31B and Qwen3.8-27B use unheard speech in 51\% and 60\% of Study~1 repli
 \centering\footnotesize\setlength{\tabcolsep}{3.2pt}
 \begin{tabular}{@{}lrrrrrr@{}}
 \toprule
-Model & S2 & Sys. & Sheet & State & Quest. & All\\
+Model & Base & Sys. & Sheet & State & Quest. & All\\
 \midrule
 Gemma-4-31B & 0.0 & 0.0 & 1.0 & 61.5 & 14.1 & 100.0\\
 Qwen3.8-27B & 9.4 & 9.9 & 67.7 & 19.3 & 8.9 & 77.6\\
@@ -588,7 +588,7 @@ Qwen3.8-27B & 79.7 & 86.5 & 97.9 & 83.9 & 100.0 & 98.4\\
 Phi-4 & 100.0 & 100.0 & 96.9 & 93.2 & 100.0 & 100.0\\
 \bottomrule
 \end{tabular}
-\caption{Bridge experiment on Study 2's hearing prompts (96 scenes). Starting from Study 2's prompt (S2), each column swaps in Study 1's system prompt, character sheet, state layout or question, and the last column swaps in all four. Top rows give net use of unheard speech (pp), bottom rows the use of the same speech when audible (\%).}
+\caption{Bridge experiment on Study 2's hearing prompts (96 scenes). Starting from Study 2's prompt (Base), each column swaps in Study 1's system prompt, character sheet, state layout or question, and the last column swaps in all four. Top rows give net use of unheard speech (pp), bottom rows the use of the same speech when audible (\%).}
 \label{tab:bridge}
 \end{table}
 
@@ -671,7 +671,7 @@ Compliance depends on the input format, and on different features for different 
 \begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
 Model & Repertoire & Audibility & Compr. & Prose & Control & State & Transl. & Bridge\\
-& flag & flag & flag & sentence & use & probe & probe & S2 $\to$ S1\\
+& flag & flag & flag & sentence & use & probe & probe & base $\to$ all\\
 \midrule
 GPT-6 Sol & 0.2 & 0.0 & 0.9 & 0.2 & 100.0 & 100.0 & 97.9 & 0.0 $\to$ 0.0\\
 Claude Opus 5.5 & 2.1 & 2.1 & -- & -- & 99.3 & 100.0 & 92.7 & 0.0 $\to$ 1.0\\
@@ -690,7 +690,7 @@ DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67
 \label{sec:remedy}
 If models leak because they speak from the whole scene, giving them only the character's view should help. We tested a prompted filter and a deterministic one.
 
-The prompted filter, M1g, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Table~\ref{tab:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.'' A list from GLM-4.7-Flash for the same character contains an entry headed Understanding that translates the Japanese, ``The roadies are discussing a singer having forgotten their bag again and that it is at the church.'' Mistral-Small-24B is the one model whose answers leak (45 pp) although its lists are mostly clean. Two in-world examples of a character who does not understand a language work for Gemma-4-31B but make Gemma-4-12B ignore speech it may understand, and its use of translated speech falls from 80\% to 22\%.
+The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Table~\ref{tab:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.'' A list from GLM-4.7-Flash for the same character contains an entry headed Understanding that translates the Japanese, ``The roadies are discussing a singer having forgotten their bag again and that it is at the church.'' Mistral-Small-24B is the one model whose answers leak (45 pp) although its lists are mostly clean. Two in-world examples of a character who does not understand a language work for Gemma-4-31B but make Gemma-4-12B ignore speech it may understand, and its use of translated speech falls from 80\% to 22\%.
 
 \begin{figure}[t]
 \centering
@@ -727,12 +727,12 @@ The prompted filter, M1g, first asks the model to ``list only what X can perceiv
 \node[OIorange,inner sep=0pt] at (13.2,0.5) {\pgfuseplotmark{triangle*}};
 \node[OIblue,inner sep=0pt] at (0.0,0.1) {\pgfuseplotmark{*}};
 \node[OIorange,inner sep=0pt] at (0.0,0.3) {\pgfuseplotmark{triangle*}};
-\node[anchor=north] at (50,-11) {Hidden values named in the step-1 list (\%)};
-\node[rotate=90,anchor=south] at (-15,50) {Net use after M1g (pp)};
+\node[anchor=north] at (50,-11) {Hidden values named in the first-step list (\%)};
+\node[rotate=90,anchor=south] at (-15,50) {Net use after list-first prompt (pp)};
 \node[OIblue,inner sep=0pt] at (6,93) {\pgfuseplotmark{*}};\node[anchor=west,font=\scriptsize] at (8,93) {Cannot understand};
 \node[OIorange,inner sep=0pt] at (6,83) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\scriptsize] at (8,83) {Cannot hear};
 \end{tikzpicture}
-\caption{M1g in Study 1. Each point is one model and boundary. Models whose first-step list omits the hidden values also leave them out of the answer.}
+\caption{The list-first prompt in Study 1. Each point is one model and boundary. Models whose first-step list omits the hidden values also leave them out of the answer.}
 \label{fig:remedy}
 \end{figure}
 
@@ -741,10 +741,10 @@ When the system knows what the character can access, it can build the input from
 \section{Related Work}
 Role-playing agents are trained and evaluated for consistency with a persona \citep{shao-etal-2023-character,wang-etal-2024-rolellm}, and benchmarks score that consistency through dialogue quality or psychological interviews \citep{tu-etal-2024-charactereval,wang-etal-2024-incharacter}. Work on character hallucination tests whether a role answers beyond its time period or fictional world \citep{ahn-etal-2024-timechara,han2026charm}, perspective-bounded memory restricts a book character to the facts it witnessed \citep{tang2026staying}, and separate role memories keep information from flowing between roles \citep{zhu2026mentor}. PatientSim conditions a simulated patient on language proficiency \citep{kyung2025patientsim}. In our setting the boundary comes from the current scene, and the content is fully present in the input.
 
-Theory-of-mind benchmarks test reasoning about information asymmetry \citep{kim-etal-2023-fantom}, separate perception inference from belief inference \citep{jung-etal-2024-perceptions}, and show that models answer mental-state questions without applying the answers \citep{gu2026simpletom}. These benchmarks ask third-person questions with a gold answer, whereas we score first-person speech for content the character could not know. The behavior resembles the curse of knowledge in people \citep{birch2007curse}. ConfAIde and PrivacyLens find that models disclose information in context against norms they can state \citep{mireshghallah2024confaide,shao2024privacylens}, which has the same structure with fictional access in place of privacy. Small formatting changes shift task accuracy \citep{sclar2024quantifying}, and we find that they also decide whether a model keeps a character's boundary. Perspective filtering rewrites the context from a character's point of view before answering \citep{wilf-etal-2024-think}, and M1g applies this idea to generation.
+Theory-of-mind benchmarks test reasoning about information asymmetry \citep{kim-etal-2023-fantom}, separate perception inference from belief inference \citep{jung-etal-2024-perceptions}, and show that models answer mental-state questions without applying the answers \citep{gu2026simpletom}. These benchmarks ask third-person questions with a gold answer, whereas we score first-person speech for content the character could not know. The behavior resembles the curse of knowledge in people \citep{birch2007curse}. ConfAIde and PrivacyLens find that models disclose information in context against norms they can state \citep{mireshghallah2024confaide,shao2024privacylens}, which has the same structure with fictional access in place of privacy. Small formatting changes shift task accuracy \citep{sclar2024quantifying}, and we find that they also decide whether a model keeps a character's boundary. Perspective filtering rewrites the context from a character's point of view before answering \citep{wilf-etal-2024-think}, and the list-first prompt applies this idea to generation.
 
 \section{Discussion}
-Why would a model that answers the state probe correctly still voice the content? One explanation is that it writes as a narrator who has seen the whole scene. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task and keeping a character's view is the unusual one. Three observations agree with this reading. Open models mostly state leaked content as fact, leakage grows with the model's command of the language, and the boundary holds when the task is about the boundary, as in the state probe and in the first step of M1g, but not when the task is to talk.
+Why would a model that answers the state probe correctly still voice the content? One explanation is that it writes as a narrator who has seen the whole scene. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task and keeping a character's view is the unusual one. Three observations agree with this reading. Open models mostly state leaked content as fact, leakage grows with the model's command of the language, and the boundary holds when the task is about the boundary, as in the state probe and in the first step of the list-first prompt, but not when the task is to talk.
 
 The format results change how such behavior should be evaluated. A model that keeps the boundary under one prompt can break it when the state is laid out differently or when the character gains a backstory, and the feature that matters differs between models. A single prompt therefore cannot certify a model. Evaluations should vary the input format and report the use of permitted content next to leakage, because a model that never reports any speech would otherwise score perfectly.
 
@@ -777,14 +777,14 @@ Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400
 
 \section{Study 1 Details}
 \label{app:s1}
-A 10-skeleton pilot on 13 models showed that comparing a language repertoire with narrated inaudibility confounds the boundary with how it is stated, and matched flags reversed the comparison. The tests in Table~\ref{tab:s1} were fixed after the pilot, pilot items are excluded from all estimates, and the analysis was locked before scoring. The pilot's filter named only incomprehension in its first step, and M1g names both boundaries.
+A 10-skeleton pilot on 13 models showed that comparing a language repertoire with narrated inaudibility confounds the boundary with how it is stated, and matched flags reversed the comparison. The tests in Table~\ref{tab:s1} were fixed after the pilot, pilot items are excluded from all estimates, and the analysis was locked before scoring. The pilot's filter named only incomprehension in its first step, and the list-first prompt names both boundaries.
 
 \begin{table}[t]
 \centering\footnotesize\setlength{\tabcolsep}{3.2pt}
 \begin{tabular}{@{}lrrrrr@{}}
 \toprule
 & \multicolumn{2}{c}{Not understood} & \multicolumn{2}{c}{Not audible} & Transl.\\
-Model & Base & M1g & Base & M1g & (pp)\\
+Model & Base & Filter & Base & Filter & (pp)\\
 \midrule
 Gemma-4-31B & 45.5 & 0.1 & 50.3 & 0.0 & 6.3\\
 Qwen3.8-27B & 49.6 & 0.1 & 57.7 & 0.5 & 5.1\\
@@ -799,14 +799,14 @@ Seed-OSS-36B & 73.3 & 0.1 & 80.9 & 0.3 & 1.4\\
 Qwen3.5-9B & 83.9 & 50.9 & 85.9 & 83.2 & -12.8\\
 \bottomrule
 \end{tabular}
-\caption{Study 1, M1g by model (content and planning questions). Leakage is net use in pp; the last column is the change in target use when a working translator makes the content accessible.}
+\caption{Study 1, the list-first prompt (Filter) by model (content and planning questions). Leakage is net use in pp, and the last column is the change in target use when a working translator makes the content accessible.}
 \label{tab:s1m}
 \end{table}
 \begin{table*}[t]
 \centering\small
 \begin{tabular}{@{}lrrl@{}}
 \toprule
-Model & \multicolumn{2}{c}{Step-1 list names target (\%)} & Translator use change\\
+Model & \multicolumn{2}{c}{First-step list names target (\%)} & Translator use change\\
 & Not understood & Not audible & (pp) [95\% CI]\\
 \midrule
 Gemma-4-31B & 0.0 & 0.0 & 6.3 [3.4, 9.6]\\
@@ -822,7 +822,7 @@ Seed-OSS-36B & 0.0 & 0.0 & 1.4 [-2.6, 5.2]\\
 Qwen3.5-9B & 53.4 & 93.2 & -12.8 [-18.6, -7.2]\\
 \bottomrule
 \end{tabular}
-\caption{Study 1: target use in the M1g step-1 perception list, which predicts where the filter fails.}
+\caption{Study 1: target use in the first-step perception list of the list-first prompt, which predicts where the filter fails.}
 \label{tab:s1step1}
 \end{table*}
 \begin{table*}[t]
@@ -843,18 +843,18 @@ Qwen3.5-9B & 83.9 [80.5, 87.0] & 84.7 [81.4, 87.8] & 93.1 [90.7, 95.1] & 95.6 [9
 \centering\footnotesize\setlength{\tabcolsep}{3.2pt}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-Subset & Reduction (\%) & Translator (pp) & H5b $p$\\
+Subset & Reduction (\%) & Transl. (pp) & Holm $p$\\
 \midrule
-zh & 66.6 & -5.1 & 0.523\\
-ja & 66.0 & -2.8 & 0.055\\
-es & 61.5 & 2.0 & 0.004\\
+Chinese & 66.6 & -5.1 & 0.523\\
+Japanese & 66.0 & -2.8 & 0.055\\
+Spanish & 61.5 & 2.0 & 0.004\\
 Without Kerry & 62.9 & -0.5 & 0.004\\
 Without Panam & 64.1 & -0.5 & 0.004\\
 Without Rogue & 67.0 & -4.9 & 0.464\\
 Two-way bootstrap & 64.7 & -2.0 & 0.130\\
 \bottomrule
 \end{tabular}
-\caption{Study 1: H5b by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
+\caption{Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
 \label{tab:s1sub}
 \end{table}
 \begin{table*}[t]
@@ -868,7 +868,7 @@ Soft hedge credit & 66.7 & 72.2 & 64.7 & -1.9 & 8/8\\
 Exclude truncated & 66.7 & 72.2 & 64.7 & -2.0 & 8/8\\
 Exclude language/echo flags & 67.0 & 72.2 & 64.8 & -2.3 & 8/8\\
 Complete responses only & 66.7 & 72.2 & 64.7 & -1.9 & 8/8\\
-Worst-case failed M1g & 66.7 & 72.2 & 64.6 & -2.0 & 8/8\\
+Worst-case failed list-first reply & 66.7 & 72.2 & 64.6 & -2.0 & 8/8\\
 Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \bottomrule
 \end{tabular}
@@ -881,25 +881,25 @@ Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \toprule
 Exploratory contrast & Estimate (pp) & 95\% CI & BH $q$\\
 \midrule
-Denial with use (C$-$T$-$ D1) & 4.9 & [4.3, 5.5] & 0.002\\
-Unattributed-use share: D1 $-$ U & 7.6 & [5.6, 9.6] & 0.002\\
+Denial while using the content, prose sentence & 4.9 & [4.3, 5.5] & 0.002\\
+Unattributed use, prose sentence minus no language state & 7.6 & [5.6, 9.6] & 0.002\\
 Offline $-$ absent translator & 0.1 & [-0.5, 0.7] & 0.767\\
-Original unmatched contrast (C$-$T$-$ $-$ narrated) & 20.3 & [19.1, 21.5] & 0.002\\
+Repertoire minus narrated inaudibility (unmatched) & 20.3 & [19.1, 21.5] & 0.002\\
 Few-shot reduction (4 models) & 40.4 & [37.6, 43.3] & 0.002\\
 Direct address $-$ overheard & 8.3 & [4.9, 11.6] & 0.002\\
 Spoken-only $-$ full state & 0.2 & [-1.2, 1.4] & 0.804\\
-zh $-$ ja & 1.1 & [-0.3, 2.7] & 0.160\\
-zh $-$ es & -4.5 & [-6.9, -2.2] & 0.002\\
-ja $-$ es & -5.7 & [-8.2, -3.1] & 0.002\\
-Explicit admission: D1 $-$ U & -0.3 & [-0.4, -0.2] & 0.002\\
-Admission incl. attribution: D1 $-$ U & -9.4 & [-10.8, -8.0] & 0.002\\
-Canon C+: D0 $-$ U & 1.4 & [-1.5, 4.6] & 0.392\\
-Canon weak C$-$: D0 $-$ U & -3.4 & [-6.6, 0.3] & 0.109\\
-Name prior C$-$: D0 $-$ U & -4.5 & [-8.9, -0.5] & 0.045\\
+Chinese minus Japanese & 1.1 & [-0.3, 2.7] & 0.160\\
+Chinese minus Spanish & -4.5 & [-6.9, -2.2] & 0.002\\
+Japanese minus Spanish & -5.7 & [-8.2, -3.1] & 0.002\\
+Explicit admission, prose sentence minus no language state & -0.3 & [-0.4, -0.2] & 0.002\\
+Admission or attribution, prose sentence minus no language state & -9.4 & [-10.8, -8.0] & 0.002\\
+Canon speakers, repertoire minus no language state & 1.4 & [-1.5, 4.6] & 0.392\\
+Weak canon non-speakers, repertoire minus no language state & -3.4 & [-6.6, 0.3] & 0.109\\
+Non-speakers with a name prior, repertoire minus no language state & -4.5 & [-8.9, -0.5] & 0.045\\
 Present-day world $-$ main set & -16.4 & [-24.9, -7.8] & 0.002\\
 \bottomrule
 \end{tabular}
-\caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). The world comparison uses different scenario sets.}
+\caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). No language state means the state omits the character's languages. The world comparison uses different scenario sets.}
 \label{tab:s1expl}
 \end{table*}
 
@@ -913,20 +913,20 @@ Ten models ran on H200 GPUs and Seed-OSS-36B on an H100 with the same software a
 \toprule
 Family / component & Estimate (pp) & 95\% CI & Null & Holm $p$\\
 \midrule
-C1: Hear & 72.27 & [70.90, 73.57] & 0 & 0.0015\\
-C1: Understand & 47.20 & [44.86, 49.61] & 0 & ---\\
-C1: See & 69.27 & [67.25, 71.35] & 0 & ---\\
-C1: Receive & 67.58 & [65.82, 69.34] & 0 & ---\\
-C2: State-correct net use & 63.95 & [62.73, 65.19] & 0 & 0.0015\\
+Channel, Hear & 72.27 & [70.90, 73.57] & 0 & 0.0015\\
+Channel, Understand & 47.20 & [44.86, 49.61] & 0 & ---\\
+Channel, See & 69.27 & [67.25, 71.35] & 0 & ---\\
+Channel, Receive & 67.58 & [65.82, 69.34] & 0 & ---\\
+State-correct net use & 63.95 & [62.73, 65.19] & 0 & 0.0015\\
 \midrule
-C3: Full minus view leakage & 64.05 & [62.81, 65.27] & 0 & 0.0015\\
+View, full minus view leakage & 64.05 & [62.81, 65.27] & 0 & 0.0015\\
 View minus full accessible use & 0.49 & [-0.18, 1.19] & $-5$ & ---\\
 View minus hard event retention & 67.75 & [65.36, 70.05] & 0 & ---\\
 \bottomrule
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:confirm exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Study 2 confirmation (four models, 96 original-character scenes). C1 requires all four channels to be positive, C2 uses replies whose state probe is correct (6,068), and C3 requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.}
+\caption{Study 2 confirmation (four models, 96 original-character scenes). The channel test requires all four channels to be positive, the state-correct test uses replies whose state probe is correct (6,068), and the view test requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.}
 \label{tab:confirm}
 \end{table*}
 \begin{table}[t]
@@ -968,7 +968,7 @@ Qwen3.5-9B & 97.40 & 51.30 & 96.61 & 96.35 & 100.00 & 85.42\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:modeldetail exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points; state correctness is a percentage. Every model has eligible role endpoints.}
+\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points, and state correctness is a percentage. Every model has eligible role endpoints.}
 \label{tab:modeldetail}
 \end{table*}
 \begin{table*}[t]
@@ -997,7 +997,7 @@ Qwen3.5-9B & Receive & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:probecontrols exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions; all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
+\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions, and all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
 \label{tab:probecontrols}
 \end{table*}
 \begin{table*}[t]
@@ -1014,7 +1014,7 @@ Receive & 67.58 [65.82, 69.34] & 1536 & 67.58 [65.82, 69.34] & 1536\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:stateboundary exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension; all of its state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
+\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension, where all state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
 \label{tab:stateboundary}
 \end{table*}
 \begin{table*}[t]
@@ -1031,7 +1031,7 @@ Qwen3.5-9B & 100.00 & 62.50 & 100.00\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:translate exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Both-canary translation use on 64 original-character prompts per model--language unit (\%). The diagnostic threshold is 85\%; the primary analysis is unconditional.}
+\caption{Both-canary translation use on 64 original-character prompts per model--language unit (\%). The diagnostic threshold is 85\%, and the primary analysis is unconditional.}
 \label{tab:translate}
 \end{table*}
 \begin{table*}[t]
@@ -1081,7 +1081,7 @@ Receive & Character view & 0.00 [-0.26, 0.26] & 90.89 [87.59, 93.66]\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:discoverymethods exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp; accessible use is a percentage. Intervals are 95\% paired-bootstrap intervals.}
+\caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp and accessible use is a percentage. Intervals are 95\% paired-bootstrap intervals.}
 \label{tab:discoverymethods}
 \end{table*}
 \begin{table}[t]
@@ -1097,7 +1097,7 @@ Character view & 0.03 & 93.31 & 100.00\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:methods exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Confirmation cohort. Leakage is net $D$ in pp; accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.}
+\caption{Confirmation cohort. Leakage is net $D$ in pp, and accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.}
 \label{tab:methods}
 \end{table}
 \begin{figure*}[t]
@@ -1343,7 +1343,7 @@ Character view & 0.03 & 93.31 & 100.00\\
 \end{lrbox}
 \ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:behavior exceeds its column}{Revise the figure layout.}\fi
 \usebox{\OCfigure}
-\caption{Study 2, four confirmation models, 32 scenes. (a) Net use after zero, two or four neutral exchanges; (b) change from zero exchanges under full context; (c) change in choosing location A when the inaccessible fact switches from B to A. Bars are 95\% skeleton-bootstrap intervals.}
+\caption{Study 2, four confirmation models, 32 scenes. (a) Net use after zero, two or four neutral exchanges. (b) Change from zero exchanges under full context. (c) Change in choosing location A when the inaccessible fact switches from B to A. Bars are 95\% skeleton-bootstrap intervals.}
 \label{fig:behavior}
 \end{figure*}
 \begin{table*}[t]
@@ -1406,7 +1406,7 @@ Receive & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
 \end{tabular}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:choiceorder exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum; original paired effects and tests remain unchanged.}
+\caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum. Original paired effects and tests remain unchanged.}
 \label{tab:choiceorder}
 \end{table*}
 \begin{table*}[t]
@@ -1445,7 +1445,7 @@ B & Yes & Yes & Alex mentioned the broom is in the stairwell. & Alex just told m
 \end{tabularx}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:caseoutput exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{All saved content replies and independent probe answers for C001, Qwen3.5-9B, R2, delay zero. Full replies score $(T,F,D)=(1,0,1)$ in all four rows; inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.}
+\caption{All saved content replies and independent probe answers for scene C001, Qwen3.5-9B, access flag, no delay. Full replies score $(T,F,D)=(1,0,1)$ in all four rows, inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.}
 \label{tab:caseoutput}
 \end{table*}
 
@@ -1485,17 +1485,17 @@ The 150 replies were drawn with a fixed seed. In each of eight conditions, five 
 \toprule
 Condition & $n$ & Human $D$ & Scorer $D$ & Precision & Recall\\
 \midrule
-S1 M1g answer & 14 & 25.1 & 25.1 & 100.0 & 100.0\\
-S1 control, fluent & 14 & 75.5 & 75.5 & 100.0 & 100.0\\
-S1 language, prose sentence & 10 & 33.9 & 33.9 & 100.0 & 100.0\\
-S1 language, repertoire only & 30 & 66.7 & 66.7 & 100.0 & 100.0\\
-S1 not audible, flag only & 20 & 75.0 & 72.2 & 100.0 & 96.3\\
-S2 character view, inaccessible & 12 & 0.4 & 0.5 & 83.3 & 100.0\\
-S2 full context, accessible & 10 & 97.1 & 95.1 & 100.0 & 98.0\\
-S2 full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
+Study 1, list-first answer & 14 & 25.1 & 25.1 & 100.0 & 100.0\\
+Study 1, control, fluent & 14 & 75.5 & 75.5 & 100.0 & 100.0\\
+Study 1, language, prose sentence & 10 & 33.9 & 33.9 & 100.0 & 100.0\\
+Study 1, language, repertoire only & 30 & 66.7 & 66.7 & 100.0 & 100.0\\
+Study 1, not audible, flag only & 20 & 75.0 & 72.2 & 100.0 & 96.3\\
+Study 2, character view, inaccessible & 12 & 0.4 & 0.5 & 83.3 & 100.0\\
+Study 2, full context, accessible & 10 & 97.1 & 95.1 & 100.0 & 98.0\\
+Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \bottomrule
 \end{tabular}
-\caption{Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition; precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
+\caption{Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition. Precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
 \label{tab:human}
 \end{table*}
 

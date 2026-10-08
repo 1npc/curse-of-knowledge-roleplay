@@ -51,7 +51,7 @@ CAPTIONS = {
     "tab:accesscases": "Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column, and accessible controls keep the full event.",
     "fig:discoveryheatmap": "Study 2 discovery: 11 models, 96 scenes, direct Boolean (R2). (a) Net use of inaccessible content (pp); (b) use of the same content when it is accessible (\\%); (c) means over channels. Dots mark the four confirmation models.",
     "fig:behavior": "Study 2, four confirmation models, 32 scenes. (a) Net use after zero, two or four neutral exchanges; (b) change from zero exchanges under full context; (c) change in choosing location A when the inaccessible fact switches from B to A. Bars are 95\\% skeleton-bootstrap intervals.",
-    "tab:confirm": "Study 2 confirmation (four models, 96 original-character scenes). C1 requires all four channels to be positive, C2 uses replies whose state probe is correct (6,068), and C3 requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.",
+    "tab:confirm": "Study 2 confirmation (four models, 96 original-character scenes). The channel test requires all four channels to be positive, the state-correct test uses replies whose state probe is correct (6,068), and the view test requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.",
 }
 
 
@@ -128,55 +128,55 @@ def study1():
         r = conf[k]
         rows.append(f"{label} & {pc(r['point'])} & {ci(r)} & {r['p_holm']:.3f}" + r"\\")
     rows.append(r"\midrule")
-    for key, label in [("reduction", "M1g, mean relative reduction (\\%)"), ("retention", "M1g, change in translator-enabled use")]:
+    for key, label in [("reduction", "List-first prompt, mean relative reduction (\\%)"), ("retention", "List-first prompt, change in translator-enabled use")]:
         r = conf["H5b"][key]
         rows.append(f"{label} & {pc(r['point'])} & {ci(r)} & " + (f"{conf['H5b']['p_holm']:.3f}" if key == "reduction" else "joint") + r"\\")
     ins["S1_TABLE"] = table(rows, "lrrr", "The eight tests of Study 1 (11 models and 33 model and language units, estimates in pp unless noted). Each test is one-sided "
                             "against the threshold fixed before scoring, which is 10 pp for the two leakage tests and the state-correct test, zero for the four "
-                            "contrasts, and a reduction of at least 50\\% with a loss of at most 5 pp for M1g. Holm correction runs over the eight tests, and 0.004 "
+                            "contrasts, and a reduction of at least 50\\% with a loss of at most 5 pp for the list-first prompt. Holm correction runs over the eight tests, and 0.004 "
                             "is the smallest value 2,000 bootstrap draws can resolve.", "tab:s1", True)
     rows = [r"& \multicolumn{2}{c}{Not understood} & \multicolumn{2}{c}{Not audible} & Transl.\\",
-            r"Model & Base & M1g & Base & M1g & (pp)\\", r"\midrule"]
+            r"Model & Base & Filter & Base & Filter & (pp)\\", r"\midrule"]
     for r in models:
         rows.append(NAMES[r["model"]] + " & " + " & ".join(pc(r[k]["point"]) for k in
                     ["base_language", "m1g_language", "base_inaudible", "m1g_inaudible", "retention"]) + r"\\")
-    ins["S1_MITIGATION"] = table(rows, "lrrrrr", "Study 1, M1g by model (content and planning questions). Leakage is net use in pp; the last "
+    ins["S1_MITIGATION"] = table(rows, "lrrrrr", "Study 1, the list-first prompt (Filter) by model (content and planning questions). Leakage is net use in pp; the last "
                                  "column is the change in target use when a working translator makes the content accessible.", "tab:s1m", tight=True)
-    rows = [r"Model & \multicolumn{2}{c}{Step-1 list names target (\%)} & Translator use change\\",
+    rows = [r"Model & \multicolumn{2}{c}{First-step list names target (\%)} & Translator use change\\",
             r"& Not understood & Not audible & (pp) [95\% CI]\\", r"\midrule"]
     for r in models:
         rows.append(NAMES[r["model"]] + " & " + pc(r["step1_language"]["point"]) + " & " + pc(r["step1_inaudible"]["point"]) +
                     " & " + pc(r["retention"]["point"]) + " " + ci(r["retention"]) + r"\\")
-    ins["S1_STEP1"] = table(rows, "lrrl", "Study 1: target use in the M1g step-1 perception list, which predicts where the filter fails.", "tab:s1step1", True)
+    ins["S1_STEP1"] = table(rows, "lrrl", "Study 1: target use in the first-step perception list of the list-first prompt, which predicts where the filter fails.", "tab:s1step1", True)
     labels = {"unconditional": "Unconditional (no capability filter)", "soft": "Soft hedge credit", "exclude_truncated": "Exclude truncated",
               "exclude_flagged": "Exclude language/echo flags", "complete_only": "Complete responses only",
-              "worst_failed_mitigation": "Worst-case failed M1g", "u2": "Both canaries required"}
+              "worst_failed_mitigation": "Worst-case failed list-first reply", "u2": "Both canaries required"}
     rows = [r"Variant & Not underst. & Not audible & Reduction (\%) & Translator (pp) & Supported\\", r"\midrule"]
     for k, v in load("sensitivities.json").items():
         rows.append(labels[k] + " & " + " & ".join([pc(v["H1"]["point"]), pc(v["H1i"]["point"]), pc(v["H5b"]["reduction"]["point"]),
                                                      pc(v["H5b"]["retention"]["point"]), f"{sum(x['supported'] for x in v.values())}/8"]) + r"\\")
     ins["S1_SENSITIVITY"] = table(rows, "lrrrrc", "Study 1 scoring and conditioning sensitivities.", "tab:s1sens", True)
-    rows = [r"Subset & Reduction (\%) & Translator (pp) & H5b $p$\\", r"\midrule"]
+    rows = [r"Subset & Reduction (\%) & Transl. (pp) & Holm $p$\\", r"\midrule"]
     sets = list(load("by_language_confirmatory.json").items()) + [("Without " + k, v) for k, v in load("leave_one_character_out.json").items()] + \
         [("Two-way bootstrap", load("two_way_bootstrap.json")["tests"])]
     for name, v in sets:
         h = v["H5b"]
-        rows.append(esc(name) + " & " + pc(h["reduction"]["point"]) + " & " + pc(h["retention"]["point"]) + " & " + f"{h['p_holm']:.3f}" + r"\\")
-    ins["S1_SUBGROUPS"] = table(rows, "lrrr", "Study 1: H5b by language, leaving one character out, and with a two-way (skeleton $\\times$ "
+        rows.append(esc({"zh": "Chinese", "ja": "Japanese", "es": "Spanish"}.get(name, name)) + " & " + pc(h["reduction"]["point"]) + " & " + pc(h["retention"]["point"]) + " & " + f"{h['p_holm']:.3f}" + r"\\")
+    ins["S1_SUBGROUPS"] = table(rows, "lrrr", "Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\\times$ "
                                 "character) bootstrap. The joint criterion fails in several subsets.", "tab:s1sub", tight=True)
-    el = {"deny_while_using": "Denial with use (C$-$T$-$ D1)", "unattributed_share_D1_minus_U": "Unattributed-use share: D1 $-$ U",
-          "offline_translator": "Offline $-$ absent translator", "original_confounded_boundary": "Original unmatched contrast (C$-$T$-$ $-$ narrated)",
+    el = {"deny_while_using": "Denial while using the content, prose sentence", "unattributed_share_D1_minus_U": "Unattributed use, prose sentence minus no language state",
+          "offline_translator": "Offline $-$ absent translator", "original_confounded_boundary": "Repertoire minus narrated inaudibility (unmatched)",
           "FS_language_reduction": "Few-shot reduction (4 models)", "mode_DA_minus_OH": "Direct address $-$ overheard",
-          "spoken_minus_real": "Spoken-only $-$ full state", "language_zh_minus_ja": "zh $-$ ja", "language_zh_minus_es": "zh $-$ es",
-          "language_ja_minus_es": "ja $-$ es", "admission_A_D1_minus_U": "Explicit admission: D1 $-$ U",
-          "admission_admission_with_attribution_D1_minus_U": "Admission incl. attribution: D1 $-$ U",
-          "canon_canon_C+_D0_minus_U": "Canon C+: D0 $-$ U", "canon_canon_weak_C-_D0_minus_U": "Canon weak C$-$: D0 $-$ U",
-          "canon_name_prior_C-_D0_minus_U": "Name prior C$-$: D0 $-$ U", "non_cyberpunk_minus_main": "Present-day world $-$ main set"}
+          "spoken_minus_real": "Spoken-only $-$ full state", "language_zh_minus_ja": "Chinese minus Japanese", "language_zh_minus_es": "Chinese minus Spanish",
+          "language_ja_minus_es": "Japanese minus Spanish", "admission_A_D1_minus_U": "Explicit admission, prose sentence minus no language state",
+          "admission_admission_with_attribution_D1_minus_U": "Admission or attribution, prose sentence minus no language state",
+          "canon_canon_C+_D0_minus_U": "Canon speakers, repertoire minus no language state", "canon_canon_weak_C-_D0_minus_U": "Weak canon non-speakers, repertoire minus no language state",
+          "canon_name_prior_C-_D0_minus_U": "Non-speakers with a name prior, repertoire minus no language state", "non_cyberpunk_minus_main": "Present-day world $-$ main set"}
     rows = [r"Exploratory contrast & Estimate (pp) & 95\% CI & BH $q$\\", r"\midrule"]
     for k, v in load("exploratory.json").items():
         rows.append(el.get(k, esc(k)) + " & " + pc(v["point"]) + " & " + ci(v) + " & " + f"{v['q_bh']:.3f}" + r"\\")
-    ins["S1_EXPLORATORY"] = table(rows, "lrrr", "Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). The world comparison uses "
-                                  "different scenario sets.", "tab:s1expl", True)
+    ins["S1_EXPLORATORY"] = table(rows, "lrrr", "Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). "
+                                  "No language state means the state omits the character's languages. The world comparison uses different scenario sets.", "tab:s1expl", True)
     rob = load("prompt_robustness.json")
     rows = [r"Model & Main prompt & Boundary-instruction & Minimal & Community\\", r"\midrule"]
     for m in ["gemma4_31b", "qwen38_27b", "qwen35_9b"]:
@@ -191,7 +191,7 @@ def added():
     """Tables for the experiments added on 10/6 (bridge, format ablation, sampling, Study 2 extension)."""
     ins = {}
     br = json.loads((ROOT / "analysis/results/added-1006/bridge.json").read_text())
-    cols = [("base", "S2"), ("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest."), ("all", "All")]
+    cols = [("base", "Base"), ("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest."), ("all", "All")]
     rows = [r"Model & " + " & ".join(c for _, c in cols) + r"\\", r"\midrule"]
     short = {"gemma4_31b": "Gemma-4-31B", "qwen38_27b": "Qwen3.8-27B", "phi4": "Phi-4"}
     for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
@@ -199,7 +199,7 @@ def added():
     rows.append(r"\midrule")
     for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
         rows.append(short[m] + " & " + " & ".join(pc(br[m][f"{k}:accessible"]["estimate"]) for k, _ in cols) + r"\\")
-    ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Bridge experiment on Study 2's hearing prompts (96 scenes). Starting from Study 2's prompt (S2), each column swaps in "
+    ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Bridge experiment on Study 2's hearing prompts (96 scenes). Starting from Study 2's prompt (Base), each column swaps in "
                                 "Study 1's system prompt, character sheet, state layout or question, and the last column swaps in all four. Top rows give net use of unheard "
                                 "speech (pp), bottom rows the use of the same speech when audible (\\%).", "tab:bridge", False, tight=True)
     ab = json.loads((ROOT / "analysis/results/added-1006/ablation.json").read_text())
@@ -215,13 +215,13 @@ def added():
     ha = json.loads((ROOT / "analysis/results/added-1006/human-audit.json").read_text())
     rows = [r"Condition & $n$ & Human $D$ & Scorer $D$ & Precision & Recall\\", r"\midrule"]
     for st, v in ha["strata"].items():
-        rows.append(esc(st) + f" & {v['n']} & " + " & ".join(pc(v[k]) for k in ("D_human", "D_scorer", "target_precision", "target_recall")) + r"\\")
+        rows.append(esc(st.replace("S1 ", "Study 1, ").replace("S2 ", "Study 2, ").replace("M1g answer", "list-first answer")) + f" & {v['n']} & " + " & ".join(pc(v[k]) for k in ("D_human", "D_scorer", "target_precision", "target_recall")) + r"\\")
     ins["HUMAN_TABLE"] = table(rows, "lrrrrr", "Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition; precision and "
                                "recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer "
                                "found a foil use.", "tab:human", True)
     ho = json.loads((ROOT / "analysis/results/added-1006/hosted.json").read_text())
     rows = [r"Model & Repertoire & Audibility & Compr. & Prose & Control & State & Transl. & Bridge\\",
-            r"& flag & flag & flag & sentence & use & probe & probe & S2 $\to$ S1\\", r"\midrule"]
+            r"& flag & flag & flag & sentence & use & probe & probe & base $\to$ all\\", r"\midrule"]
     f = lambda x: "--" if x is None else pc(x)
     for m in ["gpt6sol", "opus55", "sonnet55", "gemini31pro", "gemini38flash", "grok47", "deepseekv4pro"]:
         s1, br = ho[m]["study1"], ho[m]["bridge"]
@@ -248,7 +248,7 @@ def added():
 
 
 def study2():
-    ren = [("H1: ", "C1: "), ("H2: ", "C2: "), ("H3: ", "C3: "), ("H1 is", "C1 is"), ("H3 combines", "C3 combines"), ("H2 includes", "C2 includes")]
+    ren = [("H1: ", "Channel, "), ("H2: State-correct", "State-correct"), ("H3: Full", "View, full"), ("H3: ", "View, "), ("H1 is the conjunction", "The channel test is the conjunction"), ("H3 combines", "the view test combines"), ("H2 includes", "The state-correct test includes"), ("for C001, Qwen3.5-9B, R2, delay zero", "for scene C001, Qwen3.5-9B, access flag, no delay")]
     labels = {"S2_ACCESS": "tab:accesscases", "S2_CONFIRM": "tab:confirm", "S2_HEATMAP": "fig:discoveryheatmap", "S2_METHODS": "tab:methods",
               "S2_BEHAVIOR": "fig:behavior", "S2_REPRESENTATION": "tab:representation", "S2_DISCMETHODS": "tab:discoverymethods",
               "S2_DELAY": "tab:delay", "S2_DECISION": "tab:decision", "S2_CHOICEORDER": "tab:choiceorder", "S2_TRANSLATE": "tab:translate",
@@ -277,8 +277,24 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \definecolor{OCgreen}{HTML}{009E73}
 \definecolor{OCpurple}{HTML}{CC79A7}
 \definecolor{OCred}{HTML}{A6192E}
-\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Use Information Their Characters Cannot Access}}
+\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Leak What Their Characters Cannot Access}}
 """
+
+
+# Appendix captions written as sentences rather than with semicolons.
+CAPTION_SENTENCES = [
+    ("Leakage is net use in pp; the last column", "Leakage is net use in pp, and the last column"),
+    ("net canary-use points; state correctness is a percentage", "net canary-use points, and state correctness is a percentage"),
+    ("times two versions; all 6,144 outputs are valid", "times two versions, and all 6,144 outputs are valid"),
+    ("applies only to comprehension; all of its state probes are correct", "applies only to comprehension, where all state probes are correct"),
+    ("threshold is 85\\%; the primary analysis is unconditional", "threshold is 85\\%, and the primary analysis is unconditional"),
+    ("Leakage is net pp; accessible use is a percentage", "Leakage is net pp and accessible use is a percentage"),
+    ("Leakage is net $D$ in pp; accessible target use", "Leakage is net $D$ in pp, and accessible target use"),
+    ("neutral exchanges; (b) change from zero exchanges under full context; (c) change", "neutral exchanges. (b) Change from zero exchanges under full context. (c) Change"),
+    ("within each stratum; original paired effects", "within each stratum. Original paired effects"),
+    ("in all four rows; inaccessible view scores", "in all four rows, inaccessible view scores"),
+    ("reweighted to each condition; precision and recall", "reweighted to each condition. Precision and recall"),
+]
 
 
 def main():
@@ -291,6 +307,9 @@ def main():
     left = re.findall(r"^% INSERT (\w+)$", body, re.M)
     assert not left, f"unfilled markers: {left}"
     assert "HumanField" not in body
+    for x, y in CAPTION_SENTENCES:
+        assert x in body, x
+        body = body.replace(x, y)
     (P / "main.tex").write_text(PREAMBLE + figures.COLORS + "\n" + body, encoding="utf-8")
     print("wrote main.tex;", len(ins), "insertable floats,", body.count("\\cite"), "cite commands")
 

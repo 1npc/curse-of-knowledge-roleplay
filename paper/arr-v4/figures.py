@@ -211,12 +211,12 @@ def remedy():
                 anchor = "west" if r["model"] == "mistral_small3" else "south east"
                 dx, dy = (2.0, 0.0) if anchor == "west" else (0.0, 1.5)
                 L.append(f"\\node[anchor={anchor},font=\\tiny,text=black!70] at ({x + dx:.1f},{y + dy:.1f}) {{{NAMES[r['model']]}}};")
-    L.append(r"\node[anchor=north] at (50,-11) {Hidden values named in the step-1 list (\%)};")
-    L.append(r"\node[rotate=90,anchor=south] at (-15,50) {Net use after M1g (pp)};")
+    L.append(r"\node[anchor=north] at (50,-11) {Hidden values named in the first-step list (\%)};")
+    L.append(r"\node[rotate=90,anchor=south] at (-15,50) {Net use after list-first prompt (pp)};")
     L.append(r"\node[OIblue,inner sep=0pt] at (6,93) {\pgfuseplotmark{*}};\node[anchor=west,font=\scriptsize] at (8,93) {Cannot understand};")
     L.append(r"\node[OIorange,inner sep=0pt] at (6,83) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\scriptsize] at (8,83) {Cannot hear};")
     L += [r"\end{tikzpicture}",
-          r"\caption{M1g in Study 1. Each point is one model and boundary. Models whose first-step list omits the hidden values also leave them out of the answer.}",
+          r"\caption{The list-first prompt in Study 1. Each point is one model and boundary. Models whose first-step list omits the hidden values also leave them out of the answer.}",
           r"\label{fig:remedy}", r"\end{figure}"]
     return "\n".join(L)
 
