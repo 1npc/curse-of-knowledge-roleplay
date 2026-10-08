@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Ahn et~al.(2024)Ahn, Lee, Lim, Kim, Yun, Lee, and
@@ -16,6 +16,15 @@ Jaewoo Ahn, Taehyun Lee, Junyoung Lim, Jin-Hwa Kim, Sangdoo Yun, Hwaran Lee,
 Susan A.~J. Birch and Paul Bloom. 2007.
 \newblock The curse of knowledge in reasoning about false beliefs.
 \newblock \emph{Psychological Science}, 18(5):382--386.
+
+\bibitem[{Gandhi et~al.(2023)Gandhi, Fr{\"a}nken, Gerstenberg, and
+  Goodman}]{gandhi2023bigtom}
+Kanishk Gandhi, Jan-Philipp Fr{\"a}nken, Tobias Gerstenberg, and Noah~D.
+  Goodman. 2023.
+\newblock Understanding social reasoning in language models with language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems 36,
+  Datasets and Benchmarks Track}.
 
 \bibitem[{Gu et~al.(2026)Gu, Tafjord, Kim, Moore, Le~Bras, Clark, and
   Choi}]{gu2026simpletom}
@@ -160,6 +169,13 @@ Alex Wilf, Sihyun Lee, Paul~Pu Liang, and Louis-Philippe Morency. 2024.
 \newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
   for Computational Linguistics (Volume 1: Long Papers)}, pages 8292--8308,
   Bangkok, Thailand. Association for Computational Linguistics.
+
+\bibitem[{Xu et~al.(2024)Xu, Zhao, Zhu, Du, and He}]{xu-etal-2024-opentom}
+Hainiu Xu, Runcong Zhao, Lixing Zhu, Jinhua Du, and Yulan He. 2024.
+\newblock {O}pen{T}o{M}: A comprehensive benchmark for evaluating
+  theory-of-mind reasoning capabilities of large language models.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 8593--8623.
 
 \bibitem[{Zhou et~al.(2024)Zhou, Zhu, Mathur, Zhang, Yu, Qi, Morency, Bisk,
   Fried, Neubig, and Sap}]{zhou2024sotopia}

@@ -191,17 +191,46 @@ def added():
     """Tables for the experiments added on 10/6 (bridge, format ablation, sampling, Study 2 extension)."""
     ins = {}
     br = json.loads((ROOT / "analysis/results/added-1006/bridge.json").read_text())
+    rep = json.loads((ROOT / "analysis/results/added-1006/bridge-replication.json").read_text())
     cols = [("base", "Base"), ("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest."), ("all", "All")]
+    whole = lambda x: f"{100 * x:.0f}"
+
+    def cell(m, k, acc="inaccessible"):  # bold when the paired interval for the change from base excludes zero
+        v = m[f"{k}:{acc}"]
+        lo, hi = v["delta_ci95"]
+        s = whole(v["estimate"])
+        return f"\\textbf{{{s}}}" if k != "base" and (lo > 0 or hi < 0) else s
+
     rows = [r"Model & " + " & ".join(c for _, c in cols) + r"\\", r"\midrule"]
-    short = {"gemma4_31b": "Gemma-4-31B", "qwen38_27b": "Qwen3.8-27B", "phi4": "Phi-4"}
-    for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
-        rows.append(short[m] + " & " + " & ".join(pc(br[m][f"{k}:inaccessible"]["estimate"]) for k, _ in cols) + r"\\")
-    rows.append(r"\midrule")
-    for m in ["gemma4_31b", "qwen38_27b", "phi4"]:
-        rows.append(short[m] + " & " + " & ".join(pc(br[m][f"{k}:accessible"]["estimate"]) for k, _ in cols) + r"\\")
-    ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Bridge experiment on Study 2's hearing prompts (96 scenes). Starting from Study 2's prompt (Base), each column swaps in "
-                                "Study 1's system prompt, character sheet, state layout or question, and the last column swaps in all four. Top rows give net use of unheard "
-                                "speech (pp), bottom rows the use of the same speech when audible (\\%).", "tab:bridge", False, tight=True)
+    for m in ["gemma4_31b", "qwen38_27b", "falcon_h1_34b", "seed_oss_36b"]:
+        rows.append(NAMES[m] + " & " + " & ".join(cell(br[m], k) for k, _ in cols) + r"\\")
+        rows.append(r"\quad new scenes & " + " & ".join(cell(rep[m], k) for k, _ in cols) + r"\\")
+    ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Net use of unheard speech (pp) when single Study 1 features are swapped into Study 2's hearing prompts, "
+                                "on the discovery scenes and on the 96 confirmation scenes (new scenes). Bold marks a change from Base whose paired 95\\% interval excludes zero. "
+                                "All 11 models are in Appendix Tables~\\ref{tab:bridgefull} and~\\ref{tab:bridgerep}.", "tab:bridge", False, tight=True)
+    for key, data, label, scenes in (("BRIDGE_FULL", br, "tab:bridgefull", "discovery scenes (96 scenes, 384 prompts per swap)"),
+                                     ("BRIDGE_REP", rep, "tab:bridgerep", "confirmation scenes, with each character renamed to a Study 1 persona (96 scenes, 384 prompts per swap)")):
+        rows = [r"Model & " + " & ".join(c for _, c in cols) + r" & Audible use\\", r"\midrule"]
+        for m in sorted(data, key=lambda m: data[m]["base:inaccessible"]["estimate"]):
+            aud = [data[m][f"{k}:accessible"]["estimate"] for k, _ in cols]
+            rows.append(NAMES[m] + " & " + " & ".join(cell(data[m], k) for k, _ in cols) + " & " + (whole(min(aud)) if whole(min(aud)) == whole(max(aud)) else f"{whole(min(aud))}--{whole(max(aud))}") + r"\\")
+        ins[key] = table(rows, "lrrrrrrr", f"Bridge experiment on the {scenes}. Columns give net use of unheard speech (pp) under Study 2's prompt (Base), "
+                         "with one Study 1 feature swapped in, and with all four. Bold marks a change from Base whose paired 95\\% skeleton-bootstrap interval "
+                         "excludes zero. The last column is the range of target use for the same speech when audible (\\%).", label, True)
+    hs = json.loads((ROOT / "analysis/results/added-1006/hosted_swaps.json").read_text())
+    rows = [r"Model & " + " & ".join(c for _, c in cols) + r"\\", r"\midrule"]
+    for m in ("sonnet55", "gemini31pro"):
+        def hcell(k):
+            if k not in hs[m]:
+                return "--"
+            v = hs[m][k]
+            lo, hi = v["delta_ci95"]
+            s = f"{100 * v['estimate']:.1f}"
+            return f"\\textbf{{{s}}}" if k != "base" and (lo > 0 or hi < 0) else s
+        rows.append(NAMES2[m] + " & " + " & ".join(hcell(k) for k, _ in cols) + r"\\")
+    ins["HOSTED_SWAPS"] = table(rows, "lrrrrrr", "Single-feature swaps for two hosted models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). "
+                                "Bold marks a change from Base whose paired 95\\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved "
+                                "the open models most.", "tab:hostedswaps", tight=True)
     ab = json.loads((ROOT / "analysis/results/added-1006/ablation.json").read_text())
     combos = [("l0q0c0", "Study 1 prompt"), ("l1q0c0", "+ channel"), ("l0q1c0", "+ question"), ("l0q0c1", "+ minimal"), ("l1q1c1", "All three")]
     rows = [r"Model & " + " & ".join(c for _, c in combos) + r"\\", r"\midrule"]

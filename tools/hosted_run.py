@@ -66,6 +66,7 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="run only this many prompts (random, fixed seed) for a cost pilot")
     ap.add_argument("--workers", type=int, default=16)
     ap.add_argument("--reserve", type=float, default=0.05, help="dollars held back per in-flight request")
+    ap.add_argument("--effort", default=None, help="override the reasoning effort (e.g. medium, high); raises max_tokens to 6000")
     a = ap.parse_args()
     prompts = [json.loads(l) for p in a.plan for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
     if a.limit:
@@ -80,6 +81,8 @@ def main():
     reserve = a.reserve
     k = key()
     spec = dict(SETTINGS[a.model])
+    if a.effort:
+        spec.update(reasoning={"effort": a.effort}, max_tokens=6000)
     stop = threading.Event()
     inflight = [0]
     print(f"{a.model}: {len(todo)} to run ({len(done)} done); spent so far {ledger['models'][a.key_name]:.3f} of {a.model_cap}, "

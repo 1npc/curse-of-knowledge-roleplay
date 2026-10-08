@@ -3,7 +3,7 @@
 Scores runs/<run>/<model>/responses.jsonl with the frozen Study 2 scorer, then reports, per model and
 swap, inaccessible net use D and accessible target use, with 95% skeleton-bootstrap intervals for
 the difference from the unmodified Study 2 prompt (paired within skeletons).
-Usage: python3 tools/bridge_report.py runs/<run>
+Usage: python3 tools/bridge_report.py runs/<run> [plan.jsonl items.json]
 """
 from __future__ import annotations
 
@@ -21,13 +21,15 @@ SWAPS = ("base", "sys", "card", "schema", "ask", "all")
 
 def main():
     run = Path(sys.argv[1])
-    plan = {json.loads(l)["prompt_id"]: json.loads(l)["bridge"] for l in (ROOT / "items/access-v2/bridge.jsonl").read_text().splitlines()}
+    plan_path = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "items/access-v2/bridge.jsonl"
+    items_path = Path(sys.argv[3]) if len(sys.argv) > 3 else ROOT / "items/access-v2/discovery-items.json"
+    plan = {json.loads(l)["prompt_id"]: json.loads(l)["bridge"] for l in plan_path.read_text().splitlines()}
     res = {}
     for d in sorted(p for p in run.iterdir() if (p / "responses.jsonl").exists()):
         out = d / "v2scored.jsonl"
         if not out.exists():
-            subprocess.run([sys.executable, str(ROOT / "tools/score_access_v2.py"), "--plan", str(ROOT / "items/access-v2/bridge.jsonl"),
-                            "--items", str(ROOT / "items/access-v2/discovery-items.json"), "--responses", str(d / "responses.jsonl"),
+            subprocess.run([sys.executable, str(ROOT / "tools/score_access_v2.py"), "--plan", str(plan_path),
+                            "--items", str(items_path), "--responses", str(d / "responses.jsonl"),
                             "--model", d.name, "--out", str(out)], check=True)
         rows = [json.loads(l) for l in out.read_text().splitlines() if l.strip()]
         by = defaultdict(lambda: defaultdict(list))  # (swap, accessible) -> item -> values
