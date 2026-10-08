@@ -277,7 +277,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \definecolor{OCgreen}{HTML}{009E73}
 \definecolor{OCpurple}{HTML}{CC79A7}
 \definecolor{OCred}{HTML}{A6192E}
-\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Leak What Their Characters Cannot Access}}
+\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Models Leak What Their Characters Cannot Access}}
 """
 
 
