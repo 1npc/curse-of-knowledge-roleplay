@@ -196,6 +196,16 @@ def added():
         rows.append(NAMES[m] + " (heard) & " + " & ".join(pc(br[m][f"{k}:accessible"]["estimate"]) for k, _ in cols) + r"\\")
     ins["BRIDGE_TABLE"] = table(rows, "lrrrrrr", "Bridge experiment on Study 2's hearing prompts (96 scenes). Each column swaps in one Study 1 feature; "
                                 "the last swaps in all four. Top: net use of unheard speech (pp); bottom: use of the same speech when audible (\\%).", "tab:bridge", True)
+    ab = json.loads((ROOT / "analysis/results/added-1006/ablation.json").read_text())
+    combos = [("l0q0c0", "Study 1 prompt"), ("l1q0c0", "+ channel"), ("l0q1c0", "+ question"), ("l0q0c1", "+ minimal"), ("l1q1c1", "All three")]
+    rows = [r"Model & " + " & ".join(c for _, c in combos) + r"\\", r"\midrule"]
+    for cell, label in (("Einaud_S", "not audible"), ("C-T-_flag", "not understood")):
+        rows.append(r"\multicolumn{6}{@{}l}{\emph{Flag: " + label + r"}}\\")
+        for m in ["gemma4_31b", "qwen38_27b", "seed_oss_36b", "phi4"]:
+            rows.append(NAMES[m] + " & " + " & ".join(pc(ab["cells"][m][k][cell]) for k, _ in combos) + r"\\")
+    ins["ABLATION_TABLE"] = table(rows, "lrrrrr", "Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one "
+                                  "Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.",
+                                  "tab:ablation", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]
@@ -230,6 +240,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype,booktabs,amsmath,amssymb,tabularx}
 \usepackage{tikz}
+\usepackage{placeins}
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
 \definecolor{OCblue}{HTML}{0072B2}
