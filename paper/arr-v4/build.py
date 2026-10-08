@@ -10,6 +10,7 @@ Usage: python3 paper/arr-v3/build.py
 from __future__ import annotations
 
 import json
+from decimal import Decimal, ROUND_HALF_UP
 import re
 import sys
 from pathlib import Path
@@ -120,10 +121,10 @@ def study1():
             r"Each row is one model, averaged over its capable language units; bars are 95\% skeleton-bootstrap intervals.}",
             r"\label{fig:s1}", r"\end{figure*}"]
     ins["S1_FIGURE"] = "\n".join(fig)
-    desc = {"H1": "Leakage, cannot understand", "H1i": "Leakage, cannot hear", "H2a": "Sentence lowers it (understand)",
-            "H2b": "Narration lowers it (hear)", "H3": "Flag lowers it vs.\ repertoire",
-            "H4": "Hear minus understand (flags)", "H5a": "Leakage, state read correctly"}
-    rows = [r"Test & Estimate [95\% CI] & Holm $p$\\", r"\midrule"]
+    desc = {"H1": "Leak, cannot understand", "H1i": "Leak, cannot hear", "H2a": "Sentence lowers leak",
+            "H2b": "Narration lowers leak", "H3": "Flag vs.\ repertoire",
+            "H4": "Hear minus understand", "H5a": "Leak, state read correctly"}
+    rows = [r"Test & Estimate [95\% CI] & $p$\\", r"\midrule"]
     for k, label in desc.items():
         r = conf[k]
         rows.append(f"{label} & {pc(r['point'])} {ci(r)} & {r['p_holm']:.3f}" + r"\\")
@@ -299,25 +300,24 @@ PREAMBLE = r"""\documentclass[11pt]{article}
   card/.style={rounded corners=2pt,draw=black!18,fill=black!2,inner sep=3pt,align=left},
   chip/.style={rounded corners=1.5pt,inner sep=1.5pt,font=\sffamily\tiny\bfseries,text=white},
   panel/.style={font=\sffamily\scriptsize\bfseries,anchor=north west,inner sep=0pt}}
-\newcommand{\leak}[1]{\textcolor{OIorange}{\textbf{#1}}}
+\newcommand{\leak}[1]{\textcolor{OIorange!85!black}{\textbf{#1}}}
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
 \usepackage{placeins}
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
-\definecolor{OCblue}{HTML}{0072B2}
-\definecolor{OCorange}{HTML}{D55E00}
-\definecolor{OCgreen}{HTML}{009E73}
-\definecolor{OCpurple}{HTML}{CC79A7}
-\definecolor{OCred}{HTML}{A6192E}
+\definecolor{OCblue}{HTML}{5B7FAF}
+\definecolor{OCorange}{HTML}{D2876C}
+\definecolor{OCgreen}{HTML}{68A595}
+\definecolor{OCpurple}{HTML}{B497B6}
+\definecolor{OCred}{HTML}{B5635A}
 \hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Models Leak What Their Characters Cannot Access}}
 """
 
 
 # Appendix captions written as sentences rather than with semicolons.
 CAPTION_SENTENCES = [
-    ("Leakage is net use in pp; the last column", "Leakage is net use in pp, and the last column"),
     ("net canary-use points; state correctness is a percentage", "net canary-use points, and state correctness is a percentage"),
     ("times two versions; all 6,144 outputs are valid", "times two versions, and all 6,144 outputs are valid"),
     ("applies only to comprehension; all of its state probes are correct", "applies only to comprehension, where all state probes are correct"),
@@ -331,6 +331,83 @@ CAPTION_SENTENCES = [
 ]
 
 
+def _bold_cells(line):
+    """Bold every cell of a header row, keeping \multicolumn as the cell's first token."""
+    end = line.rstrip()
+    tail = ""
+    if end.endswith("\\\\"):
+        end, tail = end[:-2], "\\\\"
+    cells = re.split(r"(?<!\\)&", end)
+    out = []
+    for c in cells:
+        t = c.strip()
+        if not t:
+            out.append(c)
+        elif t.startswith("\\multicolumn"):
+            m = re.match(r"(\\multicolumn\{[^}]*\}\{[^}]*\})\{(.*)\}$", t)
+            out.append(f" {m.group(1)}{{\\textbf{{{m.group(2)}}}}} " if m else c)
+        else:
+            out.append(f" \\textbf{{{t}}} ")
+    return "&".join(out).strip() + tail
+
+
+def table_widths(body):
+    """Natural width (pt) of every tabular, measured once with pdflatex and cached by content."""
+    import hashlib
+    import subprocess
+    import tempfile
+    cache_path = P / "table_widths.json"
+    cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+    tabs = {}
+    for m in re.finditer(r"\\begin\{table\*?\}.*?\\end\{table\*?\}", body, re.S):
+        t = m.group(0)
+        lab = re.search(r"\\label\{([^}]*)\}", t)
+        tab = re.search(r"\\begin\{tabular\}.*?\\end\{tabular\}", t, re.S)
+        if lab and tab:
+            tabs[lab.group(1)] = (hashlib.sha1(tab.group(0).encode()).hexdigest(), tab.group(0))
+    todo = {k: v for k, v in tabs.items() if cache.get(k, {}).get("sha") != v[0]}
+    if todo:
+        doc = PREAMBLE + "\\begin{document}\n" + "".join(
+            f"\\sbox0{{\\sffamily\\footnotesize\\setlength{{\\tabcolsep}}{{3.5pt}}\\renewcommand{{\\arraystretch}}{{1.12}}{tab}}}\\typeout{{TW {k} \\the\\wd0}}\n" for k, (_, tab) in todo.items()) + "\\end{document}\n"
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "w.tex").write_text(doc)
+            (Path(d) / "acl.sty").write_bytes((P / "acl.sty").read_bytes())
+            subprocess.run(["pdflatex", "-interaction=nonstopmode", "w.tex"], cwd=d, capture_output=True)
+            for k, w in re.findall(r"^TW (\S+) ([\d.]+)pt", (Path(d) / "w.log").read_text(errors="ignore"), re.M):
+                cache[k] = {"sha": todo[k][0], "pt": float(w)}
+        cache_path.write_text(json.dumps(cache, indent=1, sort_keys=True))
+    return {k: cache[k]["pt"] for k in tabs if k in cache}
+
+
+def style_tables(body, widths=None):
+    """One look for every table: sans-serif footnote size, bold header, one decimal, a little more row height."""
+    app = body.find("\\appendix")
+
+    def one(m):
+        t = m.group(0)
+        lab = re.search(r"\\label\{([^}]*)\}", t)
+        if m.start() < app:  # main-text tables keep the layout chosen for them
+            lab = None
+        elif "tabcolsep" not in t:
+            t = t.replace("\\centering", "\\centering\\setlength{\\tabcolsep}{4.5pt}", 1)
+        if widths and lab and t.startswith("\\begin{table}") and widths.get(lab.group(1), 0) > 217:
+            t = t.replace("\\begin{table}", "\\begin{table*}", 1).replace("\\end{table}", "\\end{table*}")
+        elif widths and lab and t.startswith("\\begin{table*}") and widths.get(lab.group(1), 1e9) <= 217:
+            t = t.replace("\\begin{table*}", "\\begin{table}", 1).replace("\\end{table*}", "\\end{table}")
+            t = t.replace("\\centering", "\\centering\\setlength{\\tabcolsep}{3.5pt}", 1)
+        t = re.sub(r"\\centering\\(small|footnotesize)", r"\\centering\\sffamily\\footnotesize\\renewcommand{\\arraystretch}{1.12}", t, count=1)
+        if "\\toprule" in t and "\\midrule" in t:
+            a = t.index("\\toprule") + len("\\toprule")
+            b = t.index("\\midrule", a)
+            head = "\n".join(_bold_cells(l) if l.strip() else l for l in t[a:b].split("\n"))
+            rest = t[b:]
+            if "ttfamily" not in rest:
+                rest = re.sub(r"(?<![\d.])(-?\d+)\.(\d{2})(?![\d])", lambda x: str(Decimal(x.group(0)).quantize(Decimal("0.1"), ROUND_HALF_UP)), rest.split("\\bottomrule")[0]) + "\\bottomrule" + rest.split("\\bottomrule", 1)[1]
+            t = t[:a] + head + rest
+        return t
+    return re.sub(r"\\begin\{table\*?\}.*?\\end\{table\*?\}", one, body, flags=re.S)
+
+
 def main():
     body = (P / "body.tex").read_text(encoding="utf-8")
     sys.path.insert(0, str(P))
@@ -341,9 +418,9 @@ def main():
     left = re.findall(r"^% INSERT (\w+)$", body, re.M)
     assert not left, f"unfilled markers: {left}"
     assert "HumanField" not in body
-    for x, y in CAPTION_SENTENCES:
-        assert x in body, x
+    for x, y in CAPTION_SENTENCES:  # entries whose float is no longer inserted are skipped
         body = body.replace(x, y)
+    body = style_tables(body, table_widths(body))
     (P / "main.tex").write_text(PREAMBLE + figures.COLORS + "\n" + body, encoding="utf-8")
     print("wrote main.tex;", len(ins), "insertable floats,", body.count("\\cite"), "cite commands")
 

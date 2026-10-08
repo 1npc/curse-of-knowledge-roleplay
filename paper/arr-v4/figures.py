@@ -18,15 +18,17 @@ NAMES = {"qwen38_27b": "Qwen3.8-27B", "qwen35_9b": "Qwen3.5-9B", "gemma4_31b": "
          "seed_oss_36b": "Seed-OSS-36B", "nemotron3_nano30b": "Nemotron-3-Nano", "falcon_h1_34b": "Falcon-H1-34B",
          "deepseekv4pro": "DeepSeek-V4-Pro", "gpt6sol": "GPT-6 Sol", "opus55": "Claude Opus 5.5", "sonnet55": "Claude Sonnet 5.5",
          "gemini31pro": "Gemini 3.1 Pro", "gemini38flash": "Gemini 3.8 Flash", "grok47": "Grok 4.7"}
-COLORS = r"""\definecolor{OIblue}{HTML}{0072B2}\definecolor{OIorange}{HTML}{D55E00}\definecolor{OIgreen}{HTML}{009E73}
-\definecolor{OIsky}{HTML}{56B4E9}\definecolor{OIpurple}{HTML}{CC79A7}\definecolor{OIgray}{HTML}{7F7F7F}"""
+# Muted palette in the style of Nature figures: terracotta for hidden content and leakage, steel blue for
+# comprehension and permitted content, sage teal for remedies, with light blue, mauve and gray as accents.
+COLORS = r"""\definecolor{OIblue}{HTML}{5B7FAF}\definecolor{OIorange}{HTML}{D2876C}\definecolor{OIgreen}{HTML}{68A595}
+\definecolor{OIsky}{HTML}{9CC2DD}\definecolor{OIpurple}{HTML}{B497B6}\definecolor{OIgray}{HTML}{9A9A9A}"""
 
 
 def load(p):
     return json.loads(Path(p).read_text())
 
 
-def frame(w, h, xr, yr, xticks, yticks, xlabel="", ylabel="", grid="y", fmt=lambda v: f"{v:g}"):
+def frame(w, h, xr, yr, xticks, yticks, xlabel="", ylabel="", grid="y", fmt=lambda v: f"{v:g}", yfmt=lambda v: f"{v:g}"):
     """Axes in a scope already shifted to the panel's lower-left corner: returns (tikz lines, x map, y map)."""
     X = lambda v: (v - xr[0]) / (xr[1] - xr[0]) * w
     Y = lambda v: (v - yr[0]) / (yr[1] - yr[0]) * h
@@ -37,7 +39,7 @@ def frame(w, h, xr, yr, xticks, yticks, xlabel="", ylabel="", grid="y", fmt=lamb
         L += [f"\\draw[black!9] ({X(t):.3f},0)--({X(t):.3f},{h});" for t in xticks]
     L.append(f"\\draw[black!45,line width=.4pt] (0,{h})--(0,0)--({w},0);")
     L += [f"\\node[anchor=north,font=\\sffamily\\tiny,text=black!70,inner sep=1.5pt] at ({X(t):.3f},0) {{{fmt(t)}}};" for t in xticks]
-    L += [f"\\node[anchor=east,font=\\sffamily\\tiny,text=black!70,inner sep=1.5pt] at (0,{Y(t):.3f}) {{{fmt(t)}}};" for t in yticks]
+    L += [f"\\node[anchor=east,font=\\sffamily\\tiny,text=black!70,inner sep=1.5pt] at (0,{Y(t):.3f}) {{{yfmt(t)}}};" for t in yticks]
     if xlabel:
         L.append(f"\\node[anchor=north,font=\\sffamily\\scriptsize] at ({w / 2},-0.3) {{{xlabel}}};")
     if ylabel:
@@ -61,7 +63,7 @@ def legend(items, x0, y, step=0.105):
 def heat(v):
     """White-to-orange fill for a net-use value in pp, with a readable text color."""
     v = max(0.0, min(100.0, v))
-    return f"OIorange!{v * 0.9:.0f}!white", ("white" if v > 58 else "black!85")
+    return f"OIorange!{v * 0.85:.0f}!white", "black!80"
 
 
 def design():
@@ -503,4 +505,127 @@ def example():
 \end{figure}"""
 
 
-ALL = {"FIG_EXAMPLE": example, "FIG_DESIGN": design, "FIG_S1": study1, "FIG_S2": study2, "FIG_FRONTIER": frontier, "FIG_REMEDY": remedy}
+
+def bridge_full():
+    """Appendix figure: the bridge on the discovery scenes and on new scenes, all 11 open models."""
+    br, rep = load(RA / "bridge.json"), load(RA / "bridge-replication.json")
+    cols = [("base", "Base"), ("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest."), ("all", "All")]
+    order = sorted(br, key=lambda m: br[m]["base:inaccessible"]["estimate"])
+    cw, rh = 0.62, 0.27
+    n = len(order)
+    L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
+    for k, (data, title, x0) in enumerate(((br, "(a) Discovery scenes", 0.0), (rep, "(b) New scenes, characters renamed", 5.6))):
+        L.append(f"\\begin{{scope}}[xshift={x0}cm]")
+        L.append(f"\\node[panel] at ({-1.95 if k == 0 else -0.05},{n * rh + 0.75:.2f}) {{{title}}};")
+        for j, (_, lab) in enumerate(cols):
+            L.append(f"\\node[font=\\sffamily\\tiny,anchor=south] at ({(j + 0.5) * cw:.3f},{n * rh + 0.03:.3f}) {{{lab}}};")
+        L.append(f"\\node[font=\\sffamily\\tiny,anchor=south,align=center] at ({6 * cw + 0.45:.3f},{n * rh + 0.03:.3f}) {{audible}};")
+        for i, m in enumerate(order):
+            y = (n - 1 - i) * rh
+            if k == 0:
+                L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{y + rh / 2:.3f}) {{{NAMES[m]}}};")
+            for j, (sw, _) in enumerate(cols):
+                v = data[m][f"{sw}:inaccessible"]
+                fill, txt = heat(100 * v["estimate"])
+                lo, hi = v["delta_ci95"]
+                sig = sw != "base" and (lo > 0 or hi < 0)
+                L.append(f"\\fill[{fill}] ({j * cw + 0.012:.3f},{y + 0.012:.3f}) rectangle ({(j + 1) * cw - 0.012:.3f},{y + rh - 0.012:.3f});")
+                if sig:
+                    L.append(f"\\draw[black!60,line width=.35pt] ({j * cw + 0.035:.3f},{y + 0.03:.3f}) rectangle ({(j + 1) * cw - 0.035:.3f},{y + rh - 0.035:.3f});")
+                L.append(f"\\node[text={txt},font=\\sffamily\\tiny] at ({(j + 0.5) * cw:.3f},{y + rh / 2:.3f}) {{{100 * v['estimate']:.0f}}};")
+            aud = [100 * data[m][f"{sw}:accessible"]["estimate"] for sw, _ in cols]
+            L.append(f"\\node[font=\\sffamily\\tiny,text=OIblue] at ({6 * cw + 0.45:.3f},{y + rh / 2:.3f}) {{{(f'{min(aud):.0f}' if round(min(aud)) == round(max(aud)) else f'{min(aud):.0f}--{max(aud):.0f}')}}};")
+        L.append(r"\end{scope}")
+    L += [r"\end{tikzpicture}",
+          r"\caption{Bridge experiment for all 11 open models: net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}",
+          r"\label{fig:bridgefull}", r"\end{figure*}"]
+    return "\n".join(L)
+
+
+def listfirst_models():
+    """Appendix figure: the list-first prompt per model in Study 1."""
+    models = sorted(load(R1 / "model_metrics.json"), key=lambda r: r["base_language"]["point"])
+    n = len(models)
+    rh = 0.27
+    H = n * rh
+    L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
+    for k, (key, title, x0, col) in enumerate((("language", "(a) Cannot understand", 0.0, "OIblue"), ("inaudible", "(b) Cannot hear", 4.6, "OIorange"))):
+        L.append(f"\\begin{{scope}}[xshift={x0}cm]")
+        L.append(f"\\node[panel] at ({-1.95 if k == 0 else -0.1},{H + 0.45:.2f}) {{{title}: net use (pp)}};")
+        fl, X, _ = frame(3.3, H, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "", grid="x")
+        L += [l for l in fl if "anchor=east" not in l]
+        for i, r in enumerate(models):
+            y = (n - 1 - i) * rh + rh / 2
+            if k == 0:
+                L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{y:.3f}) {{{NAMES[r['model']]}}};")
+            b, a = 100 * r[f"base_{key}"]["point"], max(0, 100 * r[f"m1g_{key}"]["point"])
+            L.append(f"\\draw[{col}!35,line width=1.4pt] ({X(a):.3f},{y:.3f})--({X(b):.3f},{y:.3f});")
+            L.append(f"\\fill[black!35] ({X(b):.3f},{y:.3f}) circle (1.5pt);\\fill[{col}] ({X(a):.3f},{y:.3f}) circle (1.7pt);")
+        L.append(r"\end{scope}")
+    L.append(r"\begin{scope}[xshift=9.25cm]")
+    L.append(f"\\node[panel] at (-0.1,{H + 0.45:.2f}) {{(c) Change in translated speech used (pp)}};")
+    fl, X, _ = frame(3.3, H, (-30, 20), (0, 1), [-30, -20, -10, 0, 10, 20], [], "", grid="x")
+    L += [l for l in fl if "anchor=east" not in l]
+    L.append(f"\\draw[black!55] ({X(0):.3f},0)--({X(0):.3f},{H:.3f});\\draw[OIgreen,densely dashed] ({X(-5):.3f},0)--({X(-5):.3f},{H:.3f});")
+    for i, r in enumerate(models):
+        y = (n - 1 - i) * rh + rh / 2
+        v, (lo, hi) = 100 * r["retention"]["point"], [100 * x for x in r["retention"]["ci95"]]
+        L.append(f"\\draw[OIgreen!70!black,line width=.5pt] ({X(max(lo, -30)):.3f},{y:.3f})--({X(hi):.3f},{y:.3f});\\fill[OIgreen] ({X(v):.3f},{y:.3f}) circle (1.6pt);")
+    L.append(r"\end{scope}")
+    L += legend([("box", "black!35", "base prompt"), ("box", "OIblue", "list-first, cannot understand"), ("box", "OIorange", "list-first, cannot hear"),
+                 ("box", "OIgreen", "translator change, margin $-5$ pp dashed")], 0.0, -0.55)
+    L += [r"\end{tikzpicture}",
+          r"\caption{The list-first prompt per model in Study 1 (content and planning questions). (a, b) Net use with the base prompt (gray) and with the list-first prompt. (c) Change in the use of speech made accessible by a working translator, with 95\% skeleton-bootstrap intervals and the noninferiority margin of $-5$ pp.}",
+          r"\label{fig:s1m}", r"\end{figure*}"]
+    return "\n".join(L)
+
+
+def factors():
+    """Figure: what changes leakage within Study 1. (a, b) model scale, (c, d) format ablation toward Study 2."""
+    import math
+    sc = {x["model"]: x for x in load(R1 / "scale_all_models.json")}
+    val = lambda m, k: 100 * (sc[m][k]["point"] if isinstance(sc[m][k], dict) else sc[m][k])
+    fams = [("Qwen3.5", "OIblue", "*", [("qwen35_08b", 0.8), ("qwen35_2b", 2), ("qwen35_4b", 4), ("qwen35_9b", 9)]),
+            ("Gemma-4", "OIorange", "square*", [("gemma4_e2b", 2), ("gemma4_12b", 12), ("gemma4_31b", 31)])]
+    H = 2.6
+    L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
+    for k, (key, title, x0) in enumerate((("language", "(a) Scale: repertoire", 0.0), ("flag_understand", "(b) Scale: comprehension flag", 3.35))):
+        L.append(f"\\begin{{scope}}[xshift={x0}cm]")
+        L.append(f"\\node[panel] at (-0.55,{H + 0.5:.2f}) {{{title}}};")
+        fl, X, Y = frame(2.6, H, (math.log(0.6), math.log(45)), (0, 100), [math.log(v) for v in (1, 3, 10, 30)], [0, 25, 50, 75, 100],
+                         "parameters (B, log scale)", "net use (pp)" if k == 0 else "", grid="y", fmt=lambda v: f"{math.exp(v):.0f}")
+        L += fl
+        for name, col, mk, ms in fams:
+            pts = [(X(math.log(b)), Y(val(m, key))) for m, b in ms]
+            L.append(f"\\draw[{col},line width=.9pt] " + "--".join(f"({x:.3f},{y:.3f})" for x, y in pts) + ";")
+            L += [f"\\node[{col},inner sep=0pt] at ({x:.3f},{y:.3f}) {{\\pgfuseplotmark{{{mk}}}}};" for x, y in pts]
+            if k == 1:
+                x, y = pts[-1]
+                L.append(f"\\node[anchor=west,font=\\sffamily\\tiny,text={col}] at ({x + 0.06:.3f},{y + (0.12 if name == 'Gemma-4' else 0):.3f}) {{{name}}};")
+        L.append(r"\end{scope}")
+    ab = load(RA / "ablation.json")["cells"]
+    combos = [("l0q0c0", "Study 1 prompt"), ("l1q0c0", "+ channel field"), ("l0q1c0", "+ direct question"), ("l0q0c1", "+ minimal context"), ("l1q1c1", "all three")]
+    shades = ["black!45", "OIsky", "OIpurple", "OIgreen", "OIorange"]
+    models = ["gemma4_31b", "qwen38_27b", "seed_oss_36b", "phi4"]
+    for k, (cell, title, x0) in enumerate((("C-T-_flag", "(c) Ablation: comprehension flag", 8.3), ("Einaud_S", "(d) Ablation: audibility flag", 11.2))):
+        L.append(f"\\begin{{scope}}[xshift={x0}cm]")
+        L.append(f"\\node[panel] at ({-1.6 if k == 0 else -0.1},{H + 0.5:.2f}) {{{title}}};")
+        fl, X, Y = frame(2.6, H, (0, 100), (0, 4), [0, 25, 50, 75, 100], [], "net use (pp)", grid="x")
+        L += [l for l in fl if "anchor=east" not in l]
+        for i, m in enumerate(models):
+            y = Y(3.5 - i)
+            if k == 0:
+                L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{y:.3f}) {{{NAMES[m]}}};")
+            vs = [100 * ab[m][c][cell] for c, _ in combos]
+            L.append(f"\\draw[black!20,line width=1.1pt] ({X(min(vs)):.3f},{y:.3f})--({X(max(vs)):.3f},{y:.3f});")
+            for j, v in enumerate(vs):
+                L.append(f"\\fill[{shades[j]}] ({X(v):.3f},{y + (j - 2) * 0.045:.3f}) circle (1.5pt);")
+        L.append(r"\end{scope}")
+    L += legend([("*", "OIblue", "Qwen3.5"), ("square*", "OIorange", "Gemma-4")], 0.0, -0.95)
+    L += legend([("box", c, lab) for c, (_, lab) in zip(shades, combos)], 6.55, -0.95, step=0.09)
+    L += [r"\end{tikzpicture}",
+          r"\caption{What changes leakage within Study~1. (a, b) Net use by model size in two families. Leakage rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers leakage for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still repeats unheard speech in half of its replies.}",
+          r"\label{fig:factors}", r"\end{figure*}"]
+    return "\n".join(L)
+
+ALL = {"FIG_EXAMPLE": example, "FIG_DESIGN": design, "FIG_S1": study1, "FIG_S2": study2, "FIG_FRONTIER": frontier, "FIG_REMEDY": remedy, "FIG_BRIDGEFULL": bridge_full, "FIG_S1M": listfirst_models, "FIG_FACTORS": factors}
