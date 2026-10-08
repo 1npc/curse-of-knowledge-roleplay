@@ -40,23 +40,23 @@
   }
  },
  "opus55": {
-  "replies": 2793,
+  "replies": 3936,
   "status": {
-   "other": 54,
-   "complete": 2739
+   "other": 65,
+   "complete": 3871
   },
-  "cost": 12.10979600000002,
+  "cost": 18.204284000000015,
   "study1": {
    "repertoire": 0.020833333333333332,
    "inaudible_flag": 0.020833333333333332,
-   "understood_flag": null,
-   "prose": null,
+   "understood_flag": 0.05381944444444445,
+   "prose": 0.012152777777777776,
    "fluent_control_use": 0.9930555555555556,
    "n_cells": {
     "repertoire": 576,
     "inaudible_flag": 576,
-    "understood_flag": 5,
-    "prose": 4
+    "understood_flag": 576,
+    "prose": 576
    },
    "repertoire_hit_modes": {
     "unframed": 3,
@@ -65,7 +65,7 @@
    },
    "state_probe_correct": 1,
    "translation_both_canaries": 0.9270833333333334,
-   "n_study1": 2025
+   "n_study1": 3168
   },
   "bridge": {
    "base": {
@@ -81,12 +81,12 @@
   }
  },
  "sonnet55": {
-  "replies": 3936,
+  "replies": 4704,
   "status": {
    "other": 1,
-   "complete": 3935
+   "complete": 4703
   },
-  "cost": 8.525408000000004,
+  "cost": 9.663735999999982,
   "study1": {
    "repertoire": 0.2604166666666667,
    "inaudible_flag": 0.0798611111111111,
@@ -122,23 +122,23 @@
   }
  },
  "gemini31pro": {
-  "replies": 2793,
+  "replies": 4320,
   "status": {
-   "other": 4,
-   "complete": 2789
+   "other": 7,
+   "complete": 4313
   },
-  "cost": 15.316537999999992,
+  "cost": 24.125813999999988,
   "study1": {
    "repertoire": 0.015625,
    "inaudible_flag": 0.09027777777777778,
-   "understood_flag": null,
-   "prose": null,
+   "understood_flag": 0,
+   "prose": 0,
    "fluent_control_use": 0.9965277777777778,
    "n_cells": {
     "repertoire": 576,
     "inaudible_flag": 576,
-    "understood_flag": 5,
-    "prose": 4
+    "understood_flag": 576,
+    "prose": 576
    },
    "repertoire_hit_modes": {
     "unframed": 9,
@@ -147,7 +147,7 @@
    },
    "state_probe_correct": 1,
    "translation_both_canaries": 0.9722222222222222,
-   "n_study1": 2025
+   "n_study1": 3168
   },
   "bridge": {
    "base": {

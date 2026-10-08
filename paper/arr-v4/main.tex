@@ -742,183 +742,153 @@ Gemma-4-31B and Qwen3.8-27B use unheard speech in 51\% and 60\% of Study~1 repli
 \begin{figure*}[t]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm]
-\node[panel] at (-2.5,4.05) {(a) Study 1 core cells (pp)};
-\draw[black!9] (0.000,0)--(0.000,3.3);
-\draw[black!9] (0.800,0)--(0.800,3.3);
-\draw[black!9] (1.600,0)--(1.600,3.3);
-\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(1.6,0);
+\node[panel] at (-2.25,3.75) {(a) Study 1 core cells, net use (pp)};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.330,2.930) {reper-\\toire};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.990,2.930) {compr.\\flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (1.650,2.930) {+ sen-\\tence};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.310,2.930) {audib.\\flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.970,2.930) {control\\use (\%)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.719) {GPT-6 Sol};
+\fill[OIorange!0!white] (0.012,2.550) rectangle (0.648,2.888);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.719) {0};
+\fill[OIorange!1!white] (0.672,2.550) rectangle (1.308,2.888);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.719) {1};
+\fill[OIorange!0!white] (1.332,2.550) rectangle (1.968,2.888);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.719) {0};
+\fill[OIorange!0!white] (1.992,2.550) rectangle (2.628,2.888);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.719) {0};
+\fill[OIblue!55!white] (2.652,2.550) rectangle (3.288,2.888);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.719) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.356) {Gemini 3.8 Flash};
+\fill[OIorange!0!white] (0.012,2.187) rectangle (0.648,2.525);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.356) {0};
+\fill[OIorange!0!white] (0.672,2.187) rectangle (1.308,2.525);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.356) {0};
+\fill[OIorange!0!white] (1.332,2.187) rectangle (1.968,2.525);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.356) {0};
+\fill[OIorange!0!white] (1.992,2.187) rectangle (2.628,2.525);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.356) {0};
+\fill[OIblue!54!white] (2.652,2.187) rectangle (3.288,2.525);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.356) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.994) {Grok 4.7};
+\fill[OIorange!1!white] (0.012,1.825) rectangle (0.648,2.163);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.994) {1};
+\fill[OIorange!1!white] (0.672,1.825) rectangle (1.308,2.163);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.994) {1};
+\fill[OIorange!0!white] (1.332,1.825) rectangle (1.968,2.163);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.994) {0};
+\fill[OIorange!0!white] (1.992,1.825) rectangle (2.628,2.163);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.994) {0};
+\fill[OIblue!55!white] (2.652,1.825) rectangle (3.288,2.163);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.994) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.631) {Claude Opus 5.5};
+\fill[OIorange!2!white] (0.012,1.462) rectangle (0.648,1.800);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.631) {2};
+\fill[OIorange!5!white] (0.672,1.462) rectangle (1.308,1.800);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.631) {5};
+\fill[OIorange!1!white] (1.332,1.462) rectangle (1.968,1.800);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.631) {1};
+\fill[OIorange!2!white] (1.992,1.462) rectangle (2.628,1.800);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.631) {2};
+\fill[OIblue!55!white] (2.652,1.462) rectangle (3.288,1.800);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.631) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.269) {Gemini 3.1 Pro};
+\fill[OIorange!1!white] (0.012,1.099) rectangle (0.648,1.438);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.269) {2};
+\fill[OIorange!0!white] (0.672,1.099) rectangle (1.308,1.438);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.269) {0};
+\fill[OIorange!0!white] (1.332,1.099) rectangle (1.968,1.438);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.269) {0};
+\fill[OIorange!8!white] (1.992,1.099) rectangle (2.628,1.438);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.269) {9};
+\fill[OIblue!55!white] (2.652,1.099) rectangle (3.288,1.438);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.269) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.906) {Claude Sonnet 5.5};
+\fill[OIorange!22!white] (0.012,0.737) rectangle (0.648,1.076);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.906) {26};
+\fill[OIorange!30!white] (0.672,0.737) rectangle (1.308,1.076);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.906) {36};
+\fill[OIorange!18!white] (1.332,0.737) rectangle (1.968,1.076);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.906) {22};
+\fill[OIorange!7!white] (1.992,0.737) rectangle (2.628,1.076);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.906) {8};
+\fill[OIblue!54!white] (2.652,0.737) rectangle (3.288,1.076);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.906) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.544) {DeepSeek-V4-Pro};
+\fill[OIorange!61!white] (0.012,0.374) rectangle (0.648,0.713);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.544) {71};
+\fill[OIorange!37!white] (0.672,0.374) rectangle (1.308,0.713);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.544) {43};
+\fill[OIorange!18!white] (1.332,0.374) rectangle (1.968,0.713);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.544) {21};
+\fill[OIorange!67!white] (1.992,0.374) rectangle (2.628,0.713);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.544) {78};
+\fill[OIblue!52!white] (2.652,0.374) rectangle (3.288,0.713);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.544) {94};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.101) {11 open models};
+\fill[OIorange!69!white] (0.012,-0.068) rectangle (0.648,0.270);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.101) {82};
+\fill[OIorange!47!white] (0.672,-0.068) rectangle (1.308,0.270);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.101) {55};
+\fill[OIorange!29!white] (1.332,-0.068) rectangle (1.968,0.270);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.101) {34};
+\fill[OIorange!74!white] (1.992,-0.068) rectangle (2.628,0.270);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.101) {87};
+\fill[OIblue!49!white] (2.652,-0.068) rectangle (3.288,0.270);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.101) {88};
+\node[anchor=north west,font=\sffamily\tiny\itshape,text=black!65] at (0,-0.1) {Claude Sonnet 5.5 with high reasoning: repertoire 3};
+\begin{scope}[xshift=5.55cm]
+\node[panel] at (-1.75,3.75) {(b) All four features swapped in};
+\draw[black!9] (0.000,0)--(0.000,2.9);
+\draw[black!9] (0.613,0)--(0.613,2.9);
+\draw[black!9] (1.225,0)--(1.225,2.9);
+\draw[black!9] (1.838,0)--(1.838,2.9);
+\draw[black!9] (2.450,0)--(2.450,2.9);
+\draw[black!45,line width=.4pt] (0,2.9)--(0,0)--(2.45,0);
 \node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.800,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.600,0) {100};
-\node[font=\sffamily\tiny\bfseries,text=OIblue,anchor=south] at (1.900,3.320) {rep};
-\node[font=\sffamily\tiny\bfseries,text=OIorange,anchor=south] at (2.350,3.320) {aud};
-\node[font=\sffamily\tiny\bfseries,text=black!50,anchor=south] at (2.800,3.320) {ctrl};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,3.117) {GPT-6 Sol};
-\fill[OIblue] (0,3.127) rectangle (0.020,3.227);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,3.117) {0};
-\fill[OIorange] (0,3.007) rectangle (0.020,3.107);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,3.117) {0};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,3.117) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.750) {Gemini 3.8 Flash};
-\fill[OIblue] (0,2.760) rectangle (0.020,2.860);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,2.750) {0};
-\fill[OIorange] (0,2.640) rectangle (0.020,2.740);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,2.750) {0};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,2.750) {99};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.383) {Grok 4.7};
-\fill[OIblue] (0,2.393) rectangle (0.020,2.493);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,2.383) {1};
-\fill[OIorange] (0,2.273) rectangle (0.020,2.373);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,2.383) {0};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,2.383) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.017) {Claude Opus 5.5};
-\fill[OIblue] (0,2.027) rectangle (0.033,2.127);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,2.017) {2};
-\fill[OIorange] (0,1.907) rectangle (0.033,2.007);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,2.017) {2};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,2.017) {99};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.650) {Gemini 3.1 Pro};
-\fill[OIblue] (0,1.660) rectangle (0.025,1.760);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,1.650) {2};
-\fill[OIorange] (0,1.540) rectangle (0.144,1.640);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,1.650) {9};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,1.650) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.283) {Claude Sonnet 5.5};
-\fill[OIblue] (0,1.293) rectangle (0.417,1.393);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,1.283) {26};
-\fill[OIorange] (0,1.173) rectangle (0.128,1.273);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,1.283) {8};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,1.283) {99};
-\node[anchor=east,font=\sffamily\tiny\itshape] at (-0.05,0.917) {Sonnet, high reasoning};
-\fill[OIblue] (0,0.927) rectangle (0.047,1.027);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,0.917) {3};
-\draw[black!20] (-2.4,0.733)--(3.000,0.733);
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.550) {DeepSeek-V4-Pro};
-\fill[OIblue] (0,0.560) rectangle (1.139,0.660);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,0.550) {71};
-\fill[OIorange] (0,0.440) rectangle (1.253,0.540);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,0.550) {78};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,0.550) {94};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.183) {11 open models, mean};
-\fill[OIblue] (0,0.193) rectangle (1.307,0.293);
-\node[font=\sffamily\tiny,text=OIblue] at (1.900,0.183) {82};
-\fill[OIorange] (0,0.073) rectangle (1.393,0.173);
-\node[font=\sffamily\tiny,text=OIorange] at (2.350,0.183) {87};
-\node[font=\sffamily\tiny,text=black!50] at (2.800,0.183) {88};
-\fill[OIblue] (-1.600,-0.510) rectangle (-1.450,-0.390);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.430,-0.450) {repertoire};
-\fill[OIorange] (-0.130,-0.510) rectangle (0.020,-0.390);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.040,-0.450) {audibility flag};
-\begin{scope}[xshift=5.0cm]
-\node[panel] at (-1.55,4.05) {(b) All four Study 1 features};
-\draw[black!9] (0.000,0)--(0.000,3.3);
-\draw[black!9] (0.825,0)--(0.825,3.3);
-\draw[black!9] (1.650,0)--(1.650,3.3);
-\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(1.65,0);
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.825,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.650,0) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,3.025) {Gemma-4-31B};
-\fill[black!30] (0,3.040) rectangle (0.025,3.160);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.025,3.100) {0};
-\fill[OIorange] (0,2.890) rectangle (1.650,3.010);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (1.650,2.950) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.475) {Qwen3.8-27B};
-\fill[black!30] (0,2.490) rectangle (0.155,2.610);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.155,2.550) {9};
-\fill[OIorange] (0,2.340) rectangle (1.280,2.460);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (1.280,2.400) {78};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.925) {DeepSeek-V4-Pro};
-\fill[black!30] (0,1.940) rectangle (0.103,2.060);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.103,2.000) {6};
-\fill[OIorange] (0,1.790) rectangle (1.109,1.910);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (1.109,1.850) {67};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.375) {Gemini 3.1 Pro};
-\fill[black!30] (0,1.390) rectangle (0.025,1.510);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.025,1.450) {0};
-\fill[OIorange] (0,1.240) rectangle (0.352,1.360);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.352,1.300) {21};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.825) {Sonnet 5.5};
-\fill[black!30] (0,0.840) rectangle (0.025,0.960);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.025,0.900) {1};
-\fill[OIorange] (0,0.690) rectangle (0.215,0.810);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.215,0.750) {13};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.275) {other 4 hosted};
-\fill[black!30] (0,0.290) rectangle (0.025,0.410);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.025,0.350) {0};
-\fill[OIorange] (0,0.140) rectangle (0.025,0.260);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (0.025,0.200) {1};
-\fill[black!30] (-1.500,-0.510) rectangle (-1.350,-0.390);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.330,-0.450) {Study 2 prompt};
-\fill[OIorange] (0.390,-0.510) rectangle (0.540,-0.390);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.560,-0.450) {all four};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.613,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.225,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.838,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.450,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.225,-0.3) {net use of unheard speech (pp)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.658) {Gemma-4-31B};
+\fill[black!25] (0,2.673) rectangle (0.020,2.803);
+\fill[OIorange] (0,2.513) rectangle (2.450,2.643);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.450,2.578) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.175) {Qwen3.8-27B};
+\fill[black!25] (0,2.190) rectangle (0.230,2.320);
+\fill[OIorange] (0,2.030) rectangle (1.901,2.160);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.901,2.095) {78};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.692) {DeepSeek-V4-Pro};
+\fill[black!25] (0,1.707) rectangle (0.153,1.837);
+\fill[OIorange] (0,1.547) rectangle (1.646,1.677);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.646,1.612) {67};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.208) {Gemini 3.1 Pro};
+\fill[black!25] (0,1.223) rectangle (0.020,1.353);
+\fill[OIorange] (0,1.063) rectangle (0.523,1.193);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.523,1.128) {21};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.725) {Claude Sonnet 5.5};
+\fill[black!25] (0,0.740) rectangle (0.020,0.870);
+\fill[OIorange] (0,0.580) rectangle (0.319,0.710);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.319,0.645) {13};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.242) {other 4 hosted};
+\fill[black!25] (0,0.257) rectangle (0.020,0.387);
+\fill[OIorange] (0,0.097) rectangle (0.026,0.227);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.026,0.162) {1};
 \end{scope}
-\begin{scope}[xshift=7.5cm]
-\node[panel] at (-0.45,4.05) {(c) One feature at a time};
-\begin{scope}[yshift=1.825cm]
-\draw[black!9] (0,0.000)--(2.45,0.000);
-\draw[black!9] (0,0.647)--(2.45,0.647);
-\draw[black!9] (0,1.295)--(2.45,1.295);
-\draw[black!45,line width=.4pt] (0,1.295)--(0,0)--(2.45,0);
+\begin{scope}[xshift=9.6cm]
+\node[panel] at (-0.45,3.75) {(c) One feature at a time (pp)};
+\begin{scope}[yshift=1.600cm]
+\draw[black!9] (0,0.000)--(3.3,0.000);
+\draw[black!9] (0,0.575)--(3.3,0.575);
+\draw[black!9] (0,1.150)--(3.3,1.150);
+\draw[black!45,line width=.4pt] (0,1.1500000000000001)--(0,0)--(3.3,0);
 \node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.647) {50};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.295) {100};
-\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.02,1.275) {Gemma-4-31B, net use (pp)};
-\fill[OIorange!45] (0.096,0) rectangle (0.296,0.008);
-\fill[OIorange] (0.316,0) rectangle (0.516,0.008);
-\fill[OIorange!45] (0.709,0) rectangle (0.909,0.013);
-\fill[OIorange] (0.929,0) rectangle (1.129,0.008);
-\fill[OIorange!45] (1.321,0) rectangle (1.521,0.796);
-\fill[OIorange] (1.541,0) rectangle (1.741,1.241);
-\fill[OIorange!45] (1.934,0) rectangle (2.134,0.182);
-\fill[OIorange] (2.154,0) rectangle (2.354,0.108);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.575) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.150) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,1.130) {Gemma-4-31B};
+\fill[OIorange!40] (0.162,0) rectangle (0.402,0.009);
+\fill[OIorange] (0.422,0) rectangle (0.662,0.009);
+\fill[OIorange!40] (0.987,0) rectangle (1.228,0.012);
+\fill[OIorange] (1.247,0) rectangle (1.487,0.009);
+\fill[OIorange!40] (1.812,0) rectangle (2.053,0.707);
+\fill[OIorange] (2.072,0) rectangle (2.312,1.102);
+\fill[OIorange!40] (2.637,0) rectangle (2.877,0.162);
+\fill[OIorange] (2.897,0) rectangle (3.137,0.096);
 \end{scope}
 \begin{scope}[yshift=0.000cm]
-\draw[black!9] (0,0.000)--(2.45,0.000);
-\draw[black!9] (0,0.647)--(2.45,0.647);
-\draw[black!9] (0,1.295)--(2.45,1.295);
-\draw[black!45,line width=.4pt] (0,1.295)--(0,0)--(2.45,0);
+\draw[black!9] (0,0.000)--(3.3,0.000);
+\draw[black!9] (0,0.575)--(3.3,0.575);
+\draw[black!9] (0,1.150)--(3.3,1.150);
+\draw[black!45,line width=.4pt] (0,1.1500000000000001)--(0,0)--(3.3,0);
 \node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.647) {50};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.295) {100};
-\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.02,1.275) {Qwen3.8-27B, net use (pp)};
-\fill[OIorange!45] (0.096,0) rectangle (0.296,0.128);
-\fill[OIorange] (0.316,0) rectangle (0.516,0.135);
-\node[anchor=north,font=\sffamily\tiny] at (0.306,-0.02) {Sys.};
-\fill[OIorange!45] (0.709,0) rectangle (0.909,0.877);
-\fill[OIorange] (0.929,0) rectangle (1.129,0.931);
-\node[anchor=north,font=\sffamily\tiny] at (0.919,-0.02) {Sheet};
-\fill[OIorange!45] (1.321,0) rectangle (1.521,0.250);
-\fill[OIorange] (1.541,0) rectangle (1.741,0.162);
-\node[anchor=north,font=\sffamily\tiny] at (1.531,-0.02) {State};
-\fill[OIorange!45] (1.934,0) rectangle (2.134,0.115);
-\fill[OIorange] (2.154,0) rectangle (2.354,0.008);
-\node[anchor=north,font=\sffamily\tiny] at (2.144,-0.02) {Quest.};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.575) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.150) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,1.130) {Qwen3.8-27B};
+\fill[OIorange!40] (0.162,0) rectangle (0.402,0.114);
+\fill[OIorange] (0.422,0) rectangle (0.662,0.120);
+\node[anchor=north,font=\sffamily\tiny] at (0.412,-0.02) {system};
+\fill[OIorange!40] (0.987,0) rectangle (1.228,0.779);
+\fill[OIorange] (1.247,0) rectangle (1.487,0.827);
+\node[anchor=north,font=\sffamily\tiny] at (1.237,-0.02) {sheet};
+\fill[OIorange!40] (1.812,0) rectangle (2.053,0.222);
+\fill[OIorange] (2.072,0) rectangle (2.312,0.144);
+\node[anchor=north,font=\sffamily\tiny] at (2.062,-0.02) {state};
+\fill[OIorange!40] (2.637,0) rectangle (2.877,0.102);
+\fill[OIorange] (2.897,0) rectangle (3.137,0.009);
+\node[anchor=north,font=\sffamily\tiny] at (2.887,-0.02) {question};
 \end{scope}
-\fill[OIorange!45] (0.000,-0.620) rectangle (0.150,-0.500);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.560) {discovery};
-\fill[OIorange] (1.365,-0.620) rectangle (1.515,-0.500);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.535,-0.560) {new scenes};
+\fill[OIorange!40] (0.000,-0.560) rectangle (0.150,-0.440);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.500) {discovery scenes};
+\fill[OIorange] (2.100,-0.560) rectangle (2.250,-0.440);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.270,-0.500) {new scenes};
 \end{scope}
-\begin{scope}[xshift=11.3cm]
-\node[panel] at (-1.1,4.05) {(d) Phrasing of leaks};
-\draw[black!9] (0.000,0)--(0.000,3.3);
-\draw[black!9] (0.875,0)--(0.875,3.3);
-\draw[black!9] (1.750,0)--(1.750,3.3);
-\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(1.75,0);
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.875,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.750,0) {100};
-\node[anchor=north,font=\sffamily\scriptsize] at (0.875,-0.3) {share of leaks (\%)};
-\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,2.750) {11 open models};
-\fill[OIblue] (0.000,2.530) rectangle (0.957,2.970);
-\fill[OIsky] (0.957,2.530) rectangle (1.459,2.970);
-\fill[OIorange] (1.459,2.530) rectangle (1.750,2.970);
-\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,1.650) {DeepSeek-V4-Pro};
-\fill[OIblue] (0.000,1.430) rectangle (0.336,1.870);
-\fill[OIsky] (0.336,1.430) rectangle (0.647,1.870);
-\fill[OIorange] (0.647,1.430) rectangle (1.750,1.870);
-\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,0.550) {Sonnet 5.5};
-\fill[OIblue] (0.000,0.330) rectangle (0.467,0.770);
-\fill[OIsky] (0.467,0.330) rectangle (0.607,0.770);
-\fill[OIorange] (0.607,0.330) rectangle (1.750,0.770);
-\fill[OIblue] (-1.250,-0.960) rectangle (-1.100,-0.840);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.080,-0.900) {fact};
-\fill[OIsky] (-0.490,-0.960) rectangle (-0.340,-0.840);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-0.320,-0.900) {attributed};
-\fill[OIorange] (0.780,-0.960) rectangle (0.930,-0.840);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.950,-0.900) {guess};
-\end{scope}
+\fill[black!25] (4.000,-0.910) rectangle (4.150,-0.790);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (4.170,-0.850) {Study 2 prompt};
+\fill[OIorange] (5.890,-0.910) rectangle (6.040,-0.790);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (6.060,-0.850) {+ all four};
 \end{tikzpicture}
-\caption{Frontier models and input format. (a) Net use in the Study 1 core cells with the content question (288 items per cell), and use of permitted content in the fluent control (ctrl, \%). Five of six hosted models keep the boundary while using permitted content, and high reasoning effort brings Claude Sonnet 5.5 close to zero. (b) Swapping all four Study 1 features into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate. (d) The strongest leaking models present the content as a guess.}
+\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}
 \label{fig:frontier}
 \end{figure*}
 \begin{table*}[t]
@@ -929,19 +899,19 @@ Gemma-4-31B and Qwen3.8-27B use unheard speech in 51\% and 60\% of Study~1 repli
 & \textbf{flag} & \textbf{flag} & \textbf{flag} & \textbf{sentence} & \textbf{use} & \textbf{probe} & \textbf{probe} & \textbf{base $\to$ all}\\
 \midrule
 GPT-6 Sol & 0.2 & 0.0 & 0.9 & 0.2 & 100.0 & 100.0 & 97.9 & 0.0 $\to$ 0.0\\
-Claude Opus 5.5 & 2.1 & 2.1 & n.r. & n.r. & 99.3 & 100.0 & 92.7 & 0.0 $\to$ 1.0\\
+Claude Opus 5.5 & 2.1 & 2.1 & 5.4 & 1.2 & 99.3 & 100.0 & 92.7 & 0.0 $\to$ 1.0\\
 Claude Sonnet 5.5 & 26.0 & 8.0 & 35.8 & 21.7 & 99.0 & 96.5 & 95.1 & 0.5 $\to$ 13.0\\
-Gemini 3.1 Pro & 1.6 & 9.0 & n.r. & n.r. & 99.7 & 100.0 & 97.2 & 0.0 $\to$ 21.4\\
+Gemini 3.1 Pro & 1.6 & 9.0 & 0.0 & 0.0 & 99.7 & 100.0 & 97.2 & 0.0 $\to$ 21.4\\
 Gemini 3.8 Flash & 0.2 & -0.2 & 0.0 & 0.0 & 99.0 & 100.0 & 93.8 & 0.0 $\to$ 0.0\\
 Grok 4.7 & 1.0 & 0.0 & 1.0 & 0.3 & 100.0 & 100.0 & 99.3 & 0.0 $\to$ 0.0\\
 DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67.2\\
 \bottomrule
 \end{tabular}
-\caption{Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Leakage is net use in pp, control use and probes are percentages. Claude Opus 5.5 and Gemini 3.1 Pro were not run on the comprehension-flag and prose conditions (n.r., not run).}
+\caption{Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Leakage is net use in pp, control use and probes are percentages.}
 \label{tab:hosted}
 \end{table*}
 
-Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Table~\ref{tab:hosted}). GPT-6 Sol, Gemini 3.8 Flash, Grok 4.7 and Claude Opus 5.5 stay at or below 2.1 pp in both conditions and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and none of the remaining leaks is stated as fact. A compliant reply stays in character and declines the content, as in Claude Opus 5.5's ``Couldn't tell you. He said it in Spanish, and I don't speak it. Ask him to say it again in English, or get a translator running.'' Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. Figure~\ref{fig:frontier}d shows that this hedging separates the two strongest leaking models from the smaller ones, whose leaks are mostly stated as fact or attributed to the speaker.
+Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Table~\ref{tab:hosted}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and none of the remaining leaks is stated as fact. A compliant reply stays in character and declines the content, as in Claude Opus 5.5's ``Couldn't tell you. He said it in Spanish, and I don't speak it. Ask him to say it again in English, or get a translator running.'' Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. DeepSeek-V4-Pro presents 63\% of its leaks as guesses, against 17\% for the 11 smaller open models, so hedging separates the two strongest leaking models from the rest.
 
 
 
@@ -1123,7 +1093,7 @@ Role-playing agents are trained and evaluated for consistency with a persona \ci
 Theory-of-mind benchmarks test reasoning about information asymmetry \citep{kim-etal-2023-fantom}, ask how a character's perception shapes its beliefs \citep{gandhi2023bigtom,xu-etal-2024-opentom}, separate perception inference from belief inference \citep{jung-etal-2024-perceptions}, and show that models answer mental-state questions without applying the answers \citep{gu2026simpletom}. These benchmarks ask third-person questions with a gold answer, whereas we score first-person speech for content the character could not know. The behavior resembles the curse of knowledge in people \citep{birch2007curse}. ConfAIde and PrivacyLens find that models disclose information in context against norms they can state \citep{mireshghallah2024confaide,shao2024privacylens}, which has the same structure with fictional access in place of privacy. Small formatting changes shift task accuracy \citep{sclar2024quantifying}, and we find that they also decide whether a model keeps a character's boundary. Perspective filtering rewrites the context from a character's point of view before answering \citep{wilf-etal-2024-think}, and the list-first prompt applies this idea to generation.
 
 \section{Discussion}
-Why would a model that answers the state probe correctly still voice the content? One explanation is that it writes as a narrator who has seen the whole scene. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task and keeping a character's view is the unusual one. Three observations agree with this reading. Open models mostly state leaked content as fact, leakage grows with the model's command of the language, and the boundary holds when the task is about the boundary, as in the state probe and in the first step of the list-first prompt, but not when the task is to talk.
+Why would a model that answers the state probe correctly still voice the content? One explanation is that it writes as a narrator who has seen the whole scene. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task and keeping a character's view is the unusual one. Three observations agree with this reading. Open models mostly state leaked content as fact, leakage grows with the model's command of the language, and the boundary holds when the task is about the boundary, as in the state probe and in the first step of the list-first prompt, but not when the task is to talk. A direct test would ask the same model to narrate the scene and to voice the character, and compare what each output reveals.
 
 The format results change how such behavior should be evaluated. A model that keeps the boundary under one prompt can break it when the state is laid out differently or when the character gains a backstory, and the feature that matters differs between models. A single prompt therefore cannot certify a model. Evaluations should vary the input format and report the use of permitted content next to leakage, because a model that never reports any speech would otherwise score perfectly.
 
@@ -1131,14 +1101,14 @@ The same failure matters beyond games. Agent simulations study how information s
 
 The hosted models that comply show that keeping the boundary can be learned. Their training is not public, so we cannot tell which data or objective produces it, but the open models that come closest show that compliance learned for one format does not carry over to another. Reasoning effort is one lever we could test from outside, and raising it from low to high removed most of Claude Sonnet 5.5's leakage under the repertoire.
 
-For system builders, the dependable remedy is to keep inaccessible content out of the generator's input. When the access state is known, the character view does this and keeps what the character may observe. When it is not known, a perspective filter is the practical option, and its intermediate list is the place to check for failure.
+For system builders, the dependable remedy is to keep inaccessible content out of the generator's input. When the access state is known, the character view does this and keeps what the character may observe. When it is not known, a perspective filter is the practical option, and its intermediate list is the place to check for failure. In Study~1 the hidden values in that list predict the leakage that remains (Figure~\ref{fig:remedy}a).
 
 \section{Conclusion}
 Role-playing models read a character's perceptual boundary correctly and still let the hidden content into the character's speech and choices. Across 11 open models the leak averages 67 pp for speech the character cannot understand and 72 pp for speech it cannot hear, it extends to hidden actions and private messages, and it moves where characters search. Most frontier models keep the boundary, and higher reasoning effort helps the one that does not. For the strongest open models and two hosted models, however, whether the boundary holds depends on parts of the input that a designer would not consider part of it, such as the layout of the state or the length of the character sheet. Evaluations of role-play should therefore vary the input format and report permitted use next to leakage, and systems that know what a character can access should build the character's input from that knowledge.
 
 \FloatBarrier
 \section*{Limitations}
-Content use is scored by rules over a fixed vocabulary of 12 places and 12 objects, and one human annotator checked 150 replies. Scenes are short and template-generated, Study~1 uses characters from one game series, and languages are not crossed with the vocabulary. Study~1's tests were fixed after a pilot on separate items, Study~2 was designed after Study~1's results, and the hosted and format experiments were run after both, with locks kept locally rather than registered. Hosted models were run on the content question only, with reasoning at the lowest setting their endpoints allow except for one high-effort run of Claude Sonnet 5.5. Claude Opus 5.5 and Gemini 3.1 Pro were not run on the comprehension-flag and prose conditions, and single-feature swaps were run for two hosted models. The character view assumes correct access metadata.
+Content use is scored by rules over a fixed vocabulary of 12 places and 12 objects, and one human annotator checked 150 replies. Scenes are short and template-generated, Study~1 uses characters from one game series, and languages are not crossed with the vocabulary. Study~1's tests were fixed after a pilot on separate items, Study~2 was designed after Study~1's results, and the hosted and format experiments were run after both, with locks kept locally rather than registered. Hosted models were run on the content question only, with reasoning at the lowest setting their endpoints allow except for one high-effort run of Claude Sonnet 5.5. Single-feature swaps were run for two hosted models. The character view assumes correct access metadata.
 
 \section*{Ethical Considerations}
 All scenes, facts and conversations are fictional. Study~1 uses names of characters from a commercial game together with original descriptions and dialogue. One human annotator labeled 150 model replies about fictional facts. The annotator is a colleague of the authors and not an author. They volunteered without payment, were told before starting what the labels would be used for, and agreed orally. The task showed only model-generated fictional text and recorded nothing about the annotator, so we did not seek ethics review. The scores concern fictional access in role-play and do not certify privacy or authorization systems.
@@ -2090,7 +2060,7 @@ Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \end{table*}
 \section{Models and Runs}
 \label{app:models}
-Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400 new tokens. Mistral-Small-3.1-24B could not be loaded with this software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. Hosted models were called through OpenRouter on 8 October 2026 with temperature 0 and a fixed seed where the endpoint supports them. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. DeepSeek-V4-Pro was served by one fixed provider. Table~\ref{tab:hosted} in the main text lists the hosted results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two hosted models.
+Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400 new tokens. Mistral-Small-3.1-24B could not be loaded with this software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. Hosted models were called through OpenRouter on 8 October 2026 with temperature 0 and a fixed seed where the endpoint supports them. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. DeepSeek-V4-Pro was served by one fixed provider. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter, and these count as non-use. Table~\ref{tab:hosted} in the main text lists the hosted results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two hosted models.
 
 \section{Study 1 Details}
 \label{app:s1}

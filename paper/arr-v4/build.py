@@ -257,8 +257,7 @@ def added():
         rows.append(NAMES2[m] + " & " + " & ".join(f(s1[k]) for k in ("repertoire", "inaudible_flag", "understood_flag", "prose", "fluent_control_use",
                     "state_probe_correct", "translation_both_canaries")) + f" & {f(br['base']['unheard_net'])} $\\to$ {f(br['all']['unheard_net'])}" + r"\\")
     ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
-                                "of the bridge. Leakage is net use in pp, control use and probes are percentages. Claude Opus 5.5 and Gemini 3.1 Pro were not run on the "
-                                "comprehension-flag and prose conditions (n.r., not run).", "tab:hosted", True)
+                                "of the bridge. Leakage is net use in pp, control use and probes are percentages.", "tab:hosted", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]

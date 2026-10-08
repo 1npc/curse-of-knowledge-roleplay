@@ -285,46 +285,34 @@ def study2():
 
 
 def frontier():
-    """Figure 5: frontier models and input format."""
+    """Figure: frontier models and input format. (a) heat table of core cells, (b) all four features, (c) one feature at a time."""
     op = load(RA / "open_content_only.json")
     ho = load(RA / "hosted.json")
     rs = load(RA / "hosted_reasoning.json")
-    H = 3.3
+    H = 2.9
     L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
-    # (a) bars for the core cells, control use as a gray column
-    rows = []
-    for m in ["gpt6sol", "gemini38flash", "grok47", "opus55", "gemini31pro", "sonnet55"]:
-        s1 = ho[m]["study1"]
-        rows.append((NAMES[m], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
-    rows.append(("Sonnet, high reasoning", rs["sonnet55-high"]["net"], None, None))
-    s1 = ho["deepseekv4pro"]["study1"]
-    rows.append((NAMES["deepseekv4pro"], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
-    mean = lambda k: sum(v[k] for v in op.values()) / len(op)
-    rows.append(("11 open models, mean", mean("repertoire"), mean("inaudible_flag"), mean("fluent_control_use")))
-    n = len(rows)
-    rh = H / n
-    w = 1.6
-    L.append(f"\\node[panel] at (-2.5,{H + 0.75:.2f}) {{(a) Study 1 core cells (pp)}};")
-    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 50, 100], [], "", grid="x")
-    L += [l for l in fl if "anchor=east" not in l]
-    cx = [(w + 0.3, "OIblue", "rep"), (w + 0.75, "OIorange", "aud"), (w + 1.2, "black!50", "ctrl")]
-    for x, col, lab in cx:
-        L.append(f"\\node[font=\\sffamily\\tiny\\bfseries,text={col},anchor=south] at ({x:.3f},{H + 0.02:.3f}) {{{lab}}};")
-    for i, (name, rep, aud, ctl) in enumerate(rows):
-        yc = H - (i + 0.5) * rh
-        it = "\\itshape" if "reasoning" in name else ""
-        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny{it}] at (-0.05,{yc:.3f}) {{{name}}};")
-        for (v, col, dy), (x, tcol, _) in zip(((rep, "OIblue", 0.06), (aud, "OIorange", -0.06), (ctl, None, 0)), cx):
+    # (a) heat table
+    cols = [("repertoire", "reper-\\\\toire"), ("understood_flag", "compr.\\\\flag"), ("prose", "+ sen-\\\\tence"),
+            ("inaudible_flag", "audib.\\\\flag"), ("fluent_control_use", "control\\\\use (\\%)")]
+    rows = [(NAMES[m], ho[m]["study1"]) for m in ["gpt6sol", "gemini38flash", "grok47", "opus55", "gemini31pro", "sonnet55", "deepseekv4pro"]]
+    rows.append(("11 open models", {k: sum(v[k] for v in op.values()) / len(op) for k, _ in cols if k in next(iter(op.values()))}))
+    cw, rh = 0.66, H / len(rows)
+    L.append(f"\\node[panel] at (-2.25,{H + 0.85:.2f}) {{(a) Study 1 core cells, net use (pp)}};")
+    for j, (_, lab) in enumerate(cols):
+        L.append(f"\\node[font=\\sffamily\\tiny,align=center,anchor=south] at ({(j + 0.5) * cw:.3f},{H + 0.03:.3f}) {{{lab}}};")
+    for i, (name, d) in enumerate(rows):
+        y = H - (i + 1) * rh - (0.08 if i == len(rows) - 1 else 0)
+        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{y + rh / 2:.3f}) {{{name}}};")
+        for j, (k, _) in enumerate(cols):
+            v = d.get(k)
             if v is None:
                 continue
             v = max(0.0, 100 * v)
-            if col:
-                L.append(f"\\fill[{col}] (0,{yc + dy - 0.05:.3f}) rectangle ({max(X(v), 0.02):.3f},{yc + dy + 0.05:.3f});")
-            L.append(f"\\node[font=\\sffamily\\tiny,text={tcol}] at ({x:.3f},{yc:.3f}) {{{v:.0f}}};")
-        if i == 6:
-            L.append(f"\\draw[black!20] (-2.4,{yc - rh / 2:.3f})--({w + 1.4:.3f},{yc - rh / 2:.3f});")
-    L += legend([("box", "OIblue", "repertoire"), ("box", "OIorange", "audibility flag")], -1.6, -0.45)
-    # (b) Study 2 prompt against all four features, as paired bars
+            fill = f"OIblue!{v * 0.55:.0f}!white" if k == "fluent_control_use" else heat(v)[0]
+            L.append(f"\\fill[{fill}] ({j * cw + 0.012:.3f},{y + 0.012:.3f}) rectangle ({(j + 1) * cw - 0.012:.3f},{y + rh - 0.012:.3f});"
+                     f"\\node[font=\\sffamily\\tiny,text=black!80] at ({(j + 0.5) * cw:.3f},{y + rh / 2:.3f}) {{{v:.0f}}};")
+    L.append(f"\\node[anchor=north west,font=\\sffamily\\tiny\\itshape,text=black!65] at (0,-0.1) {{Claude Sonnet 5.5 with high reasoning: repertoire {100 * rs['sonnet55-high']['net']:.0f}}};")
+    # (b) all four features
     br = load(RA / "bridge.json")
     pts = {m: (100 * br[m]["base:inaccessible"]["estimate"], 100 * br[m]["all:inaccessible"]["estimate"]) for m in ("gemma4_31b", "qwen38_27b")}
     for m in ("deepseekv4pro", "gemini31pro", "sonnet55", "opus55", "grok47", "gemini38flash", "gpt6sol"):
@@ -332,65 +320,44 @@ def frontier():
         pts[m] = (100 * b["base"]["unheard_net"], 100 * b["all"]["unheard_net"])
     show = ["gemma4_31b", "qwen38_27b", "deepseekv4pro", "gemini31pro", "sonnet55"]
     rest = [m for m in pts if m not in show]
-    items = [(NAMES[m].replace("Claude ", ""), *pts[m]) for m in show] + [(f"other {len(rest)} hosted", max(pts[m][0] for m in rest), max(pts[m][1] for m in rest))]
-    L.append(r"\begin{scope}[xshift=5.0cm]")
-    L.append(f"\\node[panel] at (-1.55,{H + 0.75:.2f}) {{(b) All four Study 1 features}};")
-    w = 1.65
-    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 50, 100], [], "", grid="x")
+    items = [(NAMES[m], *pts[m]) for m in show] + [(f"other {len(rest)} hosted", max(pts[m][0] for m in rest), max(pts[m][1] for m in rest))]
+    L.append(r"\begin{scope}[xshift=5.55cm]")
+    L.append(f"\\node[panel] at (-1.75,{H + 0.85:.2f}) {{(b) All four features swapped in}};")
+    w = 2.45
+    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "net use of unheard speech (pp)", grid="x")
     L += [l for l in fl if "anchor=east" not in l]
-    rh = H / len(items)
+    rh2 = H / len(items)
     for i, (name, a, b) in enumerate(items):
-        yc = H - (i + 0.5) * rh
+        yc = H - (i + 0.5) * rh2
         L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{yc:.3f}) {{{name}}};")
-        for v, col, dy in ((a, "black!30", 0.075), (b, "OIorange", -0.075)):
-            L.append(f"\\fill[{col}] (0,{yc + dy - 0.06:.3f}) rectangle ({max(X(v), 0.025):.3f},{yc + dy + 0.06:.3f});"
-                     f"\\node[anchor=west,font=\\sffamily\\tiny,text=black!70,inner sep=1pt] at ({max(X(v), 0.025):.3f},{yc + dy:.3f}) {{{v:.0f}}};")
-    L += legend([("box", "black!30", "Study 2 prompt"), ("box", "OIorange", "all four")], -1.5, -0.45)
+        for v, col, dy in ((a, "black!25", 0.08), (b, "OIorange", -0.08)):
+            L.append(f"\\fill[{col}] (0,{yc + dy - 0.065:.3f}) rectangle ({max(X(v), 0.02):.3f},{yc + dy + 0.065:.3f});")
+        L.append(f"\\node[anchor=west,font=\\sffamily\\tiny,text=black!70,inner sep=1.5pt] at ({max(X(b), 0.02):.3f},{yc - 0.08:.3f}) {{{b:.0f}}};")
     L.append(r"\end{scope}")
-    # (c) single swaps, discovery and new scenes
+    # (c) one feature at a time
     rep = load(RA / "bridge-replication.json")
-    swaps = [("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest.")]
-    L.append(r"\begin{scope}[xshift=7.5cm]")
-    L.append(f"\\node[panel] at (-0.45,{H + 0.75:.2f}) {{(c) One feature at a time}};")
-    hh = (H - 0.35) / 2
+    swaps = [("sys", "system"), ("card", "sheet"), ("schema", "state"), ("ask", "question")]
+    L.append(r"\begin{scope}[xshift=9.6cm]")
+    L.append(f"\\node[panel] at (-0.45,{H + 0.85:.2f}) {{(c) One feature at a time (pp)}};")
+    hh = (H - 0.3) / 2
     for k, m in enumerate(("gemma4_31b", "qwen38_27b")):
-        y0 = (1 - k) * (hh + 0.35)
+        y0 = (1 - k) * (hh + 0.3)
         L.append(f"\\begin{{scope}}[yshift={y0:.3f}cm]")
-        fl, X, Y = frame(2.45, hh - 0.18, (0, 4), (0, 100), [], [0, 50, 100], "", "")
+        fl, X, Y = frame(3.3, hh - 0.15, (0, 4), (0, 100), [], [0, 50, 100], "", "")
         L += fl
-        L.append(f"\\node[anchor=south west,font=\\sffamily\\tiny\\bfseries] at (0.02,{hh - 0.2:.3f}) {{{NAMES[m]}, net use (pp)}};")
+        L.append(f"\\node[anchor=south west,font=\\sffamily\\tiny\\bfseries] at (0.03,{hh - 0.17:.3f}) {{{NAMES[m]}}};")
         for j, (sw, lab) in enumerate(swaps):
-            for d, (data, col, dx) in enumerate(((br, "OIorange!45", -0.11), (rep, "OIorange", 0.11))):
+            for data, col, dx in ((br, "OIorange!40", -0.13), (rep, "OIorange", 0.13)):
                 v = 100 * data[m][f"{sw}:inaccessible"]["estimate"]
-                L.append(f"\\fill[{col}] ({X(j + 0.5) + dx - 0.1:.3f},0) rectangle ({X(j + 0.5) + dx + 0.1:.3f},{Y(max(v, 0.6)):.3f});")
+                L.append(f"\\fill[{col}] ({X(j + 0.5) + dx - 0.12:.3f},0) rectangle ({X(j + 0.5) + dx + 0.12:.3f},{Y(max(v, 0.8)):.3f});")
             if k == 1:
                 L.append(f"\\node[anchor=north,font=\\sffamily\\tiny] at ({X(j + 0.5):.3f},-0.02) {{{lab}}};")
         L.append(r"\end{scope}")
-    L += legend([("box", "OIorange!45", "discovery"), ("box", "OIorange", "new scenes")], 0.0, -0.56)
+    L += legend([("box", "OIorange!40", "discovery scenes"), ("box", "OIorange", "new scenes")], 0.0, -0.5)
     L.append(r"\end{scope}")
-    # (d) framing of leaks
-    fr = load(RA / "leak_framing.json")
-    opn = [m for m in op if fr[m]["n"]]
-    tot = sum(fr[m]["n"] for m in opn)
-    pooled = {k: sum(fr[m][k] * fr[m]["n"] for m in opn) / tot for k in ("unframed", "attributed", "tentative")}
-    bars = [("11 open models", pooled), (NAMES["deepseekv4pro"], fr["deepseekv4pro"]), ("Sonnet 5.5", fr["sonnet55"])]
-    cols = [("unframed", "OIblue", "fact"), ("attributed", "OIsky", "attributed"), ("tentative", "OIorange", "guess")]
-    L.append(r"\begin{scope}[xshift=11.3cm]")
-    L.append(f"\\node[panel] at (-1.1,{H + 0.75:.2f}) {{(d) Phrasing of leaks}};")
-    w = 1.75
-    fl, X, Y = frame(w, H, (0, 100), (0, 3), [0, 50, 100], [], "share of leaks (\\%)", grid="x")
-    L += [l for l in fl if "anchor=east" not in l]
-    for i, (name, f) in enumerate(bars):
-        yc = Y(2.5 - i)
-        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny,align=right,text width=1.2cm] at (-0.05,{yc:.3f}) {{{name}}};")
-        x = 0
-        for k, c, _ in cols:
-            L.append(f"\\fill[{c}] ({X(x):.3f},{yc - 0.22:.3f}) rectangle ({X(x + 100 * f[k]):.3f},{yc + 0.22:.3f});")
-            x += 100 * f[k]
-    L += legend([("box", c, lab) for _, c, lab in cols], -1.25, -0.9, step=0.085)
-    L.append(r"\end{scope}")
+    L += legend([("box", "black!25", "Study 2 prompt"), ("box", "OIorange", "+ all four")], 4.0, -0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Frontier models and input format. (a) Net use in the Study 1 core cells with the content question (288 items per cell), and use of permitted content in the fluent control (ctrl, \%). Five of six hosted models keep the boundary while using permitted content, and high reasoning effort brings Claude Sonnet 5.5 close to zero. (b) Swapping all four Study 1 features into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate. (d) The strongest leaking models present the content as a guess.}",
+          r"\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
           r"\label{fig:frontier}", r"\end{figure*}"]
     return "\n".join(L)
 
