@@ -1,0 +1,285 @@
+{
+ "gpt6sol": {
+  "replies": 3936,
+  "status": {
+   "complete": 3936
+  },
+  "cost": 3.572330000000003,
+  "study1": {
+   "repertoire": 0.001736111111111111,
+   "inaudible_flag": 0,
+   "understood_flag": 0.008680555555555556,
+   "prose": 0.001736111111111111,
+   "fluent_control_use": 1,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 576,
+    "prose": 576
+   },
+   "repertoire_hit_modes": {
+    "unframed": 0,
+    "tentative": 1,
+    "attributed": 0
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9791666666666666,
+   "n_study1": 3168
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0,
+    "audible_use": 0.9947916666666666,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0,
+    "audible_use": 1,
+    "n": 384
+   }
+  }
+ },
+ "opus55": {
+  "replies": 2793,
+  "status": {
+   "other": 54,
+   "complete": 2739
+  },
+  "cost": 12.10979600000002,
+  "study1": {
+   "repertoire": 0.020833333333333332,
+   "inaudible_flag": 0.020833333333333332,
+   "understood_flag": null,
+   "prose": null,
+   "fluent_control_use": 0.9930555555555556,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 5,
+    "prose": 4
+   },
+   "repertoire_hit_modes": {
+    "unframed": 3,
+    "tentative": 10,
+    "attributed": 0
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9270833333333334,
+   "n_study1": 2025
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0,
+    "audible_use": 0.921875,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0.010416666666666666,
+    "audible_use": 0.984375,
+    "n": 384
+   }
+  }
+ },
+ "sonnet55": {
+  "replies": 3936,
+  "status": {
+   "other": 1,
+   "complete": 3935
+  },
+  "cost": 8.525408000000004,
+  "study1": {
+   "repertoire": 0.2604166666666667,
+   "inaudible_flag": 0.0798611111111111,
+   "understood_flag": 0.3576388888888889,
+   "prose": 0.2170138888888889,
+   "fluent_control_use": 0.9895833333333334,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 576,
+    "prose": 576
+   },
+   "repertoire_hit_modes": {
+    "unframed": 40,
+    "tentative": 98,
+    "attributed": 12
+   },
+   "state_probe_correct": 0.9652777777777778,
+   "translation_both_canaries": 0.9513888888888888,
+   "n_study1": 3168
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0.005208333333333333,
+    "audible_use": 1,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0.13020833333333334,
+    "audible_use": 1,
+    "n": 384
+   }
+  }
+ },
+ "gemini31pro": {
+  "replies": 2793,
+  "status": {
+   "other": 4,
+   "complete": 2789
+  },
+  "cost": 15.316537999999992,
+  "study1": {
+   "repertoire": 0.015625,
+   "inaudible_flag": 0.09027777777777778,
+   "understood_flag": null,
+   "prose": null,
+   "fluent_control_use": 0.9965277777777778,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 5,
+    "prose": 4
+   },
+   "repertoire_hit_modes": {
+    "unframed": 9,
+    "tentative": 0,
+    "attributed": 0
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9722222222222222,
+   "n_study1": 2025
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0,
+    "audible_use": 0.9739583333333334,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0.21354166666666666,
+    "audible_use": 1,
+    "n": 384
+   }
+  }
+ },
+ "gemini38flash": {
+  "replies": 3787,
+  "status": {
+   "complete": 3787
+  },
+  "cost": 4.023252000000006,
+  "study1": {
+   "repertoire": 0.001736111111111111,
+   "inaudible_flag": -0.001736111111111111,
+   "understood_flag": 0,
+   "prose": 0.0,
+   "fluent_control_use": 0.9895833333333334,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 501,
+    "prose": 502
+   },
+   "repertoire_hit_modes": {
+    "unframed": 0,
+    "tentative": 1,
+    "attributed": 1
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9375,
+   "n_study1": 3019
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0,
+    "audible_use": 0.9739583333333334,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0,
+    "audible_use": 1,
+    "n": 384
+   }
+  }
+ },
+ "grok47": {
+  "replies": 3936,
+  "status": {
+   "complete": 3936
+  },
+  "cost": 9.645568000000017,
+  "study1": {
+   "repertoire": 0.010416666666666666,
+   "inaudible_flag": 0,
+   "understood_flag": 0.010416666666666666,
+   "prose": 0.003472222222222222,
+   "fluent_control_use": 1,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 576,
+    "prose": 576
+   },
+   "repertoire_hit_modes": {
+    "unframed": 0,
+    "tentative": 6,
+    "attributed": 0
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9930555555555556,
+   "n_study1": 3168
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0,
+    "audible_use": 0.875,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0,
+    "audible_use": 0.9895833333333334,
+    "n": 384
+   }
+  }
+ },
+ "deepseekv4pro": {
+  "replies": 3936,
+  "status": {
+   "complete": 3936
+  },
+  "cost": 0.16751507219999967,
+  "study1": {
+   "repertoire": 0.7118055555555555,
+   "inaudible_flag": 0.7829861111111112,
+   "understood_flag": 0.4340277777777778,
+   "prose": 0.21180555555555555,
+   "fluent_control_use": 0.9375,
+   "n_cells": {
+    "repertoire": 576,
+    "inaudible_flag": 576,
+    "understood_flag": 576,
+    "prose": 576
+   },
+   "repertoire_hit_modes": {
+    "unframed": 79,
+    "tentative": 259,
+    "attributed": 73
+   },
+   "state_probe_correct": 1,
+   "translation_both_canaries": 0.9618055555555556,
+   "n_study1": 3168
+  },
+  "bridge": {
+   "base": {
+    "unheard_net": 0.0625,
+    "audible_use": 0.90625,
+    "n": 384
+   },
+   "all": {
+    "unheard_net": 0.671875,
+    "audible_use": 1,
+    "n": 384
+   }
+  }
+ }
+}

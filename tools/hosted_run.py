@@ -85,13 +85,24 @@ def main():
     print(f"{a.model}: {len(todo)} to run ({len(done)} done); spent so far {ledger['models'][a.key_name]:.3f} of {a.model_cap}, "
           f"run total {sum(ledger['models'].values()):.3f} of {a.global_cap}", flush=True)
 
+    cache = {}
+
+    def others_spent():  # other runs' ledgers; a file caught mid-write keeps its last good value
+        total = 0.0
+        files = [f for f in a.out.glob("*/ledger.json") if f.parent.name != a.key_name] + [a.out / "ledger.json"]
+        for f in files:
+            try:
+                cache[f] = sum(json.loads(f.read_text())["models"].values())
+            except (OSError, ValueError, KeyError):
+                pass
+            total += cache.get(f, 0.0)
+        return total
+
     def work(p):
         if stop.is_set():
             return
         with lock:
-            spent = sum(json.loads(f.read_text())["models"].get(f.parent.name, 0.0) for f in a.out.glob("*/ledger.json") if f.parent.name != a.key_name) \
-                + sum(json.loads(f.read_text())["models"].get(k2, 0.0) for f in [a.out / "ledger.json"] if f.exists() for k2 in json.loads(f.read_text())["models"]) \
-                + ledger["models"][a.key_name]
+            spent = others_spent() + ledger["models"][a.key_name]
             if spent + reserve * (inflight[0] + 1) > a.global_cap or ledger["models"][a.key_name] + reserve * (inflight[0] + 1) > a.model_cap:
                 stop.set()
                 return
@@ -116,7 +127,9 @@ def main():
             ledger["models"][a.key_name] += cost
             with open(resp_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            ledger_path.write_text(json.dumps(ledger, indent=1))
+            tmp = ledger_path.with_suffix(".tmp")
+            tmp.write_text(json.dumps(ledger, indent=1))
+            tmp.replace(ledger_path)
 
     with ThreadPoolExecutor(a.workers) as ex:
         list(ex.map(work, todo))
