@@ -1,0 +1,110 @@
+{
+ "falcon_h1_34b": {
+  "n": 564,
+  "unframed": 0.5354609929078015,
+  "attributed": 0.40425531914893614,
+  "tentative": 0.06028368794326241
+ },
+ "gemma4_12b": {
+  "n": 482,
+  "unframed": 0.4004149377593361,
+  "attributed": 0.23236514522821577,
+  "tentative": 0.36721991701244816
+ },
+ "gemma4_31b": {
+  "n": 290,
+  "unframed": 0.7517241379310344,
+  "attributed": 0.05172413793103448,
+  "tentative": 0.19655172413793104
+ },
+ "glm47_flash": {
+  "n": 362,
+  "unframed": 0.6187845303867403,
+  "attributed": 0.22099447513812154,
+  "tentative": 0.16022099447513813
+ },
+ "gpt_oss_20b": {
+  "n": 575,
+  "unframed": 0.6086956521739131,
+  "attributed": 0.36869565217391304,
+  "tentative": 0.022608695652173914
+ },
+ "mistral_small3": {
+  "n": 532,
+  "unframed": 0.11278195488721804,
+  "attributed": 0.599624060150376,
+  "tentative": 0.287593984962406
+ },
+ "nemotron3_nano30b": {
+  "n": 496,
+  "unframed": 0.6895161290322581,
+  "attributed": 0.2157258064516129,
+  "tentative": 0.09475806451612903
+ },
+ "phi4": {
+  "n": 557,
+  "unframed": 0.47755834829443444,
+  "attributed": 0.29084380610412924,
+  "tentative": 0.23159784560143626
+ },
+ "qwen35_9b": {
+  "n": 503,
+  "unframed": 0.6182902584493042,
+  "attributed": 0.20874751491053678,
+  "tentative": 0.17296222664015903
+ },
+ "qwen38_27b": {
+  "n": 328,
+  "unframed": 0.5640243902439024,
+  "attributed": 0.3170731707317073,
+  "tentative": 0.11890243902439024
+ },
+ "seed_oss_36b": {
+  "n": 493,
+  "unframed": 0.7748478701825557,
+  "attributed": 0.0872210953346856,
+  "tentative": 0.13793103448275862
+ },
+ "deepseekv4pro": {
+  "n": 411,
+  "unframed": 0.1922141119221411,
+  "attributed": 0.17761557177615572,
+  "tentative": 0.6301703163017032
+ },
+ "sonnet55": {
+  "n": 150,
+  "unframed": 0.26666666666666666,
+  "attributed": 0.08,
+  "tentative": 0.6533333333333333
+ },
+ "gemini31pro": {
+  "n": 9,
+  "unframed": 1.0,
+  "attributed": 0.0,
+  "tentative": 0.0
+ },
+ "opus55": {
+  "n": 13,
+  "unframed": 0.23076923076923078,
+  "attributed": 0.0,
+  "tentative": 0.7692307692307693
+ },
+ "grok47": {
+  "n": 6,
+  "unframed": 0.0,
+  "attributed": 0.0,
+  "tentative": 1.0
+ },
+ "gemini38flash": {
+  "n": 2,
+  "unframed": 0.0,
+  "attributed": 0.5,
+  "tentative": 0.5
+ },
+ "gpt6sol": {
+  "n": 1,
+  "unframed": 0.0,
+  "attributed": 0.0,
+  "tentative": 1.0
+ }
+}
