@@ -4,9 +4,15 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype,booktabs,amsmath,amssymb,tabularx}
-\usepackage{tikz}
-\usetikzlibrary{plotmarks}
+\usepackage{tikz,pgfplots,fontawesome5}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{plotmarks,arrows.meta,calc,positioning,shapes.callouts,backgrounds,fit}
 \pgfsetplotmarksize{1.7pt}
+\tikzset{every picture/.append style={font=\sffamily\scriptsize},
+  card/.style={rounded corners=2pt,draw=black!18,fill=black!2,inner sep=3pt,align=left},
+  chip/.style={rounded corners=1.5pt,inner sep=1.5pt,font=\sffamily\tiny\bfseries,text=white},
+  panel/.style={font=\sffamily\scriptsize\bfseries,anchor=north west,inner sep=0pt}}
+\newcommand{\leak}[1]{\textcolor{OIorange}{\textbf{#1}}}
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
@@ -33,15 +39,40 @@ Role-playing language models voice characters in games and agent simulations, wh
 A non-player character who does not speak Spanish overhears two mechanics say, in Spanish, that a mirror is hidden in the warehouse. When the player asks what they said, the character answers that they were talking about a mirror in the warehouse (Figure~\ref{fig:example}). Readers see the error at once, because the character heard the words without understanding them. The model that voices the character, however, receives the Spanish sentence, understands it, and is asked to speak as someone who does not.
 
 \begin{figure}[t]
-\centering\small
-\fbox{\begin{minipage}{0.95\linewidth}\raggedright
-\textbf{State.} Panam understands only English. Two mechanics talk quietly in Spanish, \emph{``¿Dónde está el espejo?'' ``En el almacén. No se lo digas a nadie.''} (Where is the mirror? In the warehouse. Don't tell anyone.)\\[3pt]
-\textbf{Companion.} Sorry, I was on a holocall and missed that. What were those two saying?\\[3pt]
-\textbf{Panam.} ``Just some boring shit about a \underline{mirror} being in the \underline{warehouse}. Don't worry about it.''\\[2pt]
-\textbf{Version B} (chair, church). ``Something about a \underline{chair} being in a \underline{church}. Weird as hell, right?''\\[2pt]
-\textbf{With} \texttt{understood\_by\_Panam:\,false}. ``Don't look at me, V. I didn't catch a damn word of it.''
-\end{minipage}}
-\caption{Gemma-4-31B playing a character who does not speak Spanish. The reply follows the hidden values when version B changes them, and a per-utterance flag stops the leak. Replies are verbatim.}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,
+  bubble/.style={rectangle callout,rounded corners=3pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},
+  reply/.style={rounded corners=3pt,draw=#1,line width=.6pt,fill=white,inner sep=3.5pt,text width=5.15cm,align=left,font=\sffamily\scriptsize},
+  tag/.style={rounded corners=1.5pt,fill=#1,text=white,font=\sffamily\tiny\bfseries,inner sep=2pt,minimum width=1.9cm,align=center}]
+% scene backdrop
+\fill[black!3,rounded corners=4pt] (0,2.05) rectangle (7.6,5.3);
+\node[font=\sffamily\tiny\bfseries,text=black!45,anchor=north west] at (0.12,5.22) {SCENE};
+% mechanics
+\node[text=black!55,font=\Large] (m1) at (0.55,3.0) {\faUserCog};
+\node[text=black!40,font=\Large] (m2) at (1.25,3.0) {\faUserCog};
+\node[font=\sffamily\tiny,text=black!55] at (0.9,2.45) {two mechanics};
+\node[bubble=black!10,callout absolute pointer={(1.0,3.3)}] at (1.65,4.15) {\emph{¿Dónde está el espejo?}\\\emph{En el almacén. No se lo}\\\emph{digas a nadie.}};
+% Panam
+\node[text=OIblue,font=\Large] (pn) at (4.55,3.0) {\faUser};
+\node[font=\sffamily\tiny\bfseries,text=OIblue] at (4.55,2.45) {Panam};
+\node[rounded corners=1.5pt,draw=OIblue,text=OIblue,font=\sffamily\tiny,inner sep=1.5pt,align=center] at (4.3,4.3) {\faLanguage\ speaks\\only English};
+\draw[OIblue!60,line width=.5pt,-{Stealth[length=3pt]}] (4.4,3.98)--(4.52,3.35);
+% companion
+\node[text=black!60,font=\Large] (v) at (6.85,3.0) {\faUser};
+\node[font=\sffamily\tiny,text=black!55] at (6.85,2.45) {companion};
+\node[bubble=OIsky!25,callout absolute pointer={(6.8,3.3)}] at (6.6,4.3) {What were\\those two\\saying?};
+% generator
+\draw[black!35,line width=.6pt,-{Stealth[length=4pt]}] (3.8,2.05)--(3.8,1.62);
+\node[font=\sffamily\scriptsize,text=black!70] at (3.8,1.42) {\faRobot\ \ the model voices Panam and reads the full state};
+% replies
+\node[reply=OIorange,anchor=north west] (r1) at (2.2,1.15) {``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''};
+\node[tag=OIorange,anchor=east] at (2.05,0.83) {\faTimes\ Version A\\mirror, warehouse};
+\node[reply=OIorange,anchor=north west] (r2) at (2.2,0.28) {``Something about a \leak{chair} being in a \leak{church}. Weird as hell, right?''};
+\node[tag=OIorange,anchor=east] at (2.05,-0.0) {\faTimes\ Version B\\chair, church};
+\node[reply=OIgreen,anchor=north west] (r3) at (2.2,-0.6) {``Don't look at me, V. I didn't catch a damn word of it.''};
+\node[tag=OIgreen,anchor=east] at (2.05,-0.86) {\faCheck\ A + flag\\understood: false};
+\end{tikzpicture}
+\caption{Gemma-4-31B voicing a character who does not speak Spanish. The reply tracks the hidden object and place when version B swaps them, and a per-utterance flag stops the leak. Replies are verbatim.}
 \label{fig:example}
 \end{figure}
 
@@ -55,35 +86,56 @@ The results separate reading a boundary from keeping it. Open models use content
 
 \section{Measuring What a Character Uses}
 \label{sec:measure}
-Each scene contains one fact that names an object and a place. Version B replaces both values and keeps everything else, including the character, the state and the question (Figure~\ref{fig:design}). A reply uses the target when it names at least one of its own version's values, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and over scene skeletons and reported in percentage points (pp). Because the foil is scored on the same replies, a plausible guess such as ``check the basement'' adds to both terms and cancels. A rule-based scorer matches a dictionary of 12 places and 12 objects with their synonyms, removes echoed foreign text, and counts a reply that names two values of one type as neither. Scenes come in two forms. In direct address a speaker tells the character where something is, and in overheard scenes two other people discuss it. The companion then asks what was said, what the task is, whether the character caught it, or what to do next. Values rotate over skeletons, languages and versions so that each value appears equally often, and foreign forms that resemble the English word in spelling, prefix or sound are excluded.
+Each scene contains one fact that names an object and a place. Version B replaces both values and keeps everything else, including the character, the state and the question (Figure~\ref{fig:design}a). A reply uses the target when it names at least one of its own version's values, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and over scene skeletons and reported in percentage points (pp). Because the foil is scored on the same replies, a plausible guess such as ``check the basement'' adds to both terms and cancels. A rule-based scorer matches a dictionary of 12 places and 12 objects with their synonyms, removes echoed foreign text, and counts a reply that names two values of one type as neither. Scenes come in two forms. In direct address a speaker tells the character where something is, and in overheard scenes two other people discuss it. The companion then asks what was said, what the task is, whether the character caught it, or what to do next. Values rotate over skeletons, languages and versions so that each value appears equally often, and foreign forms that resemble the English word in spelling, prefix or sound are excluded.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm,box/.style={draw=black!35,rounded corners=1.5pt,align=center,inner sep=2pt,font=\scriptsize}]
-\node[box,fill=OIblue!8,text width=2.2cm] (a) at (0,1.1) {Version A\\ \emph{coat} by the \emph{school}};
-\node[box,fill=OIorange!8,text width=2.2cm] (b) at (0,0.3) {Version B\\ \emph{glove} by the \emph{church}};
-\node[box,text width=1.75cm] (r) at (2.75,0.7) {Reply to\\ version A};
-\node[box,text width=2.1cm] (d) at (5.3,0.7) {$D = I(\text{A named})$\\ $-\,I(\text{B named})$};
-\draw[-latex,black!60] (a.east) -- (r.west);
-\draw[-latex,black!60] (r.east) -- (d.west);
-\draw[densely dotted,-latex,black!45] (b.east) to[out=0,in=225] node[below,font=\tiny,pos=.55]{scored as foil} (d.south west);
-\begin{scope}[yshift=-0.95cm]
-\node[font=\scriptsize\bfseries,align=center] at (2.05,0) {Repertoire};
-\node[font=\scriptsize\bfseries,align=center] at (3.85,0) {Flag};
-\node[font=\scriptsize\bfseries,align=center] at (5.65,0) {Flag and prose};
-\node[font=\scriptsize\bfseries,anchor=east,align=right] at (1.15,-0.55) {Cannot\\ understand};
-\node[font=\scriptsize\bfseries,anchor=east,align=right] at (1.15,-1.35) {Cannot\\ hear};
-\node[box,fill=OIblue!10,text width=1.5cm,minimum height=0.68cm] at (2.05,-0.55) {knows English, speech in Japanese};
-\node[box,fill=OIsky!18,text width=1.5cm,minimum height=0.68cm] at (3.85,-0.55) {understood\\ = false};
-\node[box,fill=OIgreen!12,text width=1.5cm,minimum height=0.68cm] at (5.65,-0.55) {``does not speak Japanese''};
-\node[box,fill=black!3,text width=1.5cm,minimum height=0.68cm,text=black!45] at (2.05,-1.35) {no analogue};
-\node[box,fill=OIorange!12,text width=1.5cm,minimum height=0.68cm] at (3.85,-1.35) {audible\\ = false};
-\node[box,fill=OIgreen!12,text width=1.5cm,minimum height=0.68cm] at (5.65,-1.35) {``could not hear''};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  ver/.style={rounded corners=2pt,fill=#1,inner sep=3pt,text width=1.95cm,align=left,font=\sffamily\scriptsize},
+  cell/.style={rounded corners=2pt,fill=#1,minimum width=1.5cm,minimum height=0.66cm,align=center,font=\sffamily\tiny,inner sep=1.5pt,text width=1.42cm},
+  hd/.style={font=\sffamily\tiny\bfseries,text=black!55,align=center}]
+%% (a) measurement
+\node[panel] at (0,3.6) {(a) Counterfactual twins};
+\node[ver=OIblue!12,anchor=north west] (a) at (0,3.15) {\textbf{Version A}\\the \textbf{coat} is by\\the \textbf{school}};
+\node[ver=black!7,anchor=north west] (b) at (0,1.95) {\textbf{Version B}\\the \textbf{glove} is by\\the \textbf{church}};
+\node[rounded corners=2pt,draw=black!25,fill=white,inner sep=3pt,text width=1.95cm,align=left,anchor=north west] (r) at (2.6,3.15) {\textbf{Reply to A}\\``He left the \textcolor{OIblue}{\textbf{coat}} by the \textcolor{OIblue}{\textbf{school}}.''};
+\draw[black!45,-{Stealth[length=3.5pt]}] (a.east|-r.west)--(r.west);
+\node[chip,fill=OIblue,anchor=north west,minimum width=2.25cm,align=left] (t) at (2.6,1.95) {target named \hfill 1};
+\node[chip,fill=black!40,anchor=north west,minimum width=2.25cm,align=left] (f) at (2.6,1.55) {foil named \hfill 0};
+\draw[black!35,densely dotted,-{Stealth[length=3pt]}] (b.east|-f.west)--(f.west);
+\node[anchor=north west,font=\sffamily\scriptsize] at (2.6,1.1) {net use $D = 1 - 0$};
+\node[anchor=north west,align=left,font=\sffamily\tiny,text=black!60,text width=4.7cm] at (0,0.55) {A guess such as ``check the basement'' scores in both versions and cancels.};
+%% (b) Study 1
+\begin{scope}[xshift=5.4cm]
+\node[panel] at (0,3.6) {(b) Study 1: how the boundary is stated};
+\node[hd] at (1.95,2.98) {in the\\state};
+\node[hd] at (3.55,2.98) {per-utterance\\flag};
+\node[hd] at (5.15,2.98) {flag and a\\sentence};
+\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,2.25) {\faLanguage\ cannot\\understand};
+\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,1.45) {\faDeaf\ cannot\\hear};
+\node[cell=OIblue!12] at (1.95,2.25) {\texttt{speaks:}\\\texttt{[English]}};
+\node[cell=OIsky!22] at (3.55,2.25) {\texttt{understood:}\\\texttt{false}};
+\node[cell=OIgreen!15] at (5.15,2.25) {+ ``does not speak Japanese''};
+\node[cell=black!4,text=black!35] at (1.95,1.45) {no analogue};
+\node[cell=OIorange!14] at (3.55,1.45) {\texttt{audible:}\\\texttt{false}};
+\node[cell=OIpurple!16] at (5.15,1.45) {+ ``could not hear them''};
+\node[anchor=north west,font=\sffamily\tiny,text=black!60,text width=5.7cm,align=left] at (0.0,0.95) {Speech is in Chinese, Japanese or Spanish, or in English marked inaudible. Controls make the same speech accessible.};
+\end{scope}
+%% (c) Study 2
+\begin{scope}[xshift=11.5cm]
+\node[panel] at (0,3.6) {(c) Study 2: four channels};
+\foreach \x/\y/\ic/\ch/\full/\view in {0/3.1/\faDeaf/Hear/speech out of earshot/nothing,
+  2.22/3.1/\faLanguage/Understand/speech in Japanese/Casey speaks Japanese,
+  0/1.48/\faEyeSlash/See/an object is hidden/Alex puts something away,
+  2.22/1.48/\faEnvelope/Receive/a private message/Alex sends a message}{
+  \node[anchor=north west,rounded corners=2pt,fill=black!3,inner sep=3pt,text width=1.95cm,minimum height=1.3cm,align=left,font=\sffamily\tiny] at (\x,\y)
+    {{\color{OIorange}\footnotesize\ic}\ \textbf{\ch}\\[1pt]hidden: \full\\[1pt]\textcolor{OIgreen}{view: \view}};
+}
 \end{scope}
 \end{tikzpicture}
-\caption{Measurement. Each scene has two versions that differ only in a hidden object and place. A reply to version A is scored for A's values and for B's, so plausible guesses cancel in net use $D$ (top). The boundary is stated in one of five ways (bottom), and controls make the same speech accessible.}
+\caption{Design. (a) Every scene has two versions that differ only in a hidden object and place, and a reply is scored for both. (b) Study 1 states the boundary in five ways, matched within each row. (c) Study 2 hides content through four channels. The character view replaces each hidden event with what the character can still observe.}
 \label{fig:design}
-\end{figure}
+\end{figure*}
 
 Two probes run as separate calls. A translation probe asks the model to translate the foreign sentence, which shows that the model can understand the content at all. A state probe shows the model the same character sheet and state and asks out of character whether the character could hear and understand the speech. On 150 replies labeled blind by a human annotator across both studies, human and scorer agree on target use in 146 ($\kappa=0.95$), neither finds a foil use, and net use differs by at most 2.8 pp in any condition (Appendix~\ref{app:audit}). Intervals resample scene skeletons jointly across models with 2,000 draws.
 
@@ -91,181 +143,249 @@ The open models are 11 checkpoints of at most 40B parameters from nine families,
 
 \section{Open Models Cross Both Boundaries}
 \label{sec:s1}
-In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) hears a short utterance, addressed to them or overheard, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's languages. The speech is either in Chinese, Japanese or Spanish, which the character does not speak, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}, and controls make the same speech accessible through fluency, a working translator or audibility. The design has 96 skeletons in three languages (288 items with 143 prompts each), and every model passed the translation probe for every language. We fixed eight tests after a pilot on separate items and locked the analysis before scoring. They cover leakage under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, leakage when the state is read correctly, and the perspective filter, and all eight hold (Table~\ref{tab:s1}).
+In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) hears a short utterance, addressed to them or overheard, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's languages. The speech is either in Chinese, Japanese or Spanish, which the character does not speak, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}b, and controls make the same speech accessible through fluency, a working translator or audibility. The design has 96 skeletons in three languages (288 items with 143 prompts each), and every model passed the translation probe for every language. We fixed eight tests after a pilot on separate items and locked the analysis before scoring. They cover leakage under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, leakage when the state is read correctly, and the perspective filter, and all eight hold (Table~\ref{tab:s1}).
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[x=0.118cm,y=0.39cm,font=\footnotesize]
-\draw[black!12] (0,-0.6)--(0,10.6);\node[anchor=north,font=\scriptsize] at (0,-0.6) {0};
-\draw[black!12] (20,-0.6)--(20,10.6);\node[anchor=north,font=\scriptsize] at (20,-0.6) {20};
-\draw[black!12] (40,-0.6)--(40,10.6);\node[anchor=north,font=\scriptsize] at (40,-0.6) {40};
-\draw[black!12] (60,-0.6)--(60,10.6);\node[anchor=north,font=\scriptsize] at (60,-0.6) {60};
-\draw[black!12] (80,-0.6)--(80,10.6);\node[anchor=north,font=\scriptsize] at (80,-0.6) {80};
-\draw[black!12] (100,-0.6)--(100,10.6);\node[anchor=north,font=\scriptsize] at (100,-0.6) {100};
-\node[anchor=east] at (-2,0) {Gemma-4-31B};
-\draw[OIblue,line width=.5pt] (39.60,0.26)--(52.98,0.26);\node[OIblue,inner sep=0pt,font=\tiny] at (46.10,0.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (1.94,0.13)--(4.56,0.13);\node[OIsky,inner sep=0pt,font=\tiny] at (3.15,0.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (41.45,0.00)--(60.24,0.00);\node[OIorange,inner sep=0pt,font=\tiny] at (50.87,0.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (0.39,-0.13)--(1.56,-0.13);\node[OIpurple,inner sep=0pt,font=\tiny] at (0.91,-0.13) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (0.13,-0.26)--(0.72,-0.26);\node[OIgreen,inner sep=0pt,font=\tiny] at (0.40,-0.26) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,1) {Qwen3.8-27B};
-\draw[OIblue,line width=.5pt] (45.13,1.26)--(54.84,1.26);\node[OIblue,inner sep=0pt,font=\tiny] at (50.20,1.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (28.67,1.13)--(37.31,1.13);\node[OIsky,inner sep=0pt,font=\tiny] at (33.16,1.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (53.90,1.00)--(65.89,1.00);\node[OIorange,inner sep=0pt,font=\tiny] at (60.16,1.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (8.33,0.87)--(12.98,0.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (10.68,0.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (20.54,0.74)--(27.96,0.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (24.16,0.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,2) {GLM-4.7-Flash};
-\draw[OIblue,line width=.5pt] (47.02,2.26)--(53.80,2.26);\node[OIblue,inner sep=0pt,font=\tiny] at (50.40,2.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (41.96,2.13)--(48.14,2.13);\node[OIsky,inner sep=0pt,font=\tiny] at (45.06,2.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (65.02,2.00)--(71.22,2.00);\node[OIorange,inner sep=0pt,font=\tiny] at (68.14,2.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (46.48,1.87)--(52.47,1.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (49.44,1.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (24.57,1.74)--(31.65,1.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (28.09,1.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,3) {Nemotron-3-Nano};
-\draw[OIblue,line width=.5pt] (57.79,3.26)--(62.79,3.26);\node[OIblue,inner sep=0pt,font=\tiny] at (60.24,3.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (49.64,3.13)--(54.86,3.13);\node[OIsky,inner sep=0pt,font=\tiny] at (52.34,3.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (72.57,3.00)--(77.82,3.00);\node[OIorange,inner sep=0pt,font=\tiny] at (75.17,3.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (58.46,2.87)--(63.63,2.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (60.98,2.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (39.48,2.74)--(44.49,2.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (41.96,2.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,4) {Mistral-Small-24B};
-\draw[OIblue,line width=.5pt] (61.85,4.26)--(67.32,4.26);\node[OIblue,inner sep=0pt,font=\tiny] at (64.61,4.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (31.72,4.13)--(39.53,4.13);\node[OIsky,inner sep=0pt,font=\tiny] at (35.74,4.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (61.24,4.00)--(68.71,4.00);\node[OIorange,inner sep=0pt,font=\tiny] at (65.02,4.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (27.47,3.87)--(35.59,3.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (31.47,3.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (14.75,3.74)--(21.57,3.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (18.12,3.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,5) {Gemma-4-12B};
-\draw[OIblue,line width=.5pt] (65.76,5.26)--(73.93,5.26);\node[OIblue,inner sep=0pt,font=\tiny] at (69.86,5.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (22.35,5.13)--(30.19,5.13);\node[OIsky,inner sep=0pt,font=\tiny] at (26.24,5.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (70.14,5.00)--(79.12,5.00);\node[OIorange,inner sep=0pt,font=\tiny] at (74.65,5.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (18.10,4.87)--(24.44,4.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (21.18,4.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (10.64,4.74)--(15.56,4.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (13.11,4.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,6) {Phi-4};
-\draw[OIblue,line width=.5pt] (67.67,6.26)--(73.04,6.26);\node[OIblue,inner sep=0pt,font=\tiny] at (70.37,6.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (55.89,6.13)--(61.07,6.13);\node[OIsky,inner sep=0pt,font=\tiny] at (58.45,6.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (69.66,6.00)--(76.09,6.00);\node[OIorange,inner sep=0pt,font=\tiny] at (72.92,6.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (61.33,5.87)--(69.10,5.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (65.15,5.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (56.51,5.74)--(62.81,5.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (59.58,5.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,7) {Falcon-H1-34B};
-\draw[OIblue,line width=.5pt] (75.59,7.26)--(81.88,7.26);\node[OIblue,inner sep=0pt,font=\tiny] at (78.71,7.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (50.58,7.13)--(61.95,7.13);\node[OIsky,inner sep=0pt,font=\tiny] at (56.34,7.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (75.61,7.00)--(83.64,7.00);\node[OIorange,inner sep=0pt,font=\tiny] at (79.77,7.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (60.46,6.87)--(70.31,6.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (65.32,6.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (35.30,6.74)--(42.92,6.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (38.95,6.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,8) {gpt-oss-20b};
-\draw[OIblue,line width=.5pt] (76.04,8.26)--(82.14,8.26);\node[OIblue,inner sep=0pt,font=\tiny] at (79.27,8.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (49.94,8.13)--(56.11,8.13);\node[OIsky,inner sep=0pt,font=\tiny] at (53.05,8.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (73.09,8.00)--(80.56,8.00);\node[OIorange,inner sep=0pt,font=\tiny] at (76.95,8.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (60.72,7.87)--(68.32,7.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (64.41,7.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (37.63,7.74)--(43.93,7.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (40.82,7.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,9) {Seed-OSS-36B};
-\draw[OIblue,line width=.5pt] (77.99,9.26)--(83.97,9.26);\node[OIblue,inner sep=0pt,font=\tiny] at (81.00,9.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (59.46,9.13)--(66.41,9.13);\node[OIsky,inner sep=0pt,font=\tiny] at (62.96,9.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (83.42,9.00)--(89.59,9.00);\node[OIorange,inner sep=0pt,font=\tiny] at (86.76,9.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (65.32,8.87)--(72.79,8.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (69.05,8.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (35.26,8.74)--(45.68,8.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (40.55,8.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=east] at (-2,10) {Qwen3.5-9B};
-\draw[OIblue,line width=.5pt] (80.05,10.26)--(85.58,10.26);\node[OIblue,inner sep=0pt,font=\tiny] at (82.90,10.26) {\pgfuseplotmark{*}};
-\draw[OIsky,line width=.5pt] (65.78,10.13)--(73.67,10.13);\node[OIsky,inner sep=0pt,font=\tiny] at (69.82,10.13) {\pgfuseplotmark{square*}};
-\draw[OIorange,line width=.5pt] (80.12,10.00)--(86.59,10.00);\node[OIorange,inner sep=0pt,font=\tiny] at (83.51,10.00) {\pgfuseplotmark{triangle*}};
-\draw[OIpurple,line width=.5pt] (67.84,9.87)--(75.13,9.87);\node[OIpurple,inner sep=0pt,font=\tiny] at (71.48,9.87) {\pgfuseplotmark{diamond*}};
-\draw[OIgreen,line width=.5pt] (64.62,9.74)--(72.27,9.74);\node[OIgreen,inner sep=0pt,font=\tiny] at (68.51,9.74) {\pgfuseplotmark{pentagon*}};
-\node[anchor=north] at (50,-1.45) {Net use of inaccessible content (pp)};
-\node[OIblue,inner sep=0pt] at (0,11.3) {\pgfuseplotmark{*}};\node[anchor=west,font=\scriptsize] at (1.2,11.3) {Repertoire only};
-\node[OIsky,inner sep=0pt] at (19,11.3) {\pgfuseplotmark{square*}};\node[anchor=west,font=\scriptsize] at (20.2,11.3) {Comprehension flag};
-\node[OIorange,inner sep=0pt] at (40,11.3) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\scriptsize] at (41.2,11.3) {Audibility flag};
-\node[OIpurple,inner sep=0pt] at (61,11.3) {\pgfuseplotmark{diamond*}};\node[anchor=west,font=\scriptsize] at (62.2,11.3) {Flag and narration};
-\node[OIgreen,inner sep=0pt] at (86,11.3) {\pgfuseplotmark{pentagon*}};\node[anchor=west,font=\scriptsize] at (87.2,11.3) {Repertoire and prose};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[panel] at (-2.0,4.44) {(a) Net use of inaccessible content (pp)};
+\node[font=\sffamily\tiny\bfseries,text=OIblue] at (1.23,3.96) {cannot understand};
+\node[font=\sffamily\tiny\bfseries,text=OIorange] at (3.28,3.96) {cannot hear};
+\draw[OIblue,line width=.5pt] (0.05,3.84)--(2.41,3.84);
+\draw[OIorange,line width=.5pt] (2.51,3.84)--(4.05,3.84);
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.41,3.26) {reper-\\toire};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (1.23,3.26) {flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.05,3.26) {reper. +\\sentence};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.87,3.26) {flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (3.69,3.26) {flag +\\sentence};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,3.105) {Qwen3.5-9B};
+\fill[OIorange!75!white] (0.012,2.982) rectangle (0.808,3.228);\node[text=white,font=\sffamily\tiny] at (0.410,3.105) {83};
+\fill[OIorange!63!white] (0.832,2.982) rectangle (1.628,3.228);\node[text=white,font=\sffamily\tiny] at (1.230,3.105) {70};
+\fill[OIorange!62!white] (1.652,2.982) rectangle (2.448,3.228);\node[text=white,font=\sffamily\tiny] at (2.050,3.105) {69};
+\fill[OIorange!75!white] (2.472,2.982) rectangle (3.268,3.228);\node[text=white,font=\sffamily\tiny] at (2.870,3.105) {84};
+\fill[OIorange!64!white] (3.292,2.982) rectangle (4.088,3.228);\node[text=white,font=\sffamily\tiny] at (3.690,3.105) {71};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.835) {Seed-OSS-36B};
+\fill[OIorange!73!white] (0.012,2.712) rectangle (0.808,2.958);\node[text=white,font=\sffamily\tiny] at (0.410,2.835) {81};
+\fill[OIorange!57!white] (0.832,2.712) rectangle (1.628,2.958);\node[text=white,font=\sffamily\tiny] at (1.230,2.835) {63};
+\fill[OIorange!36!white] (1.652,2.712) rectangle (2.448,2.958);\node[text=black!85,font=\sffamily\tiny] at (2.050,2.835) {41};
+\fill[OIorange!78!white] (2.472,2.712) rectangle (3.268,2.958);\node[text=white,font=\sffamily\tiny] at (2.870,2.835) {87};
+\fill[OIorange!62!white] (3.292,2.712) rectangle (4.088,2.958);\node[text=white,font=\sffamily\tiny] at (3.690,2.835) {69};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.565) {Phi-4};
+\fill[OIorange!63!white] (0.012,2.442) rectangle (0.808,2.688);\node[text=white,font=\sffamily\tiny] at (0.410,2.565) {70};
+\fill[OIorange!53!white] (0.832,2.442) rectangle (1.628,2.688);\node[text=white,font=\sffamily\tiny] at (1.230,2.565) {58};
+\fill[OIorange!54!white] (1.652,2.442) rectangle (2.448,2.688);\node[text=white,font=\sffamily\tiny] at (2.050,2.565) {60};
+\fill[OIorange!66!white] (2.472,2.442) rectangle (3.268,2.688);\node[text=white,font=\sffamily\tiny] at (2.870,2.565) {73};
+\fill[OIorange!59!white] (3.292,2.442) rectangle (4.088,2.688);\node[text=white,font=\sffamily\tiny] at (3.690,2.565) {65};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.295) {Falcon-H1-34B};
+\fill[OIorange!71!white] (0.012,2.172) rectangle (0.808,2.418);\node[text=white,font=\sffamily\tiny] at (0.410,2.295) {79};
+\fill[OIorange!51!white] (0.832,2.172) rectangle (1.628,2.418);\node[text=black!85,font=\sffamily\tiny] at (1.230,2.295) {56};
+\fill[OIorange!35!white] (1.652,2.172) rectangle (2.448,2.418);\node[text=black!85,font=\sffamily\tiny] at (2.050,2.295) {39};
+\fill[OIorange!72!white] (2.472,2.172) rectangle (3.268,2.418);\node[text=white,font=\sffamily\tiny] at (2.870,2.295) {80};
+\fill[OIorange!59!white] (3.292,2.172) rectangle (4.088,2.418);\node[text=white,font=\sffamily\tiny] at (3.690,2.295) {65};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.025) {gpt-oss-20b};
+\fill[OIorange!71!white] (0.012,1.902) rectangle (0.808,2.148);\node[text=white,font=\sffamily\tiny] at (0.410,2.025) {79};
+\fill[OIorange!48!white] (0.832,1.902) rectangle (1.628,2.148);\node[text=black!85,font=\sffamily\tiny] at (1.230,2.025) {53};
+\fill[OIorange!37!white] (1.652,1.902) rectangle (2.448,2.148);\node[text=black!85,font=\sffamily\tiny] at (2.050,2.025) {41};
+\fill[OIorange!69!white] (2.472,1.902) rectangle (3.268,2.148);\node[text=white,font=\sffamily\tiny] at (2.870,2.025) {77};
+\fill[OIorange!58!white] (3.292,1.902) rectangle (4.088,2.148);\node[text=white,font=\sffamily\tiny] at (3.690,2.025) {64};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.755) {Nemotron-3-Nano};
+\fill[OIorange!54!white] (0.012,1.632) rectangle (0.808,1.878);\node[text=white,font=\sffamily\tiny] at (0.410,1.755) {60};
+\fill[OIorange!47!white] (0.832,1.632) rectangle (1.628,1.878);\node[text=black!85,font=\sffamily\tiny] at (1.230,1.755) {52};
+\fill[OIorange!38!white] (1.652,1.632) rectangle (2.448,1.878);\node[text=black!85,font=\sffamily\tiny] at (2.050,1.755) {42};
+\fill[OIorange!68!white] (2.472,1.632) rectangle (3.268,1.878);\node[text=white,font=\sffamily\tiny] at (2.870,1.755) {75};
+\fill[OIorange!55!white] (3.292,1.632) rectangle (4.088,1.878);\node[text=white,font=\sffamily\tiny] at (3.690,1.755) {61};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.485) {GLM-4.7-Flash};
+\fill[OIorange!45!white] (0.012,1.362) rectangle (0.808,1.608);\node[text=black!85,font=\sffamily\tiny] at (0.410,1.485) {50};
+\fill[OIorange!41!white] (0.832,1.362) rectangle (1.628,1.608);\node[text=black!85,font=\sffamily\tiny] at (1.230,1.485) {45};
+\fill[OIorange!25!white] (1.652,1.362) rectangle (2.448,1.608);\node[text=black!85,font=\sffamily\tiny] at (2.050,1.485) {28};
+\fill[OIorange!61!white] (2.472,1.362) rectangle (3.268,1.608);\node[text=white,font=\sffamily\tiny] at (2.870,1.485) {68};
+\fill[OIorange!44!white] (3.292,1.362) rectangle (4.088,1.608);\node[text=black!85,font=\sffamily\tiny] at (3.690,1.485) {49};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.215) {Mistral-Small-24B};
+\fill[OIorange!58!white] (0.012,1.092) rectangle (0.808,1.338);\node[text=white,font=\sffamily\tiny] at (0.410,1.215) {65};
+\fill[OIorange!32!white] (0.832,1.092) rectangle (1.628,1.338);\node[text=black!85,font=\sffamily\tiny] at (1.230,1.215) {36};
+\fill[OIorange!16!white] (1.652,1.092) rectangle (2.448,1.338);\node[text=black!85,font=\sffamily\tiny] at (2.050,1.215) {18};
+\fill[OIorange!59!white] (2.472,1.092) rectangle (3.268,1.338);\node[text=white,font=\sffamily\tiny] at (2.870,1.215) {65};
+\fill[OIorange!28!white] (3.292,1.092) rectangle (4.088,1.338);\node[text=black!85,font=\sffamily\tiny] at (3.690,1.215) {31};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.945) {Gemma-4-12B};
+\fill[OIorange!63!white] (0.012,0.822) rectangle (0.808,1.068);\node[text=white,font=\sffamily\tiny] at (0.410,0.945) {70};
+\fill[OIorange!24!white] (0.832,0.822) rectangle (1.628,1.068);\node[text=black!85,font=\sffamily\tiny] at (1.230,0.945) {26};
+\fill[OIorange!12!white] (1.652,0.822) rectangle (2.448,1.068);\node[text=black!85,font=\sffamily\tiny] at (2.050,0.945) {13};
+\fill[OIorange!67!white] (2.472,0.822) rectangle (3.268,1.068);\node[text=white,font=\sffamily\tiny] at (2.870,0.945) {75};
+\fill[OIorange!19!white] (3.292,0.822) rectangle (4.088,1.068);\node[text=black!85,font=\sffamily\tiny] at (3.690,0.945) {21};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.675) {Qwen3.8-27B};
+\fill[OIorange!45!white] (0.012,0.552) rectangle (0.808,0.798);\node[text=black!85,font=\sffamily\tiny] at (0.410,0.675) {50};
+\fill[OIorange!30!white] (0.832,0.552) rectangle (1.628,0.798);\node[text=black!85,font=\sffamily\tiny] at (1.230,0.675) {33};
+\fill[OIorange!22!white] (1.652,0.552) rectangle (2.448,0.798);\node[text=black!85,font=\sffamily\tiny] at (2.050,0.675) {24};
+\fill[OIorange!54!white] (2.472,0.552) rectangle (3.268,0.798);\node[text=white,font=\sffamily\tiny] at (2.870,0.675) {60};
+\fill[OIorange!10!white] (3.292,0.552) rectangle (4.088,0.798);\node[text=black!85,font=\sffamily\tiny] at (3.690,0.675) {11};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.405) {Gemma-4-31B};
+\fill[OIorange!41!white] (0.012,0.282) rectangle (0.808,0.528);\node[text=black!85,font=\sffamily\tiny] at (0.410,0.405) {46};
+\fill[OIorange!3!white] (0.832,0.282) rectangle (1.628,0.528);\node[text=black!85,font=\sffamily\tiny] at (1.230,0.405) {3};
+\fill[OIorange!0!white] (1.652,0.282) rectangle (2.448,0.528);\node[text=black!85,font=\sffamily\tiny] at (2.050,0.405) {0};
+\fill[OIorange!46!white] (2.472,0.282) rectangle (3.268,0.528);\node[text=black!85,font=\sffamily\tiny] at (2.870,0.405) {51};
+\fill[OIorange!1!white] (3.292,0.282) rectangle (4.088,0.528);\node[text=black!85,font=\sffamily\tiny] at (3.690,0.405) {1};
+\node[anchor=east,font=\sffamily\tiny\bfseries] at (-0.05,0.055) {Mean};
+\fill[OIorange!60!white] (0.012,-0.068) rectangle (0.808,0.178);\node[text=white,font=\sffamily\tiny\bfseries] at (0.410,0.055) {67};
+\fill[OIorange!41!white] (0.832,-0.068) rectangle (1.628,0.178);\node[text=black!85,font=\sffamily\tiny\bfseries] at (1.230,0.055) {45};
+\fill[OIorange!31!white] (1.652,-0.068) rectangle (2.448,0.178);\node[text=black!85,font=\sffamily\tiny\bfseries] at (2.050,0.055) {34};
+\fill[OIorange!65!white] (2.472,-0.068) rectangle (3.268,0.178);\node[text=white,font=\sffamily\tiny\bfseries] at (2.870,0.055) {72};
+\fill[OIorange!42!white] (3.292,-0.068) rectangle (4.088,0.178);\node[text=black!85,font=\sffamily\tiny\bfseries] at (3.690,0.055) {46};
+\begin{scope}[xshift=5.25cm]
+\node[panel] at (-0.75,4.29) {(b) Reads the state, still leaks};
+\draw[black!9] (0,0.000)--(3.0,0.000);
+\draw[black!9] (0,0.785)--(3.0,0.785);
+\draw[black!9] (0,1.570)--(3.0,1.570);
+\draw[black!9] (0,2.355)--(3.0,2.355);
+\draw[black!9] (0,3.140)--(3.0,3.140);
+\draw[black!9] (0.000,0)--(0.000,3.14);
+\draw[black!9] (0.750,0)--(0.750,3.14);
+\draw[black!9] (1.500,0)--(1.500,3.14);
+\draw[black!9] (2.250,0)--(2.250,3.14);
+\draw[black!9] (3.000,0)--(3.000,3.14);
+\draw[black!45,line width=.4pt] (0,3.14)--(0,0)--(3.0,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.750,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.500,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.250,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.000,0) {100};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.785) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.570) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.355) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.140) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.5,-0.3) {State probe answered correctly (\%)};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.57) {Net use (pp)};
+\fill[OIorange!7] (2.400,1.256) rectangle (3.000,3.140);
+\node[font=\sffamily\tiny,text=OIorange!80!black,align=left,anchor=north west] at (0.090,3.109) {shaded: reads the state\\correctly yet leaks};
+\node[OIblue,inner sep=0pt,opacity=.85] at (2.604,2.603) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (2.979,2.622) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.544) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (3.000,2.724) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.210) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (1.010,2.290) {\pgfuseplotmark{triangle*}};
+\node[anchor=north,font=\sffamily\tiny,text=black!60] at (1.010,2.240) {Phi-4};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.471) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (3.000,2.505) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.489) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (2.615,2.416) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (2.885,1.892) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (1.615,2.360) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (0.000,1.583) {\pgfuseplotmark{*}};
+\node[anchor=west,font=\sffamily\tiny,text=black!60] at (0.080,1.583) {GLM-4.7-Flash};
+\node[OIorange,inner sep=0pt,opacity=.85] at (2.875,2.140) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.029) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (2.948,2.042) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,2.194) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (3.000,2.344) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (3.000,1.576) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (3.000,1.889) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.85] at (2.865,1.447) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.85] at (3.000,1.597) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt] at (0.150,0.534) {\pgfuseplotmark{*}};\node[anchor=west,font=\sffamily\tiny] at (0.240,0.534) {repertoire (understand)};
+\node[OIorange,inner sep=0pt] at (0.150,0.220) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\sffamily\tiny] at (0.240,0.220) {audibility flag (hear)};
+\end{scope}
+\begin{scope}[xshift=10.6cm]
+\node[panel] at (-1.9,4.29) {(c) By the companion's question};
+\draw[black!9] (0.000,0)--(0.000,3.14);
+\draw[black!9] (0.750,0)--(0.750,3.14);
+\draw[black!9] (1.500,0)--(1.500,3.14);
+\draw[black!9] (2.250,0)--(2.250,3.14);
+\draw[black!9] (3.000,0)--(3.000,3.14);
+\draw[black!45,line width=.4pt] (0,3.14)--(0,0)--(3.0,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.750,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.500,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.250,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.000,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.5,-0.3) {Net use, cannot understand (pp)};
+\node[anchor=east,font=\sffamily\tiny,align=right] at (-0.05,2.700) {What did they say?};
+\fill[OIblue!14] (0,2.570) rectangle (2.451,2.830);
+\fill[OIblue!70,opacity=.8] (1.510,2.645) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.703,2.700) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.885,2.755) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.510,2.645) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.557,2.700) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.583,2.755) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.615,2.645) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.771,2.700) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.896,2.755) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.937,2.645) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.995,2.700) circle (1.1pt);
+\draw[OIblue,line width=1.1pt] (2.451,2.540)--(2.451,2.860);
+\node[anchor=south,font=\sffamily\tiny\bfseries,text=OIblue] at (2.451,2.840) {82};
+\node[anchor=east,font=\sffamily\tiny,align=right] at (-0.05,1.947) {What is the task?};
+\fill[OIblue!14] (0,1.817) rectangle (2.445,2.077);
+\fill[OIblue!70,opacity=.8] (1.464,1.892) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.641,1.947) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.240,2.002) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.391,1.892) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.615,1.947) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.656,2.002) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.656,1.892) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.734,1.947) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.771,2.002) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.771,1.892) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.958,1.947) circle (1.1pt);
+\draw[OIblue,line width=1.1pt] (2.445,1.787)--(2.445,2.107);
+\node[anchor=south,font=\sffamily\tiny\bfseries,text=OIblue] at (2.445,2.087) {82};
+\node[anchor=east,font=\sffamily\tiny,align=right] at (-0.05,1.193) {Did you catch it?};
+\fill[OIblue!14] (0,1.063) rectangle (1.580,1.323);
+\fill[OIblue!70,opacity=.8] (0.396,1.138) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (0.880,1.193) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.141,1.248) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.146,1.138) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.453,1.193) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.578,1.248) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.724,1.138) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.115,1.193) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.156,1.248) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.271,1.138) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.521,1.193) circle (1.1pt);
+\draw[OIblue,line width=1.1pt] (1.580,1.033)--(1.580,1.353);
+\node[anchor=south,font=\sffamily\tiny\bfseries,text=OIblue] at (1.580,1.333) {53};
+\node[anchor=east,font=\sffamily\tiny,align=right] at (-0.05,0.440) {What do we do next?};
+\fill[OIblue!14] (0,0.310) rectangle (1.504,0.570);
+\fill[OIblue!70,opacity=.8] (0.901,0.385) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.146,0.440) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.198,0.495) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.266,0.385) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.281,0.440) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.505,0.495) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.589,0.385) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.620,0.440) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.802,0.495) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (1.823,0.385) circle (1.1pt);
+\fill[OIblue!70,opacity=.8] (2.417,0.440) circle (1.1pt);
+\draw[OIblue,line width=1.1pt] (1.504,0.280)--(1.504,0.600);
+\node[anchor=south,font=\sffamily\tiny\bfseries,text=OIblue] at (1.504,0.580) {50};
+\end{scope}
 \end{tikzpicture}
-\caption{Study 1. Net use of speech the character cannot understand or cannot hear, for 11 open models, under five ways of stating the boundary. Bars are 95\% skeleton-bootstrap intervals over 96 scene skeletons and three languages.}
+\caption{Study 1, 11 open models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. Models that read the boundary correctly still leak. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar. Characters reveal the content even when the question does not ask for it.}
 \label{fig:s1}
 \end{figure*}
-\begin{table*}[t]
-\centering\small
-\begin{tabular}{@{}lrrr@{}}
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrr@{}}
 \toprule
-Statistic & Estimate & 95\% CI & Holm $p$\\
+Test & Estimate [95\% CI] & Holm $p$\\
 \midrule
-Not understood, repertoire only & 66.7 & [64.9, 68.5] & 0.004\\
-Not audible, flag only & 72.2 & [69.0, 75.5] & 0.004\\
-Repertoire minus repertoire and sentence & 32.7 & [30.8, 34.6] & 0.004\\
-Audibility flag minus flag and narration & 25.8 & [23.7, 27.8] & 0.004\\
-Repertoire minus comprehension flag & 21.6 & [20.2, 23.0] & 0.004\\
-Audibility flag minus comprehension flag & 27.1 & [24.9, 29.2] & 0.004\\
-Repertoire, state probe answered correctly & 68.4 & [66.5, 70.3] & 0.004\\
+Leakage, cannot understand & 66.7 [64.9, 68.5] & 0.004\\
+Leakage, cannot hear & 72.2 [69.0, 75.5] & 0.004\\
+Sentence lowers it (understand) & 32.7 [30.8, 34.6] & 0.004\\
+Narration lowers it (hear) & 25.8 [23.7, 27.8] & 0.004\\
+Flag lowers it vs.\ repertoire & 21.6 [20.2, 23.0] & 0.004\\
+Hear minus understand (flags) & 27.1 [24.9, 29.2] & 0.004\\
+Leakage, state read correctly & 68.4 [66.5, 70.3] & 0.004\\
 \midrule
-List-first prompt, mean relative reduction (\%) & 64.7 & [63.2, 66.1] & 0.004\\
-List-first prompt, change in translator-enabled use & -2.0 & [-3.8, -0.1] & joint\\
+List-first, reduction (\%) & 64.7 [63.2, 66.1] & 0.004\\
+List-first, translated speech & -2.0 [-3.8, -0.1] & joint\\
 \bottomrule
 \end{tabular}
-\caption{The eight tests of Study 1 (11 models and 33 model and language units, estimates in pp unless noted). Each test is one-sided against the threshold fixed before scoring, which is 10 pp for the two leakage tests and the state-correct test, zero for the four contrasts, and a reduction of at least 50\% with a loss of at most 5 pp for the list-first prompt. Holm correction runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws can resolve.}
+\caption{The eight tests of Study 1, fixed before scoring (11 models, pp unless noted). Thresholds are 10 pp for the three leakage tests, zero for the four contrasts, and a 50\% reduction with a loss of at most 5 pp for the list-first prompt. Holm correction runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws resolve.}
 \label{tab:s1}
-\end{table*}
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[x=0.036cm,y=0.47cm,font=\footnotesize]
-\draw[black!12] (0,-0.5)--(0,3.5);\node[anchor=north,font=\scriptsize] at (0,-0.5) {0};
-\draw[black!12] (25,-0.5)--(25,3.5);\node[anchor=north,font=\scriptsize] at (25,-0.5) {25};
-\draw[black!12] (50,-0.5)--(50,3.5);\node[anchor=north,font=\scriptsize] at (50,-0.5) {50};
-\draw[black!12] (75,-0.5)--(75,3.5);\node[anchor=north,font=\scriptsize] at (75,-0.5) {75};
-\draw[black!12] (100,-0.5)--(100,3.5);\node[anchor=north,font=\scriptsize] at (100,-0.5) {100};
-\node[anchor=east,font=\scriptsize,text width=1.9cm,align=right] at (-2,0) {What do we do next?};
-\fill[OIblue!45] (60.8,0) circle (1.2pt);
-\fill[OIblue!45] (50.2,0) circle (1.2pt);
-\fill[OIblue!45] (39.9,0) circle (1.2pt);
-\fill[OIblue!45] (30.0,0) circle (1.2pt);
-\fill[OIblue!45] (53.0,0) circle (1.2pt);
-\fill[OIblue!45] (38.2,0) circle (1.2pt);
-\fill[OIblue!45] (54.0,0) circle (1.2pt);
-\fill[OIblue!45] (42.7,0) circle (1.2pt);
-\fill[OIblue!45] (80.6,0) circle (1.2pt);
-\fill[OIblue!45] (42.2,0) circle (1.2pt);
-\fill[OIblue!45] (60.1,0) circle (1.2pt);
-\draw[OIblue,line width=1.2pt] (50.1,-0.3)--(50.1,0.3);\node[anchor=south,font=\scriptsize,text=OIblue] at (50.1,0.28) {50};
-\node[anchor=east,font=\scriptsize,text width=1.9cm,align=right] at (-2,1) {Did you catch it?};
-\fill[OIblue!45] (57.5,1) circle (1.2pt);
-\fill[OIblue!45] (70.5,1) circle (1.2pt);
-\fill[OIblue!45] (38.0,1) circle (1.2pt);
-\fill[OIblue!45] (29.3,1) circle (1.2pt);
-\fill[OIblue!45] (75.7,1) circle (1.2pt);
-\fill[OIblue!45] (38.2,1) circle (1.2pt);
-\fill[OIblue!45] (13.2,1) circle (1.2pt);
-\fill[OIblue!45] (48.4,1) circle (1.2pt);
-\fill[OIblue!45] (71.9,1) circle (1.2pt);
-\fill[OIblue!45] (52.6,1) circle (1.2pt);
-\fill[OIblue!45] (84.0,1) circle (1.2pt);
-\draw[OIblue,line width=1.2pt] (52.7,0.7)--(52.7,1.3);\node[anchor=south,font=\scriptsize,text=OIblue] at (52.7,1.28) {53};
-\node[anchor=east,font=\scriptsize,text width=1.9cm,align=right] at (-2,2) {What is the task?};
-\fill[OIblue!45] (98.6,2) circle (1.2pt);
-\fill[OIblue!45] (74.7,2) circle (1.2pt);
-\fill[OIblue!45] (54.7,2) circle (1.2pt);
-\fill[OIblue!45] (79.7,2) circle (1.2pt);
-\fill[OIblue!45] (88.5,2) circle (1.2pt);
-\fill[OIblue!45] (88.5,2) circle (1.2pt);
-\fill[OIblue!45] (87.2,2) circle (1.2pt);
-\fill[OIblue!45] (92.4,2) circle (1.2pt);
-\fill[OIblue!45] (91.1,2) circle (1.2pt);
-\fill[OIblue!45] (48.8,2) circle (1.2pt);
-\fill[OIblue!45] (92.4,2) circle (1.2pt);
-\draw[OIblue,line width=1.2pt] (81.5,1.7)--(81.5,2.3);\node[anchor=south,font=\scriptsize,text=OIblue] at (81.5,2.2800000000000002) {82};
-\node[anchor=east,font=\scriptsize,text width=1.9cm,align=right] at (-2,3) {What did they say?};
-\fill[OIblue!45] (97.9,3) circle (1.2pt);
-\fill[OIblue!45] (83.7,3) circle (1.2pt);
-\fill[OIblue!45] (50.3,3) circle (1.2pt);
-\fill[OIblue!45] (62.8,3) circle (1.2pt);
-\fill[OIblue!45] (99.8,3) circle (1.2pt);
-\fill[OIblue!45] (92.4,3) circle (1.2pt);
-\fill[OIblue!45] (86.1,3) circle (1.2pt);
-\fill[OIblue!45] (96.5,3) circle (1.2pt);
-\fill[OIblue!45] (87.2,3) circle (1.2pt);
-\fill[OIblue!45] (56.8,3) circle (1.2pt);
-\fill[OIblue!45] (85.2,3) circle (1.2pt);
-\draw[OIblue,line width=1.2pt] (81.7,2.7)--(81.7,3.3);\node[anchor=south,font=\scriptsize,text=OIblue] at (81.7,3.2800000000000002) {82};
-\node[anchor=north] at (50,-1.3) {Net use of speech the character cannot understand (pp)};
-\end{tikzpicture}
-\caption{Study 1 by the companion's question (repertoire condition). Dots are the 11 open models and bars their mean. Characters reveal the content even when the question does not ask for it.}
-\label{fig:questions}
-\end{figure}
+\end{table}
 
-Characters use the hidden content in most replies under both boundaries (Figure~\ref{fig:s1}). When the state lists only the character's languages, net use is 66.7 pp [64.9, 68.5], and when English speech carries only an inaudibility flag it is 72.2 pp [69.0, 75.5], with every model above 45 pp in both conditions. Unheard speech is repeated as if the character had been there, as in Gemma-4-31B's ``Some drunken rambling about losing a glove in a sewer'' for speech its state marks as inaudible. Replacing the speech with noise of the same form yields 0.3\% target hits, so the use comes from the content. The effect remains in a present-day setting with original characters (50.1 pp), under three other system prompts, and under sampling at temperature 0.7, which moves four models' estimates by at most 4 pp. Most leaks are stated as fact (67\% of target uses, as in ``Bag's in the basement''), 17\% are attributed to the speaker, and 16\% are hedged. The question does not need to ask for the content. When the companion only asks whether the character caught what was said, characters reveal it in 52.7 pp of replies, and when asked what to do next in 50.1 pp, against 81.7 pp when asked what was said (Figure~\ref{fig:questions}).
+Characters use the hidden content in most replies under both boundaries (Figure~\ref{fig:s1}a). When the state lists only the character's languages, net use is 66.7 pp [64.9, 68.5], and when English speech carries only an inaudibility flag it is 72.2 pp [69.0, 75.5], with every model above 45 pp in both conditions. Unheard speech is repeated as if the character had been there, as in Gemma-4-31B's ``Some drunken rambling about losing a glove in a sewer'' for speech its state marks as inaudible. Replacing the speech with noise of the same form yields 0.3\% target hits, so the use comes from the content. The effect remains in a present-day setting with original characters (50.1 pp), under three other system prompts, and under sampling at temperature 0.7, which moves four models' estimates by at most 4 pp. Most leaks are stated as fact (67\% of target uses, as in ``Bag's in the basement''), 17\% are attributed to the speaker, and 16\% are hedged. The question does not need to ask for the content. When the companion only asks whether the character caught what was said, characters reveal it in 52.7 pp of replies, and when asked what to do next in 50.1 pp, against 81.7 pp when asked what was said (Figure~\ref{fig:s1}c).
 
 The comparison between boundaries runs against intuition. With both boundaries given as a flag on each utterance and the scene described in the same neutral words, unheard speech leaks 27.1 pp more than speech marked as not understood. Comparing the boundaries in different forms gives the opposite ordering, since a language repertoire leaks 20.3 pp more than inaudibility narrated in the scene, which shows that boundary types can only be compared when they are stated the same way. The form also matters within the language boundary. Models do not derive incomprehension from the repertoire, because a direct comprehension flag lowers net use by 21.6 pp. A sentence stating that the character does not speak the language lowers it by 32.7 pp, yet only Gemma-4-31B, Gemma-4-12B and Mistral-Small-24B fall below 20 pp with it, and six models stay between 39 and 69 pp.
 
@@ -273,182 +393,185 @@ The models read the boundary correctly. Ten of them answer the state probe corre
 
 \section{The Failure Extends to Sight, Messages and Actions}
 \label{sec:s2}
-Study~2 asks whether the same failure appears when content is hidden for other reasons and whether it shapes what characters do. A minimal JSON scene contains one event with an actor, the content and an access flag, and the character either cannot hear English speech, cannot understand Chinese, Japanese or Spanish speech, cannot see where an object is put, or cannot read a private message. Accessible controls change only the flag, and Table~\ref{tab:accesscases} lists what the character can still observe in each channel. A discovery set of 96 scenes runs on all 11 open models with three ways of stating access, a membership list of who perceives each event, a direct flag on the event, and the flag plus a prose rule, and a confirmation set of 96 new scenes runs on the same models. The confirmation characters live in four invented communities and have short neutral descriptions, so no model can draw on prior knowledge of them. Inputs, models, tests and analysis were fixed before generation for a cohort of four models, and the other seven were added afterwards.
+Study~2 asks whether the same failure appears when content is hidden for other reasons and whether it shapes what characters do. A minimal JSON scene contains one event with an actor, the content and an access flag, and the character either cannot hear English speech, cannot understand Chinese, Japanese or Spanish speech, cannot see where an object is put, or cannot read a private message. Accessible controls change only the flag, and Figure~\ref{fig:design}c shows what the character can still observe in each channel. A discovery set of 96 scenes runs on all 11 open models with three ways of stating access, a membership list of who perceives each event, a direct flag on the event, and the flag plus a prose rule, and a confirmation set of 96 new scenes runs on the same models. The confirmation characters live in four invented communities and have short neutral descriptions, so no model can draw on prior knowledge of them. Inputs, models, tests and analysis were fixed before generation for a cohort of four models, and the other seven were added afterwards.
 
-\begin{table*}[t]
-\centering\small
-\begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lXX@{}}
-\toprule
-Channel & Inaccessible condition & Compiled observation\\
-\midrule
-\textsc{Hear} & English speech cannot be heard & No observation\\
-\textsc{Understand} & Speech is heard in an unknown language & Actor says something in that language\\
-\textsc{See} & Item and destination are hidden & Actor appears to put something away\\
-\textsc{Receive} & Message content is private to someone else & Actor visibly sends a message\\
-\bottomrule
-\end{tabularx}\end{lrbox}
-\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:accesscases exceeds its column}{Revise the table layout.}\fi
-\usebox{\OCtable}
-\caption{Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column, and accessible controls keep the full event.}
-\label{tab:accesscases}
-\end{table*}
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[font=\footnotesize]
-\begin{scope}[x=1.15cm,y=0.36cm]
-\node[font=\scriptsize\bfseries] at (0.5,11.55) {Hear};
-\node[font=\scriptsize\bfseries] at (1.5,11.55) {Understand};
-\node[font=\scriptsize\bfseries] at (2.5,11.55) {See};
-\node[font=\scriptsize\bfseries] at (3.5,11.55) {Receive};
-\node[anchor=east,font=\scriptsize] at (-0.08,0.5) {Gemma-4-31B};
-\fill[OIorange!5!white] (0,0) rectangle (1,1);\node[black,font=\scriptsize] at (0.5,0.5) {5};
-\fill[OIorange!0!white] (1,0) rectangle (2,1);\node[black,font=\scriptsize] at (1.5,0.5) {0};
-\fill[OIorange!14!white] (2,0) rectangle (3,1);\node[black,font=\scriptsize] at (2.5,0.5) {16};
-\fill[OIorange!19!white] (3,0) rectangle (4,1);\node[black,font=\scriptsize] at (3.5,0.5) {22};
-\node[anchor=east,font=\scriptsize] at (-0.08,1.5) {Qwen3.8-27B};
-\fill[OIorange!19!white] (0,1) rectangle (1,2);\node[black,font=\scriptsize] at (0.5,1.5) {22};
-\fill[OIorange!2!white] (1,1) rectangle (2,2);\node[black,font=\scriptsize] at (1.5,1.5) {3};
-\fill[OIorange!35!white] (2,1) rectangle (3,2);\node[black,font=\scriptsize] at (2.5,1.5) {41};
-\fill[OIorange!13!white] (3,1) rectangle (4,2);\node[black,font=\scriptsize] at (3.5,1.5) {15};
-\node[anchor=east,font=\scriptsize] at (-0.08,2.5) {Mistral-Small-24B};
-\fill[OIorange!81!white] (0,2) rectangle (1,3);\node[white,font=\scriptsize] at (0.5,2.5) {96};
-\fill[OIorange!1!white] (1,2) rectangle (2,3);\node[black,font=\scriptsize] at (1.5,2.5) {2};
-\fill[OIorange!26!white] (2,2) rectangle (3,3);\node[black,font=\scriptsize] at (2.5,2.5) {31};
-\fill[OIorange!71!white] (3,2) rectangle (4,3);\node[white,font=\scriptsize] at (3.5,2.5) {83};
-\node[anchor=east,font=\scriptsize] at (-0.08,3.5) {Gemma-4-12B};
-\fill[OIorange!85!white] (0,3) rectangle (1,4);\node[white,font=\scriptsize] at (0.5,3.5) {99};
-\fill[OIorange!12!white] (1,3) rectangle (2,4);\node[black,font=\scriptsize] at (1.5,3.5) {14};
-\fill[OIorange!20!white] (2,3) rectangle (3,4);\node[black,font=\scriptsize] at (2.5,3.5) {24};
-\fill[OIorange!67!white] (3,3) rectangle (4,4);\node[white,font=\scriptsize] at (3.5,3.5) {79};
-\node[anchor=east,font=\scriptsize] at (-0.08,4.5) {Seed-OSS-36B};
-\fill[OIorange!51!white] (0,4) rectangle (1,5);\node[white,font=\scriptsize] at (0.5,4.5) {60};
-\fill[OIorange!50!white] (1,4) rectangle (2,5);\node[white,font=\scriptsize] at (1.5,4.5) {59};
-\fill[OIorange!45!white] (2,4) rectangle (3,5);\node[black,font=\scriptsize] at (2.5,4.5) {53};
-\fill[OIorange!51!white] (3,4) rectangle (4,5);\node[white,font=\scriptsize] at (3.5,4.5) {60};
-\node[anchor=east,font=\scriptsize] at (-0.08,5.5) {GLM-4.7-Flash};
-\fill[OIorange!74!white] (0,5) rectangle (1,6);\node[white,font=\scriptsize] at (0.5,5.5) {87};
-\fill[OIorange!60!white] (1,5) rectangle (2,6);\node[white,font=\scriptsize] at (1.5,5.5) {71};
-\fill[OIorange!56!white] (2,5) rectangle (3,6);\node[white,font=\scriptsize] at (2.5,5.5) {66};
-\fill[OIorange!45!white] (3,5) rectangle (4,6);\node[black,font=\scriptsize] at (3.5,5.5) {53};
-\node[anchor=east,font=\scriptsize] at (-0.08,6.5) {Falcon-H1-34B};
-\fill[OIorange!54!white] (0,6) rectangle (1,7);\node[white,font=\scriptsize] at (0.5,6.5) {64};
-\fill[OIorange!64!white] (1,6) rectangle (2,7);\node[white,font=\scriptsize] at (1.5,6.5) {75};
-\fill[OIorange!47!white] (2,6) rectangle (3,7);\node[black,font=\scriptsize] at (2.5,6.5) {55};
-\fill[OIorange!83!white] (3,6) rectangle (4,7);\node[white,font=\scriptsize] at (3.5,6.5) {98};
-\node[anchor=east,font=\scriptsize] at (-0.08,7.5) {Phi-4};
-\fill[OIorange!83!white] (0,7) rectangle (1,8);\node[white,font=\scriptsize] at (0.5,7.5) {97};
-\fill[OIorange!12!white] (1,7) rectangle (2,8);\node[black,font=\scriptsize] at (1.5,7.5) {14};
-\fill[OIorange!79!white] (2,7) rectangle (3,8);\node[white,font=\scriptsize] at (2.5,7.5) {93};
-\fill[OIorange!83!white] (3,7) rectangle (4,8);\node[white,font=\scriptsize] at (3.5,7.5) {98};
-\node[anchor=east,font=\scriptsize] at (-0.08,8.5) {gpt-oss-20b};
-\fill[OIorange!81!white] (0,8) rectangle (1,9);\node[white,font=\scriptsize] at (0.5,8.5) {95};
-\fill[OIorange!32!white] (1,8) rectangle (2,9);\node[black,font=\scriptsize] at (1.5,8.5) {37};
-\fill[OIorange!78!white] (2,8) rectangle (3,9);\node[white,font=\scriptsize] at (2.5,8.5) {91};
-\fill[OIorange!75!white] (3,8) rectangle (4,9);\node[white,font=\scriptsize] at (3.5,8.5) {89};
-\node[anchor=east,font=\scriptsize] at (-0.08,9.5) {Qwen3.5-9B};
-\fill[OIorange!83!white] (0,9) rectangle (1,10);\node[white,font=\scriptsize] at (0.5,9.5) {97};
-\fill[OIorange!44!white] (1,9) rectangle (2,10);\node[black,font=\scriptsize] at (1.5,9.5) {51};
-\fill[OIorange!82!white] (2,9) rectangle (3,10);\node[white,font=\scriptsize] at (2.5,9.5) {97};
-\fill[OIorange!82!white] (3,9) rectangle (4,10);\node[white,font=\scriptsize] at (3.5,9.5) {96};
-\node[anchor=east,font=\scriptsize] at (-0.08,10.5) {Nemotron-3-Nano};
-\fill[OIorange!84!white] (0,10) rectangle (1,11);\node[white,font=\scriptsize] at (0.5,10.5) {99};
-\fill[OIorange!56!white] (1,10) rectangle (2,11);\node[white,font=\scriptsize] at (1.5,10.5) {66};
-\fill[OIorange!83!white] (2,10) rectangle (3,11);\node[white,font=\scriptsize] at (2.5,10.5) {98};
-\fill[OIorange!84!white] (3,10) rectangle (4,11);\node[white,font=\scriptsize] at (3.5,10.5) {99};
-\draw[black!25] (0,0) rectangle (4,11);
-\node[font=\scriptsize] at (2,-0.9) {(a) Net use under full context (pp)};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[panel] at (-1.95,3.85) {(a) Net use by channel (pp)};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.30,3.02) {{\color{OIorange}\faDeaf}\\Hear};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.90,3.02) {{\color{OIorange}\faLanguage}\\Unde.};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (1.50,3.02) {{\color{OIorange}\faEyeSlash}\\See};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.10,3.02) {{\color{OIorange}\faEnvelope}\\Receive};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.878) {Nemotron-3-Nano};
+\fill[OIorange!89!white] (0.010,2.766) rectangle (0.590,2.990);\node[text=white,font=\sffamily\tiny] at (0.300,2.878) {99};
+\fill[OIorange!60!white] (0.610,2.766) rectangle (1.190,2.990);\node[text=white,font=\sffamily\tiny] at (0.900,2.878) {66};
+\fill[OIorange!88!white] (1.210,2.766) rectangle (1.790,2.990);\node[text=white,font=\sffamily\tiny] at (1.500,2.878) {98};
+\fill[OIorange!89!white] (1.810,2.766) rectangle (2.390,2.990);\node[text=white,font=\sffamily\tiny] at (2.100,2.878) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.634) {Qwen3.5-9B};
+\fill[OIorange!88!white] (0.010,2.522) rectangle (0.590,2.746);\node[text=white,font=\sffamily\tiny] at (0.300,2.634) {97};
+\fill[OIorange!46!white] (0.610,2.522) rectangle (1.190,2.746);\node[text=black!85,font=\sffamily\tiny] at (0.900,2.634) {51};
+\fill[OIorange!87!white] (1.210,2.522) rectangle (1.790,2.746);\node[text=white,font=\sffamily\tiny] at (1.500,2.634) {97};
+\fill[OIorange!87!white] (1.810,2.522) rectangle (2.390,2.746);\node[text=white,font=\sffamily\tiny] at (2.100,2.634) {96};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.390) {gpt-oss-20b};
+\fill[OIorange!85!white] (0.010,2.278) rectangle (0.590,2.502);\node[text=white,font=\sffamily\tiny] at (0.300,2.390) {95};
+\fill[OIorange!34!white] (0.610,2.278) rectangle (1.190,2.502);\node[text=black!85,font=\sffamily\tiny] at (0.900,2.390) {37};
+\fill[OIorange!82!white] (1.210,2.278) rectangle (1.790,2.502);\node[text=white,font=\sffamily\tiny] at (1.500,2.390) {91};
+\fill[OIorange!80!white] (1.810,2.278) rectangle (2.390,2.502);\node[text=white,font=\sffamily\tiny] at (2.100,2.390) {89};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.146) {Phi-4};
+\fill[OIorange!87!white] (0.010,2.034) rectangle (0.590,2.258);\node[text=white,font=\sffamily\tiny] at (0.300,2.146) {97};
+\fill[OIorange!13!white] (0.610,2.034) rectangle (1.190,2.258);\node[text=black!85,font=\sffamily\tiny] at (0.900,2.146) {14};
+\fill[OIorange!84!white] (1.210,2.034) rectangle (1.790,2.258);\node[text=white,font=\sffamily\tiny] at (1.500,2.146) {93};
+\fill[OIorange!88!white] (1.810,2.034) rectangle (2.390,2.258);\node[text=white,font=\sffamily\tiny] at (2.100,2.146) {98};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.902) {Falcon-H1-34B};
+\fill[OIorange!58!white] (0.010,1.790) rectangle (0.590,2.014);\node[text=white,font=\sffamily\tiny] at (0.300,1.902) {64};
+\fill[OIorange!67!white] (0.610,1.790) rectangle (1.190,2.014);\node[text=white,font=\sffamily\tiny] at (0.900,1.902) {75};
+\fill[OIorange!49!white] (1.210,1.790) rectangle (1.790,2.014);\node[text=black!85,font=\sffamily\tiny] at (1.500,1.902) {55};
+\fill[OIorange!88!white] (1.810,1.790) rectangle (2.390,2.014);\node[text=white,font=\sffamily\tiny] at (2.100,1.902) {98};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.659) {GLM-4.7-Flash};
+\fill[OIorange!79!white] (0.010,1.547) rectangle (0.590,1.770);\node[text=white,font=\sffamily\tiny] at (0.300,1.659) {87};
+\fill[OIorange!64!white] (0.610,1.547) rectangle (1.190,1.770);\node[text=white,font=\sffamily\tiny] at (0.900,1.659) {71};
+\fill[OIorange!60!white] (1.210,1.547) rectangle (1.790,1.770);\node[text=white,font=\sffamily\tiny] at (1.500,1.659) {66};
+\fill[OIorange!47!white] (1.810,1.547) rectangle (2.390,1.770);\node[text=black!85,font=\sffamily\tiny] at (2.100,1.659) {53};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.415) {Seed-OSS-36B};
+\fill[OIorange!54!white] (0.010,1.303) rectangle (0.590,1.527);\node[text=white,font=\sffamily\tiny] at (0.300,1.415) {60};
+\fill[OIorange!53!white] (0.610,1.303) rectangle (1.190,1.527);\node[text=white,font=\sffamily\tiny] at (0.900,1.415) {59};
+\fill[OIorange!48!white] (1.210,1.303) rectangle (1.790,1.527);\node[text=black!85,font=\sffamily\tiny] at (1.500,1.415) {53};
+\fill[OIorange!54!white] (1.810,1.303) rectangle (2.390,1.527);\node[text=white,font=\sffamily\tiny] at (2.100,1.415) {60};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.171) {Gemma-4-12B};
+\fill[OIorange!90!white] (0.010,1.059) rectangle (0.590,1.283);\node[text=white,font=\sffamily\tiny] at (0.300,1.171) {99};
+\fill[OIorange!13!white] (0.610,1.059) rectangle (1.190,1.283);\node[text=black!85,font=\sffamily\tiny] at (0.900,1.171) {14};
+\fill[OIorange!22!white] (1.210,1.059) rectangle (1.790,1.283);\node[text=black!85,font=\sffamily\tiny] at (1.500,1.171) {24};
+\fill[OIorange!71!white] (1.810,1.059) rectangle (2.390,1.283);\node[text=white,font=\sffamily\tiny] at (2.100,1.171) {79};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.927) {Mistral-Small-24B};
+\fill[OIorange!86!white] (0.010,0.815) rectangle (0.590,1.039);\node[text=white,font=\sffamily\tiny] at (0.300,0.927) {96};
+\fill[OIorange!1!white] (0.610,0.815) rectangle (1.190,1.039);\node[text=black!85,font=\sffamily\tiny] at (0.900,0.927) {2};
+\fill[OIorange!28!white] (1.210,0.815) rectangle (1.790,1.039);\node[text=black!85,font=\sffamily\tiny] at (1.500,0.927) {31};
+\fill[OIorange!75!white] (1.810,0.815) rectangle (2.390,1.039);\node[text=white,font=\sffamily\tiny] at (2.100,0.927) {83};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.683) {Qwen3.8-27B};
+\fill[OIorange!20!white] (0.010,0.571) rectangle (0.590,0.795);\node[text=black!85,font=\sffamily\tiny] at (0.300,0.683) {22};
+\fill[OIorange!2!white] (0.610,0.571) rectangle (1.190,0.795);\node[text=black!85,font=\sffamily\tiny] at (0.900,0.683) {3};
+\fill[OIorange!37!white] (1.210,0.571) rectangle (1.790,0.795);\node[text=black!85,font=\sffamily\tiny] at (1.500,0.683) {41};
+\fill[OIorange!13!white] (1.810,0.571) rectangle (2.390,0.795);\node[text=black!85,font=\sffamily\tiny] at (2.100,0.683) {15};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.439) {Gemma-4-31B};
+\fill[OIorange!5!white] (0.010,0.327) rectangle (0.590,0.551);\node[text=black!85,font=\sffamily\tiny] at (0.300,0.439) {5};
+\fill[OIorange!0!white] (0.610,0.327) rectangle (1.190,0.551);\node[text=black!85,font=\sffamily\tiny] at (0.900,0.439) {0};
+\fill[OIorange!15!white] (1.210,0.327) rectangle (1.790,0.551);\node[text=black!85,font=\sffamily\tiny] at (1.500,0.439) {16};
+\fill[OIorange!20!white] (1.810,0.327) rectangle (2.390,0.551);\node[text=black!85,font=\sffamily\tiny] at (2.100,0.439) {22};
+\node[anchor=east,font=\sffamily\tiny\bfseries] at (-0.05,0.135) {Mean};
+\fill[OIorange!67!white] (0.010,0.023) rectangle (0.590,0.247);\node[text=white,font=\sffamily\tiny\bfseries] at (0.300,0.135) {75};
+\fill[OIorange!32!white] (0.610,0.023) rectangle (1.190,0.247);\node[text=black!85,font=\sffamily\tiny\bfseries] at (0.900,0.135) {36};
+\fill[OIorange!55!white] (1.210,0.023) rectangle (1.790,0.247);\node[text=white,font=\sffamily\tiny\bfseries] at (1.500,0.135) {61};
+\fill[OIorange!65!white] (1.810,0.023) rectangle (2.390,0.247);\node[text=white,font=\sffamily\tiny\bfseries] at (2.100,0.135) {72};
+\begin{scope}[xshift=3.15cm]
+\node[panel] at (0,3.85) {(b) State format vs. flag};
+\draw[black!9] (0.156,0)--(0.156,3.0);
+\draw[black!9] (0.778,0)--(0.778,3.0);
+\draw[black!9] (1.400,0)--(1.400,3.0);
+\draw[black!9] (2.022,0)--(2.022,3.0);
+\draw[black!9] (2.644,0)--(2.644,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(2.8,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.156,0) {-40};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.778,0) {-20};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.400,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.022,0) {20};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.644,0) {40};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.4,-0.3) {change in net use (pp)};
+\draw[black!55] (1.400,0)--(1.400,3.0);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,2.625) {\faDeaf};
+\fill[OIblue] (1.400,2.650) rectangle (1.945,2.820);\draw[black!60,line width=.35pt] (1.865,2.735)--(2.025,2.735);
+\fill[OIgreen] (1.400,2.430) rectangle (0.230,2.600);\draw[black!60,line width=.35pt] (0.115,2.515)--(0.345,2.515);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,1.875) {\faLanguage};
+\fill[OIblue] (1.400,1.900) rectangle (2.290,2.070);\draw[black!60,line width=.35pt] (2.193,1.985)--(2.390,1.985);
+\fill[OIgreen] (1.400,1.680) rectangle (1.276,1.850);\draw[black!60,line width=.35pt] (1.150,1.765)--(1.397,1.765);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,1.125) {\faEyeSlash};
+\fill[OIblue] (1.400,1.150) rectangle (2.422,1.320);\draw[black!60,line width=.35pt] (2.302,1.235)--(2.546,1.235);
+\fill[OIgreen] (1.400,0.930) rectangle (0.855,1.100);\draw[black!60,line width=.35pt] (0.699,1.015)--(0.985,1.015);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,0.375) {\faEnvelope};
+\fill[OIblue] (1.400,0.400) rectangle (1.506,0.570);\draw[black!60,line width=.35pt] (1.418,0.485)--(1.597,0.485);
+\fill[OIgreen] (1.400,0.180) rectangle (0.222,0.350);\draw[black!60,line width=.35pt] (0.113,0.265)--(0.339,0.265);
+\fill[OIblue] (0.05,-0.92) rectangle (0.2,-0.8);\node[anchor=west,font=\sffamily\tiny] at (0.22,-0.86) {membership list};
+\fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\node[anchor=west,font=\sffamily\tiny] at (0.22,-1.11) {flag + prose rule};
 \end{scope}
-\begin{scope}[xshift=7.6cm,x=0.052cm,y=0.95cm]
-\draw[black!12] (0,-0.45)--(0,3.55);\node[anchor=north,font=\scriptsize] at (0,-0.45) {0};
-\draw[black!12] (20,-0.45)--(20,3.55);\node[anchor=north,font=\scriptsize] at (20,-0.45) {20};
-\draw[black!12] (40,-0.45)--(40,3.55);\node[anchor=north,font=\scriptsize] at (40,-0.45) {40};
-\draw[black!12] (60,-0.45)--(60,3.55);\node[anchor=north,font=\scriptsize] at (60,-0.45) {60};
-\draw[black!12] (80,-0.45)--(80,3.55);\node[anchor=north,font=\scriptsize] at (80,-0.45) {80};
-\node[anchor=east,font=\scriptsize] at (-2,0) {Receive};
-\fill[OIorange] (0,0.05000000000000002) rectangle (55.5,0.29000000000000004);\draw[black!70] (46.9,0.17)--(64.1,0.17);
-\fill[OIgreen] (0,-0.29000000000000004) rectangle (0.0,-0.05000000000000002);\draw[black!70] (0.0,-0.17)--(0.0,-0.17);
-\node[anchor=east,font=\scriptsize] at (-2,1) {See};
-\fill[OIorange] (0,1.0499999999999998) rectangle (49.2,1.29);\draw[black!70] (43.0,1.17)--(54.7,1.17);
-\fill[OIgreen] (0,0.71) rectangle (0.0,0.95);\draw[black!70] (0.0,0.83)--(0.0,0.83);
-\node[anchor=east,font=\scriptsize] at (-2,2) {Understand};
-\fill[OIorange] (0,2.05) rectangle (54.7,2.29);\draw[black!70] (47.7,2.17)--(60.9,2.17);
-\fill[OIgreen] (0,1.71) rectangle (0.0,1.9500000000000002);\draw[black!70] (0.0,1.83)--(0.0,1.83);
-\node[anchor=east,font=\scriptsize] at (-2,3) {Hear};
-\fill[OIorange] (0,3.05) rectangle (63.3,3.29);\draw[black!70] (53.9,3.17)--(71.1,3.17);
-\fill[OIgreen] (0,2.71) rectangle (0.8,2.95);\draw[black!70] (0.0,2.83)--(2.3,2.83);
-\fill[OIorange] (52,3.95) rectangle (55,4.15);\node[anchor=west,font=\scriptsize] at (56,4.05) {Full context};
-\fill[OIgreen] (52,3.55) rectangle (55,3.75);\node[anchor=west,font=\scriptsize] at (56,3.65) {Character view};
-\node[font=\scriptsize,align=center] at (40,-1.45) {(b) Change in choosing place A when the\\ inaccessible fact switches from B to A (pp)};
+\begin{scope}[xshift=6.75cm]
+\node[panel] at (-0.4,3.85) {(c) Persistence};
+\draw[black!9] (0,0.000)--(2.2,0.000);
+\draw[black!9] (0,0.750)--(2.2,0.750);
+\draw[black!9] (0,1.500)--(2.2,1.500);
+\draw[black!9] (0,2.250)--(2.2,2.250);
+\draw[black!9] (0,3.000)--(2.2,3.000);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(2.2,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.100,0) {2};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.200,0) {4};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.750) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.250) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.000) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.1,-0.3) {neutral exchanges};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.5) {net use (pp)};
+\draw[OIorange,line width=.9pt] (0.000,2.074)--(1.100,2.062)--(2.200,2.133);
+\node[OIorange,inner sep=0pt] at (0.000,2.074) {\pgfuseplotmark{triangle*}};
+\node[OIorange,inner sep=0pt] at (1.100,2.062) {\pgfuseplotmark{triangle*}};
+\node[OIorange,inner sep=0pt] at (2.200,2.133) {\pgfuseplotmark{triangle*}};
+\draw[OIblue,line width=.9pt] (0.000,1.277)--(1.100,1.582)--(2.200,1.746);
+\node[OIblue,inner sep=0pt] at (0.000,1.277) {\pgfuseplotmark{*}};
+\node[OIblue,inner sep=0pt] at (1.100,1.582) {\pgfuseplotmark{*}};
+\node[OIblue,inner sep=0pt] at (2.200,1.746) {\pgfuseplotmark{*}};
+\draw[OIpurple,line width=.9pt] (0.000,1.664)--(1.100,1.500)--(2.200,1.523);
+\node[OIpurple,inner sep=0pt] at (0.000,1.664) {\pgfuseplotmark{square*}};
+\node[OIpurple,inner sep=0pt] at (1.100,1.500) {\pgfuseplotmark{square*}};
+\node[OIpurple,inner sep=0pt] at (2.200,1.523) {\pgfuseplotmark{square*}};
+\draw[OIsky,line width=.9pt] (0.000,2.039)--(1.100,2.051)--(2.200,2.086);
+\node[OIsky,inner sep=0pt] at (0.000,2.039) {\pgfuseplotmark{diamond*}};
+\node[OIsky,inner sep=0pt] at (1.100,2.051) {\pgfuseplotmark{diamond*}};
+\node[OIsky,inner sep=0pt] at (2.200,2.086) {\pgfuseplotmark{diamond*}};
+\node[anchor=west,font=\sffamily\tiny,text=OIpurple] at (2.320,1.523) {See};
+\node[anchor=west,font=\sffamily\tiny,text=OIblue] at (2.320,1.746) {Understand};
+\node[anchor=west,font=\sffamily\tiny,text=OIsky] at (2.320,2.086) {Receive};
+\node[anchor=west,font=\sffamily\tiny,text=OIorange] at (2.320,2.286) {Hear};
+\draw[OIgreen,line width=.9pt,densely dashed] (0,0.000)--(2.2,0.000);\node[anchor=south west,font=\sffamily\tiny,text=OIgreen] at (0.05,0.000) {character view, all channels};
+\end{scope}
+\begin{scope}[xshift=10.95cm]
+\node[panel] at (-0.35,3.85) {(d) Choosing where to search};
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (0.688,0)--(0.688,3.0);
+\draw[black!9] (1.375,0)--(1.375,3.0);
+\draw[black!9] (2.062,0)--(2.062,3.0);
+\draw[black!9] (2.750,0)--(2.750,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(2.75,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.688,0) {20};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.375,0) {40};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.062,0) {60};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.750,0) {80};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.375,-0.3) {change in choosing A (pp)};
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,2.625) {\faDeaf};
+\fill[OIorange] (0,2.650) rectangle (2.175,2.820);\draw[black!60,line width=.35pt] (1.853,2.735)--(2.444,2.735);
+\fill[OIgreen] (0,2.430) rectangle (0.027,2.600);\draw[black!60,line width=.35pt] (0.000,2.515)--(0.081,2.515);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,1.875) {\faLanguage};
+\fill[OIorange] (0,1.900) rectangle (1.880,2.070);\draw[black!60,line width=.35pt] (1.638,1.985)--(2.095,1.985);
+\fill[OIgreen] (0,1.680) rectangle (0.000,1.850);\draw[black!60,line width=.35pt] (0.000,1.765)--(0.000,1.765);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,1.125) {\faEyeSlash};
+\fill[OIorange] (0,1.150) rectangle (1.692,1.320);\draw[black!60,line width=.35pt] (1.477,1.235)--(1.880,1.235);
+\fill[OIgreen] (0,0.930) rectangle (0.000,1.100);\draw[black!60,line width=.35pt] (0.000,1.015)--(0.000,1.015);
+\node[anchor=east,font=\footnotesize,text=OIorange] at (-0.02,0.375) {\faEnvelope};
+\fill[OIorange] (0,0.400) rectangle (1.907,0.570);\draw[black!60,line width=.35pt] (1.611,0.485)--(2.202,0.485);
+\fill[OIgreen] (0,0.180) rectangle (0.000,0.350);\draw[black!60,line width=.35pt] (0.000,0.265)--(0.000,0.265);
+\fill[OIorange] (0.05,-0.92) rectangle (0.2,-0.8);\node[anchor=west,font=\sffamily\tiny] at (0.22,-0.86) {full context};
+\fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\node[anchor=west,font=\sffamily\tiny] at (0.22,-1.11) {character view};
 \end{scope}
 \end{tikzpicture}
-\par\medskip
-\begin{tikzpicture}[font=\footnotesize]
-\begin{scope}[x=0.05cm,y=0.5cm]
-\draw[black!12] (-40,-0.5)--(-40,3.6);\node[anchor=north,font=\scriptsize] at (-40,-0.5) {-40};
-\draw[black!12] (-20,-0.5)--(-20,3.6);\node[anchor=north,font=\scriptsize] at (-20,-0.5) {-20};
-\draw[black!12] (0,-0.5)--(0,3.6);\node[anchor=north,font=\scriptsize] at (0,-0.5) {0};
-\draw[black!12] (20,-0.5)--(20,3.6);\node[anchor=north,font=\scriptsize] at (20,-0.5) {20};
-\draw[black!12] (40,-0.5)--(40,3.6);\node[anchor=north,font=\scriptsize] at (40,-0.5) {40};
-\draw[black!50] (0,-0.5)--(0,3.6);
-\node[anchor=east,font=\scriptsize] at (-43,0) {Receive};
-\fill[OIblue] (0,0.04000000000000001) rectangle (3.4,0.28);\draw[black!70] (0.6,0.16)--(6.3,0.16);
-\fill[OIgreen] (0,-0.28) rectangle (-37.9,-0.04000000000000001);\draw[black!70] (-41.4,-0.16)--(-34.1,-0.16);
-\node[anchor=east,font=\scriptsize] at (-43,1) {See};
-\fill[OIblue] (0,1.04) rectangle (32.9,1.2799999999999998);\draw[black!70] (29.0,1.16)--(36.8,1.16);
-\fill[OIgreen] (0,0.72) rectangle (-17.5,0.96);\draw[black!70] (-22.5,0.84)--(-13.4,0.84);
-\node[anchor=east,font=\scriptsize] at (-43,2) {Understand};
-\fill[OIblue] (0,2.04) rectangle (28.6,2.2800000000000002);\draw[black!70] (25.5,2.16)--(31.8,2.16);
-\fill[OIgreen] (0,1.7200000000000002) rectangle (-4.0,1.96);\draw[black!70] (-8.1,1.84)--(-0.1,1.84);
-\node[anchor=east,font=\scriptsize] at (-43,3) {Hear};
-\fill[OIblue] (0,3.04) rectangle (17.5,3.2800000000000002);\draw[black!70] (15.0,3.16)--(20.1,3.16);
-\fill[OIgreen] (0,2.7199999999999998) rectangle (-37.6,2.96);\draw[black!70] (-41.3,2.84)--(-33.9,2.84);
-\fill[OIblue] (-40,4.75) rectangle (-37,5.05);\node[anchor=west,font=\scriptsize] at (-36,4.9) {Membership list instead of flag};
-\fill[OIgreen] (-40,4.1) rectangle (-37,4.4);\node[anchor=west,font=\scriptsize] at (-36,4.25) {Flag plus prose rule};
-\node[font=\scriptsize] at (0,-1.55) {(c) Change in net use relative to the flag (pp)};
-\end{scope}
-\begin{scope}[xshift=7.2cm,yshift=-0.25cm,x=0.83cm,y=0.026cm]
-\draw[black!12] (0,0)--(4,0);\node[anchor=east,font=\scriptsize] at (-0.08,0) {0};
-\draw[black!12] (0,25)--(4,25);\node[anchor=east,font=\scriptsize] at (-0.08,25) {25};
-\draw[black!12] (0,50)--(4,50);\node[anchor=east,font=\scriptsize] at (-0.08,50) {50};
-\draw[black!12] (0,75)--(4,75);\node[anchor=east,font=\scriptsize] at (-0.08,75) {75};
-\draw[black!12] (0,100)--(4,100);\node[anchor=east,font=\scriptsize] at (-0.08,100) {100};
-\node[anchor=north,font=\scriptsize] at (0,-2) {0};
-\node[anchor=north,font=\scriptsize] at (2,-2) {2};
-\node[anchor=north,font=\scriptsize] at (4,-2) {4};
-\draw[OIorange,line width=.8pt] (0,69.1)--(2,68.8)--(4,71.1);
-\node[OIorange,inner sep=0pt] at (0,69.1) {\pgfuseplotmark{triangle*}};
-\node[OIorange,inner sep=0pt] at (2,68.8) {\pgfuseplotmark{triangle*}};
-\node[OIorange,inner sep=0pt] at (4,71.1) {\pgfuseplotmark{triangle*}};
-\draw[OIblue,line width=.8pt] (0,42.6)--(2,52.7)--(4,58.2);
-\node[OIblue,inner sep=0pt] at (0,42.6) {\pgfuseplotmark{*}};
-\node[OIblue,inner sep=0pt] at (2,52.7) {\pgfuseplotmark{*}};
-\node[OIblue,inner sep=0pt] at (4,58.2) {\pgfuseplotmark{*}};
-\draw[OIpurple,line width=.8pt] (0,55.5)--(2,50.0)--(4,50.8);
-\node[OIpurple,inner sep=0pt] at (0,55.5) {\pgfuseplotmark{square*}};
-\node[OIpurple,inner sep=0pt] at (2,50.0) {\pgfuseplotmark{square*}};
-\node[OIpurple,inner sep=0pt] at (4,50.8) {\pgfuseplotmark{square*}};
-\draw[OIsky,line width=.8pt] (0,68.0)--(2,68.4)--(4,69.5);
-\node[OIsky,inner sep=0pt] at (0,68.0) {\pgfuseplotmark{diamond*}};
-\node[OIsky,inner sep=0pt] at (2,68.4) {\pgfuseplotmark{diamond*}};
-\node[OIsky,inner sep=0pt] at (4,69.5) {\pgfuseplotmark{diamond*}};
-\node[anchor=west,font=\scriptsize,text=OIpurple] at (4.1,50.8) {See};
-\node[anchor=west,font=\scriptsize,text=OIblue] at (4.1,59.8) {Understand};
-\node[anchor=west,font=\scriptsize,text=OIsky] at (4.1,69.5) {Receive};
-\node[anchor=west,font=\scriptsize,text=OIorange] at (4.1,78.5) {Hear};
-\draw[OIgreen,line width=.8pt,dashed] (0,0.0)--(4,0.0);\node[anchor=west,font=\scriptsize,text=OIgreen] at (4.1,4) {Character view};
-\node[font=\scriptsize] at (2,-14) {Neutral exchanges};
-\node[font=\scriptsize] at (2,-27) {(d) Net use after neutral exchanges (pp)};
-\end{scope}
-\end{tikzpicture}
-\caption{Study 2. (a) Net use of inaccessible content in the confirmation set (96 scenes with original characters) for all 11 open models, by channel. (b) Four models choosing where to search between two places. Leaked facts move choices under full context and not under the character view. (c) How the state representation changes leakage relative to a direct access flag (11 models, 24 scenes). A prose rule lowers leakage in every channel except comprehension. (d) Leakage after two and four scripted exchanges (four models, 32 scenes). Bars are 95\% bootstrap intervals.}
+\caption{Study 2. (a) Net use of hidden content under full context in the confirmation set (96 scenes with invented characters), for 11 open models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}
 \label{fig:s2}
 \end{figure*}
 
-The failure appears in every channel (Figure~\ref{fig:s2}a). Over the 11 models in the confirmation set, net use is 74.7 pp for unheard speech, 35.6 pp for speech in an unknown language, 60.6 pp for hidden actions and 72.0 pp for private messages. Among replies whose state probe the model answered correctly, it remains 60.7 pp [59.6, 61.7], and the four-model cohort fixed in advance shows the same pattern with 72.3, 47.2, 69.3 and 67.6 pp (Appendix Table~\ref{tab:confirm}). Profiles differ by channel within a model. Mistral-Small-24B almost never uses speech it cannot understand, yet it repeats unheard speech and private messages in most replies, and Gemma-4-12B keeps hidden actions out of its speech (24 pp) while repeating private messages (79 pp). How the boundary is written matters in every channel (Figure~\ref{fig:s2}c). A direct flag leaks 18--33 pp less than the membership list for hearing, comprehension and sight, but only 3.4 pp less for private messages. Adding a prose rule to the flag lowers leakage by 18--38 pp for hearing, sight and private messages, while for comprehension it changes leakage by only 4.0 pp, which matches the uneven effect of the prose sentence in Study~1.
+The failure appears in every channel (Figure~\ref{fig:s2}a). Over the 11 models in the confirmation set, net use is 74.7 pp for unheard speech, 35.6 pp for speech in an unknown language, 60.6 pp for hidden actions and 72.0 pp for private messages. Among replies whose state probe the model answered correctly, it remains 60.7 pp [59.6, 61.7], and the four-model cohort fixed in advance shows the same pattern with 72.3, 47.2, 69.3 and 67.6 pp (Appendix Table~\ref{tab:confirm}). Profiles differ by channel within a model. Mistral-Small-24B almost never uses speech it cannot understand, yet it repeats unheard speech and private messages in most replies, and Gemma-4-12B keeps hidden actions out of its speech (24 pp) while repeating private messages (79 pp). How the boundary is written matters in every channel (Figure~\ref{fig:s2}b). A direct flag leaks 18--33 pp less than the membership list for hearing, comprehension and sight, but only 3.4 pp less for private messages. Adding a prose rule to the flag lowers leakage by 18--38 pp for hearing, sight and private messages, while for comprehension it changes leakage by only 4.0 pp, which matches the uneven effect of the prose sentence in Study~1.
 
 
 
-Leaked facts also guide behavior, as tests on the four-model cohort show. With the event kept in the conversation, leakage stays between 51 and 71 pp after four neutral exchanges and rises by 15.6 pp for comprehension (Figure~\ref{fig:s2}d). When characters choose between two places to search, switching the inaccessible fact from B to A raises the choice of place A by 49--63 pp (Figure~\ref{fig:s2}b).
+Leaked facts also guide behavior, as tests on the four-model cohort show. With the event kept in the conversation, leakage stays between 51 and 71 pp after four neutral exchanges and rises by 15.6 pp for comprehension (Figure~\ref{fig:s2}c). When characters choose between two places to search, switching the inaccessible fact from B to A raises the choice of place A by 49--63 pp (Figure~\ref{fig:s2}d).
 
 \section{Strong Models Keep the Boundary in Some Formats}
 \label{sec:frontier}
@@ -456,269 +579,344 @@ Gemma-4-31B and Qwen3.8-27B use unheard speech in 51\% and 60\% of Study~1 repli
 
 \begin{figure*}[t]
 \centering
-\begin{tikzpicture}[font=\footnotesize]
-\begin{scope}[x=0.050cm,y=0.29cm]
-\draw[black!12] (0,-0.7)--(0,19.099999999999998);\node[anchor=north,font=\scriptsize] at (0,-0.7) {0};
-\draw[black!12] (25,-0.7)--(25,19.099999999999998);\node[anchor=north,font=\scriptsize] at (25,-0.7) {25};
-\draw[black!12] (50,-0.7)--(50,19.099999999999998);\node[anchor=north,font=\scriptsize] at (50,-0.7) {50};
-\draw[black!12] (75,-0.7)--(75,19.099999999999998);\node[anchor=north,font=\scriptsize] at (75,-0.7) {75};
-\draw[black!12] (100,-0.7)--(100,19.099999999999998);\node[anchor=north,font=\scriptsize] at (100,-0.7) {100};
-\node[anchor=east,font=\scriptsize] at (-2,0) {Gemma-4-31B};
-\node[OIgray,inner sep=0pt] at (93.8,0) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (50.3,0) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (52.4,0) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,1) {Qwen3.8-27B};
-\node[OIgray,inner sep=0pt] at (61.1,1) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (56.8,1) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (72.9,1) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,2) {GLM-4.7-Flash};
-\node[OIgray,inner sep=0pt] at (66.0,2) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (62.8,2) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (88.0,2) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,3) {Seed-OSS-36B};
-\node[OIgray,inner sep=0pt] at (95.1,3) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (85.2,3) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (88.9,3) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,4) {Gemma-4-12B};
-\node[OIgray,inner sep=0pt] at (96.9,4) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (83.7,4) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (93.1,4) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,5) {Nemotron-3-Nano};
-\node[OIgray,inner sep=0pt] at (78.8,5) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (86.1,5) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (94.6,5) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,6) {Qwen3.5-9B};
-\node[OIgray,inner sep=0pt] at (84.7,6) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (87.2,6) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (96.5,6) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,7) {gpt-oss-20b};
-\node[OIgray,inner sep=0pt] at (99.7,7) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (99.8,7) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (87.2,7) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,8) {Mistral-Small-24B};
-\node[OIgray,inner sep=0pt] at (99.0,8) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (92.4,8) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (95.0,8) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,9) {Falcon-H1-34B};
-\node[OIgray,inner sep=0pt] at (99.3,9) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (97.9,9) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (90.1,9) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,10) {Phi-4};
-\node[OIgray,inner sep=0pt] at (97.6,10) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (96.5,10) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (99.0,10) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,11.7) {DeepSeek-V4-Pro};
-\node[OIgray,inner sep=0pt] at (93.8,11.7) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (71.2,11.7) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (78.3,11.7) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,13.399999999999999) {Gemini 3.8 Flash};
-\node[OIgray,inner sep=0pt] at (99.0,13.399999999999999) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (0.2,13.399999999999999) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.0,13.399999999999999) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,14.399999999999999) {GPT-6 Sol};
-\node[OIgray,inner sep=0pt] at (100.0,14.399999999999999) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (0.2,14.399999999999999) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.0,14.399999999999999) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,15.399999999999999) {Grok 4.7};
-\node[OIgray,inner sep=0pt] at (100.0,15.399999999999999) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (1.0,15.399999999999999) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.0,15.399999999999999) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,16.4) {Claude Opus 5.5};
-\node[OIgray,inner sep=0pt] at (99.3,16.4) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (2.1,16.4) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (2.1,16.4) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,17.4) {Gemini 3.1 Pro};
-\node[OIgray,inner sep=0pt] at (99.7,17.4) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (1.6,17.4) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (9.0,17.4) {\pgfuseplotmark{triangle*}};
-\node[anchor=east,font=\scriptsize] at (-2,18.4) {Claude Sonnet 5.5};
-\node[OIgray,inner sep=0pt] at (99.0,18.4) {\pgfuseplotmark{diamond}};
-\node[OIblue,inner sep=0pt] at (26.0,18.4) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (8.0,18.4) {\pgfuseplotmark{triangle*}};
-\draw[black!40] (103,13.099999999999998)--(103,18.7);\node[anchor=west,font=\scriptsize,rotate=0,text width=1.1cm] at (104,15.899999999999999) {Hosted};
-\draw[black!40] (103,11.399999999999999)--(103,12.0);\node[anchor=west,font=\scriptsize,rotate=0,text width=1.1cm] at (104,11.7) {Open, large};
-\draw[black!40] (103,-0.3)--(103,10.3);\node[anchor=west,font=\scriptsize,rotate=0,text width=1.1cm] at (104,5.0) {Open, at most 40B};
-\node[font=\scriptsize] at (50,-2.6) {(a) Net use or control use (\%)};
-\node[OIblue,inner sep=0pt] at (2,20.0) {\pgfuseplotmark{*}};\node[anchor=west,font=\scriptsize] at (4,20.0) {Repertoire only};
-\node[OIorange,inner sep=0pt] at (42,20.0) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\scriptsize] at (44,20.0) {Audibility flag};
-\node[OIgray,inner sep=0pt] at (82,20.0) {\pgfuseplotmark{diamond}};\node[anchor=west,font=\scriptsize] at (84,20.0) {Fluent control};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[panel] at (-2.1,4.05) {(a) Study 1 core cells};
+\draw[black!9] (0.000,0)--(0.000,3.3);
+\draw[black!9] (0.625,0)--(0.625,3.3);
+\draw[black!9] (1.250,0)--(1.250,3.3);
+\draw[black!9] (1.875,0)--(1.875,3.3);
+\draw[black!9] (2.500,0)--(2.500,3.3);
+\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(2.5,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.625,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.250,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.875,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.500,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.25,-0.3) {net use / control use (\%)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,3.025) {GPT-6 Sol};
+\draw[black!25,line width=1.2pt] (0.000,3.025)--(0.004,3.025);
+\node[OIgray,inner sep=0pt] at (2.500,3.025) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.004,3.025) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.000,3.025) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.681) {Gemini 3.8 Flash};
+\draw[black!25,line width=1.2pt] (-0.004,2.681)--(0.004,2.681);
+\node[OIgray,inner sep=0pt] at (2.474,2.681) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.004,2.681) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.000,2.681) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.337) {Grok 4.7};
+\draw[black!25,line width=1.2pt] (0.000,2.337)--(0.026,2.337);
+\node[OIgray,inner sep=0pt] at (2.500,2.337) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.026,2.337) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.000,2.337) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.994) {Claude Opus 5.5};
+\draw[black!25,line width=1.2pt] (0.052,1.994)--(0.052,1.994);
+\node[OIgray,inner sep=0pt] at (2.483,1.994) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.052,1.994) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.052,1.994) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.650) {Gemini 3.1 Pro};
+\draw[black!25,line width=1.2pt] (0.039,1.650)--(0.226,1.650);
+\node[OIgray,inner sep=0pt] at (2.491,1.650) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.039,1.650) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.226,1.650) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.306) {Claude Sonnet 5.5};
+\draw[black!25,line width=1.2pt] (0.200,1.306)--(0.651,1.306);
+\node[OIgray,inner sep=0pt] at (2.474,1.306) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (0.651,1.306) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (0.200,1.306) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny\itshape] at (-0.05,0.962) {Sonnet 5.5, high reas.};
+\node[OIblue,inner sep=0pt] at (0.074,0.962) {\pgfuseplotmark{*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.439) {DeepSeek-V4-Pro};
+\draw[black!25,line width=1.2pt] (1.780,0.439)--(1.957,0.439);
+\node[OIgray,inner sep=0pt] at (2.344,0.439) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (1.780,0.439) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (1.957,0.439) {\pgfuseplotmark{triangle*}};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.095) {11 open, $\le$40B};
+\draw[black!25,line width=1.2pt] (2.043,0.095)--(2.176,0.095);
+\node[OIgray,inner sep=0pt] at (2.209,0.095) {\pgfuseplotmark{diamond}};
+\node[OIblue,inner sep=0pt] at (2.043,0.095) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt] at (2.176,0.095) {\pgfuseplotmark{triangle*}};
+\draw[black!20,dashed] (-2.0,0.701)--(2.5,0.701);
+\node[OIblue,inner sep=0pt] at (-1.925,-0.850) {\pgfuseplotmark{*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.830,-0.850) {repertoire};
+\node[OIorange,inner sep=0pt] at (-0.455,-0.850) {\pgfuseplotmark{triangle*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-0.360,-0.850) {audibility flag};
+\node[OIgray,inner sep=0pt] at (1.540,-0.850) {\pgfuseplotmark{diamond}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.635,-0.850) {fluent control};
+\begin{scope}[xshift=3.75cm]
+\node[panel] at (-0.45,4.05) {(b) All four Study 1 features};
+\draw[black!9] (0,0.000)--(1.1,0.000);
+\draw[black!9] (0,0.825)--(1.1,0.825);
+\draw[black!9] (0,1.650)--(1.1,1.650);
+\draw[black!9] (0,2.475)--(1.1,2.475);
+\draw[black!9] (0,3.300)--(1.1,3.300);
+\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(1.1,0);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.825) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.650) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.475) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.300) {100};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.65) {net use of unheard speech (pp)};
+\node[anchor=north,font=\sffamily\tiny,align=center] at (0,-0.02) {Study 2\\prompt};\node[anchor=north,font=\sffamily\tiny,align=center] at (1.1,-0.02) {+ all\\four};
+\draw[OIorange,line width=.9pt] (0,0.000)--(1.1,3.300);\fill[OIorange] (0,0.000) circle (1.4pt);\fill[OIorange] (1.1,3.300) circle (1.4pt);
+\draw[OIorange,line width=.9pt] (0,0.309)--(1.1,2.561);\fill[OIorange] (0,0.309) circle (1.4pt);\fill[OIorange] (1.1,2.561) circle (1.4pt);
+\draw[OIorange,line width=.9pt] (0,0.206)--(1.1,2.217);\fill[OIorange] (0,0.206) circle (1.4pt);\fill[OIorange] (1.1,2.217) circle (1.4pt);
+\draw[OIblue,line width=.9pt] (0,0.017)--(1.1,0.430);\fill[OIblue] (0,0.017) circle (1.4pt);\fill[OIblue] (1.1,0.430) circle (1.4pt);
+\draw[OIblue,line width=.9pt] (0,0.000)--(1.1,0.705);\fill[OIblue] (0,0.000) circle (1.4pt);\fill[OIblue] (1.1,0.705) circle (1.4pt);
+\draw[black!30,line width=.9pt] (0,0.000)--(1.1,0.034);\fill[black!30] (0,0.000) circle (1.4pt);\fill[black!30] (1.1,0.034) circle (1.4pt);
+\draw[black!30,line width=.9pt] (0,0.000)--(1.1,0.000);\fill[black!30] (0,0.000) circle (1.4pt);\fill[black!30] (1.1,0.000) circle (1.4pt);
+\draw[black!30,line width=.9pt] (0,0.000)--(1.1,0.000);\fill[black!30] (0,0.000) circle (1.4pt);\fill[black!30] (1.1,0.000) circle (1.4pt);
+\draw[black!30,line width=.9pt] (0,0.000)--(1.1,0.000);\fill[black!30] (0,0.000) circle (1.4pt);\fill[black!30] (1.1,0.000) circle (1.4pt);
+\node[anchor=west,font=\sffamily\tiny,text=black!45] at (1.160,0.000) {4 hosted near 0};
+\node[anchor=west,font=\sffamily\tiny,text=OIblue] at (1.160,0.430) {Sonnet 5.5};
+\node[anchor=west,font=\sffamily\tiny,text=OIblue] at (1.160,0.705) {Gemini 3.1 Pro};
+\node[anchor=west,font=\sffamily\tiny,text=OIorange] at (1.160,2.217) {DeepSeek-V4-Pro};
+\node[anchor=west,font=\sffamily\tiny,text=OIorange] at (1.160,2.561) {Qwen3.8-27B};
+\node[anchor=west,font=\sffamily\tiny,text=OIorange] at (1.160,3.300) {Gemma-4-31B};
 \end{scope}
-\begin{scope}[xshift=8.5cm,x=2.9cm,y=0.042cm]
-\draw[black!12] (0,0)--(1,0);\node[anchor=east,font=\scriptsize] at (-0.03,0) {0};
-\draw[black!12] (0,25)--(1,25);\node[anchor=east,font=\scriptsize] at (-0.03,25) {25};
-\draw[black!12] (0,50)--(1,50);\node[anchor=east,font=\scriptsize] at (-0.03,50) {50};
-\draw[black!12] (0,75)--(1,75);\node[anchor=east,font=\scriptsize] at (-0.03,75) {75};
-\draw[black!12] (0,100)--(1,100);\node[anchor=east,font=\scriptsize] at (-0.03,100) {100};
-\node[anchor=north,font=\scriptsize,align=center] at (0,-4) {Study 2\\ prompt};\node[anchor=north,font=\scriptsize,align=center] at (1,-4) {Study 1\\ features};
-\draw[OIorange,line width=.8pt] (0,0.0)--(1,100.0);\fill[OIorange] (0,0.0) circle (1.3pt);\fill[OIorange] (1,100.0) circle (1.3pt);
-\draw[OIorange,line width=.8pt] (0,9.4)--(1,77.6);\fill[OIorange] (0,9.4) circle (1.3pt);\fill[OIorange] (1,77.6) circle (1.3pt);
-\draw[OIorange,line width=.8pt] (0,98.4)--(1,100.0);\fill[OIorange] (0,98.4) circle (1.3pt);\fill[OIorange] (1,100.0) circle (1.3pt);
-\draw[OIorange,line width=.8pt] (0,6.2)--(1,67.2);\fill[OIorange] (0,6.2) circle (1.3pt);\fill[OIorange] (1,67.2) circle (1.3pt);
-\draw[OIblue,line width=.8pt] (0,0.5)--(1,13.0);\fill[OIblue] (0,0.5) circle (1.3pt);\fill[OIblue] (1,13.0) circle (1.3pt);
-\draw[OIblue,line width=.8pt] (0,0.0)--(1,21.4);\fill[OIblue] (0,0.0) circle (1.3pt);\fill[OIblue] (1,21.4) circle (1.3pt);
-\draw[black!35,line width=.8pt] (0,0.0)--(1,1.0);\fill[black!35] (0,0.0) circle (1.3pt);\fill[black!35] (1,1.0) circle (1.3pt);
-\draw[black!35,line width=.8pt] (0,0.0)--(1,0.0);\fill[black!35] (0,0.0) circle (1.3pt);\fill[black!35] (1,0.0) circle (1.3pt);
-\draw[black!35,line width=.8pt] (0,0.0)--(1,0.0);\fill[black!35] (0,0.0) circle (1.3pt);\fill[black!35] (1,0.0) circle (1.3pt);
-\draw[black!35,line width=.8pt] (0,0.0)--(1,0.0);\fill[black!35] (0,0.0) circle (1.3pt);\fill[black!35] (1,0.0) circle (1.3pt);
-\node[anchor=west,font=\scriptsize,text=OIblue] at (1.03,13.0) {Claude Sonnet 5.5};
-\node[anchor=west,font=\scriptsize,text=OIblue] at (1.03,21.4) {Gemini 3.1 Pro};
-\node[anchor=west,font=\scriptsize,text=OIorange] at (1.03,67.2) {DeepSeek-V4-Pro};
-\node[anchor=west,font=\scriptsize,text=OIorange] at (1.03,77.6) {Qwen3.8-27B};
-\node[anchor=west,font=\scriptsize,text=OIorange] at (1.03,100.0) {Gemma-4-31B};
-\node[anchor=west,font=\scriptsize,text=OIorange] at (1.03,106.5) {Phi-4};
-\node[anchor=west,font=\scriptsize,text=black!50,align=left] at (1.03,-1) {4 hosted models\\ stay below 2};
-\node[font=\scriptsize,align=center] at (0.55,-26) {(b) Net use of unheard speech (pp)};
+\begin{scope}[xshift=7.4cm]
+\node[panel] at (-0.45,4.05) {(c) One feature at a time};
+\begin{scope}[yshift=1.825cm]
+\draw[black!9] (0,0.000)--(2.45,0.000);
+\draw[black!9] (0,0.647)--(2.45,0.647);
+\draw[black!9] (0,1.295)--(2.45,1.295);
+\draw[black!45,line width=.4pt] (0,1.295)--(0,0)--(2.45,0);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.647) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.295) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.02,1.275) {Gemma-4-31B, net use (pp)};
+\fill[OIorange!45] (0.096,0) rectangle (0.296,0.008);
+\fill[OIorange] (0.316,0) rectangle (0.516,0.008);
+\fill[OIorange!45] (0.709,0) rectangle (0.909,0.013);
+\fill[OIorange] (0.929,0) rectangle (1.129,0.008);
+\fill[OIorange!45] (1.321,0) rectangle (1.521,0.796);
+\fill[OIorange] (1.541,0) rectangle (1.741,1.241);
+\fill[OIorange!45] (1.934,0) rectangle (2.134,0.182);
+\fill[OIorange] (2.154,0) rectangle (2.354,0.108);
+\end{scope}
+\begin{scope}[yshift=0.000cm]
+\draw[black!9] (0,0.000)--(2.45,0.000);
+\draw[black!9] (0,0.647)--(2.45,0.647);
+\draw[black!9] (0,1.295)--(2.45,1.295);
+\draw[black!45,line width=.4pt] (0,1.295)--(0,0)--(2.45,0);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.647) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.295) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.02,1.275) {Qwen3.8-27B, net use (pp)};
+\fill[OIorange!45] (0.096,0) rectangle (0.296,0.128);
+\fill[OIorange] (0.316,0) rectangle (0.516,0.135);
+\node[anchor=north,font=\sffamily\tiny] at (0.306,-0.02) {Sys.};
+\fill[OIorange!45] (0.709,0) rectangle (0.909,0.877);
+\fill[OIorange] (0.929,0) rectangle (1.129,0.931);
+\node[anchor=north,font=\sffamily\tiny] at (0.919,-0.02) {Sheet};
+\fill[OIorange!45] (1.321,0) rectangle (1.521,0.250);
+\fill[OIorange] (1.541,0) rectangle (1.741,0.162);
+\node[anchor=north,font=\sffamily\tiny] at (1.531,-0.02) {State};
+\fill[OIorange!45] (1.934,0) rectangle (2.134,0.115);
+\fill[OIorange] (2.154,0) rectangle (2.354,0.008);
+\node[anchor=north,font=\sffamily\tiny] at (2.144,-0.02) {Quest.};
+\end{scope}
+\fill[OIorange!45] (0.000,-0.620) rectangle (0.150,-0.500);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.560) {discovery};
+\fill[OIorange] (1.365,-0.620) rectangle (1.515,-0.500);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.535,-0.560) {new scenes};
+\end{scope}
+\begin{scope}[xshift=11.5cm]
+\node[panel] at (-1.3,4.05) {(d) How leaks are phrased};
+\draw[black!9] (0.000,0)--(0.000,3.3);
+\draw[black!9] (1.000,0)--(1.000,3.3);
+\draw[black!9] (2.000,0)--(2.000,3.3);
+\draw[black!45,line width=.4pt] (0,3.3)--(0,0)--(2.0,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.000,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.000,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.0,-0.3) {share of leaks (\%)};
+\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,2.750) {11 open models};
+\fill[OIblue] (0.000,2.530) rectangle (1.093,2.970);
+\fill[OIsky] (1.093,2.530) rectangle (1.667,2.970);
+\fill[OIorange] (1.667,2.530) rectangle (2.000,2.970);
+\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,1.650) {DeepSeek-V4-Pro};
+\fill[OIblue] (0.000,1.430) rectangle (0.384,1.870);
+\fill[OIsky] (0.384,1.430) rectangle (0.740,1.870);
+\fill[OIorange] (0.740,1.430) rectangle (2.000,1.870);
+\node[anchor=east,font=\sffamily\tiny,align=right,text width=1.2cm] at (-0.05,0.550) {Sonnet 5.5};
+\fill[OIblue] (0.000,0.330) rectangle (0.533,0.770);
+\fill[OIsky] (0.533,0.330) rectangle (0.693,0.770);
+\fill[OIorange] (0.693,0.330) rectangle (2.000,0.770);
+\fill[OIblue] (-1.150,-0.960) rectangle (-1.000,-0.840);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-0.980,-0.900) {fact};
+\fill[OIsky] (-0.310,-0.960) rectangle (-0.160,-0.840);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-0.140,-0.900) {attributed};
+\fill[OIorange] (1.160,-0.960) rectangle (1.310,-0.840);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.330,-0.900) {guess};
 \end{scope}
 \end{tikzpicture}
-\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models almost never use the hidden content while using permitted content in about 99\% of replies. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. Orange lines are open models, blue lines hosted models.}
+\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models keep the boundary while using permitted content, and high reasoning effort brings Claude Sonnet 5.5 close to zero. (b) Swapping all four Study 1 features into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate. (d) The strongest leaking models present the content as a guess.}
 \label{fig:frontier}
 \end{figure*}
-\begin{table}[t]
-\centering\footnotesize\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-Model & Base & Sys. & Sheet & State & Quest. & All\\
-\midrule
-Gemma-4-31B & 0 & 0 & 1 & \textbf{61} & \textbf{14} & \textbf{100}\\
-\quad new scenes & 0 & 0 & 0 & \textbf{96} & \textbf{8} & \textbf{100}\\
-Qwen3.8-27B & 9 & 10 & \textbf{68} & \textbf{19} & 9 & \textbf{78}\\
-\quad new scenes & 6 & 10 & \textbf{72} & \textbf{12} & \textbf{0} & \textbf{71}\\
-Falcon-H1-34B & 31 & 26 & \textbf{70} & \textbf{87} & \textbf{100} & \textbf{100}\\
-\quad new scenes & 25 & 21 & \textbf{78} & \textbf{98} & \textbf{98} & \textbf{100}\\
-Seed-OSS-36B & 60 & \textbf{47} & \textbf{85} & \textbf{71} & \textbf{100} & \textbf{95}\\
-\quad new scenes & 57 & 54 & \textbf{74} & \textbf{73} & \textbf{98} & \textbf{90}\\
-\bottomrule
-\end{tabular}
-\caption{Net use of unheard speech (pp) when single Study 1 features are swapped into Study 2's hearing prompts, on the discovery scenes and on the 96 confirmation scenes (new scenes). Bold marks a change from Base whose paired 95\% interval excludes zero. All 11 models are in Appendix Tables~\ref{tab:bridgefull} and~\ref{tab:bridgerep}.}
-\label{tab:bridge}
-\end{table}
 
-Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Appendix Table~\ref{tab:hosted}). GPT-6 Sol, Gemini 3.8 Flash, Grok 4.7 and Claude Opus 5.5 stay at or below 2.1 pp in both conditions and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and none of the remaining leaks is stated as fact. A compliant reply stays in character and declines the content, as in Claude Opus 5.5's ``Couldn't tell you. He said it in Spanish, and I don't speak it. Ask him to say it again in English, or get a translator running.'' Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. Figure~\ref{fig:framing} shows that this hedging separates the two strongest leaking models from the smaller ones, whose leaks are mostly stated as fact or attributed to the speaker.
-
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[x=0.048cm,y=0.31cm,font=\footnotesize]
-\node[anchor=east,font=\scriptsize] at (-1.5,0) {gpt-oss-20b};
-\fill[OIblue] (0.0,-0.35) rectangle (60.9,0.35);
-\fill[OIsky] (60.9,-0.35) rectangle (97.7,0.35);
-\fill[OIorange] (97.7,-0.35) rectangle (100.0,0.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,1) {Falcon-H1-34B};
-\fill[OIblue] (0.0,0.65) rectangle (53.5,1.35);
-\fill[OIsky] (53.5,0.65) rectangle (94.0,1.35);
-\fill[OIorange] (94.0,0.65) rectangle (100.0,1.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,2) {Nemotron-3-Nano};
-\fill[OIblue] (0.0,1.65) rectangle (69.0,2.35);
-\fill[OIsky] (69.0,1.65) rectangle (90.5,2.35);
-\fill[OIorange] (90.5,1.65) rectangle (100.0,2.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,3) {Qwen3.8-27B};
-\fill[OIblue] (0.0,2.65) rectangle (56.4,3.35);
-\fill[OIsky] (56.4,2.65) rectangle (88.1,3.35);
-\fill[OIorange] (88.1,2.65) rectangle (100.0,3.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,4) {Seed-OSS-36B};
-\fill[OIblue] (0.0,3.65) rectangle (77.5,4.35);
-\fill[OIsky] (77.5,3.65) rectangle (86.2,4.35);
-\fill[OIorange] (86.2,3.65) rectangle (100.0,4.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,5) {GLM-4.7-Flash};
-\fill[OIblue] (0.0,4.65) rectangle (61.9,5.35);
-\fill[OIsky] (61.9,4.65) rectangle (84.0,5.35);
-\fill[OIorange] (84.0,4.65) rectangle (100.0,5.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,6) {Qwen3.5-9B};
-\fill[OIblue] (0.0,5.65) rectangle (61.8,6.35);
-\fill[OIsky] (61.8,5.65) rectangle (82.7,6.35);
-\fill[OIorange] (82.7,5.65) rectangle (100.0,6.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,7) {Gemma-4-31B};
-\fill[OIblue] (0.0,6.65) rectangle (75.2,7.35);
-\fill[OIsky] (75.2,6.65) rectangle (80.3,7.35);
-\fill[OIorange] (80.3,6.65) rectangle (100.0,7.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,8) {Phi-4};
-\fill[OIblue] (0.0,7.65) rectangle (47.8,8.35);
-\fill[OIsky] (47.8,7.65) rectangle (76.8,8.35);
-\fill[OIorange] (76.8,7.65) rectangle (100.0,8.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,9) {Mistral-Small-24B};
-\fill[OIblue] (0.0,8.65) rectangle (11.3,9.35);
-\fill[OIsky] (11.3,8.65) rectangle (71.2,9.35);
-\fill[OIorange] (71.2,8.65) rectangle (100.0,9.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,10) {Gemma-4-12B};
-\fill[OIblue] (0.0,9.65) rectangle (40.0,10.35);
-\fill[OIsky] (40.0,9.65) rectangle (63.3,10.35);
-\fill[OIorange] (63.3,9.65) rectangle (100.0,10.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,11) {DeepSeek-V4-Pro};
-\fill[OIblue] (0.0,10.65) rectangle (19.2,11.35);
-\fill[OIsky] (19.2,10.65) rectangle (37.0,11.35);
-\fill[OIorange] (37.0,10.65) rectangle (100.0,11.35);
-\node[anchor=east,font=\scriptsize] at (-1.5,12) {Claude Sonnet 5.5};
-\fill[OIblue] (0.0,11.65) rectangle (26.7,12.35);
-\fill[OIsky] (26.7,11.65) rectangle (34.7,12.35);
-\fill[OIorange] (34.7,11.65) rectangle (100.0,12.35);
-\node[anchor=north,font=\scriptsize] at (0,-0.55) {0};
-\node[anchor=north,font=\scriptsize] at (25,-0.55) {25};
-\node[anchor=north,font=\scriptsize] at (50,-0.55) {50};
-\node[anchor=north,font=\scriptsize] at (75,-0.55) {75};
-\node[anchor=north,font=\scriptsize] at (100,-0.55) {100};
-\fill[OIblue] (-38,13.2) rectangle (-35,13.7);\node[anchor=west,font=\scriptsize] at (-34.5,13.45) {Stated as fact};
-\fill[OIsky] (0,13.2) rectangle (3,13.7);\node[anchor=west,font=\scriptsize] at (3.5,13.45) {Attributed};
-\fill[OIorange] (33,13.2) rectangle (36,13.7);\node[anchor=west,font=\scriptsize] at (36.5,13.45) {Hedged as a guess};
-\node[anchor=north] at (50,-1.5) {Share of leaking replies (\%)};
-\end{tikzpicture}
-\caption{How leaks are phrased, for models with at least 100 leaking replies (repertoire condition, content question). The strongest models that still leak tend to present the content as a guess.}
-\label{fig:framing}
-\end{figure}
+Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Appendix Table~\ref{tab:hosted}). GPT-6 Sol, Gemini 3.8 Flash, Grok 4.7 and Claude Opus 5.5 stay at or below 2.1 pp in both conditions and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and none of the remaining leaks is stated as fact. A compliant reply stays in character and declines the content, as in Claude Opus 5.5's ``Couldn't tell you. He said it in Spanish, and I don't speak it. Ask him to say it again in English, or get a translator running.'' Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. Figure~\ref{fig:frontier}d shows that this hedging separates the two strongest leaking models from the smaller ones, whose leaks are mostly stated as fact or attributed to the speaker.
 
 
-Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes leakage by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still repeats unheard speech in 50\% of replies (Appendix Table~\ref{tab:ablation}). The two formats differ in how the state is organized, so we compare channels within Study~2 and not across the two studies. Study~2 lists events, each with an actor, its content and an access field, whereas Study~1 places speech events with a speaker, an addressee and the text under a scene description and adds the character's languages and a full character sheet. The reverse direction locates the cause. Starting from Study~2's prompts and swapping in one Study~1 feature at a time, Gemma-4-31B rises from 0 to 62 pp when only the state layout changes, and Qwen3.8-27B rises from 9 to 68 pp when only the character sheet changes (Table~\ref{tab:bridge}). Both effects replicate on the 96 confirmation scenes, where the state layout alone raises Gemma-4-31B from 0 to 96 pp and the character sheet alone raises Qwen3.8-27B from 6 to 72 pp. Across the 11 open models the feature with the largest effect differs, and for Falcon-H1-34B and Seed-OSS-36B it is the question. With all four features swapped, Gemma-4-31B, Qwen3.8-27B and DeepSeek-V4-Pro exceed 65 pp, and among hosted models Gemini 3.1 Pro rises from 0 to 21 pp and Claude Sonnet 5.5 from 0.5 to 13 pp (Figure~\ref{fig:frontier}b). Each single feature raises Sonnet's leakage by 8 to 15 pp, whereas neither the state layout nor the character sheet alone moves Gemini 3.1 Pro from zero (Appendix Table~\ref{tab:hostedswaps}). Throughout, these models keep using audible speech in 80--100\% of replies, so the low leakage under Study~2's prompt reflects the boundary and not a general reluctance to report speech.
+
+Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes leakage by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still repeats unheard speech in 50\% of replies (Appendix Table~\ref{tab:ablation}). The two formats differ in how the state is organized, so we compare channels within Study~2 and not across the two studies. Study~2 lists events, each with an actor, its content and an access field, whereas Study~1 places speech events with a speaker, an addressee and the text under a scene description and adds the character's languages and a full character sheet. The reverse direction locates the cause. Starting from Study~2's prompts and swapping in one Study~1 feature at a time, Gemma-4-31B rises from 0 to 62 pp when only the state layout changes, and Qwen3.8-27B rises from 9 to 68 pp when only the character sheet changes (Figure~\ref{fig:frontier}c, Appendix Table~\ref{tab:bridgefull}). Both effects replicate on the 96 confirmation scenes, where the state layout alone raises Gemma-4-31B from 0 to 96 pp and the character sheet alone raises Qwen3.8-27B from 6 to 72 pp. Across the 11 open models the feature with the largest effect differs, and for Falcon-H1-34B and Seed-OSS-36B it is the question. With all four features swapped, Gemma-4-31B, Qwen3.8-27B and DeepSeek-V4-Pro exceed 65 pp, and among hosted models Gemini 3.1 Pro rises from 0 to 21 pp and Claude Sonnet 5.5 from 0.5 to 13 pp (Figure~\ref{fig:frontier}b). Each single feature raises Sonnet's leakage by 8 to 15 pp, whereas neither the state layout nor the character sheet alone moves Gemini 3.1 Pro from zero (Appendix Table~\ref{tab:hostedswaps}). Throughout, these models keep using audible speech in 80--100\% of replies, so the low leakage under Study~2's prompt reflects the boundary and not a general reluctance to report speech.
 
 
 \section{Filtering the Character's View}
 \label{sec:remedy}
 If models leak because they speak from the whole scene, giving them only the character's view should help. We tested a prompted filter and a deterministic one.
 
-The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Table~\ref{tab:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.'' A list from GLM-4.7-Flash for the same character contains an entry headed Understanding that translates the Japanese, ``The roadies are discussing a singer having forgotten their bag again and that it is at the church.'' Mistral-Small-24B is the one model whose answers leak (45 pp) although its lists are mostly clean. Two in-world examples of a character who does not understand a language work for Gemma-4-31B but make Gemma-4-12B ignore speech it may understand, and its use of translated speech falls from 80\% to 22\%.
+The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Table~\ref{tab:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.'' A list from GLM-4.7-Flash for the same character contains an entry headed Understanding that translates the Japanese, ``The roadies are discussing a singer having forgotten their bag again and that it is at the church.'' Mistral-Small-24B is the one model whose answers leak (45 pp) although its lists are mostly clean. Two in-world examples of a character who does not understand a language work for Gemma-4-31B but make Gemma-4-12B ignore speech it may understand, and its use of translated speech falls from 80\% to 22\%.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\begin{tikzpicture}[x=0.058cm,y=0.028cm,font=\footnotesize]
-\draw[black!12] (0,0)--(0,100);\draw[black!12] (0,0)--(100,0);\node[anchor=north,font=\scriptsize] at (0,-2) {0};\node[anchor=east,font=\scriptsize] at (-2,0) {0};
-\draw[black!12] (25,0)--(25,100);\draw[black!12] (0,25)--(100,25);\node[anchor=north,font=\scriptsize] at (25,-2) {25};\node[anchor=east,font=\scriptsize] at (-2,25) {25};
-\draw[black!12] (50,0)--(50,100);\draw[black!12] (0,50)--(100,50);\node[anchor=north,font=\scriptsize] at (50,-2) {50};\node[anchor=east,font=\scriptsize] at (-2,50) {50};
-\draw[black!12] (75,0)--(75,100);\draw[black!12] (0,75)--(100,75);\node[anchor=north,font=\scriptsize] at (75,-2) {75};\node[anchor=east,font=\scriptsize] at (-2,75) {75};
-\draw[black!12] (100,0)--(100,100);\draw[black!12] (0,100)--(100,100);\node[anchor=north,font=\scriptsize] at (100,-2) {100};\node[anchor=east,font=\scriptsize] at (-2,100) {100};
-\node[OIblue,inner sep=0pt] at (5.8,4.3) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (60.5,31.4) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (0.0,0.0) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.2,0.1) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (0.0,0.1) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.0,0.0) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (90.6,58.5) {\pgfuseplotmark{*}};
-\node[anchor=south east,font=\tiny,text=black!70] at (90.6,60.0) {GLM-4.7-Flash};
-\node[OIorange,inner sep=0pt] at (90.2,71.4) {\pgfuseplotmark{triangle*}};
-\node[anchor=south east,font=\tiny,text=black!70] at (90.2,72.9) {GLM-4.7-Flash};
-\node[OIblue,inner sep=0pt] at (2.4,6.1) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (26.5,22.3) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (15.3,45.2) {\pgfuseplotmark{*}};
-\node[anchor=west,font=\tiny,text=black!70] at (17.3,45.2) {Mistral-Small-24B};
-\node[OIorange,inner sep=0pt] at (64.1,53.0) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (31.1,35.2) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (39.1,34.7) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (8.6,10.0) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (49.5,42.0) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (53.4,50.9) {\pgfuseplotmark{*}};
-\node[anchor=south east,font=\tiny,text=black!70] at (53.4,52.4) {Qwen3.5-9B};
-\node[OIorange,inner sep=0pt] at (93.2,83.2) {\pgfuseplotmark{triangle*}};
-\node[anchor=south east,font=\tiny,text=black!70] at (93.2,84.7) {Qwen3.5-9B};
-\node[OIblue,inner sep=0pt] at (0.7,0.1) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (13.2,0.5) {\pgfuseplotmark{triangle*}};
-\node[OIblue,inner sep=0pt] at (0.0,0.1) {\pgfuseplotmark{*}};
-\node[OIorange,inner sep=0pt] at (0.0,0.3) {\pgfuseplotmark{triangle*}};
-\node[anchor=north] at (50,-11) {Hidden values named in the first-step list (\%)};
-\node[rotate=90,anchor=south] at (-15,50) {Net use after list-first prompt (pp)};
-\node[OIblue,inner sep=0pt] at (6,93) {\pgfuseplotmark{*}};\node[anchor=west,font=\scriptsize] at (8,93) {Cannot understand};
-\node[OIorange,inner sep=0pt] at (6,83) {\pgfuseplotmark{triangle*}};\node[anchor=west,font=\scriptsize] at (8,83) {Cannot hear};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[panel] at (-0.75,3.55) {(a) List-first prompt, Study 1};
+\draw[black!9] (0,0.000)--(3.4,0.000);
+\draw[black!9] (0,0.750)--(3.4,0.750);
+\draw[black!9] (0,1.500)--(3.4,1.500);
+\draw[black!9] (0,2.250)--(3.4,2.250);
+\draw[black!9] (0,3.000)--(3.4,3.000);
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (0.850,0)--(0.850,3.0);
+\draw[black!9] (1.700,0)--(1.700,3.0);
+\draw[black!9] (2.550,0)--(2.550,3.0);
+\draw[black!9] (3.400,0)--(3.400,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(3.4,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.850,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.700,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.550,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.400,0) {100};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.750) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.250) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.000) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.7,-0.3) {hidden values in the first-step list (\%)};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.5) {net use after the prompt (pp)};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.197,0.129) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (2.057,0.943) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.000,0.000) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (0.006,0.003) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.000,0.003) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (0.000,0.000) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (3.080,1.754) {\pgfuseplotmark{*}};
+\node[anchor=east,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (3.000,1.754) {GLM-4.7-Flash};
+\node[OIorange,inner sep=0pt,opacity=.9] at (3.066,2.141) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.081,0.184) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (0.900,0.669) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.520,1.357) {\pgfuseplotmark{*}};
+\node[anchor=south west,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (0.490,1.417) {Mistral-24B};
+\node[OIorange,inner sep=0pt,opacity=.9] at (2.181,1.589) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (1.056,1.055) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (1.328,1.042) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.291,0.300) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (1.682,1.260) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (1.816,1.527) {\pgfuseplotmark{*}};
+\node[anchor=north west,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (1.846,1.477) {Qwen3.5-9B};
+\node[OIorange,inner sep=0pt,opacity=.9] at (3.170,2.495) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.024,0.003) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (0.449,0.016) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt,opacity=.9] at (0.000,0.002) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.9] at (0.000,0.010) {\pgfuseplotmark{triangle*}};
+\node[OIblue,inner sep=0pt] at (0.125,2.850) {\pgfuseplotmark{*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.220,2.850) {cannot understand};
+\node[OIorange,inner sep=0pt] at (2.330,2.850) {\pgfuseplotmark{triangle*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.425,2.850) {cannot hear};
+\begin{scope}[xshift=5.05cm]
+\node[panel] at (-0.75,3.55) {(b) Leakage against permitted use, Study 2};
+\draw[black!9] (0,0.000)--(4.3,0.000);
+\draw[black!9] (0,1.000)--(4.3,1.000);
+\draw[black!9] (0,2.000)--(4.3,2.000);
+\draw[black!9] (0,3.000)--(4.3,3.000);
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (0.860,0)--(0.860,3.0);
+\draw[black!9] (1.720,0)--(1.720,3.0);
+\draw[black!9] (2.580,0)--(2.580,3.0);
+\draw[black!9] (3.440,0)--(3.440,3.0);
+\draw[black!9] (4.300,0)--(4.300,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(4.3,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.860,0) {60};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.720,0) {70};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.580,0) {80};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.440,0) {90};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (4.300,0) {100};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.000) {20};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.000) {40};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.000) {60};
+\node[anchor=north,font=\sffamily\scriptsize] at (2.15,-0.3) {use of permitted content (\%)};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.5) {net use of hidden content (pp)};
+\fill[OIgreen!8] (3.010,0) rectangle (4.300,0.400);
+\node[anchor=south east,font=\sffamily\tiny,text=OIgreen!70!black] at (4.257,0.400) {target region};
+\draw[black!15,line width=.5pt] (3.412,2.860)--(3.352,0.004);
+\draw[black!15,line width=.5pt] (3.568,1.549)--(3.247,0.000);
+\draw[black!15,line width=.5pt] (2.523,2.283)--(2.620,0.000);
+\draw[black!15,line width=.5pt] (3.800,2.839)--(3.516,0.000);
+\node[OIorange,inner sep=0pt,opacity=.92] at (3.412,2.860) {\pgfuseplotmark{triangle*}};
+\node[OIorange,inner sep=0pt,opacity=.92] at (3.568,1.549) {\pgfuseplotmark{*}};
+\node[OIorange,inner sep=0pt,opacity=.92] at (2.523,2.283) {\pgfuseplotmark{square*}};
+\node[OIorange,inner sep=0pt,opacity=.92] at (3.800,2.839) {\pgfuseplotmark{diamond*}};
+\node[OIpurple,inner sep=0pt,opacity=.92] at (3.733,1.719) {\pgfuseplotmark{triangle*}};
+\node[OIpurple,inner sep=0pt,opacity=.92] at (3.919,1.615) {\pgfuseplotmark{*}};
+\node[OIpurple,inner sep=0pt,opacity=.92] at (4.009,1.359) {\pgfuseplotmark{square*}};
+\node[OIpurple,inner sep=0pt,opacity=.92] at (4.024,1.562) {\pgfuseplotmark{diamond*}};
+\node[OIsky,inner sep=0pt,opacity=.92] at (3.740,2.387) {\pgfuseplotmark{triangle*}};
+\node[OIsky,inner sep=0pt,opacity=.92] at (1.112,0.100) {\pgfuseplotmark{*}};
+\node[OIsky,inner sep=0pt,opacity=.92] at (2.710,1.111) {\pgfuseplotmark{square*}};
+\node[OIsky,inner sep=0pt,opacity=.92] at (0.261,0.239) {\pgfuseplotmark{diamond*}};
+\node[black!45,inner sep=0pt,opacity=.92] at (3.359,0.004) {\pgfuseplotmark{triangle*}};
+\node[black!45,inner sep=0pt,opacity=.92] at (3.247,0.000) {\pgfuseplotmark{*}};
+\node[black!45,inner sep=0pt,opacity=.92] at (2.628,0.000) {\pgfuseplotmark{square*}};
+\node[black!45,inner sep=0pt,opacity=.92] at (3.516,0.000) {\pgfuseplotmark{diamond*}};
+\node[OIgreen,inner sep=0pt,opacity=.92] at (3.352,0.004) {\pgfuseplotmark{triangle*}};
+\node[OIgreen,inner sep=0pt,opacity=.92] at (3.247,0.000) {\pgfuseplotmark{*}};
+\node[OIgreen,inner sep=0pt,opacity=.92] at (2.620,0.000) {\pgfuseplotmark{square*}};
+\node[OIgreen,inner sep=0pt,opacity=.92] at (3.516,0.000) {\pgfuseplotmark{diamond*}};
+\fill[OIorange] (0.000,-0.910) rectangle (0.150,-0.790);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.850) {full context};
+\fill[OIpurple] (1.680,-0.910) rectangle (1.830,-0.790);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.850,-0.850) {flag + prose};
+\fill[OIsky] (3.360,-0.910) rectangle (3.510,-0.790);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (3.530,-0.850) {self-filter};
+\fill[black!45] (0.000,-1.160) rectangle (0.150,-1.040);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-1.100) {remove event};
+\fill[OIgreen] (1.680,-1.160) rectangle (1.830,-1.040);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.850,-1.100) {character view};
+\node[black!60,inner sep=0pt] at (0.075,-1.350) {\pgfuseplotmark{triangle*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-1.350) {Hear};
+\node[black!60,inner sep=0pt] at (0.855,-1.350) {\pgfuseplotmark{*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.950,-1.350) {Understand};
+\node[black!60,inner sep=0pt] at (2.175,-1.350) {\pgfuseplotmark{square*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.270,-1.350) {See};
+\node[black!60,inner sep=0pt] at (2.865,-1.350) {\pgfuseplotmark{diamond*}};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.960,-1.350) {Receive};
+\end{scope}
+\begin{scope}[xshift=11.95cm]
+\node[panel] at (-0.75,3.55) {(c) Character notices the event};
+\draw[black!9] (0,0.000)--(2.6,0.000);
+\draw[black!9] (0,0.750)--(2.6,0.750);
+\draw[black!9] (0,1.500)--(2.6,1.500);
+\draw[black!9] (0,2.250)--(2.6,2.250);
+\draw[black!9] (0,3.000)--(2.6,3.000);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(2.6,0);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.750) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.250) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.000) {100};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.5) {correct awareness (\%)};
+\fill[OIorange] (0.113,0) rectangle (0.753,2.198);\draw[black!60,line width=.35pt] (0.433,2.129)--(0.433,2.266);\node[anchor=north,font=\sffamily\tiny\bfseries,text=white] at (0.433,2.178) {73};\node[anchor=north,font=\sffamily\tiny,align=center] at (0.433,-0.03) {full\\context};
+\fill[black!45] (0.980,0) rectangle (1.620,0.967);\draw[black!60,line width=.35pt] (1.300,0.898)--(1.300,1.039);\node[anchor=north,font=\sffamily\tiny\bfseries,text=white] at (1.300,0.947) {32};\node[anchor=north,font=\sffamily\tiny,align=center] at (1.300,-0.03) {remove\\event};
+\fill[OIgreen] (1.847,0) rectangle (2.487,3.000);\draw[black!60,line width=.35pt] (2.167,3.000)--(2.167,3.000);\node[anchor=north,font=\sffamily\tiny\bfseries,text=white] at (2.167,2.980) {100};\node[anchor=north,font=\sffamily\tiny,align=center] at (2.167,-0.03) {character\\view};
+\end{scope}
 \end{tikzpicture}
-\caption{The list-first prompt in Study 1. Each point is one model and boundary. Models whose first-step list omits the hidden values also leave them out of the answer.}
+\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b) Five methods in Study 2 (six models, 48 scenes, one point per channel), with lines joining full context to the character view. Self-filtering lowers leakage but also drops permitted content. (c) Whether the character reports that an event happened (four models, 96 scenes). Removing the event stops leakage, but the character can then no longer tell that anything happened.}
 \label{fig:remedy}
-\end{figure}
+\end{figure*}
 
-When the system knows what the character can access, it can build the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this removes 60.7 pp of leakage and changes the use of accessible content by $+0.6$ pp [0.2, 1.0], and with it the leaked facts no longer move search choices (Figure~\ref{fig:s2}b). Removing the event entirely also stops leakage, but the character then cannot report that anything happened (32\% compared with 100\% under the view). The prompted counterpart can fail in the opposite direction. Across the six models in Study~2's method comparison, self-filtering lowers the use of permitted content by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view. Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character speaks Japanese, so its use of permitted content falls from 86\% to 0\%.
+When the system knows what the character can access, it can build the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this removes 60.7 pp of leakage and changes the use of accessible content by $+0.6$ pp [0.2, 1.0], and with it the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops leakage, but the character then cannot report that anything happened (32\% compared with 100\% under the view, Figure~\ref{fig:remedy}c). The prompted counterpart can fail in the opposite direction. Across the six models in Study~2's method comparison, self-filtering lowers the use of permitted content by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character speaks Japanese, so its use of permitted content falls from 86\% to 0\%.
 
 \section{Related Work}
 Role-playing agents are trained and evaluated for consistency with a persona \citep{shao-etal-2023-character,wang-etal-2024-rolellm}, and benchmarks score that consistency through dialogue quality or psychological interviews \citep{tu-etal-2024-charactereval,wang-etal-2024-incharacter}. Work on character hallucination tests whether a role answers beyond its time period or fictional world \citep{ahn-etal-2024-timechara,han2026charm}, perspective-bounded memory restricts a book character to the facts it witnessed \citep{tang2026staying}, and separate role memories keep information from flowing between roles \citep{zhu2026mentor}. PatientSim conditions a simulated patient on language proficiency \citep{kyung2025patientsim}. In our setting the boundary comes from the current scene, and the content is fully present in the input.
@@ -887,6 +1085,23 @@ Present-day world $-$ main set & -16.4 & [-24.9, -7.8] & 0.002\\
 \label{app:s2}
 Ten models ran on H200 GPUs and Seed-OSS-36B on an H100 with the same software and decoding (seed 20261001). The campaign comprises 220,088 generation calls, and 26 truncated discovery replies count as non-use. Restricted to model and language units that pass the translation probe, comprehension leakage in the four-model cohort is 51.0 pp [48.4, 53.7] (Table~\ref{tab:translate}).
 
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+Channel & Inaccessible condition & Compiled observation\\
+\midrule
+\textsc{Hear} & English speech cannot be heard & No observation\\
+\textsc{Understand} & Speech is heard in an unknown language & Actor says something in that language\\
+\textsc{See} & Item and destination are hidden & Actor appears to put something away\\
+\textsc{Receive} & Message content is private to someone else & Actor visibly sends a message\\
+\bottomrule
+\end{tabularx}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:accesscases exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column, and accessible controls keep the full event.}
+\label{tab:accesscases}
+\end{table*}
 \begin{table*}[t]
 \centering\small
 \begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrcr@{}}

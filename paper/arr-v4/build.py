@@ -120,21 +120,20 @@ def study1():
             r"Each row is one model, averaged over its capable language units; bars are 95\% skeleton-bootstrap intervals.}",
             r"\label{fig:s1}", r"\end{figure*}"]
     ins["S1_FIGURE"] = "\n".join(fig)
-    desc = {"H1": "Not understood, repertoire only", "H1i": "Not audible, flag only", "H2a": "Repertoire minus repertoire and sentence",
-            "H2b": "Audibility flag minus flag and narration", "H3": "Repertoire minus comprehension flag",
-            "H4": "Audibility flag minus comprehension flag", "H5a": "Repertoire, state probe answered correctly"}
-    rows = [r"Statistic & Estimate & 95\% CI & Holm $p$\\", r"\midrule"]
+    desc = {"H1": "Leakage, cannot understand", "H1i": "Leakage, cannot hear", "H2a": "Sentence lowers it (understand)",
+            "H2b": "Narration lowers it (hear)", "H3": "Flag lowers it vs.\ repertoire",
+            "H4": "Hear minus understand (flags)", "H5a": "Leakage, state read correctly"}
+    rows = [r"Test & Estimate [95\% CI] & Holm $p$\\", r"\midrule"]
     for k, label in desc.items():
         r = conf[k]
-        rows.append(f"{label} & {pc(r['point'])} & {ci(r)} & {r['p_holm']:.3f}" + r"\\")
+        rows.append(f"{label} & {pc(r['point'])} {ci(r)} & {r['p_holm']:.3f}" + r"\\")
     rows.append(r"\midrule")
-    for key, label in [("reduction", "List-first prompt, mean relative reduction (\\%)"), ("retention", "List-first prompt, change in translator-enabled use")]:
+    for key, label in [("reduction", "List-first, reduction (\\%)"), ("retention", "List-first, translated speech")]:
         r = conf["H5b"][key]
-        rows.append(f"{label} & {pc(r['point'])} & {ci(r)} & " + (f"{conf['H5b']['p_holm']:.3f}" if key == "reduction" else "joint") + r"\\")
-    ins["S1_TABLE"] = table(rows, "lrrr", "The eight tests of Study 1 (11 models and 33 model and language units, estimates in pp unless noted). Each test is one-sided "
-                            "against the threshold fixed before scoring, which is 10 pp for the two leakage tests and the state-correct test, zero for the four "
-                            "contrasts, and a reduction of at least 50\\% with a loss of at most 5 pp for the list-first prompt. Holm correction runs over the eight tests, and 0.004 "
-                            "is the smallest value 2,000 bootstrap draws can resolve.", "tab:s1", True)
+        rows.append(f"{label} & {pc(r['point'])} {ci(r)} & " + (f"{conf['H5b']['p_holm']:.3f}" if key == "reduction" else "joint") + r"\\")
+    ins["S1_TABLE"] = table(rows, "lrr", "The eight tests of Study 1, fixed before scoring (11 models, pp unless noted). Thresholds are 10 pp for the three leakage "
+                            "tests, zero for the four contrasts, and a 50\\% reduction with a loss of at most 5 pp for the list-first prompt. Holm correction "
+                            "runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws resolve.", "tab:s1", False, tight=True)
     rows = [r"& \multicolumn{2}{c}{Not understood} & \multicolumn{2}{c}{Not audible} & Transl.\\",
             r"Model & Base & Filter & Base & Filter & (pp)\\", r"\midrule"]
     for r in models:
@@ -292,9 +291,15 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype,booktabs,amsmath,amssymb,tabularx}
-\usepackage{tikz}
-\usetikzlibrary{plotmarks}
+\usepackage{tikz,pgfplots,fontawesome5}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{plotmarks,arrows.meta,calc,positioning,shapes.callouts,backgrounds,fit}
 \pgfsetplotmarksize{1.7pt}
+\tikzset{every picture/.append style={font=\sffamily\scriptsize},
+  card/.style={rounded corners=2pt,draw=black!18,fill=black!2,inner sep=3pt,align=left},
+  chip/.style={rounded corners=1.5pt,inner sep=1.5pt,font=\sffamily\tiny\bfseries,text=white},
+  panel/.style={font=\sffamily\scriptsize\bfseries,anchor=north west,inner sep=0pt}}
+\newcommand{\leak}[1]{\textcolor{OIorange}{\textbf{#1}}}
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
