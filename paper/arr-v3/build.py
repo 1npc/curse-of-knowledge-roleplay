@@ -206,6 +206,13 @@ def added():
     ins["ABLATION_TABLE"] = table(rows, "lrrrrr", "Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one "
                                   "Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.",
                                   "tab:ablation", True)
+    ha = json.loads((ROOT / "analysis/results/added-1006/human-audit.json").read_text())
+    rows = [r"Condition & $n$ & Human $D$ & Scorer $D$ & Precision & Recall\\", r"\midrule"]
+    for st, v in ha["strata"].items():
+        rows.append(esc(st) + f" & {v['n']} & " + " & ".join(pc(v[k]) for k in ("D_human", "D_scorer", "target_precision", "target_recall")) + r"\\")
+    ins["HUMAN_TABLE"] = table(rows, "lrrrrr", "Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition; precision and "
+                               "recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer "
+                               "found a foil use.", "tab:human", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]
