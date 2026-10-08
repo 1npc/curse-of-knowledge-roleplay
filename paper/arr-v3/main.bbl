@@ -1,0 +1,157 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ahn et~al.(2024)Ahn, Lee, Lim, Kim, Yun, Lee, and
+  Kim}]{ahn-etal-2024-timechara}
+Jaewoo Ahn, Taehyun Lee, Junyoung Lim, Jin-Hwa Kim, Sangdoo Yun, Hwaran Lee,
+  and Gunhee Kim. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.findings-acl.197}
+  {{T}ime{C}hara: Evaluating point-in-time character hallucination of
+  role-playing large language models}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}, pages 3291--3325, Bangkok, Thailand. Association for Computational
+  Linguistics.
+
+\bibitem[{Birch and Bloom(2007)}]{birch2007curse}
+Susan A.~J. Birch and Paul Bloom. 2007.
+\newblock The curse of knowledge in reasoning about false beliefs.
+\newblock \emph{Psychological Science}, 18(5):382--386.
+
+\bibitem[{Gu et~al.(2026)Gu, Tafjord, Kim, Moore, Le~Bras, Clark, and
+  Choi}]{gu2026simpletom}
+Yuling Gu, Oyvind Tafjord, Hyunwoo Kim, Jared Moore, Ronan Le~Bras, Peter
+  Clark, and Yejin Choi. 2026.
+\newblock \href
+  {https://proceedings.iclr.cc/paper_files/paper/2026/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html}
+  {{SimpleToM}: Exposing the gap between explicit {ToM} inference and implicit
+  {ToM} application in {LLMs}}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Han et~al.(2026)Han, Park, Seo, Yoon, and Bak}]{han2026charm}
+Sunkyung Han, Nahyeon Park, Gaeun Seo, Seunghyun Yoon, and JinYeong Bak. 2026.
+\newblock \href {https://arxiv.org/abs/2609.01352} {{CHARM: Character
+  Hallucination for Multicultural Role Play Benchmark}}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2026}.
+\newblock To appear; arXiv:2609.01352.
+
+\bibitem[{Jung et~al.(2024)Jung, Kim, Jin, Kim, Seonwoo, Choi, Oh, and
+  Kim}]{jung-etal-2024-perceptions}
+Chani Jung, Dongkwan Kim, Jiho Jin, Jiseon Kim, Yeon Seonwoo, Yejin Choi, Alice
+  Oh, and Hyunwoo Kim. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.emnlp-main.1105} {Perceptions
+  to beliefs: Exploring precursory inferences for theory of mind in large
+  language models}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}, pages 19794--19809, Miami, Florida, USA.
+  Association for Computational Linguistics.
+
+\bibitem[{Kim et~al.(2023)Kim, Sclar, Zhou, Le~Bras, Kim, Choi, and
+  Sap}]{kim-etal-2023-fantom}
+Hyunwoo Kim, Melanie Sclar, Xuhui Zhou, Ronan Le~Bras, Gunhee Kim, Yejin Choi,
+  and Maarten Sap. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.890} {{FANT}o{M}:
+  A benchmark for stress-testing machine theory of mind in interactions}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 14397--14413, Singapore. Association for
+  Computational Linguistics.
+
+\bibitem[{Kyung et~al.(2025)Kyung, Chung, Bae, Kim, Sohn, Kim, Kim, and
+  Choi}]{kyung2025patientsim}
+Daeun Kyung, Hyunseung Chung, Seongsu Bae, Jiho Kim, Jae~Ho Sohn, Taerim Kim,
+  Soo~Kyung Kim, and Edward Choi. 2025.
+\newblock \href {https://arxiv.org/abs/2505.17818} {{PatientSim}: A
+  persona-driven simulator for realistic doctor-patient interactions}.
+\newblock In \emph{Advances in Neural Information Processing Systems, Datasets
+  and Benchmarks Track}.
+
+\bibitem[{Mireshghallah et~al.(2024)Mireshghallah, Kim, Zhou, Tsvetkov, Sap,
+  Shokri, and Choi}]{mireshghallah2024confaide}
+Niloofar Mireshghallah, Hyunwoo Kim, Xuhui Zhou, Yulia Tsvetkov, Maarten Sap,
+  Reza Shokri, and Yejin Choi. 2024.
+\newblock \href {https://arxiv.org/abs/2310.17884} {Can {LLMs} keep a secret?
+  testing privacy implications of language models via contextual integrity
+  theory}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Park et~al.(2023)Park, O'Brien, Cai, Morris, Liang, and
+  Bernstein}]{park2023generative}
+Joon~Sung Park, Joseph~C. O'Brien, Carrie~J. Cai, Meredith~Ringel Morris, Percy
+  Liang, and Michael~S. Bernstein. 2023.
+\newblock \href {https://arxiv.org/abs/2304.03442} {Generative agents:
+  Interactive simulacra of human behavior}.
+\newblock In \emph{Proceedings of the 36th Annual ACM Symposium on User
+  Interface Software and Technology (UIST)}.
+
+\bibitem[{Sclar et~al.(2024)Sclar, Choi, Tsvetkov, and
+  Suhr}]{sclar2024quantifying}
+Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr. 2024.
+\newblock \href {https://arxiv.org/abs/2310.11324} {Quantifying language
+  models' sensitivity to spurious features in prompt design or: How {I} learned
+  to start worrying about prompt formatting}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Shao et~al.(2024)Shao, Li, Shi, Liu, and Yang}]{shao2024privacylens}
+Yijia Shao, Tianshi Li, Weiyan Shi, Yanchen Liu, and Diyi Yang. 2024.
+\newblock \href {https://arxiv.org/abs/2409.00138} {{PrivacyLens: Evaluating
+  Privacy Norm Awareness of Language Models in Action}}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Shao et~al.(2023)Shao, Li, Dai, and Qiu}]{shao-etal-2023-character}
+Yunfan Shao, Linyang Li, Junqi Dai, and Xipeng Qiu. 2023.
+\newblock \href {https://aclanthology.org/2023.emnlp-main.814/}
+  {Character-{LLM}: A trainable agent for role-playing}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 13153--13187, Singapore. Association for
+  Computational Linguistics.
+
+\bibitem[{Tang et~al.(2026)Tang, Zhang, Yang, Tang, Li, Lai, and
+  Yang}]{tang2026staying}
+Xushuo Tang, Junhe Zhang, Zihan Yang, Yifu Tang, Sichao Li, Longbin Lai, and
+  Zhengyi Yang. 2026.
+\newblock \href {https://arxiv.org/abs/2606.25632} {{Staying In Character:
+  Perspective-Bounded Memory For Book-Based Role-Playing Agents}}.
+\newblock ArXiv:2606.25632.
+
+\bibitem[{Wang et~al.(2024)Wang, Peng, Que, Liu, Zhou, Wu, Guo, Gan, Ni, Yang,
+  Zhang, Zhang, Ouyang, Xu, Huang, Fu, and Peng}]{wang-etal-2024-rolellm}
+Noah Wang, Z.Y. Peng, Haoran Que, Jiaheng Liu, Wangchunshu Zhou, Yuhan Wu,
+  Hongcheng Guo, Ruitong Gan, Zehao Ni, Jian Yang, Man Zhang, Zhaoxiang Zhang,
+  Wanli Ouyang, Ke~Xu, Wenhao Huang, Jie Fu, and Junran Peng. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.findings-acl.878}
+  {{R}ole{LLM}: Benchmarking, eliciting, and enhancing role-playing abilities
+  of large language models}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}, pages 14743--14777, Bangkok, Thailand. Association for
+  Computational Linguistics.
+
+\bibitem[{Wilf et~al.(2024)Wilf, Lee, Liang, and
+  Morency}]{wilf-etal-2024-think}
+Alex Wilf, Sihyun Lee, Paul~Pu Liang, and Louis-Philippe Morency. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.acl-long.451} {Think twice:
+  Perspective-taking improves large language models' theory-of-mind
+  capabilities}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 8292--8308,
+  Bangkok, Thailand. Association for Computational Linguistics.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Zhu, Mathur, Zhang, Yu, Qi, Morency, Bisk,
+  Fried, Neubig, and Sap}]{zhou2024sotopia}
+Xuhui Zhou, Hao Zhu, Leena Mathur, Ruohong Zhang, Haofei Yu, Zhengyang Qi,
+  Louis-Philippe Morency, Yonatan Bisk, Daniel Fried, Graham Neubig, and
+  Maarten Sap. 2024.
+\newblock \href {https://arxiv.org/abs/2310.11667} {{SOTOPIA}: Interactive
+  evaluation for social intelligence in language agents}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Zhu et~al.(2026)Zhu, Gao, and Shi}]{zhu2026mentor}
+Zhuoning Zhu, Xingyu Gao, and Hailong Shi. 2026.
+\newblock \href {https://doi.org/10.18653/v1/2026.findings-acl.1046} {{MENTOR}:
+  Mitigating identity drift in dynamic role-playing via dual-chain structured
+  memory}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2026}, pages 20865--20882, San Diego, California, United States.
+  Association for Computational Linguistics.
+
+\end{thebibliography}
