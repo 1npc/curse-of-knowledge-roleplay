@@ -251,14 +251,14 @@ def added():
     ho = json.loads((ROOT / "analysis/results/added-1006/hosted.json").read_text())
     rows = [r"Model & Repertoire & Audibility & Compr. & Prose & Control & State & Transl. & Bridge\\",
             r"& flag & flag & flag & sentence & use & probe & probe & base $\to$ all\\", r"\midrule"]
-    f = lambda x: "--" if x is None else pc(x)
+    f = lambda x: "n.r." if x is None else pc(x)
     for m in ["gpt6sol", "opus55", "sonnet55", "gemini31pro", "gemini38flash", "grok47", "deepseekv4pro"]:
         s1, br = ho[m]["study1"], ho[m]["bridge"]
         rows.append(NAMES2[m] + " & " + " & ".join(f(s1[k]) for k in ("repertoire", "inaudible_flag", "understood_flag", "prose", "fluent_control_use",
                     "state_probe_correct", "translation_both_canaries")) + f" & {f(br['base']['unheard_net'])} $\\to$ {f(br['all']['unheard_net'])}" + r"\\")
     ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
                                 "of the bridge. Leakage is net use in pp, control use and probes are percentages. Claude Opus 5.5 and Gemini 3.1 Pro were not run on the "
-                                "comprehension-flag and prose conditions.", "tab:hosted", True)
+                                "comprehension-flag and prose conditions (n.r., not run).", "tab:hosted", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]
@@ -392,9 +392,8 @@ def style_tables(body, widths=None):
             t = t.replace("\\centering", "\\centering\\setlength{\\tabcolsep}{4.5pt}", 1)
         if widths and lab and t.startswith("\\begin{table}") and widths.get(lab.group(1), 0) > 217:
             t = t.replace("\\begin{table}", "\\begin{table*}", 1).replace("\\end{table}", "\\end{table*}")
-        elif widths and lab and t.startswith("\\begin{table*}") and widths.get(lab.group(1), 1e9) <= 217:
-            t = t.replace("\\begin{table*}", "\\begin{table}", 1).replace("\\end{table*}", "\\end{table}")
-            t = t.replace("\\centering", "\\centering\\setlength{\\tabcolsep}{3.5pt}", 1)
+        elif lab and t.startswith("\\begin{table}"):  # one-column floats would get float pages of their own
+            t = t.replace("\\begin{table}", "\\begin{table*}", 1).replace("\\end{table}", "\\end{table*}")
         t = re.sub(r"\\centering\\(small|footnotesize)", r"\\centering\\sffamily\\footnotesize\\renewcommand{\\arraystretch}{1.12}", t, count=1)
         if "\\toprule" in t and "\\midrule" in t:
             a = t.index("\\toprule") + len("\\toprule")

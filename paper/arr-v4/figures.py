@@ -153,7 +153,7 @@ def study1():
         if r["D"] == "D0" and r["cell"] in ("C-T-", "Einaud_S"):
             probe[(r["model"], r["cell"])].append(float(r["mean"]))
     w, h = 3.0, top - 0.1
-    L.append(r"\begin{scope}[xshift=5.25cm]")
+    L.append(r"\begin{scope}[xshift=5.0cm]")
     L.append(f"\\node[panel] at (-0.75,{top + 1.05:.2f}) {{(b) Reads the state, still leaks}};")
     fl, X, Y = frame(w, h, (0, 100), (0, 100), [0, 25, 50, 75, 100], [0, 25, 50, 75, 100], "State probe answered correctly (\\%)", "Net use (pp)", grid="xy")
     L += fl
@@ -291,67 +291,66 @@ def frontier():
     rs = load(RA / "hosted_reasoning.json")
     H = 3.3
     L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
-    # (a) dumbbell of core cells
+    # (a) bars for the core cells, control use as a gray column
     rows = []
     for m in ["gpt6sol", "gemini38flash", "grok47", "opus55", "gemini31pro", "sonnet55"]:
         s1 = ho[m]["study1"]
-        rows.append(("Hosted", NAMES[m], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
-    rows.append(("Hosted", "Sonnet 5.5, high reas.", rs["sonnet55-high"]["net"], None, None))
+        rows.append((NAMES[m], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
+    rows.append(("Sonnet, high reasoning", rs["sonnet55-high"]["net"], None, None))
     s1 = ho["deepseekv4pro"]["study1"]
-    rows.append(("Open", NAMES["deepseekv4pro"], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
+    rows.append((NAMES["deepseekv4pro"], s1["repertoire"], s1["inaudible_flag"], s1["fluent_control_use"]))
     mean = lambda k: sum(v[k] for v in op.values()) / len(op)
-    rows.append(("Open", "11 open, $\\le$40B", mean("repertoire"), mean("inaudible_flag"), mean("fluent_control_use")))
+    rows.append(("11 open models, mean", mean("repertoire"), mean("inaudible_flag"), mean("fluent_control_use")))
     n = len(rows)
-    rh = H / (n + 0.6)
-    w = 2.5
-    L.append(f"\\node[panel] at (-2.1,{H + 0.75:.2f}) {{(a) Study 1 core cells}};")
-    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "net use / control use (\\%)", grid="x")
+    rh = H / n
+    w = 1.6
+    L.append(f"\\node[panel] at (-2.5,{H + 0.75:.2f}) {{(a) Study 1 core cells (pp)}};")
+    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 50, 100], [], "", grid="x")
     L += [l for l in fl if "anchor=east" not in l]
-    for i, (g, name, rep, aud, ctl) in enumerate(rows):
-        y = H - (i + 0.8) * rh - (0.18 if g == "Open" else 0)
-        it = "\\itshape" if "reas." in name else ""
-        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny{it}] at (-0.05,{y:.3f}) {{{name}}};")
-        pts = [v for v in (rep, aud) if v is not None]
-        if len(pts) == 2:
-            L.append(f"\\draw[black!25,line width=1.2pt] ({X(100 * min(pts)):.3f},{y:.3f})--({X(100 * max(pts)):.3f},{y:.3f});")
-        if ctl is not None:
-            L.append(f"\\node[OIgray,inner sep=0pt] at ({X(100 * ctl):.3f},{y:.3f}) {{\\pgfuseplotmark{{diamond}}}};")
-        L.append(f"\\node[OIblue,inner sep=0pt] at ({X(max(0, 100 * rep)):.3f},{y:.3f}) {{\\pgfuseplotmark{{*}}}};")
-        if aud is not None:
-            L.append(f"\\node[OIorange,inner sep=0pt] at ({X(max(0, 100 * aud)):.3f},{y:.3f}) {{\\pgfuseplotmark{{triangle*}}}};")
-    ysep = H - (7 + 0.8) * rh + rh / 2 - 0.09
-    L.append(f"\\draw[black!20,dashed] (-2.0,{ysep:.3f})--({w},{ysep:.3f});")
-    L += legend([("*", "OIblue", "repertoire"), ("triangle*", "OIorange", "audibility flag"), ("diamond", "OIgray", "fluent control")], -2.0, -0.85)
-    # (b) bridge slope chart
+    cx = [(w + 0.3, "OIblue", "rep"), (w + 0.75, "OIorange", "aud"), (w + 1.2, "black!50", "ctrl")]
+    for x, col, lab in cx:
+        L.append(f"\\node[font=\\sffamily\\tiny\\bfseries,text={col},anchor=south] at ({x:.3f},{H + 0.02:.3f}) {{{lab}}};")
+    for i, (name, rep, aud, ctl) in enumerate(rows):
+        yc = H - (i + 0.5) * rh
+        it = "\\itshape" if "reasoning" in name else ""
+        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny{it}] at (-0.05,{yc:.3f}) {{{name}}};")
+        for (v, col, dy), (x, tcol, _) in zip(((rep, "OIblue", 0.06), (aud, "OIorange", -0.06), (ctl, None, 0)), cx):
+            if v is None:
+                continue
+            v = max(0.0, 100 * v)
+            if col:
+                L.append(f"\\fill[{col}] (0,{yc + dy - 0.05:.3f}) rectangle ({max(X(v), 0.02):.3f},{yc + dy + 0.05:.3f});")
+            L.append(f"\\node[font=\\sffamily\\tiny,text={tcol}] at ({x:.3f},{yc:.3f}) {{{v:.0f}}};")
+        if i == 6:
+            L.append(f"\\draw[black!20] (-2.4,{yc - rh / 2:.3f})--({w + 1.4:.3f},{yc - rh / 2:.3f});")
+    L += legend([("box", "OIblue", "repertoire"), ("box", "OIorange", "audibility flag")], -1.6, -0.45)
+    # (b) Study 2 prompt against all four features, as paired bars
     br = load(RA / "bridge.json")
     pts = {m: (100 * br[m]["base:inaccessible"]["estimate"], 100 * br[m]["all:inaccessible"]["estimate"]) for m in ("gemma4_31b", "qwen38_27b")}
-    for m in ("deepseekv4pro", "sonnet55", "gemini31pro", "opus55", "grok47", "gemini38flash", "gpt6sol"):
+    for m in ("deepseekv4pro", "gemini31pro", "sonnet55", "opus55", "grok47", "gemini38flash", "gpt6sol"):
         b = ho[m]["bridge"]
         pts[m] = (100 * b["base"]["unheard_net"], 100 * b["all"]["unheard_net"])
-    flat = [m for m, (a, b) in pts.items() if a < 3 and b < 3]
-    L.append(r"\begin{scope}[xshift=3.75cm]")
-    L.append(f"\\node[panel] at (-0.45,{H + 0.75:.2f}) {{(b) All four Study 1 features}};")
-    w = 1.1
-    fl, X, Y = frame(w, H, (0, 1), (0, 100), [], [0, 25, 50, 75, 100], "", "net use of unheard speech (pp)")
-    L += fl
-    L.append(f"\\node[anchor=north,font=\\sffamily\\tiny,align=center] at (0,-0.02) {{Study 2\\\\prompt}};\\node[anchor=north,font=\\sffamily\\tiny,align=center] at ({w},-0.02) {{+ all\\\\four}};")
-    ends = []
-    for m, (a, b) in pts.items():
-        col = "black!30" if m in flat else ("OIorange" if m in ("gemma4_31b", "qwen38_27b", "deepseekv4pro") else "OIblue")
-        L.append(f"\\draw[{col},line width=.9pt] (0,{Y(a):.3f})--({w},{Y(b):.3f});\\fill[{col}] (0,{Y(a):.3f}) circle (1.4pt);\\fill[{col}] ({w},{Y(b):.3f}) circle (1.4pt);")
-        if m not in flat:
-            ends.append([Y(b), NAMES[m].replace("Claude ", ""), col])
-    ends.append([Y(0), f"{len(flat)} hosted near 0", "black!45"])
-    ends.sort()
-    for k in range(1, len(ends)):
-        ends[k][0] = max(ends[k][0], ends[k - 1][0] + 0.2)
-    for yv, name, col in ends:
-        L.append(f"\\node[anchor=west,font=\\sffamily\\tiny,text={col}] at ({w + 0.06:.3f},{yv:.3f}) {{{name}}};")
+    show = ["gemma4_31b", "qwen38_27b", "deepseekv4pro", "gemini31pro", "sonnet55"]
+    rest = [m for m in pts if m not in show]
+    items = [(NAMES[m].replace("Claude ", ""), *pts[m]) for m in show] + [(f"other {len(rest)} hosted", max(pts[m][0] for m in rest), max(pts[m][1] for m in rest))]
+    L.append(r"\begin{scope}[xshift=5.0cm]")
+    L.append(f"\\node[panel] at (-1.55,{H + 0.75:.2f}) {{(b) All four Study 1 features}};")
+    w = 1.65
+    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 50, 100], [], "", grid="x")
+    L += [l for l in fl if "anchor=east" not in l]
+    rh = H / len(items)
+    for i, (name, a, b) in enumerate(items):
+        yc = H - (i + 0.5) * rh
+        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{yc:.3f}) {{{name}}};")
+        for v, col, dy in ((a, "black!30", 0.075), (b, "OIorange", -0.075)):
+            L.append(f"\\fill[{col}] (0,{yc + dy - 0.06:.3f}) rectangle ({max(X(v), 0.025):.3f},{yc + dy + 0.06:.3f});"
+                     f"\\node[anchor=west,font=\\sffamily\\tiny,text=black!70,inner sep=1pt] at ({max(X(v), 0.025):.3f},{yc + dy:.3f}) {{{v:.0f}}};")
+    L += legend([("box", "black!30", "Study 2 prompt"), ("box", "OIorange", "all four")], -1.5, -0.45)
     L.append(r"\end{scope}")
     # (c) single swaps, discovery and new scenes
     rep = load(RA / "bridge-replication.json")
     swaps = [("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest.")]
-    L.append(r"\begin{scope}[xshift=7.4cm]")
+    L.append(r"\begin{scope}[xshift=7.5cm]")
     L.append(f"\\node[panel] at (-0.45,{H + 0.75:.2f}) {{(c) One feature at a time}};")
     hh = (H - 0.35) / 2
     for k, m in enumerate(("gemma4_31b", "qwen38_27b")):
@@ -376,9 +375,9 @@ def frontier():
     pooled = {k: sum(fr[m][k] * fr[m]["n"] for m in opn) / tot for k in ("unframed", "attributed", "tentative")}
     bars = [("11 open models", pooled), (NAMES["deepseekv4pro"], fr["deepseekv4pro"]), ("Sonnet 5.5", fr["sonnet55"])]
     cols = [("unframed", "OIblue", "fact"), ("attributed", "OIsky", "attributed"), ("tentative", "OIorange", "guess")]
-    L.append(r"\begin{scope}[xshift=11.5cm]")
-    L.append(f"\\node[panel] at (-1.3,{H + 0.75:.2f}) {{(d) How leaks are phrased}};")
-    w = 2.0
+    L.append(r"\begin{scope}[xshift=11.3cm]")
+    L.append(f"\\node[panel] at (-1.1,{H + 0.75:.2f}) {{(d) Phrasing of leaks}};")
+    w = 1.75
     fl, X, Y = frame(w, H, (0, 100), (0, 3), [0, 50, 100], [], "share of leaks (\\%)", grid="x")
     L += [l for l in fl if "anchor=east" not in l]
     for i, (name, f) in enumerate(bars):
@@ -388,16 +387,16 @@ def frontier():
         for k, c, _ in cols:
             L.append(f"\\fill[{c}] ({X(x):.3f},{yc - 0.22:.3f}) rectangle ({X(x + 100 * f[k]):.3f},{yc + 0.22:.3f});")
             x += 100 * f[k]
-    L += legend([("box", c, lab) for _, c, lab in cols], -1.15, -0.9)
+    L += legend([("box", c, lab) for _, c, lab in cols], -1.25, -0.9, step=0.085)
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models keep the boundary while using permitted content, and high reasoning effort brings Claude Sonnet 5.5 close to zero. (b) Swapping all four Study 1 features into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate. (d) The strongest leaking models present the content as a guess.}",
+          r"\caption{Frontier models and input format. (a) Net use in the Study 1 core cells with the content question (288 items per cell), and use of permitted content in the fluent control (ctrl, \%). Five of six hosted models keep the boundary while using permitted content, and high reasoning effort brings Claude Sonnet 5.5 close to zero. (b) Swapping all four Study 1 features into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate. (d) The strongest leaking models present the content as a guess.}",
           r"\label{fig:frontier}", r"\end{figure*}"]
     return "\n".join(L)
 
 
 def remedy():
-    """Figure 6: (a) the list-first prompt, (b) leakage against permitted use for five methods, (c) awareness of the event."""
+    """Figure: (a) the list-first prompt, (b, c) leakage and permitted use for five methods in Study 2."""
     models = load(R1 / "model_metrics.json")
     H = 3.0
     L = [r"\begin{figure*}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
@@ -419,47 +418,34 @@ def remedy():
                 dy = {"east": 0, "north west": -0.05, "south west": 0.06}[a]
                 L.append(f"\\node[anchor={a},font=\\sffamily\\tiny,text=black!60,inner sep=1pt] at ({X(x) + dx:.3f},{Y(y) + dy:.3f}) {{{t}}};")
     L += legend([("*", "OIblue", "cannot understand"), ("triangle*", "OIorange", "cannot hear")], 0.05, H - 0.15)
-    # (b) trade-off
+    # (b, c) leakage and permitted use by method, rows aligned
     est = load(ROOT / "analysis/h200-v2-20261002/method-six-descriptive-results.json")["descriptive_estimates"]
     v = {(r["boundary"], r["method"], r["metric"]): 100 * r["estimate"] for r in est}
-    meth = [("full", "OIorange", "full context"), ("prose", "OIpurple", "flag + prose"), ("self_filter", "OIsky", "self-filter"),
-            ("hard", "black!45", "remove event"), ("view", "OIgreen", "character view")]
+    meth = [("full", "OIorange", "full context"), ("prose", "OIpurple", "flag + prose rule"), ("self_filter", "OIsky", "self-filter prompt"),
+            ("hard", "black", "event removed"), ("view", "OIgreen", "character view")]
     marks = {"Hear": "triangle*", "Understand": "*", "See": "square*", "Receive": "diamond*"}
-    L.append(r"\begin{scope}[xshift=5.05cm]")
-    w = 4.3
-    L.append(f"\\node[panel] at (-0.75,{H + 0.55:.2f}) {{(b) Leakage against permitted use, Study 2}};")
-    fl, X, Y = frame(w, H, (50, 100), (0, 60), [50, 60, 70, 80, 90, 100], [0, 20, 40, 60],
-                     "use of permitted content (\\%)", "net use of hidden content (pp)", grid="xy")
-    L += fl
-    L.append(f"\\fill[OIgreen!8] ({X(85):.3f},0) rectangle ({X(100):.3f},{Y(8):.3f});")
-    L.append(f"\\node[anchor=south east,font=\\sffamily\\tiny,text=OIgreen!70!black] at ({X(99.5):.3f},{Y(8):.3f}) {{target region}};")
-    for c, mk in marks.items():
-        f, vw = v[(c, "full", "hit_t")], v[(c, "view", "hit_t")]
-        L.append(f"\\draw[black!15,line width=.5pt] ({X(f):.3f},{Y(v[(c, 'full', 'D')]):.3f})--({X(vw):.3f},{Y(max(0, v[(c, 'view', 'D')])):.3f});")
-    for m, col, _ in meth:
-        for c, mk in marks.items():
-            L.append(f"\\node[{col},inner sep=0pt,opacity=.92] at ({X(v[(c, m, 'hit_t')]):.3f},{Y(max(0, v[(c, m, 'D')])):.3f}) {{\\pgfuseplotmark{{{mk}}}}};")
-    L += legend([("box", col, lab) for _, col, lab in meth[:3]], 0.0, -0.85)
-    L += legend([("box", col, lab) for _, col, lab in meth[3:]], 0.0, -1.1)
-    L += legend([(mk, "black!60", c) for c, mk in marks.items()], 0.0, -1.35, step=0.09)
-    L.append(r"\end{scope}")
-    # (c) awareness
-    pd = [l.split(",") for l in (ROOT / "paper/arr/figures/plot-data.csv").read_text().splitlines()[1:]]
-    aw = {r[3]: tuple(100 * float(x) for x in r[7:10]) for r in pd if r[0] == "confirmatory_partial_awareness" and r[6] == "awareness_correct"}
-    L.append(r"\begin{scope}[xshift=11.95cm]")
-    w = 2.6
-    L.append(f"\\node[panel] at (-0.75,{H + 0.55:.2f}) {{(c) Character notices the event}};")
-    fl, X, Y = frame(w, H, (0, 3), (0, 100), [], [0, 25, 50, 75, 100], "", "correct awareness (\\%)")
-    L += fl
-    for k, (m, col, labt) in enumerate((("full", "OIorange", "full\\\\context"), ("hard", "black!45", "remove\\\\event"), ("view", "OIgreen", "character\\\\view"))):
-        val, lo, hi = aw[m]
-        L.append(f"\\fill[{col}] ({X(k + 0.5) - 0.32:.3f},0) rectangle ({X(k + 0.5) + 0.32:.3f},{Y(val):.3f});"
-                 f"\\draw[black!60,line width=.35pt] ({X(k + 0.5):.3f},{Y(lo):.3f})--({X(k + 0.5):.3f},{Y(hi):.3f});"
-                 f"\\node[anchor=north,font=\\sffamily\\tiny\\bfseries,text=white] at ({X(k + 0.5):.3f},{Y(val) - 0.02:.3f}) {{{val:.0f}}};"
-                 f"\\node[anchor=north,font=\\sffamily\\tiny,align=center] at ({X(k + 0.5):.3f},-0.03) {{{labt}}};")
-    L.append(r"\end{scope}")
+    rh = H / len(meth)
+    for k, (metric, title, x0, xr, ticks) in enumerate((("D", "(b) Leakage of hidden content (pp)", 5.85, (0, 60), [0, 20, 40, 60]),
+                                                        ("hit_t", "(c) Use of permitted content (\\%)", 10.4, (0, 100), [0, 25, 50, 75, 100]))):
+        L.append(f"\\begin{{scope}}[xshift={x0}cm]")
+        L.append(f"\\node[panel] at ({-1.75 if k == 0 else -0.1},{H + 0.55:.2f}) {{{title}}};")
+        fl, X, _ = frame(3.3, H, xr, (0, 1), ticks, [], "", grid="x")
+        L += [l for l in fl if "anchor=east" not in l]
+        for i, (m, col, lab) in enumerate(meth):
+            yc = H - (i + 0.5) * rh
+            if k == 0:
+                L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{yc:.3f}) {{{lab}}};")
+            vals = {c: max(0.0, v[(c, m, metric)]) for c in marks}
+            mu = sum(vals.values()) / 4
+            L.append(f"\\fill[{col}!{22 if col == 'black' else 55}] (0,{yc - 0.14:.3f}) rectangle ({max(X(mu), 0.02):.3f},{yc + 0.14:.3f});")
+            for c, mk in marks.items():
+                L.append(f"\\node[black!65,inner sep=0pt,scale=.8] at ({X(vals[c]):.3f},{yc:.3f}) {{\\pgfuseplotmark{{{mk}}}}};")
+            L.append(f"\\node[anchor=west,font=\\sffamily\\tiny\\bfseries,text=black!70] at ({X(xr[1]) + 0.02:.3f},{yc:.3f}) {{{mu:.0f}}};")
+        L.append(r"\end{scope}")
+    L += legend([(mk, "black!65", c) for c, mk in marks.items()], 6.0, -0.45, step=0.11)
+    L.append(r"\node[anchor=west,font=\sffamily\tiny,text=black!60] at (10.4,-0.45) {bars: mean over channels, number at right};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b) Five methods in Study 2 (six models, 48 scenes, one point per channel), with lines joining full context to the character view. Self-filtering lowers leakage but also drops permitted content. (c) Whether the character reports that an event happened (four models, 96 scenes). Removing the event stops leakage, but the character can then no longer tell that anything happened.}",
+          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers leakage but also drops permitted content, while removing the event and the character view stop leakage and keep it.}",
           r"\label{fig:remedy}", r"\end{figure*}"]
     return "\n".join(L)
 
