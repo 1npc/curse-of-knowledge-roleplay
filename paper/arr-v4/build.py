@@ -258,6 +258,16 @@ def added():
                     "state_probe_correct", "translation_both_canaries")) + f" & {f(br['base']['unheard_net'])} $\\to$ {f(br['all']['unheard_net'])}" + r"\\")
     ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
                                 "of the bridge. Leakage is net use in pp, control use and probes are percentages.", "tab:hosted", True)
+    hc = json.loads((ROOT / "analysis/results/added-1006/hosted_ci.json").read_text())
+    cells = [("repertoire", "Repertoire"), ("inaudible_flag", "Audibility flag"), ("understood_flag", "Compr. flag"), ("prose", "Prose sentence")]
+    rows = [r"Model & " + " & ".join(c for _, c in cells) + r"\\", r"\midrule"]
+    cell = lambda v: f"{pc(v['estimate'])} [{pc(v['ci95'][0])}, {pc(v['ci95'][1])}]"
+    for m in ["gpt6sol", "opus55", "sonnet55", "gemini31pro", "gemini38flash", "grok47", "deepseekv4pro"]:
+        rows.append(NAMES2[m] + " & " + " & ".join(cell(hc[m][k]) for k, _ in cells) + r"\\")
+    rows.append(r"\midrule")
+    rows.append("Claude Opus 5.5, complete replies only & " + " & ".join(cell(hc["opus55"].get(k + "_complete_only", hc["opus55"][k])) for k, _ in cells) + r"\\")
+    ins["HOSTED_CI"] = table(rows, "lrrrr", "Hosted models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\\% intervals from 2,000 skeleton-bootstrap draws "
+                             "(288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.", "tab:hostedci", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]

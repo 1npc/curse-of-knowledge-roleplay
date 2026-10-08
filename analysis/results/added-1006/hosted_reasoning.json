@@ -2,6 +2,8 @@
  "sonnet55-low": {
   "net": 0.2604166666666667,
   "n": 576,
+  "control_use": 0.9895833333333334,
+  "n_control": 288,
   "modes": {
    "unframed": 0.26666666666666666,
    "attributed": 0.08,
@@ -11,6 +13,8 @@
  "sonnet55-high": {
   "net": 0.029513888888888888,
   "n": 576,
+  "control_use": 1,
+  "n_control": 288,
   "modes": {
    "unframed": 0.0,
    "attributed": 0.23529411764705882,

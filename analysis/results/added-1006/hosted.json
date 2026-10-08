@@ -163,11 +163,11 @@
   }
  },
  "gemini38flash": {
-  "replies": 3787,
+  "replies": 3936,
   "status": {
-   "complete": 3787
+   "complete": 3936
   },
-  "cost": 4.023252000000006,
+  "cost": 4.203259500000002,
   "study1": {
    "repertoire": 0.001736111111111111,
    "inaudible_flag": -0.001736111111111111,
@@ -177,8 +177,8 @@
    "n_cells": {
     "repertoire": 576,
     "inaudible_flag": 576,
-    "understood_flag": 501,
-    "prose": 502
+    "understood_flag": 576,
+    "prose": 576
    },
    "repertoire_hit_modes": {
     "unframed": 0,
@@ -187,7 +187,7 @@
    },
    "state_probe_correct": 1,
    "translation_both_canaries": 0.9375,
-   "n_study1": 3019
+   "n_study1": 3168
   },
   "bridge": {
    "base": {

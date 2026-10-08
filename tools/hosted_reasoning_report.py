@@ -16,11 +16,15 @@ from statistics import mean
 
 ROOT = Path(__file__).resolve().parent.parent
 PLAN = ROOT / "items/hosted/reasoning_repertoire.jsonl"
+CTRL = ROOT / "items/hosted/reasoning_control.jsonl"
 
 
 def main():
     out_dir = ROOT / "runs/hosted-1008-reasoning"
-    ids = {json.loads(l)["prompt_id"] for l in PLAN.read_text().splitlines()}
+    plan_lines = PLAN.read_text().splitlines() + CTRL.read_text().splitlines()
+    ids = {json.loads(l)["prompt_id"] for l in plan_lines}
+    (out_dir / "plan.jsonl").parent.mkdir(parents=True, exist_ok=True)
+    (out_dir / "plan.jsonl").write_text("\n".join(plan_lines) + "\n")
     for key, src in (("sonnet55-high", "sonnet55-high"), ("sonnet55-low", "sonnet55")):
         best = {}
         for l in (ROOT / "runs/hosted-1008" / src / "responses.jsonl").read_text().splitlines():
@@ -29,17 +33,20 @@ def main():
                 best[r["prompt_id"]] = dict(r, model=key)
         (out_dir / key).mkdir(parents=True, exist_ok=True)
         (out_dir / key / "responses.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in best.values()))
-    subprocess.run([sys.executable, str(ROOT / "tools/score_run.py"), str(out_dir), str(PLAN), str(ROOT / "items/main/skeletons.json"),
+    subprocess.run([sys.executable, str(ROOT / "tools/score_run.py"), str(out_dir), str(out_dir / "plan.jsonl"), str(ROOT / "items/main/skeletons.json"),
                     str(ROOT / "items/real/skeletons.json"), "--quiet"], check=True, capture_output=True)
     by, res = {}, {}
     for key in ("sonnet55-low", "sonnet55-high"):
         rows = [json.loads(l) for l in (out_dir / key / "scored.jsonl").read_text().splitlines() if l.strip()]
+        ctrl = [r for r in rows if r["cell"] == "C+T-"]
+        rows = [r for r in rows if r["cell"] == "C-T-"]
         d = defaultdict(list)
         for r in rows:
             d[r["item"]].append(r["score"]["hit_t"] - r["score"]["hit_f"])
         by[key] = {i: mean(v) for i, v in d.items()}
         hits = [r for r in rows if r["score"]["hit_t"]]
         res[key] = {"net": mean(by[key].values()), "n": len(rows),
+                    "control_use": mean(r["score"]["hit_t"] for r in ctrl) if ctrl else None, "n_control": len(ctrl),
                     "modes": {k: sum(r["score"]["mode"] == k for r in hits) / len(hits) for k in ("unframed", "attributed", "tentative")} if hits else None}
     items = sorted(set(by["sonnet55-low"]) & set(by["sonnet55-high"]))
     rng = random.Random(20261008)
