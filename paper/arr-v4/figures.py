@@ -535,7 +535,7 @@ def bridge_full():
             L.append(f"\\node[font=\\sffamily\\tiny,text=OIblue] at ({6 * cw + 0.45:.3f},{y + rh / 2:.3f}) {{{(f'{min(aud):.0f}' if round(min(aud)) == round(max(aud)) else f'{min(aud):.0f}--{max(aud):.0f}')}}};")
         L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Bridge experiment for all 11 open models: net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}",
+          r"\caption{Bridge experiment for all 11 open models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}",
           r"\label{fig:bridgefull}", r"\end{figure*}"]
     return "\n".join(L)
 
