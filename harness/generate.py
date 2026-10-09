@@ -114,6 +114,24 @@ def parse_harmony(raw: str) -> tuple[str | None, str]:
     return (m.group(1).strip() if m else None), "\n".join(x.strip() for x in HARMONY_ANALYSIS.findall(raw))
 
 
+THINK_OPEN = ("<think>", "<seed:think>", "<|channel>", "<|think|>")
+THINK_CLOSE = ("</think>", "</seed:think>", "<channel|>")
+SPECIAL = re.compile(r"<\|[^<>|]{1,40}\|>|<end_of_turn>|<eos>|</s>|<seed:eos>|<seed:bos>|<\|im_end\|>")
+
+
+def split_thinking(raw: str) -> tuple[str | None, str]:
+    """Thinking runs: return (final answer or None, reasoning). The answer is the text after the last closing marker;
+    a reply with no opening marker is taken whole. Special tokens left in by skip_special_tokens=False are removed."""
+    cut = max((raw.rfind(m) + len(m), m) for m in THINK_CLOSE) if any(m in raw for m in THINK_CLOSE) else None
+    if cut:
+        reasoning, final = raw[:cut[0] - len(cut[1])], raw[cut[0]:]
+    elif any(m in raw for m in THINK_OPEN):
+        return None, raw
+    else:
+        reasoning, final = "", raw
+    return SPECIAL.sub("", final).strip(), SPECIAL.sub("", reasoning).strip()
+
+
 def gpu_info() -> dict:
     try:
         out = subprocess.run(["nvidia-smi", "--query-gpu=uuid,name,memory.total,driver_version", "--format=csv,noheader"],
@@ -139,7 +157,11 @@ def main():
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--temperature", type=float, default=None)
     ap.add_argument("--top-p", type=float, default=None)
+    # 10/9: thinking enabled (added experiment). The final answer is scored and the reasoning kept separately.
+    ap.add_argument("--thinking", action="store_true")
     a = ap.parse_args()
+    if a.thinking:
+        PROTOCOL.update(max_output_tokens=6144, max_model_len=12288, thinking="enabled via chat template; final answer after the reasoning block")
     if a.seed is not None:
         PROTOCOL["seed"] = a.seed
     if a.temperature is not None:
@@ -187,7 +209,16 @@ def main():
         template_source += f", date fixed to {spec['template_fixed_date']}"
     if not tok.chat_template:
         raise SystemExit("pinned tokenizer has no chat template")
-    kwargs = spec.get("chat_template_kwargs", {})
+    kwargs = dict(spec.get("chat_template_kwargs", {}))
+    if a.thinking:
+        if "enable_thinking" in kwargs:
+            kwargs["enable_thinking"] = True
+        elif "reasoning_effort" in kwargs:
+            kwargs["reasoning_effort"] = "high"
+        elif "thinking_budget" in kwargs:
+            kwargs["thinking_budget"] = 4096
+        else:
+            raise SystemExit(f"{a.model}: no thinking switch in its chat template")
     frozen = {"version": "oc-generation-1", "model": a.model, "repo": spec["repo"],
               "revision": reference["models"][a.model]["revision"], "weights_path": str(path), "location": a.location,
               "chat_template_sha256": text_sha(tok.chat_template), "chat_template_source": template_source, "tokenizer": tspec or "auto",
@@ -226,7 +257,7 @@ def main():
               trust_remote_code=False, max_num_seqs=PROTOCOL["max_num_seqs"])
     harmony = spec.get("output_parser") == "harmony"  # keep channel markers so the final answer can be separated
     sampling = SamplingParams(temperature=PROTOCOL["temperature"], top_p=PROTOCOL["top_p"], seed=PROTOCOL["seed"],
-                              max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=not harmony)
+                              max_tokens=PROTOCOL["max_output_tokens"], skip_special_tokens=not (harmony or a.thinking))
     state.update(load_seconds=round(time.time() - t_load, 1), sampling=repr(sampling))
     (out / f"runtime-{a.run_id}.json").write_text(json.dumps({**state, "status": "generating"}, indent=1))
 
@@ -274,6 +305,12 @@ def main():
                     if harmony:
                         final, analysis = parse_harmony(comp.text)
                         rec.update(raw_text=comp.text, reasoning=analysis)
+                        text = final if final is not None else ""
+                        st = status_of(text, comp.finish_reason) if final is not None else (
+                            "truncated" if comp.finish_reason == "length" else "no_final")
+                    elif a.thinking:
+                        final, reasoning = split_thinking(comp.text)
+                        rec.update(raw_text=comp.text, reasoning=reasoning)
                         text = final if final is not None else ""
                         st = status_of(text, comp.finish_reason) if final is not None else (
                             "truncated" if comp.finish_reason == "length" else "no_final")
