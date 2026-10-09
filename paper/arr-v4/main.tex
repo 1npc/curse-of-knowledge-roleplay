@@ -32,7 +32,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Role-playing language models voice characters in games and agent simulations, where the system records what each character can hear, see and understand. We test whether a character's speech stays within these boundaries. Each scene has a counterfactual twin that changes the hidden fact, which separates use of inaccessible content from guessing within the same replies. Across 11 open-weight models, characters repeat speech they cannot understand or cannot hear, with net use averaging 67 and 72 percentage points (pp), although most of the same models answer correctly when asked what the character can perceive. The failure extends to hidden actions and private messages, and the leaked facts change where characters propose to search. Five of six frontier hosted models rarely leak while still using permitted content, and higher reasoning effort brings the sixth close to zero in the repertoire condition, so the boundary can be kept. This compliance depends on the input format, however. A single change to the scene layout or the character description raises leakage in strong open models from under 10 to over 60 pp on two separate scene sets, and combined changes raise it in Gemini 3.1 Pro from 0 to 21. A filter that first lists what the character perceives removes 65\% of leakage on average, and it fails mainly where that list already contains the hidden content.
+Role-playing language models voice characters in games and agent simulations, where the system records what each character can hear, see and understand. We test whether a character's speech stays within these boundaries. Each scene has a counterfactual twin that changes the hidden fact, which separates use of inaccessible content from guessing within the same replies. Across 11 open-weight models, characters repeat speech they cannot understand or cannot hear, with net use averaging 67 and 72 percentage points (pp), although most of the same models answer correctly when asked what the character can perceive. The failure extends to hidden actions and private messages, and the leaked facts change where characters propose to search. Five of six frontier hosted models rarely leak while still using permitted content, and higher reasoning effort brings the sixth close to zero in the repertoire condition, so the boundary can be kept. This compliance depends on the input format, however. A single change to the scene layout or the character description raises leakage in strong open models from under 10 to over 60 pp on two separate scene sets, and combined changes raise it in Gemini 3.1 Pro from 0 to 21. Asked to narrate the scene, models state the hidden content almost always, and writing the character's line as the scene's author leaks nearly as much as role-play, so characters speak from the author's view. Thinking does not change this for most open models. A filter that first lists what the character perceives removes 65\% of leakage on average, and it fails mainly where that list already contains the hidden content.
 \end{abstract}
 
 \section{Introduction}
@@ -40,39 +40,403 @@ A non-player character who does not speak Spanish overhears two mechanics say, i
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm,
-  bubble/.style={rectangle callout,rounded corners=3pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},
-  reply/.style={rounded corners=3pt,draw=#1,line width=.6pt,fill=white,inner sep=3.5pt,text width=5.15cm,align=left,font=\sffamily\scriptsize},
-  tag/.style={rounded corners=1.5pt,fill=#1,text=white,font=\sffamily\tiny\bfseries,inner sep=2pt,minimum width=1.9cm,align=center}]
-% scene backdrop
-\fill[black!3,rounded corners=4pt] (0,2.05) rectangle (7.6,5.3);
-\node[font=\sffamily\tiny\bfseries,text=black!45,anchor=north west] at (0.12,5.22) {SCENE};
-% mechanics
-\node[text=black!55,font=\Large] (m1) at (0.55,3.0) {\faUserCog};
-\node[text=black!40,font=\Large] (m2) at (1.25,3.0) {\faUserCog};
-\node[font=\sffamily\tiny,text=black!55] at (0.9,2.45) {two mechanics};
-\node[bubble=black!10,callout absolute pointer={(1.0,3.3)}] at (1.65,4.15) {\emph{¿Dónde está el espejo?}\\\emph{En el almacén. No se lo}\\\emph{digas a nadie.}};
-% Panam
-\node[text=OIblue,font=\Large] (pn) at (4.55,3.0) {\faUser};
-\node[font=\sffamily\tiny\bfseries,text=OIblue] at (4.55,2.45) {Panam};
-\node[rounded corners=1.5pt,draw=OIblue,text=OIblue,font=\sffamily\tiny,inner sep=1.5pt,align=center] at (4.3,4.3) {\faLanguage\ speaks\\only English};
-\draw[OIblue!60,line width=.5pt,-{Stealth[length=3pt]}] (4.4,3.98)--(4.52,3.35);
-% companion
-\node[text=black!60,font=\Large] (v) at (6.85,3.0) {\faUser};
-\node[font=\sffamily\tiny,text=black!55] at (6.85,2.45) {companion};
-\node[bubble=OIsky!25,callout absolute pointer={(6.8,3.3)}] at (6.6,4.3) {What were\\those two\\saying?};
-% generator
-\draw[black!35,line width=.6pt,-{Stealth[length=4pt]}] (3.8,2.05)--(3.8,1.62);
-\node[font=\sffamily\scriptsize,text=black!70] at (3.8,1.42) {\faRobot\ \ the model voices Panam and reads the full state};
-% replies
-\node[reply=OIorange,anchor=north west] (r1) at (2.2,1.15) {``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''};
-\node[tag=OIorange,anchor=east] at (2.05,0.83) {\faTimes\ Version A\\mirror, warehouse};
-\node[reply=OIorange,anchor=north west] (r2) at (2.2,0.28) {``Something about a \leak{chair} being in a \leak{church}. Weird as hell, right?''};
-\node[tag=OIorange,anchor=east] at (2.05,-0.0) {\faTimes\ Version B\\chair, church};
-\node[reply=OIgreen,anchor=north west] (r3) at (2.2,-0.6) {``Don't look at me, V. I didn't catch a damn word of it.''};
-\node[tag=OIgreen,anchor=east] at (2.05,-0.86) {\faCheck\ A + flag\\understood: false};
+\begin{tikzpicture}[x=1cm,y=1cm,pbub/.style={draw=black!70,line width=.6pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},reply/.style={draw=#1,line width=.7pt,fill=white,inner sep=3pt,text width=5.2cm,align=left,font=\sffamily\scriptsize},tag/.style={fill=#1,text=white,font=\sffamily\tiny\bfseries,inner sep=1.6pt,anchor=north west}]
+\fill[black!3] (0,2.3) rectangle (7.6,5.75);
+\node[fill=OIsky!35,font=\sffamily\tiny\bfseries,inner sep=2pt,anchor=north west] at (0.08,5.68) {SCENE};
+\fill[fill={rgb,255:red,91;green,127;blue,175}] (0.5300,3.5900) rectangle (0.7720,3.6520);
+\fill[fill={rgb,255:red,91;green,127;blue,175}] (0.4700,3.5300) rectangle (0.8320,3.5920);
+\fill[fill={rgb,255:red,91;green,127;blue,175}] (0.4700,3.4700) rectangle (0.8320,3.5320);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.8300,3.4700) rectangle (0.8920,3.5320);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.4700,3.4100) rectangle (0.8320,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.4700,3.3500) rectangle (0.5320,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.5300,3.3500) rectangle (0.5920,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.5900,3.3500) rectangle (0.7120,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.7100,3.3500) rectangle (0.7720,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.7700,3.3500) rectangle (0.8320,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.4700,3.2900) rectangle (0.8320,3.3520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.5300,3.2300) rectangle (0.5920,3.2920);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (0.5900,3.2300) rectangle (0.7120,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.7100,3.2300) rectangle (0.7720,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.5300,3.1700) rectangle (0.7720,3.2320);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.4100,3.1100) rectangle (0.8920,3.1720);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.3500,3.0500) rectangle (0.4720,3.1120);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.4700,3.0500) rectangle (0.5920,3.1120);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.5900,3.0500) rectangle (0.7120,3.1120);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.7100,3.0500) rectangle (0.8320,3.1120);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.8300,3.0500) rectangle (0.9520,3.1120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.3500,2.9900) rectangle (0.4120,3.0520);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.4100,2.9900) rectangle (0.4720,3.0520);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.4700,2.9900) rectangle (0.8320,3.0520);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.8300,2.9900) rectangle (0.8920,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,2.9900) rectangle (0.9520,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.3500,2.9300) rectangle (0.4120,2.9920);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.4100,2.9300) rectangle (0.4720,2.9920);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.4700,2.9300) rectangle (0.8320,2.9920);
+\fill[fill={rgb,255:red,139;green,166;blue,204}] (0.8300,2.9300) rectangle (0.8920,2.9920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,2.9300) rectangle (0.9520,2.9920);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.4100,2.8700) rectangle (0.8920,2.9320);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.4100,2.8100) rectangle (0.5320,2.8720);
+\fill[fill={rgb,255:red,110;green,143;blue,191}] (0.7700,2.8100) rectangle (0.8920,2.8720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.4100,2.7500) rectangle (0.5320,2.8120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.7700,2.7500) rectangle (0.8920,2.8120);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (1.2300,3.5900) rectangle (1.4720,3.6520);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (1.1700,3.5300) rectangle (1.5320,3.5920);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (1.1700,3.4700) rectangle (1.5320,3.5320);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.5300,3.4700) rectangle (1.5920,3.5320);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.1700,3.4100) rectangle (1.5320,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.1700,3.3500) rectangle (1.2320,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.2300,3.3500) rectangle (1.2920,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.2900,3.3500) rectangle (1.4120,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.4100,3.3500) rectangle (1.4720,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4700,3.3500) rectangle (1.5320,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.1700,3.2900) rectangle (1.5320,3.3520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.2300,3.2300) rectangle (1.2920,3.2920);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (1.2900,3.2300) rectangle (1.4120,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4100,3.2300) rectangle (1.4720,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.2300,3.1700) rectangle (1.4720,3.2320);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.1100,3.1100) rectangle (1.5920,3.1720);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.0500,3.0500) rectangle (1.1720,3.1120);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.1700,3.0500) rectangle (1.2920,3.1120);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.2900,3.0500) rectangle (1.4120,3.1120);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.4100,3.0500) rectangle (1.5320,3.1120);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.5300,3.0500) rectangle (1.6520,3.1120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.0500,2.9900) rectangle (1.1120,3.0520);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.1100,2.9900) rectangle (1.1720,3.0520);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.1700,2.9900) rectangle (1.5320,3.0520);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.5300,2.9900) rectangle (1.5920,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5900,2.9900) rectangle (1.6520,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.0500,2.9300) rectangle (1.1120,2.9920);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.1100,2.9300) rectangle (1.1720,2.9920);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.1700,2.9300) rectangle (1.5320,2.9920);
+\fill[fill={rgb,255:red,126;green,106;blue,82}] (1.5300,2.9300) rectangle (1.5920,2.9920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5900,2.9300) rectangle (1.6520,2.9920);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.1100,2.8700) rectangle (1.5920,2.9320);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.1100,2.8100) rectangle (1.2320,2.8720);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (1.4700,2.8100) rectangle (1.5920,2.8720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.1100,2.7500) rectangle (1.2320,2.8120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.4700,2.7500) rectangle (1.5920,2.8120);
+\node[pbub=OIorange!12,anchor=south west] (sp) at (0.15,4.05) {\emph{¿Dónde está el \textbf{espejo}?}\\\emph{En el \textbf{almacén}. No se lo}\\\emph{digas a nadie.}};
+\fill[OIorange!12,draw=black!70,line width=.6pt] (0.75,4.08)--(0.95,3.75)--(1.05,4.08)--cycle;
+\draw[black!35,densely dashed,line width=.6pt,-{Stealth[length=3pt]}] (1.8,3.2)--(3.55,3.2);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.9300,3.5900) rectangle (4.1720,3.6520);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.8700,3.5300) rectangle (4.2320,3.5920);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (4.2900,3.5300) rectangle (4.3520,3.5920);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.8100,3.4700) rectangle (4.3520,3.5320);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.8100,3.4100) rectangle (3.8720,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.8700,3.4100) rectangle (4.2320,3.4720);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (4.2300,3.4100) rectangle (4.2920,3.4720);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.8100,3.3500) rectangle (3.8720,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.8700,3.3500) rectangle (3.9320,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (3.9300,3.3500) rectangle (3.9920,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.9900,3.3500) rectangle (4.1120,3.4120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.1100,3.3500) rectangle (4.1720,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (4.1700,3.3500) rectangle (4.2320,3.4120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (4.2300,3.3500) rectangle (4.2920,3.4120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (3.8100,3.2900) rectangle (3.8720,3.3520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.8700,3.2900) rectangle (4.2320,3.3520);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (4.2300,3.2900) rectangle (4.2920,3.3520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.8700,3.2300) rectangle (3.9920,3.2920);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (3.9900,3.2300) rectangle (4.1120,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (4.1100,3.2300) rectangle (4.2320,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.9300,3.1700) rectangle (4.1720,3.2320);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (3.8100,3.1100) rectangle (4.2920,3.1720);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (3.7500,3.0500) rectangle (3.9320,3.1120);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (3.9300,3.0500) rectangle (4.1720,3.1120);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (4.1700,3.0500) rectangle (4.3520,3.1120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.7500,2.9900) rectangle (3.8120,3.0520);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (3.8100,2.9900) rectangle (3.9320,3.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (3.9300,2.9900) rectangle (4.1720,3.0520);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (4.1700,2.9900) rectangle (4.2920,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (4.2900,2.9900) rectangle (4.3520,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (3.7500,2.9300) rectangle (3.8120,2.9920);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (3.8100,2.9300) rectangle (3.9320,2.9920);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (3.9300,2.9300) rectangle (4.1720,2.9920);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (4.1700,2.9300) rectangle (4.2920,2.9920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (4.2900,2.9300) rectangle (4.3520,2.9920);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (3.8100,2.8700) rectangle (4.2920,2.9320);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (3.8100,2.8100) rectangle (3.9320,2.8720);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (4.1700,2.8100) rectangle (4.2920,2.8720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (3.8100,2.7500) rectangle (3.9320,2.8120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.1700,2.7500) rectangle (4.2920,2.8120);
+\node[pbub=white,font=\sffamily\scriptsize\bfseries,inner sep=1.5pt] at (4.62,4.1) {???};
+\fill[black!70] (4.3,3.8) rectangle ++(0.07,0.07);\fill[black!70] (4.22,3.7) rectangle ++(0.05,0.05);
+\node[fill=OIblue!15,font=\sffamily\tiny,inner sep=1.5pt,align=center] at (4.05,2.5) {\textbf{Mara} $\cdot$ English only};
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.7200,3.5900) rectangle (7.0820,3.6520);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.6600,3.5300) rectangle (7.1420,3.5920);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.6600,3.4700) rectangle (6.7220,3.5320);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.7200,3.4700) rectangle (7.0820,3.5320);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (7.0800,3.4700) rectangle (7.1420,3.5320);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.6600,3.4100) rectangle (6.7820,3.4720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.7800,3.4100) rectangle (6.8420,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.8400,3.4100) rectangle (6.9620,3.4720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.9600,3.4100) rectangle (7.0220,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (7.0200,3.4100) rectangle (7.0820,3.4720);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.6600,3.3500) rectangle (7.1420,3.4120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.6600,3.2900) rectangle (6.7220,3.3520);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.7200,3.2900) rectangle (6.8420,3.3520);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (6.8400,3.2900) rectangle (6.9620,3.3520);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.9600,3.2900) rectangle (7.0820,3.3520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (7.0800,3.2900) rectangle (7.1420,3.3520);
+\fill[fill={rgb,255:red,107;green,74;blue,56}] (6.7200,3.2300) rectangle (7.0820,3.2920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.7800,3.1700) rectangle (7.0220,3.2320);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.6600,3.1100) rectangle (7.1420,3.1720);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.6000,3.0500) rectangle (6.7820,3.1120);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (6.7800,3.0500) rectangle (6.9620,3.1120);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.9600,3.0500) rectangle (7.2020,3.1120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.6000,2.9900) rectangle (6.6620,3.0520);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.6600,2.9900) rectangle (6.7820,3.0520);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (6.7800,2.9900) rectangle (6.9620,3.0520);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.9600,2.9900) rectangle (7.1420,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (7.1400,2.9900) rectangle (7.2020,3.0520);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (6.6000,2.9300) rectangle (6.6620,2.9920);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (6.6600,2.9300) rectangle (7.1420,2.9920);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (7.1400,2.9300) rectangle (7.2020,2.9920);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (6.6600,2.8700) rectangle (7.1420,2.9320);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (6.6600,2.8100) rectangle (6.7820,2.8720);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (7.0200,2.8100) rectangle (7.1420,2.8720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.6600,2.7500) rectangle (6.7820,2.8120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (7.0200,2.7500) rectangle (7.1420,2.8120);
+\node[pbub=OIsky!25,anchor=south east] at (7.5,4.05) {What were those\\two saying?};
+\fill[OIsky!25,draw=black!70,line width=.6pt] (6.85,4.08)--(6.95,3.75)--(7.1,4.08)--cycle;
+\draw[black!40,line width=.6pt,-{Stealth[length=3.5pt]}] (3.8,2.3)--(3.8,2.0);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (2.7100,1.8700) rectangle (2.7520,1.9120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (2.7100,1.8300) rectangle (2.7520,1.8720);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.7900) rectangle (2.9120,1.8320);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.7500) rectangle (2.6320,1.7920);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.6300,1.7500) rectangle (2.8720,1.7920);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.8700,1.7500) rectangle (2.9120,1.7920);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.7100) rectangle (2.6320,1.7520);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.6300,1.7100) rectangle (2.6720,1.7520);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (2.6700,1.7100) rectangle (2.7120,1.7520);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.7100,1.7100) rectangle (2.7920,1.7520);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (2.7900,1.7100) rectangle (2.8320,1.7520);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.8300,1.7100) rectangle (2.8720,1.7520);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.8700,1.7100) rectangle (2.9120,1.7520);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.6700) rectangle (2.6320,1.7120);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.6300,1.6700) rectangle (2.8720,1.7120);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.8700,1.6700) rectangle (2.9120,1.7120);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.6300) rectangle (2.6320,1.6720);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.6300,1.6300) rectangle (2.7120,1.6720);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (2.7100,1.6300) rectangle (2.7920,1.6720);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.7900,1.6300) rectangle (2.8720,1.6720);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.8700,1.6300) rectangle (2.9120,1.6720);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.5900,1.5900) rectangle (2.9120,1.6320);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.6300,1.5500) rectangle (2.8720,1.5920);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.5900,1.5100) rectangle (2.6320,1.5520);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.6300,1.5100) rectangle (2.8720,1.5520);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.8700,1.5100) rectangle (2.9120,1.5520);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.5900,1.4700) rectangle (2.6320,1.5120);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.6300,1.4700) rectangle (2.6720,1.5120);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (2.8300,1.4700) rectangle (2.8720,1.5120);
+\fill[fill={rgb,255:red,119;green,119;blue,119}] (2.8700,1.4700) rectangle (2.9120,1.5120);
+\node[anchor=west,font=\sffamily\scriptsize,text=black!75] at (3.0,1.68) {model voices Mara};
+\fill[OIorange!10] (0,0.42) rectangle (7.6,1.30);
+\node[tag=OIorange] at (0.08,1.24) {\faTimes\ A};
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.2400,0.8200) rectangle (0.4220,0.8670);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.1950,0.7750) rectangle (0.2420,0.8220);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.2400,0.7750) rectangle (0.4220,0.8220);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.4200,0.7750) rectangle (0.4670,0.8220);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.1500,0.7300) rectangle (0.1970,0.7770);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.1950,0.7300) rectangle (0.2870,0.7770);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.2850,0.7300) rectangle (0.3320,0.7770);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.3300,0.7300) rectangle (0.4220,0.7770);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.4200,0.7300) rectangle (0.4670,0.7770);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.1500,0.6850) rectangle (0.1970,0.7320);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.1950,0.6850) rectangle (0.4670,0.7320);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.4650,0.6850) rectangle (0.5120,0.7320);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.1500,0.6400) rectangle (0.1970,0.6870);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.1950,0.6400) rectangle (0.4670,0.6870);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.4650,0.6400) rectangle (0.5120,0.6870);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.1950,0.5950) rectangle (0.2420,0.6420);
+\fill[fill={rgb,255:red,156;green,194;blue,221}] (0.2400,0.5950) rectangle (0.4220,0.6420);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.4200,0.5950) rectangle (0.4670,0.6420);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (0.2400,0.5500) rectangle (0.4220,0.5970);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.2850,0.5050) rectangle (0.3770,0.5520);
+\fill[fill={rgb,255:red,184;green,145;blue,58}] (0.2400,0.4600) rectangle (0.4220,0.5070);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7850,0.7750) rectangle (0.8770,0.8220);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7400,0.7300) rectangle (0.9220,0.7770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.6950,0.6850) rectangle (0.9670,0.7320);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.6500,0.6400) rectangle (1.0120,0.6870);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.6950,0.5950) rectangle (0.9670,0.6420);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.6950,0.5500) rectangle (0.7870,0.5970);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (0.7850,0.5500) rectangle (0.8770,0.5970);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.8750,0.5500) rectangle (0.9670,0.5970);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.6950,0.5050) rectangle (0.7870,0.5520);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (0.7850,0.5050) rectangle (0.8770,0.5520);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.8750,0.5050) rectangle (0.9670,0.5520);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.6950,0.4600) rectangle (0.7870,0.5070);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (0.7850,0.4600) rectangle (0.8770,0.5070);
+\fill[fill={rgb,255:red,154;green,154;blue,154}] (0.8750,0.4600) rectangle (0.9670,0.5070);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.5000,1.1600) rectangle (1.7020,1.2120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4500,1.1100) rectangle (1.7520,1.1620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.8000,1.1100) rectangle (1.8520,1.1620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,1.0600) rectangle (1.8520,1.1120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,1.0100) rectangle (1.4520,1.0620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,1.0100) rectangle (1.7520,1.0620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,1.0100) rectangle (1.8020,1.0620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,0.9600) rectangle (1.4520,1.0120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,0.9600) rectangle (1.5020,1.0120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.5000,0.9600) rectangle (1.5520,1.0120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5500,0.9600) rectangle (1.6520,1.0120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.6500,0.9600) rectangle (1.7020,1.0120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.7000,0.9600) rectangle (1.7520,1.0120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,0.9600) rectangle (1.8020,1.0120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,0.9100) rectangle (1.4520,0.9620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,0.9100) rectangle (1.7520,0.9620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,0.9100) rectangle (1.8020,0.9620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,0.8600) rectangle (1.5520,0.9120);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (1.5500,0.8600) rectangle (1.6520,0.9120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.6500,0.8600) rectangle (1.7520,0.9120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5000,0.8100) rectangle (1.7020,0.8620);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,0.7600) rectangle (1.8020,0.8120);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.3500,0.7100) rectangle (1.5020,0.7620);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,0.7100) rectangle (1.7020,0.7620);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,0.7100) rectangle (1.8520,0.7620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,0.6600) rectangle (1.4020,0.7120);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,0.6600) rectangle (1.5020,0.7120);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,0.6600) rectangle (1.7020,0.7120);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,0.6600) rectangle (1.8020,0.7120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,0.6600) rectangle (1.8520,0.7120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,0.6100) rectangle (1.4020,0.6620);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,0.6100) rectangle (1.5020,0.6620);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,0.6100) rectangle (1.7020,0.6620);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,0.6100) rectangle (1.8020,0.6620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,0.6100) rectangle (1.8520,0.6620);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,0.5600) rectangle (1.8020,0.6120);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,0.5100) rectangle (1.5020,0.5620);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.7000,0.5100) rectangle (1.8020,0.5620);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.4000,0.4600) rectangle (1.5020,0.5120);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.7000,0.4600) rectangle (1.8020,0.5120);
+\node[reply=OIorange,anchor=west] at (2.1,0.86) {``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''};
+\fill[white,draw=OIorange,line width=.7pt] (2.12,0.94)--(1.93,0.86)--(2.12,0.78);
+\fill[white] (2.115,0.95) rectangle (2.15,0.77);
+\fill[OIorange!10] (0,-0.53) rectangle (7.6,0.35);
+\node[tag=OIorange] at (0.08,0.29) {\faTimes\ B};
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.1750) rectangle (0.2420,-0.1280);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.2200) rectangle (0.2420,-0.1730);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.2650) rectangle (0.2420,-0.2180);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.3100) rectangle (0.4220,-0.2630);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.3550) rectangle (0.4220,-0.3080);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.4000) rectangle (0.1970,-0.3530);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.3750,-0.4000) rectangle (0.4220,-0.3530);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.4450) rectangle (0.1970,-0.3980);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.3750,-0.4450) rectangle (0.4220,-0.3980);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.1500,-0.4900) rectangle (0.1970,-0.4430);
+\fill[fill={rgb,255:red,201;green,139;blue,94}] (0.3750,-0.4900) rectangle (0.4220,-0.4430);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.7850,-0.1750) rectangle (0.8320,-0.1280);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.7400,-0.2200) rectangle (0.8770,-0.1730);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.7850,-0.2650) rectangle (0.8320,-0.2180);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (0.7400,-0.3100) rectangle (0.9220,-0.2630);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (0.6950,-0.3550) rectangle (0.9670,-0.3080);
+\fill[fill={rgb,255:red,232;green,220;blue,200}] (0.6500,-0.4000) rectangle (1.0120,-0.3530);
+\fill[fill={rgb,255:red,201;green,183;blue,156}] (0.6950,-0.4450) rectangle (0.7870,-0.3980);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (0.7850,-0.4450) rectangle (0.8770,-0.3980);
+\fill[fill={rgb,255:red,201;green,183;blue,156}] (0.8750,-0.4450) rectangle (0.9670,-0.3980);
+\fill[fill={rgb,255:red,201;green,183;blue,156}] (0.6950,-0.4900) rectangle (0.7870,-0.4430);
+\fill[fill={rgb,255:red,160;green,137;blue,108}] (0.7850,-0.4900) rectangle (0.8770,-0.4430);
+\fill[fill={rgb,255:red,201;green,183;blue,156}] (0.8750,-0.4900) rectangle (0.9670,-0.4430);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.5000,0.2100) rectangle (1.7020,0.2620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4500,0.1600) rectangle (1.7520,0.2120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.8000,0.1600) rectangle (1.8520,0.2120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,0.1100) rectangle (1.8520,0.1620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,0.0600) rectangle (1.4520,0.1120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,0.0600) rectangle (1.7520,0.1120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,0.0600) rectangle (1.8020,0.1120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,0.0100) rectangle (1.4520,0.0620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,0.0100) rectangle (1.5020,0.0620);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.5000,0.0100) rectangle (1.5520,0.0620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5500,0.0100) rectangle (1.6520,0.0620);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.6500,0.0100) rectangle (1.7020,0.0620);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.7000,0.0100) rectangle (1.7520,0.0620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,0.0100) rectangle (1.8020,0.0620);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,-0.0400) rectangle (1.4520,0.0120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-0.0400) rectangle (1.7520,0.0120);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,-0.0400) rectangle (1.8020,0.0120);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-0.0900) rectangle (1.5520,-0.0380);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (1.5500,-0.0900) rectangle (1.6520,-0.0380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.6500,-0.0900) rectangle (1.7520,-0.0380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5000,-0.1400) rectangle (1.7020,-0.0880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-0.1900) rectangle (1.8020,-0.1380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.3500,-0.2400) rectangle (1.5020,-0.1880);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-0.2400) rectangle (1.7020,-0.1880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-0.2400) rectangle (1.8520,-0.1880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,-0.2900) rectangle (1.4020,-0.2380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-0.2900) rectangle (1.5020,-0.2380);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-0.2900) rectangle (1.7020,-0.2380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-0.2900) rectangle (1.8020,-0.2380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,-0.2900) rectangle (1.8520,-0.2380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,-0.3400) rectangle (1.4020,-0.2880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-0.3400) rectangle (1.5020,-0.2880);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-0.3400) rectangle (1.7020,-0.2880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-0.3400) rectangle (1.8020,-0.2880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,-0.3400) rectangle (1.8520,-0.2880);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,-0.3900) rectangle (1.8020,-0.3380);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,-0.4400) rectangle (1.5020,-0.3880);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.7000,-0.4400) rectangle (1.8020,-0.3880);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.4000,-0.4900) rectangle (1.5020,-0.4380);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.7000,-0.4900) rectangle (1.8020,-0.4380);
+\node[reply=OIorange,anchor=west] at (2.1,-0.09) {``Something about a \leak{chair} being in a \leak{church}. Weird as hell, right?''};
+\fill[white,draw=OIorange,line width=.7pt] (2.12,-0.01)--(1.93,-0.09)--(2.12,-0.17);
+\fill[white] (2.115,0.00) rectangle (2.15,-0.18);
+\fill[OIgreen!10] (0,-1.48) rectangle (7.6,-0.60);
+\node[tag=OIgreen] at (0.08,-0.66) {\faCheck\ A + flag};
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.1250) rectangle (0.1970,-1.0780);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (0.1950,-1.1250) rectangle (0.4220,-1.0780);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.1700) rectangle (0.1970,-1.1230);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (0.1950,-1.1700) rectangle (0.5120,-1.1230);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.2150) rectangle (0.1970,-1.1680);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (0.1950,-1.2150) rectangle (0.5120,-1.1680);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.2600) rectangle (0.1970,-1.2130);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (0.1950,-1.2600) rectangle (0.4220,-1.2130);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.3050) rectangle (0.1970,-1.2580);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.3500) rectangle (0.1970,-1.3030);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.3950) rectangle (0.1970,-1.3480);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.1500,-1.4400) rectangle (0.1970,-1.3930);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.5000,-0.7400) rectangle (1.7020,-0.6880);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4500,-0.7900) rectangle (1.7520,-0.7380);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.8000,-0.7900) rectangle (1.8520,-0.7380);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,-0.8400) rectangle (1.8520,-0.7880);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,-0.8900) rectangle (1.4520,-0.8380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-0.8900) rectangle (1.7520,-0.8380);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,-0.8900) rectangle (1.8020,-0.8380);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,-0.9400) rectangle (1.4520,-0.8880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-0.9400) rectangle (1.5020,-0.8880);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.5000,-0.9400) rectangle (1.5520,-0.8880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5500,-0.9400) rectangle (1.6520,-0.8880);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.6500,-0.9400) rectangle (1.7020,-0.8880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.7000,-0.9400) rectangle (1.7520,-0.8880);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,-0.9400) rectangle (1.8020,-0.8880);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.4000,-0.9900) rectangle (1.4520,-0.9380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-0.9900) rectangle (1.7520,-0.9380);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.7500,-0.9900) rectangle (1.8020,-0.9380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.4500,-1.0400) rectangle (1.5520,-0.9880);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (1.5500,-1.0400) rectangle (1.6520,-0.9880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.6500,-1.0400) rectangle (1.7520,-0.9880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.5000,-1.0900) rectangle (1.7020,-1.0380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-1.1400) rectangle (1.8020,-1.0880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.3500,-1.1900) rectangle (1.5020,-1.1380);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-1.1900) rectangle (1.7020,-1.1380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-1.1900) rectangle (1.8520,-1.1380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,-1.2400) rectangle (1.4020,-1.1880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-1.2400) rectangle (1.5020,-1.1880);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-1.2400) rectangle (1.7020,-1.1880);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-1.2400) rectangle (1.8020,-1.1880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,-1.2400) rectangle (1.8520,-1.1880);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.3500,-1.2900) rectangle (1.4020,-1.2380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.4000,-1.2900) rectangle (1.5020,-1.2380);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (1.5000,-1.2900) rectangle (1.7020,-1.2380);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.7000,-1.2900) rectangle (1.8020,-1.2380);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.8000,-1.2900) rectangle (1.8520,-1.2380);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,-1.3400) rectangle (1.8020,-1.2880);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.4000,-1.3900) rectangle (1.5020,-1.3380);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.7000,-1.3900) rectangle (1.8020,-1.3380);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.4000,-1.4400) rectangle (1.5020,-1.3880);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.7000,-1.4400) rectangle (1.8020,-1.3880);
+\node[reply=OIgreen,anchor=west] at (2.1,-1.04) {``Don't look at me, Jo. I didn't catch a damn word of it.''};
+\fill[white,draw=OIgreen,line width=.7pt] (2.12,-0.96)--(1.93,-1.04)--(2.12,-1.12);
+\fill[white] (2.115,-0.95) rectangle (2.15,-1.13);
 \end{tikzpicture}
-\caption{Gemma-4-31B voicing a character who does not speak Spanish. The reply tracks the hidden object and place when version B swaps them, and a per-utterance flag stops the leak. Replies are verbatim.}
+\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies verbatim, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}
 \label{fig:example}
 \end{figure}
 
@@ -80,62 +444,184 @@ This situation is built into how role-playing systems work. Games and agent simu
 
 Prior work shows that models can state a perspective without acting on it. They answer questions about what a story character knows yet mispredict the character's behavior \citep{gu2026simpletom}, and they recognize the limits of a role's knowledge yet answer beyond them \citep{han2026charm}. These studies ask questions about stories or about knowledge stored in the model's parameters, and they evaluate each model with one prompt format. We ask a question closer to deployment. When the inaccessible content sits in the model's own input and the boundary is stated in the character's state, does the content reach the character's speech, and does the answer change with the format of the input?
 
-We measure this with counterfactual scenes. Every scene has two versions that differ only in a hidden object and place, and the other version's values serve as a control for guessing within the same replies (Section~\ref{sec:measure}). Study~1 places 11 open models in NPC-style prompts and varies whether the character cannot understand or cannot hear the speech, and how the boundary is stated. Study~2 extends the question to hidden actions and private messages in a minimal event format, adds delayed questions and a search choice, and replicates on scenes with original characters. We then run six frontier hosted models and a large open model on the core conditions, and we swap individual features between the two input formats to find what makes models comply.
+We measure this with counterfactual scenes. Every scene has two versions that differ only in a hidden object and place, and the other version's values serve as a control for guessing within the same replies (Section~\ref{sec:measure}). Study~1 places 11 open models in NPC-style prompts and varies whether the character cannot understand or cannot hear the speech, and how the boundary is stated. Study~2 extends the question to hidden actions and private messages in a minimal event format, adds delayed questions and a search choice, and replicates on scenes with original characters. We then run six frontier hosted models and a large open model on the core conditions, swap individual features between the two input formats to find what makes models comply, test why models leak by changing who the model speaks as and by enabling thinking, and compare three ways of filtering what the character sees.
 
-The results separate reading a boundary from keeping it. Open models use content their characters cannot perceive in most replies, and they do so for unheard speech even more than for speech in an unknown language, while most of them answer questions about the state correctly. Most frontier models keep the boundary and still use permitted content, which shows that the task is solvable. Gemma-4-31B repeats unheard speech in half of Study~1's replies and almost never in Study~2's, and moving Study~1's state layout alone into Study~2's prompt brings the leakage back. The compliance of frontier models and of the strongest open models depends on such incidental parts of the input, such as how the scene state is laid out or how the character is described, and the feature that matters differs from model to model. Our contribution is an evaluation of this behavior and of the conditions under which it appears. Items, prompts, the scorer and all responses will be released.
+The results separate reading a boundary from keeping it. Open models use content their characters cannot perceive in most replies, and they do so for unheard speech even more than for speech in an unknown language, while most of them answer questions about the state correctly. Most frontier models keep the boundary and still use permitted content, which shows that the task is solvable. Gemma-4-31B repeats unheard speech in half of Study~1's replies and almost never in Study~2's, and moving Study~1's state layout alone into Study~2's prompt brings the leakage back. The compliance of frontier models and of the strongest open models depends on such incidental parts of the input, such as how the scene state is laid out or how the character is described, and the feature that matters differs from model to model. Writing the line as the scene's author leaks nearly as much as speaking as the character. Our contribution is an evaluation of this behavior and of the conditions under which it appears. Items, prompts, the scorer and all responses will be released.
 
 \section{Measuring What a Character Uses}
 \label{sec:measure}
-Each scene contains one fact that names an object and a place. Version B replaces both values and keeps everything else, including the character, the state and the question (Figure~\ref{fig:design}a). A reply uses the target when it names at least one of its own version's values, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and over scene skeletons and reported in percentage points (pp). Because the foil is scored on the same replies, a plausible guess such as ``check the basement'' adds to both terms and cancels. A rule-based scorer matches a dictionary of 12 places and 12 objects with their synonyms, removes echoed foreign text, and counts a reply that names two values of one type as neither. Scenes come in two forms. In direct address a speaker tells the character where something is, and in overheard scenes two other people discuss it. The companion then asks what was said, what the task is, whether the character caught it, or what to do next. Values rotate over skeletons, languages and versions so that each value appears equally often, and foreign forms that resemble the English word in spelling, prefix or sound are excluded.
+Each scene contains one fact that names an object and a place. Version B replaces both values and keeps everything else, including the character, the state and the question (Figure~\ref{fig:example}). A reply uses the target when it names at least one of its own version's values, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and over scene skeletons and reported in percentage points (pp). Because the foil is scored on the same replies, a plausible guess such as ``check the basement'' adds to both terms and cancels. A rule-based scorer matches a dictionary of 12 places and 12 objects with their synonyms, removes echoed foreign text, and counts a reply that names two values of one type as neither. Scenes come in two forms. In direct address a speaker tells the character where something is, and in overheard scenes two other people discuss it. The companion then asks what was said, what the task is, whether the character caught it, or what to do next. Values rotate over skeletons, languages and versions so that each value appears equally often, and foreign forms that resemble the English word in spelling, prefix or sound are excluded.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm,
-  ver/.style={rounded corners=2pt,fill=#1,inner sep=3pt,text width=1.95cm,align=left,font=\sffamily\scriptsize},
-  cell/.style={rounded corners=2pt,fill=#1,minimum width=1.5cm,minimum height=0.66cm,align=center,font=\sffamily\tiny,inner sep=1.5pt,text width=1.42cm},
-  hd/.style={font=\sffamily\tiny\bfseries,text=black!55,align=center}]
-%% (a) measurement
-\node[panel] at (0,3.6) {(a) Counterfactual twins};
-\node[ver=OIblue!12,anchor=north west] (a) at (0,3.15) {\textbf{Version A}\\the \textbf{coat} is by\\the \textbf{school}};
-\node[ver=black!7,anchor=north west] (b) at (0,1.95) {\textbf{Version B}\\the \textbf{glove} is by\\the \textbf{church}};
-\node[rounded corners=2pt,draw=black!25,fill=white,inner sep=3pt,text width=1.95cm,align=left,anchor=north west] (r) at (2.6,3.15) {\textbf{Reply to A}\\``He left the \textcolor{OIblue}{\textbf{coat}} by the \textcolor{OIblue}{\textbf{school}}.''};
-\draw[black!45,-{Stealth[length=3.5pt]}] (a.east|-r.west)--(r.west);
-\node[chip,fill=OIblue,anchor=north west,minimum width=2.25cm,align=left] (t) at (2.6,1.95) {target named \hfill 1};
-\node[chip,fill=black!40,anchor=north west,minimum width=2.25cm,align=left] (f) at (2.6,1.55) {foil named \hfill 0};
-\draw[black!35,densely dotted,-{Stealth[length=3pt]}] (b.east|-f.west)--(f.west);
-\node[anchor=north west,font=\sffamily\scriptsize] at (2.6,1.1) {net use $D = 1 - 0$};
-\node[anchor=north west,align=left,font=\sffamily\tiny,text=black!60,text width=4.7cm] at (0,0.55) {A guess such as ``check the basement'' scores in both versions and cancels.};
-%% (b) Study 1
-\begin{scope}[xshift=5.4cm]
-\node[panel] at (0,3.6) {(b) Study 1: how the boundary is stated};
-\node[hd] at (1.95,2.98) {in the\\state};
-\node[hd] at (3.55,2.98) {per-utterance\\flag};
-\node[hd] at (5.15,2.98) {flag and a\\sentence};
-\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,2.25) {\faLanguage\ cannot\\understand};
-\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,1.45) {\faDeaf\ cannot\\hear};
-\node[cell=OIblue!12] at (1.95,2.25) {\texttt{speaks:}\\\texttt{[English]}};
-\node[cell=OIsky!22] at (3.55,2.25) {\texttt{understood:}\\\texttt{false}};
-\node[cell=OIgreen!15] at (5.15,2.25) {+ ``does not speak Japanese''};
-\node[cell=black!4,text=black!35] at (1.95,1.45) {no analogue};
-\node[cell=OIorange!14] at (3.55,1.45) {\texttt{audible:}\\\texttt{false}};
-\node[cell=OIpurple!16] at (5.15,1.45) {+ ``could not hear them''};
-\node[anchor=north west,font=\sffamily\tiny,text=black!60,text width=5.7cm,align=left] at (0.0,0.95) {Speech is in Chinese, Japanese or Spanish, or in English marked inaudible. Controls make the same speech accessible.};
-\end{scope}
-%% (c) Study 2
-\begin{scope}[xshift=11.5cm]
-\node[panel] at (0,3.6) {(c) Study 2: four channels};
-\foreach \x/\y/\ic/\ch/\full/\view in {0/3.1/\faDeaf/Hear/speech out of earshot/nothing,
-  2.22/3.1/\faLanguage/Understand/speech in Japanese/Casey speaks Japanese,
-  0/1.48/\faEyeSlash/See/an object is hidden/Alex puts something away,
-  2.22/1.48/\faEnvelope/Receive/a private message/Alex sends a message}{
-  \node[anchor=north west,rounded corners=2pt,fill=black!3,inner sep=3pt,text width=1.95cm,minimum height=1.3cm,align=left,font=\sffamily\tiny] at (\x,\y)
-    {{\color{OIorange}\footnotesize\ic}\ \textbf{\ch}\\[1pt]hidden: \full\\[1pt]\textcolor{OIgreen}{view: \view}};
-}
-\end{scope}
+\begin{tikzpicture}[x=1cm,y=1cm,cell/.style={draw=black!70,line width=.6pt,fill=#1,minimum width=1.58cm,minimum height=0.74cm,align=center,font=\sffamily\scriptsize,inner sep=1pt,text width=1.5cm},hd/.style={font=\sffamily\scriptsize\bfseries,text=black!60,align=center}]
+\fill[black!3] (0,2.3) rectangle (7.6,5.55);
+\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,5.47) {(a) Study 1: how the boundary is stated};
+\node[hd] at (3.12,4.67) {state};
+\node[hd] at (4.82,4.67) {utterance flag};
+\node[hd] at (6.52,4.67) {+ sentence};
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1900,4.1000) rectangle (0.5920,4.1520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,4.0500) rectangle (0.1920,4.1020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,4.0500) rectangle (0.3420,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3400,4.0500) rectangle (0.4420,4.1020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,4.0500) rectangle (0.5920,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,4.0500) rectangle (0.6420,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,4.0000) rectangle (0.1920,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,4.0000) rectangle (0.2920,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.2900,4.0000) rectangle (0.3420,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.3400,4.0000) rectangle (0.4420,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.4400,4.0000) rectangle (0.4920,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4900,4.0000) rectangle (0.5920,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,4.0000) rectangle (0.6420,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.9500) rectangle (0.1920,4.0020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.9500) rectangle (0.4420,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.4400,3.9500) rectangle (0.4920,4.0020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4900,3.9500) rectangle (0.5920,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.9500) rectangle (0.6420,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.9000) rectangle (0.1920,3.9520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.9000) rectangle (0.3920,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3900,3.9000) rectangle (0.4420,3.9520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,3.9000) rectangle (0.5920,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.9000) rectangle (0.6420,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.8500) rectangle (0.1920,3.9020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.8500) rectangle (0.5920,3.9020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.8500) rectangle (0.6420,3.9020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.8000) rectangle (0.1920,3.8520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.8000) rectangle (0.3920,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3900,3.8000) rectangle (0.4420,3.8520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,3.8000) rectangle (0.5920,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.8000) rectangle (0.6420,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1900,3.7500) rectangle (0.5920,3.8020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.2400,3.7000) rectangle (0.3420,3.7520);
+\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,3.93) {cannot\\understand};
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.3400,3.0600) rectangle (0.3920,3.1120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.2900,3.0100) rectangle (0.3920,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4400,3.0100) rectangle (0.4920,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.5900,3.0100) rectangle (0.6420,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.9600) rectangle (0.3920,3.0120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4900,2.9600) rectangle (0.5920,3.0120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.9100) rectangle (0.3920,2.9620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4900,2.9100) rectangle (0.5920,2.9620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.8600) rectangle (0.3920,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4400,2.8600) rectangle (0.4920,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.5900,2.8600) rectangle (0.6420,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.2900,2.8100) rectangle (0.3920,2.8620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.3400,2.7600) rectangle (0.3920,2.8120);
+\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,2.93) {cannot\\hear};
+\node[cell=OIblue!12,font=\sffamily\scriptsize] at (3.12,3.93) {speaks:\\English};
+\node[cell=OIblue!12,font=\sffamily\scriptsize] at (4.82,3.93) {understood:\\false};
+\node[cell=OIblue!12,font=\sffamily\scriptsize\tiny] at (6.52,3.93) {``does not speak\\Japanese''};
+\node[cell=black!4,draw=black!25,text=black!40,font=\sffamily\scriptsize] at (3.12,2.93) {---};
+\node[cell=OIorange!14,font=\sffamily\scriptsize] at (4.82,2.93) {audible:\\false};
+\node[cell=OIorange!14,font=\sffamily\scriptsize\tiny] at (6.52,2.93) {``could not\\hear them''};
+\fill[black!3] (0,0.15) rectangle (7.6,2.15);
+\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,2.07) {(b) Study 2: four channels};
+\draw[black!70,line width=.6pt,fill=white] (0.15,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9700,1.4675) rectangle (1.0270,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9150,1.4125) rectangle (1.0270,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.0800,1.4125) rectangle (1.1370,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.2450,1.4125) rectangle (1.3020,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.3575) rectangle (1.0270,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.1350,1.3575) rectangle (1.2470,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.3025) rectangle (1.0270,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.1350,1.3025) rectangle (1.2470,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.2475) rectangle (1.0270,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.0800,1.2475) rectangle (1.1370,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.2450,1.2475) rectangle (1.3020,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9150,1.1925) rectangle (1.0270,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9700,1.1375) rectangle (1.0270,1.1945);
+\node[font=\sffamily\scriptsize\bfseries] at (1.025,0.91) {Hear};
+\fill[OIgreen!14] (0.210,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (1.025,0.55) {nothing};
+\draw[black!70,line width=.6pt,fill=white] (2.01,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6650,1.5225) rectangle (3.1070,1.5795);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.4675) rectangle (2.6670,1.5245);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.4675) rectangle (2.8320,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8300,1.4675) rectangle (2.9420,1.5245);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.4675) rectangle (3.1070,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.4675) rectangle (3.1620,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.4125) rectangle (2.6670,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.4125) rectangle (2.7770,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.7750,1.4125) rectangle (2.8320,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.8300,1.4125) rectangle (2.9420,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.9400,1.4125) rectangle (2.9970,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9950,1.4125) rectangle (3.1070,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.4125) rectangle (3.1620,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.3575) rectangle (2.6670,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.3575) rectangle (2.9420,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.9400,1.3575) rectangle (2.9970,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9950,1.3575) rectangle (3.1070,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.3575) rectangle (3.1620,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.3025) rectangle (2.6670,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.3025) rectangle (2.8870,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8850,1.3025) rectangle (2.9420,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.3025) rectangle (3.1070,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.3025) rectangle (3.1620,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.2475) rectangle (2.6670,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.2475) rectangle (3.1070,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.2475) rectangle (3.1620,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.1925) rectangle (2.6670,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.1925) rectangle (2.8870,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8850,1.1925) rectangle (2.9420,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.1925) rectangle (3.1070,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.1925) rectangle (3.1620,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6650,1.1375) rectangle (3.1070,1.1945);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.7200,1.0825) rectangle (2.8320,1.1395);
+\node[font=\sffamily\scriptsize\bfseries] at (2.885,0.91) {Understand};
+\fill[OIgreen!14] (2.070,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (2.885,0.55) {``Casey speaks Japanese''};
+\draw[black!70,line width=.6pt,fill=white] (3.87,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.4700,1.4400) rectangle (4.5270,1.4970);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.4400) rectangle (5.0220,1.4970);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.4700,1.3850) rectangle (4.5270,1.4420);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.3850) rectangle (5.0220,1.4420);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5250,1.3300) rectangle (4.6370,1.3870);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.8550,1.3300) rectangle (4.9670,1.3870);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.6350,1.2750) rectangle (4.8570,1.3320);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5800,1.2200) rectangle (4.6370,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.7450,1.2200) rectangle (4.8020,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9100,1.2200) rectangle (4.9670,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5250,1.1650) rectangle (4.5820,1.2220);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.7450,1.1650) rectangle (4.8020,1.2220);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.1650) rectangle (5.0220,1.2220);
+\node[font=\sffamily\scriptsize\bfseries] at (4.745,0.91) {See};
+\fill[OIgreen!14] (3.930,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (4.745,0.55) {``Alex puts something away''};
+\draw[black!70,line width=.6pt,fill=white] (5.73,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.4675) rectangle (6.8820,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.4125) rectangle (6.4420,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4400,1.4125) rectangle (6.7720,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.7700,1.4125) rectangle (6.8820,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.3575) rectangle (6.3870,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.3575) rectangle (6.4420,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.4400,1.3575) rectangle (6.4970,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4950,1.3575) rectangle (6.7170,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.7150,1.3575) rectangle (6.7720,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.7700,1.3575) rectangle (6.8270,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.3575) rectangle (6.8820,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.3025) rectangle (6.3870,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.3025) rectangle (6.4970,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.4950,1.3025) rectangle (6.5520,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.5500,1.3025) rectangle (6.6620,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.6600,1.3025) rectangle (6.7170,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.7150,1.3025) rectangle (6.8270,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.3025) rectangle (6.8820,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.2475) rectangle (6.3870,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.2475) rectangle (6.5520,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.5500,1.2475) rectangle (6.6620,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.6600,1.2475) rectangle (6.8270,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.2475) rectangle (6.8820,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.1925) rectangle (6.3870,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.1925) rectangle (6.8270,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.1925) rectangle (6.8820,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.1375) rectangle (6.8820,1.1945);
+\node[font=\sffamily\scriptsize\bfseries] at (6.605,0.91) {Receive};
+\fill[OIgreen!14] (5.790,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (6.605,0.55) {``Alex sends a message''};
 \end{tikzpicture}
-\caption{Design. (a) Every scene has two versions that differ only in a hidden object and place, and a reply is scored for both. (b) Study 1 states the boundary in five ways, matched within each row. (c) Study 2 hides content through four channels. The character view replaces each hidden event with what the character can still observe.}
+\caption{Design. (a) Study 1 states the boundary in five ways, matched within each row. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2 hides content through four channels, and the character view (green) replaces each hidden event with what the character can still observe.}
 \label{fig:design}
-\end{figure*}
+\end{figure}
 
 Two probes run as separate calls. A translation probe asks the model to translate the foreign sentence, which shows that the model can understand the content at all. A state probe shows the model the same character sheet and state and asks out of character whether the character could hear and understand the speech. On 150 replies labeled blind by a human annotator across both studies, human and scorer agree on target use in 146 ($\kappa=0.95$), neither finds a foil use, and net use differs by at most 2.8 pp in any condition (Appendix~\ref{app:audit}). Intervals resample scene skeletons jointly across models with 2,000 draws.
 
@@ -143,7 +629,7 @@ The open models are 11 checkpoints of at most 40B parameters from nine families,
 
 \section{Open Models Cross Both Boundaries}
 \label{sec:s1}
-In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) hears a short utterance, addressed to them or overheard, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's languages. The speech is either in Chinese, Japanese or Spanish, which the character does not speak, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}b, and controls make the same speech accessible through fluency, a working translator or audibility. The design has 96 skeletons in three languages (288 items with 143 prompts each), and every model passed the translation probe for every language. We fixed eight tests after a pilot on separate items and locked the analysis before scoring. They cover leakage under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, leakage when the state is read correctly, and the perspective filter, and all eight hold (Table~\ref{tab:s1}).
+In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) hears a short utterance, addressed to them or overheard, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's languages. The speech is either in Chinese, Japanese or Spanish, which the character does not speak, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}a, and controls make the same speech accessible through fluency, a working translator or audibility. The design has 96 skeletons in three languages (288 items with 143 prompts each), and every model passed the translation probe for every language. We fixed eight tests after a pilot on separate items and locked the analysis before scoring. They cover leakage under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, leakage when the state is read correctly, and the perspective filter, and all eight hold (Table~\ref{tab:s1}).
 
 \begin{figure*}[t]
 \centering
@@ -555,7 +1041,7 @@ Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language
 \caption{What changes leakage within Study~1. (a, b) Net use by model size in two families. Leakage rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers leakage for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still repeats unheard speech in half of its replies.}
 \label{fig:factors}
 \end{figure*}
-Study~2 asks whether the same failure appears when content is hidden for other reasons and whether it shapes what characters do. A minimal JSON scene contains one event with an actor, the content and an access flag, and the character either cannot hear English speech, cannot understand Chinese, Japanese or Spanish speech, cannot see where an object is put, or cannot read a private message. Accessible controls change only the flag, and Figure~\ref{fig:design}c shows what the character can still observe in each channel. A discovery set of 96 scenes runs on all 11 open models with three ways of stating access, a membership list of who perceives each event, a direct flag on the event, and the flag plus a prose rule, and a confirmation set of 96 new scenes runs on the same models. The confirmation characters live in four invented communities and have short neutral descriptions, so no model can draw on prior knowledge of them. Inputs, models, tests and analysis were fixed before generation for a cohort of four models, and the other seven were added afterwards.
+Study~2 asks whether the same failure appears when content is hidden for other reasons and whether it shapes what characters do. A minimal JSON scene contains one event with an actor, the content and an access flag, and the character either cannot hear English speech, cannot understand Chinese, Japanese or Spanish speech, cannot see where an object is put, or cannot read a private message. Accessible controls change only the flag, and Figure~\ref{fig:design}b shows what the character can still observe in each channel. A discovery set of 96 scenes runs on all 11 open models with three ways of stating access, a membership list of who perceives each event, a direct flag on the event, and the flag plus a prose rule, and a confirmation set of 96 new scenes runs on the same models. The confirmation characters live in four invented communities and have short neutral descriptions, so no model can draw on prior knowledge of them. Inputs, models, tests and analysis were fixed before generation for a cohort of four models, and the other seven were added afterwards.
 
 \begin{figure*}[t]
 \centering
@@ -891,27 +1377,85 @@ Gemma-4-31B and Qwen3.8-27B leak unheard speech at 51 and 60 pp in Study~1, yet 
 \caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}
 \label{fig:frontier}
 \end{figure*}
-\begin{table*}[t]
-\centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}
-\begin{tabular}{@{}lrrrrrrrr@{}}
-\toprule
-\textbf{Model} & \textbf{Repertoire} & \textbf{Audibility} & \textbf{Compr.} & \textbf{Prose} & \textbf{Control} & \textbf{State} & \textbf{Transl.} & \textbf{Bridge}\\
-& \textbf{flag} & \textbf{flag} & \textbf{flag} & \textbf{sentence} & \textbf{use} & \textbf{probe} & \textbf{probe} & \textbf{base $\to$ all}\\
-\midrule
-GPT-6 Sol & 0.2 & 0.0 & 0.9 & 0.2 & 100.0 & 100.0 & 97.9 & 0.0 $\to$ 0.0\\
-Claude Opus 5.5 & 2.1 & 2.1 & 5.4 & 1.2 & 99.3 & 100.0 & 92.7 & 0.0 $\to$ 1.0\\
-Claude Sonnet 5.5 & 26.0 & 8.0 & 35.8 & 21.7 & 99.0 & 96.5 & 95.1 & 0.5 $\to$ 13.0\\
-Gemini 3.1 Pro & 1.6 & 9.0 & 0.0 & 0.0 & 99.7 & 100.0 & 97.2 & 0.0 $\to$ 21.4\\
-Gemini 3.8 Flash & 0.2 & -0.2 & 0.0 & 0.0 & 99.0 & 100.0 & 93.8 & 0.0 $\to$ 0.0\\
-Grok 4.7 & 1.0 & 0.0 & 1.0 & 0.3 & 100.0 & 100.0 & 99.3 & 0.0 $\to$ 0.0\\
-DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67.2\\
-\bottomrule
-\end{tabular}
-\caption{Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Leakage is net use in pp, control use and probes are percentages.}
-\label{tab:hosted}
-\end{table*}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[panel] at (-2.1,2.50) {(a) The same scenes, four framings (11 models)};
+\draw[black!9] (0.000,0)--(0.000,2.0);
+\draw[black!9] (0.900,0)--(0.900,2.0);
+\draw[black!9] (1.800,0)--(1.800,2.0);
+\draw[black!9] (2.700,0)--(2.700,2.0);
+\draw[black!9] (3.600,0)--(3.600,2.0);
+\draw[black!45,line width=.4pt] (0,2.0)--(0,0)--(3.6,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.900,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.800,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.700,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.600,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.8,-0.3) {net use (pp)};
+\node[font=\sffamily\tiny\bfseries,text=black!50,anchor=south] at (4.050,2.020) {permitted};
+\node[anchor=east,font=\sffamily\tiny\bfseries] at (-0.05,1.750) {role-play};
+\fill[OIblue] (0,1.765) rectangle (2.941,1.875);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (2.941,1.820) {82};
+\fill[OIorange] (0,1.625) rectangle (3.134,1.735);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (3.134,1.680) {87};
+\node[font=\sffamily\tiny,text=black!60] at (4.050,1.750) {88\%};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.250) {author};
+\fill[OIblue] (0,1.265) rectangle (2.739,1.375);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (2.739,1.320) {76};
+\fill[OIorange] (0,1.125) rectangle (2.907,1.235);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (2.907,1.180) {81};
+\node[font=\sffamily\tiny,text=black!60] at (4.050,1.250) {84\%};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.750) {narrator};
+\fill[OIblue] (0,0.765) rectangle (3.412,0.875);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (3.412,0.820) {95};
+\fill[OIorange] (0,0.625) rectangle (3.487,0.735);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (3.487,0.680) {97};
+\node[font=\sffamily\tiny,text=black!60] at (4.050,0.750) {98\%};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.250) {+ perspective rule};
+\fill[OIblue] (0,0.265) rectangle (2.219,0.375);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (2.219,0.320) {62};
+\fill[OIorange] (0,0.125) rectangle (2.434,0.235);\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1pt] at (2.434,0.180) {68};
+\node[font=\sffamily\tiny,text=black!60] at (4.050,0.250) {79\%};
+\begin{scope}[yshift=-3.140cm]
+\node[panel] at (-2.1,2.39) {(b) Thinking off $\rightarrow$ on};
+\draw[black!9] (0.000,0)--(0.000,1.8900000000000001);
+\draw[black!9] (0.900,0)--(0.900,1.8900000000000001);
+\draw[black!9] (1.800,0)--(1.800,1.8900000000000001);
+\draw[black!9] (2.700,0)--(2.700,1.8900000000000001);
+\draw[black!9] (3.600,0)--(3.600,1.8900000000000001);
+\draw[black!45,line width=.4pt] (0,1.8900000000000001)--(0,0)--(3.6,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.900,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.800,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.700,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.600,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.8,-0.3) {net use (pp)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.755) {Nemotron-3-Nano};
+\draw[OIblue!45,line width=1.1pt] (3.100,1.810)--(3.381,1.810);\draw[OIblue,fill=white,line width=.5pt] (3.100,1.810) circle (1.3pt);\fill[OIblue] (3.381,1.810) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (3.406,1.700)--(3.406,1.700);\draw[OIorange,fill=white,line width=.5pt] (3.406,1.700) circle (1.3pt);\fill[OIorange] (3.406,1.700) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.485) {Gemma-4-12B};
+\draw[OIblue!45,line width=1.1pt] (3.036,1.540)--(2.812,1.540);\draw[OIblue,fill=white,line width=.5pt] (3.036,1.540) circle (1.3pt);\fill[OIblue] (2.812,1.540) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (3.340,1.430)--(2.833,1.430);\draw[OIorange,fill=white,line width=.5pt] (3.340,1.430) circle (1.3pt);\fill[OIorange] (2.833,1.430) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.215) {Seed-OSS-36B};
+\draw[OIblue!45,line width=1.1pt] (3.069,1.270)--(2.575,1.270);\draw[OIblue,fill=white,line width=.5pt] (3.069,1.270) circle (1.3pt);\fill[OIblue] (2.575,1.270) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (3.200,1.160)--(3.044,1.160);\draw[OIorange,fill=white,line width=.5pt] (3.200,1.160) circle (1.3pt);\fill[OIorange] (3.044,1.160) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.945) {GLM-4.7-Flash};
+\draw[OIblue!45,line width=1.1pt] (2.253,1.000)--(3.212,1.000);\draw[OIblue,fill=white,line width=.5pt] (2.253,1.000) circle (1.3pt);\fill[OIblue] (3.212,1.000) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (3.149,0.890)--(3.443,0.890);\draw[OIorange,fill=white,line width=.5pt] (3.149,0.890) circle (1.3pt);\fill[OIorange] (3.443,0.890) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.675) {gpt-oss-20b};
+\draw[OIblue!45,line width=1.1pt] (3.593,0.730)--(3.565,0.730);\draw[OIblue,fill=white,line width=.5pt] (3.593,0.730) circle (1.3pt);\fill[OIblue] (3.565,0.730) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (3.134,0.620)--(3.566,0.620);\draw[OIorange,fill=white,line width=.5pt] (3.134,0.620) circle (1.3pt);\fill[OIorange] (3.566,0.620) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.405) {Qwen3.8-27B};
+\draw[OIblue!45,line width=1.1pt] (2.044,0.460)--(1.844,0.460);\draw[OIblue,fill=white,line width=.5pt] (2.044,0.460) circle (1.3pt);\fill[OIblue] (1.844,0.460) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (2.623,0.350)--(0.645,0.350);\draw[OIorange,fill=white,line width=.5pt] (2.623,0.350) circle (1.3pt);\fill[OIorange] (0.645,0.350) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.135) {Gemma-4-31B};
+\draw[OIblue!45,line width=1.1pt] (1.812,0.190)--(1.744,0.190);\draw[OIblue,fill=white,line width=.5pt] (1.812,0.190) circle (1.3pt);\fill[OIblue] (1.744,0.190) circle (1.5pt);
+\draw[OIorange!45,line width=1.1pt] (1.888,0.080)--(1.762,0.080);\draw[OIorange,fill=white,line width=.5pt] (1.888,0.080) circle (1.3pt);\fill[OIorange] (1.762,0.080) circle (1.5pt);
+\end{scope}
+\fill[OIblue] (-1.200,-4.050) rectangle (-1.050,-3.930);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.030,-3.990) {cannot understand};
+\fill[OIorange] (1.005,-4.050) rectangle (1.155,-3.930);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.175,-3.990) {cannot hear};
+\end{tikzpicture}
+\caption{Why characters leak (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}
+\label{fig:why}
+\end{figure}
 
-Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Table~\ref{tab:hosted}, intervals in Appendix Table~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), none of the remaining leaks is stated as fact, and its use of permitted content in the fluent control stays at 100\%. A compliant reply stays in character and declines the content, as in Claude Opus 5.5's ``Couldn't tell you. He said it in Spanish, and I don't speak it.'' Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. DeepSeek-V4-Pro presents 63\% of its leaks as guesses, against 17\% for the 11 smaller open models, so hedging separates the two strongest leaking models from the rest.
+Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:frontier}a, Appendix Tables~\ref{tab:hosted} and~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. Its leaks are mostly framed as guesses (65\%), for example ``Something about an envelope, maybe? I definitely heard `envelope' in there.'' With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), none of the remaining leaks is stated as fact, and its use of permitted content in the fluent control stays at 100\%. Every hosted model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open models, at 71.2 and 78.3 pp, and it also hedges most of its leaks. DeepSeek-V4-Pro presents 63\% of its leaks as guesses, against 17\% for the 11 smaller open models, so hedging separates the two strongest leaking models from the rest.
 
 
 
@@ -1078,14 +1622,20 @@ Five of the six hosted models rarely use the hidden content (Figure~\ref{fig:fro
 Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes leakage by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still repeats unheard speech in 50\% of replies (Figure~\ref{fig:factors}c, d). The two formats differ in how the state is organized, so we compare channels within Study~2 and not across the two studies. Study~2 lists events, each with an actor, its content and an access field, whereas Study~1 places speech events with a speaker, an addressee and the text under a scene description and adds the character's languages and a full character sheet. The reverse direction locates the cause. Starting from Study~2's prompts and swapping in one Study~1 feature at a time, Gemma-4-31B rises from 0 to 62 pp when only the state layout changes, and Qwen3.8-27B rises from 9 to 68 pp when only the character sheet changes (Figure~\ref{fig:frontier}c, Appendix Figure~\ref{fig:bridgefull}). Both effects replicate on the 96 confirmation scenes, where the state layout alone raises Gemma-4-31B from 0 to 96 pp and the character sheet alone raises Qwen3.8-27B from 6 to 72 pp. Across the 11 open models the feature with the largest effect differs, and for Falcon-H1-34B and Seed-OSS-36B it is the question. With all four features swapped, Gemma-4-31B, Qwen3.8-27B and DeepSeek-V4-Pro exceed 65 pp, and among hosted models Gemini 3.1 Pro rises from 0 to 21 pp and Claude Sonnet 5.5 from 0.5 to 13 pp (Figure~\ref{fig:frontier}b). Each single feature raises Sonnet's leakage by 8 to 15 pp, whereas neither the state layout nor the character sheet alone moves Gemini 3.1 Pro from zero (Appendix Table~\ref{tab:hostedswaps}). Throughout, these models keep using audible speech in 80--100\% of replies, so the low leakage under Study~2's prompt reflects the boundary and not a general reluctance to report speech.
 
 
+\section{Why Characters Leak}
+\label{sec:why}
+If a model leaks because it continues the scene as a narrator who sees everything, then narrating should reveal more than speaking as the character, and writing the character's line as the scene's author should leak about as much as role-play. We ran the Study~1 core cells under both framings and under the role-play prompt with one added rule that the character knows only what it could perceive and understand (11 models, content question). As narrators, models state the hidden content in 95 and 97 pp of replies, so they hold it (Figure~\ref{fig:why}a). As authors they leak 76 and 81 pp, close to the 82 and 87 pp of role-play on the same prompts. The added rule lowers leakage by 20 and 19 pp but also lowers the use of permitted content by 9 pp, as self-filtering does in Section~\ref{sec:remedy}.
+
+Thinking does not close the gap for most open models. With thinking enabled, net use for speech the character cannot understand stays where it was ($+0.8$ pp [$-1.5$, 3.1], seven models), and for unheard speech it falls by 8.5 pp [$-10.1$, $-6.7$], almost entirely because Qwen3.8-27B drops from 73 to 18 pp (Figure~\ref{fig:why}b). GLM-4.7-Flash leaks more with thinking, from 63 to 89 pp. Its reasoning can name the boundary and still lead to the content, as when it notes that two people gossip ``in a language he doesn't understand'' and the reply then says where the wallet is.
+
 \section{Filtering the Character's View}
 \label{sec:remedy}
 If models leak because they speak from the whole scene, giving them only the character's view should help. We tested a prompted filter and a deterministic one.
 
-The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.'' A list from GLM-4.7-Flash for the same character contains an entry headed Understanding that translates the Japanese, ``The roadies are discussing a singer having forgotten their bag again and that it is at the church.'' Mistral-Small-24B is the one model whose answers leak (45 pp) although its lists are mostly clean.
+The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The models that it does not fix are the ones whose lists already contain the hidden values (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.''
 
 
-When the system knows what the character can access, it can build the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this lowers leakage from 60.7 pp, the four-channel mean, to zero and changes the use of accessible content by $+0.6$ pp [0.2, 1.0], and with it the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops leakage, but the character then cannot report that anything happened (32\% compared with 100\% under the view). The prompted counterpart can fail in the opposite direction. Across the six models in Study~2's method comparison, self-filtering lowers the use of permitted content by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b).
+When the system knows what the character can access, it can build the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this lowers leakage from 60.7 pp, the four-channel mean, to zero and changes the use of accessible content by $+0.6$ pp [0.2, 1.0], and with it the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops leakage, but the character then cannot report that anything happened (32\% compared with 100\% under the view). The prompted counterpart can fail in the opposite direction. Across the six models in Study~2's method comparison, self-filtering lowers the use of permitted content by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character speaks Japanese, so its use of permitted content falls from 86\% to 0\%.
 
 \section{Related Work}
 Role-playing agents are trained and evaluated for consistency with a persona \citep{shao-etal-2023-character,wang-etal-2024-rolellm}, and benchmarks score that consistency through dialogue quality or psychological interviews \citep{tu-etal-2024-charactereval,wang-etal-2024-incharacter}. Work on character hallucination tests whether a role answers beyond its time period or fictional world \citep{ahn-etal-2024-timechara,han2026charm}, perspective-bounded memory restricts a book character to the facts it witnessed \citep{tang2026staying}, and separate role memories keep information from flowing between roles \citep{zhu2026mentor}. PatientSim conditions a simulated patient on language proficiency \citep{kyung2025patientsim}. In our setting the boundary comes from the current scene, and the content is fully present in the input.
@@ -1093,22 +1643,18 @@ Role-playing agents are trained and evaluated for consistency with a persona \ci
 Theory-of-mind benchmarks test reasoning about information asymmetry \citep{kim-etal-2023-fantom}, ask how a character's perception shapes its beliefs \citep{gandhi2023bigtom,xu-etal-2024-opentom}, separate perception inference from belief inference \citep{jung-etal-2024-perceptions}, and show that models answer mental-state questions without applying the answers \citep{gu2026simpletom}. These benchmarks ask third-person questions with a gold answer, whereas we score first-person speech for content the character could not know. The behavior resembles the curse of knowledge in people \citep{birch2007curse}. ConfAIde and PrivacyLens find that models disclose information in context against norms they can state \citep{mireshghallah2024confaide,shao2024privacylens}, which has the same structure with fictional access in place of privacy. Small formatting changes shift task accuracy \citep{sclar2024quantifying}, and we find that they also decide whether a model keeps a character's boundary. Perspective filtering rewrites the context from a character's point of view before answering \citep{wilf-etal-2024-think}, and the list-first prompt applies this idea to generation.
 
 \section{Discussion}
-Why would a model that answers the state probe correctly still voice the content? One explanation is that it writes as a narrator who has seen the whole scene. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task and keeping a character's view is the unusual one. Three observations agree with this reading. Open models mostly state leaked content as fact, leakage appears once a model handles the language, and the boundary holds when the task is about the boundary, as in the state probe and in the first step of the list-first prompt, but not when the task is to talk. A direct test would ask the same model to narrate the scene and to voice the character, and compare what each output reveals.
+Section~\ref{sec:why} suggests that a role-playing model writes the scene rather than lives in it. Fiction often renders foreign speech for the reader and reports what characters failed to notice, so continuing a scene from the full state is the familiar task. The boundary holds when the task is about the boundary, as in the state probe and in the first step of the list-first prompt, but not when the task is to talk.
 
-The format results change how such behavior should be evaluated. A model that keeps the boundary under one prompt can break it when the state is laid out differently or when the character gains a backstory, and the feature that matters differs between models. A single prompt therefore cannot certify a model. Evaluations should vary the input format and report the use of permitted content next to leakage, because a model that never reports any speech would otherwise score perfectly.
-
-The same failure matters beyond games. Agent simulations study how information spreads, how rumors form and how agents coordinate under partial knowledge \citep{park2023generative,zhou2024sotopia}. If each agent's model acts on the full state, the information asymmetry that such simulations are meant to study disappears, and their conclusions describe agents that know everything.
-
-The hosted models that comply show that keeping the boundary can be learned. Their training is not public, so we cannot tell which data or objective produces it, but the open models that come closest show that compliance learned for one format does not carry over to another. Reasoning effort is one lever we could test from outside, and raising it from low to high removed most of Claude Sonnet 5.5's leakage under the repertoire without lowering its use of permitted content.
+The hosted models that comply show that keeping the boundary can be learned, and the open models that come closest show that compliance learned for one format does not carry over to another. Reasoning helps in some models and not in others. Raising Claude Sonnet 5.5's effort removed most of its leakage, while among open models thinking helped only Qwen3.8-27B.
 
 For system builders, the dependable remedy is to keep inaccessible content out of the generator's input. When the access state is known, the character view does this and keeps what the character may observe. When it is not known, a perspective filter is the practical option, and its intermediate list is the place to check for failure.
 
 \section{Conclusion}
-Most role-playing models read a character's perceptual boundary correctly and still let the hidden content into the character's speech and choices. Across 11 open models the leak averages 67 pp for speech the character cannot understand and 72 pp for speech it cannot hear, it extends to hidden actions and private messages, and it moves where characters search. Most frontier models keep the boundary, and higher reasoning effort helps the one that does not. For the strongest open models and two hosted models, however, whether the boundary holds depends on parts of the input that a designer would not consider part of it, such as the layout of the state or the character sheet. Evaluations of role-play should therefore vary the input format and report permitted use next to leakage, and systems that know what a character can access should build the character's input from that knowledge.
+Most role-playing models read a character's perceptual boundary correctly and still let the hidden content into the character's speech and choices. Across 11 open models the leak averages 67 pp for speech the character cannot understand and 72 pp for speech it cannot hear, and it extends to hidden actions and private messages. Models write the character's line much as the scene's author would, and thinking rarely changes that. Most frontier models keep the boundary, but for the strongest open models and two hosted models it depends on parts of the input such as the state layout or the character sheet. Evaluations should vary the input format and report permitted use next to leakage, and systems that know what a character can access should build the character's input from that knowledge.
 
 \FloatBarrier
 \section*{Limitations}
-Content use is scored by rules over a fixed vocabulary of 12 places and 12 objects, and one human annotator checked 150 replies. Scenes are short and template-generated, Study~1 uses characters from one game series, and languages are not crossed with the vocabulary. Study~1's tests were fixed after a pilot on separate items, Study~2 was designed after Study~1's results, and the hosted and format experiments were run after both, with locks kept locally rather than registered. Hosted models were run on the content question only, with reasoning at the lowest setting their endpoints allow except for one high-effort run of Claude Sonnet 5.5. Hosted cells are single runs, single-feature swaps cover two hosted models, and the reasoning check covers one model in the repertoire and control cells. The character view assumes correct access metadata.
+Content use is scored by rules over a fixed vocabulary of 12 places and 12 objects, and one human annotator checked 150 replies. Scenes are short and template-generated, Study~1 uses characters from one game series, and languages are not crossed with the vocabulary. Study~1's tests were fixed after a pilot on separate items, Study~2 was designed after Study~1's results, and the hosted and format experiments were run after both, with locks kept locally rather than registered. Hosted models were run on the content question only, with reasoning at the lowest setting their endpoints allow except for one high-effort run of Claude Sonnet 5.5. Scenes are short and hold one hidden fact, so long scenes with many characters are untested. Hosted cells are single runs, single-feature swaps cover two hosted models, and the reasoning check covers one model in the repertoire and control cells. The character view assumes correct access metadata.
 
 \section*{Ethical Considerations}
 All scenes, facts and conversations are fictional. Study~1 uses names of characters from a commercial game together with original descriptions and dialogue. One human annotator labeled 150 model replies about fictional facts. The annotator is a colleague of the authors and not an author. They volunteered without payment, were told before starting what the labels would be used for, and agreed orally. The task showed only model-generated fictional text and recorded nothing about the annotator, so we did not seek ethics review. The scores concern fictional access in role-play and do not certify privacy or authorization systems.
@@ -2040,6 +2586,25 @@ Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [
 \end{table*}
 \begin{table*}[t]
 \centering\setlength{\tabcolsep}{4.5pt}\small
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+\textbf{Model} & \textbf{Repertoire} & \textbf{Audibility} & \textbf{Compr.} & \textbf{Prose} & \textbf{Control} & \textbf{State} & \textbf{Transl.} & \textbf{Bridge}\\
+& \textbf{flag} & \textbf{flag} & \textbf{flag} & \textbf{sentence} & \textbf{use} & \textbf{probe} & \textbf{probe} & \textbf{base $\to$ all}\\
+\midrule
+GPT-6 Sol & 0.2 & 0.0 & 0.9 & 0.2 & 100.0 & 100.0 & 97.9 & 0.0 $\to$ 0.0\\
+Claude Opus 5.5 & 2.1 & 2.1 & 5.4 & 1.2 & 99.3 & 100.0 & 92.7 & 0.0 $\to$ 1.0\\
+Claude Sonnet 5.5 & 26.0 & 8.0 & 35.8 & 21.7 & 99.0 & 96.5 & 95.1 & 0.5 $\to$ 13.0\\
+Gemini 3.1 Pro & 1.6 & 9.0 & 0.0 & 0.0 & 99.7 & 100.0 & 97.2 & 0.0 $\to$ 21.4\\
+Gemini 3.8 Flash & 0.2 & -0.2 & 0.0 & 0.0 & 99.0 & 100.0 & 93.8 & 0.0 $\to$ 0.0\\
+Grok 4.7 & 1.0 & 0.0 & 1.0 & 0.3 & 100.0 & 100.0 & 99.3 & 0.0 $\to$ 0.0\\
+DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67.2\\
+\bottomrule
+\end{tabular}
+\caption{Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Leakage is net use in pp, control use and probes are percentages.}
+\label{tab:hosted}
+\end{table*}
+\begin{table*}[t]
+\centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular}{@{}lrrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Study 1 prompt} & \textbf{+ channel} & \textbf{+ question} & \textbf{+ minimal} & \textbf{All three}\\
@@ -2080,7 +2645,7 @@ Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \end{table*}
 \section{Models and Runs}
 \label{app:models}
-Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400 new tokens. Mistral-Small-3.1-24B could not be loaded with this software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. Hosted models were called through OpenRouter on 8 October 2026 with temperature 0 and a fixed seed where the endpoint supports them. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. DeepSeek-V4-Pro was served by one fixed provider. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} in the main text lists the hosted results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two hosted models.
+Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400 new tokens. Mistral-Small-3.1-24B could not be loaded with this software stack and was replaced by the text-only Mistral-Small-24B-Instruct-2501. Hosted models were called through OpenRouter on 8 October 2026 with temperature 0 and a fixed seed where the endpoint supports them. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. For the thinking runs (Section~\ref{sec:why}), thinking was enabled through each chat template, gpt-oss-20b ran at high reasoning effort and Seed-OSS-36B with a budget of 4,096 tokens, and replies could use up to 6,144 tokens. gpt-oss-20b's truncated replies were rerun with 10,240 tokens. Qwen3.5-9B reached the limit before answering in 97\% of prompts and is excluded. About 8--10\% of replies from Gemma-4-12B, GLM-4.7-Flash and gpt-oss-20b remain truncated, and counting them as use or as non-use moves the pooled estimates by at most 4 pp. DeepSeek-V4-Pro was served by one fixed provider. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} lists the hosted results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two hosted models.
 
 \section{Study 1 Details}
 \label{app:s1}

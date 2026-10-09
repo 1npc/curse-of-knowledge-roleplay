@@ -19,6 +19,7 @@ from statistics import mean
 ROOT = Path(__file__).resolve().parent.parent
 CELLS = {"repertoire": ("C-T-", "D0"), "audibility": ("Einaud_S", "D0"), "control": ("C+T-", "D0")}
 ITEMS = [str(ROOT / "items/main/skeletons.json"), str(ROOT / "items/real/skeletons.json")]
+EXCLUDE = {"qwen35_9b"}  # thinking: 97% of replies hit the 6,144-token limit before an answer
 
 
 def score(run, plan):
@@ -57,7 +58,18 @@ def main():
     res = {}
     fr_plan = ROOT / "items/added-1009/framing.jsonl"
     framing = score(ROOT / "runs/framing-1009", fr_plan) if (ROOT / "runs/framing-1009").exists() else {}
+    long_dir = ROOT / "runs/thinking-1009-long"
+    if long_dir.exists():  # merge reruns of truncated prompts (longer budget) before scoring
+        for d in long_dir.iterdir():
+            f = d / "responses.jsonl"
+            if not f.exists():
+                continue
+            rerun = {json.loads(l)["prompt_id"]: l for l in f.read_text().splitlines() if l.strip()}
+            first = (ROOT / "runs/thinking-1009" / d.name / "responses.jsonl")
+            lines = [rerun.get(json.loads(l)["prompt_id"], l) for l in first.read_text().splitlines() if l.strip()]
+            (ROOT / "runs/thinking-1009" / d.name / "responses.jsonl").write_text("\n".join(lines) + "\n")
     thinking = score(ROOT / "runs/thinking-1009", ROOT / "items/added-1009/core.jsonl") if (ROOT / "runs/thinking-1009").exists() else {}
+    thinking = {m: rows for m, rows in thinking.items() if m not in EXCLUDE}
     for name, runs, split in (("framing", framing, True), ("thinking", thinking, False)):
         conds = ["narrator", "author", "perspective"] if split else ["thinking"]
         out = {"per_model": {}, "pooled": {}}
@@ -73,6 +85,10 @@ def main():
                 if split:
                     pl = {json.loads(l)["prompt_id"]: json.loads(l)["framing"] for l in fr_plan.read_text().splitlines()}
                     sub = [r for r in rows if pl.get(r["prompt_id"]) == cond]
+                if not split:
+                    trunc = [r for r in sub if r.get("status") != "complete"]
+                    out["per_model"][m]["truncated"] = len(trunc)
+                    sub = [r for r in sub if r.get("status") == "complete"]
                 for cell in CELLS:
                     v, b = values(sub, cell), values(base.get(m, []), cell)
                     common = sorted(set(v) & set(b))
@@ -84,7 +100,7 @@ def main():
             out["pooled"][f"{cond}:{cell}"] = pooled_delta(pr)
         res[name] = out
         for m, d in out["per_model"].items():
-            print(name, m, d["status"], {k: f"{100 * x['value']:.1f} (base {100 * x['baseline']:.1f})" for k, x in d.items() if k != "status"})
+            print(name, m, d["status"], {k: f"{100 * x['value']:.1f} (base {100 * x['baseline']:.1f})" for k, x in d.items() if isinstance(x, dict) and "value" in x})
         for k, d in out["pooled"].items():
             print(name, "POOLED", k, f"{100 * d['estimate']:+.1f} [{100 * d['ci95'][0]:+.1f}, {100 * d['ci95'][1]:+.1f}]")
     (ROOT / "analysis/results/added-1009").mkdir(parents=True, exist_ok=True)

@@ -66,56 +66,95 @@ def heat(v):
     return f"OIorange!{v * 0.85:.0f}!white", "black!80"
 
 
-def design():
-    """Figure 2: measurement, how Study 1 states the boundary, and Study 2's four channels with the character view."""
-    return r"""\begin{figure*}[t]
-\centering
-\begin{tikzpicture}[x=1cm,y=1cm,
-  ver/.style={rounded corners=2pt,fill=#1,inner sep=3pt,text width=1.95cm,align=left,font=\sffamily\scriptsize},
-  cell/.style={rounded corners=2pt,fill=#1,minimum width=1.5cm,minimum height=0.66cm,align=center,font=\sffamily\tiny,inner sep=1.5pt,text width=1.42cm},
-  hd/.style={font=\sffamily\tiny\bfseries,text=black!55,align=center}]
-%% (a) measurement
-\node[panel] at (0,3.6) {(a) Counterfactual twins};
-\node[ver=OIblue!12,anchor=north west] (a) at (0,3.15) {\textbf{Version A}\\the \textbf{coat} is by\\the \textbf{school}};
-\node[ver=black!7,anchor=north west] (b) at (0,1.95) {\textbf{Version B}\\the \textbf{glove} is by\\the \textbf{church}};
-\node[rounded corners=2pt,draw=black!25,fill=white,inner sep=3pt,text width=1.95cm,align=left,anchor=north west] (r) at (2.6,3.15) {\textbf{Reply to A}\\``He left the \textcolor{OIblue}{\textbf{coat}} by the \textcolor{OIblue}{\textbf{school}}.''};
-\draw[black!45,-{Stealth[length=3.5pt]}] (a.east|-r.west)--(r.west);
-\node[chip,fill=OIblue,anchor=north west,minimum width=2.25cm,align=left] (t) at (2.6,1.95) {target named \hfill 1};
-\node[chip,fill=black!40,anchor=north west,minimum width=2.25cm,align=left] (f) at (2.6,1.55) {foil named \hfill 0};
-\draw[black!35,densely dotted,-{Stealth[length=3pt]}] (b.east|-f.west)--(f.west);
-\node[anchor=north west,font=\sffamily\scriptsize] at (2.6,1.1) {net use $D = 1 - 0$};
-\node[anchor=north west,align=left,font=\sffamily\tiny,text=black!60,text width=4.7cm] at (0,0.55) {A guess such as ``check the basement'' scores in both versions and cancels.};
-%% (b) Study 1
-\begin{scope}[xshift=5.4cm]
-\node[panel] at (0,3.6) {(b) Study 1: how the boundary is stated};
-\node[hd] at (1.95,2.98) {in the\\state};
-\node[hd] at (3.55,2.98) {per-utterance\\flag};
-\node[hd] at (5.15,2.98) {flag and a\\sentence};
-\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,2.25) {\faLanguage\ cannot\\understand};
-\node[anchor=east,align=right,font=\sffamily\tiny\bfseries] at (1.1,1.45) {\faDeaf\ cannot\\hear};
-\node[cell=OIblue!12] at (1.95,2.25) {\texttt{speaks:}\\\texttt{[English]}};
-\node[cell=OIsky!22] at (3.55,2.25) {\texttt{understood:}\\\texttt{false}};
-\node[cell=OIgreen!15] at (5.15,2.25) {+ ``does not speak Japanese''};
-\node[cell=black!4,text=black!35] at (1.95,1.45) {no analogue};
-\node[cell=OIorange!14] at (3.55,1.45) {\texttt{audible:}\\\texttt{false}};
-\node[cell=OIpurple!16] at (5.15,1.45) {+ ``could not hear them''};
-\node[anchor=north west,font=\sffamily\tiny,text=black!60,text width=5.7cm,align=left] at (0.0,0.95) {Speech is in Chinese, Japanese or Spanish, or in English marked inaudible. Controls make the same speech accessible.};
-\end{scope}
-%% (c) Study 2
-\begin{scope}[xshift=11.5cm]
-\node[panel] at (0,3.6) {(c) Study 2: four channels};
-\foreach \x/\y/\ic/\ch/\full/\view in {0/3.1/\faDeaf/Hear/speech out of earshot/nothing,
-  2.22/3.1/\faLanguage/Understand/speech in Japanese/Casey speaks Japanese,
-  0/1.48/\faEyeSlash/See/an object is hidden/Alex puts something away,
-  2.22/1.48/\faEnvelope/Receive/a private message/Alex sends a message}{
-  \node[anchor=north west,rounded corners=2pt,fill=black!3,inner sep=3pt,text width=1.95cm,minimum height=1.3cm,align=left,font=\sffamily\tiny] at (\x,\y)
-    {{\color{OIorange}\footnotesize\ic}\ \textbf{\ch}\\[1pt]hidden: \full\\[1pt]\textcolor{OIgreen}{view: \view}};
+# ---- pixel sprites (original designs, drawn as filled squares) ----
+SPRITE_PAL = {"k": "3B302C", "s": "F1C7A1", "S": "D9A27C", "m": "B5675A", "w": "F4F1EA", "W": "D8D4CC",
+              "c": "5B7FAF", "C": "45679A", "o": "6E8FBF", "O": "4E6E9E", "b": "8BA6CC", "g": "A0896C", "G": "7E6A52",
+              "h": "4A3328", "H": "6B4A38", "r": "B8664E", "R": "974F3B", "n": "4D4A5A", "N": "3A3846",
+              "y": "D9B45A", "Y": "B8913A", "e": "9A9A9A", "E": "777777", "t": "68A595", "T": "4E8C7C",
+              "q": "B497B6", "f": "E8DCC8", "F": "C9B79C", "l": "9CC2DD", "p": "C98B5E"}
+SPRITES = {
+    "mech1": ["...cccc...", "..cccccc..", "..ccccccC.", "..ssssss..", "..skssks..", "..ssssss..", "...smms...", "...ssss...",
+              ".bbbbbbbb.", "bboobboobb", "sboooooobs", "sboooooobs", ".oooooooo.", ".oo....oo.", ".kk....kk."],
+    "mech2": ["...gggg...", "..gggggg..", "..ggggggG.", "..ssssss..", "..skssks..", "..ssssss..", "...smms...", "...ssss...",
+              ".GGGGGGGG.", "GGffGGffGG", "sGffffffGs", "sGffffffGs", ".ffffffff.", ".ff....ff.", ".kk....kk."],
+    "hero":  ["...hhhh...", "..hhhhhh.h", ".hhhhhhhhh", ".hssssssh.", ".hskssksh.", ".hssssssh.", "..ssmmss..", "...ssss...",
+              ".rrrrrrrr.", "rrrwwwwrrr", "srrwwwwrrs", "srrwwwwrrs", ".nnnnnnnn.", ".nn....nn.", ".kk....kk."],
+    "comp":  ["..HHHHHH..", ".HHHHHHHH.", ".HssssssH.", ".sskssks..", ".ssssssss.", ".sHHmmHHs.", "..HHHHHH..", "...ssss...",
+              ".nnnnnnnn.", "nnnlllnnnn", "snnlllnnns", "snnnnnnnns", ".NNNNNNNN.", ".NN....NN.", ".kk....kk."],
+    "robot": ["....y.....", "....k.....", ".eeeeeeee.", ".eEEEEEEe.", ".eEtEEtEe.", ".eEEEEEEe.", ".eEEkkEEe.", ".eeeeeeee.",
+              "..eeeeee..", ".EeeeeeeE.", ".Ee....eE."],
+    "mirror": ["..yyyy..", ".yllllY.", "yllwllY.", "yllllllY", "yllllllY", ".yllllY.", "..yyyy..", "...YY...", "..YYYY.."],
+    "house":  ["...RR...", "..RRRR..", ".RRRRRR.", "RRRRRRRR", ".eeeeee.", ".eeggee.", ".eeggee.", ".eeggee."],
+    "chair":  ["pp......", "pp......", "pp......", "pppppp..", "pppppp..", "p....p..", "p....p..", "p....p.."],
+    "church": ["...k....", "..kkk...", "...k....", "..ffff..", ".ffffff.", "ffffffff", ".FFggFF.", ".FFggFF."],
+    "flag":   ["kttttt..", "kttttttt", "kttttttt", "kttttt..", "k.......", "k.......", "k.......", "k......."],
+    "mute":   ["....k.....", "...kk.r..r", "kkkkk..rr.", "kkkkk..rr.", "kkkkk.r..r", "...kk.....", "....k....."],
+    "ask":    [".kkkkkkkk.", "kwwwkkwwwk", "kwwkwwkwwk", "kwwwwwkwwk", "kwwwwkwwwk", "kwwwwwwwwk", "kwwwwkwwwk", ".kkkkkkkk.", "..kk......"],
+    "eyex":   ["k........k", "k........k", ".kk....kk.", "...kkkk...", "..k..k..k.", ".k...k...k"],
+    "mail":   ["kkkkkkkkkk", "kkwwwwwwkk", "kwkwwwwkwk", "kwwkwwkwwk", "kwwwkkwwwk", "kwwwwwwwwk", "kkkkkkkkkk"],
 }
-\end{scope}
-\end{tikzpicture}
-\caption{Design. (a) Every scene has two versions that differ only in a hidden object and place, and a reply is scored for both. (b) Study 1 states the boundary in five ways, matched within each row. (c) Study 2 hides content through four channels. The character view replaces each hidden event with what the character can still observe.}
-\label{fig:design}
-\end{figure*}"""
+
+
+def sprite(name, x, y, px, recolor=None):
+    """Sprite with its lower-left corner at (x, y); px is the size of one pixel in cm. Runs of one color share a rectangle."""
+    rows = SPRITES[name]
+    if recolor:
+        rows = ["".join(recolor.get(ch, ch) for ch in r) for r in rows]
+    L = []
+    for i, row in enumerate(rows):
+        yy = y + (len(rows) - 1 - i) * px
+        j = 0
+        while j < len(row):
+            ch = row[j]
+            k = j
+            while k < len(row) and row[k] == ch:
+                k += 1
+            if ch != ".":
+                L.append(f"\\fill[fill={{rgb,255:red,{int(SPRITE_PAL[ch][0:2], 16)};green,{int(SPRITE_PAL[ch][2:4], 16)};blue,{int(SPRITE_PAL[ch][4:6], 16)}}}] "
+                         f"({x + j * px:.4f},{yy:.4f}) rectangle ({x + k * px + 0.002:.4f},{yy + px + 0.002:.4f});")
+            j = k
+    return "\n".join(L)
+
+
+def design():
+    """Figure 2 (one column, pixel style): how Study 1 states the boundary, and Study 2's channels with the character view."""
+    L = [r"\begin{figure}[t]", r"\centering",
+         r"\begin{tikzpicture}[x=1cm,y=1cm,"
+         r"cell/.style={draw=black!70,line width=.6pt,fill=#1,minimum width=1.58cm,minimum height=0.74cm,align=center,font=\sffamily\scriptsize,inner sep=1pt,text width=1.5cm},"
+         r"hd/.style={font=\sffamily\scriptsize\bfseries,text=black!60,align=center}]"]
+    # (a) Study 1
+    L.append(r"\fill[black!3] (0,2.3) rectangle (7.6,5.55);")
+    L.append(r"\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,5.47) {(a) Study 1: how the boundary is stated};")
+    for x, t in ((3.12, "state"), (4.82, "utterance flag"), (6.52, "+ sentence")):
+        L.append(f"\\node[hd] at ({x},4.67) {{{t}}};")
+    L.append(sprite("ask", 0.14, 3.7, 0.05, {"k": "C"}))
+    L.append(r"\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,3.93) {cannot\\understand};")
+    L.append(sprite("mute", 0.14, 2.76, 0.05, {"k": "R", "r": "R"}))
+    L.append(r"\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,2.93) {cannot\\hear};")
+    cells = [(3.12, 3.93, "OIblue!12", r"speaks:\\English", ""), (4.82, 3.93, "OIblue!12", r"understood:\\false", ""),
+             (6.52, 3.93, "OIblue!12", r"``does not speak\\Japanese''", r"\tiny"),
+             (3.12, 2.93, "black!4", r"---", ""), (4.82, 2.93, "OIorange!14", r"audible:\\false", ""),
+             (6.52, 2.93, "OIorange!14", r"``could not\\hear them''", r"\tiny")]
+    for x, y, fill, t, f in cells:
+        extra = ",draw=black!25,text=black!40" if t == "---" else ""
+        L.append(f"\\node[cell={fill}{extra},font=\\sffamily\\scriptsize{f}] at ({x},{y}) {{{t}}};")
+    # (b) Study 2
+    L.append(r"\fill[black!3] (0,0.15) rectangle (7.6,2.15);")
+    L.append(r"\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,2.07) {(b) Study 2: four channels};")
+    chans = [("mute", "Hear", "nothing"), ("ask", "Understand", "``Casey speaks Japanese''"),
+             ("eyex", "See", "``Alex puts something away''"), ("mail", "Receive", "``Alex sends a message''")]
+    for k, (ic, name, view) in enumerate(chans):
+        x = 0.15 + 1.86 * k
+        L.append(f"\\draw[black!70,line width=.6pt,fill=white] ({x:.2f},0.28) rectangle ++(1.75,1.3);")
+        w, h = len(SPRITES[ic][0]) * 0.055, len(SPRITES[ic]) * 0.055
+        L.append(sprite(ic, x + 0.875 - w / 2, 1.33 - h / 2, 0.055, {"k": "R", "r": "R"}))
+        L.append(f"\\node[font=\\sffamily\\scriptsize\\bfseries] at ({x + 0.875:.3f},0.91) {{{name}}};")
+        L.append(f"\\fill[OIgreen!14] ({x + 0.06:.3f},0.34) rectangle ++(1.63,0.42);")
+        L.append(f"\\node[font=\\sffamily\\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at ({x + 0.875:.3f},0.55) {{{view}}};")
+    L += [r"\end{tikzpicture}",
+          r"\caption{Design. (a) Study 1 states the boundary in five ways, matched within each row. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2 hides content through four channels, and the character view (green) replaces each hidden event with what the character can still observe.}",
+          r"\label{fig:design}", r"\end{figure}"]
+    return "\n".join(L)
 
 
 def study1():
@@ -418,45 +457,51 @@ def remedy():
 
 
 def example():
-    """Figure 1: one Study 1 item drawn as a scene, with verbatim replies from Gemma-4-31B."""
-    return r"""\begin{figure}[t]
-\centering
-\begin{tikzpicture}[x=1cm,y=1cm,
-  bubble/.style={rectangle callout,rounded corners=3pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},
-  reply/.style={rounded corners=3pt,draw=#1,line width=.6pt,fill=white,inner sep=3.5pt,text width=5.15cm,align=left,font=\sffamily\scriptsize},
-  tag/.style={rounded corners=1.5pt,fill=#1,text=white,font=\sffamily\tiny\bfseries,inner sep=2pt,minimum width=1.9cm,align=center}]
-% scene backdrop
-\fill[black!3,rounded corners=4pt] (0,2.05) rectangle (7.6,5.3);
-\node[font=\sffamily\tiny\bfseries,text=black!45,anchor=north west] at (0.12,5.22) {SCENE};
-% mechanics
-\node[text=black!55,font=\Large] (m1) at (0.55,3.0) {\faUserCog};
-\node[text=black!40,font=\Large] (m2) at (1.25,3.0) {\faUserCog};
-\node[font=\sffamily\tiny,text=black!55] at (0.9,2.45) {two mechanics};
-\node[bubble=black!10,callout absolute pointer={(1.0,3.3)}] at (1.65,4.15) {\emph{¿Dónde está el espejo?}\\\emph{En el almacén. No se lo}\\\emph{digas a nadie.}};
-% Panam
-\node[text=OIblue,font=\Large] (pn) at (4.55,3.0) {\faUser};
-\node[font=\sffamily\tiny\bfseries,text=OIblue] at (4.55,2.45) {Panam};
-\node[rounded corners=1.5pt,draw=OIblue,text=OIblue,font=\sffamily\tiny,inner sep=1.5pt,align=center] at (4.3,4.3) {\faLanguage\ speaks\\only English};
-\draw[OIblue!60,line width=.5pt,-{Stealth[length=3pt]}] (4.4,3.98)--(4.52,3.35);
-% companion
-\node[text=black!60,font=\Large] (v) at (6.85,3.0) {\faUser};
-\node[font=\sffamily\tiny,text=black!55] at (6.85,2.45) {companion};
-\node[bubble=OIsky!25,callout absolute pointer={(6.8,3.3)}] at (6.6,4.3) {What were\\those two\\saying?};
-% generator
-\draw[black!35,line width=.6pt,-{Stealth[length=4pt]}] (3.8,2.05)--(3.8,1.62);
-\node[font=\sffamily\scriptsize,text=black!70] at (3.8,1.42) {\faRobot\ \ the model voices Panam and reads the full state};
-% replies
-\node[reply=OIorange,anchor=north west] (r1) at (2.2,1.15) {``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''};
-\node[tag=OIorange,anchor=east] at (2.05,0.83) {\faTimes\ Version A\\mirror, warehouse};
-\node[reply=OIorange,anchor=north west] (r2) at (2.2,0.28) {``Something about a \leak{chair} being in a \leak{church}. Weird as hell, right?''};
-\node[tag=OIorange,anchor=east] at (2.05,-0.0) {\faTimes\ Version B\\chair, church};
-\node[reply=OIgreen,anchor=north west] (r3) at (2.2,-0.6) {``Don't look at me, V. I didn't catch a damn word of it.''};
-\node[tag=OIgreen,anchor=east] at (2.05,-0.86) {\faCheck\ A + flag\\understood: false};
-\end{tikzpicture}
-\caption{Gemma-4-31B voicing a character who does not speak Spanish. The reply tracks the hidden object and place when version B swaps them, and a per-utterance flag stops the leak. Replies are verbatim.}
-\label{fig:example}
-\end{figure}"""
-
+    """Figure 1: one Study 1 item drawn as a pixel-art scene, with verbatim replies from Gemma-4-31B."""
+    L = [r"\begin{figure}[t]", r"\centering",
+         r"\begin{tikzpicture}[x=1cm,y=1cm,"
+         r"pbub/.style={draw=black!70,line width=.6pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},"
+         r"reply/.style={draw=#1,line width=.7pt,fill=white,inner sep=3pt,text width=5.2cm,align=left,font=\sffamily\scriptsize},"
+         r"tag/.style={fill=#1,text=white,font=\sffamily\tiny\bfseries,inner sep=1.6pt,anchor=north west}]"]
+    # scene
+    L.append(r"\fill[black!3] (0,2.3) rectangle (7.6,5.75);")
+    L.append(r"\node[fill=OIsky!35,font=\sffamily\tiny\bfseries,inner sep=2pt,anchor=north west] at (0.08,5.68) {SCENE};")
+    L.append(sprite("mech1", 0.35, 2.75, 0.06))
+    L.append(sprite("mech2", 1.05, 2.75, 0.06))
+    L.append(r"\node[pbub=OIorange!12,anchor=south west] (sp) at (0.15,4.05) {\emph{¿Dónde está el \textbf{espejo}?}\\\emph{En el \textbf{almacén}. No se lo}\\\emph{digas a nadie.}};")
+    L.append(r"\fill[OIorange!12,draw=black!70,line width=.6pt] (0.75,4.08)--(0.95,3.75)--(1.05,4.08)--cycle;")
+    L.append(r"\draw[black!35,densely dashed,line width=.6pt,-{Stealth[length=3pt]}] (1.8,3.2)--(3.55,3.2);")
+    L.append(sprite("hero", 3.75, 2.75, 0.06))
+    L.append(r"\node[pbub=white,font=\sffamily\scriptsize\bfseries,inner sep=1.5pt] at (4.62,4.1) {???};")
+    L.append(r"\fill[black!70] (4.3,3.8) rectangle ++(0.07,0.07);\fill[black!70] (4.22,3.7) rectangle ++(0.05,0.05);")
+    L.append(r"\node[fill=OIblue!15,font=\sffamily\tiny,inner sep=1.5pt,align=center] at (4.05,2.5) {\textbf{Mara} $\cdot$ English only};")
+    L.append(sprite("comp", 6.6, 2.75, 0.06))
+    L.append(r"\node[pbub=OIsky!25,anchor=south east] at (7.5,4.05) {What were those\\two saying?};")
+    L.append(r"\fill[OIsky!25,draw=black!70,line width=.6pt] (6.85,4.08)--(6.95,3.75)--(7.1,4.08)--cycle;")
+    # model
+    L.append(r"\draw[black!40,line width=.6pt,-{Stealth[length=3.5pt]}] (3.8,2.3)--(3.8,2.0);")
+    L.append(sprite("robot", 2.55, 1.47, 0.04))
+    L.append(r"\node[anchor=west,font=\sffamily\scriptsize,text=black!75] at (3.0,1.68) {model voices Mara};")
+    # replies
+    rows = [(1.3, "OIorange", r"\faTimes\ A", ("mirror", "house"), None,
+             r"``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''"),
+            (0.35, "OIorange", r"\faTimes\ B", ("chair", "church"), None,
+             r"``Something about a \leak{chair} being in a \leak{church}. Weird as hell, right?''"),
+            (-0.6, "OIgreen", r"\faCheck\ A + flag", ("flag",), None,
+             r"``Don't look at me, Jo. I didn't catch a damn word of it.''")]
+    for top, col, tag, objs, words, text in rows:
+        L.append(f"\\fill[{col}!10] (0,{top - 0.88:.2f}) rectangle (7.6,{top:.2f});")
+        L.append(f"\\node[tag={col}] at (0.08,{top - 0.06:.2f}) {{{tag}}};")
+        for k, ob in enumerate(objs):
+            L.append(sprite(ob, 0.15 + k * 0.5, top - 0.84, 0.045))
+        L.append(sprite("hero", 1.35, top - 0.84, 0.05))
+        L.append(f"\\node[reply={col},anchor=west] at (2.1,{top - 0.44:.2f}) {{{text}}};")
+        L.append(f"\\fill[white,draw={col},line width=.7pt] (2.12,{top - 0.36:.2f})--(1.93,{top - 0.44:.2f})--(2.12,{top - 0.52:.2f});")
+        L.append(f"\\fill[white] (2.115,{top - 0.35:.2f}) rectangle (2.15,{top - 0.53:.2f});")
+    L += [r"\end{tikzpicture}",
+          r"\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies verbatim, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}",
+          r"\label{fig:example}", r"\end{figure}"]
+    return "\n".join(L)
 
 
 def bridge_full():
@@ -581,4 +626,54 @@ def factors():
           r"\label{fig:factors}", r"\end{figure*}"]
     return "\n".join(L)
 
-ALL = {"FIG_EXAMPLE": example, "FIG_DESIGN": design, "FIG_S1": study1, "FIG_S2": study2, "FIG_FRONTIER": frontier, "FIG_REMEDY": remedy, "FIG_BRIDGEFULL": bridge_full, "FIG_S1M": listfirst_models, "FIG_FACTORS": factors}
+
+def why():
+    """Figure: why characters leak. (a) four framings of the same scenes, (b) thinking on and off per model."""
+    d = load(ROOT / "analysis/results/added-1009/framing_thinking.json")
+    fr, th = d["framing"]["per_model"], d["thinking"]["per_model"]
+    conds = [("base", "role-play"), ("author", "author"), ("narrator", "narrator"), ("perspective", "+ perspective rule")]
+    def pooled(cond, cell):
+        key = "author" if cond == "base" else cond
+        vals = [m[f"{key}:{cell}"]["baseline" if cond == "base" else "value"] for m in fr.values() if f"{key}:{cell}" in m]
+        return 100 * sum(vals) / len(vals)
+    H = 2.0
+    L = [r"\begin{figure}[t]", r"\centering", r"\begin{tikzpicture}[x=1cm,y=1cm]"]
+    # (a)
+    w = 3.6
+    L.append(f"\\node[panel] at (-2.1,{H + 0.5:.2f}) {{(a) The same scenes, four framings ({len(fr)} models)}};")
+    fl, X, _ = frame(w, H, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "net use (pp)", grid="x")
+    L += [l for l in fl if "anchor=east" not in l]
+    rh = H / len(conds)
+    L.append(f"\\node[font=\\sffamily\\tiny\\bfseries,text=black!50,anchor=south] at ({w + 0.45:.3f},{H + 0.02:.3f}) {{permitted}};")
+    for i, (c, lab) in enumerate(conds):
+        yc = H - (i + 0.5) * rh
+        bf = "\\bfseries" if c == "base" else ""
+        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny{bf}] at (-0.05,{yc:.3f}) {{{lab}}};")
+        for cell, col, dy in (("repertoire", "OIblue", 0.07), ("audibility", "OIorange", -0.07)):
+            v = pooled(c, cell)
+            L.append(f"\\fill[{col}] (0,{yc + dy - 0.055:.3f}) rectangle ({X(v):.3f},{yc + dy + 0.055:.3f});"
+                     f"\\node[anchor=west,font=\\sffamily\\tiny,text=black!70,inner sep=1pt] at ({X(v):.3f},{yc + dy:.3f}) {{{v:.0f}}};")
+        L.append(f"\\node[font=\\sffamily\\tiny,text=black!60] at ({w + 0.45:.3f},{yc:.3f}) {{{pooled(c, 'control'):.0f}\\%}};")
+    # (b)
+    models = sorted(th, key=lambda m: -th[m]["thinking:audibility"]["baseline"])
+    H2 = 0.27 * len(models)
+    y0 = -H2 - 1.25
+    L.append(f"\\begin{{scope}}[yshift={y0:.3f}cm]")
+    L.append(f"\\node[panel] at (-2.1,{H2 + 0.5:.2f}) {{(b) Thinking off $\\rightarrow$ on}};")
+    fl, X, _ = frame(w, H2, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "net use (pp)", grid="x")
+    L += [l for l in fl if "anchor=east" not in l]
+    for i, m in enumerate(models):
+        yc = H2 - (i + 0.5) * 0.27
+        L.append(f"\\node[anchor=east,font=\\sffamily\\tiny] at (-0.05,{yc:.3f}) {{{NAMES[m]}}};")
+        for cell, col, dy in (("repertoire", "OIblue", 0.055), ("audibility", "OIorange", -0.055)):
+            a, b = 100 * th[m][f"thinking:{cell}"]["baseline"], 100 * th[m][f"thinking:{cell}"]["value"]
+            L.append(f"\\draw[{col}!45,line width=1.1pt] ({X(a):.3f},{yc + dy:.3f})--({X(b):.3f},{yc + dy:.3f});"
+                     f"\\draw[{col},fill=white,line width=.5pt] ({X(a):.3f},{yc + dy:.3f}) circle (1.3pt);\\fill[{col}] ({X(b):.3f},{yc + dy:.3f}) circle (1.5pt);")
+    L.append(r"\end{scope}")
+    L += legend([("box", "OIblue", "cannot understand"), ("box", "OIorange", "cannot hear")], -1.2, y0 - 0.85)
+    L += [r"\end{tikzpicture}",
+          r"\caption{Why characters leak (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}",
+          r"\label{fig:why}", r"\end{figure}"]
+    return "\n".join(L)
+
+ALL = {"FIG_EXAMPLE": example, "FIG_DESIGN": design, "FIG_S1": study1, "FIG_S2": study2, "FIG_FRONTIER": frontier, "FIG_REMEDY": remedy, "FIG_BRIDGEFULL": bridge_full, "FIG_S1M": listfirst_models, "FIG_FACTORS": factors, "FIG_WHY": why}
