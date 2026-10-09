@@ -159,9 +159,12 @@ def main():
     ap.add_argument("--top-p", type=float, default=None)
     # 10/9: thinking enabled (added experiment). The final answer is scored and the reasoning kept separately.
     ap.add_argument("--thinking", action="store_true")
+    ap.add_argument("--max-output-tokens", type=int, default=None, help="thinking runs: longer budget for a rerun of truncated prompts")
     a = ap.parse_args()
     if a.thinking:
         PROTOCOL.update(max_output_tokens=6144, max_model_len=12288, thinking="enabled via chat template; final answer after the reasoning block")
+    if a.max_output_tokens:
+        PROTOCOL.update(max_output_tokens=a.max_output_tokens, max_model_len=max(PROTOCOL["max_model_len"], a.max_output_tokens + 4096))
     if a.seed is not None:
         PROTOCOL["seed"] = a.seed
     if a.temperature is not None:
