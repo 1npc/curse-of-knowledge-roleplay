@@ -286,7 +286,7 @@ def added():
 
 
 def study2():
-    ren = [("H1: ", "Channel, "), ("H2: State-correct", "State-correct"), ("H3: Full", "View, full"), ("H3: ", "View, "), ("H1 is the conjunction", "The channel test is the conjunction"), ("H3 combines", "the view test combines"), ("H2 includes", "The state-correct test includes"), ("for C001, Qwen3.5-9B, R2, delay zero", "for scene C001, Qwen3.5-9B, access flag, no delay")]
+    ren = [("H1: ", "Channel, "), ("H2: State-correct", "State-correct"), ("H3: Full", "View, full"), ("H3: ", "View, "), ("H1 is the conjunction", "The channel test is the conjunction"), ("H3 combines", "the view test combines"), ("H2 includes", "The state-correct test includes"), ("for C001, Qwen3.5-9B, R2, delay zero", "for scene C001, Qwen3.5-9B, access flag, no delay"), ("in the four-core subset.", "across the four core models."), ("Independent probe prefix &", "Probe prefix &"), ("Independent probe user &", "Probe question &"), ("Replace \\texttt{The glove is in the church.} with \\texttt{The broom is in the stairwell.}", "\\texttt{The glove is in the church.} $\\rightarrow$ \\texttt{The broom is in the stairwell.}"), ("Replace \\texttt{audible\\_to\\_Mira Sen}: \\texttt{false} with \\texttt{true}.", "\\texttt{audible\\_to\\_Mira Sen}: \\texttt{false} $\\rightarrow$ \\texttt{true}")]
     labels = {"S2_ACCESS": "tab:accesscases", "S2_CONFIRM": "tab:confirm", "S2_HEATMAP": "fig:discoveryheatmap", "S2_METHODS": "tab:methods",
               "S2_BEHAVIOR": "fig:behavior", "S2_REPRESENTATION": "tab:representation", "S2_DISCMETHODS": "tab:discoverymethods",
               "S2_DELAY": "tab:delay", "S2_DECISION": "tab:decision", "S2_CHOICEORDER": "tab:choiceorder", "S2_TRANSLATE": "tab:translate",
@@ -314,6 +314,11 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
 \usepackage{placeins,adjustbox}
+% Avoid paragraphs whose last line holds a single word: the last line must fill at least a fifth of the column.
+\setlength{\parfillskip}{0pt plus 0.8\columnwidth}\setlength{\emergencystretch}{1.5em}
+\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.8\linewidth}\setlength{\emergencystretch}{1.5em}}
+\captionsetup{justification=fullfill}
+\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=3em\parfillskip=0pt plus 0.5\columnwidth\relax}\makeatother
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
 \definecolor{OCblue}{HTML}{5B7FAF}
@@ -440,6 +445,17 @@ def onecolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
     return head + app
 
 
+# Rewordings that keep table cells and captions from ending on a single word.
+LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),)
+
+
+def late_fixes(body):
+    for x, y in LATE_FIXES:
+        assert x in body, x
+        body = body.replace(x, y)
+    return body
+
+
 def main():
     body = (P / "body.tex").read_text(encoding="utf-8")
     sys.path.insert(0, str(P))
@@ -453,6 +469,7 @@ def main():
     for x, y in CAPTION_SENTENCES:  # entries whose float is no longer inserted are skipped
         body = body.replace(x, y)
     body = onecolumn_appendix(style_tables(body, table_widths(body)))
+    body = late_fixes(body)
     (P / "main.tex").write_text(PREAMBLE + figures.COLORS + "\n" + body, encoding="utf-8")
     print("wrote main.tex;", len(ins), "insertable floats,", body.count("\\cite"), "cite commands")
 

@@ -34,6 +34,11 @@ EXTRA = r"""
 % Added for this paper: tables, math, colors used in tables, and float placement
 \usepackage{booktabs,amsmath,amssymb,tabularx,xcolor}
 \usepackage{placeins,adjustbox}
+% Avoid paragraphs whose last line holds a single word: the last line must fill at least a fifth of the column.
+\setlength{\parfillskip}{0pt plus 0.8\columnwidth}\setlength{\emergencystretch}{1.5em}
+\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.8\linewidth}\setlength{\emergencystretch}{1.5em}}
+\captionsetup{justification=fullfill}
+\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=3em\parfillskip=0pt plus 0.5\columnwidth\relax}\makeatother
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
@@ -70,6 +75,7 @@ def main():
     for x, y in build.CAPTION_SENTENCES:
         body = body.replace(x, y)
     body = build.onecolumn_appendix(build.style_tables(body, build.table_widths(body)))
+    body = build.late_fixes(body)
     body = body.replace(r"\bibliography{references}", r"\bibliography{custom}")
     body = body.replace(r"\author{Anonymous ACL submission}", tpl[tpl.index("\n\\author{First Author") + 1:tpl.index(r"\begin{document}")].strip())
     (OUT / "acl_latex.tex").write_text(head + EXTRA + body, encoding="utf-8")

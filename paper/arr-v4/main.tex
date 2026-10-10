@@ -17,6 +17,11 @@
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
 \usepackage{placeins,adjustbox}
+% Avoid paragraphs whose last line holds a single word: the last line must fill at least a fifth of the column.
+\setlength{\parfillskip}{0pt plus 0.8\columnwidth}\setlength{\emergencystretch}{1.5em}
+\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.8\linewidth}\setlength{\emergencystretch}{1.5em}}
+\captionsetup{justification=fullfill}
+\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=3em\parfillskip=0pt plus 0.5\columnwidth\relax}\makeatother
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
 \definecolor{OCblue}{HTML}{5B7FAF}
@@ -1779,6 +1784,7 @@ All scenes, facts and conversations are fictional. Study~1 uses names of charact
 \onecolumn
 \appendix
 % One-column appendix: each section is followed by its own tables and figures.
+\setlength{\parfillskip}{0pt plus 0.8\textwidth}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}\setlength{\floatsep}{8pt plus 2pt minus 2pt}\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
 \setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}
 \renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.5}
@@ -2213,7 +2219,7 @@ Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 \bottomrule
 \end{tabular}\end{lrbox}
 \adjustbox{max width=\linewidth}{\usebox{\OCtable}}
-\caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] in the four-core subset.}
+\caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] across the four core models.}
 \label{tab:representation}
 \end{minipage}
 \end{table}
@@ -2340,10 +2346,10 @@ Role system prefix & {\footnotesize\ttfamily You are role-playing Mira Sen. Use 
 Shared character & {\footnotesize\ttfamily [Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.}\\
 Full scene (A, no access) & {\footnotesize\ttfamily [Scene state] \{"character\_id": "Mira Sen", "events": [\{"actor": "Alex", "audible\_to\_Mira Sen": false, "boundary\_channel": "Hear", "content": "The glove is in the church.", "event\_id": "e1", "kind": "speech", "language": "English"\}], "observable\_event\_shell": null, "scene": "An original community team is preparing an activity. Its members have not shared the latest finding."\}}\\
 Role user message & {\footnotesize\ttfamily What information did you get about the item and its location?}\\
-Independent probe prefix & {\footnotesize\ttfamily Read the scene as an evaluator. Answer the access question with only Yes or No.}\\
-Independent probe user & {\footnotesize\ttfamily Did Mira Sen hear the utterance?}\\
-Counterfactual B & Replace \texttt{The glove is in the church.} with \texttt{The broom is in the stairwell.}\\
-Accessible control & Replace \texttt{audible\_to\_Mira Sen}: \texttt{false} with \texttt{true}.\\
+Probe prefix & {\footnotesize\ttfamily Read the scene as an evaluator. Answer the access question with only Yes or No.}\\
+Probe question & {\footnotesize\ttfamily Did Mira Sen hear the utterance?}\\
+Counterfactual B & \texttt{The glove is in the church.} $\rightarrow$ \texttt{The broom is in the stairwell.}\\
+Accessible control & \texttt{audible\_to\_Mira Sen}: \texttt{false} $\rightarrow$ \texttt{true}\\
 Inaccessible view scene & {\footnotesize\ttfamily [Scene state] \{"character\_id": "Mira Sen", "observations": [], "scene": "An original community team is preparing an activity. Its members have not shared the latest finding."\}}\\
 \bottomrule
 \end{tabularx}\end{lrbox}
@@ -2356,7 +2362,7 @@ Inaccessible view scene & {\footnotesize\ttfamily [Scene state] \{"character\_id
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}llcXX@{}}
 \toprule
-\textbf{Version} & \textbf{Access} & \textbf{Probe} & \textbf{Full-context spoken reply} & \textbf{Character-view spoken reply}\\
+\textbf{Twin} & \textbf{Access} & \textbf{Probe} & \textbf{Full-context spoken reply} & \textbf{Character-view spoken reply}\\
 \midrule
 A & No & No & I heard Alex mention the glove is in the church, though he wasn't speaking to me directly. & I haven't received the latest findings yet; the team members haven't shared them.\\
 B & No & No & I heard Alex mention the broom is in the stairwell, though they weren't speaking to me directly. & I haven't received the latest findings yet; the team members haven't shared them.\\

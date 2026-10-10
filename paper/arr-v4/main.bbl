@@ -98,7 +98,8 @@ Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr. 2024.
 \newblock \href {https://arxiv.org/abs/2310.11324} {Quantifying language
   models' sensitivity to spurious features in prompt design or: How {I} learned
   to start worrying about prompt formatting}.
-\newblock In \emph{International Conference on Learning Representations}.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
 
 \bibitem[{Shao et~al.(2024)Shao, Li, Shi, Liu, and Yang}]{shao2024privacylens}
 Yijia Shao, Tianshi Li, Weiyan Shi, Yanchen Liu, and Diyi Yang. 2024.
@@ -121,7 +122,7 @@ Xushuo Tang, Junhe Zhang, Zihan Yang, Yifu Tang, Sichao Li, Longbin Lai, and
   Zhengyi Yang. 2026.
 \newblock \href {https://arxiv.org/abs/2606.25632} {{Staying In Character:
   Perspective-Bounded Memory For Book-Based Role-Playing Agents}}.
-\newblock ArXiv:2606.25632.
+\newblock \emph{arXiv preprint arXiv:2606.25632}.
 
 \bibitem[{Tu et~al.(2024)Tu, Fan, Tian, Shen, Shang, Gao, and
   Yan}]{tu-etal-2024-charactereval}
