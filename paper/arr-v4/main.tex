@@ -36,7 +36,7 @@ Role-playing language models voice characters in games and agent simulations, wh
 \end{abstract}
 
 \section{Introduction}
-A non-player character who does not speak Spanish overhears two mechanics say, in Spanish, that a mirror is hidden in the warehouse. When the player asks what they said, the character answers that they were talking about a mirror in the warehouse (Figure~\ref{fig:example}). Readers see the error at once, because the character heard the words without understanding them. The model that voices the character, however, receives the Spanish sentence, understands it, and is asked to speak as someone who does not.
+A non-player character who does not speak Spanish overhears two mechanics say, in Spanish, that a mirror is hidden in the warehouse. When the player asks what they said, the character answers that they were talking about a mirror in the warehouse (Figure~\ref{fig:example}). The model that voices the character, however, receives the Spanish sentence, understands it, and is asked to speak as someone who does not.
 
 \begin{figure}[t]
 \centering
@@ -618,8 +618,122 @@ Each scene contains one fact that names an object and a place. Version B replace
 \node[font=\sffamily\scriptsize\bfseries] at (6.605,0.91) {Receive};
 \fill[OIgreen!14] (5.790,0.34) rectangle ++(1.63,0.42);
 \node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (6.605,0.55) {``Alex sends a message''};
+\fill[black!3] (0,-2.05) rectangle (7.6,-0.05);
+\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,-0.13) {(c) Who the model writes as};
+\draw[black!70,line width=.6pt,fill=white] (0.15,-1.92) rectangle ++(1.75,1.27);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.9350,-0.6675) rectangle (1.1170,-0.6205);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.8900,-0.7125) rectangle (1.1620,-0.6655);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.2050,-0.7125) rectangle (1.2520,-0.6655);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.8450,-0.7575) rectangle (1.2520,-0.7105);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.8450,-0.8025) rectangle (0.8920,-0.7555);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,-0.8025) rectangle (1.1620,-0.7555);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.1600,-0.8025) rectangle (1.2070,-0.7555);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.8450,-0.8475) rectangle (0.8920,-0.8005);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,-0.8475) rectangle (0.9370,-0.8005);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.9350,-0.8475) rectangle (0.9820,-0.8005);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.9800,-0.8475) rectangle (1.0720,-0.8005);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.0700,-0.8475) rectangle (1.1170,-0.8005);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.1150,-0.8475) rectangle (1.1620,-0.8005);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.1600,-0.8475) rectangle (1.2070,-0.8005);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (0.8450,-0.8925) rectangle (0.8920,-0.8455);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,-0.8925) rectangle (1.1620,-0.8455);
+\fill[fill={rgb,255:red,74;green,51;blue,40}] (1.1600,-0.8925) rectangle (1.2070,-0.8455);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8900,-0.9375) rectangle (0.9820,-0.8905);
+\fill[fill={rgb,255:red,181;green,103;blue,90}] (0.9800,-0.9375) rectangle (1.0720,-0.8905);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.0700,-0.9375) rectangle (1.1620,-0.8905);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.9350,-0.9825) rectangle (1.1170,-0.9355);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (0.8450,-1.0275) rectangle (1.2070,-0.9805);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (0.8000,-1.0725) rectangle (0.9370,-1.0255);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.9350,-1.0725) rectangle (1.1170,-1.0255);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.1150,-1.0725) rectangle (1.2520,-1.0255);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8000,-1.1175) rectangle (0.8470,-1.0705);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (0.8450,-1.1175) rectangle (0.9370,-1.0705);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.9350,-1.1175) rectangle (1.1170,-1.0705);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.1150,-1.1175) rectangle (1.2070,-1.0705);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.2050,-1.1175) rectangle (1.2520,-1.0705);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (0.8000,-1.1625) rectangle (0.8470,-1.1155);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (0.8450,-1.1625) rectangle (0.9370,-1.1155);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.9350,-1.1625) rectangle (1.1170,-1.1155);
+\fill[fill={rgb,255:red,184;green,102;blue,78}] (1.1150,-1.1625) rectangle (1.2070,-1.1155);
+\fill[fill={rgb,255:red,241;green,199;blue,161}] (1.2050,-1.1625) rectangle (1.2520,-1.1155);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (0.8450,-1.2075) rectangle (1.2070,-1.1605);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (0.8450,-1.2525) rectangle (0.9370,-1.2055);
+\fill[fill={rgb,255:red,77;green,74;blue,90}] (1.1150,-1.2525) rectangle (1.2070,-1.2055);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (0.8450,-1.2975) rectangle (0.9370,-1.2505);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (1.1150,-1.2975) rectangle (1.2070,-1.2505);
+\node[font=\sffamily\scriptsize\bfseries,align=center] at (1.025,-1.62) {role-play};
+\draw[black!70,line width=.6pt,fill=white] (2.01,-1.92) rectangle ++(1.75,1.27);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (3.0225,-0.7675) rectangle (3.1345,-0.7105);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.9675,-0.8225) rectangle (3.0245,-0.7655);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (3.0225,-0.8225) rectangle (3.0795,-0.7655);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (3.0775,-0.8225) rectangle (3.1345,-0.7655);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.9125,-0.8775) rectangle (2.9695,-0.8205);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (2.9675,-0.8775) rectangle (3.0795,-0.8205);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (3.0775,-0.8775) rectangle (3.1345,-0.8205);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.8575,-0.9325) rectangle (2.9145,-0.8755);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (2.9125,-0.9325) rectangle (3.0245,-0.8755);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (3.0225,-0.9325) rectangle (3.0795,-0.8755);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.8025,-0.9875) rectangle (2.8595,-0.9305);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (2.8575,-0.9875) rectangle (2.9695,-0.9305);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.9675,-0.9875) rectangle (3.0245,-0.9305);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.7475,-1.0425) rectangle (2.8045,-0.9855);
+\fill[fill={rgb,255:red,217;green,180;blue,90}] (2.8025,-1.0425) rectangle (2.9145,-0.9855);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.9125,-1.0425) rectangle (2.9695,-0.9855);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.7475,-1.0975) rectangle (2.9145,-1.0405);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.6925,-1.1525) rectangle (2.8045,-1.0955);
+\fill[fill={rgb,255:red,58;green,56;blue,70}] (2.6375,-1.2075) rectangle (2.6945,-1.1505);
+\node[font=\sffamily\scriptsize\bfseries,align=center] at (2.885,-1.62) {author};
+\draw[black!70,line width=.6pt,fill=white] (3.87,-1.92) rectangle ++(1.75,1.27);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-0.7950) rectangle (4.9670,-0.7380);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-0.8500) rectangle (4.5820,-0.7930);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.5800,-0.8500) rectangle (4.9120,-0.7930);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-0.8500) rectangle (4.9670,-0.7930);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-0.9050) rectangle (4.5820,-0.8480);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.5800,-0.9050) rectangle (4.6370,-0.8480);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (4.6350,-0.9050) rectangle (4.8570,-0.8480);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.8550,-0.9050) rectangle (4.9120,-0.8480);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-0.9050) rectangle (4.9670,-0.8480);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-0.9600) rectangle (4.5820,-0.9030);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.5800,-0.9600) rectangle (4.9120,-0.9030);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-0.9600) rectangle (4.9670,-0.9030);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-1.0150) rectangle (4.5820,-0.9580);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.5800,-1.0150) rectangle (4.9120,-0.9580);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-1.0150) rectangle (4.9670,-0.9580);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-1.0700) rectangle (4.5820,-1.0130);
+\fill[fill={rgb,255:red,180;green,151;blue,182}] (4.5800,-1.0700) rectangle (4.9120,-1.0130);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-1.0700) rectangle (4.9670,-1.0130);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-1.1250) rectangle (4.5820,-1.0680);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (4.5800,-1.1250) rectangle (4.9120,-1.0680);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.9100,-1.1250) rectangle (4.9670,-1.0680);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (4.5250,-1.1800) rectangle (4.9670,-1.1230);
+\node[font=\sffamily\scriptsize\bfseries,align=center] at (4.745,-1.62) {narrator};
+\draw[black!70,line width=.6pt,fill=white] (5.73,-1.92) rectangle ++(1.75,1.27);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-0.8225) rectangle (6.7445,-0.7655);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-0.8775) rectangle (6.4145,-0.8205);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4125,-0.8775) rectangle (6.6895,-0.8205);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.6875,-0.8775) rectangle (6.7445,-0.8205);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-0.9325) rectangle (6.4145,-0.8755);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4125,-0.9325) rectangle (6.4695,-0.8755);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.4675,-0.9325) rectangle (6.6345,-0.8755);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.6325,-0.9325) rectangle (6.6895,-0.8755);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.6875,-0.9325) rectangle (6.7445,-0.8755);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-0.9875) rectangle (6.4145,-0.9305);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4125,-0.9875) rectangle (6.6895,-0.9305);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.6875,-0.9875) rectangle (6.7445,-0.9305);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-1.0425) rectangle (6.4145,-0.9855);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4125,-1.0425) rectangle (6.4695,-0.9855);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.4675,-1.0425) rectangle (6.6345,-0.9855);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.6325,-1.0425) rectangle (6.6895,-0.9855);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.6875,-1.0425) rectangle (6.7445,-0.9855);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (6.7425,-1.0425) rectangle (6.8545,-0.9855);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-1.0975) rectangle (6.4145,-1.0405);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4125,-1.0975) rectangle (6.6895,-1.0405);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (6.6875,-1.0975) rectangle (6.8545,-1.0405);
+\fill[fill={rgb,255:red,59;green,48;blue,44}] (6.3575,-1.1525) rectangle (6.6895,-1.0955);
+\fill[fill={rgb,255:red,104;green,165;blue,149}] (6.6875,-1.1525) rectangle (6.7445,-1.0955);
+\node[font=\sffamily\scriptsize\bfseries,align=center] at (6.605,-1.62) {perspective\\rule};
 \end{tikzpicture}
-\caption{Design. (a) Study 1 states the boundary in five ways, matched within each row. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2 hides content through four channels, and the character view (green) replaces each hidden event with what the character can still observe.}
+\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Section~\ref{sec:why} has the model write as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}
 \label{fig:design}
 \end{figure}
 
@@ -1632,7 +1746,7 @@ Thinking does not close the gap for most open models. With thinking enabled, net
 \label{sec:remedy}
 If models leak because they speak from the whole scene, giving them only the character's view should help. We tested a prompted filter and a deterministic one.
 
-The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The prompt does not fix models whose lists already contain the hidden values (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases. A clean list from Gemma-4-31B reads ``Kerry perceives a street kid walking up to him and speaking aloud, but he cannot understand the words spoken.''
+The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it reduces leakage by 64.7\% on average and changes the use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The prompt does not fix models whose lists already contain the hidden values (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases.
 
 
 When the system knows what the character can access, it can build the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this lowers leakage from 60.7 pp, the four-channel mean, to zero and changes the use of accessible content by $+0.6$ pp [0.2, 1.0], and with it the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops leakage, but the character then cannot report that anything happened (32\% compared with 100\% under the view). The prompted counterpart can fail in the opposite direction. Across the six models in Study~2's method comparison, self-filtering lowers the use of permitted content by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character speaks Japanese, so its use of permitted content falls from 86\% to 0\%.
@@ -1650,7 +1764,7 @@ The hosted models that comply show that keeping the boundary can be learned, and
 For system builders, the dependable remedy is to keep inaccessible content out of the generator's input. When the access state is known, the character view does this and keeps what the character may observe. When it is not known, a perspective filter is the practical option, and its intermediate list is the place to check for failure.
 
 \section{Conclusion}
-Most role-playing models read a character's perceptual boundary correctly and still let the hidden content into the character's speech and choices. Across 11 open models the leak averages 67 pp for speech the character cannot understand and 72 pp for speech it cannot hear, and it extends to hidden actions and private messages. Models write the character's line much as the scene's author would, and thinking changes that in few of them. Most frontier models keep the boundary, but for the strongest open models and two hosted models it depends on parts of the input such as the state layout or the character sheet. Evaluations should vary the input format and report permitted use next to leakage, and systems that know what a character can access should build the character's input from that knowledge.
+Most role-playing models read a character's perceptual boundary correctly and still let the hidden content into the character's speech and choices. Across 11 open models the leak averages 67 pp for speech the character cannot understand and 72 pp for speech it cannot hear, and it extends to hidden actions and private messages. Models write the character's line much as the scene's author would, and thinking changes that in few of them. Most frontier models keep the boundary, but for the strongest open models and two hosted models it depends on parts of the input such as the state layout or the character sheet. Evaluations should vary the input format and report permitted use next to leakage, and systems that track what a character can access should build its input from that record.
 
 \FloatBarrier
 \section*{Limitations}

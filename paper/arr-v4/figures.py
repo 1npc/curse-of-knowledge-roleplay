@@ -92,6 +92,9 @@ SPRITES = {
     "ask":    [".kkkkkkkk.", "kwwwkkwwwk", "kwwkwwkwwk", "kwwwwwkwwk", "kwwwwkwwwk", "kwwwwwwwwk", "kwwwwkwwwk", ".kkkkkkkk.", "..kk......"],
     "eyex":   ["k........k", "k........k", ".kk....kk.", "...kkkk...", "..k..k..k.", ".k...k...k"],
     "mail":   ["kkkkkkkkkk", "kkwwwwwwkk", "kwkwwwwkwk", "kwwkwwkwwk", "kwwwkkwwwk", "kwwwwwwwwk", "kkkkkkkkkk"],
+    "quill":  [".......kk", "......kwk", ".....kwwk", "....kwwk.", "...kwwk..", "..kwwk...", "..kkk....", ".kk......", "k........"],
+    "book":   [".kkkkkkkk.", ".kqqqqqqk.", ".kqwwwwqk.", ".kqqqqqqk.", ".kqqqqqqk.", ".kqqqqqqk.", ".kwwwwwwk.", ".kkkkkkkk."],
+    "rule":   ["kkkkkkk..", "kwwwwwk..", "kwkkkwk..", "kwwwwwk..", "kwkkkwktt", "kwwwwwttt", "kkkkkkt.."],
 }
 
 
@@ -151,8 +154,20 @@ def design():
         L.append(f"\\node[font=\\sffamily\\scriptsize\\bfseries] at ({x + 0.875:.3f},0.91) {{{name}}};")
         L.append(f"\\fill[OIgreen!14] ({x + 0.06:.3f},0.34) rectangle ++(1.63,0.42);")
         L.append(f"\\node[font=\\sffamily\\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at ({x + 0.875:.3f},0.55) {{{view}}};")
+    # (c) who the model writes as (Section 6)
+    L.append(r"\fill[black!3] (0,-2.05) rectangle (7.6,-0.05);")
+    L.append(r"\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,-0.13) {(c) Who the model writes as};")
+    roles = [("hero", "role-play", None), ("quill", "author", {"k": "N", "w": "y"}), ("book", "narrator", None), ("rule", r"perspective\\rule", None)]
+    for k, (ic, name, rc) in enumerate(roles):
+        x = 0.15 + 1.86 * k
+        L.append(f"\\draw[black!70,line width=.6pt,fill=white] ({x:.2f},-1.92) rectangle ++(1.75,1.27);")
+        h = len(SPRITES[ic]) * (0.045 if ic == "hero" else 0.055)
+        px = 0.045 if ic == "hero" else 0.055
+        w = len(SPRITES[ic][0]) * px
+        L.append(sprite(ic, x + 0.875 - w / 2, -1.08 - h / 2 + 0.12, px, rc))
+        L.append(f"\\node[font=\\sffamily\\scriptsize\\bfseries,align=center] at ({x + 0.875:.3f},-1.62) {{{name}}};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Design. (a) Study 1 states the boundary in five ways, matched within each row. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2 hides content through four channels, and the character view (green) replaces each hidden event with what the character can still observe.}",
+          r"\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Section~\ref{sec:why} has the model write as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}",
           r"\label{fig:design}", r"\end{figure}"]
     return "\n".join(L)
 
