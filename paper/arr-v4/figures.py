@@ -244,7 +244,7 @@ def study1():
         L.append(f"\\node[anchor=south,font=\\sffamily\\tiny\\bfseries,text=OIblue] at ({X(mu):.3f},{y + 0.14:.3f}) {{{mu:.0f}}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 1, 11 open models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. Models that read the boundary correctly still leak. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar. Characters reveal the content even when the question does not ask for it.}",
+          r"\caption{Study 1, 11 open-weight models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. Models that read the boundary correctly still leak. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar. Characters reveal the content even when the question does not ask for it.}",
           r"\label{fig:s1}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -334,7 +334,7 @@ def study2():
     L.append(f"\\fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\\node[anchor=west,font=\\sffamily\\tiny] at (0.22,-1.11) {{character view}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), for 11 open models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
+          r"\caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), for 11 open-weight models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
           r"\label{fig:s2}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -350,7 +350,7 @@ def frontier():
     cols = [("repertoire", "reper-\\\\toire"), ("understood_flag", "compr.\\\\flag"), ("prose", "+ sen-\\\\tence"),
             ("inaudible_flag", "audib.\\\\flag"), ("fluent_control_use", "control\\\\use (\\%)")]
     rows = [(NAMES[m], ho[m]["study1"]) for m in ["gpt6sol", "gemini38flash", "grok47", "opus55", "gemini31pro", "sonnet55", "deepseekv4pro"]]
-    rows.append(("11 open models", {k: sum(v[k] for v in op.values()) / len(op) for k, _ in cols if k in next(iter(op.values()))}))
+    rows.append(("11 open-weight models", {k: sum(v[k] for v in op.values()) / len(op) for k, _ in cols if k in next(iter(op.values()))}))
     cw, rh = 0.66, H / len(rows)
     L.append(f"\\node[panel] at (-2.25,{H + 0.85:.2f}) {{(a) Study 1 core cells, net use (pp)}};")
     for j, (_, lab) in enumerate(cols):
@@ -375,7 +375,7 @@ def frontier():
         pts[m] = (100 * b["base"]["unheard_net"], 100 * b["all"]["unheard_net"])
     show = ["gemma4_31b", "qwen38_27b", "deepseekv4pro", "gemini31pro", "sonnet55"]
     rest = [m for m in pts if m not in show]
-    items = [(NAMES[m], *pts[m]) for m in show] + [(f"other {len(rest)} hosted", max(pts[m][0] for m in rest), max(pts[m][1] for m in rest))]
+    items = [(NAMES[m], *pts[m]) for m in show] + [(f"other {len(rest)} proprietary", max(pts[m][0] for m in rest), max(pts[m][1] for m in rest))]
     L.append(r"\begin{scope}[xshift=5.55cm]")
     L.append(f"\\node[panel] at (-1.75,{H + 0.85:.2f}) {{(b) All four features swapped in}};")
     w = 2.45
@@ -412,7 +412,7 @@ def frontier():
     L.append(r"\end{scope}")
     L += legend([("box", "black!25", "Study 2 prompt"), ("box", "OIorange", "+ all four")], 4.0, -0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Hosted models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
+          r"\caption{Proprietary models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six proprietary models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
           r"\label{fig:frontier}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -497,7 +497,7 @@ def example():
     # model
     L.append(r"\draw[black!40,line width=.6pt,-{Stealth[length=3.5pt]}] (3.8,2.3)--(3.8,2.0);")
     L.append(sprite("robot", 2.55, 1.47, 0.04))
-    L.append(r"\node[anchor=west,font=\sffamily\scriptsize,text=black!75] at (3.0,1.68) {model voices Mara};")
+    L.append(r"\node[anchor=west,font=\sffamily\scriptsize,text=black!75] at (3.0,1.68) {model speaks as Mara};")
     # replies
     rows = [(1.3, "OIorange", r"\faTimes\ A", ("mirror", "house"), None,
              r"``Just some boring shit about a \leak{mirror} being in the \leak{warehouse}. Don't worry about it.''"),
@@ -515,13 +515,13 @@ def example():
         L.append(f"\\fill[white,draw={col},line width=.7pt] (2.12,{top - 0.36:.2f})--(1.93,{top - 0.44:.2f})--(2.12,{top - 0.52:.2f});")
         L.append(f"\\fill[white] (2.115,{top - 0.35:.2f}) rectangle (2.15,{top - 0.53:.2f});")
     L += [r"\end{tikzpicture}",
-          r"\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies abridged, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}",
+          r"\caption{Gemma-4-31B speaks as a character who does not understand Spanish (replies abridged, names changed). When version B changes the hidden object and place, the reply changes with them, so the character uses content it cannot access. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's facts and for the other version's, which gives a baseline for guessing.}",
           r"\label{fig:example}", r"\end{figure}"]
     return "\n".join(L)
 
 
 def bridge_full():
-    """Appendix figure: the bridge on the discovery scenes and on new scenes, all 11 open models."""
+    """Appendix figure: the bridge on the discovery scenes and on new scenes, all 11 open-weight models."""
     br, rep = load(RA / "bridge.json"), load(RA / "bridge-replication.json")
     cols = [("base", "Base"), ("sys", "Sys."), ("card", "Sheet"), ("schema", "State"), ("ask", "Quest."), ("all", "All")]
     order = sorted(br, key=lambda m: br[m]["base:inaccessible"]["estimate"])
@@ -551,7 +551,7 @@ def bridge_full():
             L.append(f"\\node[font=\\sffamily\\tiny,text=OIblue] at ({6 * cw + 0.45:.3f},{y + rh / 2:.3f}) {{{(f'{min(aud):.0f}' if round(min(aud)) == round(max(aud)) else f'{min(aud):.0f}--{max(aud):.0f}')}}};")
         L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Bridge experiment for all 11 open models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}",
+          r"\caption{Bridge experiment for all 11 open-weight models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}",
           r"\label{fig:bridgefull}", r"\end{figure*}"]
     return "\n".join(L)
 

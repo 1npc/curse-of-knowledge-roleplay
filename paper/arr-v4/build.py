@@ -228,9 +228,9 @@ def added():
             s = f"{100 * v['estimate']:.1f}"
             return f"\\textbf{{{s}}}" if k != "base" and (lo > 0 or hi < 0) else s
         rows.append(NAMES2[m] + " & " + " & ".join(hcell(k) for k, _ in cols) + r"\\")
-    ins["HOSTED_SWAPS"] = table(rows, "lrrrrrr", "Single-feature swaps for two hosted models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). "
+    ins["HOSTED_SWAPS"] = table(rows, "lrrrrrr", "Single-feature swaps for two proprietary models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). "
                                 "Bold marks a change from Base whose paired 95\\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved "
-                                "the open models most.", "tab:hostedswaps", tight=True)
+                                "the open-weight models most.", "tab:hostedswaps", tight=True)
     ab = json.loads((ROOT / "analysis/results/added-1006/ablation.json").read_text())
     combos = [("l0q0c0", "Study 1 prompt"), ("l1q0c0", "+ channel"), ("l0q1c0", "+ question"), ("l0q0c1", "+ minimal"), ("l1q1c1", "All three")]
     rows = [r"Model & " + " & ".join(c for _, c in combos) + r"\\", r"\midrule"]
@@ -256,7 +256,7 @@ def added():
         s1, br = ho[m]["study1"], ho[m]["bridge"]
         rows.append(NAMES2[m] + " & " + " & ".join(f(s1[k]) for k in ("repertoire", "inaudible_flag", "understood_flag", "prose", "fluent_control_use",
                     "state_probe_correct", "translation_both_canaries")) + f" & {f(br['base']['unheard_net'])} $\\to$ {f(br['all']['unheard_net'])}" + r"\\")
-    ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
+    ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
                                 "of the bridge. Leakage is net use in pp, control use and probes are percentages.", "tab:hosted", True)
     hc = json.loads((ROOT / "analysis/results/added-1006/hosted_ci.json").read_text())
     cells = [("repertoire", "Repertoire"), ("inaudible_flag", "Audibility flag"), ("understood_flag", "Compr. flag"), ("prose", "Prose sentence")]
@@ -266,7 +266,7 @@ def added():
         rows.append(NAMES2[m] + " & " + " & ".join(cell(hc[m][k]) for k, _ in cells) + r"\\")
     rows.append(r"\midrule")
     rows.append("Claude Opus 5.5, complete replies only & " + " & ".join(cell(hc["opus55"].get(k + "_complete_only", hc["opus55"][k])) for k, _ in cells) + r"\\")
-    ins["HOSTED_CI"] = table(rows, "lrrrr", "Hosted models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\\% intervals from 2,000 skeleton-bootstrap draws "
+    ins["HOSTED_CI"] = table(rows, "lrrrr", "Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\\% intervals from 2,000 skeleton-bootstrap draws "
                              "(288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.", "tab:hostedci", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
