@@ -313,12 +313,14 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
-\usepackage{placeins,adjustbox}
-% Avoid paragraphs whose last line holds a single word: the last line must fill at least a fifth of the column.
-\setlength{\parfillskip}{0pt plus 0.8\columnwidth}\setlength{\emergencystretch}{1.5em}
-\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.8\linewidth}\setlength{\emergencystretch}{1.5em}}
+\usepackage{placeins,adjustbox,float}
+% Avoid paragraphs whose last line holds a single word: the last line must fill about a third of the column.
+\setlength{\parfillskip}{0pt plus 0.65\columnwidth}\setlength{\emergencystretch}{2em}
+% A paragraph never leaves one or two of its lines at the top of a column or page, nor one at the bottom.
+\widowpenalties 3 10000 10000 0 \clubpenalty=10000
+\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.65\linewidth}\setlength{\emergencystretch}{1.5em}}
 \captionsetup{justification=fullfill}
-\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=3em\parfillskip=0pt plus 0.5\columnwidth\relax}\makeatother
+\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=4em\parfillskip=0pt plus 0.15\columnwidth\relax}\makeatother
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
 \definecolor{OCblue}{HTML}{5B7FAF}
@@ -448,11 +450,25 @@ def onecolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
         spec = "@{\\extracolsep{\\fill}}" + (spec[3:] if spec.startswith("@{}") else spec)
         return "\\begin{tabular*}{\\linewidth}{" + spec + "}" + m.group(2) + "\\end{tabular*}"
     app = re.sub(r"\\begin\{tabular\}\{((?:[^{}]|\{[^{}]*\})*)\}(.*?)\\end\{tabular\}", full_width, app, flags=re.S)
+    # Appendix floats stay where they are written, so each page fills in order and no page holds floats alone.
+    app = app.replace("}[!htbp]", "}[H]")
     return head + app
 
 
 # Rewordings that keep table cells and captions from ending on a single word.
-LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),)
+LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),
+              # One term per concept (net use, permitted use) and no internal process detail.
+              ("The eight tests of Study 1, fixed before scoring (11 models", "The eight tests of Study 1 (11 models"),
+              ("for the three leakage tests", "for the three net-use tests"),
+              ("Leakage is net use in pp, control use and probes are percentages.", "Net use is in pp, and permitted use and probes are percentages."),
+              ("Study 1: language-boundary leakage (repertoire only, pp)", "Study 1: net use under the language boundary (repertoire only, pp)"),
+              ("View, full minus view leakage &", "View, full minus view net use &"),
+              ("requires the view to reduce leakage, keep accessible use within 5 pp", "requires the view to reduce net use, keep permitted use within 5 pp"),
+              ("Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes", "Five methods on six discovery models and 48 matched scenes"),
+              ("Leakage is net pp and accessible use is a percentage.", "Net use is in pp and permitted use is a percentage."),
+              (r"\textbf{Method} & \textbf{Leakage} & \textbf{Access. use}", r"\textbf{Method} & \textbf{Net use} & \textbf{Permitted use}"),
+              ("Confirmation cohort. Leakage is net $D$ in pp, and accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.",
+               "Confirmation set. Net use $D$ is in pp, and permitted use and partial-event retention are percentages. Retention excludes Hear."))
 
 
 def late_fixes(body):

@@ -33,12 +33,14 @@ head = tpl[:tpl.index(r"\title{")]
 EXTRA = r"""
 % Added for this paper: tables, math, colors used in tables, and float placement
 \usepackage{booktabs,amsmath,amssymb,tabularx,xcolor}
-\usepackage{placeins,adjustbox}
-% Avoid paragraphs whose last line holds a single word: the last line must fill at least a fifth of the column.
-\setlength{\parfillskip}{0pt plus 0.8\columnwidth}\setlength{\emergencystretch}{1.5em}
-\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.8\linewidth}\setlength{\emergencystretch}{1.5em}}
+\usepackage{placeins,adjustbox,float}
+% Avoid paragraphs whose last line holds a single word: the last line must fill about a third of the column.
+\setlength{\parfillskip}{0pt plus 0.65\columnwidth}\setlength{\emergencystretch}{2em}
+% A paragraph never leaves one or two of its lines at the top of a column or page, nor one at the bottom.
+\widowpenalties 3 10000 10000 0 \clubpenalty=10000
+\DeclareCaptionJustification{fullfill}{\setlength{\parfillskip}{0pt plus 0.65\linewidth}\setlength{\emergencystretch}{1.5em}}
 \captionsetup{justification=fullfill}
-\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=3em\parfillskip=0pt plus 0.5\columnwidth\relax}\makeatother
+\makeatletter\let\OCthebib\thebibliography\def\thebibliography#1{\OCthebib{#1}\emergencystretch=4em\parfillskip=0pt plus 0.15\columnwidth\relax}\makeatother
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}

@@ -334,7 +334,7 @@ def study2():
     L.append(f"\\fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\\node[anchor=west,font=\\sffamily\\tiny] at (0.22,-1.11) {{character view}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 2. (a) Net use of hidden content under full context in the confirmation set (96 scenes with invented characters), for 11 open models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
+          r"\caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), for 11 open models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
           r"\label{fig:s2}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -412,7 +412,7 @@ def frontier():
     L.append(r"\end{scope}")
     L += legend([("box", "black!25", "Study 2 prompt"), ("box", "OIorange", "+ all four")], 4.0, -0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Frontier models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
+          r"\caption{Hosted models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six hosted models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
           r"\label{fig:frontier}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -447,8 +447,8 @@ def remedy():
             ("hard", "black", "event removed"), ("view", "OIgreen", "character view")]
     marks = {"Hear": "triangle*", "Understand": "*", "See": "square*", "Receive": "diamond*"}
     rh = H / len(meth)
-    for k, (metric, title, x0, xr, ticks) in enumerate((("D", "(b) Leakage of hidden content (pp)", 5.85, (0, 60), [0, 20, 40, 60]),
-                                                        ("hit_t", "(c) Use of permitted content (\\%)", 10.4, (0, 100), [0, 25, 50, 75, 100]))):
+    for k, (metric, title, x0, xr, ticks) in enumerate((("D", "(b) Net use of inaccessible content (pp)", 5.85, (0, 60), [0, 20, 40, 60]),
+                                                        ("hit_t", "(c) Permitted use (\\%)", 10.4, (0, 100), [0, 25, 50, 75, 100]))):
         L.append(f"\\begin{{scope}}[xshift={x0}cm]")
         L.append(f"\\node[panel] at ({-1.75 if k == 0 else -0.1},{H + 0.55:.2f}) {{{title}}};")
         fl, X, _ = frame(3.3, H, xr, (0, 1), ticks, [], "", grid="x")
@@ -467,7 +467,7 @@ def remedy():
     L += legend([(mk, "black!65", c) for c, mk in marks.items()], 6.0, -0.45, step=0.11)
     L.append(r"\node[anchor=west,font=\sffamily\tiny,text=black!60] at (10.4,-0.45) {bars: mean over channels, number at right};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers leakage but also drops permitted content, while removing the event and the character view stop leakage and keep it.}",
+          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers net use and permitted use, while removing the event and the character view stop the leak and keep permitted use.}",
           r"\label{fig:remedy}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -638,7 +638,7 @@ def factors():
     L += legend([("*", "OIblue", "Qwen3.5"), ("square*", "OIorange", "Gemma-4")], 0.0, -0.95)
     L += legend([("box", c, lab) for c, (_, lab) in zip(shades, combos)], 6.55, -0.95, step=0.09)
     L += [r"\end{tikzpicture}",
-          r"\caption{What changes leakage within Study~1. (a, b) Net use by model size in two families. Leakage rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers leakage for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still repeats unheard speech in half of its replies.}",
+          r"\caption{What changes net use within Study~1. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still repeats unheard speech in half of its replies.}",
           r"\label{fig:factors}", r"\end{figure*}"]
     return "\n".join(L)
 
