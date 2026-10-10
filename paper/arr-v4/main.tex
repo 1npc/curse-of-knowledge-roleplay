@@ -1771,7 +1771,7 @@ Thinking does not close the gap for most open-weight models. With thinking enabl
 
 \subsection{Filtering}
 \label{sec:remedy}
-If models leak because they write from the whole scene, giving them only the character's view should help. The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it lowers net use by 64.7\% on average and changes permitted use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}), although the joint test does not pass for Chinese or Japanese alone, without Rogue, or under a two-way bootstrap (Appendix Table~\ref{tab:s1sub}). The prompt works only when the list is clean (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases.
+If models leak because they write from the whole scene, giving them only the character's view should help. The prompted filter, which we call the list-first prompt, first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it lowers net use by 64.7\% on average and changes permitted use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The prompt works only when the list is clean (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases.
 
 A system that knows what the character can access builds the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all 11 models this lowers mean net use over the four channels from 60.7 pp to zero and changes permitted use by $+0.6$ pp [0.2, 1.0], and the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops the leak, but the character then cannot report that anything happened (32\% compared with 100\% under the view). Self-filtering, the prompted counterpart, fails in the opposite direction and drops permitted content along with the inaccessible. Across the six models in Study~2's method comparison, it lowers permitted use by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character understands Japanese, so its permitted use falls from 86\% to 0\%.
 
@@ -1830,7 +1830,7 @@ DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67
 \label{app:audit}
 Two annotators labeled replies without seeing models, conditions or scorer labels. Each row showed the reply and the two candidate facts of its scene pair in random order, and the annotator marked whether the reply uses each fact's object or place. The first sample has 150 replies from eight conditions, five from Study~1 and three from Study~2, with half drawn from replies the scorer counted as using the target and half from the rest. The second has 640 Study~2 replies, two from each cell of model, channel, method, access and question for the four models of Section~\ref{sec:s2}, and 192 confirmation-set replies labeled for whether the character acknowledges the event.
 
-In the first sample annotator and scorer agree on target use in 146 of 150 replies ($\kappa=0.95$), and net use differs by at most 2.8 pp in any condition (Table~\ref{tab:human}). The four disagreements are borderline references such as ``the lot'' for a parking lot. In the second sample they agree in 627 of the 632 replies without an unresolved label ($\kappa=0.98$), net use differs by at most 1.3 pp in any channel and access condition, and the awareness labels agree in 188 of 192 replies ($\kappa=0.93$).
+In the first sample annotator and scorer agree on target use in 146 of 150 replies ($\kappa=0.95$), and net use differs by at most 2.8 pp in any condition (Table~\ref{tab:human}). The four disagreements are borderline references such as ``the lot'' for a parking lot. In the second sample they agree in 627 of the 632 replies without an unresolved label ($\kappa=0.98$), net use differs by at most 1.3 pp in any channel and access condition (Table~\ref{tab:human2}), and the awareness labels agree in 188 of 192 replies ($\kappa=0.93$).
 
 \section{Study 1 Details}
 \label{app:s1}
@@ -1894,8 +1894,27 @@ Study 2, full context, accessible & 10 & 97.1 & 95.1 & 100.0 & 98.0\\
 Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \bottomrule
 \end{tabular*}
-\caption{Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition. Precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
+\caption{Human audit, first sample (150 replies from both studies, one annotator who is not an author). $D$ is net use (pp) reweighted to each condition. Precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
 \label{tab:human}
+\end{table*}
+\begin{table*}[!tp]
+\centering\setlength{\tabcolsep}{4.5pt}\small
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrrr@{}}
+\toprule
+\textbf{Channel} & \textbf{Access} & \textbf{$n$} & \textbf{Author $D$} & \textbf{Scorer $D$} & \textbf{Target agreement}\\
+\midrule
+Hear & no & 80 & 28.8 & 30.0 & 79/80\\
+Hear & yes & 80 & 91.2 & 91.2 & 80/80\\
+Understand & no & 77 & 10.4 & 9.1 & 76/77\\
+Understand & yes & 78 & 91.0 & 92.3 & 77/78\\
+See & no & 77 & 19.5 & 19.5 & 77/77\\
+See & yes & 80 & 86.2 & 86.2 & 80/80\\
+Receive & no & 80 & 18.8 & 18.8 & 79/80\\
+Receive & yes & 80 & 88.8 & 90.0 & 79/80\\
+\bottomrule
+\end{tabular*}
+\caption{Human audit, second sample (640 Study~2 replies, labeled by one of the authors). $D$ is net use (pp) over the replies without an unresolved label, and target agreement counts replies where author and scorer agree on target use.}
+\label{tab:human2}
 \end{table*}
 \begin{figure*}[!tp]
 \centering

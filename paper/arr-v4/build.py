@@ -9,6 +9,7 @@ Usage: python3 paper/arr-v3/build.py
 """
 from __future__ import annotations
 
+import csv
 import json
 from decimal import Decimal, ROUND_HALF_UP
 import re
@@ -246,9 +247,36 @@ def added():
     rows = [r"Condition & $n$ & Human $D$ & Scorer $D$ & Precision & Recall\\", r"\midrule"]
     for st, v in ha["strata"].items():
         rows.append(esc(st.replace("S1 ", "Study 1, ").replace("S2 ", "Study 2, ").replace("M1g answer", "list-first answer")) + f" & {v['n']} & " + " & ".join(pc(v[k]) for k in ("D_human", "D_scorer", "target_precision", "target_recall")) + r"\\")
-    ins["HUMAN_TABLE"] = table(rows, "lrrrrr", "Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition; precision and "
+    ins["HUMAN_TABLE"] = table(rows, "lrrrrr", "Human audit, first sample (150 replies from both studies, one annotator who is not an author). $D$ is net use (pp) reweighted to each condition; precision and "
                                "recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer "
                                "found a foil use.", "tab:human", True)
+    key = {json.loads(l)["audit_id"]: json.loads(l) for l in (ROOT / "analysis/study2-human-review/key.jsonl").read_text().splitlines() if l.strip()}
+    with open(ROOT / "analysis/study2-human-review/content-labels.csv", encoding="utf-8-sig") as fh:
+        labels = list(csv.DictReader(fh))
+
+    def used(r, i):
+        v = [r[f"use_set{i}_place"], r[f"use_set{i}_object"]]
+        return 1 if "1" in v else (None if "U" in v else 0)
+    cells = {}
+    for r in labels:
+        k = key[r["audit_id"]]
+        t = k["target_candidate"]
+        at, af = used(r, t), used(r, 3 - t)
+        if at is None or af is None:
+            continue
+        c = cells.setdefault((k["boundary"], k["accessible"]), [0, 0, 0, 0])
+        c[0] += 1
+        c[1] += at - af
+        c[2] += k["machine_target"] - k["machine_foil"]
+        c[3] += at == k["machine_target"]
+    rows = [r"Channel & Access & $n$ & Author $D$ & Scorer $D$ & Target agreement\\", r"\midrule"]
+    for ch in ("Hear", "Understand", "See", "Receive"):
+        for acc in (False, True):
+            n, ad, sd, ag = cells[(ch, acc)]
+            rows.append(f"{ch} & {'yes' if acc else 'no'} & {n} & {100 * ad / n:.1f} & {100 * sd / n:.1f} & {ag}/{n}" + r"\\")
+    ins["HUMAN2_TABLE"] = table(rows, "llrrrr", "Human audit, second sample (640 Study~2 replies, labeled by one of the authors). $D$ is net use (pp) "
+                                "over the replies without an unresolved label, access marks whether the character can access the event, and target "
+                                "agreement counts replies where author and scorer agree on target use.", "tab:human2", True)
     ho = json.loads((ROOT / "analysis/results/added-1006/hosted.json").read_text())
     rows = [r"Model & Repertoire & Audibility & Compr. & Prose & Control & State & Transl. & Bridge\\",
             r"& flag & flag & flag & sentence & use & probe & probe & base $\to$ all\\", r"\midrule"]
