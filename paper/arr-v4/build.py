@@ -313,7 +313,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}\setcounter{dbltopnumber}{2}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
-\usepackage{placeins}
+\usepackage{placeins,adjustbox}
 \newsavebox{\OCtable}
 \newsavebox{\OCfigure}
 \definecolor{OCblue}{HTML}{5B7FAF}
@@ -399,10 +399,6 @@ def style_tables(body, widths=None):
             lab = None
         elif "tabcolsep" not in t:
             t = t.replace("\\centering", "\\centering\\setlength{\\tabcolsep}{4.5pt}", 1)
-        if widths and lab and t.startswith("\\begin{table}") and widths.get(lab.group(1), 0) > 217:
-            t = t.replace("\\begin{table}", "\\begin{table*}", 1).replace("\\end{table}", "\\end{table*}")
-        elif lab and t.startswith("\\begin{table}"):  # one-column floats would get float pages of their own
-            t = t.replace("\\begin{table}", "\\begin{table*}", 1).replace("\\end{table}", "\\end{table*}")
         t = re.sub(r"\\centering\\(small|footnotesize)", r"\\centering\\sffamily\\footnotesize\\renewcommand{\\arraystretch}{1.12}", t, count=1)
         if "\\toprule" in t and "\\midrule" in t:
             a = t.index("\\toprule") + len("\\toprule")
@@ -414,6 +410,34 @@ def style_tables(body, widths=None):
             t = t[:a] + head + rest
         return t
     return re.sub(r"\\begin\{table\*?\}.*?\\end\{table\*?\}", one, body, flags=re.S)
+
+
+def onecolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
+    """The appendix is set in one column: every float there becomes a here-or-top float of the page width, and
+    each pair of narrow tables shares one float side by side."""
+    i = body.find("\\appendix")
+    if i < 0:
+        return body
+    head, app = body[:i], body[i:]
+    app = re.sub(r"\\begin\{(table|figure)\*?\}\[[^\]]*\]", lambda m: f"\\begin{{{m.group(1)}}}[!htbp]", app)
+    app = re.sub(r"\\end\{(table|figure)\*\}", lambda m: f"\\end{{{m.group(1)}}}", app)
+    for a, b in pairs:
+        blocks = []
+        for lab in (a, b):
+            m = re.search(r"\\begin\{table\}\[!htbp\]((?:(?!\\begin\{table\}).)*?\\label\{" + re.escape(lab) + r"\}.*?)\\end\{table\}", app, re.S)
+            if not m:
+                break
+            inner = m.group(1)
+            inner = re.sub(r"\\ifdim\\wd\\OCtable>\\linewidth\\PackageError\{[^}]*\}\{[^}]*\}\{[^}]*\}\\fi\n?", "", inner)
+            inner = inner.replace("\\usebox{\\OCtable}", "\\adjustbox{max width=\\linewidth}{\\usebox{\\OCtable}}")
+            inner = re.sub(r"(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth}{\1}", inner, flags=re.S) if "OCtable" not in inner else inner
+            blocks.append((m.group(0), inner))
+        if len(blocks) != 2:
+            continue
+        pair = ("\\begin{table}[!htbp]\n\\begin{minipage}[t]{0.485\\linewidth}" + blocks[0][1] + "\\end{minipage}\\hfill\n"
+                "\\begin{minipage}[t]{0.485\\linewidth}" + blocks[1][1] + "\\end{minipage}\n\\end{table}")
+        app = app.replace(blocks[0][0], pair, 1).replace(blocks[1][0], "", 1)
+    return head + app
 
 
 def main():
@@ -428,7 +452,7 @@ def main():
     assert "HumanField" not in body
     for x, y in CAPTION_SENTENCES:  # entries whose float is no longer inserted are skipped
         body = body.replace(x, y)
-    body = style_tables(body, table_widths(body))
+    body = onecolumn_appendix(style_tables(body, table_widths(body)))
     (P / "main.tex").write_text(PREAMBLE + figures.COLORS + "\n" + body, encoding="utf-8")
     print("wrote main.tex;", len(ins), "insertable floats,", body.count("\\cite"), "cite commands")
 
