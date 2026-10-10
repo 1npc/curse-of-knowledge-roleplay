@@ -78,7 +78,7 @@ def main():
     assert not re.findall(r"^% INSERT (\w+)$", body, re.M)
     for x, y in build.CAPTION_SENTENCES:
         body = body.replace(x, y)
-    body = build.onecolumn_appendix(build.style_tables(body, build.table_widths(body)))
+    body = build.twocolumn_appendix(build.style_tables(body))
     body = build.late_fixes(body)
     body = body.replace(r"\bibliography{references}", r"\bibliography{custom}")
     body = body.replace(r"\author{Anonymous ACL submission}", tpl[tpl.index("\n\\author{First Author") + 1:tpl.index(r"\begin{document}")].strip())

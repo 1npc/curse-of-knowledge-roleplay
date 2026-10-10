@@ -455,6 +455,48 @@ def onecolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
     return head + app
 
 
+def twocolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
+    """The appendix keeps the paper's two columns. Every table and figure spans both columns at full width, so they
+    pack together on float pages, and each pair of narrow tables shares one float side by side."""
+    i = body.find("\\appendix")
+    if i < 0:
+        return body
+    head, app = body[:i], body[i:]
+    app = app.replace("\\FloatBarrier\n", "")
+
+    def full(m):
+        spec = m.group(1)
+        spec = "@{\\extracolsep{\\fill}}" + (spec[3:] if spec.startswith("@{}") else spec)
+        return "\\begin{tabular*}{\\linewidth}{" + spec + "}" + m.group(2) + "\\end{tabular*}"
+
+    def one(m):
+        kind, t = m.group(1), m.group(0)
+        t = re.sub(r"\\begin\{%s\*?\}\[[^\]]*\]" % kind, lambda _: "\\begin{%s*}[!tp]" % kind, t)
+        t = re.sub(r"\\end\{%s\*?\}" % kind, lambda _: "\\end{%s*}" % kind, t)
+        return t
+    app = re.sub(r"\\begin\{(table|figure)\*?\}.*?\\end\{\1\*?\}", one, app, flags=re.S)
+    for a, c in pairs:
+        blocks = []
+        for lab in (a, c):
+            m = re.search(r"\\begin\{table\*\}\[!tp\]((?:(?!\\begin\{table).)*?\\label\{" + re.escape(lab) + r"\}.*?)\\end\{table\*\}", app, re.S)
+            if not m:
+                break
+            inner = re.sub(r"\\ifdim\\wd\\OCtable>\\linewidth\\PackageError\{[^}]*\}\{[^}]*\}\{[^}]*\}\\fi\n?", "", m.group(1))
+            if "OCtable" in inner:
+                inner = inner.replace("\\usebox{\\OCtable}", "\\adjustbox{max width=\\linewidth}{\\usebox{\\OCtable}}")
+            else:
+                inner = re.sub(r"(\\begin\{tabular\}.*?\\end\{tabular\})", lambda x: "\\adjustbox{max width=\\linewidth}{" + x.group(1) + "}", inner, flags=re.S)
+            blocks.append((m.group(0), inner))
+        if len(blocks) == 2:
+            pair = ("\\begin{table*}[!tp]\n\\begin{minipage}[t]{0.47\\linewidth}" + blocks[0][1] + "\\end{minipage}\\hfill\n"
+                    "\\begin{minipage}[t]{0.47\\linewidth}" + blocks[1][1] + "\\end{minipage}\n\\end{table*}")
+            app = app.replace(blocks[0][0], pair, 1).replace(blocks[1][0], "", 1)
+    # Stretch every remaining table to the full text width.
+    app = re.sub(r"\\begin\{tabular\}\{((?:[^{}]|\{[^{}]*\})*)\}(.*?)\\end\{tabular\}",
+                 lambda m: full(m) if "adjustbox" not in app[max(0, m.start() - 40):m.start()] else m.group(0), app, flags=re.S)
+    return head + app
+
+
 # Rewordings that keep table cells and captions from ending on a single word.
 LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),
               # One term per concept (net use, permitted use) and no internal process detail.
@@ -490,7 +532,7 @@ def main():
     assert "HumanField" not in body
     for x, y in CAPTION_SENTENCES:  # entries whose float is no longer inserted are skipped
         body = body.replace(x, y)
-    body = onecolumn_appendix(style_tables(body, table_widths(body)))
+    body = twocolumn_appendix(style_tables(body))
     body = late_fixes(body)
     (P / "main.tex").write_text(PREAMBLE + figures.COLORS + "\n" + body, encoding="utf-8")
     print("wrote main.tex;", len(ins), "insertable floats,", body.count("\\cite"), "cite commands")

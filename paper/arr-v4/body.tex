@@ -110,15 +110,13 @@ All scenes, facts and conversations are fictional. Study~1 uses names of charact
 
 \bibliography{references}
 
-\onecolumn
 \appendix
-% One-column appendix: each section is followed by its own tables and figures.
-\setlength{\parfillskip}{0pt plus 0.7\textwidth}
-\captionsetup{singlelinecheck=false}
-\raggedbottom\setlength{\intextsep}{14pt}\setlength{\floatsep}{16pt}\setlength{\textfloatsep}{16pt}
-\setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}
-\renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.5}
-\makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\makeatother
+% Two-column appendix: tables and figures span the page and pack onto shared float pages.
+\raggedbottom
+\setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}\setcounter{dbltopnumber}{4}
+\renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.6}
+\renewcommand{\dbltopfraction}{0.95}\renewcommand{\dblfloatpagefraction}{0.6}
+\makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\setlength{\@dblfptop}{0pt}\setlength{\@dblfpsep}{14pt}\setlength{\@dblfpbot}{0pt plus 1fil}\makeatother
 \section{Models and Runs}
 \label{app:models}
 Open-weight models decode with temperature 0 and at most 400 new tokens. Mistral-Small-24B is the text-only Mistral-Small-24B-Instruct-2501. Proprietary models run with temperature 0 where the endpoint supports it. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. For the thinking runs of Study~3, thinking was enabled through each chat template, gpt-oss-20b ran at high reasoning effort and Seed-OSS-36B with a budget of 4,096 tokens, and replies could use up to 6,144 tokens. gpt-oss-20b's truncated replies were rerun with 10,240 tokens. Qwen3.5-9B reached the limit before answering in 97\% of prompts and is excluded. About 8--10\% of replies from Gemma-4-12B, GLM-4.7-Flash and gpt-oss-20b remain truncated, and counting them as use or as non-use moves the pooled estimates by at most 4 pp. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} lists the proprietary results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two proprietary models.
@@ -150,7 +148,7 @@ A 10-skeleton pilot on 13 models showed that comparing a language repertoire wit
 \FloatBarrier
 \section{Study 2 Details}
 \label{app:s2}
-Twenty-six truncated discovery replies count as non-use. Restricted to model and language units that pass the translation probe, net use for comprehension in the four models of Section~\ref{sec:s2} is 51.0 pp [48.4, 53.7] (Table~\ref{tab:translate}). Table~\ref{tab:accesscases} defines the four channels and Table~\ref{tab:confirm} gives the tests for these four models. Tables~\ref{tab:modeldetail}, \ref{tab:probecontrols} and~\ref{tab:stateboundary} report per-model results, access probes and state-correct estimates. Tables~\ref{tab:representation}, \ref{tab:discoverymethods} and~\ref{tab:methods} compare state formats and remedies, Tables~\ref{tab:delay} and~\ref{tab:decision} the delayed questions and search choices. Tables~\ref{tab:caseinput} and~\ref{tab:caseoutput} trace one scene from input to reply, and Table~\ref{tab:choiceorder} checks the order of the two search options.
+Twenty-six truncated discovery replies count as non-use. Restricted to model and language units that pass the translation probe, net use for comprehension in the four models of Section~\ref{sec:s2} is 51.0 pp [48.4, 53.7] (Table~\ref{tab:translate}). Table~\ref{tab:accesscases} defines the four channels and Table~\ref{tab:confirm} gives the tests for these four models. Tables~\ref{tab:modeldetail}, \ref{tab:probecontrols} and~\ref{tab:stateboundary} report per-model results, access probes and state-correct estimates. Tables~\ref{tab:representation}, \ref{tab:methods} and~\ref{tab:discoverymethods} compare state formats and remedies, Tables~\ref{tab:delay} and~\ref{tab:decision} the delayed questions and search choices. Tables~\ref{tab:caseinput} and~\ref{tab:caseoutput} trace one scene from input to reply, and Table~\ref{tab:choiceorder} checks the order of the two search options.
 
 % INSERT S2_ACCESS
 % INSERT S2_CONFIRM
@@ -159,8 +157,8 @@ Twenty-six truncated discovery replies count as non-use. Restricted to model and
 % INSERT S2_STATEBOUNDARY
 % INSERT S2_TRANSLATE
 % INSERT S2_REPRESENTATION
-% INSERT S2_DISCMETHODS
 % INSERT S2_METHODS
+% INSERT S2_DISCMETHODS
 % INSERT S2_DELAY
 % INSERT S2_DECISION
 % INSERT S2_CASEIN
@@ -168,11 +166,11 @@ Twenty-six truncated discovery replies count as non-use. Restricted to model and
 % INSERT S2_CHOICEORDER
 
 \FloatBarrier
+% INSERT FIG_BRIDGEFULL
+% INSERT ABLATION_TABLE
 \section{Format Experiments}
 \label{app:format}
 The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, and Table~\ref{tab:ablation} the ablation.
 
-% INSERT FIG_BRIDGEFULL
-% INSERT ABLATION_TABLE
 
 \end{document}

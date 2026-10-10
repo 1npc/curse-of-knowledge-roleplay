@@ -1783,20 +1783,18 @@ All scenes, facts and conversations are fictional. Study~1 uses names of charact
 
 \bibliography{references}
 
-\onecolumn
 \appendix
-% One-column appendix: each section is followed by its own tables and figures.
-\setlength{\parfillskip}{0pt plus 0.7\textwidth}
-\captionsetup{singlelinecheck=false}
-\raggedbottom\setlength{\intextsep}{14pt}\setlength{\floatsep}{16pt}\setlength{\textfloatsep}{16pt}
-\setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}
-\renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.5}
-\makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\makeatother
+% Two-column appendix: tables and figures span the page and pack onto shared float pages.
+\raggedbottom
+\setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}\setcounter{dbltopnumber}{4}
+\renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.6}
+\renewcommand{\dbltopfraction}{0.95}\renewcommand{\dblfloatpagefraction}{0.6}
+\makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\setlength{\@dblfptop}{0pt}\setlength{\@dblfpsep}{14pt}\setlength{\@dblfpbot}{0pt plus 1fil}\makeatother
 \section{Models and Runs}
 \label{app:models}
 Open-weight models decode with temperature 0 and at most 400 new tokens. Mistral-Small-24B is the text-only Mistral-Small-24B-Instruct-2501. Proprietary models run with temperature 0 where the endpoint supports it. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. For the thinking runs of Study~3, thinking was enabled through each chat template, gpt-oss-20b ran at high reasoning effort and Seed-OSS-36B with a budget of 4,096 tokens, and replies could use up to 6,144 tokens. gpt-oss-20b's truncated replies were rerun with 10,240 tokens. Qwen3.5-9B reached the limit before answering in 97\% of prompts and is excluded. About 8--10\% of replies from Gemma-4-12B, GLM-4.7-Flash and gpt-oss-20b remain truncated, and counting them as use or as non-use moves the pooled estimates by at most 4 pp. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} lists the proprietary results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two proprietary models.
 
-\begin{table}[H]
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
 \toprule
@@ -1814,8 +1812,8 @@ DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67
 \end{tabular*}
 \caption{Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Net use is in pp, and permitted use and probes are percentages.}
 \label{tab:hosted}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr@{}}
 \toprule
@@ -1834,8 +1832,8 @@ Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [
 \end{tabular*}
 \caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
 \label{tab:hostedci}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
 \toprule
@@ -1847,16 +1845,15 @@ Gemini 3.1 Pro & 0.0 & -- & 0.0 & 0.0 & -- & \textbf{21.4}\\
 \end{tabular*}
 \caption{Single-feature swaps for two proprietary models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). Bold marks a change from Base whose paired 95\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved the open-weight models most.}
 \label{tab:hostedswaps}
-\end{table}
+\end{table*}
 
-\FloatBarrier
 \section{Human Audit and AI Screening}
 \label{app:audit}
 The 150 replies were drawn at random. In each of eight conditions, five from Study~1 and three from Study~2, half came from replies the scorer counted as using the target and half from the rest. The annotator saw only the reply and two candidate facts in random order and marked whether the reply mentions each fact's object or place. Table~\ref{tab:human} gives the results by condition. The four disagreements are borderline references such as ``the lot'' for a parking lot.
 
 Two AI annotators also screened 568 and 624 Study~2 replies. They agreed with the scorer on target use (F1 about 98\%) and flagged 11 distinct replies as foil uses that the scorer had missed. Each of these replies names the target values, so the disagreements come from the annotators attaching values to the wrong candidate.
 
-\begin{table}[H]
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}
 \toprule
@@ -1874,14 +1871,13 @@ Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \end{tabular*}
 \caption{Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition. Precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
 \label{tab:human}
-\end{table}
+\end{table*}
 
-\FloatBarrier
 \section{Study 1 Details}
 \label{app:s1}
 A 10-skeleton pilot on 13 models showed that comparing a language repertoire with narrated inaudibility confounds the boundary with how it is stated, and matched flags reversed the comparison. Pilot items are excluded from all estimates. The pilot's filter named only incomprehension in its first step, and the list-first prompt names both boundaries. Figure~\ref{fig:s1m} shows the list-first prompt per model. Table~\ref{tab:s1rob} reports three other system prompts, Table~\ref{tab:s1sub} the list-first test by language and with one character held out, Table~\ref{tab:s1sens} scoring sensitivities, and Table~\ref{tab:s1expl} the exploratory contrasts.
 
-\begin{figure}[H]
+\begin{figure*}[!tp]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm]
 \begin{scope}[xshift=0.0cm]
@@ -2006,8 +2002,8 @@ A 10-skeleton pilot on 13 models showed that comparing a language repertoire wit
 \end{tikzpicture}
 \caption{The list-first prompt per model in Study 1 (content and planning questions). (a, b) Net use with the base prompt (gray) and with the list-first prompt. (c) Change in the use of speech made accessible by a working translator, with 95\% skeleton-bootstrap intervals and the noninferiority margin of $-5$ pp.}
 \label{fig:s1m}
-\end{figure}
-\begin{table}[H]
+\end{figure*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
@@ -2020,8 +2016,8 @@ Qwen3.5-9B & 83.9 [80.5, 87.0] & 84.7 [81.4, 87.8] & 93.1 [90.7, 95.1] & 95.6 [9
 \end{tabular*}
 \caption{Study 1: net use under the language boundary (repertoire only, pp) under three alternative system prompts. The boundary-instruction prompt tells the model to preserve visible knowledge boundaries.}
 \label{tab:s1rob}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
@@ -2038,8 +2034,8 @@ Two-way bootstrap & 64.7 & -2.0 & 0.130\\
 \end{tabular*}
 \caption{Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
 \label{tab:s1sub}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrc@{}}
 \toprule
@@ -2056,8 +2052,8 @@ Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \end{tabular*}
 \caption{Study 1 scoring and conditioning sensitivities.}
 \label{tab:s1sens}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
@@ -2083,14 +2079,13 @@ Present-day world $-$ main set & -16.4 & [-24.9, -7.8] & 0.002\\
 \end{tabular*}
 \caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). No language state means the state omits the character's languages. The world comparison uses different scenario sets.}
 \label{tab:s1expl}
-\end{table}
+\end{table*}
 
-\FloatBarrier
 \section{Study 2 Details}
 \label{app:s2}
-Twenty-six truncated discovery replies count as non-use. Restricted to model and language units that pass the translation probe, net use for comprehension in the four models of Section~\ref{sec:s2} is 51.0 pp [48.4, 53.7] (Table~\ref{tab:translate}). Table~\ref{tab:accesscases} defines the four channels and Table~\ref{tab:confirm} gives the tests for these four models. Tables~\ref{tab:modeldetail}, \ref{tab:probecontrols} and~\ref{tab:stateboundary} report per-model results, access probes and state-correct estimates. Tables~\ref{tab:representation}, \ref{tab:discoverymethods} and~\ref{tab:methods} compare state formats and remedies, Tables~\ref{tab:delay} and~\ref{tab:decision} the delayed questions and search choices. Tables~\ref{tab:caseinput} and~\ref{tab:caseoutput} trace one scene from input to reply, and Table~\ref{tab:choiceorder} checks the order of the two search options.
+Twenty-six truncated discovery replies count as non-use. Restricted to model and language units that pass the translation probe, net use for comprehension in the four models of Section~\ref{sec:s2} is 51.0 pp [48.4, 53.7] (Table~\ref{tab:translate}). Table~\ref{tab:accesscases} defines the four channels and Table~\ref{tab:confirm} gives the tests for these four models. Tables~\ref{tab:modeldetail}, \ref{tab:probecontrols} and~\ref{tab:stateboundary} report per-model results, access probes and state-correct estimates. Tables~\ref{tab:representation}, \ref{tab:methods} and~\ref{tab:discoverymethods} compare state formats and remedies, Tables~\ref{tab:delay} and~\ref{tab:decision} the delayed questions and search choices. Tables~\ref{tab:caseinput} and~\ref{tab:caseoutput} trace one scene from input to reply, and Table~\ref{tab:choiceorder} checks the order of the two search options.
 
-\begin{table}[H]
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lXX@{}}
 \toprule
@@ -2106,8 +2101,8 @@ Twenty-six truncated discovery replies count as non-use. Restricted to model and
 \usebox{\OCtable}
 \caption{Study 2 channels. Each event contains an item--location fact. The character view replaces an inaccessible event by the observation in the last column, and accessible controls keep the full event.}
 \label{tab:accesscases}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrcr@{}}
 \toprule
@@ -2128,8 +2123,8 @@ View minus hard event retention & 67.8 & [65.4, 70.1] & 0 & ---\\
 \usebox{\OCtable}
 \caption{Study 2 confirmation (four models, 96 original-character scenes). The channel test requires all four channels to be positive, the state-correct test uses replies whose state probe is correct (6,068), and the view test requires the view to reduce net use, keep permitted use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.}
 \label{tab:confirm}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
 \toprule
@@ -2145,8 +2140,8 @@ Qwen3.5-9B & 97.4 & 51.3 & 96.6 & 96.4 & 100.0 & 85.4\\
 \usebox{\OCtable}
 \caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points, and state correctness is a percentage. Every model has eligible role endpoints.}
 \label{tab:modeldetail}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrrr@{}}
 \toprule
@@ -2174,8 +2169,8 @@ Qwen3.5-9B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 \usebox{\OCtable}
 \caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions, and all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
 \label{tab:probecontrols}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrlr@{}}
 \toprule
@@ -2191,8 +2186,8 @@ Receive & 67.6 [65.8, 69.3] & 1536 & 67.6 [65.8, 69.3] & 1536\\
 \usebox{\OCtable}
 \caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension, where all state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
 \label{tab:stateboundary}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \begin{minipage}[t]{0.47\linewidth}
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
@@ -2225,9 +2220,25 @@ Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 \caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] across the four core models.}
 \label{tab:representation}
 \end{minipage}
-\end{table}
+\end{table*}
 
-\begin{table}[H]
+\begin{table*}[!tp]
+\centering\setlength{\tabcolsep}{4.5pt}\small
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
+\toprule
+\textbf{Method} & \textbf{Net use} & \textbf{Permitted use} & \textbf{Event retention}\\
+\midrule
+Full context & 64.1 & 92.8 & 73.3\\
+Hard removal & 0.0 & 93.3 & 32.3\\
+Character view & 0.0 & 93.3 & 100.0\\
+\bottomrule
+\end{tabular*}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:methods exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Confirmation set. Net use $D$ is in pp, and permitted use and partial-event retention are percentages. Retention excludes Hear.}
+\label{tab:methods}
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llll@{}}
 \toprule
@@ -2259,24 +2270,8 @@ Receive & Character view & 0.0 [-0.3, 0.3] & 90.9 [87.6, 93.7]\\
 \usebox{\OCtable}
 \caption{Five methods on six discovery models and 48 matched scenes (1,152 endpoints per cell). Net use is in pp and permitted use is a percentage. Intervals are 95\% paired-bootstrap intervals.}
 \label{tab:discoverymethods}
-\end{table}
-\begin{table}[H]
-\centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
-\toprule
-\textbf{Method} & \textbf{Net use} & \textbf{Permitted use} & \textbf{Event retention}\\
-\midrule
-Full context & 64.1 & 92.8 & 73.3\\
-Hard removal & 0.0 & 93.3 & 32.3\\
-Character view & 0.0 & 93.3 & 100.0\\
-\bottomrule
-\end{tabular*}\end{lrbox}
-\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:methods exceeds its column}{Revise the table layout.}\fi
-\usebox{\OCtable}
-\caption{Confirmation set. Net use $D$ is in pp, and permitted use and partial-event retention are percentages. Retention excludes Hear.}
-\label{tab:methods}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
@@ -2296,8 +2291,8 @@ Receive & view & -0.4 [-1.2, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \usebox{\OCtable}
 \caption{Delayed net use (pp), 32-scene subset, with 95\% intervals. The original event remains in context throughout the scripted exchanges.}
 \label{tab:delay}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrr@{}}
 \toprule
@@ -2317,8 +2312,8 @@ Receive & view & 0.0 & [0.0, 0.0] & 97.7\\
 \usebox{\OCtable}
 \caption{Fixed-A decision contrast (pp) and response validity. The choice of location A is tracked across versions, independently of its option number.}
 \label{tab:decision}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lX@{}}
 \toprule
@@ -2339,8 +2334,8 @@ Inaccessible view scene & {\footnotesize\ttfamily [Scene state] \{"character\_id
 \usebox{\OCtable}
 \caption{Exact messages for the selected hearing case, with A/B and access-state substitutions. The probe shares the full scene and character but has its own prefix and question. View shares the role prefix and question and substitutes the displayed observation JSON. Accessible view contains the permitted event in its observation list.}
 \label{tab:caseinput}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}llcXX@{}}
 \toprule
@@ -2356,8 +2351,8 @@ B & Yes & Yes & Alex mentioned the broom is in the stairwell. & Alex just told m
 \usebox{\OCtable}
 \caption{All saved content replies and independent probe answers for scene C001, Qwen3.5-9B, access flag, no delay. Full replies score $(T,F,D)=(1,0,1)$ in all four rows, inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.}
 \label{tab:caseoutput}
-\end{table}
-\begin{table}[H]
+\end{table*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
@@ -2377,14 +2372,9 @@ Receive & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \usebox{\OCtable}
 \caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum. Original paired effects and tests remain unchanged.}
 \label{tab:choiceorder}
-\end{table}
+\end{table*}
 
-\FloatBarrier
-\section{Format Experiments}
-\label{app:format}
-The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, and Table~\ref{tab:ablation} the ablation.
-
-\begin{figure}[H]
+\begin{figure*}[!tp]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm]
 \begin{scope}[xshift=0.0cm]
@@ -2773,8 +2763,8 @@ The ablation starts from Study~1's flag-only prompts and adds Study~2's channel 
 \end{tikzpicture}
 \caption{Bridge experiment for all 11 open-weight models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}
 \label{fig:bridgefull}
-\end{figure}
-\begin{table}[H]
+\end{figure*}
+\begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}
 \toprule
@@ -2794,6 +2784,10 @@ Phi-4 & 88.5 & 89.6 & 66.1 & 69.8 & 49.5\\
 \end{tabular*}
 \caption{Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
 \label{tab:ablation}
-\end{table}
+\end{table*}
+\section{Format Experiments}
+\label{app:format}
+The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, and Table~\ref{tab:ablation} the ablation.
+
 
 \end{document}
