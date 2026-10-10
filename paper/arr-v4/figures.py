@@ -136,10 +136,10 @@ def design():
     L.append(r"\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,2.93) {cannot\\hear};")
     cells = [(3.12, 3.93, "OIblue!12", r"speaks:\\English", ""), (4.82, 3.93, "OIblue!12", r"understood:\\false", ""),
              (6.52, 3.93, "OIblue!12", r"``does not speak\\Japanese''", r"\tiny"),
-             (3.12, 2.93, "black!4", r"---", ""), (4.82, 2.93, "OIorange!14", r"audible:\\false", ""),
+             (3.12, 2.93, "black!4", r"no state\\field", r"\tiny"), (4.82, 2.93, "OIorange!14", r"audible:\\false", ""),
              (6.52, 2.93, "OIorange!14", r"``could not\\hear them''", r"\tiny")]
     for x, y, fill, t, f in cells:
-        extra = ",draw=black!25,text=black!40" if t == "---" else ""
+        extra = ",draw=black!25,text=black!45" if t.startswith("no state") else ""
         L.append(f"\\node[cell={fill}{extra},font=\\sffamily\\scriptsize{f}] at ({x},{y}) {{{t}}};")
     # (b) Study 2
     L.append(r"\fill[black!3] (0,0.15) rectangle (7.6,2.15);")
@@ -156,7 +156,7 @@ def design():
         L.append(f"\\node[font=\\sffamily\\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at ({x + 0.875:.3f},0.55) {{{view}}};")
     # (c) who the model writes as (Section 6)
     L.append(r"\fill[black!3] (0,-2.05) rectangle (7.6,-0.05);")
-    L.append(r"\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,-0.13) {(c) Who the model writes as};")
+    L.append(r"\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,-0.13) {(c) Study 3: who the model writes as};")
     roles = [("hero", "role-play", None), ("quill", "author", {"k": "N", "w": "y"}), ("book", "narrator", None), ("rule", r"perspective\\rule", None)]
     for k, (ic, name, rc) in enumerate(roles):
         x = 0.15 + 1.86 * k
@@ -167,7 +167,7 @@ def design():
         L.append(sprite(ic, x + 0.875 - w / 2, -1.08 - h / 2 + 0.12, px, rc))
         L.append(f"\\node[font=\\sffamily\\scriptsize\\bfseries,align=center] at ({x + 0.875:.3f},-1.62) {{{name}}};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Section~\ref{sec:why} has the model write as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}",
+          r"\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Study 3 reruns Study 1's core cells with the model writing as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}",
           r"\label{fig:design}", r"\end{figure}"]
     return "\n".join(L)
 
@@ -687,7 +687,7 @@ def why():
     L.append(r"\end{scope}")
     L += legend([("box", "OIblue", "cannot understand"), ("box", "OIorange", "cannot hear")], -1.2, y0 - 0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Why characters leak (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}",
+          r"\caption{Study 3, why characters leak (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}",
           r"\label{fig:why}", r"\end{figure}"]
     return "\n".join(L)
 
