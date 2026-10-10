@@ -68,7 +68,9 @@ def main():
         (OUT / "figures" / "src" / f"{name}.tex").write_text(FIG_PRE + "\\begin{document}\n" + tikz + "\n\\end{document}\n")
         subprocess.run(["xelatex", "-interaction=nonstopmode", f"{name}.tex"], cwd=OUT / "figures" / "src", capture_output=True)
         shutil.copy(OUT / "figures" / "src" / f"{name}.pdf", OUT / "figures" / f"{name}.pdf")
-        ins[key] = code.replace(tikz, f"\\includegraphics{{figures/{name}.pdf}}")
+        # Appendix figures fill the one-column text width like the appendix tables.
+        opt = "[width=\\linewidth]" if key in ("FIG_S1M", "FIG_BRIDGEFULL") else ""
+        ins[key] = code.replace(tikz, f"\\includegraphics{opt}{{figures/{name}.pdf}}")
     for k, v in ins.items():
         body = body.replace(f"% INSERT {k}\n", v + "\n")
     assert not re.findall(r"^% INSERT (\w+)$", body, re.M)

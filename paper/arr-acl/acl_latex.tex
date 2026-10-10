@@ -114,7 +114,7 @@ A non-player character who does not speak Spanish overhears two mechanics say, i
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1-example.pdf}
-\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies verbatim, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}
+\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies abridged, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}
 \label{fig:example}
 \end{figure}
 
@@ -276,7 +276,8 @@ All scenes, facts and conversations are fictional. Study~1 uses names of charact
 \appendix
 % One-column appendix: each section is followed by its own tables and figures.
 \setlength{\parfillskip}{0pt plus 0.8\textwidth}
-\setlength{\intextsep}{8pt plus 2pt minus 2pt}\setlength{\floatsep}{8pt plus 2pt minus 2pt}\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\captionsetup{singlelinecheck=false}
+\setlength{\intextsep}{14pt plus 4pt minus 2pt}\setlength{\floatsep}{16pt plus 4pt minus 2pt}\setlength{\textfloatsep}{16pt plus 4pt minus 2pt}
 \setcounter{topnumber}{4}\setcounter{bottomnumber}{3}\setcounter{totalnumber}{6}
 \renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.5}
 \makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\makeatother
@@ -286,7 +287,7 @@ Open models were run with vLLM 0.29.0 in BF16 with temperature 0 and at most 400
 
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrrrrrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Repertoire} & \textbf{Audibility} & \textbf{Compr.} & \textbf{Prose} & \textbf{Control} & \textbf{State} & \textbf{Transl.} & \textbf{Bridge}\\
 & \textbf{flag} & \textbf{flag} & \textbf{flag} & \textbf{sentence} & \textbf{use} & \textbf{probe} & \textbf{probe} & \textbf{base $\to$ all}\\
@@ -299,13 +300,13 @@ Gemini 3.8 Flash & 0.2 & -0.2 & 0.0 & 0.0 & 99.0 & 100.0 & 93.8 & 0.0 $\to$ 0.0\
 Grok 4.7 & 1.0 & 0.0 & 1.0 & 0.3 & 100.0 & 100.0 & 99.3 & 0.0 $\to$ 0.0\\
 DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67.2\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Hosted models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Leakage is net use in pp, control use and probes are percentages.}
 \label{tab:hosted}
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Repertoire} & \textbf{Audibility flag} & \textbf{Compr. flag} & \textbf{Prose sentence}\\
 \midrule
@@ -319,20 +320,20 @@ DeepSeek-V4-Pro & 71.2 [65.1, 76.7] & 78.3 [72.0, 84.0] & 43.4 [36.5, 50.5] & 21
 \midrule
 Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [3.5, 7.7] & 1.2 [0.0, 3.0]\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Hosted models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
 \label{tab:hostedci}
 \end{table}
 \begin{table}[!htbp]
 \centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Base} & \textbf{Sys.} & \textbf{Sheet} & \textbf{State} & \textbf{Quest.} & \textbf{All}\\
 \midrule
 Claude Sonnet 5.5 & 0.5 & \textbf{9.9} & \textbf{15.1} & \textbf{8.9} & \textbf{9.4} & \textbf{13.0}\\
 Gemini 3.1 Pro & 0.0 & -- & 0.0 & 0.0 & -- & \textbf{21.4}\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Single-feature swaps for two hosted models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). Bold marks a change from Base whose paired 95\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved the open models most.}
 \label{tab:hostedswaps}
 \end{table}
@@ -346,7 +347,7 @@ Two AI annotators also screened 568 and 624 Study~2 replies. They agreed with th
 
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}
 \toprule
 \textbf{Condition} & \textbf{$n$} & \textbf{Human $D$} & \textbf{Scorer $D$} & \textbf{Precision} & \textbf{Recall}\\
 \midrule
@@ -359,7 +360,7 @@ Study 2, character view, inaccessible & 12 & 0.4 & 0.5 & 83.3 & 100.0\\
 Study 2, full context, accessible & 10 & 97.1 & 95.1 & 100.0 & 98.0\\
 Study 2, full context, inaccessible & 40 & 60.9 & 60.9 & 100.0 & 100.0\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Blind human audit (150 replies, one annotator). $D$ is net use (pp) reweighted to each condition. Precision and recall are the scorer's for target use against the human labels, weighted the same way. Neither the annotator nor the scorer found a foil use.}
 \label{tab:human}
 \end{table}
@@ -371,13 +372,13 @@ A 10-skeleton pilot on 13 models showed that comparing a language repertoire wit
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{figures/figA-listfirst-per-model.pdf}
+\includegraphics[width=\linewidth]{figures/figA-listfirst-per-model.pdf}
 \caption{The list-first prompt per model in Study 1 (content and planning questions). (a, b) Net use with the base prompt (gray) and with the list-first prompt. (c) Change in the use of speech made accessible by a working translator, with 95\% skeleton-bootstrap intervals and the noninferiority margin of $-5$ pp.}
 \label{fig:s1m}
 \end{figure}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lllll@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
 \textbf{Model} & \textbf{Main prompt} & \textbf{Boundary-instruction} & \textbf{Minimal} & \textbf{Community}\\
 \midrule
@@ -385,13 +386,13 @@ Gemma-4-31B & 45.5 [38.9, 52.2] & 23.1 [18.3, 28.4] & 50.6 [44.3, 57.2] & 51.0 [
 Qwen3.8-27B & 49.6 [43.7, 54.9] & 23.0 [18.2, 27.6] & 46.9 [41.5, 52.0] & 51.8 [46.9, 56.4]\\
 Qwen3.5-9B & 83.9 [80.5, 87.0] & 84.7 [81.4, 87.8] & 93.1 [90.7, 95.1] & 95.6 [94.3, 96.9]\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Study 1: language-boundary leakage (repertoire only, pp) under three alternative system prompts. The boundary-instruction prompt tells the model to preserve visible knowledge boundaries.}
 \label{tab:s1rob}
 \end{table}
 \begin{table}[!htbp]
 \centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}lrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
 \textbf{Subset} & \textbf{Reduction (\%)} & \textbf{Transl. (pp)} & \textbf{Holm $p$}\\
 \midrule
@@ -403,13 +404,13 @@ Without Panam & 64.1 & -0.5 & 0.004\\
 Without Rogue & 67.0 & -4.9 & 0.464\\
 Two-way bootstrap & 64.7 & -2.0 & 0.130\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
 \label{tab:s1sub}
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrrrc@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrc@{}}
 \toprule
 \textbf{Variant} & \textbf{Not underst.} & \textbf{Not audible} & \textbf{Reduction (\%)} & \textbf{Translator (pp)} & \textbf{Supported}\\
 \midrule
@@ -421,13 +422,13 @@ Complete responses only & 66.7 & 72.2 & 64.7 & -1.9 & 8/8\\
 Worst-case failed list-first reply & 66.7 & 72.2 & 64.6 & -2.0 & 8/8\\
 Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Study 1 scoring and conditioning sensitivities.}
 \label{tab:s1sens}
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
 \textbf{Exploratory contrast} & \textbf{Estimate (pp)} & \textbf{95\% CI} & \textbf{BH $q$}\\
 \midrule
@@ -448,7 +449,7 @@ Weak canon non-speakers, repertoire minus no language state & -3.4 & [-6.6, 0.3]
 Non-speakers with a name prior, repertoire minus no language state & -4.5 & [-8.9, -0.5] & 0.045\\
 Present-day world $-$ main set & -16.4 & [-24.9, -7.8] & 0.002\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Study 1 exploratory family (Benjamini--Hochberg, $q=.10$). No language state means the state omits the character's languages. The world comparison uses different scenario sets.}
 \label{tab:s1expl}
 \end{table}
@@ -477,7 +478,7 @@ Ten models ran on H200 GPUs and Seed-OSS-36B on an H100 with the same software a
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrcr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrcr@{}}
 \toprule
 \textbf{Family / component} & \textbf{Estimate (pp)} & \textbf{95\% CI} & \textbf{Null} & \textbf{Holm $p$}\\
 \midrule
@@ -491,7 +492,7 @@ View, full minus view leakage & 64.1 & [62.8, 65.3] & 0 & 0.0015\\
 View minus full accessible use & 0.5 & [-0.2, 1.2] & $-5$ & ---\\
 View minus hard event retention & 67.8 & [65.4, 70.1] & 0 & ---\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:confirm exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Study 2 confirmation (four models, 96 original-character scenes). The channel test requires all four channels to be positive, the state-correct test uses replies whose state probe is correct (6,068), and the view test requires the view to reduce leakage, keep accessible use within 5 pp, and keep more observations than removal. One Holm-adjusted $p$ per family.}
@@ -499,7 +500,7 @@ View minus hard event retention & 67.8 & [65.4, 70.1] & 0 & ---\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrrrr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Hear} & \textbf{Understand} & \textbf{See} & \textbf{Receive} & \textbf{State correct} & \textbf{Conditional $D$}\\
 \midrule
@@ -508,7 +509,7 @@ GLM-4.7-Flash & 87.2 & 71.1 & 66.4 & 52.6 & 99.9 & 69.3\\
 Nemotron-3-Nano-30B & 99.0 & 66.4 & 97.7 & 99.0 & 95.2 & 90.0\\
 Qwen3.5-9B & 97.4 & 51.3 & 96.6 & 96.4 & 100.0 & 85.4\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:modeldetail exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points, and state correctness is a percentage. Every model has eligible role endpoints.}
@@ -516,7 +517,7 @@ Qwen3.5-9B & 97.4 & 51.3 & 96.6 & 96.4 & 100.0 & 85.4\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrrrr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Channel} & \textbf{No correct (/192)} & \textbf{Yes correct (/192)} & \textbf{False Yes} & \textbf{False No}\\
 \midrule
@@ -537,7 +538,7 @@ Qwen3.5-9B & Understand & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 Qwen3.5-9B & See & 192 (100.0\%) & 175 (91.2\%) & 0 & 17\\
 Qwen3.5-9B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:probecontrols exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions, and all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
@@ -545,7 +546,7 @@ Qwen3.5-9B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrlr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrlr@{}}
 \toprule
 \textbf{Boundary} & \textbf{State-correct $D$ [95\% CI]} & \textbf{$N$} & \textbf{Capability-eligible $D$ [95\% CI]} & \textbf{$N$}\\
 \midrule
@@ -554,16 +555,16 @@ Understand & 47.2 [44.9, 49.6] & 1536 & 51.0 [48.4, 53.7] & 1152\\
 See & 69.3 [67.3, 71.4] & 1536 & 69.3 [67.3, 71.4] & 1536\\
 Receive & 67.6 [65.8, 69.3] & 1536 & 67.6 [65.8, 69.3] & 1536\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:stateboundary exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension, where all state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
 \label{tab:stateboundary}
 \end{table}
 \begin{table}[!htbp]
-\begin{minipage}[t]{0.485\linewidth}
+\begin{minipage}[t]{0.47\linewidth}
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Chinese} & \textbf{Japanese} & \textbf{Spanish}\\
 \midrule
@@ -572,14 +573,14 @@ GLM-4.7-Flash & 100.0 & 62.5 & 100.0\\
 Nemotron-3-Nano-30B & 100.0 & 75.0 & 87.5\\
 Qwen3.5-9B & 100.0 & 62.5 & 100.0\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \adjustbox{max width=\linewidth}{\usebox{\OCtable}}
 \caption{Both-canary translation use on 64 original-character prompts per model--language unit (\%). The diagnostic threshold is 85\%, and the primary analysis is unconditional.}
 \label{tab:translate}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.485\linewidth}
+\begin{minipage}[t]{0.47\linewidth}
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lll@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lll@{}}
 \toprule
 \textbf{Boundary} & \textbf{Membership minus flag} & \textbf{Prose+flag minus flag}\\
 \midrule
@@ -588,7 +589,7 @@ Understand & 28.6 [25.5, 31.8] & -4.0 [-8.1, -0.1]\\
 See & 32.9 [29.0, 36.8] & -17.5 [-22.5, -13.4]\\
 Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \adjustbox{max width=\linewidth}{\usebox{\OCtable}}
 \caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] across the four core models.}
 \label{tab:representation}
@@ -597,7 +598,7 @@ Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}llll@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llll@{}}
 \toprule
 \textbf{Boundary} & \textbf{Method} & \textbf{Inaccessible $D$} & \textbf{Accessible target use}\\
 \midrule
@@ -622,7 +623,7 @@ Receive & Self-filter & 4.8 [3.2, 6.6] & 53.0 [48.9, 57.2]\\
 Receive & Hard removal & -0.1 [-0.3, 0.0] & 90.9 [87.6, 93.7]\\
 Receive & Character view & 0.0 [-0.3, 0.3] & 90.9 [87.6, 93.7]\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:discoverymethods exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp and accessible use is a percentage. Intervals are 95\% paired-bootstrap intervals.}
@@ -630,7 +631,7 @@ Receive & Character view & 0.0 [-0.3, 0.3] & 90.9 [87.6, 93.7]\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{}}
 \toprule
 \textbf{Method} & \textbf{Leakage} & \textbf{Access. use} & \textbf{Event retention}\\
 \midrule
@@ -638,7 +639,7 @@ Full context & 64.1 & 92.8 & 73.3\\
 Hard removal & 0.0 & 93.3 & 32.3\\
 Character view & 0.0 & 93.3 & 100.0\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:methods exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Confirmation cohort. Leakage is net $D$ in pp, and accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.}
@@ -646,7 +647,7 @@ Character view & 0.0 & 93.3 & 100.0\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lllll@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
 \textbf{Boundary} & \textbf{Method} & \textbf{Delay 0} & \textbf{Delay 2} & \textbf{Delay 4}\\
 \midrule
@@ -659,7 +660,7 @@ See & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 Receive & full & 68.0 [63.7, 71.9] & 68.4 [63.7, 72.7] & 69.5 [66.0, 72.7]\\
 Receive & view & -0.4 [-1.2, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:delay exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Delayed net use (pp), 32-scene subset, with 95\% intervals. The original event remains in context throughout the scripted exchanges.}
@@ -667,7 +668,7 @@ Receive & view & -0.4 [-1.2, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrrr@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrr@{}}
 \toprule
 \textbf{Boundary} & \textbf{Method} & \textbf{Fixed-A choice contrast} & \textbf{95\% CI} & \textbf{Valid choices (\%)}\\
 \midrule
@@ -680,7 +681,7 @@ See & view & 0.0 & [0.0, 0.0] & 99.2\\
 Receive & full & 55.5 & [46.9, 64.1] & 99.6\\
 Receive & view & 0.0 & [0.0, 0.0] & 97.7\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:decision exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Fixed-A decision contrast (pp) and response validity. The choice of location A is tracked across versions, independently of its option number.}
@@ -688,7 +689,7 @@ Receive & view & 0.0 & [0.0, 0.0] & 97.7\\
 \end{table}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{lrbox}{\OCtable}\begin{tabular}{@{}lllll@{}}
+\begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
 \textbf{Boundary} & \textbf{Method} & \textbf{A first (18 scenes)} & \textbf{A second (14 scenes)} & \textbf{Equal-position effect}\\
 \midrule
@@ -701,7 +702,7 @@ See & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 Receive & full & 59.7 [50.0, 69.4] & 50.0 [35.7, 62.5] & 54.9 [45.5, 63.1]\\
 Receive & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \bottomrule
-\end{tabular}\end{lrbox}
+\end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:choiceorder exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
 \caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum. Original paired effects and tests remain unchanged.}
@@ -754,13 +755,13 @@ The ablation starts from Study~1's flag-only prompts and adds Study~2's channel 
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{figures/figB-bridge-all-models.pdf}
+\includegraphics[width=\linewidth]{figures/figB-bridge-all-models.pdf}
 \caption{Bridge experiment for all 11 open models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}
 \label{fig:bridgefull}
 \end{figure}
 \begin{table}[!htbp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
-\begin{tabular}{@{}lrrrrr@{}}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}
 \toprule
 \textbf{Model} & \textbf{Study 1 prompt} & \textbf{+ channel} & \textbf{+ question} & \textbf{+ minimal} & \textbf{All three}\\
 \midrule
@@ -775,7 +776,7 @@ Qwen3.8-27B & 35.9 & 34.4 & 39.6 & 12.0 & 14.1\\
 Seed-OSS-36B & 69.8 & 67.2 & 95.3 & 37.0 & 31.8\\
 Phi-4 & 88.5 & 89.6 & 66.1 & 69.8 & 49.5\\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \caption{Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
 \label{tab:ablation}
 \end{table}

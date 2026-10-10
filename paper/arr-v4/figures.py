@@ -472,7 +472,7 @@ def remedy():
 
 
 def example():
-    """Figure 1: one Study 1 item drawn as a pixel-art scene, with verbatim replies from Gemma-4-31B."""
+    """Figure 1: one Study 1 item drawn as a pixel-art scene, with abridged replies from Gemma-4-31B."""
     L = [r"\begin{figure}[t]", r"\centering",
          r"\begin{tikzpicture}[x=1cm,y=1cm,"
          r"pbub/.style={draw=black!70,line width=.6pt,fill=#1,inner sep=3pt,align=left,font=\sffamily\scriptsize},"
@@ -514,7 +514,7 @@ def example():
         L.append(f"\\fill[white,draw={col},line width=.7pt] (2.12,{top - 0.36:.2f})--(1.93,{top - 0.44:.2f})--(2.12,{top - 0.52:.2f});")
         L.append(f"\\fill[white] (2.115,{top - 0.35:.2f}) rectangle (2.15,{top - 0.53:.2f});")
     L += [r"\end{tikzpicture}",
-          r"\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies verbatim, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}",
+          r"\caption{Gemma-4-31B voicing a character who does not speak Spanish (replies abridged, names changed). The reply tracks the hidden object and place when version B swaps them. Adding a flag to the same state saying that the character did not understand the speech stops the leak. Each reply is scored for its own version's values and the other version's, so a plausible guess cancels.}",
           r"\label{fig:example}", r"\end{figure}"]
     return "\n".join(L)
 

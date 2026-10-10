@@ -439,9 +439,15 @@ def onecolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
             blocks.append((m.group(0), inner))
         if len(blocks) != 2:
             continue
-        pair = ("\\begin{table}[!htbp]\n\\begin{minipage}[t]{0.485\\linewidth}" + blocks[0][1] + "\\end{minipage}\\hfill\n"
-                "\\begin{minipage}[t]{0.485\\linewidth}" + blocks[1][1] + "\\end{minipage}\n\\end{table}")
+        pair = ("\\begin{table}[!htbp]\n\\begin{minipage}[t]{0.47\\linewidth}" + blocks[0][1] + "\\end{minipage}\\hfill\n"
+                "\\begin{minipage}[t]{0.47\\linewidth}" + blocks[1][1] + "\\end{minipage}\n\\end{table}")
         app = app.replace(blocks[0][0], pair, 1).replace(blocks[1][0], "", 1)
+    # Every appendix table spans its full column, so tables, captions and text share the same edges.
+    def full_width(m):
+        spec = m.group(1)
+        spec = "@{\\extracolsep{\\fill}}" + (spec[3:] if spec.startswith("@{}") else spec)
+        return "\\begin{tabular*}{\\linewidth}{" + spec + "}" + m.group(2) + "\\end{tabular*}"
+    app = re.sub(r"\\begin\{tabular\}\{((?:[^{}]|\{[^{}]*\})*)\}(.*?)\\end\{tabular\}", full_width, app, flags=re.S)
     return head + app
 
 
