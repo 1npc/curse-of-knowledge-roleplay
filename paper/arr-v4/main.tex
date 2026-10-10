@@ -17,6 +17,8 @@
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
 \usepackage{placeins,adjustbox,float}
+% Included PDFs carry no file paths into the output (anonymous review).
+\pdfsuppressptexinfo=-1
 % Avoid paragraphs whose last line holds a single word: the last line must fill about a third of the column.
 \setlength{\parfillskip}{0pt plus 0.65\columnwidth}\setlength{\emergencystretch}{2em}
 % A paragraph never leaves one or two of its lines at the top of a column or page, nor one at the bottom.
@@ -1860,7 +1862,7 @@ DeepSeek-V4-Pro & 71.2 [65.1, 76.7] & 78.3 [72.0, 84.0] & 43.4 [36.5, 50.5] & 21
 Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [3.5, 7.7] & 1.2 [0.0, 3.0]\\
 \bottomrule
 \end{tabular*}
-\caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
+\caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
 \label{tab:hostedci}
 \end{table*}
 \begin{table*}[!tp]
@@ -2032,7 +2034,7 @@ Qwen3.8-27B & 49.6 [43.7, 54.9] & 23.0 [18.2, 27.6] & 46.9 [41.5, 52.0] & 51.8 [
 Qwen3.5-9B & 83.9 [80.5, 87.0] & 84.7 [81.4, 87.8] & 93.1 [90.7, 95.1] & 95.6 [94.3, 96.9]\\
 \bottomrule
 \end{tabular*}
-\caption{Study 1: net use under the language boundary (repertoire only, pp) under three alternative system prompts. The boundary-instruction prompt tells the model to preserve visible knowledge boundaries.}
+\caption{Net use in Study 1 under the language boundary (repertoire only, pp) under three alternative system prompts. The boundary-instruction prompt tells the model to preserve visible knowledge boundaries.}
 \label{tab:s1rob}
 \end{table*}
 \begin{table*}[!tp]
@@ -2050,7 +2052,7 @@ Without Rogue & 67.0 & -4.9 & 0.464\\
 Two-way bootstrap & 64.7 & -2.0 & 0.130\\
 \bottomrule
 \end{tabular*}
-\caption{Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
+\caption{The list-first test of Study 1 by language, leaving one character out, and with a two-way (skeleton $\times$ character) bootstrap. The joint criterion fails in several subsets.}
 \label{tab:s1sub}
 \end{table*}
 \begin{table*}[!tp]
@@ -2180,7 +2182,7 @@ Qwen3.5-9B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:probecontrols exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions, and all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population.}
+\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions, and all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels, and always answering No gives 50\% on the balanced 3,072/3,072 population.}
 \label{tab:probecontrols}
 \end{table*}
 \begin{table*}[!tp]
@@ -2197,7 +2199,7 @@ Receive & 67.6 [65.8, 69.3] & 1536 & 67.6 [65.8, 69.3] & 1536\\
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:stateboundary exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension, where all state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.}
+\caption{State-correct net use for the four models of Section~\ref{sec:s2} (pp). The capability-eligible column keeps only model and language units whose translation probe reaches 85\%, which changes only comprehension.}
 \label{tab:stateboundary}
 \end{table*}
 \begin{table*}[!tp]
@@ -2214,7 +2216,7 @@ Qwen3.5-9B & 100.0 & 62.5 & 100.0\\
 \bottomrule
 \end{tabular}\end{lrbox}
 \adjustbox{max width=\linewidth}{\usebox{\OCtable}}
-\caption{Both-canary translation use on 64 original-character prompts per model--language unit (\%). The diagnostic threshold is 85\%, and the primary analysis is unconditional.}
+\caption{Translation probe accuracy (\%), the share of 64 prompts per model and language in which both hidden values are translated. Main estimates use all units, and the capability-eligible estimates of Table~\ref{tab:stateboundary} drop units below 85\%.}
 \label{tab:translate}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.47\linewidth}
@@ -2230,7 +2232,7 @@ Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 \bottomrule
 \end{tabular}\end{lrbox}
 \adjustbox{max width=\linewidth}{\usebox{\OCtable}}
-\caption{Representation effects on inaccessible net use (pp), with 95\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] across the four core models.}
+\caption{Representation effects on net use (pp), with 95\% intervals. Eleven discovery models, 24 matched scenes. The same comprehension prose contrast is +5.7 [0.0, 12.0] across the four core models.}
 \label{tab:representation}
 \end{minipage}
 \end{table*}
@@ -2383,7 +2385,7 @@ Receive & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:choiceorder exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum. Original paired effects and tests remain unchanged.}
+\caption{Option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum.}
 \label{tab:choiceorder}
 \end{table*}
 \begin{figure*}[!tp]
@@ -2782,19 +2784,19 @@ Receive & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \toprule
 \textbf{Model} & \textbf{Study 1 prompt} & \textbf{+ channel} & \textbf{+ question} & \textbf{+ minimal} & \textbf{All three}\\
 \midrule
-\multicolumn{6}{@{}l}{\emph{Flag: not audible}}\\
+\multicolumn{6}{@{}l}{\emph{Not-audible flag}}\\
 Gemma-4-31B & 52.1 & 52.1 & 51.0 & 54.7 & 50.0\\
 Qwen3.8-27B & 71.4 & 74.0 & 80.2 & 51.6 & 32.8\\
 Seed-OSS-36B & 90.1 & 88.0 & 100.0 & 87.0 & 83.3\\
 Phi-4 & 99.0 & 100.0 & 94.3 & 100.0 & 94.3\\
-\multicolumn{6}{@{}l}{\emph{Flag: not understood}}\\
+\multicolumn{6}{@{}l}{\emph{Not-understood flag}}\\
 Gemma-4-31B & 6.2 & 3.1 & 1.6 & 3.1 & 0.0\\
 Qwen3.8-27B & 35.9 & 34.4 & 39.6 & 12.0 & 14.1\\
 Seed-OSS-36B & 69.8 & 67.2 & 95.3 & 37.0 & 31.8\\
 Phi-4 & 88.5 & 89.6 & 66.1 & 69.8 & 49.5\\
 \bottomrule
 \end{tabular*}
-\caption{Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
+\caption{Format ablation from Study 1 toward Study 2 (96 skeletons, content question). Net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
 \label{tab:ablation}
 \end{table*}
 

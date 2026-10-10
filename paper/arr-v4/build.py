@@ -163,7 +163,7 @@ def study1():
     for name, v in sets:
         h = v["H5b"]
         rows.append(esc({"zh": "Chinese", "ja": "Japanese", "es": "Spanish"}.get(name, name)) + " & " + pc(h["reduction"]["point"]) + " & " + pc(h["retention"]["point"]) + " & " + f"{h['p_holm']:.3f}" + r"\\")
-    ins["S1_SUBGROUPS"] = table(rows, "lrrr", "Study 1: the list-first test by language, leaving one character out, and with a two-way (skeleton $\\times$ "
+    ins["S1_SUBGROUPS"] = table(rows, "lrrr", "The list-first test of Study 1 by language, leaving one character out, and with a two-way (skeleton $\\times$ "
                                 "character) bootstrap. The joint criterion fails in several subsets.", "tab:s1sub", tight=True)
     el = {"deny_while_using": "Denial while using the content, prose sentence", "unattributed_share_D1_minus_U": "Unattributed use, prose sentence minus no language state",
           "offline_translator": "Offline $-$ absent translator", "original_confounded_boundary": "Repertoire minus narrated inaudibility (unmatched)",
@@ -235,11 +235,11 @@ def added():
     ab = json.loads((ROOT / "analysis/results/added-1006/ablation.json").read_text())
     combos = [("l0q0c0", "Study 1 prompt"), ("l1q0c0", "+ channel"), ("l0q1c0", "+ question"), ("l0q0c1", "+ minimal"), ("l1q1c1", "All three")]
     rows = [r"Model & " + " & ".join(c for _, c in combos) + r"\\", r"\midrule"]
-    for cell, label in (("Einaud_S", "not audible"), ("C-T-_flag", "not understood")):
-        rows.append(r"\multicolumn{6}{@{}l}{\emph{Flag: " + label + r"}}\\")
+    for cell, label in (("Einaud_S", "Not-audible flag"), ("C-T-_flag", "Not-understood flag")):
+        rows.append(r"\multicolumn{6}{@{}l}{\emph{" + label + r"}}\\")
         for m in ["gemma4_31b", "qwen38_27b", "seed_oss_36b", "phi4"]:
             rows.append(NAMES[m] + " & " + " & ".join(pc(ab["cells"][m][k][cell]) for k, _ in combos) + r"\\")
-    ins["ABLATION_TABLE"] = table(rows, "lrrrrr", "Format ablation from Study 1 toward Study 2 (96 skeletons, content question): net use (pp) when one "
+    ins["ABLATION_TABLE"] = table(rows, "lrrrrr", "Format ablation from Study 1 toward Study 2 (96 skeletons, content question). Net use (pp) when one "
                                   "Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.",
                                   "tab:ablation", True)
     ha = json.loads((ROOT / "analysis/results/added-1006/human-audit.json").read_text())
@@ -267,7 +267,7 @@ def added():
         rows.append(NAMES2[m] + " & " + " & ".join(cell(hc[m][k]) for k, _ in cells) + r"\\")
     rows.append(r"\midrule")
     rows.append("Claude Opus 5.5, complete replies only & " + " & ".join(cell(hc["opus55"].get(k + "_complete_only", hc["opus55"][k])) for k, _ in cells) + r"\\")
-    ins["HOSTED_CI"] = table(rows, "lrrrr", "Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells: net use (pp) with 95\\% intervals from 2,000 skeleton-bootstrap draws "
+    ins["HOSTED_CI"] = table(rows, "lrrrr", "Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\\% intervals from 2,000 skeleton-bootstrap draws "
                              "(288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.", "tab:hostedci", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
@@ -315,6 +315,8 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.08}
 \renewcommand{\floatpagefraction}{0.75}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.75}
 \usepackage{placeins,adjustbox,float}
+% Included PDFs carry no file paths into the output (anonymous review).
+\pdfsuppressptexinfo=-1
 % Avoid paragraphs whose last line holds a single word: the last line must fill about a third of the column.
 \setlength{\parfillskip}{0pt plus 0.65\columnwidth}\setlength{\emergencystretch}{2em}
 % A paragraph never leaves one or two of its lines at the top of a column or page, nor one at the bottom.
@@ -504,12 +506,20 @@ def twocolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
 LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),
               # One term per concept (net use, permitted use) and no internal process detail.
               ("Leakage is net use in pp, control use and probes are percentages.", "Net use is in pp, and permitted use and probes are percentages."),
-              ("Study 1: language-boundary leakage (repertoire only, pp)", "Study 1: net use under the language boundary (repertoire only, pp)"),
+              ("Study 1: language-boundary leakage (repertoire only, pp)", "Net use in Study 1 under the language boundary (repertoire only, pp)"),
               ("View, full minus view leakage &", "View, full minus view net use &"),
               ("requires the view to reduce leakage, keep accessible use within 5 pp", "requires the view to reduce net use, keep permitted use within 5 pp"),
               ("Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes", "Five methods on six discovery models and 48 matched scenes"),
               ("Leakage is net pp and accessible use is a percentage.", "Net use is in pp and permitted use is a percentage."),
               (r"\textbf{Method} & \textbf{Leakage} & \textbf{Access. use}", r"\textbf{Method} & \textbf{Net use} & \textbf{Permitted use}"),
+              ("four equally sized channels; always No gives", "four equally sized channels, and always answering No gives"),
+              ("State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension, where all state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap.",
+               "State-correct net use for the four models of Section~\\ref{sec:s2} (pp). The capability-eligible column keeps only model and language units whose translation probe reaches 85\\%, which changes only comprehension."),
+              ("Representation effects on inaccessible net use (pp), with 95\\% intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] across the four core models.",
+               "Representation effects on net use (pp), with 95\\% intervals. Eleven discovery models, 24 matched scenes. The same comprehension prose contrast is +5.7 [0.0, 12.0] across the four core models."),
+              (" Original paired effects and tests remain unchanged.", ""),
+              ("Both-canary translation use on 64 original-character prompts per model--language unit (\\%). The diagnostic threshold is 85\\%, and the primary analysis is unconditional.",
+               "Translation probe accuracy (\\%), the share of 64 prompts per model and language in which both hidden values are translated. Main estimates use all units, and the capability-eligible estimates of Table~\\ref{tab:stateboundary} drop units below 85\\%."),
               ("Confirmation cohort. Leakage is net $D$ in pp, and accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.",
                "Confirmation set. Net use $D$ is in pp, and permitted use and partial-event retention are percentages. Retention excludes Hear."))
 

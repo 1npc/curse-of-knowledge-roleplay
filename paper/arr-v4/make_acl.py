@@ -3,6 +3,7 @@
 Every figure becomes a PDF in figures/ that \\includegraphics loads at its natural size, so the layout matches the
 TikZ build. figures/src/ keeps one standalone TikZ file per figure for editing and re-rendering.
 Usage: python3 make_acl.py <template_dir> <out_dir> [figure-1 PDF]
+The paper is built with: python3 make_acl.py ../acl-template ../arr-acl figure1.pdf
 Figure sources are compiled with XeLaTeX in Arial. A supplied Figure 1 PDF replaces the generated one and is set to column width.
 """
 import re
@@ -34,6 +35,8 @@ EXTRA = r"""
 % Added for this paper: tables, math, colors used in tables, and float placement
 \usepackage{booktabs,amsmath,amssymb,tabularx,xcolor}
 \usepackage{placeins,adjustbox,float}
+% Included PDFs carry no file paths into the output (anonymous review).
+\pdfsuppressptexinfo=-1
 % Avoid paragraphs whose last line holds a single word: the last line must fill about a third of the column.
 \setlength{\parfillskip}{0pt plus 0.65\columnwidth}\setlength{\emergencystretch}{2em}
 % A paragraph never leaves one or two of its lines at the top of a column or page, nor one at the bottom.
