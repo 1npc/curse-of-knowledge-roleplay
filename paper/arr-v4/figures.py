@@ -412,7 +412,7 @@ def frontier():
     L.append(r"\end{scope}")
     L += legend([("box", "black!25", "Study 2 prompt"), ("box", "OIorange", "+ all four")], 4.0, -0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Proprietary models and input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six proprietary models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
+          r"\caption{Compliance depends on the input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six proprietary models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
           r"\label{fig:frontier}", r"\end{figure*}"]
     return "\n".join(L)
 

@@ -136,7 +136,7 @@ def study1():
     ins["S1_TABLE"] = table(rows, "lrr", "The eight tests of Study~1 (11 models, pp unless noted). Thresholds are 10 pp for the three net-use tests, zero "
                             "for the four contrasts, and a 50\\% reduction with a loss of at most 5 pp in permitted use for the list-first prompt. Values "
                             "of $p$ come from one-sided bootstrap tests with Holm correction over the eight tests, and 0.004 is the smallest value 2,000 "
-                            "draws resolve.", "tab:s1", False, tight=True)
+                            "draws resolve. The last row is the permitted-use condition of the list-first test.", "tab:s1", False, tight=True)
     rows = [r"& \multicolumn{2}{c}{Not understood} & \multicolumn{2}{c}{Not audible} & Transl.\\",
             r"Model & Base & Filter & Base & Filter & (pp)\\", r"\midrule"]
     for r in models:
