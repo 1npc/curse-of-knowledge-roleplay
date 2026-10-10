@@ -129,12 +129,13 @@ def study1():
         r = conf[k]
         rows.append(f"{label} & {pc(r['point'])} {ci(r)} & {r['p_holm']:.3f}" + r"\\")
     rows.append(r"\midrule")
-    for key, label in [("reduction", "List-first, reduction (\\%)"), ("retention", "List-first, translated speech")]:
+    for key, label in [("reduction", "List-first, reduction (\\%)"), ("retention", "List-first, permitted use")]:
         r = conf["H5b"][key]
         rows.append(f"{label} & {pc(r['point'])} {ci(r)} & " + (f"{conf['H5b']['p_holm']:.3f}" if key == "reduction" else "joint") + r"\\")
-    ins["S1_TABLE"] = table(rows, "lrr", "The eight tests of Study 1, fixed before scoring (11 models, pp unless noted). Thresholds are 10 pp for the three leakage "
-                            "tests, zero for the four contrasts, and a 50\\% reduction with a loss of at most 5 pp for the list-first prompt. Holm correction "
-                            "runs over the eight tests, and 0.004 is the smallest value 2,000 bootstrap draws resolve.", "tab:s1", False, tight=True)
+    ins["S1_TABLE"] = table(rows, "lrr", "The eight tests of Study~1 (11 models, pp unless noted). Thresholds are 10 pp for the three net-use tests, zero "
+                            "for the four contrasts, and a 50\\% reduction with a loss of at most 5 pp in permitted use for the list-first prompt. Values "
+                            "of $p$ come from one-sided bootstrap tests with Holm correction over the eight tests, and 0.004 is the smallest value 2,000 "
+                            "draws resolve.", "tab:s1", False, tight=True)
     rows = [r"& \multicolumn{2}{c}{Not understood} & \multicolumn{2}{c}{Not audible} & Transl.\\",
             r"Model & Base & Filter & Base & Filter & (pp)\\", r"\midrule"]
     for r in models:
@@ -469,10 +470,15 @@ def twocolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
         spec = "@{\\extracolsep{\\fill}}" + (spec[3:] if spec.startswith("@{}") else spec)
         return "\\begin{tabular*}{\\linewidth}{" + spec + "}" + m.group(2) + "\\end{tabular*}"
 
+    paired = {lab for p in pairs for lab in p}
+
     def one(m):
         kind, t = m.group(1), m.group(0)
         t = re.sub(r"\\begin\{%s\*?\}\[[^\]]*\]" % kind, lambda _: "\\begin{%s*}[!tp]" % kind, t)
         t = re.sub(r"\\end\{%s\*?\}" % kind, lambda _: "\\end{%s*}" % kind, t)
+        lab = re.search(r"\\label\{([^}]*)\}", t)
+        if kind == "table" and not (lab and lab.group(1) in paired):  # stretch to the full text width
+            t = re.sub(r"\\begin\{tabular\}\{((?:[^{}]|\{[^{}]*\})*)\}(.*?)\\end\{tabular\}", full, t, flags=re.S)
         return t
     app = re.sub(r"\\begin\{(table|figure)\*?\}.*?\\end\{\1\*?\}", one, app, flags=re.S)
     for a, c in pairs:
@@ -491,17 +497,12 @@ def twocolumn_appendix(body, pairs=(("tab:translate", "tab:representation"),)):
             pair = ("\\begin{table*}[!tp]\n\\begin{minipage}[t]{0.47\\linewidth}" + blocks[0][1] + "\\end{minipage}\\hfill\n"
                     "\\begin{minipage}[t]{0.47\\linewidth}" + blocks[1][1] + "\\end{minipage}\n\\end{table*}")
             app = app.replace(blocks[0][0], pair, 1).replace(blocks[1][0], "", 1)
-    # Stretch every remaining table to the full text width.
-    app = re.sub(r"\\begin\{tabular\}\{((?:[^{}]|\{[^{}]*\})*)\}(.*?)\\end\{tabular\}",
-                 lambda m: full(m) if "adjustbox" not in app[max(0, m.start() - 40):m.start()] else m.group(0), app, flags=re.S)
     return head + app
 
 
 # Rewordings that keep table cells and captions from ending on a single word.
 LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf{Twin} & \textbf{Access} & \textbf{Probe}"),
               # One term per concept (net use, permitted use) and no internal process detail.
-              ("The eight tests of Study 1, fixed before scoring (11 models", "The eight tests of Study 1 (11 models"),
-              ("for the three leakage tests", "for the three net-use tests"),
               ("Leakage is net use in pp, control use and probes are percentages.", "Net use is in pp, and permitted use and probes are percentages."),
               ("Study 1: language-boundary leakage (repertoire only, pp)", "Study 1: net use under the language boundary (repertoire only, pp)"),
               ("View, full minus view leakage &", "View, full minus view net use &"),

@@ -638,7 +638,7 @@ def factors():
     L += legend([("*", "OIblue", "Qwen3.5"), ("square*", "OIorange", "Gemma-4")], 0.0, -0.95)
     L += legend([("box", c, lab) for c, (_, lab) in zip(shades, combos)], 6.55, -0.95, step=0.09)
     L += [r"\end{tikzpicture}",
-          r"\caption{What changes net use within Study~1. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still repeats unheard speech in half of its replies.}",
+          r"\caption{What changes net use within Study~1. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still leaks unheard speech at about 50 pp.}",
           r"\label{fig:factors}", r"\end{figure*}"]
     return "\n".join(L)
 
