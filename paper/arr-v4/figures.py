@@ -688,7 +688,7 @@ def why():
     L.append(r"\end{scope}")
     L += legend([("box", "OIblue", "cannot understand"), ("box", "OIorange", "cannot hear")], -1.2, y0 - 0.85)
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 3, why characters leak (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}",
+          r"\caption{Study 3, framings and thinking (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}",
           r"\label{fig:why}", r"\end{figure}"]
     return "\n".join(L)
 

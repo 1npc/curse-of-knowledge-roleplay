@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Ahn et~al.(2024)Ahn, Lee, Lim, Kim, Yun, Lee, and
@@ -64,15 +64,6 @@ Hyunwoo Kim, Melanie Sclar, Xuhui Zhou, Ronan Le~Bras, Gunhee Kim, Yejin Choi,
 \newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
   Natural Language Processing}, pages 14397--14413, Singapore. Association for
   Computational Linguistics.
-
-\bibitem[{Kyung et~al.(2025)Kyung, Chung, Bae, Kim, Sohn, Kim, Kim, and
-  Choi}]{kyung2025patientsim}
-Daeun Kyung, Hyunseung Chung, Seongsu Bae, Jiho Kim, Jae~Ho Sohn, Taerim Kim,
-  Soo~Kyung Kim, and Edward Choi. 2025.
-\newblock \href {https://arxiv.org/abs/2505.17818} {{PatientSim}: A
-  persona-driven simulator for realistic doctor-patient interactions}.
-\newblock In \emph{Advances in Neural Information Processing Systems, Datasets
-  and Benchmarks Track}.
 
 \bibitem[{Mireshghallah et~al.(2024)Mireshghallah, Kim, Zhou, Tsvetkov, Sap,
   Shokri, and Choi}]{mireshghallah2024confaide}
