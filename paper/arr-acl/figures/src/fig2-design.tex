@@ -1,0 +1,180 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{times}\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{amsmath,amssymb,xcolor}
+\usepackage{tikz,pgfplots,fontawesome5}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{plotmarks,arrows.meta,calc,positioning,shapes.callouts,backgrounds,fit}
+\pgfsetplotmarksize{1.7pt}
+\tikzset{every picture/.append style={font=\sffamily\scriptsize},
+  card/.style={rounded corners=2pt,draw=black!18,fill=black!2,inner sep=3pt,align=left},
+  chip/.style={rounded corners=1.5pt,inner sep=1.5pt,font=\sffamily\tiny\bfseries,text=white},
+  panel/.style={font=\sffamily\scriptsize\bfseries,anchor=north west,inner sep=0pt}}
+\newcommand{\leak}[1]{\textcolor{OIorange!85!black}{\textbf{#1}}}
+\definecolor{OIblue}{HTML}{5B7FAF}\definecolor{OIorange}{HTML}{D2876C}\definecolor{OIgreen}{HTML}{68A595}
+\definecolor{OIsky}{HTML}{9CC2DD}\definecolor{OIpurple}{HTML}{B497B6}\definecolor{OIgray}{HTML}{9A9A9A}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm,cell/.style={draw=black!70,line width=.6pt,fill=#1,minimum width=1.58cm,minimum height=0.74cm,align=center,font=\sffamily\scriptsize,inner sep=1pt,text width=1.5cm},hd/.style={font=\sffamily\scriptsize\bfseries,text=black!60,align=center}]
+\fill[black!3] (0,2.3) rectangle (7.6,5.55);
+\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,5.47) {(a) Study 1: how the boundary is stated};
+\node[hd] at (3.12,4.67) {state};
+\node[hd] at (4.82,4.67) {utterance flag};
+\node[hd] at (6.52,4.67) {+ sentence};
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1900,4.1000) rectangle (0.5920,4.1520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,4.0500) rectangle (0.1920,4.1020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,4.0500) rectangle (0.3420,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3400,4.0500) rectangle (0.4420,4.1020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,4.0500) rectangle (0.5920,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,4.0500) rectangle (0.6420,4.1020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,4.0000) rectangle (0.1920,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,4.0000) rectangle (0.2920,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.2900,4.0000) rectangle (0.3420,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.3400,4.0000) rectangle (0.4420,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.4400,4.0000) rectangle (0.4920,4.0520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4900,4.0000) rectangle (0.5920,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,4.0000) rectangle (0.6420,4.0520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.9500) rectangle (0.1920,4.0020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.9500) rectangle (0.4420,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.4400,3.9500) rectangle (0.4920,4.0020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4900,3.9500) rectangle (0.5920,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.9500) rectangle (0.6420,4.0020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.9000) rectangle (0.1920,3.9520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.9000) rectangle (0.3920,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3900,3.9000) rectangle (0.4420,3.9520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,3.9000) rectangle (0.5920,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.9000) rectangle (0.6420,3.9520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.8500) rectangle (0.1920,3.9020);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.8500) rectangle (0.5920,3.9020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.8500) rectangle (0.6420,3.9020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1400,3.8000) rectangle (0.1920,3.8520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.1900,3.8000) rectangle (0.3920,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.3900,3.8000) rectangle (0.4420,3.8520);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (0.4400,3.8000) rectangle (0.5920,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.5900,3.8000) rectangle (0.6420,3.8520);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.1900,3.7500) rectangle (0.5920,3.8020);
+\fill[fill={rgb,255:red,69;green,103;blue,154}] (0.2400,3.7000) rectangle (0.3420,3.7520);
+\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,3.93) {cannot\\understand};
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.3400,3.0600) rectangle (0.3920,3.1120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.2900,3.0100) rectangle (0.3920,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4400,3.0100) rectangle (0.4920,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.5900,3.0100) rectangle (0.6420,3.0620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.9600) rectangle (0.3920,3.0120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4900,2.9600) rectangle (0.5920,3.0120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.9100) rectangle (0.3920,2.9620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4900,2.9100) rectangle (0.5920,2.9620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.1400,2.8600) rectangle (0.3920,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.4400,2.8600) rectangle (0.4920,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.5900,2.8600) rectangle (0.6420,2.9120);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.2900,2.8100) rectangle (0.3920,2.8620);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.3400,2.7600) rectangle (0.3920,2.8120);
+\node[anchor=west,font=\sffamily\scriptsize\bfseries,align=left] at (0.7,2.93) {cannot\\hear};
+\node[cell=OIblue!12,font=\sffamily\scriptsize] at (3.12,3.93) {speaks:\\English};
+\node[cell=OIblue!12,font=\sffamily\scriptsize] at (4.82,3.93) {understood:\\false};
+\node[cell=OIblue!12,font=\sffamily\scriptsize\tiny] at (6.52,3.93) {``does not speak\\Japanese''};
+\node[cell=black!4,draw=black!25,text=black!40,font=\sffamily\scriptsize] at (3.12,2.93) {---};
+\node[cell=OIorange!14,font=\sffamily\scriptsize] at (4.82,2.93) {audible:\\false};
+\node[cell=OIorange!14,font=\sffamily\scriptsize\tiny] at (6.52,2.93) {``could not\\hear them''};
+\fill[black!3] (0,0.15) rectangle (7.6,2.15);
+\node[anchor=north west,font=\sffamily\small\bfseries] at (0.12,2.07) {(b) Study 2: four channels};
+\draw[black!70,line width=.6pt,fill=white] (0.15,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9700,1.4675) rectangle (1.0270,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9150,1.4125) rectangle (1.0270,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.0800,1.4125) rectangle (1.1370,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.2450,1.4125) rectangle (1.3020,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.3575) rectangle (1.0270,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.1350,1.3575) rectangle (1.2470,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.3025) rectangle (1.0270,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.1350,1.3025) rectangle (1.2470,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.7500,1.2475) rectangle (1.0270,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.0800,1.2475) rectangle (1.1370,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (1.2450,1.2475) rectangle (1.3020,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9150,1.1925) rectangle (1.0270,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (0.9700,1.1375) rectangle (1.0270,1.1945);
+\node[font=\sffamily\scriptsize\bfseries] at (1.025,0.91) {Hear};
+\fill[OIgreen!14] (0.210,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (1.025,0.55) {nothing};
+\draw[black!70,line width=.6pt,fill=white] (2.01,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6650,1.5225) rectangle (3.1070,1.5795);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.4675) rectangle (2.6670,1.5245);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.4675) rectangle (2.8320,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8300,1.4675) rectangle (2.9420,1.5245);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.4675) rectangle (3.1070,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.4675) rectangle (3.1620,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.4125) rectangle (2.6670,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.4125) rectangle (2.7770,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.7750,1.4125) rectangle (2.8320,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.8300,1.4125) rectangle (2.9420,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.9400,1.4125) rectangle (2.9970,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9950,1.4125) rectangle (3.1070,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.4125) rectangle (3.1620,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.3575) rectangle (2.6670,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.3575) rectangle (2.9420,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.9400,1.3575) rectangle (2.9970,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9950,1.3575) rectangle (3.1070,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.3575) rectangle (3.1620,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.3025) rectangle (2.6670,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.3025) rectangle (2.8870,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8850,1.3025) rectangle (2.9420,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.3025) rectangle (3.1070,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.3025) rectangle (3.1620,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.2475) rectangle (2.6670,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.2475) rectangle (3.1070,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.2475) rectangle (3.1620,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6100,1.1925) rectangle (2.6670,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.6650,1.1925) rectangle (2.8870,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.8850,1.1925) rectangle (2.9420,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (2.9400,1.1925) rectangle (3.1070,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (3.1050,1.1925) rectangle (3.1620,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.6650,1.1375) rectangle (3.1070,1.1945);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (2.7200,1.0825) rectangle (2.8320,1.1395);
+\node[font=\sffamily\scriptsize\bfseries] at (2.885,0.91) {Understand};
+\fill[OIgreen!14] (2.070,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (2.885,0.55) {``Casey speaks Japanese''};
+\draw[black!70,line width=.6pt,fill=white] (3.87,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.4700,1.4400) rectangle (4.5270,1.4970);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.4400) rectangle (5.0220,1.4970);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.4700,1.3850) rectangle (4.5270,1.4420);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.3850) rectangle (5.0220,1.4420);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5250,1.3300) rectangle (4.6370,1.3870);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.8550,1.3300) rectangle (4.9670,1.3870);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.6350,1.2750) rectangle (4.8570,1.3320);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5800,1.2200) rectangle (4.6370,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.7450,1.2200) rectangle (4.8020,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9100,1.2200) rectangle (4.9670,1.2770);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.5250,1.1650) rectangle (4.5820,1.2220);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.7450,1.1650) rectangle (4.8020,1.2220);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (4.9650,1.1650) rectangle (5.0220,1.2220);
+\node[font=\sffamily\scriptsize\bfseries] at (4.745,0.91) {See};
+\fill[OIgreen!14] (3.930,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (4.745,0.55) {``Alex puts something away''};
+\draw[black!70,line width=.6pt,fill=white] (5.73,0.28) rectangle ++(1.75,1.3);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.4675) rectangle (6.8820,1.5245);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.4125) rectangle (6.4420,1.4695);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4400,1.4125) rectangle (6.7720,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.7700,1.4125) rectangle (6.8820,1.4695);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.3575) rectangle (6.3870,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.3575) rectangle (6.4420,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.4400,1.3575) rectangle (6.4970,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.4950,1.3575) rectangle (6.7170,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.7150,1.3575) rectangle (6.7720,1.4145);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.7700,1.3575) rectangle (6.8270,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.3575) rectangle (6.8820,1.4145);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.3025) rectangle (6.3870,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.3025) rectangle (6.4970,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.4950,1.3025) rectangle (6.5520,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.5500,1.3025) rectangle (6.6620,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.6600,1.3025) rectangle (6.7170,1.3595);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.7150,1.3025) rectangle (6.8270,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.3025) rectangle (6.8820,1.3595);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.2475) rectangle (6.3870,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.2475) rectangle (6.5520,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.5500,1.2475) rectangle (6.6620,1.3045);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.6600,1.2475) rectangle (6.8270,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.2475) rectangle (6.8820,1.3045);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.1925) rectangle (6.3870,1.2495);
+\fill[fill={rgb,255:red,244;green,241;blue,234}] (6.3850,1.1925) rectangle (6.8270,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.8250,1.1925) rectangle (6.8820,1.2495);
+\fill[fill={rgb,255:red,151;green,79;blue,59}] (6.3300,1.1375) rectangle (6.8820,1.1945);
+\node[font=\sffamily\scriptsize\bfseries] at (6.605,0.91) {Receive};
+\fill[OIgreen!14] (5.790,0.34) rectangle ++(1.63,0.42);
+\node[font=\sffamily\tiny,text=OIgreen!55!black,align=center,text width=1.6cm] at (6.605,0.55) {``Alex sends a message''};
+\end{tikzpicture}
+\end{document}
