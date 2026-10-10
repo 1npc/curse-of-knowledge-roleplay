@@ -8,6 +8,7 @@ character view, gray = controls.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -691,4 +692,23 @@ def why():
           r"\label{fig:why}", r"\end{figure}"]
     return "\n".join(L)
 
+MARK_NODE = re.compile(r"\\node\[([^\]]*)\] at \(([-\d.]+),([-\d.]+)\) \{\\pgfuseplotmark\{([^}]*)\}\};")
+
+
+def marks_as_plots(code):
+    """Draw each scatter marker as a one-point TikZ plot. A marker typeset inside a node lands off the axes
+    when the figure is compiled with XeLaTeX, which the ACL package uses for Arial."""
+    def plot(m):
+        opts = [o.strip() for o in m.group(1).split(",") if o.strip() and o.strip() != "inner sep=0pt"]
+        size = "mark size=1.36pt," if "scale=.8" in opts else ""
+        opts = [o for o in opts if o != "scale=.8"]
+        return f"\\path[{','.join(opts)}] plot[{size}mark={m.group(4)}] coordinates {{({m.group(2)},{m.group(3)})}};"
+    return MARK_NODE.sub(plot, code)
+
+
+def _plots(f):
+    return lambda: marks_as_plots(f())
+
+
 ALL = {"FIG_EXAMPLE": example, "FIG_DESIGN": design, "FIG_S1": study1, "FIG_S2": study2, "FIG_FRONTIER": frontier, "FIG_REMEDY": remedy, "FIG_BRIDGEFULL": bridge_full, "FIG_S1M": listfirst_models, "FIG_FACTORS": factors, "FIG_WHY": why}
+ALL = {k: _plots(f) for k, f in ALL.items()}
