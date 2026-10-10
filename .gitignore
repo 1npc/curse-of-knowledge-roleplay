@@ -12,3 +12,13 @@ items/main/plan_all.jsonl
 items/main/format_ablation.jsonl
 items/access-v2/bridge.jsonl
 items/hosted/*.jsonl
+# LaTeX build products
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.blg
+*.xdv
+*.synctex.gz
+paper/arr-v4/main.pdf
