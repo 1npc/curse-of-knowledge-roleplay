@@ -331,7 +331,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \definecolor{OCgreen}{HTML}{68A595}
 \definecolor{OCpurple}{HTML}{B497B6}
 \definecolor{OCred}{HTML}{B5635A}
-\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Models Leak What Their Characters Cannot Access}}
+\hypersetup{pdfauthor={Anonymous},pdftitle={Language Models Give Characters Knowledge They Cannot Have}}
 """
 
 
