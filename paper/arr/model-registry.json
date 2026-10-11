@@ -1,0 +1,496 @@
+[
+  {
+    "model": "qwen38_27b",
+    "repo": "Qwen/Qwen3.8-27B",
+    "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "qwen38_27b",
+      "repo": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "location": "auto",
+      "chat_template_sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "43326806e68b114f3125d98bdd90478de0e17e64c1ec728936b40003cff28c1a",
+      "subset_sha256": null,
+      "n_prompts": 15968,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "qwen35_9b",
+    "repo": "Qwen/Qwen3.5-9B",
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "completed_core_snapshot": true,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "qwen35_9b",
+      "repo": "Qwen/Qwen3.5-9B",
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "location": "auto",
+      "chat_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+      "subset_sha256": null,
+      "n_prompts": 15552,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "gemma4_31b",
+    "repo": "google/gemma-4-31B-it",
+    "revision": "842da3794eaa0b77d5f08bae87a17459d91ff475",
+    "completed_core_snapshot": true,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "gemma4_31b",
+      "repo": "google/gemma-4-31B-it",
+      "revision": "842da3794eaa0b77d5f08bae87a17459d91ff475",
+      "location": "auto",
+      "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+      "subset_sha256": null,
+      "n_prompts": 15552,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "gemma4_12b",
+    "repo": "google/gemma-4-12B-it",
+    "revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "gemma4_12b",
+      "repo": "google/gemma-4-12B-it",
+      "revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+      "location": "auto",
+      "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+      "subset_sha256": null,
+      "n_prompts": 6336,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "glm47_flash",
+    "repo": "zai-org/GLM-4.7-Flash",
+    "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+    "completed_core_snapshot": true,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "glm47_flash",
+      "repo": "zai-org/GLM-4.7-Flash",
+      "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "location": "auto",
+      "chat_template_sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+      "subset_sha256": null,
+      "n_prompts": 15552,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "mistral_small3",
+    "repo": "mistralai/Mistral-Small-24B-Instruct-2501",
+    "revision": "9527884be6e5616bdd54de542f9ae13384489724",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "mistral_small3",
+      "repo": "mistralai/Mistral-Small-24B-Instruct-2501",
+      "revision": "9527884be6e5616bdd54de542f9ae13384489724",
+      "location": "auto",
+      "chat_template_sha256": "9e9423e7b5f6f3f7039f867f7acd9dde537a038666900545072c1a39748d9a29",
+      "chat_template_source": "tokenizer, date fixed to 2026-09-29",
+      "tokenizer": {
+        "class": "fast",
+        "kwargs": {
+          "fix_mistral_regex": true
+        }
+      },
+      "chat_template_kwargs": {},
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+      "subset_sha256": null,
+      "n_prompts": 6336,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "gpt_oss_20b",
+    "repo": "openai/gpt-oss-20b",
+    "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "gpt_oss_20b",
+      "repo": "openai/gpt-oss-20b",
+      "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+      "location": "auto",
+      "chat_template_sha256": "a4c9919cbbd4acdd51ccffe22da049264b1b73e59055fa58811a99efbd7c8146",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "reasoning_effort": "low"
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+      "subset_sha256": null,
+      "n_prompts": 6336,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "phi4",
+    "repo": "microsoft/phi-4",
+    "revision": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "phi4",
+      "repo": "microsoft/phi-4",
+      "revision": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+      "location": "auto",
+      "chat_template_sha256": "fe4120415a3858b873955c92ce3a103a95bc97c2cb00b72e62659aaf0f891ee5",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {},
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+      "subset_sha256": null,
+      "n_prompts": 6336,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "seed_oss_36b",
+    "repo": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+    "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "seed_oss_36b",
+      "repo": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+      "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+      "location": "auto",
+      "chat_template_sha256": "3f9e0dc4adeb8032287d0129dc75b6298fee8698a52ab41e863dbc89929330d3",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "thinking_budget": 0
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+      "subset_sha256": null,
+      "n_prompts": 6336,
+      "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "nemotron3_nano30b",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "revision": "bf77c3174f68ad409e1c2aa60daeb46e32d1c606",
+    "completed_core_snapshot": true,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "nemotron3_nano30b",
+      "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "revision": "bf77c3174f68ad409e1c2aa60daeb46e32d1c606",
+      "location": "auto",
+      "chat_template_sha256": "ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+      "subset_sha256": null,
+      "n_prompts": 15552,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  },
+  {
+    "model": "falcon_h1_34b",
+    "repo": "tiiuae/Falcon-H1-34B-Instruct",
+    "revision": "6e6890e26cba1f58b1e6ee70d654ddf054f9fce8",
+    "completed_core_snapshot": false,
+    "discovery_complete": true,
+    "runtime": {
+      "version": "oc-generation-access-v2",
+      "model": "falcon_h1_34b",
+      "repo": "tiiuae/Falcon-H1-34B-Instruct",
+      "revision": "6e6890e26cba1f58b1e6ee70d654ddf054f9fce8",
+      "location": "auto",
+      "chat_template_sha256": "b4bb2b3167994b1bfae42fb74d7166f94340bbea2d9dba3f2591e3261adcfb4e",
+      "chat_template_source": "tokenizer",
+      "tokenizer": "auto",
+      "chat_template_kwargs": {},
+      "engine": {
+        "vllm": "0.29.0",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.17.0"
+      },
+      "protocol": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "seed": 20261001,
+        "max_output_tokens": 400,
+        "max_model_len": 8192,
+        "dtype": "bfloat16",
+        "enforce_eager": true,
+        "prefix_caching": false,
+        "max_num_seqs": 256,
+        "gpu_memory_utilization": 0.85,
+        "tensor_parallel_size": 1,
+        "thinking": "disabled via chat template",
+        "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+      },
+      "prompts_sha256": "43326806e68b114f3125d98bdd90478de0e17e64c1ec728936b40003cff28c1a",
+      "subset_sha256": null,
+      "n_prompts": 15968,
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "chunk": 256
+    }
+  }
+]

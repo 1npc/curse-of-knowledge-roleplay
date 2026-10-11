@@ -1,0 +1,28 @@
+{
+  "recorded_at_utc": "2026-10-04T18:19:45.641894+00:00",
+  "tool": "mcp__codex_app__compile_latex_document",
+  "source_results": {
+    "main.tex": {
+      "kind": "success",
+      "sha256": "a7a0b98550aac51b153d3d65e9070c6092d7b6c2ef2ee337f18a7ba7bfa7d8a9"
+    },
+    "figures/confirmation.tex": {
+      "kind": "success",
+      "sha256": "460c643a4f41bf28ec0cc3ba35736d6afd799b3b0b42380f5d57193eb69e7896"
+    },
+    "figures/behavior.tex": {
+      "kind": "success",
+      "sha256": "4b3b84121fe09e9f93ea6f5d406bcae92d4e0d35783aa96d6e4b63fe80ea8152"
+    },
+    "figures/discovery-heatmap.tex": {
+      "kind": "success",
+      "sha256": "73fba019737dc86e5dbd13f93309f3adb32882529cd5104ec129a93114db5e99"
+    }
+  },
+  "evidence": "Explicit built-in compiler success on the current final source. The pdfLaTeX export has eight full main pages and 18 total, all visually inspected; final changed pages 3/16/17/18 re-inspected. All 231 human fields are visible and unsupplied. Figures preserve their previously verified source hashes.",
+  "pdf_exported": true,
+  "visual_review_completed": true,
+  "pdf_export_receipt": "pdf-export-receipt.json",
+  "export_note": "Built-in Tectonic/XeTeX confirms source compilation; reproducible submission export uses pdfLaTeX. Preview pagination is not the submission reference.",
+  "pagination_engine_note": "Current source compiled successfully with built-in Tectonic/XeTeX. Its line and page breaks differ; eight-page submission pagination is verified in the pdfLaTeX export."
+}

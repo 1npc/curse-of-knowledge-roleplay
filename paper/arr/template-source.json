@@ -1,0 +1,18 @@
+{
+  "acl.sty": {
+    "url": "https://raw.githubusercontent.com/acl-org/acl-style-files/master/acl.sty",
+    "sha256": "19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de"
+  },
+  "acl_natbib.bst": {
+    "url": "https://raw.githubusercontent.com/acl-org/acl-style-files/master/acl_natbib.bst",
+    "sha256": "6fbb306202290f4b68e74ac1460a8b27398500cb6dfeb4492e74c457eae7cd1e"
+  },
+  "official-acl_latex.tex": {
+    "url": "https://raw.githubusercontent.com/acl-org/acl-style-files/master/acl_latex.tex",
+    "sha256": "339c9ee9705c1767d44ef24b85365c0bb8619ecc3fcf66172bf1356292389614"
+  },
+  "official-README.md": {
+    "url": "https://raw.githubusercontent.com/acl-org/acl-style-files/master/README.md",
+    "sha256": "f5e4fe5096e8bc045b586a2351409f29ce6d55e0268a434602a06011f571d882"
+  }
+}

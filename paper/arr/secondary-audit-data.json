@@ -1,0 +1,717 @@
+{
+  "created_at_utc": "2026-10-03T11:08:40.540834+00:00",
+  "scope": "Secondary capability-conditioned and newly requested descriptive audits; frozen primary analyses unchanged",
+  "primary_rule": "equal-model, equal-skeleton mean of same-response target-minus-foil on content and plan; unconditional; capability-conditioned secondary",
+  "eligibility_rule": "Observed complete/zero-use translation U2 mean >= .85 per confirmation model-language unit; no item-level filter was specified. Eligibility fixed in bootstrap. Equal model weights; eligible response ratios recomputed per draw.",
+  "bootstrap": {
+    "unit": "paired skeleton",
+    "replicates": 2000,
+    "seed": 20261001,
+    "shared_draws": true
+  },
+  "capability_threshold": 0.85,
+  "translation_units": [
+    {
+      "model": "gemma4_31b",
+      "language": "zh",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "gemma4_31b",
+      "language": "ja",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "gemma4_31b",
+      "language": "es",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "glm47_flash",
+      "language": "zh",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "glm47_flash",
+      "language": "ja",
+      "planned_probes": 64,
+      "both_canary_rate": 0.625,
+      "eligible": false
+    },
+    {
+      "model": "glm47_flash",
+      "language": "es",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "language": "zh",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "language": "ja",
+      "planned_probes": 64,
+      "both_canary_rate": 0.75,
+      "eligible": false
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "language": "es",
+      "planned_probes": 64,
+      "both_canary_rate": 0.875,
+      "eligible": true
+    },
+    {
+      "model": "qwen35_9b",
+      "language": "zh",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    },
+    {
+      "model": "qwen35_9b",
+      "language": "ja",
+      "planned_probes": 64,
+      "both_canary_rate": 0.625,
+      "eligible": false
+    },
+    {
+      "model": "qwen35_9b",
+      "language": "es",
+      "planned_probes": 64,
+      "both_canary_rate": 1.0,
+      "eligible": true
+    }
+  ],
+  "comprehension_unconditional": {
+    "estimate": 0.47200520833333337,
+    "ci95": [
+      0.4485677083333333,
+      0.49609375
+    ],
+    "eligible_endpoints": 1536,
+    "bootstrap_skeletons": 96,
+    "undefined_bootstraps": 0,
+    "empty_models": [],
+    "by_model": {
+      "gemma4_31b": {
+        "estimate": 0.0,
+        "eligible_endpoints": 384
+      },
+      "glm47_flash": {
+        "estimate": 0.7109375,
+        "eligible_endpoints": 384
+      },
+      "nemotron3_nano30b": {
+        "estimate": 0.6640625,
+        "eligible_endpoints": 384
+      },
+      "qwen35_9b": {
+        "estimate": 0.5130208333333334,
+        "eligible_endpoints": 384
+      }
+    }
+  },
+  "comprehension_capability_eligible": {
+    "estimate": 0.509765625,
+    "ci95": [
+      0.4835502128482972,
+      0.5367063492063492
+    ],
+    "eligible_endpoints": 1152,
+    "bootstrap_skeletons": 96,
+    "undefined_bootstraps": 0,
+    "empty_models": [],
+    "by_model": {
+      "gemma4_31b": {
+        "estimate": 0.0,
+        "eligible_endpoints": 384
+      },
+      "glm47_flash": {
+        "estimate": 0.74609375,
+        "eligible_endpoints": 256
+      },
+      "nemotron3_nano30b": {
+        "estimate": 0.65234375,
+        "eligible_endpoints": 256
+      },
+      "qwen35_9b": {
+        "estimate": 0.640625,
+        "eligible_endpoints": 256
+      }
+    }
+  },
+  "state_correct_by_boundary": {
+    "Hear": {
+      "state_correct_unconditional": {
+        "estimate": 0.7218675890544953,
+        "ci95": [
+          0.7079308029382909,
+          0.7350325917659257
+        ],
+        "eligible_endpoints": 1460,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.0546875,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.8717277486910995,
+            "eligible_endpoints": 382
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9870967741935484,
+            "eligible_endpoints": 310
+          },
+          "qwen35_9b": {
+            "estimate": 0.9739583333333334,
+            "eligible_endpoints": 384
+          }
+        }
+      },
+      "state_correct_capability_eligible": {
+        "estimate": 0.7218675890544953,
+        "ci95": [
+          0.7079308029382909,
+          0.7350325917659257
+        ],
+        "eligible_endpoints": 1460,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.0546875,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.8717277486910995,
+            "eligible_endpoints": 382
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9870967741935484,
+            "eligible_endpoints": 310
+          },
+          "qwen35_9b": {
+            "estimate": 0.9739583333333334,
+            "eligible_endpoints": 384
+          }
+        }
+      }
+    },
+    "Understand": {
+      "state_correct_unconditional": {
+        "estimate": 0.47200520833333337,
+        "ci95": [
+          0.4485677083333333,
+          0.49609375
+        ],
+        "eligible_endpoints": 1536,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.0,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.7109375,
+            "eligible_endpoints": 384
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.6640625,
+            "eligible_endpoints": 384
+          },
+          "qwen35_9b": {
+            "estimate": 0.5130208333333334,
+            "eligible_endpoints": 384
+          }
+        }
+      },
+      "state_correct_capability_eligible": {
+        "estimate": 0.509765625,
+        "ci95": [
+          0.4835502128482972,
+          0.5367063492063492
+        ],
+        "eligible_endpoints": 1152,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.0,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.74609375,
+            "eligible_endpoints": 256
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.65234375,
+            "eligible_endpoints": 256
+          },
+          "qwen35_9b": {
+            "estimate": 0.640625,
+            "eligible_endpoints": 256
+          }
+        }
+      }
+    },
+    "See": {
+      "state_correct_unconditional": {
+        "estimate": 0.6927083333333334,
+        "ci95": [
+          0.672509765625,
+          0.7135416666666666
+        ],
+        "eligible_endpoints": 1536,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.1640625,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.6640625,
+            "eligible_endpoints": 384
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9765625,
+            "eligible_endpoints": 384
+          },
+          "qwen35_9b": {
+            "estimate": 0.9661458333333334,
+            "eligible_endpoints": 384
+          }
+        }
+      },
+      "state_correct_capability_eligible": {
+        "estimate": 0.6927083333333334,
+        "ci95": [
+          0.672509765625,
+          0.7135416666666666
+        ],
+        "eligible_endpoints": 1536,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.1640625,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.6640625,
+            "eligible_endpoints": 384
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9765625,
+            "eligible_endpoints": 384
+          },
+          "qwen35_9b": {
+            "estimate": 0.9661458333333334,
+            "eligible_endpoints": 384
+          }
+        }
+      }
+    },
+    "Receive": {
+      "state_correct_unconditional": {
+        "estimate": 0.67578125,
+        "ci95": [
+          0.658203125,
+          0.693359375
+        ],
+        "eligible_endpoints": 1536,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.22395833333333334,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.5260416666666666,
+            "eligible_endpoints": 384
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9895833333333334,
+            "eligible_endpoints": 384
+          },
+          "qwen35_9b": {
+            "estimate": 0.9635416666666666,
+            "eligible_endpoints": 384
+          }
+        }
+      },
+      "state_correct_capability_eligible": {
+        "estimate": 0.67578125,
+        "ci95": [
+          0.658203125,
+          0.693359375
+        ],
+        "eligible_endpoints": 1536,
+        "bootstrap_skeletons": 96,
+        "undefined_bootstraps": 0,
+        "empty_models": [],
+        "by_model": {
+          "gemma4_31b": {
+            "estimate": 0.22395833333333334,
+            "eligible_endpoints": 384
+          },
+          "glm47_flash": {
+            "estimate": 0.5260416666666666,
+            "eligible_endpoints": 384
+          },
+          "nemotron3_nano30b": {
+            "estimate": 0.9895833333333334,
+            "eligible_endpoints": 384
+          },
+          "qwen35_9b": {
+            "estimate": 0.9635416666666666,
+            "eligible_endpoints": 384
+          }
+        }
+      }
+    }
+  },
+  "pooled_state_correct_original": {
+    "estimate": 0.639485032923925,
+    "ci95": [
+      0.6272567778752376,
+      0.6518518741803249
+    ],
+    "eligible_endpoints": 6068,
+    "bootstrap_skeletons": 96,
+    "undefined_bootstraps": 0,
+    "empty_models": [],
+    "by_model": {
+      "gemma4_31b": {
+        "estimate": 0.11067708333333333,
+        "eligible_endpoints": 1536
+      },
+      "glm47_flash": {
+        "estimate": 0.6929595827900913,
+        "eligible_endpoints": 1534
+      },
+      "nemotron3_nano30b": {
+        "estimate": 0.9001367989056087,
+        "eligible_endpoints": 1462
+      },
+      "qwen35_9b": {
+        "estimate": 0.8541666666666666,
+        "eligible_endpoints": 1536
+      }
+    }
+  },
+  "pooled_state_correct_capability_eligible": {
+    "estimate": 0.6593303837789376,
+    "ci95": [
+      0.6482468040060236,
+      0.6713909269854881
+    ],
+    "eligible_endpoints": 5684,
+    "bootstrap_skeletons": 96,
+    "undefined_bootstraps": 0,
+    "empty_models": [],
+    "by_model": {
+      "gemma4_31b": {
+        "estimate": 0.11067708333333333,
+        "eligible_endpoints": 1536
+      },
+      "glm47_flash": {
+        "estimate": 0.697724039829303,
+        "eligible_endpoints": 1406
+      },
+      "nemotron3_nano30b": {
+        "estimate": 0.9205397301349325,
+        "eligible_endpoints": 1334
+      },
+      "qwen35_9b": {
+        "estimate": 0.9083806818181818,
+        "eligible_endpoints": 1408
+      }
+    }
+  },
+  "compiler_vs_delete_retention": {
+    "estimate": 0.677517361111111,
+    "ci95": [
+      0.6536458333333334,
+      0.7005208333333334
+    ],
+    "n_skeletons": 96,
+    "p_one_sided": 0.0004997501249375312,
+    "null": 0.0,
+    "status": "Prespecified component of frozen H3, not a new post-hoc test"
+  },
+  "choice_order": {
+    "assignment": "Deterministic scene-ID parity, not randomized; approximately balanced",
+    "skeleton_counts_A_position": {
+      "1": 18,
+      "2": 14
+    },
+    "identical_order_and_question_within_AB_pairs": true,
+    "pair_count_in_plan": 512,
+    "scored_decision_records": 4096,
+    "interpretation": "Paired contrast holds option order fixed; order-stratified and equal-position estimates are additional descriptive sensitivities.",
+    "effects": [
+      {
+        "boundary": "Hear",
+        "method": "full",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.6527777777777778,
+            "ci95": [
+              0.5694444444444444,
+              0.7222222222222222
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.6071428571428571,
+            "ci95": [
+              0.42857142857142855,
+              0.75
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.6299603174603174,
+        "equal_position_ci95": [
+          0.5327380952380952,
+          0.7123263888888887
+        ]
+      },
+      {
+        "boundary": "Hear",
+        "method": "view",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.017857142857142856,
+            "ci95": [
+              0.0,
+              0.05357142857142857
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.008928571428571428,
+        "equal_position_ci95": [
+          0.0,
+          0.026785714285714284
+        ]
+      },
+      {
+        "boundary": "Understand",
+        "method": "full",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.5694444444444444,
+            "ci95": [
+              0.5,
+              0.6388888888888888
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.5178571428571429,
+            "ci95": [
+              0.39285714285714285,
+              0.625
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.5436507936507937,
+        "equal_position_ci95": [
+          0.4712301587301587,
+          0.6091269841269842
+        ]
+      },
+      {
+        "boundary": "Understand",
+        "method": "view",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.0,
+        "equal_position_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "boundary": "See",
+        "method": "full",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.5,
+            "ci95": [
+              0.4305555555555556,
+              0.5694444444444444
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.48214285714285715,
+            "ci95": [
+              0.39285714285714285,
+              0.5714285714285714
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.4910714285714286,
+        "equal_position_ci95": [
+          0.42757936507936506,
+          0.5486111111111112
+        ]
+      },
+      {
+        "boundary": "See",
+        "method": "view",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.0,
+        "equal_position_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "boundary": "Receive",
+        "method": "full",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.5972222222222222,
+            "ci95": [
+              0.5,
+              0.6944444444444444
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.5,
+            "ci95": [
+              0.35714285714285715,
+              0.625
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.5486111111111112,
+        "equal_position_ci95": [
+          0.4553323412698413,
+          0.6309523809523809
+        ]
+      },
+      {
+        "boundary": "Receive",
+        "method": "view",
+        "A_location_position": {
+          "1": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 18
+          },
+          "2": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "n_skeletons": 14
+          }
+        },
+        "equal_position_estimate": 0.0,
+        "equal_position_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "analysis/h200-v2-20261002/gemma4_31b/scores/discovery/gemma4_31b.jsonl": "24cc3cb508cb4e727691bee6c3762e27073a100ce781076e3f96258fe9d3da4d",
+    "analysis/h200-v2-20261002/gemma4_31b/scores/confirmatory/gemma4_31b.jsonl": "2e942ed096db80fc84733a533d4579bcae4d76ceec826daf2c05a3329d52d690",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/qwen35_9b.jsonl": "a51fec12b976899f011429935ba8ae892a9a7802299279e9447298d0a63ad92e",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/qwen35_9b.jsonl": "36a26cd42f7aecc742cf93420c5d20254de0fedab2b8b97693ce36fc8f0b2a33",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/glm47_flash.jsonl": "6cd13e53386ae304c5ef90a720e624fd75b9781403d81ffed324744bdaf3a823",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/glm47_flash.jsonl": "032cc705ba5eb7343ffe97a64900c68a7a6a06d522afdd8c90397c41a52611c2",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/nemotron3_nano30b.jsonl": "b94d175d357bdc6bfa30ca2a2eab8318669c37d9bf1ad6cd698179e5570c6900",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/nemotron3_nano30b.jsonl": "c1c9cf8ef3b2fd5b5fb8a99cfd222da1217d2145828ff1b34f553f9a9e5b5e18",
+    "docs/access-v2/spec-lock.json": "48b0198a012b14d6771d00e2e3c1887c7e293098fd4bd66a6feb21c084533de1",
+    "analysis/h200-v2-20261002/four-core-results.json": "7d71e362e943c719770f9a38d6524dba6832a0476002704a964bd8b1a87051f2",
+    "items/access-v2/discovery-extension.jsonl": "e22191174302b88e356186b295d85f3154978690a33fc205473d7eaa53655529"
+  },
+  "checks": {
+    "frozen_plan_inputs_and_code_match": true,
+    "frozen_understand_estimate_reproduced": true,
+    "frozen_state_correct_estimate_and_CI_reproduced": true,
+    "no_new_generation_or_changed_scorer": true,
+    "no_new_confirmatory_tests": true
+  }
+}

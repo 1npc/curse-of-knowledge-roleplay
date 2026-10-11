@@ -1,0 +1,1943 @@
+% Standalone anonymous ARR working draft. Official style embedded unchanged.
+\begin{filecontents*}{acl.sty}
+% This is the LaTex style file for *ACL.
+% The official sources can be found at
+%
+%     https://github.com/acl-org/acl-style-files/
+%
+% This package is activated by adding
+%
+%    \usepackage{acl}
+%
+% to your LaTeX file. When submitting your paper for review, add the "review" option:
+%
+%    \usepackage[review]{acl}
+
+\newif\ifacl@finalcopy
+\newif\ifacl@anonymize
+\newif\ifacl@linenumbers
+\newif\ifacl@pagenumbers
+\DeclareOption{final}{\acl@finalcopytrue\acl@anonymizefalse\acl@linenumbersfalse\acl@pagenumbersfalse}
+\DeclareOption{review}{\acl@finalcopyfalse\acl@anonymizetrue\acl@linenumberstrue\acl@pagenumberstrue}
+\DeclareOption{preprint}{\acl@finalcopytrue\acl@anonymizefalse\acl@linenumbersfalse\acl@pagenumberstrue}
+\ExecuteOptions{final} % final copy is the default
+
+% include hyperref, unless user specifies nohyperref option like this:
+% \usepackage[nohyperref]{acl}
+\newif\ifacl@hyperref
+\DeclareOption{hyperref}{\acl@hyperreftrue}
+\DeclareOption{nohyperref}{\acl@hyperreffalse}
+\ExecuteOptions{hyperref} % default is to use hyperref
+\ProcessOptions\relax
+
+\typeout{Conference Style for ACL}
+
+\usepackage{xcolor}
+
+\ifacl@linenumbers
+  % Add draft line numbering via the lineno package
+  % https://texblog.org/2012/02/08/adding-line-numbers-to-documents/
+  \usepackage[switch,mathlines]{lineno}
+
+  % Line numbers in gray Helvetica 8pt
+  \font\aclhv = phvb at 8pt
+  \renewcommand\linenumberfont{\aclhv\color{lightgray}}
+
+  % Zero-fill line numbers
+  % NUMBER with left flushed zeros  \fillzeros[<WIDTH>]<NUMBER>
+  \newcount\cv@tmpc@ \newcount\cv@tmpc
+  \def\fillzeros[#1]#2{\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi
+    \cv@tmpc=1 %
+    \loop\ifnum\cv@tmpc@<10 \else \divide\cv@tmpc@ by 10 \advance\cv@tmpc by 1 \fi
+      \ifnum\cv@tmpc@=10\relax\cv@tmpc@=11\relax\fi \ifnum\cv@tmpc@>10 \repeat
+    \ifnum#2<0\advance\cv@tmpc1\relax-\fi
+    \loop\ifnum\cv@tmpc<#1\relax0\advance\cv@tmpc1\relax\fi \ifnum\cv@tmpc<#1 \repeat
+    \cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi \relax\the\cv@tmpc@}%
+  \renewcommand\thelinenumber{\fillzeros[3]{\arabic{linenumber}}}
+  \AtBeginDocument{\linenumbers}
+
+  \setlength{\linenumbersep}{1.6cm}
+
+  % Bug: An equation with $$ ... $$ isn't numbered, nor is the previous line.
+
+  % Patch amsmath commands so that the previous line and the equation itself
+  % are numbered. Bug: multline has an extra line number.
+  % https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
+  \usepackage{etoolbox} %% <- for \pretocmd, \apptocmd and \patchcmd
+
+  \newcommand*\linenomathpatch[1]{%
+    \expandafter\pretocmd\csname #1\endcsname {\linenomath}{}{}%
+    \expandafter\pretocmd\csname #1*\endcsname {\linenomath}{}{}%
+    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+  }
+  \newcommand*\linenomathpatchAMS[1]{%
+    \expandafter\pretocmd\csname #1\endcsname {\linenomathAMS}{}{}%
+    \expandafter\pretocmd\csname #1*\endcsname {\linenomathAMS}{}{}%
+    \expandafter\apptocmd\csname end#1\endcsname {\endlinenomath}{}{}%
+    \expandafter\apptocmd\csname end#1*\endcsname {\endlinenomath}{}{}%
+  }
+
+  %% Definition of \linenomathAMS depends on whether the mathlines option is provided
+  \expandafter\ifx\linenomath\linenomathWithnumbers
+    \let\linenomathAMS\linenomathWithnumbers
+    %% The following line gets rid of an extra line numbers at the bottom:
+    \patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+  \else
+    \let\linenomathAMS\linenomathNonumbers
+  \fi
+
+  \AtBeginDocument{%
+    \linenomathpatch{equation}%
+    \linenomathpatchAMS{gather}%
+    \linenomathpatchAMS{multline}%
+    \linenomathpatchAMS{align}%
+    \linenomathpatchAMS{alignat}%
+    \linenomathpatchAMS{flalign}%
+  }
+\else
+  % Hack to ignore these commands, which review mode puts into the .aux file.
+  \newcommand{\@LN@col}[1]{}
+  \newcommand{\@LN}[2]{}
+  \newcommand{\nolinenumbers}{}
+\fi
+
+\PassOptionsToPackage{a4paper,margin=2.5cm,heightrounded=true}{geometry}
+\RequirePackage{geometry}
+
+\setlength\columnsep{0.6cm}
+\newlength\titlebox
+\setlength\titlebox{11\baselineskip}
+% \titlebox should be a multiple of \baselineskip so that
+% column height remaining fits an exact number of lines of text
+
+\flushbottom \twocolumn \sloppy
+
+% We're never going to need a table of contents, so just flush it to
+% save space --- suggested by drstrip@sandia-2
+\def\addcontentsline#1#2#3{}
+
+\ifacl@pagenumbers
+    \pagenumbering{arabic}
+\else
+    \thispagestyle{empty}
+    \pagestyle{empty}
+\fi
+
+%% Title and Authors %%
+
+\let\Thanks\thanks % \Thanks and \thanks used to be different, but keep this for backwards compatibility.
+
+\newcommand\outauthor{%
+    \begin{tabular}[t]{c}
+    \ifacl@anonymize
+        \bfseries Anonymous ACL submission
+    \else
+        \bfseries\@author
+    \fi
+    \end{tabular}}
+
+% Mostly taken from deproc.
+\AtBeginDocument{
+\def\maketitle{\par
+ \begingroup
+   \def\thefootnote{\fnsymbol{footnote}}
+   \twocolumn[\@maketitle]
+   \@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax}
+\def\@maketitle{\vbox to \titlebox{\hsize\textwidth
+ \linewidth\hsize \vskip 0.125in minus 0.125in \centering
+ {\Large\bfseries \@title \par} \vskip 0.2in plus 1fil minus 0.1in
+ {\def\and{\unskip\enspace{\rmfamily and}\enspace}%
+  \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
+           \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bfseries}%
+  \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
+          \vskip 0.25in plus 1fil minus 0.125in
+           \hbox to \linewidth\bgroup\large \hfil\hfil
+             \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bfseries}
+  \hbox to \linewidth\bgroup\large \hfil\hfil
+    \hbox to 0pt\bgroup\hss
+  \outauthor
+   \hss\egroup
+    \hfil\hfil\egroup}
+  \vskip 0.3in plus 2fil minus 0.1in
+}}
+}
+
+% margins and font size for abstract
+\renewenvironment{abstract}%
+  {\begin{center}\large\textbf{\abstractname}\end{center}%
+    \begin{list}{}%
+      {\setlength{\rightmargin}{0.6cm}%
+        \setlength{\leftmargin}{0.6cm}}%
+      \item[]\ignorespaces%
+      \@setsize\normalsize{12pt}\xpt\@xpt
+  }%
+  {\unskip\end{list}}
+
+% Resizing figure and table captions - SL
+% Support for interacting with the caption, subfigure, and subcaption packages - SL
+\RequirePackage{caption}
+\DeclareCaptionFont{10pt}{\fontsize{10pt}{12pt}\selectfont}
+\captionsetup{font=10pt}
+
+\RequirePackage{natbib}
+% for citation commands in the .tex, authors can use:
+% \citep, \citet, and \citeyearpar for compatibility with natbib, or
+% \cite, \newcite, and \shortcite for compatibility with older ACL .sty files
+\renewcommand\cite{\citep}  % to get "(Author Year)" with natbib
+\newcommand\shortcite{\citeyearpar}% to get "(Year)" with natbib
+\newcommand\newcite{\citet} % to get "Author (Year)" with natbib
+\newcommand{\citeposs}[1]{\citeauthor{#1}'s (\citeyear{#1})} % to get "Author's (Year)"
+
+\bibliographystyle{acl_natbib}
+
+% Bibliography
+
+% Don't put a label in the bibliography at all.  Just use the unlabeled format
+% instead.
+\def\thebibliography#1{\vskip\parskip%
+\vskip\baselineskip%
+\def\baselinestretch{1}%
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi%
+\vskip-\parskip%
+\vskip-\baselineskip%
+\section*{References\@mkboth
+ {References}{References}}\list
+ {}{\setlength{\labelwidth}{0pt}\setlength{\leftmargin}{\parindent}
+ \setlength{\itemindent}{-\parindent}}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+
+% Allow for a bibliography of sources of attested examples
+\def\thesourcebibliography#1{\vskip\parskip%
+\vskip\baselineskip%
+\def\baselinestretch{1}%
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi%
+\vskip-\parskip%
+\vskip-\baselineskip%
+\section*{Sources of Attested Examples\@mkboth
+ {Sources of Attested Examples}{Sources of Attested Examples}}\list
+ {}{\setlength{\labelwidth}{0pt}\setlength{\leftmargin}{\parindent}
+ \setlength{\itemindent}{-\parindent}}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+\let\endthesourcebibliography=\endlist
+
+% sections with less space
+\def\section{\@startsection {section}{1}{\z@}{-2.0ex plus
+    -0.5ex minus -.2ex}{1.5ex plus 0.3ex minus .2ex}{\large\bfseries\raggedright}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{-1.8ex plus
+    -0.5ex minus -.2ex}{0.8ex plus .2ex}{\normalsize\bfseries\raggedright}}
+%% changed by KO to - values to get the initial parindent right
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-1.5ex plus
+   -0.5ex minus -.2ex}{0.5ex plus .2ex}{\normalsize\bfseries\raggedright}}
+\def\paragraph{\@startsection{paragraph}{4}{\z@}{1.5ex plus
+   0.5ex minus .2ex}{-1em}{\normalsize\bfseries}}
+\def\subparagraph{\@startsection{subparagraph}{5}{\parindent}{1.5ex plus
+   0.5ex minus .2ex}{-1em}{\normalsize\bfseries}}
+
+% Footnotes
+\footnotesep 6.65pt %
+\skip\footins 9pt plus 4pt minus 2pt
+\def\footnoterule{\kern-3pt \hrule width 5pc \kern 2.6pt }
+\setcounter{footnote}{0}
+
+% Lists and paragraphs
+\parindent 1em
+\topsep 4pt plus 1pt minus 2pt
+\partopsep 1pt plus 0.5pt minus 0.5pt
+\itemsep 2pt plus 1pt minus 0.5pt
+\parsep 2pt plus 1pt minus 0.5pt
+
+\leftmargin 2em \leftmargini\leftmargin \leftmarginii 2em
+\leftmarginiii 1.5em \leftmarginiv 1.0em \leftmarginv .5em \leftmarginvi .5em
+\labelwidth\leftmargini\advance\labelwidth-\labelsep \labelsep 5pt
+
+\def\@listi{\leftmargin\leftmargini}
+\def\@listii{\leftmargin\leftmarginii
+   \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+   \topsep 2pt plus 1pt minus 0.5pt
+   \parsep 1pt plus 0.5pt minus 0.5pt
+   \itemsep \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+    \topsep 1pt plus 0.5pt minus 0.5pt
+    \parsep \z@ \partopsep 0.5pt plus 0pt minus 0.5pt
+    \itemsep \topsep}
+\def\@listiv{\leftmargin\leftmarginiv
+     \labelwidth\leftmarginiv\advance\labelwidth-\labelsep}
+\def\@listv{\leftmargin\leftmarginv
+     \labelwidth\leftmarginv\advance\labelwidth-\labelsep}
+\def\@listvi{\leftmargin\leftmarginvi
+     \labelwidth\leftmarginvi\advance\labelwidth-\labelsep}
+
+\abovedisplayskip 7pt plus2pt minus5pt%
+\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip  0pt plus3pt%
+\belowdisplayshortskip  4pt plus3pt minus3pt%
+
+% Less leading in most fonts (due to the narrow columns)
+% The choices were between 1-pt and 1.5-pt leading
+\def\@normalsize{\@setsize\normalsize{11pt}\xpt\@xpt}
+\def\small{\@setsize\small{10pt}\ixpt\@ixpt}
+\def\footnotesize{\@setsize\footnotesize{10pt}\ixpt\@ixpt}
+\def\scriptsize{\@setsize\scriptsize{8pt}\viipt\@viipt}
+\def\tiny{\@setsize\tiny{7pt}\vipt\@vipt}
+\def\large{\@setsize\large{14pt}\xiipt\@xiipt}
+\def\Large{\@setsize\Large{16pt}\xivpt\@xivpt}
+\def\LARGE{\@setsize\LARGE{20pt}\xviipt\@xviipt}
+\def\huge{\@setsize\huge{23pt}\xxpt\@xxpt}
+\def\Huge{\@setsize\Huge{28pt}\xxvpt\@xxvpt}
+
+% The hyperref manual (section 9) says hyperref should be loaded after natbib
+\ifacl@hyperref
+  \PassOptionsToPackage{breaklinks}{hyperref}
+  \RequirePackage{hyperref}
+  % make links dark blue
+  \definecolor{darkblue}{rgb}{0, 0, 0.5}
+  \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+\else
+  % This definition is used if the hyperref package is not loaded.
+  % It provides a backup, no-op definiton of \href.
+  % This is necessary because \href command is used in the acl_natbib.bst file.
+  \def\href#1#2{{#2}}
+  \usepackage{url}
+\fi
+
+\end{filecontents*}
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times,latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype,booktabs,amsmath,amssymb,tabularx}
+\usepackage{tikz}
+\newsavebox{\OCtable}
+\newsavebox{\OCfigure}
+\definecolor{OCblue}{HTML}{0072B2}
+\definecolor{OCorange}{HTML}{D55E00}
+\definecolor{OCgreen}{HTML}{009E73}
+\definecolor{OCpurple}{HTML}{CC79A7}
+\hypersetup{pdfauthor={Anonymous},pdftitle={Role-Playing Language Models Use Information Their Characters Cannot Access}}
+% Human-study completion template. No human observations are supplied in this draft.
+% Replace a field centrally with, for example:
+% \expandafter\def\csname HVN-D\endcsname{<verified discovery audit count>}
+% Unset fields remain visibly bracketed; AI-proxy values must never fill these fields.
+\newcommand{\HumanField}[1]{\ifcsname HV#1\endcsname\csname HV#1\endcsname\else\textcolor{OCblue}{\textbf{[#1]}}\fi}
+\title{Role-Playing Language Models Use Information Their Characters Cannot Access}
+\author{Anonymous ACL submission}
+\begin{document}
+\maketitle
+\begin{abstract}
+Role-playing systems often supply a language model with information its character cannot access. We ask whether declaring that boundary is sufficient to keep the information out of character speech. Across hearing, comprehension, visibility, and private communication, paired access interventions and counterfactual facts reveal distinct profiles in eleven models. In a four-model confirmation cohort, matched responses retain a 63.95-point target-minus-foil use difference even when independent access judgments are correct. This influence persists through intervening dialogue and affects proposed search choices. Instruction-based controls help unevenly, and self-filtering can discard accessible facts. We introduce a deterministic character-view compiler that keeps accessible content and observable occurrences while omitting inaccessible content. Compilation reduces pooled leakage by 64.05 points, preserves accessible use within the prespecified margin, and retains occurrences lost by whole-event deletion. The automatic measurements support constructing character-specific inputs.
+
+\end{abstract}
+
+\section{Introduction}
+A character can hear that someone spoke without understanding the words, notice an object being put away without seeing its destination, or observe a private message being sent without receiving it. A role-playing system may nevertheless provide the language model with every detail of these events. The character's spoken response must respect an information boundary that the generator's input has already crossed. This raises a practical question for interactive fiction and simulation: \emph{should inaccessible content remain inside the generator's context at all?}
+
+We study \emph{character information-access boundaries} in four channels: \textsc{Hear}, \textsc{Understand}, \textsc{See}, and \textsc{Receive}. We separate two questions: can a model identify what the character can access, and does its generated speech respect that access? A matched intervention changes the character's access while keeping the event and question fixed. Counterfactual facts then let us track which content enters the response.
+
+Perspective judgments and downstream behavior can diverge, and perspective filtering can improve reasoning \citep{wilf-etal-2024-think,gu2026simpletom,han2026charm}. We examine this gap in a character's own open-ended speech by pairing an independent access probe with a role-playing response. Delayed responses and fixed-choice search questions test whether the content also influences later speech and proposed actions. All three tasks keep the original event in context unless the input is explicitly filtered.
+
+Filtering also has a preservation requirement. Removing an entire foreign-language utterance hides its content but loses the observable fact that someone spoke. We implement a deterministic character-view compiler that maps a fully described event to accessible content, an observable event shell, or nothing. It uses explicit access metadata and predetermined shells. Comparing this projection with whole-event deletion evaluates both suppression of inaccessible content and preservation of partial observations.
+
+Our contributions are threefold:
+\begin{itemize}
+\item A paired four-channel evaluation separates declared access, content use, and occurrence retention. Eleven models provide discovery and representation comparisons, six provide method comparisons, and four form a prespecified original-character confirmation cohort.
+\item Access recognition does not ensure bounded generation: high independent judgment accuracy in both access states coexists with inaccessible-content use. Prompting, delayed responses, and proposed search choices expose this gap in character behavior.
+\item Character-view compilation removes inaccessible content while preserving accessible use within a five-point margin. Its advantage over deletion is retention of the designed observable occurrence, with a 67.75-point gain on confirmation scenes.
+\end{itemize}
+The confirmation uses a locally frozen pre-generation plan. We separate automatic canary effects from semantic-use audits, multilingual stimulus assessment, and word-form guessability, because each tests a different property of the measurement.
+
+\section{Related Work}
+\paragraph{Perspective inference and application.}
+FANToM evaluates theory of mind in interactions with asymmetric information access \citep{kim-etal-2023-fantom}. PercepToM separates perception inference from reasoning about beliefs \citep{jung-etal-2024-perceptions}. SimpleToM distinguishes explicit mental-state inference from its application in behavior prediction and judgment \citep{gu2026simpletom}. These distinctions motivate the use of separate access probes and role-playing outputs. Our probes concern an event's declared accessibility, and our generation endpoint measures use of specific event content.
+
+\paragraph{Character knowledge boundaries.}
+TimeChara studies point-in-time character hallucination \citep{ahn-etal-2024-timechara}. CHARM separates boundary awareness from compliance for temporal and cross-universe knowledge \citep{han2026charm}. Perspective-bounded memory restricts information available to book-based role-playing agents \citep{tang2026staying}. Our paired manipulation addresses current-event access across perception and communication, with the event's content already present in the model's input. The distinction between the model's knowledge and the character's knowledge is shared with these settings; the controlled access intervention and partial-observation endpoint define our evaluation.
+
+\paragraph{Perspective filtering.}
+SimToM first filters context to a character's perspective and then answers a mental-state question \citep{wilf-etal-2024-think}. MENTOR maintains separate role memories and uses a knowledge graph to filter role-admissible information under identity switching \citep{zhu2026mentor}. We compare a prompted two-stage filter with a deterministic projection given explicit access metadata. The projection preserves an event shell when its occurrence is observable but its content is not. This operationalizes a useful distinction within perspective filtering, rather than claiming context filtering as a new general principle. PrivacyLens provides a related evaluation of norm awareness and information disclosure in action \citep{shao2024privacylens}; our experiment instead concerns fictional access rights and observations.
+
+\section{Evaluating Character Information Access}
+\label{sec:design}
+\subsection{World Content and Character Access}
+Let $W$ contain a scene, its participants, and an event $e$. The event contains a proposition with a location and an object. For character $c$, $a_c(e)$ indicates access to that content, while $s_c(e)$ describes an observable occurrence without revealing it. The full-context generator receives $W$ even when $a_c(e)=0$. Its task is to produce one short English spoken response as $c$.
+
+The four channels vary how content becomes unavailable. \textsc{Hear} states that the character cannot hear an English utterance. \textsc{Understand} presents Chinese, Japanese, or Spanish speech that the character hears but does not understand. \textsc{See} describes an action whose item and destination are not visible to the character, while its coarse occurrence is visible. \textsc{Receive} presents a private message whose content the character cannot access, while message sending is observable. Accessible controls flip the relevant Boolean. The event text and observable shell remain fixed within each pair.
+
+Table~\ref{tab:accesscases} illustrates the distinction between content access and occurrence access. An empty observation is appropriate for unheard speech; the other inaccessible conditions retain an observable occurrence. These are specified scene semantics, not an inference from arbitrary narrative text.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+Channel & Inaccessible condition & Compiled observation\\
+\midrule
+\textsc{Hear} & English speech cannot be heard & No observation\\
+\textsc{Understand} & Speech is heard in an unknown language & Actor says something in that language\\
+\textsc{See} & Item and destination are hidden & Actor appears to put something away\\
+\textsc{Receive} & Message content is private to someone else & Actor visibly sends a message\\
+\bottomrule
+\end{tabularx}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:accesscases exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Access interventions and partial observations. Each event contains an item--location fact; the inaccessible compiled observation omits both values. Accessible controls retain the full event. These are illustrations of the designed schema, not model responses.}
+\label{tab:accesscases}
+\end{table*}
+
+Each scene has counterfactual versions A and B with different location--object pairs. The counterpart's values form the foil. A content question asks what information the character obtained; a planning question asks what to do to retrieve the item. Questions and response instructions are identical across access states. The scene establishes that no earlier shared fact supplies the target content.
+
+\subsection{Scenes and State Representations}
+The discovery set contains 96 controlled scenes, balanced across social, search, planning, and coordination contexts. They use the names Kerry, Rogue, and Panam with compact task-specific descriptions. Language is balanced across Chinese, Japanese, and Spanish. These language assignments affect the comprehension boundary; the other three channels use English content. The scenes are template-generated and reuse a finite canary vocabulary.
+
+Three state representations encode the boundary. R1 uses language repertoires or exhaustive audience, observer, and recipient membership. R2 uses a direct character-specific access Boolean. R3 retains that Boolean and adds an explicit prose instruction that inaccessible content must not influence the response. R3 therefore measures the addition of a prose rule, not a replacement with unstructured prose. The paired representation experiment uses a frozen balanced subset of 24 discovery scenes.
+
+The independent confirmation set contains 96 new scene specifications in four original fictional communities, with two characters per community and 12 scenes per character. Names, persona descriptions, and scene IDs differ from discovery. The set shares the event schema, task structure, canary vocabulary, and generation code; it tests replication across original characters and scene specifications rather than across an independently authored measurement instrument.
+
+% Keep ordinary paragraph spacing in the measurement column.
+\raggedbottom
+\subsection{Content Use and Access Judgments}
+For each response, the fixed rule scorer determines whether a target canary or foil canary is used. Its primary score is
+\begin{equation}
+ D = I(\text{target use})-I(\text{foil use}).
+ \label{eq:netuse}
+\end{equation}
+Target use requires at least one of the location or object canaries. Both-canary use is reported separately for translation probes. The scorer applies fixed dictionary, echo, refusal, and output-validity rules; denial flags do not veto lexical canary matches. Appendix~\ref{app:prompts} specifies the rule. $D$ is a net use difference, not the proportion of all semantic errors. Aggregation weights models and skeletons equally. Values are $100D$ in percentage points.
+
+A scored response using only the target has $D=1$; using only the foil gives $D=-1$. Using both or neither gives zero. Thus a low aggregate score can reflect several response patterns, which the retained target and foil indicators distinguish. Accessible target use is evaluated separately: it asks whether the response recovers information the character was permitted to obtain, rather than treating every zero-use response as successful role-play.
+
+A separate Yes/No probe asks whether the character could hear, understand, see, or receive the content. The model answers it as an evaluator in an independent call. We condition role-playing scores on the correctness of this matched probe without placing the probe's answer into the role-playing conversation. This measures coexistence of an explicit access judgment and content use across calls; it does not reveal a model's internal knowledge state.
+
+Translation probes request an English rendering of each foreign sentence. The frozen plan defines an unconditional primary estimand and a capability-conditioned secondary analysis. The latter retains comprehension responses from model--language units with at least .85 both-canary translation use. Eligibility is fixed from the observed diagnostic, not recomputed on bootstrap draws. No additional item-level translation filter was specified. Both results retain equal model weights, with eligible-response ratios recomputed within each draw.
+
+\section{Character-View Compilation}
+\label{sec:view}
+The compiler constructs the character's observations before generation:
+\begin{equation}
+\Pi_c(e)=
+\begin{cases}
+ e, & a_c(e)=1,\\
+ s_c(e), & a_c(e)=0\text{ and }s_c(e)\ne\varnothing,\\
+\varnothing, & \text{otherwise}.
+\end{cases}
+\label{eq:projection}
+\end{equation}
+The implementation uses supplied scene metadata and the shells in Table~\ref{tab:accesscases}. It performs no additional model call or narrative access inference. Accessible events remain intact; partially observable inaccessible events contribute only their shell; unobserved events are omitted. No shell contains the location or object. Applying Equation~\ref{eq:projection} to every event constructs the observation list passed to the same role-playing generator.
+\flushbottom
+
+For an illustrative placement, the world states that Alex puts a glove in a church. If both values are visible, compilation retains the full event. If the character sees only the coarse action, it retains ``Alex appears to put something away.'' Hard removal instead supplies an empty observation list. The projected character can report noticing an action without being given the hidden object or destination. Full context still supplies both values, together with a flag instructing the model that they are inaccessible. This example illustrates the input transformation; it is not a quoted model response. The comparison therefore changes which evidence reaches the generator, while preserving the final role-playing task.
+
+We compare five methods on a frozen 48-scene discovery subset: full context with R2, full context with R3, prompted self-filtering, hard removal, and character-view compilation. Self-filtering first asks the same model to list only events and facts accessible to the character, then generates from that list. Hard removal discards the entire inaccessible event. Compilation retains a shell when available. Hard removal and compilation both preserve the full event when its content is accessible.
+
+Three endpoints evaluate the tradeoff. Forbidden-content leakage is $D$ on inaccessible scenes. Accessible-content use is the target-hit rate on accessible controls. Observable-event retention asks whether the character noticed the actor doing or saying anything, followed by a short description. Its primary score compares the initial Yes/No answer with the original scene's observable occurrence.
+
+The retention comparison requires two reference points. When hard removal deletes an observable event, answering No can be correct for the actual empty input but fails to preserve the original observation. We therefore report original-scene retention and actual-input correctness separately. The primary method comparison uses retention on the three partially observable boundaries, excluding \textsc{Hear}. It evaluates the information delivered by the whole pipeline through a direct occurrence question.
+
+\section{Experimental Setup}
+\subsection{Data and Model Cohorts}
+The core models are Gemma-4-31B, GLM-4.7-Flash, Nemotron-3-Nano-30B, and Qwen3.5-9B. They were selected before the new outcomes and constitute the prespecified confirmation and persistence cohorts. All eleven discovery models are complete; the six-model method roster additionally includes Qwen3.8-27B and Falcon-H1-34B. Figure~\ref{fig:discoveryheatmap} compares their common baseline. The main confirmation and behavior analyses retain the four-model core.
+
+Table~\ref{tab:cohorts} separates the matched subsets and their model scopes. The complete campaign contains 220,088 actual generation calls and 206,264 scored endpoints, including 3,000 calibration responses. Intermediate self-filter calls account for their difference. All 62,208 confirmation responses completed; 26 discovery truncations remain in their planned denominators. Detailed cohort and failure accounting appears in Appendix~\ref{app:accounting}. There are no missing chunks or result-dependent retries.
+
+\begin{table}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrr@{}}
+\toprule
+Analysis & Models & Scenes\\
+\midrule
+Discovery baseline & 11 & 96\\
+State representations & 11 & 24\\
+Method comparison & 6 & 48\\
+Delay and search choice & 4 & 32\\
+Original-character confirmation & 4 & 96\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:cohorts exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Model and scene scopes. Discovery subsets overlap and are not additive; confirmation uses new original-character scenes with the shared instrument. Calibration is excluded from these rows.}
+\label{tab:cohorts}
+\end{table}
+
+\subsection{Inference and Measurement}
+\label{sec:measurement}
+
+Inference uses pinned public checkpoints and tokenizers, vLLM 0.29.0, BF16, temperature 0, top-$p$ 1, seed 20261001, a maximum of 400 output tokens, and an 8,192-token context limit. Thinking is disabled through the supported template options. Tensor parallelism is one; runtime records and hardware allocation appear in Appendix~\ref{app:models}. Incomplete, refused, or unusable endpoints receive zero use and remain in planned denominators.
+
+\paragraph{Human measurement audit.}
+Two annotators independently assessed semantic use on \HumanField{N-D} discovery and \HumanField{N-C} confirmation replies, and occurrence on \HumanField{N-O} confirmation replies.\footnote{Human-study completion template: bracketed fields denote unsupplied observations. The final-tense human-study passages are fill-in text, not completed human results.} Model identities, conditions, automatic scores, and candidate assignments were hidden; adjudication used \HumanField{ADJ}. Table~\ref{tab:humanaudit} reports target/foil confusion counts, weighted precision/recall/F1, and independent agreement. Two reviewers per language assessed stimuli, and \HumanField{N-G} non-speakers completed the guessing task. Appendix~\ref{app:validation} specifies populations, weights, qualifications, exclusions, and human sensitivities, separately from frozen automatic tests.
+
+\subsection{Statistical Analysis}
+The new inputs, scorer, model cohorts, hypotheses, exclusions, and analysis code were locked locally at 22:53:04 UTC on 1 October 2026, before any new response. This is a local pre-generation lock, not external preregistration. A separate 20-scene calibration set tested execution and response formatting on three models. Its gate did not select models or prompts by the leakage effect.
+
+The three confirmation families are: positive full-context leakage in each of the four boundaries; positive pooled leakage conditional on a correct independent access probe; and a joint compilation benefit. The third requires lower inaccessible $D$ than full context, accessible target use no more than five points below full context, and greater partial-event retention than hard removal. Boundary and method conjunctions use intersection--union tests. We apply Holm correction across these three families \citep{holm1979}.
+
+Inference uses 2,000 paired skeleton bootstrap draws with seed 20261001, keeping model and condition comparisons paired within each sampled skeleton. Tests use the frozen one-sided centered-bootstrap rule; displayed 95\% intervals are separate, unadjusted two-sided percentile intervals. The four models form a fixed cohort, not a random sample of model families. The conditional analysis recomputes each model's numerator and eligible denominator in every draw; empty-model and undefined-draw counts are reported.
+
+Generation calls are not independent scene samples. Resampling whole skeletons preserves dependencies among versions, access states, methods, and questions. Model averaging gives each checkpoint equal weight despite unequal eligible-response counts.
+
+Exploratory representation, mitigation, delay, and decision comparisons use their frozen matched subsets. The delay experiment inserts zero, two, or four fixed neutral exchanges while retaining the original event in context. The decision experiment asks for option 1 or 2. Deterministic scene-ID parity fixes option order across A/B within a scene, with location A first in 18 scenes and second in 14. Its endpoint is the A-minus-B difference in choosing the same location A. Invalid answers remain in the denominator. These analyses report descriptive paired intervals and do not enlarge the confirmation family.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrcr@{}}
+\toprule
+Family / component & Estimate (pp) & 95\% CI & Null & Holm $p$\\
+\midrule
+H1: Hear & 72.27 & [70.90, 73.57] & 0 & 0.0015\\
+H1: Understand & 47.20 & [44.86, 49.61] & 0 & ---\\
+H1: See & 69.27 & [67.25, 71.35] & 0 & ---\\
+H1: Receive & 67.58 & [65.82, 69.34] & 0 & ---\\
+H2: State-correct net use & 63.95 & [62.73, 65.19] & 0 & 0.0015\\
+\midrule
+H3: Full minus view leakage & 64.05 & [62.81, 65.27] & 0 & 0.0015\\
+View minus full accessible use & 0.49 & [-0.18, 1.19] & $-5$ & ---\\
+View minus hard event retention & 67.75 & [65.36, 70.05] & 0 & ---\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:confirm exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Frozen confirmation results. H1 is the conjunction of four positive boundary effects; H3 combines leakage reduction, accessible-use noninferiority, and event-retention improvement. Each family receives one Holm-adjusted value. H2 includes 6,068 eligible role-playing endpoints. Intervals are two-sided and unadjusted; testing is one-sided.}
+\label{tab:confirm}
+\end{table*}
+
+\section{Results}
+\subsection{Inaccessible Content Enters Character Speech}
+On the original-character set, pooled full-context leakage is positive across all four channels: 72.27 points for hearing, 47.20 for comprehension, 69.27 for visibility, and 67.58 for private communication. Their conjunction passes the frozen criterion (Table~\ref{tab:confirm}). Hearing, visibility, and reception establish that the phenomenon extends beyond foreign-language speech.
+
+The eleven-model discovery heatmap shows contrasting boundary profiles. Mistral's comprehension score is 0.26, yet hearing and reception reach 75.52 and 84.64. Gemma-31B is low across discovery boundaries, whereas Gemma-12B reaches 83.33 for hearing and 71.09 for reception. Reliable control on one channel cannot be inferred from a low score on another. Appendix~\ref{app:models} gives the numerical discovery baseline.
+
+Accessible controls help interpret low leakage. Gemma-4-31B averages 2.86 points of inaccessible $D$ and 87.63\% accessible target use across discovery boundaries. Its comprehension control reaches 98.44\%, while its visual control reaches 66.93\%. Qwen3.8-27B averages 15.10 points and 84.31\%, respectively. Thus boundary compliance and allowed-content use vary separately; leakage alone does not rank overall utility.
+
+\paragraph{Semantic measurement sensitivity.}
+The confirmation audit separated each method and access state (Appendix~\ref{app:validation}). For full-context responses paired with correct access probes, human-derived $D$ was \HumanField{FS-D} points [\HumanField{FS-L}, \HumanField{FS-U}]; automatic-minus-human bias was \HumanField{FS-BIAS} points. This gave \HumanField{C-interpretation}. Target, foil, and simultaneous use were reported separately, including for inaccessible character view. Rare-foil recall alone does not determine the size or direction of bias in $D$.
+
+\begin{figure*}[t]
+\centering\begin{lrbox}{\OCfigure}
+\begin{tikzpicture}[x=1pt,y=-1pt]
+\path[use as bounding box] (0,0) rectangle (455,195);
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,9.0000) {Model};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (96.0000,9.0000) {(a) Inaccessible net use (pp)};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (249.0000,9.0000) {(b) Accessible target use (\%)};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.5}{9.5}\selectfont\bfseries] at (405.0000,9.0000) {(c) Mean};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (114.0000,25.0000) {Hear};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (267.0000,25.0000) {Hear};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (150.0000,25.0000) {Understand};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (303.0000,25.0000) {Understand};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (186.0000,25.0000) {See};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (339.0000,25.0000) {See};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (222.0000,25.0000) {Receive};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (375.0000,25.0000) {Receive};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (405.0000,33.0000)--(405.0000,165.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (405.0000,25.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (428.5000,33.0000)--(428.5000,165.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (428.5000,25.0000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (452.0000,33.0000)--(452.0000,165.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (452.0000,25.0000) {100};
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,34.0000) rectangle (455.0000,46.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,40.0000) {Qwen3.8-27B};
+\fill[fill={rgb,255:red,243;green,234;blue,227}] (96.0000,34.0000) rectangle (131.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,39.7000) {9.11};
+\fill[fill={rgb,255:red,242;green,230;blue,221}] (132.0000,34.0000) rectangle (167.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,39.7000) {11.46};
+\fill[fill={rgb,255:red,229;green,200;blue,179}] (168.0000,34.0000) rectangle (203.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,39.7000) {28.39};
+\fill[fill={rgb,255:red,242;green,230;blue,221}] (204.0000,34.0000) rectangle (239.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,39.7000) {11.46};
+\fill[fill={rgb,255:red,46;green,139;blue,191}] (249.0000,34.0000) rectangle (284.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,39.7000) {81.51};
+\fill[fill={rgb,255:red,27;green,129;blue,186}] (285.0000,34.0000) rectangle (320.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,39.7000) {89.06};
+\fill[fill={rgb,255:red,60;green,147;blue,195}] (321.0000,34.0000) rectangle (356.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,39.7000) {76.04};
+\fill[fill={rgb,255:red,23;green,127;blue,185}] (357.0000,34.0000) rectangle (392.4000,45.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,39.7000) {90.62};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (412.0990,40.0000)--(444.6257,40.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (412.0990,40.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (443.1257,38.5000) rectangle (446.1257,41.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,52.0000) {Qwen3.5-9B};
+\draw[draw={rgb,255:red,34;green,34;blue,34},fill={rgb,255:red,34;green,34;blue,34},line width=.7pt] (92.0000,52.0000) circle[radius=1.1pt];
+\fill[fill={rgb,255:red,185;green,95;blue,29}] (96.0000,46.0000) rectangle (131.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,51.7000) {88.28};
+\fill[fill={rgb,255:red,216;green,168;blue,133}] (132.0000,46.0000) rectangle (167.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,51.7000) {46.61};
+\fill[fill={rgb,255:red,197;green,123;blue,70}] (168.0000,46.0000) rectangle (203.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,51.7000) {72.14};
+\fill[fill={rgb,255:red,194;green,116;blue,59}] (204.0000,46.0000) rectangle (239.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,51.7000) {76.30};
+\fill[fill={rgb,255:red,14;green,122;blue,182}] (249.0000,46.0000) rectangle (284.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,51.7000) {94.27};
+\fill[fill={rgb,255:red,14;green,122;blue,182}] (285.0000,46.0000) rectangle (320.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,51.7000) {94.27};
+\fill[fill={rgb,255:red,16;green,123;blue,183}] (321.0000,46.0000) rectangle (356.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,51.7000) {93.49};
+\fill[fill={rgb,255:red,13;green,121;blue,182}] (357.0000,46.0000) rectangle (392.4000,57.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,51.7000) {94.79};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (438.2917,52.0000)--(449.2767,52.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (438.2917,52.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (447.7767,50.5000) rectangle (450.7767,53.5000);
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,58.0000) rectangle (455.0000,70.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,64.0000) {Gemma-4-31B};
+\draw[draw={rgb,255:red,34;green,34;blue,34},fill={rgb,255:red,34;green,34;blue,34},line width=.7pt] (92.0000,64.0000) circle[radius=1.1pt];
+\fill[fill={rgb,255:red,247;green,242;blue,239}] (96.0000,58.0000) rectangle (131.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,63.7000) {4.43};
+\fill[fill={rgb,255:red,250;green,249;blue,249}] (132.0000,58.0000) rectangle (167.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,63.7000) {0.52};
+\fill[fill={rgb,255:red,247;green,244;blue,242}] (168.0000,58.0000) rectangle (203.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,63.7000) {3.39};
+\fill[fill={rgb,255:red,248;green,244;blue,242}] (204.0000,58.0000) rectangle (239.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,63.7000) {3.12};
+\fill[fill={rgb,255:red,29;green,130;blue,186}] (249.0000,58.0000) rectangle (284.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,63.7000) {88.54};
+\fill[fill={rgb,255:red,4;green,116;blue,179}] (285.0000,58.0000) rectangle (320.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,63.7000) {98.44};
+\fill[fill={rgb,255:red,83;green,159;blue,202}] (321.0000,58.0000) rectangle (356.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,63.7000) {66.93};
+\fill[fill={rgb,255:red,8;green,119;blue,180}] (357.0000,58.0000) rectangle (392.4000,69.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,63.7000) {96.61};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (406.3464,64.0000)--(446.1862,64.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (406.3464,64.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (444.6862,62.5000) rectangle (447.6862,65.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,76.0000) {Gemma-4-12B};
+\fill[fill={rgb,255:red,188;green,103;blue,42}] (96.0000,70.0000) rectangle (131.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,75.7000) {83.33};
+\fill[fill={rgb,255:red,220;green,179;blue,150}] (132.0000,70.0000) rectangle (167.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,75.7000) {40.10};
+\fill[fill={rgb,255:red,246;green,241;blue,237}] (168.0000,70.0000) rectangle (203.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,75.7000) {5.21};
+\fill[fill={rgb,255:red,197;green,125;blue,72}] (204.0000,70.0000) rectangle (239.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,75.7000) {71.09};
+\fill[fill={rgb,255:red,25;green,127;blue,185}] (249.0000,70.0000) rectangle (284.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,75.7000) {90.10};
+\fill[fill={rgb,255:red,16;green,123;blue,183}] (285.0000,70.0000) rectangle (320.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,75.7000) {93.49};
+\fill[fill={rgb,255:red,83;green,159;blue,202}] (321.0000,70.0000) rectangle (356.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,75.7000) {66.67};
+\fill[fill={rgb,255:red,10;green,119;blue,181}] (357.0000,70.0000) rectangle (392.4000,81.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,75.7000) {96.09};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (428.4694,76.0000)--(445.6966,76.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (428.4694,76.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (444.1966,74.5000) rectangle (447.1966,77.5000);
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,82.0000) rectangle (455.0000,94.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,88.0000) {GLM-4.7-Flash};
+\draw[draw={rgb,255:red,34;green,34;blue,34},fill={rgb,255:red,34;green,34;blue,34},line width=.7pt] (92.0000,88.0000) circle[radius=1.1pt];
+\fill[fill={rgb,255:red,186;green,97;blue,33}] (96.0000,82.0000) rectangle (131.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,87.7000) {86.72};
+\fill[fill={rgb,255:red,230;green,203;blue,183}] (132.0000,82.0000) rectangle (167.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,87.7000) {26.82};
+\fill[fill={rgb,255:red,214;green,164;blue,128}] (168.0000,82.0000) rectangle (203.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,87.7000) {48.70};
+\fill[fill={rgb,255:red,201;green,133;blue,84}] (204.0000,82.0000) rectangle (239.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,87.7000) {66.41};
+\fill[fill={rgb,255:red,37;green,134;blue,189}] (249.0000,82.0000) rectangle (284.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,87.7000) {85.16};
+\fill[fill={rgb,255:red,44;green,138;blue,191}] (285.0000,82.0000) rectangle (320.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,87.7000) {82.29};
+\fill[fill={rgb,255:red,70;green,152;blue,198}] (321.0000,82.0000) rectangle (356.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,87.7000) {71.88};
+\fill[fill={rgb,255:red,16;green,122;blue,182}] (357.0000,82.0000) rectangle (392.4000,93.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,87.7000) {93.75};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (431.8659,88.0000)--(444.1361,88.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (431.8659,88.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (442.6361,86.5000) rectangle (445.6361,89.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,100.0000) {Mistral-24B};
+\fill[fill={rgb,255:red,194;green,117;blue,61}] (96.0000,94.0000) rectangle (131.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,99.7000) {75.52};
+\fill[fill={rgb,255:red,250;green,250;blue,249}] (132.0000,94.0000) rectangle (167.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,99.7000) {0.26};
+\fill[fill={rgb,255:red,230;green,203;blue,184}] (168.0000,94.0000) rectangle (203.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,99.7000) {26.56};
+\fill[fill={rgb,255:red,187;green,101;blue,38}] (204.0000,94.0000) rectangle (239.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,99.7000) {84.64};
+\fill[fill={rgb,255:red,23;green,127;blue,185}] (249.0000,94.0000) rectangle (284.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,99.7000) {90.62};
+\fill[fill={rgb,255:red,16;green,123;blue,183}] (285.0000,94.0000) rectangle (320.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,99.7000) {93.49};
+\fill[fill={rgb,255:red,20;green,125;blue,184}] (321.0000,94.0000) rectangle (356.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,99.7000) {91.93};
+\fill[fill={rgb,255:red,24;green,127;blue,185}] (357.0000,94.0000) rectangle (392.4000,105.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,99.7000) {90.36};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (426.9701,100.0000)--(448.0527,100.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (426.9701,100.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (446.5527,98.5000) rectangle (449.5527,101.5000);
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,106.0000) rectangle (455.0000,118.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,112.0000) {gpt-oss-20b};
+\fill[fill={rgb,255:red,184;green,93;blue,27}] (96.0000,106.0000) rectangle (131.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,111.7000) {89.06};
+\fill[fill={rgb,255:red,212;green,161;blue,123}] (132.0000,106.0000) rectangle (167.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,111.7000) {50.78};
+\fill[fill={rgb,255:red,199;green,128;blue,76}] (168.0000,106.0000) rectangle (203.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,111.7000) {69.53};
+\fill[fill={rgb,255:red,190;green,107;blue,46}] (204.0000,106.0000) rectangle (239.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,111.7000) {81.51};
+\fill[fill={rgb,255:red,11;green,120;blue,181}] (249.0000,106.0000) rectangle (284.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,111.7000) {95.57};
+\fill[fill={rgb,255:red,8;green,119;blue,180}] (285.0000,106.0000) rectangle (320.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,111.7000) {96.61};
+\fill[fill={rgb,255:red,12;green,120;blue,181}] (321.0000,106.0000) rectangle (356.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,111.7000) {95.31};
+\fill[fill={rgb,255:red,4;green,116;blue,179}] (357.0000,106.0000) rectangle (392.4000,117.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,111.7000) {98.44};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (439.1790,112.0000)--(450.3477,112.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (439.1790,112.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (448.8477,110.5000) rectangle (451.8477,113.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,124.0000) {Phi-4};
+\fill[fill={rgb,255:red,178;green,79;blue,7}] (96.0000,118.0000) rectangle (131.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,123.7000) {97.40};
+\fill[fill={rgb,255:red,226;green,193;blue,169}] (132.0000,118.0000) rectangle (167.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,123.7000) {32.29};
+\fill[fill={rgb,255:red,185;green,96;blue,31}] (168.0000,118.0000) rectangle (203.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,123.7000) {87.76};
+\fill[fill={rgb,255:red,177;green,76;blue,3}] (204.0000,118.0000) rectangle (239.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,123.7000) {98.96};
+\fill[fill={rgb,255:red,5;green,116;blue,179}] (249.0000,118.0000) rectangle (284.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,123.7000) {98.18};
+\fill[fill={rgb,255:red,5;green,116;blue,179}] (285.0000,118.0000) rectangle (320.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,123.7000) {98.18};
+\fill[fill={rgb,255:red,7;green,118;blue,180}] (321.0000,118.0000) rectangle (356.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,123.7000) {97.14};
+\fill[fill={rgb,255:red,3;green,115;blue,179}] (357.0000,118.0000) rectangle (392.4000,129.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,123.7000) {98.96};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (442.1777,124.0000)--(451.1126,124.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (442.1777,124.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (449.6126,122.5000) rectangle (452.6126,125.5000);
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,130.0000) rectangle (455.0000,142.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,136.0000) {Seed-OSS-36B};
+\fill[fill={rgb,255:red,193;green,115;blue,59}] (96.0000,130.0000) rectangle (131.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,135.7000) {76.56};
+\fill[fill={rgb,255:red,219;green,177;blue,146}] (132.0000,130.0000) rectangle (167.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,135.7000) {41.41};
+\fill[fill={rgb,255:red,211;green,157;blue,118}] (168.0000,130.0000) rectangle (203.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,135.7000) {52.60};
+\fill[fill={rgb,255:red,205;green,144;blue,99}] (204.0000,130.0000) rectangle (239.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,135.7000) {60.42};
+\fill[fill={rgb,255:red,17;green,123;blue,183}] (249.0000,130.0000) rectangle (284.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,135.7000) {93.23};
+\fill[fill={rgb,255:red,21;green,125;blue,184}] (285.0000,130.0000) rectangle (320.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,135.7000) {91.67};
+\fill[fill={rgb,255:red,5;green,117;blue,180}] (321.0000,130.0000) rectangle (356.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,135.7000) {97.92};
+\fill[fill={rgb,255:red,12;green,121;blue,182}] (357.0000,130.0000) rectangle (392.4000,141.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,135.7000) {95.05};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (432.1413,136.0000)--(449.3991,136.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (432.1413,136.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (447.8991,134.5000) rectangle (450.8991,137.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,148.0000) {Nemotron-30B};
+\draw[draw={rgb,255:red,34;green,34;blue,34},fill={rgb,255:red,34;green,34;blue,34},line width=.7pt] (92.0000,148.0000) circle[radius=1.1pt];
+\fill[fill={rgb,255:red,181;green,85;blue,16}] (96.0000,142.0000) rectangle (131.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,147.7000) {93.49};
+\fill[fill={rgb,255:red,216;green,168;blue,134}] (132.0000,142.0000) rectangle (167.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,147.7000) {46.35};
+\fill[fill={rgb,255:red,196;green,122;blue,68}] (168.0000,142.0000) rectangle (203.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,147.7000) {72.66};
+\fill[fill={rgb,255:red,185;green,96;blue,31}] (204.0000,142.0000) rectangle (239.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,147.7000) {87.76};
+\fill[fill={rgb,255:red,11;green,120;blue,181}] (249.0000,142.0000) rectangle (284.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,147.7000) {95.57};
+\fill[fill={rgb,255:red,25;green,128;blue,185}] (285.0000,142.0000) rectangle (320.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,147.7000) {89.84};
+\fill[fill={rgb,255:red,18;green,124;blue,183}] (321.0000,142.0000) rectangle (356.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,147.7000) {92.71};
+\fill[fill={rgb,255:red,14;green,121;blue,182}] (357.0000,142.0000) rectangle (392.4000,153.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,147.7000) {94.53};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (440.2806,148.0000)--(448.7871,148.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (440.2806,148.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (447.2871,146.5000) rectangle (450.2871,149.5000);
+\fill[fill={rgb,255:red,244;green,246;blue,248}] (0.0000,154.0000) rectangle (455.0000,166.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (88.0000,160.0000) {Falcon-H1-34B};
+\fill[fill={rgb,255:red,204;green,141;blue,95}] (96.0000,154.0000) rectangle (131.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (113.7000,159.7000) {61.98};
+\fill[fill={rgb,255:red,206;green,146;blue,102}] (132.0000,154.0000) rectangle (167.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (149.7000,159.7000) {59.38};
+\fill[fill={rgb,255:red,211;green,157;blue,118}] (168.0000,154.0000) rectangle (203.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (185.7000,159.7000) {52.86};
+\fill[fill={rgb,255:red,179;green,82;blue,11}] (204.0000,154.0000) rectangle (239.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (221.7000,159.7000) {95.57};
+\fill[fill={rgb,255:red,11;green,120;blue,181}] (249.0000,154.0000) rectangle (284.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (266.7000,159.7000) {95.57};
+\fill[fill={rgb,255:red,3;green,116;blue,179}] (285.0000,154.0000) rectangle (320.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (302.7000,159.7000) {98.70};
+\fill[fill={rgb,255:red,29;green,130;blue,186}] (321.0000,154.0000) rectangle (356.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,0;green,0;blue,0},font=\fontsize{8.8}{9.8}\selectfont] at (338.7000,159.7000) {88.28};
+\fill[fill={rgb,255:red,5;green,117;blue,180}] (357.0000,154.0000) rectangle (392.4000,165.4000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,255;green,255;blue,255},font=\fontsize{8.8}{9.8}\selectfont] at (374.7000,159.7000) {97.92};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (436.7005,160.0000)--(449.7051,160.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (436.7005,160.0000) circle[radius=1.7pt];
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (448.2051,158.5000) rectangle (451.2051,161.5000);
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (0.0000,166.0000)--(455.0000,166.0000);
+\fill[fill={rgb,255:red,250;green,249;blue,249}] (96.0000,172.0000) rectangle (97.0700,176.0000);
+\fill[fill={rgb,255:red,249;green,247;blue,246}] (97.0500,172.0000) rectangle (98.1200,176.0000);
+\fill[fill={rgb,255:red,248;green,246;blue,244}] (98.1000,172.0000) rectangle (99.1700,176.0000);
+\fill[fill={rgb,255:red,247;green,244;blue,241}] (99.1500,172.0000) rectangle (100.2200,176.0000);
+\fill[fill={rgb,255:red,247;green,242;blue,239}] (100.2000,172.0000) rectangle (101.2700,176.0000);
+\fill[fill={rgb,255:red,246;green,240;blue,236}] (101.2500,172.0000) rectangle (102.3200,176.0000);
+\fill[fill={rgb,255:red,245;green,239;blue,234}] (102.3000,172.0000) rectangle (103.3700,176.0000);
+\fill[fill={rgb,255:red,244;green,237;blue,231}] (103.3500,172.0000) rectangle (104.4200,176.0000);
+\fill[fill={rgb,255:red,244;green,235;blue,229}] (104.4000,172.0000) rectangle (105.4700,176.0000);
+\fill[fill={rgb,255:red,243;green,233;blue,226}] (105.4500,172.0000) rectangle (106.5200,176.0000);
+\fill[fill={rgb,255:red,242;green,232;blue,224}] (106.5000,172.0000) rectangle (107.5700,176.0000);
+\fill[fill={rgb,255:red,241;green,230;blue,221}] (107.5500,172.0000) rectangle (108.6200,176.0000);
+\fill[fill={rgb,255:red,241;green,228;blue,219}] (108.6000,172.0000) rectangle (109.6700,176.0000);
+\fill[fill={rgb,255:red,240;green,226;blue,216}] (109.6500,172.0000) rectangle (110.7200,176.0000);
+\fill[fill={rgb,255:red,239;green,224;blue,214}] (110.7000,172.0000) rectangle (111.7700,176.0000);
+\fill[fill={rgb,255:red,239;green,223;blue,211}] (111.7500,172.0000) rectangle (112.8200,176.0000);
+\fill[fill={rgb,255:red,238;green,221;blue,209}] (112.8000,172.0000) rectangle (113.8700,176.0000);
+\fill[fill={rgb,255:red,237;green,219;blue,206}] (113.8500,172.0000) rectangle (114.9200,176.0000);
+\fill[fill={rgb,255:red,236;green,217;blue,204}] (114.9000,172.0000) rectangle (115.9700,176.0000);
+\fill[fill={rgb,255:red,236;green,216;blue,201}] (115.9500,172.0000) rectangle (117.0200,176.0000);
+\fill[fill={rgb,255:red,235;green,214;blue,199}] (117.0000,172.0000) rectangle (118.0700,176.0000);
+\fill[fill={rgb,255:red,234;green,212;blue,196}] (118.0500,172.0000) rectangle (119.1200,176.0000);
+\fill[fill={rgb,255:red,233;green,210;blue,194}] (119.1000,172.0000) rectangle (120.1700,176.0000);
+\fill[fill={rgb,255:red,233;green,209;blue,191}] (120.1500,172.0000) rectangle (121.2200,176.0000);
+\fill[fill={rgb,255:red,232;green,207;blue,189}] (121.2000,172.0000) rectangle (122.2700,176.0000);
+\fill[fill={rgb,255:red,231;green,205;blue,186}] (122.2500,172.0000) rectangle (123.3200,176.0000);
+\fill[fill={rgb,255:red,230;green,203;blue,184}] (123.3000,172.0000) rectangle (124.3700,176.0000);
+\fill[fill={rgb,255:red,230;green,202;blue,181}] (124.3500,172.0000) rectangle (125.4200,176.0000);
+\fill[fill={rgb,255:red,229;green,200;blue,179}] (125.4000,172.0000) rectangle (126.4700,176.0000);
+\fill[fill={rgb,255:red,228;green,198;blue,176}] (126.4500,172.0000) rectangle (127.5200,176.0000);
+\fill[fill={rgb,255:red,227;green,196;blue,174}] (127.5000,172.0000) rectangle (128.5700,176.0000);
+\fill[fill={rgb,255:red,227;green,195;blue,171}] (128.5500,172.0000) rectangle (129.6200,176.0000);
+\fill[fill={rgb,255:red,226;green,193;blue,169}] (129.6000,172.0000) rectangle (130.6700,176.0000);
+\fill[fill={rgb,255:red,225;green,191;blue,166}] (130.6500,172.0000) rectangle (131.7200,176.0000);
+\fill[fill={rgb,255:red,224;green,189;blue,164}] (131.7000,172.0000) rectangle (132.7700,176.0000);
+\fill[fill={rgb,255:red,224;green,188;blue,161}] (132.7500,172.0000) rectangle (133.8200,176.0000);
+\fill[fill={rgb,255:red,223;green,186;blue,159}] (133.8000,172.0000) rectangle (134.8700,176.0000);
+\fill[fill={rgb,255:red,222;green,184;blue,156}] (134.8500,172.0000) rectangle (135.9200,176.0000);
+\fill[fill={rgb,255:red,222;green,182;blue,154}] (135.9000,172.0000) rectangle (136.9700,176.0000);
+\fill[fill={rgb,255:red,221;green,180;blue,151}] (136.9500,172.0000) rectangle (138.0200,176.0000);
+\fill[fill={rgb,255:red,220;green,179;blue,149}] (138.0000,172.0000) rectangle (139.0700,176.0000);
+\fill[fill={rgb,255:red,219;green,177;blue,146}] (139.0500,172.0000) rectangle (140.1200,176.0000);
+\fill[fill={rgb,255:red,219;green,175;blue,144}] (140.1000,172.0000) rectangle (141.1700,176.0000);
+\fill[fill={rgb,255:red,218;green,173;blue,141}] (141.1500,172.0000) rectangle (142.2200,176.0000);
+\fill[fill={rgb,255:red,217;green,172;blue,139}] (142.2000,172.0000) rectangle (143.2700,176.0000);
+\fill[fill={rgb,255:red,216;green,170;blue,136}] (143.2500,172.0000) rectangle (144.3200,176.0000);
+\fill[fill={rgb,255:red,216;green,168;blue,134}] (144.3000,172.0000) rectangle (145.3700,176.0000);
+\fill[fill={rgb,255:red,215;green,166;blue,131}] (145.3500,172.0000) rectangle (146.4200,176.0000);
+\fill[fill={rgb,255:red,214;green,165;blue,129}] (146.4000,172.0000) rectangle (147.4700,176.0000);
+\fill[fill={rgb,255:red,213;green,163;blue,126}] (147.4500,172.0000) rectangle (148.5200,176.0000);
+\fill[fill={rgb,255:red,213;green,161;blue,124}] (148.5000,172.0000) rectangle (149.5700,176.0000);
+\fill[fill={rgb,255:red,212;green,159;blue,121}] (149.5500,172.0000) rectangle (150.6200,176.0000);
+\fill[fill={rgb,255:red,211;green,158;blue,119}] (150.6000,172.0000) rectangle (151.6700,176.0000);
+\fill[fill={rgb,255:red,210;green,156;blue,116}] (151.6500,172.0000) rectangle (152.7200,176.0000);
+\fill[fill={rgb,255:red,210;green,154;blue,114}] (152.7000,172.0000) rectangle (153.7700,176.0000);
+\fill[fill={rgb,255:red,209;green,152;blue,111}] (153.7500,172.0000) rectangle (154.8200,176.0000);
+\fill[fill={rgb,255:red,208;green,151;blue,109}] (154.8000,172.0000) rectangle (155.8700,176.0000);
+\fill[fill={rgb,255:red,207;green,149;blue,106}] (155.8500,172.0000) rectangle (156.9200,176.0000);
+\fill[fill={rgb,255:red,207;green,147;blue,104}] (156.9000,172.0000) rectangle (157.9700,176.0000);
+\fill[fill={rgb,255:red,206;green,145;blue,101}] (157.9500,172.0000) rectangle (159.0200,176.0000);
+\fill[fill={rgb,255:red,205;green,144;blue,99}] (159.0000,172.0000) rectangle (160.0700,176.0000);
+\fill[fill={rgb,255:red,204;green,142;blue,96}] (160.0500,172.0000) rectangle (161.1200,176.0000);
+\fill[fill={rgb,255:red,204;green,140;blue,94}] (161.1000,172.0000) rectangle (162.1700,176.0000);
+\fill[fill={rgb,255:red,203;green,138;blue,91}] (162.1500,172.0000) rectangle (163.2200,176.0000);
+\fill[fill={rgb,255:red,202;green,136;blue,89}] (163.2000,172.0000) rectangle (164.2700,176.0000);
+\fill[fill={rgb,255:red,202;green,135;blue,86}] (164.2500,172.0000) rectangle (165.3200,176.0000);
+\fill[fill={rgb,255:red,201;green,133;blue,84}] (165.3000,172.0000) rectangle (166.3700,176.0000);
+\fill[fill={rgb,255:red,200;green,131;blue,81}] (166.3500,172.0000) rectangle (167.4200,176.0000);
+\fill[fill={rgb,255:red,199;green,129;blue,79}] (167.4000,172.0000) rectangle (168.4700,176.0000);
+\fill[fill={rgb,255:red,199;green,128;blue,76}] (168.4500,172.0000) rectangle (169.5200,176.0000);
+\fill[fill={rgb,255:red,198;green,126;blue,74}] (169.5000,172.0000) rectangle (170.5700,176.0000);
+\fill[fill={rgb,255:red,197;green,124;blue,71}] (170.5500,172.0000) rectangle (171.6200,176.0000);
+\fill[fill={rgb,255:red,196;green,122;blue,69}] (171.6000,172.0000) rectangle (172.6700,176.0000);
+\fill[fill={rgb,255:red,196;green,121;blue,66}] (172.6500,172.0000) rectangle (173.7200,176.0000);
+\fill[fill={rgb,255:red,195;green,119;blue,64}] (173.7000,172.0000) rectangle (174.7700,176.0000);
+\fill[fill={rgb,255:red,194;green,117;blue,61}] (174.7500,172.0000) rectangle (175.8200,176.0000);
+\fill[fill={rgb,255:red,193;green,115;blue,59}] (175.8000,172.0000) rectangle (176.8700,176.0000);
+\fill[fill={rgb,255:red,193;green,114;blue,56}] (176.8500,172.0000) rectangle (177.9200,176.0000);
+\fill[fill={rgb,255:red,192;green,112;blue,54}] (177.9000,172.0000) rectangle (178.9700,176.0000);
+\fill[fill={rgb,255:red,191;green,110;blue,51}] (178.9500,172.0000) rectangle (180.0200,176.0000);
+\fill[fill={rgb,255:red,190;green,108;blue,49}] (180.0000,172.0000) rectangle (181.0700,176.0000);
+\fill[fill={rgb,255:red,190;green,107;blue,46}] (181.0500,172.0000) rectangle (182.1200,176.0000);
+\fill[fill={rgb,255:red,189;green,105;blue,44}] (182.1000,172.0000) rectangle (183.1700,176.0000);
+\fill[fill={rgb,255:red,188;green,103;blue,41}] (183.1500,172.0000) rectangle (184.2200,176.0000);
+\fill[fill={rgb,255:red,187;green,101;blue,39}] (184.2000,172.0000) rectangle (185.2700,176.0000);
+\fill[fill={rgb,255:red,187;green,100;blue,36}] (185.2500,172.0000) rectangle (186.3200,176.0000);
+\fill[fill={rgb,255:red,186;green,98;blue,34}] (186.3000,172.0000) rectangle (187.3700,176.0000);
+\fill[fill={rgb,255:red,185;green,96;blue,31}] (187.3500,172.0000) rectangle (188.4200,176.0000);
+\fill[fill={rgb,255:red,185;green,94;blue,29}] (188.4000,172.0000) rectangle (189.4700,176.0000);
+\fill[fill={rgb,255:red,184;green,92;blue,26}] (189.4500,172.0000) rectangle (190.5200,176.0000);
+\fill[fill={rgb,255:red,183;green,91;blue,24}] (190.5000,172.0000) rectangle (191.5700,176.0000);
+\fill[fill={rgb,255:red,182;green,89;blue,21}] (191.5500,172.0000) rectangle (192.6200,176.0000);
+\fill[fill={rgb,255:red,182;green,87;blue,19}] (192.6000,172.0000) rectangle (193.6700,176.0000);
+\fill[fill={rgb,255:red,181;green,85;blue,16}] (193.6500,172.0000) rectangle (194.7200,176.0000);
+\fill[fill={rgb,255:red,180;green,84;blue,14}] (194.7000,172.0000) rectangle (195.7700,176.0000);
+\fill[fill={rgb,255:red,179;green,82;blue,11}] (195.7500,172.0000) rectangle (196.8200,176.0000);
+\fill[fill={rgb,255:red,179;green,80;blue,9}] (196.8000,172.0000) rectangle (197.8700,176.0000);
+\fill[fill={rgb,255:red,178;green,78;blue,6}] (197.8500,172.0000) rectangle (198.9200,176.0000);
+\fill[fill={rgb,255:red,177;green,77;blue,4}] (198.9000,172.0000) rectangle (199.9700,176.0000);
+\fill[fill={rgb,255:red,176;green,75;blue,1}] (199.9500,172.0000) rectangle (201.0200,176.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (96.0000,183.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (148.5000,183.0000) {50};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (201.0000,183.0000) {100};
+\fill[fill={rgb,255:red,249;green,249;blue,250}] (249.0000,172.0000) rectangle (250.0700,176.0000);
+\fill[fill={rgb,255:red,246;green,248;blue,249}] (250.0500,172.0000) rectangle (251.1200,176.0000);
+\fill[fill={rgb,255:red,244;green,247;blue,248}] (251.1000,172.0000) rectangle (252.1700,176.0000);
+\fill[fill={rgb,255:red,241;green,245;blue,247}] (252.1500,172.0000) rectangle (253.2200,176.0000);
+\fill[fill={rgb,255:red,239;green,244;blue,247}] (253.2000,172.0000) rectangle (254.2700,176.0000);
+\fill[fill={rgb,255:red,236;green,243;blue,246}] (254.2500,172.0000) rectangle (255.3200,176.0000);
+\fill[fill={rgb,255:red,234;green,241;blue,245}] (255.3000,172.0000) rectangle (256.3700,176.0000);
+\fill[fill={rgb,255:red,231;green,240;blue,245}] (256.3500,172.0000) rectangle (257.4200,176.0000);
+\fill[fill={rgb,255:red,229;green,238;blue,244}] (257.4000,172.0000) rectangle (258.4700,176.0000);
+\fill[fill={rgb,255:red,226;green,237;blue,243}] (258.4500,172.0000) rectangle (259.5200,176.0000);
+\fill[fill={rgb,255:red,224;green,236;blue,242}] (259.5000,172.0000) rectangle (260.5700,176.0000);
+\fill[fill={rgb,255:red,221;green,234;blue,242}] (260.5500,172.0000) rectangle (261.6200,176.0000);
+\fill[fill={rgb,255:red,219;green,233;blue,241}] (261.6000,172.0000) rectangle (262.6700,176.0000);
+\fill[fill={rgb,255:red,216;green,232;blue,240}] (262.6500,172.0000) rectangle (263.7200,176.0000);
+\fill[fill={rgb,255:red,214;green,230;blue,240}] (263.7000,172.0000) rectangle (264.7700,176.0000);
+\fill[fill={rgb,255:red,211;green,229;blue,239}] (264.7500,172.0000) rectangle (265.8200,176.0000);
+\fill[fill={rgb,255:red,209;green,228;blue,238}] (265.8000,172.0000) rectangle (266.8700,176.0000);
+\fill[fill={rgb,255:red,206;green,226;blue,237}] (266.8500,172.0000) rectangle (267.9200,176.0000);
+\fill[fill={rgb,255:red,204;green,225;blue,237}] (267.9000,172.0000) rectangle (268.9700,176.0000);
+\fill[fill={rgb,255:red,201;green,223;blue,236}] (268.9500,172.0000) rectangle (270.0200,176.0000);
+\fill[fill={rgb,255:red,199;green,222;blue,235}] (270.0000,172.0000) rectangle (271.0700,176.0000);
+\fill[fill={rgb,255:red,196;green,221;blue,235}] (271.0500,172.0000) rectangle (272.1200,176.0000);
+\fill[fill={rgb,255:red,194;green,219;blue,234}] (272.1000,172.0000) rectangle (273.1700,176.0000);
+\fill[fill={rgb,255:red,191;green,218;blue,233}] (273.1500,172.0000) rectangle (274.2200,176.0000);
+\fill[fill={rgb,255:red,189;green,217;blue,232}] (274.2000,172.0000) rectangle (275.2700,176.0000);
+\fill[fill={rgb,255:red,186;green,215;blue,232}] (275.2500,172.0000) rectangle (276.3200,176.0000);
+\fill[fill={rgb,255:red,184;green,214;blue,231}] (276.3000,172.0000) rectangle (277.3700,176.0000);
+\fill[fill={rgb,255:red,181;green,213;blue,230}] (277.3500,172.0000) rectangle (278.4200,176.0000);
+\fill[fill={rgb,255:red,179;green,211;blue,229}] (278.4000,172.0000) rectangle (279.4700,176.0000);
+\fill[fill={rgb,255:red,176;green,210;blue,229}] (279.4500,172.0000) rectangle (280.5200,176.0000);
+\fill[fill={rgb,255:red,174;green,209;blue,228}] (280.5000,172.0000) rectangle (281.5700,176.0000);
+\fill[fill={rgb,255:red,171;green,207;blue,227}] (281.5500,172.0000) rectangle (282.6200,176.0000);
+\fill[fill={rgb,255:red,169;green,206;blue,227}] (282.6000,172.0000) rectangle (283.6700,176.0000);
+\fill[fill={rgb,255:red,166;green,204;blue,226}] (283.6500,172.0000) rectangle (284.7200,176.0000);
+\fill[fill={rgb,255:red,164;green,203;blue,225}] (284.7000,172.0000) rectangle (285.7700,176.0000);
+\fill[fill={rgb,255:red,161;green,202;blue,224}] (285.7500,172.0000) rectangle (286.8200,176.0000);
+\fill[fill={rgb,255:red,159;green,200;blue,224}] (286.8000,172.0000) rectangle (287.8700,176.0000);
+\fill[fill={rgb,255:red,156;green,199;blue,223}] (287.8500,172.0000) rectangle (288.9200,176.0000);
+\fill[fill={rgb,255:red,154;green,198;blue,222}] (288.9000,172.0000) rectangle (289.9700,176.0000);
+\fill[fill={rgb,255:red,151;green,196;blue,222}] (289.9500,172.0000) rectangle (291.0200,176.0000);
+\fill[fill={rgb,255:red,149;green,195;blue,221}] (291.0000,172.0000) rectangle (292.0700,176.0000);
+\fill[fill={rgb,255:red,146;green,194;blue,220}] (292.0500,172.0000) rectangle (293.1200,176.0000);
+\fill[fill={rgb,255:red,144;green,192;blue,219}] (293.1000,172.0000) rectangle (294.1700,176.0000);
+\fill[fill={rgb,255:red,141;green,191;blue,219}] (294.1500,172.0000) rectangle (295.2200,176.0000);
+\fill[fill={rgb,255:red,139;green,189;blue,218}] (295.2000,172.0000) rectangle (296.2700,176.0000);
+\fill[fill={rgb,255:red,136;green,188;blue,217}] (296.2500,172.0000) rectangle (297.3200,176.0000);
+\fill[fill={rgb,255:red,134;green,187;blue,217}] (297.3000,172.0000) rectangle (298.3700,176.0000);
+\fill[fill={rgb,255:red,131;green,185;blue,216}] (298.3500,172.0000) rectangle (299.4200,176.0000);
+\fill[fill={rgb,255:red,129;green,184;blue,215}] (299.4000,172.0000) rectangle (300.4700,176.0000);
+\fill[fill={rgb,255:red,126;green,183;blue,214}] (300.4500,172.0000) rectangle (301.5200,176.0000);
+\fill[fill={rgb,255:red,124;green,181;blue,214}] (301.5000,172.0000) rectangle (302.5700,176.0000);
+\fill[fill={rgb,255:red,121;green,180;blue,213}] (302.5500,172.0000) rectangle (303.6200,176.0000);
+\fill[fill={rgb,255:red,119;green,179;blue,212}] (303.6000,172.0000) rectangle (304.6700,176.0000);
+\fill[fill={rgb,255:red,116;green,177;blue,211}] (304.6500,172.0000) rectangle (305.7200,176.0000);
+\fill[fill={rgb,255:red,114;green,176;blue,211}] (305.7000,172.0000) rectangle (306.7700,176.0000);
+\fill[fill={rgb,255:red,111;green,175;blue,210}] (306.7500,172.0000) rectangle (307.8200,176.0000);
+\fill[fill={rgb,255:red,109;green,173;blue,209}] (307.8000,172.0000) rectangle (308.8700,176.0000);
+\fill[fill={rgb,255:red,106;green,172;blue,209}] (308.8500,172.0000) rectangle (309.9200,176.0000);
+\fill[fill={rgb,255:red,104;green,170;blue,208}] (309.9000,172.0000) rectangle (310.9700,176.0000);
+\fill[fill={rgb,255:red,101;green,169;blue,207}] (310.9500,172.0000) rectangle (312.0200,176.0000);
+\fill[fill={rgb,255:red,99;green,168;blue,206}] (312.0000,172.0000) rectangle (313.0700,176.0000);
+\fill[fill={rgb,255:red,96;green,166;blue,206}] (313.0500,172.0000) rectangle (314.1200,176.0000);
+\fill[fill={rgb,255:red,94;green,165;blue,205}] (314.1000,172.0000) rectangle (315.1700,176.0000);
+\fill[fill={rgb,255:red,91;green,164;blue,204}] (315.1500,172.0000) rectangle (316.2200,176.0000);
+\fill[fill={rgb,255:red,89;green,162;blue,204}] (316.2000,172.0000) rectangle (317.2700,176.0000);
+\fill[fill={rgb,255:red,86;green,161;blue,203}] (317.2500,172.0000) rectangle (318.3200,176.0000);
+\fill[fill={rgb,255:red,84;green,160;blue,202}] (318.3000,172.0000) rectangle (319.3700,176.0000);
+\fill[fill={rgb,255:red,81;green,158;blue,201}] (319.3500,172.0000) rectangle (320.4200,176.0000);
+\fill[fill={rgb,255:red,79;green,157;blue,201}] (320.4000,172.0000) rectangle (321.4700,176.0000);
+\fill[fill={rgb,255:red,76;green,155;blue,200}] (321.4500,172.0000) rectangle (322.5200,176.0000);
+\fill[fill={rgb,255:red,74;green,154;blue,199}] (322.5000,172.0000) rectangle (323.5700,176.0000);
+\fill[fill={rgb,255:red,71;green,153;blue,199}] (323.5500,172.0000) rectangle (324.6200,176.0000);
+\fill[fill={rgb,255:red,69;green,151;blue,198}] (324.6000,172.0000) rectangle (325.6700,176.0000);
+\fill[fill={rgb,255:red,66;green,150;blue,197}] (325.6500,172.0000) rectangle (326.7200,176.0000);
+\fill[fill={rgb,255:red,64;green,149;blue,196}] (326.7000,172.0000) rectangle (327.7700,176.0000);
+\fill[fill={rgb,255:red,61;green,147;blue,196}] (327.7500,172.0000) rectangle (328.8200,176.0000);
+\fill[fill={rgb,255:red,59;green,146;blue,195}] (328.8000,172.0000) rectangle (329.8700,176.0000);
+\fill[fill={rgb,255:red,56;green,145;blue,194}] (329.8500,172.0000) rectangle (330.9200,176.0000);
+\fill[fill={rgb,255:red,54;green,143;blue,193}] (330.9000,172.0000) rectangle (331.9700,176.0000);
+\fill[fill={rgb,255:red,51;green,142;blue,193}] (331.9500,172.0000) rectangle (333.0200,176.0000);
+\fill[fill={rgb,255:red,49;green,141;blue,192}] (333.0000,172.0000) rectangle (334.0700,176.0000);
+\fill[fill={rgb,255:red,46;green,139;blue,191}] (334.0500,172.0000) rectangle (335.1200,176.0000);
+\fill[fill={rgb,255:red,44;green,138;blue,191}] (335.1000,172.0000) rectangle (336.1700,176.0000);
+\fill[fill={rgb,255:red,41;green,136;blue,190}] (336.1500,172.0000) rectangle (337.2200,176.0000);
+\fill[fill={rgb,255:red,39;green,135;blue,189}] (337.2000,172.0000) rectangle (338.2700,176.0000);
+\fill[fill={rgb,255:red,36;green,134;blue,188}] (338.2500,172.0000) rectangle (339.3200,176.0000);
+\fill[fill={rgb,255:red,34;green,132;blue,188}] (339.3000,172.0000) rectangle (340.3700,176.0000);
+\fill[fill={rgb,255:red,31;green,131;blue,187}] (340.3500,172.0000) rectangle (341.4200,176.0000);
+\fill[fill={rgb,255:red,29;green,130;blue,186}] (341.4000,172.0000) rectangle (342.4700,176.0000);
+\fill[fill={rgb,255:red,26;green,128;blue,186}] (342.4500,172.0000) rectangle (343.5200,176.0000);
+\fill[fill={rgb,255:red,24;green,127;blue,185}] (343.5000,172.0000) rectangle (344.5700,176.0000);
+\fill[fill={rgb,255:red,21;green,126;blue,184}] (344.5500,172.0000) rectangle (345.6200,176.0000);
+\fill[fill={rgb,255:red,19;green,124;blue,183}] (345.6000,172.0000) rectangle (346.6700,176.0000);
+\fill[fill={rgb,255:red,16;green,123;blue,183}] (346.6500,172.0000) rectangle (347.7200,176.0000);
+\fill[fill={rgb,255:red,14;green,121;blue,182}] (347.7000,172.0000) rectangle (348.7700,176.0000);
+\fill[fill={rgb,255:red,11;green,120;blue,181}] (348.7500,172.0000) rectangle (349.8200,176.0000);
+\fill[fill={rgb,255:red,9;green,119;blue,181}] (349.8000,172.0000) rectangle (350.8700,176.0000);
+\fill[fill={rgb,255:red,6;green,117;blue,180}] (350.8500,172.0000) rectangle (351.9200,176.0000);
+\fill[fill={rgb,255:red,4;green,116;blue,179}] (351.9000,172.0000) rectangle (352.9700,176.0000);
+\fill[fill={rgb,255:red,1;green,115;blue,178}] (352.9500,172.0000) rectangle (354.0200,176.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (249.0000,183.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (301.5000,183.0000) {50};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (354.0000,183.0000) {100};
+\draw[draw={rgb,255:red,34;green,34;blue,34},fill={rgb,255:red,34;green,34;blue,34},line width=.7pt] (3.0000,179.0000) circle[radius=1.1pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (8.0000,179.0000) {Four-model core};
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (404.0000,177.0000) circle[radius=1.7pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (410.0000,177.0000) {Net use};
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (402.5000,186.5000) rectangle (405.5000,189.5000);
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (410.0000,188.0000) {Target use};
+\end{tikzpicture}
+\end{lrbox}
+\ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:discoveryheatmap exceeds its column}{Revise the figure layout.}\fi
+\usebox{\OCfigure}
+\caption{Eleven-model discovery, full-context R2: 96 matched scenes, 384 endpoints per cell. (a) Inaccessible net use in pp; (b) accessible target use in percent; (c) equal-channel means (circles: net use; squares: target use). Both matrices use linear 0--100 scales. Name dots mark the four-model core. These automatic-score profiles are descriptive and do not define an overall utility ranking.}
+\label{fig:discoveryheatmap}
+\end{figure*}
+
+Comprehension leakage persists in the capability-conditioned secondary analysis: 50.98 points [48.36, 53.67], compared with the unconditional primary value of 47.20 [44.86, 49.61]. Three Japanese model--language units fall below the translation threshold (Table~\ref{tab:translate}). Restricting the analysis to eligible units raises the net-use estimate. Recovering the event's content and respecting a character who cannot understand it are separate requirements; the unconditional result remains the primary estimate.
+
+The confirmation retains these contrasting profiles (Table~\ref{tab:modeldetail}). Gemma-31B has zero comprehension net use, whereas GLM reaches 71.09 on the same original-character scenes. Nemotron and Qwen9 show high pooled net use even in responses paired with correct access judgments. The cohort-level finding therefore coexists with large model differences: the positive pooled tests describe the fixed four-model cohort, without asserting a positive effect for every checkpoint and channel.
+
+\begin{figure*}[t]
+\centering\begin{lrbox}{\OCfigure}
+\begin{tikzpicture}[x=1pt,y=-1pt]
+\path[use as bounding box] (0,0) rectangle (455,180);
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,8.0000) {(a) Delayed content use};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (204.0000,8.0000) {(b) Delay change: full};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (326.0000,8.0000) {(c) Search choice};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (197.0000,1.0000)--(197.0000,158.0000);
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (318.0000,1.0000)--(318.0000,158.0000);
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.7}{9.7}\selectfont\bfseries] at (5.0000,21.0000) {Hear};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,72.0000)--(90.0000,72.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,72.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,50.5000)--(90.0000,50.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,50.5000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,29.0000)--(90.0000,29.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,29.0000) {100};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (15.0000,79.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (52.5000,79.0000) {2};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (90.0000,79.0000) {4};
+\fill[fill={rgb,255:red,241;green,229;blue,220}] (15.0000,40.7578)--(52.5000,41.0938)--(90.0000,40.2539)--(90.0000,42.7734)--(52.5000,43.7812)--(15.0000,43.9492)--cycle;
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (15.0000,43.9492)--(15.0000,40.7578);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (15.0000,42.2695) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (52.5000,43.7812)--(52.5000,41.0938);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (15.0000,42.2695)--(52.5000,42.4375);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (52.5000,42.4375) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (90.0000,42.7734)--(90.0000,40.2539);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (52.5000,42.4375)--(90.0000,41.4297);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (90.0000,41.4297) circle[radius=1.5pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{7.8}{8.8}\selectfont] at (88.0000,34.4297) {71.09};
+\fill[fill={rgb,255:red,220;green,235;blue,231}] (15.0000,72.0000)--(52.5000,72.0000)--(90.0000,72.0000)--(90.0000,72.0000)--(52.5000,72.0000)--(15.0000,72.0000)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (15.0000,72.0000)--(15.0000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (15.0000,70.2000)--(13.5000,73.0500)--(16.5000,73.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (52.5000,72.0000)--(52.5000,72.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (15.0000,72.0000)--(52.5000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (52.5000,70.2000)--(51.0000,73.0500)--(54.0000,73.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (90.0000,72.0000)--(90.0000,72.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (52.5000,72.0000)--(90.0000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (90.0000,70.2000)--(88.5000,73.0500)--(91.5000,73.0500)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{7.8}{8.8}\selectfont] at (88.0000,65.0000) {0.00};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.7}{9.7}\selectfont\bfseries] at (103.0000,21.0000) {Understand};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,72.0000)--(188.0000,72.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,72.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,50.5000)--(188.0000,50.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,50.5000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,29.0000)--(188.0000,29.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,29.0000) {100};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (113.0000,79.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (150.5000,79.0000) {2};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (188.0000,79.0000) {4};
+\fill[fill={rgb,255:red,241;green,229;blue,220}] (113.0000,51.3398)--(150.5000,47.4766)--(188.0000,44.7891)--(188.0000,49.1604)--(150.5000,51.3398)--(113.0000,56.2109)--cycle;
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (113.0000,56.2109)--(113.0000,51.3398);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (113.0000,53.6914) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (150.5000,51.3398)--(150.5000,47.4766);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (113.0000,53.6914)--(150.5000,49.3242);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (150.5000,49.3242) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (188.0000,49.1604)--(188.0000,44.7891);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (150.5000,49.3242)--(188.0000,46.9727);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (188.0000,46.9727) circle[radius=1.5pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{7.8}{8.8}\selectfont] at (186.0000,39.9727) {58.20};
+\fill[fill={rgb,255:red,220;green,235;blue,231}] (113.0000,72.0000)--(150.5000,72.0000)--(188.0000,72.0000)--(188.0000,72.0000)--(150.5000,72.0000)--(113.0000,72.0000)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (113.0000,72.0000)--(113.0000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (113.0000,70.2000)--(111.5000,73.0500)--(114.5000,73.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (150.5000,72.0000)--(150.5000,72.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (113.0000,72.0000)--(150.5000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (150.5000,70.2000)--(149.0000,73.0500)--(152.0000,73.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (188.0000,72.0000)--(188.0000,72.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (150.5000,72.0000)--(188.0000,72.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (188.0000,70.2000)--(186.5000,73.0500)--(189.5000,73.0500)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{7.8}{8.8}\selectfont] at (186.0000,65.0000) {0.00};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.7}{9.7}\selectfont\bfseries] at (5.0000,86.0000) {See};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,137.0000)--(90.0000,137.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,137.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,115.5000)--(90.0000,115.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,115.5000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (15.0000,94.0000)--(90.0000,94.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (12.0000,94.0000) {100};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (15.0000,144.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (52.5000,144.0000) {2};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (90.0000,144.0000) {4};
+\fill[fill={rgb,255:red,241;green,229;blue,220}] (15.0000,110.6289)--(52.5000,112.9805)--(90.0000,112.4766)--(90.0000,118.1875)--(52.5000,118.0195)--(15.0000,115.6680)--cycle;
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (15.0000,115.6680)--(15.0000,110.6289);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (15.0000,113.1484) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (52.5000,118.0195)--(52.5000,112.9805);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (15.0000,113.1484)--(52.5000,115.5000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (52.5000,115.5000) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (90.0000,118.1875)--(90.0000,112.4766);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (52.5000,115.5000)--(90.0000,115.1641);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (90.0000,115.1641) circle[radius=1.5pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{7.8}{8.8}\selectfont] at (88.0000,108.1641) {50.78};
+\fill[fill={rgb,255:red,220;green,235;blue,231}] (15.0000,137.0000)--(52.5000,137.0000)--(90.0000,137.0000)--(90.0000,137.0000)--(52.5000,137.0000)--(15.0000,137.0000)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (15.0000,137.0000)--(15.0000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (15.0000,135.2000)--(13.5000,138.0500)--(16.5000,138.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (52.5000,137.0000)--(52.5000,137.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (15.0000,137.0000)--(52.5000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (52.5000,135.2000)--(51.0000,138.0500)--(54.0000,138.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (90.0000,137.0000)--(90.0000,137.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (52.5000,137.0000)--(90.0000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (90.0000,135.2000)--(88.5000,138.0500)--(91.5000,138.0500)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{7.8}{8.8}\selectfont] at (88.0000,130.0000) {0.00};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.7}{9.7}\selectfont\bfseries] at (103.0000,86.0000) {Receive};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,137.0000)--(188.0000,137.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,137.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,115.5000)--(188.0000,115.5000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,115.5000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.4pt] (113.0000,94.0000)--(188.0000,94.0000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{7.5}{8.5}\selectfont] at (110.0000,94.0000) {100};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (113.0000,144.0000) {0};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (150.5000,144.0000) {2};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (188.0000,144.0000) {4};
+\fill[fill={rgb,255:red,241;green,229;blue,220}] (113.0000,106.0896)--(150.5000,105.7578)--(188.0000,105.7578)--(188.0000,108.6133)--(150.5000,109.6211)--(113.0000,109.6211)--cycle;
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (113.0000,109.6211)--(113.0000,106.0896);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (113.0000,107.7734) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (150.5000,109.6211)--(150.5000,105.7578);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (113.0000,107.7734)--(150.5000,107.6055);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (150.5000,107.6055) circle[radius=1.5pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.6pt] (188.0000,108.6133)--(188.0000,105.7578);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=1pt] (150.5000,107.6055)--(188.0000,107.1016);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (188.0000,107.1016) circle[radius=1.5pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{7.8}{8.8}\selectfont] at (186.0000,100.1016) {69.53};
+\fill[fill={rgb,255:red,220;green,235;blue,231}] (113.0000,137.0000)--(150.5000,137.0000)--(188.0000,137.0000)--(188.0000,137.0000)--(150.5000,137.0000)--(113.0000,137.5039)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (113.0000,137.5039)--(113.0000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (113.0000,135.3680)--(111.5000,138.2180)--(114.5000,138.2180)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (150.5000,137.0000)--(150.5000,137.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (113.0000,137.1680)--(150.5000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (150.5000,135.2000)--(149.0000,138.0500)--(152.0000,138.0500)--cycle;
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.6pt] (188.0000,137.0000)--(188.0000,137.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=1pt] (150.5000,137.0000)--(188.0000,137.0000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (188.0000,135.2000)--(186.5000,138.0500)--(189.5000,138.0500)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{7.8}{8.8}\selectfont] at (186.0000,130.0000) {0.00};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.5}{9.5}\selectfont] at (96.0000,154.0000) {Neutral exchanges; net use (pp)};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (208.0000,25.0000)--(208.0000,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (208.0000,145.0000) {-20};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.5pt,dash pattern=on 2pt off 2pt] (254.6667,25.0000)--(254.6667,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (254.6667,145.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (301.3333,25.0000)--(301.3333,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (301.3333,145.0000) {20};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (246.4635,38.0000)--(261.9583,38.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (246.4635,36.8000)--(246.4635,39.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (261.9583,36.8000)--(261.9583,39.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,255;green,255;blue,255},line width=.7pt] (253.7552,38.0000) circle[radius=1.6pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (251.9323,45.0000)--(267.4271,45.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (251.9323,43.8000)--(251.9323,46.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (267.4271,43.8000)--(267.4271,46.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (259.2240,45.0000) circle[radius=1.6pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (204.0000,28.0000) {Hear};
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (313.0000,28.0000) {-0.39 / +1.95};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (269.2500,67.0000)--(289.3021,67.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (269.2500,65.8000)--(269.2500,68.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (289.3021,65.8000)--(289.3021,68.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,255;green,255;blue,255},line width=.7pt] (278.3646,67.0000) circle[radius=1.6pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (274.7188,74.0000)--(307.5312,74.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (274.7188,72.8000)--(274.7188,75.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (307.5312,72.8000)--(307.5312,75.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (291.1250,74.0000) circle[radius=1.6pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (204.0000,57.0000) {Understand};
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (313.0000,57.0000) {+10.16 / +15.62};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (220.9427,96.0000)--(261.0469,96.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (220.9427,94.8000)--(220.9427,97.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (261.0469,94.8000)--(261.0469,97.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,255;green,255;blue,255},line width=.7pt] (241.9062,96.0000) circle[radius=1.6pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (221.8542,103.0000)--(264.6927,103.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (221.8542,101.8000)--(221.8542,104.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (264.6927,101.8000)--(264.6927,104.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (243.7292,103.0000) circle[radius=1.6pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (204.0000,86.0000) {See};
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (313.0000,86.0000) {-5.47 / -4.69};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (243.7292,125.0000)--(267.4271,125.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (243.7292,123.8000)--(243.7292,126.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (267.4271,123.8000)--(267.4271,126.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,255;green,255;blue,255},line width=.7pt] (255.5781,125.0000) circle[radius=1.6pt];
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.7pt] (248.2865,132.0000)--(267.4271,132.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (248.2865,130.8000)--(248.2865,133.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (267.4271,130.8000)--(267.4271,133.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (258.3125,132.0000) circle[radius=1.6pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (204.0000,115.0000) {Receive};
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (313.0000,115.0000) {+0.39 / +1.56};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.2}{9.2}\selectfont] at (259.0000,156.0000) {Change from zero turns (pp)};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.5pt,dash pattern=on 2pt off 2pt] (332.3735,25.0000)--(332.3735,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (332.3735,145.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (368.8193,25.0000)--(368.8193,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (368.8193,145.0000) {25};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (405.2651,25.0000)--(405.2651,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (405.2651,145.0000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.5pt] (441.7108,25.0000)--(441.7108,140.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (441.7108,145.0000) {75};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (326.0000,28.0000) {Hear};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.8pt] (410.9597,38.0000)--(436.0162,38.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (410.9597,36.8000)--(410.9597,39.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (436.0162,36.8000)--(436.0162,39.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (424.6269,38.0000) circle[radius=1.6pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (426.0000,28.0000) {63.28};
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.8pt] (332.3735,45.0000)--(335.7903,45.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,43.8000)--(332.3735,46.2000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (335.7903,43.8000)--(335.7903,46.2000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (333.5124,43.0800)--(331.9124,46.1200)--(335.1124,46.1200)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{8}{9}\selectfont] at (455.0000,28.0000) {0.78};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (326.0000,57.0000) {Understand};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.8pt] (401.8483,67.0000)--(421.2101,67.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (401.8483,65.8000)--(401.8483,68.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (421.2101,65.8000)--(421.2101,68.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (412.0986,67.0000) circle[radius=1.6pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (426.0000,57.0000) {54.69};
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.8pt] (332.3735,74.0000)--(332.3735,74.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,72.8000)--(332.3735,75.2000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,72.8000)--(332.3735,75.2000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (332.3735,72.0800)--(330.7735,75.1200)--(333.9735,75.1200)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{8}{9}\selectfont] at (455.0000,57.0000) {0.00};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (326.0000,86.0000) {See};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.8pt] (395.0147,96.0000)--(412.0986,96.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (395.0147,94.8000)--(395.0147,97.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (412.0986,94.8000)--(412.0986,97.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (404.1261,96.0000) circle[radius=1.6pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (426.0000,86.0000) {49.22};
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.8pt] (332.3735,103.0000)--(332.3735,103.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,101.8000)--(332.3735,104.2000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,101.8000)--(332.3735,104.2000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (332.3735,101.0800)--(330.7735,104.1200)--(333.9735,104.1200)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{8}{9}\selectfont] at (455.0000,86.0000) {0.00};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.3}{9.3}\selectfont] at (326.0000,115.0000) {Receive};
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.8pt] (400.7093,125.0000)--(425.7658,125.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (400.7093,123.8000)--(400.7093,126.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (425.7658,123.8000)--(425.7658,126.2000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (413.2376,125.0000) circle[radius=1.6pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8}{9}\selectfont] at (426.0000,115.0000) {55.47};
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.8pt] (332.3735,132.0000)--(332.3735,132.0000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,130.8000)--(332.3735,133.2000);
+\draw[draw={rgb,255:red,0;green,122;blue,94},line width=0.65pt] (332.3735,130.8000)--(332.3735,133.2000);
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (332.3735,130.0800)--(330.7735,133.1200)--(333.9735,133.1200)--cycle;
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,122;blue,94},font=\fontsize{8}{9}\selectfont] at (455.0000,115.0000) {0.00};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.2}{9.2}\selectfont] at (390.0000,156.0000) {A-minus-B choice effect (pp)};
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (5.0000,173.0000) circle[radius=1.8pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.5}{9.5}\selectfont] at (11.0000,173.0000) {Full context};
+\fill[fill={rgb,255:red,0;green,122;blue,94}] (88.0000,170.8400)--(86.2000,174.2600)--(89.8000,174.2600)--cycle;
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8.5}{9.5}\selectfont] at (94.0000,173.0000) {Character view};
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,255;green,255;blue,255},line width=.7pt] (204.0000,173.0000) circle[radius=1.7pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (210.0000,173.0000) {2 turns};
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (246.0000,173.0000) circle[radius=1.7pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (252.0000,173.0000) {4 turns};
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{8}{9}\selectfont] at (455.0000,173.0000) {95\% paired-bootstrap intervals};
+\end{tikzpicture}
+\end{lrbox}
+\ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:behavior exceeds its column}{Revise the figure layout.}\fi
+\usebox{\OCfigure}
+\caption{Four core models and 32 matched discovery scenes. (a) Net use after neutral exchanges; labels give four-turn estimates. (b) Paired two- and four-turn changes from zero under full context (open and filled circles). (c) Change in choosing location A when inaccessible content switches from B to A; orange/green numbers give full/view estimates. Shading and whiskers show unadjusted 95\% paired-bootstrap intervals. Invalid choices remain in the denominator.}
+\label{fig:behavior}
+\end{figure*}
+
+\subsection{Access Judgments and Generation Diverge}
+Independent probe accuracy ranges from 95.18\% to 100\% for inaccessible content and 93.36\% to 99.35\% for accessible content, with 768 probes per model in each state. All 6,144 answers are valid (Table~\ref{tab:probecontrols}); always answering No would score 50\% on this balanced set. Conditioning role-playing responses on a correct matched probe yields 63.95 points [62.73, 65.19]. Explicit access judgments and access-violating generation therefore coexist across independent calls.
+
+Every comprehension probe is correct, leaving its net-use score unchanged under conditioning; leakage also persists among capability-eligible responses. Table~\ref{tab:stateboundary} gives each boundary's estimate and denominator. Appendix~\ref{app:prompts} traces a real A/B example: Qwen answers No to both hearing probes but states each hidden fact in character speech. Compiled inputs omit the unheard event, and both replies omit the canaries.
+
+\subsection{Prompting Has Channel-Dependent Effects}
+Direct Boolean flags help unevenly. Relative to repertoire or membership descriptions, they lower inaccessible $D$ by 17.52, 28.60, and 32.86 points for hearing, comprehension, and visibility, but by 3.41 [0.57, 6.34] for reception. Equivalent declared access states produce different behavior, with different sensitivity across channels.
+
+Prose reminders can reduce leakage in some channels, but comprehension effects vary across cohorts. The eleven-model contrast is $-3.98$ points [$-8.05$, $-0.09$], compared with +5.73 [0.00, 11.98] in the four-core subset. The six-model method subset also lacks a stable comprehension improvement. These results do not establish prose reminders as a reliable general solution (Appendix~\ref{app:explore}).
+
+The five-method comparison covers all six prespecified models on 48 matched scenes. Character view reduces inaccessible $D$ by 31.08--57.12 points across boundaries. Self-filtering also reduces leakage, but lowers accessible target use by 28.56 points for comprehension and 41.15 for reception. View has smaller losses of 3.73 and 3.30, with intervals $[-5.73,-1.73]$ and $[-5.30,-1.56]$. These descriptive channel intervals extend below the five-point margin; the independent confirmation's pooled noninferiority finding cannot be generalized to each discovery channel.
+
+\paragraph{Self-filtering can discard accessible content.}
+Qwen3.8-27B's accessible target use drops from 85.94\% under full context to 0.00\% under self-filtering for comprehension, and from 91.67\% to 2.08\% for reception. A post-hoc exact-string audit of the original first-stage records finds that 190 of 192 accessible comprehension calls and 180 of 192 reception calls return only the predetermined public event shell. In one allowed comprehension scene, the event locates a mirror in a stairwell; the filter returns ``Casey says something in Japanese,'' and the final answer is ``I haven't heard anything about it yet.'' This illustrates allowed content being lost before the final response. The counts retain separate calls for the two questions and are mechanical string matches, not new semantic or human labels.
+
+Self-filtering uses two calls by the same checkpoint; each other method uses one. Compilation constructs observations from fixed metadata. Wall-clock speed was not benchmarked.
+
+\subsection{Influence Persists and Changes Choices}
+On the 32-scene delay subset, full-context net use remains between 50.78 and 71.09 points after four neutral exchanges. For comprehension, the four-exchange minus immediate difference is +15.62 points [8.59, 22.66]. Other four-exchange changes have intervals spanning zero. Compilation remains near zero over the same delays. Because the inaccessible event remains in the context and the intervening turns are scripted, these findings establish delayed contextual influence, not an isolated latent-memory mechanism.
+
+In the fixed-choice task, switching inaccessible content from B to A changes selection of location A by 49.22--63.28 points under full context. Compilation contrasts are 0.00--0.78 points (Figure~\ref{fig:behavior}). Effects remain positive with A in either option position; an additional equal-position sensitivity gives 49.11--63.00 points for full context and 0.00--0.89 for compilation (Table~\ref{tab:choiceorder}). Valid-choice rates are 99.61--100\% and 96.88--100\%, respectively, with invalid choices retained. These are generated search choices, without executed actions in an environment.
+
+
+\begin{table}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrr@{}}
+\toprule
+Method & Leakage & Access. use & Event retention\\
+\midrule
+Full context & 64.08 & 92.82 & 73.26\\
+Hard removal & 0.03 & 93.33 & 32.25\\
+Character view & 0.03 & 93.31 & 100.00\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:methods exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Confirmation cohort. Leakage is net $D$ in pp; accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.}
+\label{tab:methods}
+\end{table}
+
+\subsection{Projection Retains Observable Event Shells}
+On confirmation scenes, full context yields 64.08 points of pooled inaccessible $D$. Hard removal and compilation both reduce it to 0.03. Their functional difference is observable-event retention: compilation scores 100.00\%, compared with 32.25\% for hard removal and 73.26\% for full context (Table~\ref{tab:methods}). The compiler-minus-deletion gain is 67.75 points [65.36, 70.05], a prespecified component of the frozen joint method test. Hard removal's actual-input correctness is 67.75\%; its original-scene retention measures a different reference.
+
+Compilation changes accessible target use by +0.49 points [$-0.18$, 1.19] relative to full context. The lower bound exceeds the prespecified $-5$-point margin, supporting pooled noninferiority. All three frozen families have Holm-adjusted $p=0.0015$ at the resolution of the 2,000-draw bootstrap.
+
+This advantage is specific to suppression, pooled allowed use versus full context, and shell retention versus deletion. Accessible input schemas differ across methods. In discovery visibility controls, Prose+flag reaches 96.61\% target use versus view's 80.47\%, alongside higher leakage. The comparison establishes this tradeoff; it does not rank compilation above every prompting method on every endpoint.
+
+The observable-shell retention check directly asks about encoded occurrences. Every partial-observation scene contains an event, so an always-positive response can score 100\%. It measures shell availability; selective awareness and interaction quality require further tasks.
+
+\paragraph{Lexical-block sensitivity.}
+Resampling the twelve reused lexical pairings as blocks gives wider intervals: leakage reduction and shell-retention gains remain positive; the accessible-use difference includes zero. This descriptive sensitivity addresses dependence among scenes sharing words, leaving frozen tests unchanged. Appendix~\ref{app:accounting} reports intervals and procedure; unseen vocabulary remains outside the evaluation.
+
+\section{Discussion and Conclusion}
+The results favor constructing character-specific inputs. Accurate independent access judgments coexist with inaccessible-content use in speech. Channel-specific profiles, uneven prompting effects, delayed influence, and changed search proposals show why an access question alone is an insufficient compliance test.
+
+An information interface should withhold inaccessible content, retain accessible facts, and preserve observable occurrences. Suppressing all content can satisfy only the first requirement. The separate control and shell-retention endpoints expose this tradeoff: self-filtering loses allowed facts in some channels, and whole-event deletion removes observations that compilation retains.
+
+Projection and whole-event deletion both suppress target content in confirmation, but projection preserves the designed shell. This benefit depends on correct access metadata and shell semantics. Within this scene family, interfaces can be evaluated by what they withhold and preserve.
+
+\clearpage
+% Evaluate the page guard after a complete reference pass; PDF export is also checked independently.
+% The submission PDF is built with pdfLaTeX; XeTeX is supported for editor preview.
+\ifdefined\pdftexversion
+\expandafter\ifx\csname r@app:accounting\endcsname\relax
+\else
+\ifnum\value{page}>9\PackageError{access-paper}{Main content exceeds eight pages}{Compress the main text and its floats before submission.}\fi
+\fi
+\else
+\PackageWarningNoLine{access-paper}{Submission pagination is verified with pdfLaTeX; this preview engine may use different page breaks}
+\fi
+% Avoid stretching paragraph spacing on the non-main-text pages.
+\raggedbottom
+\section*{Limitations}
+\paragraph{Measurement and human validation.}
+The scorer uses a finite canary dictionary, fixed echo/refusal handling, and an output-validity gate; denial flags do not exclude matched content. Paraphrase, mixed denial and assertion, untranslated echoes, and multiple same-type values may be misclassified. Representative human audits estimate error by method and access state; enriched foil cases identify mechanisms without estimating prevalence. Human sensitivities remain separate from frozen automatic tests. Rare positives and unresolved labels limit foil-specific precision, and the original bootstrap intervals omit annotation uncertainty. Fluent stimulus assessment and non-speaker word guessing test different properties; neither establishes general language competence.
+
+\paragraph{Scenario and model coverage.}
+The scene sets are generated from shared templates and contain short interactions. Both sets reuse the same 12 target--foil lexical pairings, with four pairings and eight active sentences per language. Language and lexical pairing are not crossed, so language-unit differences cannot isolate a language effect. Original characters remove reliance on familiar names but do not make the instrument independently authored or test unseen vocabulary. The four core models were chosen before these outcomes partly for contrasting behavior in earlier exploratory work. All eleven discovery models and the six-model method cohort are complete. Seed uses an H100 allocation with the same software and decoding protocol; hardware invariance was not separately tested. The fixed-cohort bootstrap does not support population-wide inference over models, natural dialogues, or cultures, and omits uncertainty from template and vocabulary selection.
+
+\paragraph{Mechanism and deployment.}
+The compiler receives explicit, correct access metadata and predetermined event shells. Applying it to ambiguous natural narratives requires an upstream access and observation inference system whose errors are not tested here. Greedy generation on one software stack does not establish temperature or implementation invariance. The delay test retains the original event in context, the choice task is textual, and the awareness question directly elicits occurrence. Near-zero $D$ does not guarantee absence of every semantic disclosure, and a zero-width bootstrap interval at perfect observed awareness does not imply certainty outside these scenes.
+
+\section*{Ethical Considerations}
+The material consists of fictional scenes, invented location--object facts, and public model checkpoints. No private personal information is needed for the benchmark. Existing character names appear in discovery; confirmation characters and communities are original. The study evaluates access consistency in fictional role-play, and its scores should not be treated as validation of a real privacy or authorization system. Human-study ethics review or exemption was \HumanField{ETHICS}. Participants provided \HumanField{CONSENT} and received \HumanField{PAY}; recruitment and reviewer qualifications were \HumanField{RECRUIT}. Annotation records used anonymous participant identifiers. These human-study statements follow the completion-template convention in Section~\ref{sec:measurement}.
+
+\paragraph{AI assistance.}
+Generative AI assisted with code preparation, experiment orchestration, literature lookup, statistical-report formatting, and manuscript drafting. Separate AI agents produced provisional annotation judgments, retained as diagnostic records rather than human reference labels. Run manifests, response hashes, and independent re-scoring link the reported automatic results to the frozen analysis. The authors retain responsibility for the manuscript, evidence, and disclosures.
+
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\bibitem[{Ahn et~al.(2024)Ahn, Lee, Lim, Kim, Yun, Lee, and
+  Kim}]{ahn-etal-2024-timechara}
+Jaewoo Ahn, Taehyun Lee, Junyoung Lim, Jin-Hwa Kim, Sangdoo Yun, Hwaran Lee,
+  and Gunhee Kim. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.findings-acl.197}
+  {{T}ime{C}hara: Evaluating point-in-time character hallucination of
+  role-playing large language models}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}, pages 3291--3325, Bangkok, Thailand. Association for Computational
+  Linguistics.
+
+\bibitem[{Gu et~al.(2026)Gu, Tafjord, Kim, Moore, Le~Bras, Clark, and
+  Choi}]{gu2026simpletom}
+Yuling Gu, Oyvind Tafjord, Hyunwoo Kim, Jared Moore, Ronan Le~Bras, Peter
+  Clark, and Yejin Choi. 2026.
+\newblock \href
+  {https://proceedings.iclr.cc/paper_files/paper/2026/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html}
+  {{SimpleToM}: Exposing the gap between explicit {ToM} inference and implicit
+  {ToM} application in {LLMs}}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Han et~al.(2026)Han, Park, Seo, Yoon, and Bak}]{han2026charm}
+Sunkyung Han, Nahyeon Park, Gaeun Seo, Seunghyun Yoon, and JinYeong Bak. 2026.
+\newblock \href {https://arxiv.org/abs/2609.01352} {{CHARM: Character
+  Hallucination for Multicultural Role Play Benchmark}}.
+\newblock ArXiv:2609.01352.
+
+\bibitem[{Holm(1979)}]{holm1979}
+Sture Holm. 1979.
+\newblock \href {https://www.jstor.org/stable/4615733} {A simple sequentially
+  rejective multiple test procedure}.
+\newblock \emph{Scandinavian Journal of Statistics}, 6(2):65--70.
+
+\bibitem[{Jung et~al.(2024)Jung, Kim, Jin, Kim, Seonwoo, Choi, Oh, and
+  Kim}]{jung-etal-2024-perceptions}
+Chani Jung, Dongkwan Kim, Jiho Jin, Jiseon Kim, Yeon Seonwoo, Yejin Choi, Alice
+  Oh, and Hyunwoo Kim. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.emnlp-main.1105} {Perceptions
+  to beliefs: Exploring precursory inferences for theory of mind in large
+  language models}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}, pages 19794--19809, Miami, Florida, USA.
+  Association for Computational Linguistics.
+
+\bibitem[{Kim et~al.(2023)Kim, Sclar, Zhou, Le~Bras, Kim, Choi, and
+  Sap}]{kim-etal-2023-fantom}
+Hyunwoo Kim, Melanie Sclar, Xuhui Zhou, Ronan Le~Bras, Gunhee Kim, Yejin Choi, and
+  Maarten Sap. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.890} {{FANT}o{M}:
+  A benchmark for stress-testing machine theory of mind in interactions}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 14397--14413, Singapore. Association for
+  Computational Linguistics.
+
+\bibitem[{Shao et~al.(2024)Shao, Li, Shi, Liu, and Yang}]{shao2024privacylens}
+Yijia Shao, Tianshi Li, Weiyan Shi, Yanchen Liu, and Diyi Yang. 2024.
+\newblock \href {https://arxiv.org/abs/2409.00138} {{PrivacyLens: Evaluating
+  Privacy Norm Awareness of Language Models in Action}}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Tang et~al.(2026)Tang, Zhang, Yang, Tang, Li, Lai, and
+  Yang}]{tang2026staying}
+Xushuo Tang, Junhe Zhang, Zihan Yang, Yifu Tang, Sichao Li, Longbin Lai, and
+  Zhengyi Yang. 2026.
+\newblock \href {https://arxiv.org/abs/2606.25632} {{Staying In Character:
+  Perspective-Bounded Memory For Book-Based Role-Playing Agents}}.
+\newblock ArXiv:2606.25632.
+
+\bibitem[{Wilf et~al.(2024)Wilf, Lee, Liang, and
+  Morency}]{wilf-etal-2024-think}
+Alex Wilf, Sihyun Lee, Paul~Pu Liang, and Louis-Philippe Morency. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.acl-long.451} {Think twice:
+  Perspective-taking improves large language models' theory-of-mind
+  capabilities}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 8292--8308,
+  Bangkok, Thailand. Association for Computational Linguistics.
+
+\bibitem[{Zhu et~al.(2026)Zhu, Gao, and Shi}]{zhu2026mentor}
+Zhuoning Zhu, Xingyu Gao, and Hailong Shi. 2026.
+\newblock \href{https://doi.org/10.18653/v1/2026.findings-acl.1046}{MENTOR: Mitigating identity drift in dynamic role-playing via dual-chain structured memory}.
+\newblock In \emph{Findings of the Association for Computational Linguistics: ACL 2026}, pages 20865--20882, San Diego, California, United States. Association for Computational Linguistics.
+
+\end{thebibliography}
+\appendix
+% Stack appendix float-page tables from the top with ordinary positive spacing.
+\setcounter{dbltopnumber}{3}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{18pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpsep}{18pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother
+\section{Model Cohorts and Reproducibility}
+\label{app:models}
+The model registry records exact repository identities and pinned revisions. Table~\ref{tab:roster} distinguishes the four core models and seven completed discovery extensions. All runs share the generation protocol in the main text. Raw chunks, pre-generation intent records, rendered-input hashes, runtime metadata, merged responses, and scores are retained. Local and remote response hashes match, and independent local re-scoring exactly reproduces every score file.
+
+Ten models ran on H200 GPUs; Seed-OSS-36B ran on one Slurm-allocated H100. Its transfer preserved the checkpoint pin, software versions, and decoding protocol. Hardware identity and occupancy were checked before loading. Operational repairs are logged separately from the scientific protocol; no output-based retry or model replacement was performed.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lll@{}}
+\toprule
+Checkpoint repository & Revision prefix & Snapshot role\\
+\midrule
+\texttt{Qwen/Qwen3.8-27B} & \texttt{1d4bf0f2ff60} & Discovery complete\\
+\texttt{Qwen/Qwen3.5-9B} & \texttt{c20223623576} & Core complete\\
+\texttt{google/gemma-4-31B-it} & \texttt{842da3794eaa} & Core complete\\
+\texttt{google/gemma-4-12B-it} & \texttt{707f0a3b8a3c} & Discovery complete\\
+\texttt{zai-org/GLM-4.7-Flash} & \texttt{7dd20894a642} & Core complete\\
+\texttt{mistralai/Mistral-Small-24B-Instruct-2501} & \texttt{9527884be6e5} & Discovery complete\\
+\texttt{openai/gpt-oss-20b} & \texttt{6cee5e81ee83} & Discovery complete\\
+\texttt{microsoft/phi-4} & \texttt{2db69c1c3e91} & Discovery complete\\
+\texttt{ByteDance-Seed/Seed-OSS-36B-Instruct} & \texttt{497f1dca95eb} & Discovery complete\\
+\texttt{nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16} & \texttt{bf77c3174f68} & Core complete\\
+\texttt{tiiuae/Falcon-H1-34B-Instruct} & \texttt{6e6890e26cba} & Discovery complete\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:roster exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Pinned model roster. All eleven discovery models are complete; four form the prespecified confirmation cohort. Full revisions and exact run metadata are retained in the accompanying registry.}
+\label{tab:roster}
+\end{table*}
+\begin{figure}[t]
+\centering\begin{lrbox}{\OCfigure}
+\begin{tikzpicture}[x=1pt,y=-1pt]
+\path[use as bounding box] (0,0) rectangle (218,136);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (3.0000,8.0000) circle[radius=1.8pt];
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (9.0000,8.0000) {Inaccessible};
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (108.4000,6.4000) rectangle (111.6000,9.6000);
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (116.0000,8.0000) {Accessible};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.45pt] (8.0000,22.0000)--(8.0000,110.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (8.0000,119.0000) {0};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.45pt] (58.0000,22.0000)--(58.0000,110.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (58.0000,119.0000) {25};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.45pt] (108.0000,22.0000)--(108.0000,110.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (108.0000,119.0000) {50};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.45pt] (158.0000,22.0000)--(158.0000,110.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (158.0000,119.0000) {75};
+\draw[draw={rgb,255:red,221;green,225;blue,229},line width=0.45pt] (208.0000,22.0000)--(208.0000,110.0000);
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,100;green,107;blue,115},font=\fontsize{8}{9}\selectfont] at (208.0000,119.0000) {100};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,26.0000) {Hear};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (152.5312,39.0000)--(188.7292,39.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.85pt] (149.7969,39.0000)--(155.1354,39.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (149.7969,37.0000)--(149.7969,41.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (155.1354,37.0000)--(155.1354,41.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (152.5312,39.0000) circle[radius=1.8pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8.5}{9.5}\selectfont] at (176.0000,26.0000) {72.27};
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.85pt] (185.0801,39.0000)--(192.6354,39.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (185.0801,37.0000)--(185.0801,41.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (192.6354,37.0000)--(192.6354,41.0000);
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (186.9292,37.2000) rectangle (190.5292,40.8000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,114;blue,178},font=\fontsize{8.5}{9.5}\selectfont] at (218.0000,26.0000) {90.36};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,48.0000) {Understand};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (102.4010,61.0000)--(190.6823,61.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.85pt] (97.7135,61.0000)--(107.2188,61.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (97.7135,59.0000)--(97.7135,63.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (107.2188,59.0000)--(107.2188,63.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (102.4010,61.0000) circle[radius=1.8pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8.5}{9.5}\selectfont] at (176.0000,48.0000) {47.20};
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.85pt] (186.9030,61.0000)--(194.1979,61.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (186.9030,59.0000)--(186.9030,63.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (194.1979,59.0000)--(194.1979,63.0000);
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (188.8823,59.2000) rectangle (192.4823,62.8000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,114;blue,178},font=\fontsize{8.5}{9.5}\selectfont] at (218.0000,48.0000) {91.34};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,70.0000) {See};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (146.5417,83.0000)--(196.1510,83.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.85pt] (142.5020,83.0000)--(150.7083,83.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (142.5020,81.0000)--(142.5020,85.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (150.7083,81.0000)--(150.7083,85.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (146.5417,83.0000) circle[radius=1.8pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8.5}{9.5}\selectfont] at (176.0000,70.0000) {69.27};
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.85pt] (193.9375,83.0000)--(198.2344,83.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (193.9375,81.0000)--(193.9375,85.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (198.2344,81.0000)--(198.2344,85.0000);
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (194.3510,81.2000) rectangle (197.9510,84.8000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,114;blue,178},font=\fontsize{8.5}{9.5}\selectfont] at (218.0000,70.0000) {94.08};
+\node[anchor=west,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont\bfseries] at (0.0000,92.0000) {Receive};
+\draw[draw={rgb,255:red,100;green,107;blue,115},line width=0.65pt] (143.1562,105.0000)--(198.7552,105.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.85pt] (139.6406,105.0000)--(146.6719,105.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (139.6406,103.0000)--(139.6406,107.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},line width=0.65pt] (146.6719,103.0000)--(146.6719,107.0000);
+\draw[draw={rgb,255:red,176;green,74;blue,0},fill={rgb,255:red,176;green,74;blue,0},line width=.7pt] (143.1562,105.0000) circle[radius=1.8pt];
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,176;green,74;blue,0},font=\fontsize{8.5}{9.5}\selectfont] at (176.0000,92.0000) {67.58};
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.85pt] (195.8906,105.0000)--(201.3594,105.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (195.8906,103.0000)--(195.8906,107.0000);
+\draw[draw={rgb,255:red,0;green,114;blue,178},line width=0.65pt] (201.3594,103.0000)--(201.3594,107.0000);
+\fill[fill={rgb,255:red,0;green,114;blue,178}] (196.9552,103.2000) rectangle (200.5552,106.8000);
+\node[anchor=east,inner sep=0pt,text={rgb,255:red,0;green,114;blue,178},font=\fontsize{8.5}{9.5}\selectfont] at (218.0000,92.0000) {95.38};
+\node[anchor=center,inner sep=0pt,text={rgb,255:red,34;green,34;blue,34},font=\fontsize{9}{10}\selectfont] at (109.0000,130.0000) {Target-minus-foil use (pp)};
+\end{tikzpicture}
+\end{lrbox}
+\ifdim\wd\OCfigure>\linewidth\PackageError{access-paper}{Figure fig:boundaries exceeds its column}{Revise the figure layout.}\fi
+\usebox{\OCfigure}
+\caption{Original-character confirmation: four models and 96 matched scene skeletons. Connected estimates compare accessible and inaccessible net canary use; whiskers give unadjusted 95\% paired-bootstrap intervals. Values are equal-model, equal-skeleton automatic scores.}
+\label{fig:boundaries}
+\end{figure}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & Hear & Understand & See & Receive & State correct & Conditional $D$\\
+\midrule
+Gemma-4-31B & 5.47 & 0.00 & 16.41 & 22.40 & 100.00 & 11.07\\
+GLM-4.7-Flash & 87.24 & 71.09 & 66.41 & 52.60 & 99.87 & 69.30\\
+Nemotron-3-Nano-30B & 98.96 & 66.41 & 97.66 & 98.96 & 95.18 & 90.01\\
+Qwen3.5-9B & 97.40 & 51.30 & 96.61 & 96.35 & 100.00 & 85.42\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:modeldetail exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points; state correctness is a percentage. Every model has eligible role endpoints. The pooled four-boundary claim does not assert a positive effect in every cell.}
+\label{tab:modeldetail}
+\end{table*}
+
+The seven additional discovery models are Qwen3.8-27B, gpt-oss-20b, Phi-4, Gemma-4-12B, Falcon-H1-34B, Mistral-Small-24B, and Seed-OSS-36B. Table~\ref{tab:discoverybaseline} compares all eleven checkpoints on the same full-context R2 baseline. These discovery measurements supplement the four-model confirmation without changing its prespecified cohort or tests.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Model & Hear & Understand & See & Receive\\
+\midrule
+Qwen3.8-27B & 9.11 & 11.46 & 28.39 & 11.46\\
+Qwen3.5-9B & 88.28 & 46.61 & 72.14 & 76.30\\
+Gemma-4-31B & 4.43 & 0.52 & 3.39 & 3.12\\
+Gemma-4-12B & 83.33 & 40.10 & 5.21 & 71.09\\
+GLM-4.7-Flash & 86.72 & 26.82 & 48.70 & 66.41\\
+Mistral-Small-24B & 75.52 & 0.26 & 26.56 & 84.64\\
+gpt-oss-20b & 89.06 & 50.78 & 69.53 & 81.51\\
+Phi-4 & 97.40 & 32.29 & 87.76 & 98.96\\
+Seed-OSS-36B & 76.56 & 41.41 & 52.60 & 60.42\\
+Nemotron-3-Nano-30B & 93.49 & 46.35 & 72.66 & 87.76\\
+Falcon-H1-34B & 61.98 & 59.38 & 52.86 & 95.57\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:discoverybaseline exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Descriptive full-context R2 baseline for the eleven completed discovery models. Each cell averages content and planning responses over the same 96 scenes and two counterfactual versions, with 384 planned endpoints. Values are net canary-use points on inaccessible scenes; these are point estimates, not additional confirmation tests.}
+\label{tab:discoverybaseline}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model & Chinese & Japanese & Spanish\\
+\midrule
+Gemma-4-31B & 100.00 & 100.00 & 100.00\\
+GLM-4.7-Flash & 100.00 & 62.50 & 100.00\\
+Nemotron-3-Nano-30B & 100.00 & 75.00 & 87.50\\
+Qwen3.5-9B & 100.00 & 62.50 & 100.00\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:translate exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Both-canary translation use on 64 original-character prompts per model--language unit (\%). The diagnostic threshold is 85\%; the primary analysis is unconditional.}
+\label{tab:translate}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrlr@{}}
+\toprule
+Boundary & State-correct $D$ [95\% CI] & $N$ & Capability-eligible $D$ [95\% CI] & $N$\\
+\midrule
+Hear & 72.19 [70.79, 73.50] & 1460 & 72.19 [70.79, 73.50] & 1460\\
+Understand & 47.20 [44.86, 49.61] & 1536 & 50.98 [48.36, 53.67] & 1152\\
+See & 69.27 [67.25, 71.35] & 1536 & 69.27 [67.25, 71.35] & 1536\\
+Receive & 67.58 [65.82, 69.34] & 1536 & 67.58 [65.82, 69.34] & 1536\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:stateboundary exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{State-correct boundary decomposition in the four-model confirmation. Values are pp. The .85 gate applies only to comprehension; all of its state probes are correct. Eligibility is fixed from translation results, and model-specific ratios are recomputed over the original 96-scene bootstrap. These are secondary descriptive intervals, without additional confirmation tests.}
+\label{tab:stateboundary}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Channel & No correct (/192) & Yes correct (/192) & False Yes & False No\\
+\midrule
+Gemma-4-31B & Hear & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Gemma-4-31B & Understand & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Gemma-4-31B & See & 192 (100.00\%) & 187 (97.40\%) & 0 & 5\\
+Gemma-4-31B & Receive & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+GLM-4.7-Flash & Hear & 191 (99.48\%) & 192 (100.00\%) & 1 & 0\\
+GLM-4.7-Flash & Understand & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+GLM-4.7-Flash & See & 192 (100.00\%) & 178 (92.71\%) & 0 & 14\\
+GLM-4.7-Flash & Receive & 192 (100.00\%) & 190 (98.96\%) & 0 & 2\\
+Nemotron-3-Nano-30B & Hear & 155 (80.73\%) & 192 (100.00\%) & 37 & 0\\
+Nemotron-3-Nano-30B & Understand & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Nemotron-3-Nano-30B & See & 192 (100.00\%) & 141 (73.44\%) & 0 & 51\\
+Nemotron-3-Nano-30B & Receive & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Qwen3.5-9B & Hear & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Qwen3.5-9B & Understand & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+Qwen3.5-9B & See & 192 (100.00\%) & 175 (91.15\%) & 0 & 17\\
+Qwen3.5-9B & Receive & 192 (100.00\%) & 192 (100.00\%) & 0 & 0\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:probecontrols exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Independent confirmation access probes in both states. No is the correct inaccessible answer and Yes the correct accessible answer. Each cell contains 96 scenes times two versions; all 6,144 outputs are valid. False Yes and False No count the two error directions. Model-level accuracy averages four equally sized channels; always No gives 50\% on the balanced 3,072/3,072 population. These saved-data summaries add no hypothesis test.}
+\label{tab:probecontrols}
+\end{table*}
+
+\section{Prompt and Projection Details}
+\label{app:prompts}
+Each system prompt requests one short English spoken turn and supplies a character description and a JSON scene state. The final user message asks either what information the character obtained or what to do next to retrieve the item. R1 uses membership sets or a language repertoire; R2 uses the applicable direct Boolean; R3 adds the access/use prose rule to R2. No content, question, or shell is changed within an accessible--inaccessible pair except the access field.
+
+\subsection{A Saved Counterfactual Input--Output Case}
+Tables~\ref{tab:caseinput} and \ref{tab:caseoutput} reproduce confirmation scene C001 for Qwen3.5-9B. The role-playing prefix, character description, scene JSON, and question are exact saved messages. B replaces only the proposition, and the accessible control flips only the hearing Boolean. The evaluator prefix and question form a separate probe call; its answer never enters the role-playing input. This case was selected to illustrate failure rather than estimate its prevalence. All eight role-playing and four probe records are complete and independently re-score exactly.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Input component & Exact saved text or specified substitution\\
+\midrule
+Role system prefix & {\footnotesize\ttfamily You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.}\\
+Shared character & {\footnotesize\ttfamily [Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.}\\
+Full scene (A, no access) & {\footnotesize\ttfamily [Scene state] \{"character\_id": "Mira Sen", "events": [\{"actor": "Alex", "audible\_to\_Mira Sen": false, "boundary\_channel": "Hear", "content": "The glove is in the church.", "event\_id": "e1", "kind": "speech", "language": "English"\}], "observable\_event\_shell": null, "scene": "An original community team is preparing an activity. Its members have not shared the latest finding."\}}\\
+Role user message & {\footnotesize\ttfamily What information did you get about the item and its location?}\\
+Independent probe prefix & {\footnotesize\ttfamily Read the scene as an evaluator. Answer the access question with only Yes or No.}\\
+Independent probe user & {\footnotesize\ttfamily Did Mira Sen hear the utterance?}\\
+Counterfactual B & Replace \texttt{The glove is in the church.} with \texttt{The broom is in the stairwell.}\\
+Accessible control & Replace \texttt{audible\_to\_Mira Sen}: \texttt{false} with \texttt{true}.\\
+Inaccessible view scene & {\footnotesize\ttfamily [Scene state] \{"character\_id": "Mira Sen", "observations": [], "scene": "An original community team is preparing an activity. Its members have not shared the latest finding."\}}\\
+\bottomrule
+\end{tabularx}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:caseinput exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Exact messages for the selected hearing case, with A/B and access-state substitutions. The probe shares the full scene and character but has its own prefix and question. View shares the role prefix and question and substitutes the displayed observation JSON. Accessible view contains the permitted event in its observation list.}
+\label{tab:caseinput}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabularx}{\textwidth}{@{}llcXX@{}}
+\toprule
+Version & Access & Probe & Full-context spoken reply & Character-view spoken reply\\
+\midrule
+A & No & No & I heard Alex mention the glove is in the church, though he wasn't speaking to me directly. & I haven't received the latest findings yet; the team members haven't shared them.\\
+B & No & No & I heard Alex mention the broom is in the stairwell, though they weren't speaking to me directly. & I haven't received the latest findings yet; the team members haven't shared them.\\
+A & Yes & Yes & Alex mentioned the glove is in the church. & Alex mentioned the glove is in the church.\\
+B & Yes & Yes & Alex mentioned the broom is in the stairwell. & Alex just told me the broom is in the stairwell.\\
+\bottomrule
+\end{tabularx}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:caseoutput exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{All saved content replies and independent probe answers for C001, Qwen3.5-9B, R2, delay zero. Full replies score $(T,F,D)=(1,0,1)$ in all four rows; inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$. This selected illustration is not a prevalence sample.}
+\label{tab:caseoutput}
+\end{table*}
+
+\subsection{Fixed Endpoint Rules}
+The scorer first strips reasoning blocks, normalizes text, removes foreign canary forms and romanizations from its English matching copy, and masks listed names and idioms. It matches fixed aliases separately for place and object; eligible foreign-language output uses a separate matching copy with verbatim stimulus spans removed. For each type, exactly the target value gives a target label, exactly the foil gives a foil label, neither gives none, and two or more distinct values give a multi-value label. Target and foil indicators each require their label in at least one type. A multi-value label supplies neither indicator for that type; thus naming both places can be missed even when their joint semantics constitute disclosure.
+
+Only complete, nonempty responses without a matched out-of-character refusal contribute canary hits. Other planned outputs receive zero use and remain in denominators. Negation, attribution, and admission are diagnostic flags, without a general semantic scope parser or a denial veto. In Table~\ref{tab:caseoutput}, both place and object are exact target aliases and no foil is present, so each full-context response scores $(T,F,D)=(1,0,1)$. Inaccessible view responses score $(0,0,0)$. A state probe is valid only when its entire answer is Yes or No, allowing an optional period or exclamation mark; correctness compares this answer with the frozen expected state. The occurrence decoder accepts a leading Yes or No and uses the original-scene reference. These rules define automatic measurements, with the human audit estimating their semantic error separately.
+
+\subsection{Other Prompt Conditions}
+
+Self-filtering first asks the model to list events and facts the character can personally perceive and understand, retaining observable occurrences without inaccessible content. The second call receives the resulting list and the role-playing question. Only the second call supplies the final endpoint. A failed or unusable second stage stays in the planned denominator. Both stages are preserved for audit.
+
+For delay zero, two, or four, the same world context precedes fixed neutral exchanges about readiness and keeping the conversation brief. These are scripted turns, not sampled conversations. In the decision task, both versions list the same two candidate locations in the same order; only the event's version changes. Scene-ID parity determines order, with 18 A-first and 14 A-second scenes. This approximate balance is deterministic, not randomized. The paired outcome tracks fixed location A. Order-stratified and equal-position estimates address the remaining imbalance descriptively.
+
+\section{Exploratory Results in Completed Cohorts}
+\label{app:explore}
+The representation table uses all eleven models and the frozen 24-scene subset. The method table uses all six prespecified method models and 48 matched scenes. The persistence and decision tables use the four core models and 32 scenes. Intervals are paired skeleton-bootstrap intervals; these are descriptive comparisons and receive no additional confirmatory interpretation.
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lll@{}}
+\toprule
+Boundary & Membership minus flag & Prose+flag minus flag\\
+\midrule
+Hear & 17.52 [14.96, 20.08] & -37.59 [-41.29, -33.90]\\
+Understand & 28.60 [25.47, 31.82] & -3.98 [-8.05, -0.09]\\
+See & 32.86 [28.98, 36.84] & -17.52 [-22.54, -13.35]\\
+Receive & 3.41 [0.57, 6.34] & -37.88 [-41.38, -34.09]\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:representation exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Representation effects on inaccessible net use (pp), with 95\% descriptive intervals. Eleven completed discovery models, 24 matched scenes. The same comprehension prose contrast is +5.73 [0.00, 11.98] in the four-core subset.}
+\label{tab:representation}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}llll@{}}
+\toprule
+Boundary & Method & Inaccessible $D$ & Accessible target use\\
+\midrule
+Hear & Full & 57.20 [54.69, 59.55] & 89.67 [86.63, 92.10]\\
+Hear & Prose+flag & 34.38 [31.16, 37.59] & 93.40 [90.71, 95.66]\\
+Hear & Self-filter & 47.74 [44.62, 50.87] & 93.49 [91.06, 95.66]\\
+Hear & Hard removal & 0.09 [0.00, 0.26] & 89.06 [85.42, 92.01]\\
+Hear & Character view & 0.09 [0.00, 0.26] & 88.98 [85.33, 92.01]\\
+Understand & Full & 30.99 [27.69, 33.94] & 91.49 [88.54, 94.01]\\
+Understand & Prose+flag & 32.29 [29.34, 35.07] & 95.57 [93.66, 97.31]\\
+Understand & Self-filter & 2.00 [0.87, 3.39] & 62.93 [59.64, 66.06]\\
+Understand & Hard removal & 0.00 [0.00, 0.00] & 87.76 [84.11, 90.97]\\
+Understand & Character view & -0.09 [-0.26, 0.00] & 87.76 [84.20, 90.97]\\
+See & Full & 45.66 [41.49, 49.48] & 79.34 [75.17, 83.16]\\
+See & Prose+flag & 27.17 [24.57, 29.60] & 96.61 [95.23, 97.74]\\
+See & Self-filter & 22.22 [19.79, 24.57] & 81.51 [78.21, 84.46]\\
+See & Hard removal & 0.00 [0.00, 0.00] & 80.56 [76.39, 84.38]\\
+See & Character view & -0.09 [-0.26, 0.00] & 80.47 [76.39, 84.38]\\
+Receive & Full & 56.77 [53.65, 59.64] & 94.18 [90.97, 96.61]\\
+Receive & Prose+flag & 31.25 [29.17, 33.42] & 96.79 [95.57, 97.83]\\
+Receive & Self-filter & 4.77 [3.21, 6.60] & 53.04 [48.87, 57.21]\\
+Receive & Hard removal & -0.09 [-0.26, 0.00] & 90.89 [87.59, 93.66]\\
+Receive & Character view & 0.00 [-0.26, 0.26] & 90.89 [87.59, 93.66]\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:discoverymethods exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Five methods in the complete prespecified six-model discovery cohort on 48 matched scenes (1,152 endpoints per cell). Leakage is net pp; accessible use is a percentage. These are descriptive cells with unadjusted 95\% paired-bootstrap intervals.}
+\label{tab:discoverymethods}
+\end{table*}
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lllll@{}}
+\toprule
+Boundary & Method & Delay 0 & Delay 2 & Delay 4\\
+\midrule
+Hear & full & 69.14 [65.23, 72.66] & 68.75 [65.62, 71.88] & 71.09 [67.97, 73.83]\\
+Hear & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+Understand & full & 42.58 [36.72, 48.05] & 52.73 [48.05, 57.03] & 58.20 [53.12, 63.28]\\
+Understand & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+See & full & 55.47 [49.61, 61.33] & 50.00 [44.14, 55.86] & 50.78 [43.75, 57.03]\\
+See & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+Receive & full & 67.97 [63.67, 71.88] & 68.36 [63.67, 72.66] & 69.53 [66.02, 72.66]\\
+Receive & view & -0.39 [-1.17, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:delay exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Delayed net use (pp), 32-scene subset, with 95\% intervals. The original event remains in context throughout the scripted exchanges.}
+\label{tab:delay}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}llrrr@{}}
+\toprule
+Boundary & Method & Fixed-A choice contrast & 95\% CI & Valid choices (\%)\\
+\midrule
+Hear & full & 63.28 & [53.91, 71.09] & 99.61\\
+Hear & view & 0.78 & [0.00, 2.34] & 96.88\\
+Understand & full & 54.69 & [47.66, 60.94] & 100.00\\
+Understand & view & 0.00 & [0.00, 0.00] & 100.00\\
+See & full & 49.22 & [42.97, 54.69] & 100.00\\
+See & view & 0.00 & [0.00, 0.00] & 99.22\\
+Receive & full & 55.47 & [46.88, 64.06] & 99.61\\
+Receive & view & 0.00 & [0.00, 0.00] & 97.66\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:decision exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Fixed-A decision contrast (pp) and response validity. The choice of location A is tracked across versions, independently of its option number.}
+\label{tab:decision}
+\end{table*}
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lllll@{}}
+\toprule
+Boundary & Method & A first (18 scenes) & A second (14 scenes) & Equal-position effect\\
+\midrule
+Hear & full & 65.28 [56.94, 72.22] & 60.71 [42.86, 75.00] & 63.00 [53.27, 71.23]\\
+Hear & view & 0.00 [0.00, 0.00] & 1.79 [0.00, 5.36] & 0.89 [0.00, 2.68]\\
+Understand & full & 56.94 [50.00, 63.89] & 51.79 [39.29, 62.50] & 54.37 [47.12, 60.91]\\
+Understand & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+See & full & 50.00 [43.06, 56.94] & 48.21 [39.29, 57.14] & 49.11 [42.76, 54.86]\\
+See & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+Receive & full & 59.72 [50.00, 69.44] & 50.00 [35.71, 62.50] & 54.86 [45.53, 63.10]\\
+Receive & view & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00]\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:choiceorder exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Additional descriptive option-position sensitivity (pp, 95\% intervals). A/B order and the question are identical within every pair. The equal-position estimate weights the two order strata equally and resamples scenes independently within each stratum; original paired effects and tests remain unchanged.}
+\label{tab:choiceorder}
+\end{table*}
+
+\section{Human Evaluation and Measurement Sensitivity}
+\label{app:validation}
+\textbf{Completion-template convention.} Bracketed fields in this section, Section~\ref{sec:measurement}, the semantic-sensitivity paragraph, and human-study ethics statements require real study data. The final-tense wording specifies the completed-study report; it does not assert that those observations are available. AI diagnostics below retain their original provenance.
+
+\subsection{Representative Response Audits}
+Two annotators independently evaluated semantic use, including resolved paraphrases, asserted content inside mixed denial/assertion, refusals, and untranslated echoes. Candidate identities were randomly swapped. Annotators saw neither target/foil assignments nor model identities, experimental conditions, automatic labels, or the other annotator's answers. They supplied evidence spans and uncertainty flags before adjudication through \HumanField{ADJ}. Reviewer qualifications were \HumanField{ANN-QUAL}; original labels and adjudication decisions were retained.
+
+The discovery semantic packet sampled two responses per core model, boundary, method, access state, and content/planning question cell from the 48-scene method subset: 640 candidate items, of which \HumanField{N-D} were completed. The original-character occurrence packet sampled two per model, boundary, three-method condition, and access state: 192 candidates, of which \HumanField{N-O} were completed. The separate confirmation semantic audit covered \HumanField{C-FRAME}, using \HumanField{C-SAMPLING} to obtain \HumanField{N-C} responses. Its response identifiers and sampling weights were recorded independently. The discovery semantic sample does not validate confirmation content use. These audits cover the four-model core, without extrapolating annotation accuracy to the seven additional discovery models.
+
+We compared the fixed scorer with adjudicated human labels, reporting target and foil use separately by confirmation method and access state (Table~\ref{tab:humanaudit}). Confusion counts are unweighted audit counts; precision, recall, and F1 use each audit's inverse inclusion weights. Agreement is Cohen's $\kappa$ before adjudication on paired resolved labels. \HumanField{U-D}, \HumanField{U-C}, and \HumanField{U-O} discovery, confirmation, and occurrence items remained unresolved. They were reported separately rather than treated as negative. Discovery cells and confirmation model--boundary strata were retained in \HumanField{C-STRATA}, with their positive counts, sample sizes, and inclusion weights.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Endpoint & TP & FP & FN & P (\%) & R (\%) & F1 (\%) & $\kappa$\\
+\midrule
+Discovery target & \HumanField{DT-tp} & \HumanField{DT-fp} & \HumanField{DT-fn} & \HumanField{DT-p} & \HumanField{DT-r} & \HumanField{DT-f} & \HumanField{DT-k}\\
+Discovery foil & \HumanField{DF-tp} & \HumanField{DF-fp} & \HumanField{DF-fn} & \HumanField{DF-p} & \HumanField{DF-r} & \HumanField{DF-f} & \HumanField{DF-k}\\
+Full I target & \HumanField{FIT-tp} & \HumanField{FIT-fp} & \HumanField{FIT-fn} & \HumanField{FIT-p} & \HumanField{FIT-r} & \HumanField{FIT-f} & \HumanField{FIT-k}\\
+Full I foil & \HumanField{FIF-tp} & \HumanField{FIF-fp} & \HumanField{FIF-fn} & \HumanField{FIF-p} & \HumanField{FIF-r} & \HumanField{FIF-f} & \HumanField{FIF-k}\\
+Full A target & \HumanField{FAT-tp} & \HumanField{FAT-fp} & \HumanField{FAT-fn} & \HumanField{FAT-p} & \HumanField{FAT-r} & \HumanField{FAT-f} & \HumanField{FAT-k}\\
+Full A foil & \HumanField{FAF-tp} & \HumanField{FAF-fp} & \HumanField{FAF-fn} & \HumanField{FAF-p} & \HumanField{FAF-r} & \HumanField{FAF-f} & \HumanField{FAF-k}\\
+Removal I target & \HumanField{HIT-tp} & \HumanField{HIT-fp} & \HumanField{HIT-fn} & \HumanField{HIT-p} & \HumanField{HIT-r} & \HumanField{HIT-f} & \HumanField{HIT-k}\\
+Removal I foil & \HumanField{HIF-tp} & \HumanField{HIF-fp} & \HumanField{HIF-fn} & \HumanField{HIF-p} & \HumanField{HIF-r} & \HumanField{HIF-f} & \HumanField{HIF-k}\\
+Removal A target & \HumanField{HAT-tp} & \HumanField{HAT-fp} & \HumanField{HAT-fn} & \HumanField{HAT-p} & \HumanField{HAT-r} & \HumanField{HAT-f} & \HumanField{HAT-k}\\
+Removal A foil & \HumanField{HAF-tp} & \HumanField{HAF-fp} & \HumanField{HAF-fn} & \HumanField{HAF-p} & \HumanField{HAF-r} & \HumanField{HAF-f} & \HumanField{HAF-k}\\
+View I target & \HumanField{VIT-tp} & \HumanField{VIT-fp} & \HumanField{VIT-fn} & \HumanField{VIT-p} & \HumanField{VIT-r} & \HumanField{VIT-f} & \HumanField{VIT-k}\\
+View I foil & \HumanField{VIF-tp} & \HumanField{VIF-fp} & \HumanField{VIF-fn} & \HumanField{VIF-p} & \HumanField{VIF-r} & \HumanField{VIF-f} & \HumanField{VIF-k}\\
+View A target & \HumanField{VAT-tp} & \HumanField{VAT-fp} & \HumanField{VAT-fn} & \HumanField{VAT-p} & \HumanField{VAT-r} & \HumanField{VAT-f} & \HumanField{VAT-k}\\
+View A foil & \HumanField{VAF-tp} & \HumanField{VAF-fp} & \HumanField{VAF-fn} & \HumanField{VAF-p} & \HumanField{VAF-r} & \HumanField{VAF-f} & \HumanField{VAF-k}\\
+Full I, correct probe target & \HumanField{FST-tp} & \HumanField{FST-fp} & \HumanField{FST-fn} & \HumanField{FST-p} & \HumanField{FST-r} & \HumanField{FST-f} & \HumanField{FST-k}\\
+Full I, correct probe foil & \HumanField{FSF-tp} & \HumanField{FSF-fp} & \HumanField{FSF-fn} & \HumanField{FSF-p} & \HumanField{FSF-r} & \HumanField{FSF-f} & \HumanField{FSF-k}\\
+Confirm. occurrence & \HumanField{O-tp} & \HumanField{O-fp} & \HumanField{O-fn} & \HumanField{O-p} & \HumanField{O-r} & \HumanField{O-f} & \HumanField{O-k}\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:humanaudit exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Human-study completion fields, not observed results. Counts compare the scorer with adjudicated labels; P/R/F1 are population-weighted within each audit. Agreement is before adjudication. Discovery and confirmation populations are separate. I/A denote inaccessible/accessible. Correct-probe full context is the inaccessible H2 subgroup, overlapping Full I. Unresolved counts and intervals are reported in the text.}
+\label{tab:humanaudit}
+\end{table*}
+
+Table~\ref{tab:humanbias} reports human use rates and automatic-minus-human bias within each condition. Full-context inaccessible responses also have a separate correct-probe subset matching the frozen H2 eligibility rule. This prevents accessible controls or easier removal/view responses from diluting the measurement error associated with the 63.95-point state-conditioned estimate. Within the same weighted population,
+\begin{equation}
+\begin{split}
+ D_{\rm auto}-D_{\rm human}
+ &= [P_{\rm auto}(T)-P_{\rm human}(T)]\\
+ &\quad-[P_{\rm auto}(F)-P_{\rm human}(F)].
+\end{split}
+\label{eq:measurementbias}
+\end{equation}
+Relative foil recall is therefore insufficient to assess the absolute bias in $D$. We retained $P(T\land F)$ and the union $P(T\lor F)=P(T)+P(F)-P(T\land F)$, since near-zero net use can conceal simultaneous disclosures. Priority checks covered target leakage in full-context inaccessible replies and any semantic disclosure in inaccessible view replies. Table intervals used \HumanField{C-CI}; the supported interpretation and scope were \HumanField{C-interpretation} and \HumanField{C-SCOPE}. Human shell retention under full, removal, and view was \HumanField{O-FULL}, \HumanField{O-HARD}, and \HumanField{O-VIEW}\%, with actual-input correctness kept separate. These sensitivities do not replace frozen tests.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Confirmation condition & $n$ & $P(T)$ & $P(F)$ & $P(T\land F)$ & Human $D$ [95\% CI] & Auto$-$human\\
+\midrule
+Full, inaccessible & \HumanField{FI-N} & \HumanField{FI-T} & \HumanField{FI-F} & \HumanField{FI-B} & \HumanField{FI-D} [\HumanField{FI-L}, \HumanField{FI-U}] & \HumanField{FI-BIAS}\\
+Full, accessible & \HumanField{FA-N} & \HumanField{FA-T} & \HumanField{FA-F} & \HumanField{FA-B} & \HumanField{FA-D} [\HumanField{FA-L}, \HumanField{FA-U}] & \HumanField{FA-BIAS}\\
+Removal, inaccessible & \HumanField{HI-N} & \HumanField{HI-T} & \HumanField{HI-F} & \HumanField{HI-B} & \HumanField{HI-D} [\HumanField{HI-L}, \HumanField{HI-U}] & \HumanField{HI-BIAS}\\
+Removal, accessible & \HumanField{HA-N} & \HumanField{HA-T} & \HumanField{HA-F} & \HumanField{HA-B} & \HumanField{HA-D} [\HumanField{HA-L}, \HumanField{HA-U}] & \HumanField{HA-BIAS}\\
+View, inaccessible & \HumanField{VI-N} & \HumanField{VI-T} & \HumanField{VI-F} & \HumanField{VI-B} & \HumanField{VI-D} [\HumanField{VI-L}, \HumanField{VI-U}] & \HumanField{VI-BIAS}\\
+View, accessible & \HumanField{VA-N} & \HumanField{VA-T} & \HumanField{VA-F} & \HumanField{VA-B} & \HumanField{VA-D} [\HumanField{VA-L}, \HumanField{VA-U}] & \HumanField{VA-BIAS}\\
+Full, correct probe & \HumanField{FS-N} & \HumanField{FS-T} & \HumanField{FS-F} & \HumanField{FS-B} & \HumanField{FS-D} [\HumanField{FS-L}, \HumanField{FS-U}] & \HumanField{FS-BIAS}\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:humanbias exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Human measurement-sensitivity completion fields. Use rates are percentages; $D$, intervals, and automatic-minus-human bias are pp. Each row uses its own inclusion weights and model/boundary aggregation. Correct-probe full context matches H2. Semantic disclosure under view is checked with union use as well as net $D$. Fields are unsupplied observations.}
+\label{tab:humanbias}
+\end{table*}
+
+\subsection{Foil and Choice Diagnostics}
+The enriched 192-response semantic packet included all 41 machine foil-positive responses in the four-core discovery method population, AI-flagged foil-positive or uncertain cases, and 64 randomly sampled remaining controls. Selection categories overlap; source overlaps were deduplicated. Human reviewers completed \HumanField{N-F} cases and identified \HumanField{F-ERRORS} foil errors with \HumanField{F-TYPES} as their main mechanisms. This outcome-informed sample characterizes errors without estimating population precision, recall, F1, or prevalence. It remains separate from the representative audits.
+
+The choice audit sampled 128 responses with both counterfactual versions in each sampled model--boundary--method--access stratum. Annotators decoded the selected option or labeled the response uncommitted or unresolved. They completed \HumanField{N-Q} cases; scorer agreement was \mbox{\HumanField{Q-AGREE}}\%, with \HumanField{U-Q} unresolved cases. Any human-derived choice contrast was reported as \HumanField{Q-EFFECT}, separately from the fixed automatic decoder and the frozen option-position sensitivity.
+
+\subsection{Multilingual Stimulus Review}
+The inventory contained 24 deduplicated sentences forming 12 A/B pairs: eight sentences and four pairs per language, linked to all source scenes. Two reviewers per language independently assessed sentence meaning, naturalness, lexical clues, and pair matchedness. Their fluent/native qualifications were \HumanField{LANG-QUAL}. Naturalness and matchedness used five-point scales; meaning and clue judgments were binary with an unresolved option. The paired forms repeat each pair from both sentence orientations; matchedness was adjudicated once per distinct pair, resolving duplicate ratings through \HumanField{PAIR-RESOLVE}. Sentence outcomes use eight units per language and matchedness uses four (Table~\ref{tab:humanlanguage}). Disagreements were resolved through \HumanField{LANG-ADJ}. The review identified \HumanField{LANG-ISSUES}; stimulus exclusions were separate sensitivities that left the frozen campaign intact.
+
+\begin{table*}[t]
+\centering\small
+\begin{lrbox}{\OCtable}\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Language & Meaning (/8) & Naturalness & A/B match & Clues (/8) & $\kappa$\\
+\midrule
+Chinese & \HumanField{ZH-ok} & \HumanField{ZH-n} & \HumanField{ZH-m} & \HumanField{ZH-c} & \HumanField{ZH-k}\\
+Japanese & \HumanField{JA-ok} & \HumanField{JA-n} & \HumanField{JA-m} & \HumanField{JA-c} & \HumanField{JA-k}\\
+Spanish & \HumanField{ES-ok} & \HumanField{ES-n} & \HumanField{ES-m} & \HumanField{ES-c} & \HumanField{ES-k}\\
+\bottomrule
+\end{tabular}\end{lrbox}
+\ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:humanlanguage exceeds its column}{Revise the table layout.}\fi
+\usebox{\OCtable}
+\caption{Completion fields for two fluent/native reviewers per language. Meaning and clues use eight individual sentences per language; naturalness averages eight sentence ratings, and A/B matchedness averages four distinct pair ratings. $\kappa$ is sentence-meaning agreement. The inventory contains 24 sentences and 12 pairs; bracketed outcomes are unsupplied.}
+\label{tab:humanlanguage}
+\end{table*}
+
+\subsection{Non-Speaker Word-Form Guessability}
+A separate participant group completed the 96-question, eight-option word-meaning questionnaire. It covered all 48 active v2 canary--language pairs with their written or romanized forms. Participants received no translations or answer key and were instructed not to consult external resources. The existing scoring rule excluded non-English-dominant participants, answers for languages a participant reported knowing, and Chinese/Japanese answers from participants able to read Chinese characters. Of \HumanField{G-RECRUIT} recruited participants, \HumanField{N-G} contributed eligible answers; participant- and language-specific exclusions were \HumanField{G-EXCLUDE}. Chinese, Japanese, and Spanish active-item accuracy was \HumanField{G-ZH}, \HumanField{G-JA}, and \HumanField{G-ES}\%, respectively, relative to the 12.5\% uniform-guessing reference. Participant/item uncertainty was summarized by \HumanField{G-CI}. Items with conspicuous word-form cues were \HumanField{G-ITEMS}; the associated sensitivity gave \HumanField{G-EFFECT}. Word guessing measures recoverability without language competence and is distinct from fluent stimulus review.
+
+\subsection{AI Screening and Earlier Materials}
+Two AI annotators independently evaluated the 640 discovery semantic items and 192 confirmation occurrence items. Their results are screening diagnostics, excluded from human reference labels and all human fields above. Target-use F1 was 98.36/98.55\%, whereas foil recall was 11.11/16.67\% and F1 was 20.00/28.57\% for A/B. Pooled weighted precision/recall/F1 was 97.06/97.35/97.20\% and 97.99/97.71/97.85\%, excluding 72 and 16 uncertain semantic rows, respectively. The high pooled F1 conceals weaker rare-foil detection, and different exclusions prevent treating these as one shared reference set. The agents disagreed on primary semantic labels for 17 items; uncertainty added cases to a 99-item review queue.
+
+Two independent AI proxy reviews each covered all 24 stimuli, disagreeing on meaning labels for 3 and flagging 11 as uncertain in either review. Their labels and notes remain separate from human stimulus judgments and empirical guessability responses.
+
+The earlier two-boundary project generated 760,508 records and prepared separate 360-response, 220-response, and 3,211-response review packets. Its automatic effects and provisional AI reviews remain separate from the four-boundary campaign and the human-study reporting template.
+
+\section{Frozen Inference and Failure Accounting}
+\label{app:accounting}
+The completed campaign contains all 220,088 planned generation calls and 206,264 scored endpoints including calibration. Intermediate self-filter calls account for their difference. The core snapshot contains 151,864 calls and 142,648 endpoints. The seven discovery extensions add 68,224 calls and 63,616 endpoints, including one retained Qwen3.8-27B truncation and 11 Seed truncations. All 6,336 Mistral responses and all confirmation endpoints are complete. Discovery truncations are retained under the original zero-use rule; no result-dependent regeneration was performed.
+
+For a contrast, bootstrap draws resample scene skeletons and retain all models, versions, and conditions attached to each selected skeleton. The centered one-sided test compares the observed contrast with its fixed null; two-sided percentile intervals are reported separately. The noninferiority null for accessible target use is ${-}.05$. Boundary and method conjunctions take the maximum component $p$ before Holm adjustment across the three families. The minimum unadjusted Monte Carlo $p$ with 2,000 draws is $1/2001$; the reported adjusted value of approximately .0015 reflects this resolution. It is not an exact population probability.
+
+The primary state-conditioned analysis includes an endpoint when its independent state probe is correct, recomputes model-specific eligible ratios on every bootstrap draw, and averages across nonempty models. All four models are nonempty in confirmation; no draw is wholly undefined. The .85 capability-conditioned secondary retains all three Gemma language units and the Chinese/Spanish units of the other core models. Its 96-skeleton bootstrap resamples eligible-response ratios with equal model weights and fixed observed eligibility. No new confirmatory $p$-value is assigned. Applying this additional comprehension eligibility to the pooled state-correct endpoint yields 65.93 [64.82, 67.14], with 5,684 eligible responses; the frozen value remains 63.95 [62.73, 65.19]. The gate's sampling uncertainty and broader language competence are not covered by these conditional intervals.
+
+The three ineligible Japanese units are GLM at 62.5\% both-canary translation use, Nemotron at 75.0\%, and Qwen9 at 62.5\% (Table~\ref{tab:translate}). The remaining nine model--language units contribute 1,152 comprehension endpoints. Their net-use estimate is 50.98 [48.36, 53.67], with equal model weights; the unconditional primary remains 47.20 [44.86, 49.61]. The diagnostic measures canary recovery rather than general fluency. For the other boundaries, state-correct net use ranges from 67.58 to 72.19 points (Table~\ref{tab:stateboundary}).
+
+The post-hoc lexical bootstrap averages values within the 12 pairings (eight scene specifications each), then resamples blocks using 2,000 draws and the original seed. Confirmation point estimates and frozen tests are unchanged. The full-minus-view leakage-reduction interval widens from [62.81, 65.27] to [60.94, 67.09]; accessible view-minus-full use from [$-0.18$, 1.19] to [$-0.52$, 1.58]; the 67.75-point retention improvement has interval [62.76, 72.40]. These descriptive intervals assess sensitivity to the resampling unit, excluding uncertainty over unseen vocabulary.
+\end{document}

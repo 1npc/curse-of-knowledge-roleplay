@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="654" height="408" viewBox="0 0 218 136">
+<rect width="218" height="136" fill="white"/>
+<g font-family="Times New Roman, Times, serif">
+<circle cx="3.0000" cy="8.0000" r="1.8" fill="#B04A00" stroke="#B04A00" stroke-width=".7"/>
+<text x="9.0000" y="10.8800" font-size="9" font-weight="normal" fill="#222222" text-anchor="start">Inaccessible</text>
+<rect x="108.4000" y="6.4000" width="3.2000" height="3.2000" fill="#0072B2"/>
+<text x="116.0000" y="10.8800" font-size="9" font-weight="normal" fill="#222222" text-anchor="start">Accessible</text>
+<line x1="8.0000" y1="22.0000" x2="8.0000" y2="110.0000" stroke="#DDE1E5" stroke-width="0.45"/>
+<text x="8.0000" y="121.5600" font-size="8" font-weight="normal" fill="#646B73" text-anchor="middle">0</text>
+<line x1="58.0000" y1="22.0000" x2="58.0000" y2="110.0000" stroke="#DDE1E5" stroke-width="0.45"/>
+<text x="58.0000" y="121.5600" font-size="8" font-weight="normal" fill="#646B73" text-anchor="middle">25</text>
+<line x1="108.0000" y1="22.0000" x2="108.0000" y2="110.0000" stroke="#DDE1E5" stroke-width="0.45"/>
+<text x="108.0000" y="121.5600" font-size="8" font-weight="normal" fill="#646B73" text-anchor="middle">50</text>
+<line x1="158.0000" y1="22.0000" x2="158.0000" y2="110.0000" stroke="#DDE1E5" stroke-width="0.45"/>
+<text x="158.0000" y="121.5600" font-size="8" font-weight="normal" fill="#646B73" text-anchor="middle">75</text>
+<line x1="208.0000" y1="22.0000" x2="208.0000" y2="110.0000" stroke="#DDE1E5" stroke-width="0.45"/>
+<text x="208.0000" y="121.5600" font-size="8" font-weight="normal" fill="#646B73" text-anchor="middle">100</text>
+<text x="0.0000" y="28.8800" font-size="9" font-weight="bold" fill="#222222" text-anchor="start">Hear</text>
+<line x1="152.5312" y1="39.0000" x2="188.7292" y2="39.0000" stroke="#646B73" stroke-width="0.65"/>
+<line x1="149.7969" y1="39.0000" x2="155.1354" y2="39.0000" stroke="#B04A00" stroke-width="0.85"/>
+<line x1="149.7969" y1="37.0000" x2="149.7969" y2="41.0000" stroke="#B04A00" stroke-width="0.65"/>
+<line x1="155.1354" y1="37.0000" x2="155.1354" y2="41.0000" stroke="#B04A00" stroke-width="0.65"/>
+<circle cx="152.5312" cy="39.0000" r="1.8" fill="#B04A00" stroke="#B04A00" stroke-width=".7"/>
+<text x="176.0000" y="28.7200" font-size="8.5" font-weight="normal" fill="#B04A00" text-anchor="end">72.27</text>
+<line x1="185.0801" y1="39.0000" x2="192.6354" y2="39.0000" stroke="#0072B2" stroke-width="0.85"/>
+<line x1="185.0801" y1="37.0000" x2="185.0801" y2="41.0000" stroke="#0072B2" stroke-width="0.65"/>
+<line x1="192.6354" y1="37.0000" x2="192.6354" y2="41.0000" stroke="#0072B2" stroke-width="0.65"/>
+<rect x="186.9292" y="37.2000" width="3.6000" height="3.6000" fill="#0072B2"/>
+<text x="218.0000" y="28.7200" font-size="8.5" font-weight="normal" fill="#0072B2" text-anchor="end">90.36</text>
+<text x="0.0000" y="50.8800" font-size="9" font-weight="bold" fill="#222222" text-anchor="start">Understand</text>
+<line x1="102.4010" y1="61.0000" x2="190.6823" y2="61.0000" stroke="#646B73" stroke-width="0.65"/>
+<line x1="97.7135" y1="61.0000" x2="107.2188" y2="61.0000" stroke="#B04A00" stroke-width="0.85"/>
+<line x1="97.7135" y1="59.0000" x2="97.7135" y2="63.0000" stroke="#B04A00" stroke-width="0.65"/>
+<line x1="107.2188" y1="59.0000" x2="107.2188" y2="63.0000" stroke="#B04A00" stroke-width="0.65"/>
+<circle cx="102.4010" cy="61.0000" r="1.8" fill="#B04A00" stroke="#B04A00" stroke-width=".7"/>
+<text x="176.0000" y="50.7200" font-size="8.5" font-weight="normal" fill="#B04A00" text-anchor="end">47.20</text>
+<line x1="186.9030" y1="61.0000" x2="194.1979" y2="61.0000" stroke="#0072B2" stroke-width="0.85"/>
+<line x1="186.9030" y1="59.0000" x2="186.9030" y2="63.0000" stroke="#0072B2" stroke-width="0.65"/>
+<line x1="194.1979" y1="59.0000" x2="194.1979" y2="63.0000" stroke="#0072B2" stroke-width="0.65"/>
+<rect x="188.8823" y="59.2000" width="3.6000" height="3.6000" fill="#0072B2"/>
+<text x="218.0000" y="50.7200" font-size="8.5" font-weight="normal" fill="#0072B2" text-anchor="end">91.34</text>
+<text x="0.0000" y="72.8800" font-size="9" font-weight="bold" fill="#222222" text-anchor="start">See</text>
+<line x1="146.5417" y1="83.0000" x2="196.1510" y2="83.0000" stroke="#646B73" stroke-width="0.65"/>
+<line x1="142.5020" y1="83.0000" x2="150.7083" y2="83.0000" stroke="#B04A00" stroke-width="0.85"/>
+<line x1="142.5020" y1="81.0000" x2="142.5020" y2="85.0000" stroke="#B04A00" stroke-width="0.65"/>
+<line x1="150.7083" y1="81.0000" x2="150.7083" y2="85.0000" stroke="#B04A00" stroke-width="0.65"/>
+<circle cx="146.5417" cy="83.0000" r="1.8" fill="#B04A00" stroke="#B04A00" stroke-width=".7"/>
+<text x="176.0000" y="72.7200" font-size="8.5" font-weight="normal" fill="#B04A00" text-anchor="end">69.27</text>
+<line x1="193.9375" y1="83.0000" x2="198.2344" y2="83.0000" stroke="#0072B2" stroke-width="0.85"/>
+<line x1="193.9375" y1="81.0000" x2="193.9375" y2="85.0000" stroke="#0072B2" stroke-width="0.65"/>
+<line x1="198.2344" y1="81.0000" x2="198.2344" y2="85.0000" stroke="#0072B2" stroke-width="0.65"/>
+<rect x="194.3510" y="81.2000" width="3.6000" height="3.6000" fill="#0072B2"/>
+<text x="218.0000" y="72.7200" font-size="8.5" font-weight="normal" fill="#0072B2" text-anchor="end">94.08</text>
+<text x="0.0000" y="94.8800" font-size="9" font-weight="bold" fill="#222222" text-anchor="start">Receive</text>
+<line x1="143.1562" y1="105.0000" x2="198.7552" y2="105.0000" stroke="#646B73" stroke-width="0.65"/>
+<line x1="139.6406" y1="105.0000" x2="146.6719" y2="105.0000" stroke="#B04A00" stroke-width="0.85"/>
+<line x1="139.6406" y1="103.0000" x2="139.6406" y2="107.0000" stroke="#B04A00" stroke-width="0.65"/>
+<line x1="146.6719" y1="103.0000" x2="146.6719" y2="107.0000" stroke="#B04A00" stroke-width="0.65"/>
+<circle cx="143.1562" cy="105.0000" r="1.8" fill="#B04A00" stroke="#B04A00" stroke-width=".7"/>
+<text x="176.0000" y="94.7200" font-size="8.5" font-weight="normal" fill="#B04A00" text-anchor="end">67.58</text>
+<line x1="195.8906" y1="105.0000" x2="201.3594" y2="105.0000" stroke="#0072B2" stroke-width="0.85"/>
+<line x1="195.8906" y1="103.0000" x2="195.8906" y2="107.0000" stroke="#0072B2" stroke-width="0.65"/>
+<line x1="201.3594" y1="103.0000" x2="201.3594" y2="107.0000" stroke="#0072B2" stroke-width="0.65"/>
+<rect x="196.9552" y="103.2000" width="3.6000" height="3.6000" fill="#0072B2"/>
+<text x="218.0000" y="94.7200" font-size="8.5" font-weight="normal" fill="#0072B2" text-anchor="end">95.38</text>
+<text x="109.0000" y="132.8800" font-size="9" font-weight="normal" fill="#222222" text-anchor="middle">Target-minus-foil use (pp)</text>
+</g></svg>

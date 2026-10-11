@@ -1,0 +1,3639 @@
+{
+  "source_sha256": "2bbcaa4852f40b4468c298c11c50d3b671e8f150480c8c757c814815990daf59",
+  "scope": "Verified nine-model snapshot; additional analyses are post-hoc descriptive diagnostics",
+  "human_labels": 0,
+  "baseline_by_model": [
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.09114583333333333,
+      "inaccessible_target": 0.09114583333333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8151041666666666,
+      "inaccessible_D_ci95": [
+        0.057291666666666664,
+        0.1250651041666663
+      ],
+      "accessible_target_ci95": [
+        0.7578125,
+        0.8723958333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.11458333333333333,
+      "inaccessible_target": 0.11458333333333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.890625,
+      "inaccessible_D_ci95": [
+        0.08333333333333333,
+        0.1484375
+      ],
+      "accessible_target_ci95": [
+        0.8489583333333334,
+        0.9322916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.2838541666666667,
+      "inaccessible_target": 0.2838541666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.7604166666666666,
+      "inaccessible_D_ci95": [
+        0.22916666666666666,
+        0.34375
+      ],
+      "accessible_target_ci95": [
+        0.6953125,
+        0.8229166666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.11458333333333333,
+      "inaccessible_target": 0.11458333333333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.90625,
+      "inaccessible_D_ci95": [
+        0.078125,
+        0.15110677083333296
+      ],
+      "accessible_target_ci95": [
+        0.859375,
+        0.9427083333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.15104166666666666,
+      "inaccessible_target": 0.15104166666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8430989583333334,
+      "inaccessible_D_ci95": [
+        0.12825520833333334,
+        0.17513020833333334
+      ],
+      "accessible_target_ci95": [
+        0.8020833333333334,
+        0.8841308593749999
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8828125,
+      "inaccessible_target": 0.8828125,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9427083333333334,
+      "inaccessible_D_ci95": [
+        0.84375,
+        0.921875
+      ],
+      "accessible_target_ci95": [
+        0.9114583333333334,
+        0.9661458333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.4661458333333333,
+      "inaccessible_target": 0.4661458333333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9427083333333334,
+      "inaccessible_D_ci95": [
+        0.4036458333333333,
+        0.53125
+      ],
+      "accessible_target_ci95": [
+        0.9140625,
+        0.96875
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.7213541666666666,
+      "inaccessible_target": 0.7213541666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9348958333333334,
+      "inaccessible_D_ci95": [
+        0.6692057291666667,
+        0.7734375
+      ],
+      "accessible_target_ci95": [
+        0.9036458333333334,
+        0.9609375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.7630208333333334,
+      "inaccessible_target": 0.7630208333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9479166666666666,
+      "inaccessible_D_ci95": [
+        0.7083333333333334,
+        0.8151041666666666
+      ],
+      "accessible_target_ci95": [
+        0.9114583333333334,
+        0.9765625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.7083333333333334,
+      "inaccessible_target": 0.7083333333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9420572916666666,
+      "inaccessible_D_ci95": [
+        0.671875,
+        0.7461100260416665
+      ],
+      "accessible_target_ci95": [
+        0.919921875,
+        0.9603027343749999
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.044270833333333336,
+      "inaccessible_target": 0.044270833333333336,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8854166666666666,
+      "inaccessible_D_ci95": [
+        0.0234375,
+        0.0703125
+      ],
+      "accessible_target_ci95": [
+        0.8488932291666667,
+        0.9166666666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.005208333333333333,
+      "inaccessible_target": 0.005208333333333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.984375,
+      "inaccessible_D_ci95": [
+        0.0,
+        0.013020833333333334
+      ],
+      "accessible_target_ci95": [
+        0.9635416666666666,
+        1.0
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.033854166666666664,
+      "inaccessible_target": 0.033854166666666664,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.6692708333333334,
+      "inaccessible_D_ci95": [
+        0.013020833333333334,
+        0.0546875
+      ],
+      "accessible_target_ci95": [
+        0.59375,
+        0.7447916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.03125,
+      "inaccessible_target": 0.03125,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9661458333333334,
+      "inaccessible_D_ci95": [
+        0.013020833333333334,
+        0.052083333333333336
+      ],
+      "accessible_target_ci95": [
+        0.9427083333333334,
+        0.9869791666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.028645833333333332,
+      "inaccessible_target": 0.028645833333333332,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8763020833333334,
+      "inaccessible_D_ci95": [
+        0.018229166666666668,
+        0.039713541666666664
+      ],
+      "accessible_target_ci95": [
+        0.8470052083333334,
+        0.90234375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8333333333333334,
+      "inaccessible_target": 0.8333333333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9010416666666666,
+      "inaccessible_D_ci95": [
+        0.78125,
+        0.8776041666666666
+      ],
+      "accessible_target_ci95": [
+        0.8619791666666666,
+        0.9348958333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.4010416666666667,
+      "inaccessible_target": 0.4010416666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9348958333333334,
+      "inaccessible_D_ci95": [
+        0.34889322916666665,
+        0.453125
+      ],
+      "accessible_target_ci95": [
+        0.8984375,
+        0.9661458333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.052083333333333336,
+      "inaccessible_target": 0.052083333333333336,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.6666666666666666,
+      "inaccessible_D_ci95": [
+        0.03125,
+        0.07291666666666667
+      ],
+      "accessible_target_ci95": [
+        0.5989583333333334,
+        0.7265625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.7109375,
+      "inaccessible_target": 0.7109375,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9609375,
+      "inaccessible_D_ci95": [
+        0.6510416666666666,
+        0.7682942708333329
+      ],
+      "accessible_target_ci95": [
+        0.9296875,
+        0.984375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.4993489583333333,
+      "inaccessible_target": 0.4993489583333333,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8658854166666666,
+      "inaccessible_D_ci95": [
+        0.4641927083333333,
+        0.533203125
+      ],
+      "accessible_target_ci95": [
+        0.8307291666666666,
+        0.8971354166666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8671875,
+      "inaccessible_target": 0.8671875,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8515625,
+      "inaccessible_D_ci95": [
+        0.8229166666666666,
+        0.90625
+      ],
+      "accessible_target_ci95": [
+        0.8151041666666666,
+        0.8880208333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.2682291666666667,
+      "inaccessible_target": 0.2682291666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8229166666666666,
+      "inaccessible_D_ci95": [
+        0.2265625,
+        0.3098958333333333
+      ],
+      "accessible_target_ci95": [
+        0.7760416666666666,
+        0.8646484374999996
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.4869791666666667,
+      "inaccessible_target": 0.4869791666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.71875,
+      "inaccessible_D_ci95": [
+        0.4296875,
+        0.5442708333333334
+      ],
+      "accessible_target_ci95": [
+        0.6666666666666666,
+        0.7682291666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.6640625,
+      "inaccessible_target": 0.6640625,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9375,
+      "inaccessible_D_ci95": [
+        0.6041666666666666,
+        0.71875
+      ],
+      "accessible_target_ci95": [
+        0.9088541666666666,
+        0.9609375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.5716145833333334,
+      "inaccessible_target": 0.5716145833333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8326822916666666,
+      "inaccessible_D_ci95": [
+        0.541015625,
+        0.599609375
+      ],
+      "accessible_target_ci95": [
+        0.8079427083333334,
+        0.8567708333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.890625,
+      "inaccessible_target": 0.890625,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9557291666666666,
+      "inaccessible_D_ci95": [
+        0.8567708333333334,
+        0.9244791666666666
+      ],
+      "accessible_target_ci95": [
+        0.9348307291666667,
+        0.9765625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.5078125,
+      "inaccessible_target": 0.5078125,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9661458333333334,
+      "inaccessible_D_ci95": [
+        0.4713541666666667,
+        0.5494791666666666
+      ],
+      "accessible_target_ci95": [
+        0.9427083333333334,
+        0.984375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.6953125,
+      "inaccessible_target": 0.6953125,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.953125,
+      "inaccessible_D_ci95": [
+        0.6484375,
+        0.7396484374999996
+      ],
+      "accessible_target_ci95": [
+        0.9296875,
+        0.9739583333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8151041666666666,
+      "inaccessible_target": 0.8151041666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.984375,
+      "inaccessible_D_ci95": [
+        0.7682291666666666,
+        0.8619791666666666
+      ],
+      "accessible_target_ci95": [
+        0.9713541666666666,
+        0.9947916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.7272135416666666,
+      "inaccessible_target": 0.7272135416666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.96484375,
+      "inaccessible_D_ci95": [
+        0.7005208333333334,
+        0.7539225260416665
+      ],
+      "accessible_target_ci95": [
+        0.951171875,
+        0.9765625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "phi4",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.9739583333333334,
+      "inaccessible_target": 0.9739583333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9817708333333334,
+      "inaccessible_D_ci95": [
+        0.9557291666666666,
+        0.9895833333333334
+      ],
+      "accessible_target_ci95": [
+        0.9661458333333334,
+        0.9947916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "phi4",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.3229166666666667,
+      "inaccessible_target": 0.3229166666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9817708333333334,
+      "inaccessible_D_ci95": [
+        0.2604166666666667,
+        0.3880208333333333
+      ],
+      "accessible_target_ci95": [
+        0.96875,
+        0.9947916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "phi4",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8776041666666666,
+      "inaccessible_target": 0.8776041666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9713541666666666,
+      "inaccessible_D_ci95": [
+        0.8359375,
+        0.9140625
+      ],
+      "accessible_target_ci95": [
+        0.953125,
+        0.984375
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "phi4",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.9895833333333334,
+      "inaccessible_target": 0.9895833333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9895833333333334,
+      "inaccessible_D_ci95": [
+        0.9791666666666666,
+        0.9973958333333334
+      ],
+      "accessible_target_ci95": [
+        0.9791666666666666,
+        0.9973958333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "phi4",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.791015625,
+      "inaccessible_target": 0.791015625,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9811197916666666,
+      "inaccessible_D_ci95": [
+        0.7701822916666666,
+        0.8118489583333334
+      ],
+      "accessible_target_ci95": [
+        0.9720052083333334,
+        0.9889322916666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.9348958333333334,
+      "inaccessible_target": 0.9348958333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9557291666666666,
+      "inaccessible_D_ci95": [
+        0.90625,
+        0.9583984374999996
+      ],
+      "accessible_target_ci95": [
+        0.9375,
+        0.9739583333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.4635416666666667,
+      "inaccessible_target": 0.4635416666666667,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8984375,
+      "inaccessible_D_ci95": [
+        0.4244791666666667,
+        0.5
+      ],
+      "accessible_target_ci95": [
+        0.8645182291666667,
+        0.9322916666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.7265625,
+      "inaccessible_target": 0.7265625,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9270833333333334,
+      "inaccessible_D_ci95": [
+        0.6744791666666666,
+        0.7761067708333329
+      ],
+      "accessible_target_ci95": [
+        0.8984375,
+        0.9557291666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.8776041666666666,
+      "inaccessible_target": 0.8776041666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9453125,
+      "inaccessible_D_ci95": [
+        0.8359375,
+        0.9166666666666666
+      ],
+      "accessible_target_ci95": [
+        0.921875,
+        0.9661458333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.7506510416666666,
+      "inaccessible_target": 0.7506510416666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.931640625,
+      "inaccessible_D_ci95": [
+        0.7233072916666666,
+        0.7779947916666666
+      ],
+      "accessible_target_ci95": [
+        0.914697265625,
+        0.9479166666666666
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.6197916666666666,
+      "inaccessible_target": 0.6197916666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9557291666666666,
+      "inaccessible_D_ci95": [
+        0.5755208333333334,
+        0.6641276041666663
+      ],
+      "accessible_target_ci95": [
+        0.9322916666666666,
+        0.9765625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.59375,
+      "inaccessible_target": 0.59375,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9869791666666666,
+      "inaccessible_D_ci95": [
+        0.5442057291666667,
+        0.640625
+      ],
+      "accessible_target_ci95": [
+        0.9765625,
+        0.9973958333333334
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.5286458333333334,
+      "inaccessible_target": 0.5286458333333334,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.8828125,
+      "inaccessible_D_ci95": [
+        0.4739583333333333,
+        0.5807291666666666
+      ],
+      "accessible_target_ci95": [
+        0.8515625,
+        0.9140625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "endpoints_per_access": 384,
+      "inaccessible_D": 0.9557291666666666,
+      "inaccessible_target": 0.9557291666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.9791666666666666,
+      "inaccessible_D_ci95": [
+        0.9296875,
+        0.9791666666666666
+      ],
+      "accessible_target_ci95": [
+        0.9635416666666666,
+        0.9921875
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "All",
+      "endpoints_per_access": 1536,
+      "inaccessible_D": 0.6744791666666666,
+      "inaccessible_target": 0.6744791666666666,
+      "inaccessible_foil": 0,
+      "accessible_target": 0.951171875,
+      "inaccessible_D_ci95": [
+        0.6477864583333334,
+        0.701171875
+      ],
+      "accessible_target_ci95": [
+        0.9375,
+        0.962890625
+      ],
+      "inaccessible_valid": 1,
+      "accessible_valid": 1
+    }
+  ],
+  "method_cost_by_model": [
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": 0.04166666666666663
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": 0.08333333333333337
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": -0.02604166666666663
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": -0.02604166666666663
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": 0.005208333333333333,
+      "accessible_target_delta": -0.01041666666666674
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.005208333333333333,
+      "accessible_target_delta": -0.16666666666666674
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.005208333333333333,
+      "accessible_target_delta": -0.0625
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.005208333333333333,
+      "accessible_target_delta": -0.0625
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.052083333333333336,
+      "accessible_target_delta": 0.38020833333333337
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.052083333333333336,
+      "accessible_target_delta": 0.265625
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.052083333333333336,
+      "accessible_target_delta": 0.00520833333333337
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.052083333333333336,
+      "accessible_target_delta": 0.00520833333333337
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": 0.046875
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": -0.20833333333333326
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": -0.03645833333333326
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.03125,
+      "accessible_target_delta": -0.03645833333333326
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.28645833333333337,
+      "accessible_target_delta": 0.04166666666666663
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.00520833333333337,
+      "accessible_target_delta": 0.06770833333333326
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.8802083333333334,
+      "accessible_target_delta": 0.02083333333333326
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.8802083333333334,
+      "accessible_target_delta": 0.015625
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": -0.27083333333333337,
+      "accessible_target_delta": 0.09895833333333337
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.19791666666666669,
+      "accessible_target_delta": -0.05729166666666663
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.265625,
+      "accessible_target_delta": 0.06770833333333337
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.265625,
+      "accessible_target_delta": 0.06770833333333337
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.09375,
+      "accessible_target_delta": 0.24479166666666663
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.015625,
+      "accessible_target_delta": 0.16666666666666663
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.4635416666666667,
+      "accessible_target_delta": 0.13020833333333337
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.4635416666666667,
+      "accessible_target_delta": 0.125
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.2760416666666667,
+      "accessible_target_delta": 0.02083333333333337
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.53125,
+      "accessible_target_delta": -0.4427083333333333
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.6770833333333334,
+      "accessible_target_delta": 0.0
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.6770833333333334,
+      "accessible_target_delta": 0.0
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.27604166666666663,
+      "accessible_target_delta": 0.00520833333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.19270833333333326,
+      "accessible_target_delta": -0.005208333333333259
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.9479166666666666,
+      "accessible_target_delta": -0.005208333333333259
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.9479166666666666,
+      "accessible_target_delta": -0.005208333333333259
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": 0.13020833333333337,
+      "accessible_target_delta": 0.03125
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.4166666666666667,
+      "accessible_target_delta": -0.6145833333333333
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.4479166666666667,
+      "accessible_target_delta": -0.11458333333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.453125,
+      "accessible_target_delta": -0.11458333333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.32291666666666663,
+      "accessible_target_delta": 0.04166666666666663
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.5260416666666666,
+      "accessible_target_delta": -0.03645833333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.7135416666666666,
+      "accessible_target_delta": -0.00520833333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.7135416666666666,
+      "accessible_target_delta": -0.00520833333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.4010416666666667,
+      "accessible_target_delta": 0.015625
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.7447916666666666,
+      "accessible_target_delta": -0.359375
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.875,
+      "accessible_target_delta": -0.00520833333333337
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.875,
+      "accessible_target_delta": -0.00520833333333337
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.28125,
+      "accessible_target_delta": 0.03645833333333337
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": -0.03125,
+      "accessible_target_delta": 0.05729166666666663
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.8697916666666666,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.8697916666666666,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": -0.13020833333333337,
+      "accessible_target_delta": 0.04166666666666674
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.4479166666666667,
+      "accessible_target_delta": 0.015625
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.46875,
+      "accessible_target_delta": 0.01041666666666674
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.46875,
+      "accessible_target_delta": 0.01041666666666674
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.140625,
+      "accessible_target_delta": 0.06770833333333326
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.02083333333333337,
+      "accessible_target_delta": 0.05208333333333326
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.71875,
+      "accessible_target_delta": -0.03645833333333337
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.7239583333333334,
+      "accessible_target_delta": -0.03645833333333337
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.3020833333333333,
+      "accessible_target_delta": 0.06770833333333337
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.75,
+      "accessible_target_delta": 0.03125
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.75,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.75,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.031249999999999993,
+      "accessible_target_delta": 0.05729166666666674
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": -0.03125,
+      "accessible_target_delta": 0.046875
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.08333333333333333,
+      "accessible_target_delta": -0.02083333333333326
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.08333333333333333,
+      "accessible_target_delta": -0.02083333333333326
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": -0.005208333333333329,
+      "accessible_target_delta": 0.08333333333333337
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.10416666666666667,
+      "accessible_target_delta": -0.859375
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.10416666666666667,
+      "accessible_target_delta": -0.109375
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.10416666666666667,
+      "accessible_target_delta": -0.109375
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.12500000000000003,
+      "accessible_target_delta": 0.23958333333333326
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.2604166666666667,
+      "accessible_target_delta": -0.27083333333333337
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.2604166666666667,
+      "accessible_target_delta": -0.03125
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.2604166666666667,
+      "accessible_target_delta": -0.03125
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.08333333333333334,
+      "accessible_target_delta": -0.005208333333333259
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.11458333333333333,
+      "accessible_target_delta": -0.8958333333333333
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.125,
+      "accessible_target_delta": -0.13541666666666663
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.125,
+      "accessible_target_delta": -0.13541666666666663
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "method": "prose",
+      "forbidden_D_reduction": 0.46354166666666663,
+      "accessible_target_delta": 0.04166666666666674
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.40104166666666663,
+      "accessible_target_delta": -0.02083333333333326
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "method": "hard",
+      "forbidden_D_reduction": 0.6145833333333333,
+      "accessible_target_delta": -0.015625
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "method": "view",
+      "forbidden_D_reduction": 0.6145833333333333,
+      "accessible_target_delta": -0.015625
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "method": "prose",
+      "forbidden_D_reduction": 0.19270833333333337,
+      "accessible_target_delta": 0.0
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.5677083333333334,
+      "accessible_target_delta": -0.03125
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "method": "hard",
+      "forbidden_D_reduction": 0.5677083333333334,
+      "accessible_target_delta": -0.015625
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "method": "view",
+      "forbidden_D_reduction": 0.5677083333333334,
+      "accessible_target_delta": -0.015625
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "method": "prose",
+      "forbidden_D_reduction": 0.375,
+      "accessible_target_delta": 0.0625
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.53125,
+      "accessible_target_delta": -0.046875
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "method": "hard",
+      "forbidden_D_reduction": 0.53125,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "method": "view",
+      "forbidden_D_reduction": 0.53125,
+      "accessible_target_delta": 0.01041666666666663
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "method": "prose",
+      "forbidden_D_reduction": 0.4375,
+      "accessible_target_delta": 0.01041666666666674
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "method": "self_filter",
+      "forbidden_D_reduction": 0.9479166666666666,
+      "accessible_target_delta": -0.59375
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "method": "hard",
+      "forbidden_D_reduction": 0.953125,
+      "accessible_target_delta": -0.03125
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "method": "view",
+      "forbidden_D_reduction": 0.9479166666666666,
+      "accessible_target_delta": -0.03125
+    }
+  ],
+  "representation_diagnostics": [
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.3333333333333333,
+      "ci95": [
+        0.1875,
+        0.4895833333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.010416666666666666,
+      "ci95": [
+        -0.0625,
+        0.07291666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.03125,
+      "ci95": [
+        -0.08333333333333333,
+        0.020833333333333332
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        -0.020833333333333332,
+        0.125
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.3645833333333333,
+      "ci95": [
+        0.2604166666666667,
+        0.46875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.08333333333333333,
+      "ci95": [
+        -0.21875,
+        0.041666666666666664
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.03125,
+      "ci95": [
+        -0.041666666666666664,
+        0.10416666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen38_27b",
+      "models": [
+        "qwen38_27b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.0625,
+      "ci95": [
+        -0.14583333333333334,
+        0.010416666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.03125,
+      "ci95": [
+        -0.010416666666666666,
+        0.07291666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3229166666666667,
+      "ci95": [
+        -0.4583333333333333,
+        -0.17708333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.1875,
+      "ci95": [
+        0.07265625000000002,
+        0.3020833333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.09375,
+      "ci95": [
+        -0.07291666666666667,
+        0.2708333333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.19791666666666666,
+      "ci95": [
+        0.11432291666666668,
+        0.2916666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.20833333333333334,
+      "ci95": [
+        -0.3229166666666667,
+        -0.08333333333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.07291666666666667,
+      "ci95": [
+        -0.010416666666666666,
+        0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "qwen35_9b",
+      "models": [
+        "qwen35_9b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3541666666666667,
+      "ci95": [
+        -0.4791666666666667,
+        -0.22916666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.8229166666666666,
+      "ci95": [
+        0.7291666666666666,
+        0.90625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.041666666666666664,
+      "ci95": [
+        -0.09375,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.010416666666666666,
+      "ci95": [
+        -0.020833333333333332,
+        0.041666666666666664
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.46875,
+      "ci95": [
+        0.3229166666666667,
+        0.6145833333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.041666666666666664,
+      "ci95": [
+        -0.10416666666666667,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.19791666666666666,
+      "ci95": [
+        0.0625,
+        0.3541666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_31b",
+      "models": [
+        "gemma4_31b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.03125,
+      "ci95": [
+        -0.020833333333333332,
+        0.08333333333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.84375,
+      "ci95": [
+        -0.9169270833333333,
+        -0.75
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.08333333333333333,
+      "ci95": [
+        -0.010416666666666666,
+        0.17708333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3020833333333333,
+      "ci95": [
+        -0.40625,
+        -0.19791666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.5625,
+      "ci95": [
+        0.4270833333333333,
+        0.6875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.041666666666666664,
+      "ci95": [
+        -0.09375,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.2604166666666667,
+      "ci95": [
+        -0.375,
+        -0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gemma4_12b",
+      "models": [
+        "gemma4_12b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.6979166666666666,
+      "ci95": [
+        -0.8125,
+        -0.5729166666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.0625,
+      "ci95": [
+        -0.020833333333333332,
+        0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.25,
+      "ci95": [
+        -0.3958333333333333,
+        -0.10416666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.4270833333333333,
+      "ci95": [
+        0.3020833333333333,
+        0.5520833333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.25,
+      "ci95": [
+        0.10416666666666667,
+        0.3958333333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.25,
+      "ci95": [
+        0.16666666666666666,
+        0.34375
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.020833333333333332,
+      "ci95": [
+        -0.16666666666666666,
+        0.13541666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        -0.052083333333333336,
+        0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "glm47_flash",
+      "models": [
+        "glm47_flash"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.2916666666666667,
+      "ci95": [
+        -0.4166666666666667,
+        -0.16666666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.020833333333333332,
+      "ci95": [
+        -0.09375,
+        0.041666666666666664
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.46875,
+      "ci95": [
+        -0.5833333333333334,
+        -0.3645833333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.3854166666666667,
+      "ci95": [
+        0.2916666666666667,
+        0.4791666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.11458333333333333,
+        0.09375
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.25,
+      "ci95": [
+        0.16666666666666666,
+        0.34375
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.10416666666666667,
+      "ci95": [
+        0.020833333333333332,
+        0.19791666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.15625,
+      "ci95": [
+        0.07291666666666667,
+        0.25
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "gpt_oss_20b",
+      "models": [
+        "gpt_oss_20b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.34375,
+      "ci95": [
+        -0.5,
+        -0.1875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.0,
+      "ci95": [
+        -0.03125,
+        0.03125
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.5833333333333334,
+      "ci95": [
+        -0.65625,
+        -0.5205729166666682
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.5416666666666666,
+      "ci95": [
+        0.4375,
+        0.6458333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.17708333333333334,
+      "ci95": [
+        -0.3020833333333333,
+        -0.041666666666666664
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.0625,
+      "ci95": [
+        0.010416666666666666,
+        0.125
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.40625,
+      "ci95": [
+        -0.53125,
+        -0.2916666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "phi4",
+      "models": [
+        "phi4"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.375,
+      "ci95": [
+        -0.4583333333333333,
+        -0.28125
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.041666666666666664,
+      "ci95": [
+        0.0,
+        0.09375
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.2604166666666667,
+      "ci95": [
+        -0.34375,
+        -0.1768229166666681
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.3958333333333333,
+      "ci95": [
+        0.3125,
+        0.46875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.10416666666666667,
+      "ci95": [
+        -0.17708333333333334,
+        -0.03125
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.22916666666666666,
+      "ci95": [
+        0.14583333333333334,
+        0.31276041666666526
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3125,
+      "ci95": [
+        -0.4270833333333333,
+        -0.20833333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.08333333333333333,
+      "ci95": [
+        0.020833333333333332,
+        0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nemotron3_nano30b",
+      "models": [
+        "nemotron3_nano30b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3958333333333333,
+      "ci95": [
+        -0.46875,
+        -0.3020833333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.3333333333333333,
+      "ci95": [
+        0.25,
+        0.4166666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.5,
+      "ci95": [
+        -0.6041666666666666,
+        -0.40625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.28125,
+      "ci95": [
+        0.1875,
+        0.3648437499999986
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.2916666666666667,
+      "ci95": [
+        -0.40625,
+        -0.17708333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.28125,
+      "ci95": [
+        0.17708333333333334,
+        0.3854166666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.34375,
+      "ci95": [
+        -0.4791666666666667,
+        -0.21875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.0625,
+      "ci95": [
+        -0.11458333333333333,
+        -0.020833333333333332
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "falcon_h1_34b",
+      "models": [
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.5208333333333334,
+      "ci95": [
+        -0.5833333333333334,
+        -0.4479166666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.23958333333333334,
+      "ci95": [
+        0.203125,
+        0.2786458333333333
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.21875,
+      "ci95": [
+        -0.2787109375,
+        -0.15625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.2552083333333333,
+      "ci95": [
+        0.203125,
+        0.3046875
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": 0.057291666666666664,
+      "ci95": [
+        0.0,
+        0.11979166666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.2864583333333333,
+      "ci95": [
+        0.23177083333333334,
+        0.3385416666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.14583333333333334,
+      "ci95": [
+        -0.2109375,
+        -0.08072916666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.1015625,
+      "ci95": [
+        0.049479166666666664,
+        0.15885416666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "four_core",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.2630208333333333,
+      "ci95": [
+        -0.3125,
+        -0.21614583333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.13541666666666666,
+      "ci95": [
+        0.10208333333333335,
+        0.1666666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.47708333333333336,
+      "ci95": [
+        -0.5125000000000001,
+        -0.44166666666666665
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.2520833333333333,
+      "ci95": [
+        0.20208333333333336,
+        0.3
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.14583333333333334,
+      "ci95": [
+        -0.19791666666666663,
+        -0.09999999999999998
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.30416666666666664,
+      "ci95": [
+        0.25416666666666665,
+        0.3541666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.15416666666666665,
+      "ci95": [
+        -0.2083333333333333,
+        -0.10833333333333335
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": -0.02916666666666667,
+      "ci95": [
+        -0.07291666666666664,
+        0.010416666666666666
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "additional_five",
+      "models": [
+        "qwen38_27b",
+        "gemma4_12b",
+        "gpt_oss_20b",
+        "phi4",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.39999999999999997,
+      "ci95": [
+        -0.45625,
+        -0.3458333333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.181712962962963,
+      "ci95": [
+        0.1527777777777778,
+        0.21064814814814814
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.36226851851851855,
+      "ci95": [
+        -0.397019675925926,
+        -0.3286747685185186
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.25347222222222227,
+      "ci95": [
+        0.2199074074074074,
+        0.2882233796296296
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.05555555555555556,
+      "ci95": [
+        -0.09375,
+        -0.01967592592592592
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.2962962962962962,
+      "ci95": [
+        0.25575810185185177,
+        0.3368055555555556
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.150462962962963,
+      "ci95": [
+        -0.20254629629629628,
+        -0.10763888888888888
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R1-minus-R2",
+      "estimate": 0.028935185185185185,
+      "ci95": [
+        -0.002314814814814818,
+        0.060185185185185154
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "cohort": "nine_models",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "gpt_oss_20b",
+        "phi4",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "contrast": "R3-minus-R2",
+      "estimate": -0.3391203703703704,
+      "ci95": [
+        -0.3773148148148148,
+        -0.2974537037037037
+      ],
+      "n_skeletons": 24
+    }
+  ],
+  "self_filter_stage1_exact_match": [
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9583333333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 18,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.8229166666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 12,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.8854166666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.7395833333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9166666666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 10,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.7708333333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.8541666666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.4895833333333333,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9583333333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 123,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.2760416666666667,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9010416666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 184,
+      "stage2_target_hit": 0.59375,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9947916666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 2,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9479166666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9791666666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.953125,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.8541666666666666,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 190,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 82,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.4375,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 180,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.020833333333333332,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9270833333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.9583333333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 6,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.8333333333333334,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "accessible_role_endpoints": 192,
+      "stage1_exact_public_shell_only": 0,
+      "stage1_complete": 192,
+      "stage2_target_hit": 0.3854166666666667,
+      "note": "Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification."
+    }
+  ],
+  "illustrative_examples": [
+    {
+      "selection": "First prompt_id among exact-shell-only accessible E3 examples; illustrative, not random",
+      "model": "qwen38_27b",
+      "prompt_id": "D002.Understand.A.accessible.R2.self_filter.content.delay0",
+      "accessible": true,
+      "gold_content": "The mirror is in the stairwell.",
+      "stage1": "Casey says something in Japanese.",
+      "stage2": "I haven't heard anything about it yet.",
+      "stage1_source": "analysis/h200-v2-20261002/extensions-four/responses/discovery/qwen38_27b/responses.jsonl",
+      "stage2_source": "analysis/h200-v2-20261002/extensions-four/scores/discovery/qwen38_27b.jsonl"
+    },
+    {
+      "selection": "First prompt_id among exact-shell-only accessible E3 examples; illustrative, not random",
+      "model": "qwen38_27b",
+      "prompt_id": "D002.Receive.A.accessible.R2.self_filter.content.delay0",
+      "accessible": true,
+      "gold_content": "The mirror is in the stairwell.",
+      "stage1": "Casey visibly sends a private message.",
+      "stage2": "I haven't heard a thing. Casey just slipped me a private message, but I haven't opened it yet.",
+      "stage1_source": "analysis/h200-v2-20261002/extensions-four/responses/discovery/qwen38_27b/responses.jsonl",
+      "stage2_source": "analysis/h200-v2-20261002/extensions-four/scores/discovery/qwen38_27b.jsonl"
+    }
+  ],
+  "lexical_block_sensitivity": [
+    {
+      "metric": "nine_model_baseline_D_Hear",
+      "phase": "discovery",
+      "estimate": 0.6820023148148148,
+      "scene_ci95": [
+        0.6640624999999998,
+        0.699074074074074
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6599971064814815,
+        0.7028356481481483
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_H1_D_Hear",
+      "phase": "confirmatory",
+      "estimate": 0.72265625,
+      "scene_ci95": [
+        0.708984375,
+        0.7356770833333334
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6901041666666666,
+        0.7519694010416665
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "nine_model_baseline_D_Understand",
+      "phase": "discovery",
+      "estimate": 0.34924768518518506,
+      "scene_ci95": [
+        0.3298538773148147,
+        0.368923611111111
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.3281177662037037,
+        0.37037760416666665
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_H1_D_Understand",
+      "phase": "confirmatory",
+      "estimate": 0.4720052083333333,
+      "scene_ci95": [
+        0.4485677083333333,
+        0.49609375
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.4192708333333333,
+        0.5188802083333334
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "nine_model_baseline_D_See",
+      "phase": "discovery",
+      "estimate": 0.48958333333333354,
+      "scene_ci95": [
+        0.4664351851851852,
+        0.5115813078703706
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.4675925925925926,
+        0.5109953703703703
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_H1_D_See",
+      "phase": "confirmatory",
+      "estimate": 0.6927083333333334,
+      "scene_ci95": [
+        0.672509765625,
+        0.7135416666666666
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6497233072916667,
+        0.7415527343749999
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "nine_model_baseline_D_Receive",
+      "phase": "discovery",
+      "estimate": 0.6579861111111113,
+      "scene_ci95": [
+        0.6385995370370369,
+        0.6767939814814813
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6319372106481481,
+        0.6799768518518516
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_H1_D_Receive",
+      "phase": "confirmatory",
+      "estimate": 0.67578125,
+      "scene_ci95": [
+        0.658203125,
+        0.693359375
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6360677083333334,
+        0.71875
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_full_minus_view_D",
+      "phase": "confirmatory",
+      "estimate": 0.6404622395833334,
+      "scene_ci95": [
+        0.6280924479166666,
+        0.6526692708333334
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.609375,
+        0.6708984375
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_accessible_view_minus_full",
+      "phase": "confirmatory",
+      "estimate": 0.0048828125,
+      "scene_ci95": [
+        -0.0017903645833333333,
+        0.01188557942708331
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        -0.0052124023437499995,
+        0.015787760416666668
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    },
+    {
+      "metric": "four_core_partial_retention_view_minus_hard",
+      "phase": "confirmatory",
+      "estimate": 0.677517361111111,
+      "scene_ci95": [
+        0.6536458333333334,
+        0.7005208333333334
+      ],
+      "scene_count": 96,
+      "lexical_block_ci95": [
+        0.6275607638888888,
+        0.7239583333333334
+      ],
+      "lexical_blocks": 12,
+      "scope": "Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test"
+    }
+  ],
+  "interpretation": [
+    "D is target-minus-foil net use, not a universal error rate.",
+    "Scene bootstrap is conditional on fixed model cohort, scorer and lexical inventory.",
+    "Discovery and confirmation use the same 12 lexical pairs; 8 active strings per language.",
+    "Language and lexical pair are not crossed; language differences are not causal language effects.",
+    "Original frozen confirmatory results retained verbatim. Additional intervals have no new p-values."
+  ],
+  "checks": {
+    "frozen_input_and_code_sha_match": true,
+    "all_source_sha_match": true,
+    "no_duplicate_scored_ids": true,
+    "balanced_baseline_E2_E3_grids": true,
+    "all_36_published_baseline_cells_match": true,
+    "all_40_six_method_cells_match": true,
+    "all_8_nine_model_E2_contrasts_match": true,
+    "original_confirmation_unchanged": true
+  },
+  "latest_representation_source_sha256": "35cdc87b43508cb480d6b3534b41cb8d2ce85c303acd0bb5e640a304fdd4e536",
+  "latest_representation_models": [
+    "qwen38_27b",
+    "qwen35_9b",
+    "gemma4_31b",
+    "gemma4_12b",
+    "glm47_flash",
+    "mistral_small3",
+    "gpt_oss_20b",
+    "phi4",
+    "seed_oss_36b",
+    "nemotron3_nano30b",
+    "falcon_h1_34b"
+  ],
+  "latest_representation_contrasts": [
+    {
+      "contrast": "E2 R1-minus-R2 Hear",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": 0.17518939393939395,
+      "ci95": [
+        0.14962121212121215,
+        0.20075757575757577
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Hear",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": -0.3759469696969697,
+      "ci95": [
+        -0.41287878787878785,
+        -0.33901515151515155
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R1-minus-R2 Understand",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": 0.28598484848484845,
+      "ci95": [
+        0.2547348484848485,
+        0.3181818181818182
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Understand",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": -0.03977272727272727,
+      "ci95": [
+        -0.08051609848484848,
+        -0.0009469696969697031
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R1-minus-R2 See",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": 0.3285984848484849,
+      "ci95": [
+        0.2897727272727273,
+        0.368371212121212
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 See",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": -0.17518939393939392,
+      "ci95": [
+        -0.22537878787878787,
+        -0.13352272727272727
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R1-minus-R2 Receive",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": 0.0340909090909091,
+      "ci95": [
+        0.0056818181818182,
+        0.06344696969696972
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Receive",
+      "models": [
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_31b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "gpt_oss_20b",
+        "phi4",
+        "seed_oss_36b",
+        "nemotron3_nano30b",
+        "falcon_h1_34b"
+      ],
+      "metric": "D",
+      "estimate": -0.37878787878787884,
+      "ci95": [
+        -0.41382575757575757,
+        -0.3409090909090909
+      ],
+      "n_skeletons": 24
+    }
+  ]
+}

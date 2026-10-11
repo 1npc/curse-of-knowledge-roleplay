@@ -1,0 +1,636 @@
+{
+  "source_sha256": "35cdc87b43508cb480d6b3534b41cb8d2ce85c303acd0bb5e640a304fdd4e536",
+  "rows": [
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "estimate": 0.09114583333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "estimate": 0.11458333333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "estimate": 0.2838541666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "estimate": 0.11458333333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "estimate": 0.8828125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "estimate": 0.46614583333333337,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "estimate": 0.7213541666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "estimate": 0.7630208333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "estimate": 0.044270833333333336,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "estimate": 0.005208333333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "estimate": 0.03385416666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "estimate": 0.03125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Hear",
+      "estimate": 0.8333333333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Understand",
+      "estimate": 0.40104166666666663,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "See",
+      "estimate": 0.05208333333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Receive",
+      "estimate": 0.7109375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "estimate": 0.8671875,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "estimate": 0.26822916666666663,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "estimate": 0.4869791666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "estimate": 0.6640625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Hear",
+      "estimate": 0.7552083333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Understand",
+      "estimate": 0.0026041666666666665,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "See",
+      "estimate": 0.265625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Receive",
+      "estimate": 0.8463541666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Hear",
+      "estimate": 0.890625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Understand",
+      "estimate": 0.5078125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "See",
+      "estimate": 0.6953125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Receive",
+      "estimate": 0.8151041666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Hear",
+      "estimate": 0.9739583333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Understand",
+      "estimate": 0.32291666666666663,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "See",
+      "estimate": 0.8776041666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Receive",
+      "estimate": 0.9895833333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Hear",
+      "estimate": 0.765625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Understand",
+      "estimate": 0.4140625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "See",
+      "estimate": 0.5260416666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Receive",
+      "estimate": 0.6041666666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "estimate": 0.9348958333333333,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "estimate": 0.4635416666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "estimate": 0.7265625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "estimate": 0.8776041666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "estimate": 0.6197916666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "estimate": 0.59375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "estimate": 0.5286458333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "estimate": 0.9557291666666667,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    }
+  ],
+  "accessible_target_rows": [
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "estimate": 0.8854166666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "estimate": 0.984375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "estimate": 0.6692708333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "estimate": 0.9661458333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "estimate": 0.8515625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "estimate": 0.8229166666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "estimate": 0.71875,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "estimate": 0.9375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "estimate": 0.9557291666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "estimate": 0.8984375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "estimate": 0.9270833333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "estimate": 0.9453125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "estimate": 0.9427083333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "estimate": 0.9427083333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "estimate": 0.9348958333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "estimate": 0.9479166666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Hear",
+      "estimate": 0.8151041666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Understand",
+      "estimate": 0.890625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "See",
+      "estimate": 0.7604166666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "qwen38_27b",
+      "boundary": "Receive",
+      "estimate": 0.90625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Hear",
+      "estimate": 0.9557291666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Understand",
+      "estimate": 0.9661458333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "See",
+      "estimate": 0.953125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gpt_oss_20b",
+      "boundary": "Receive",
+      "estimate": 0.984375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Hear",
+      "estimate": 0.9817708333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Understand",
+      "estimate": 0.9817708333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "See",
+      "estimate": 0.9713541666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "phi4",
+      "boundary": "Receive",
+      "estimate": 0.9895833333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Hear",
+      "estimate": 0.9010416666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Understand",
+      "estimate": 0.9348958333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "See",
+      "estimate": 0.6666666666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "gemma4_12b",
+      "boundary": "Receive",
+      "estimate": 0.9609375,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Hear",
+      "estimate": 0.9557291666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Understand",
+      "estimate": 0.9869791666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "See",
+      "estimate": 0.8828125,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "falcon_h1_34b",
+      "boundary": "Receive",
+      "estimate": 0.9791666666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Hear",
+      "estimate": 0.90625,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Understand",
+      "estimate": 0.9348958333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "See",
+      "estimate": 0.9192708333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "mistral_small3",
+      "boundary": "Receive",
+      "estimate": 0.9036458333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Hear",
+      "estimate": 0.9322916666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Understand",
+      "estimate": 0.9166666666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "See",
+      "estimate": 0.9791666666666666,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    },
+    {
+      "model": "seed_oss_36b",
+      "boundary": "Receive",
+      "estimate": 0.9505208333333334,
+      "planned_endpoints": 384,
+      "n_skeletons": 96
+    }
+  ],
+  "accessible_score_sources": {
+    "analysis/h200-v2-20261002/gemma4_31b/scores/discovery/gemma4_31b.jsonl": "24cc3cb508cb4e727691bee6c3762e27073a100ce781076e3f96258fe9d3da4d",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/glm47_flash.jsonl": "6cd13e53386ae304c5ef90a720e624fd75b9781403d81ffed324744bdaf3a823",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/nemotron3_nano30b.jsonl": "b94d175d357bdc6bfa30ca2a2eab8318669c37d9bf1ad6cd698179e5570c6900",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/qwen35_9b.jsonl": "a51fec12b976899f011429935ba8ae892a9a7802299279e9447298d0a63ad92e",
+    "analysis/h200-v2-20261002/extensions-four/scores/discovery/qwen38_27b.jsonl": "72df6395859ccc709b0c9c25bf82ea0394ac7467adf6da97c9c206d9b7efeca3",
+    "analysis/h200-v2-20261002/extensions-four/scores/discovery/gpt_oss_20b.jsonl": "3966655058ee8eff783f1ddfa39ec9a1b9d2118c08d0b81208dfd4b5f2d69e5f",
+    "analysis/h200-v2-20261002/extensions-four/scores/discovery/phi4.jsonl": "78b707fd82f89d056193c74f171501714da5103fe8895c28ca144115c019fdc4",
+    "analysis/h200-v2-20261002/extensions-four/scores/discovery/gemma4_12b.jsonl": "1b94543f079c40fc3b64bbed5dd209f57fe19d3690df7c7f2a09917d59c62453",
+    "analysis/h200-v2-20261002/falcon/scores/discovery/falcon_h1_34b.jsonl": "939bf41956114a8caaca09a5514ee34ee804f9f9a616e5c1da659c413a5156f4",
+    "analysis/h200-v2-20261002/mistral/scores/discovery/mistral_small3.jsonl": "9206e3b6f6444c2ba9d8363225e21057944b53c34b4be512f23365783d8e42e4",
+    "analysis/h200-v2-20261002/seed/scores/discovery/seed_oss_36b.jsonl": "dd260fbeb8565507c655137654d556273ce8f6d61f6ebe69dc3a34338b5abfe1"
+  }
+}

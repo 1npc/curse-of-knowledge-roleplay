@@ -1,0 +1,1021 @@
+{
+  "created_at_utc": "2026-10-02T17:37:36.203285+00:00",
+  "scope": "Complete prespecified six-model E3 cohort; 48 paired scenes; descriptive intervals only",
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261001,
+  "frozen_lock_sha256": "99ad6d103db2026555cf20b9e9ce6876c584e45db095a86a06382526014e772f",
+  "verification_sha256": "1bf45798947dc8c273266697fd162ba9809b1a13635136cc89ed9c5f13454ff5",
+  "source_sha256": {
+    "analysis/h200-v2-20261002/gemma4_31b/scores/discovery/gemma4_31b.jsonl": "24cc3cb508cb4e727691bee6c3762e27073a100ce781076e3f96258fe9d3da4d",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/glm47_flash.jsonl": "6cd13e53386ae304c5ef90a720e624fd75b9781403d81ffed324744bdaf3a823",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/nemotron3_nano30b.jsonl": "b94d175d357bdc6bfa30ca2a2eab8318669c37d9bf1ad6cd698179e5570c6900",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/qwen35_9b.jsonl": "a51fec12b976899f011429935ba8ae892a9a7802299279e9447298d0a63ad92e",
+    "analysis/h200-v2-20261002/extensions-four/scores/discovery/qwen38_27b.jsonl": "72df6395859ccc709b0c9c25bf82ea0394ac7467adf6da97c9c206d9b7efeca3",
+    "analysis/h200-v2-20261002/falcon/scores/discovery/falcon_h1_34b.jsonl": "939bf41956114a8caaca09a5514ee34ee804f9f9a616e5c1da659c413a5156f4"
+  },
+  "descriptive_estimates": [
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "full",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.572048611111111,
+      "ci95": [
+        0.5468749999999999,
+        0.595486111111111
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "full",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.8967013888888892,
+      "ci95": [
+        0.8663194444444443,
+        0.9210286458333334
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "prose",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.34375,
+      "ci95": [
+        0.31163194444444453,
+        0.3758680555555556
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "prose",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9340277777777778,
+      "ci95": [
+        0.9071180555555557,
+        0.9565972222222223
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "self_filter",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.4774305555555555,
+      "ci95": [
+        0.44618055555555564,
+        0.5086805555555556
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "self_filter",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9348958333333336,
+      "ci95": [
+        0.9105902777777777,
+        0.956597222222222
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "hard",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.0008680555555555555,
+      "ci95": [
+        0.0,
+        0.0026041666666666665
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "hard",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.890625,
+      "ci95": [
+        0.8541666666666669,
+        0.920138888888889
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "view",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.0008680555555555555,
+      "ci95": [
+        0.0,
+        0.0026041666666666665
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Hear",
+      "method": "view",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.8897569444444445,
+      "ci95": [
+        0.8532986111111112,
+        0.9201388888888887
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "full",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.30989583333333337,
+      "ci95": [
+        0.27688802083333336,
+        0.33943142361111106
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "full",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9149305555555555,
+      "ci95": [
+        0.885416666666667,
+        0.940104166666667
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "prose",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.3229166666666667,
+      "ci95": [
+        0.2934027777777778,
+        0.3506944444444444
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "prose",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9557291666666666,
+      "ci95": [
+        0.9366319444444445,
+        0.9730902777777777
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "self_filter",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.019965277777777776,
+      "ci95": [
+        0.008680555555555554,
+        0.033854166666666664
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "self_filter",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.6293402777777778,
+      "ci95": [
+        0.5963541666666669,
+        0.6605902777777778
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "hard",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "hard",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1151,
+        "truncated": 1
+      },
+      "estimate": 0.8776041666666666,
+      "ci95": [
+        0.8411458333333334,
+        0.9097222222222219
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "view",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": -0.0008680555555555555,
+      "ci95": [
+        -0.0026041666666666665,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Understand",
+      "method": "view",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1151,
+        "truncated": 1
+      },
+      "estimate": 0.8776041666666665,
+      "ci95": [
+        0.8420138888888888,
+        0.9097222222222222
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "full",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.45659722222222227,
+      "ci95": [
+        0.41493055555555564,
+        0.4947916666666667
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "full",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.793402777777778,
+      "ci95": [
+        0.7517361111111112,
+        0.8315972222222222
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "prose",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.2717013888888888,
+      "ci95": [
+        0.24565972222222218,
+        0.29600694444444436
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "prose",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9661458333333334,
+      "ci95": [
+        0.9522569444444448,
+        0.9774305555555558
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "self_filter",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.2222222222222222,
+      "ci95": [
+        0.19791666666666666,
+        0.24565972222222224
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "self_filter",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.8151041666666666,
+      "ci95": [
+        0.7821180555555558,
+        0.8446397569444446
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "hard",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "hard",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.8055555555555558,
+      "ci95": [
+        0.763888888888889,
+        0.8437500000000001
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "view",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": -0.0008680555555555555,
+      "ci95": [
+        -0.0026041666666666665,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "See",
+      "method": "view",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.8046875000000003,
+      "ci95": [
+        0.7638671874999998,
+        0.84375
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "full",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.5677083333333331,
+      "ci95": [
+        0.5364583333333334,
+        0.5963541666666665
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "full",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9418402777777778,
+      "ci95": [
+        0.9097222222222223,
+        0.9661458333333335
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "prose",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.31249999999999994,
+      "ci95": [
+        0.29166666666666663,
+        0.33420138888888884
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "prose",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9678819444444446,
+      "ci95": [
+        0.9557291666666665,
+        0.9782986111111112
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "self_filter",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.04774305555555555,
+      "ci95": [
+        0.03211805555555555,
+        0.06597222222222222
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "self_filter",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.5303819444444445,
+      "ci95": [
+        0.48871527777777785,
+        0.5720703125000001
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "hard",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": -0.0008680555555555555,
+      "ci95": [
+        -0.0026041666666666665,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "hard",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9088541666666666,
+      "ci95": [
+        0.8758680555555557,
+        0.9366319444444445
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "view",
+      "accessible": false,
+      "metric": "D",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.0,
+      "ci95": [
+        -0.0026041666666666665,
+        0.0026041666666666665
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "panel": "discovery_method_six_models",
+      "models": [
+        "gemma4_31b",
+        "glm47_flash",
+        "nemotron3_nano30b",
+        "qwen35_9b",
+        "qwen38_27b",
+        "falcon_h1_34b"
+      ],
+      "boundary": "Receive",
+      "method": "view",
+      "accessible": true,
+      "metric": "hit_t",
+      "endpoints": 1152,
+      "status_counts": {
+        "complete": 1152
+      },
+      "estimate": 0.9088541666666666,
+      "ci95": [
+        0.8758680555555557,
+        0.9366319444444445
+      ],
+      "n_skeletons": 48
+    }
+  ],
+  "human_labels": 0
+}

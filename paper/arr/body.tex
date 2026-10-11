@@ -1,0 +1,339 @@
+% Human-study completion template. No human observations are supplied in this draft.
+% Replace a field centrally with, for example:
+% \expandafter\def\csname HVN-D\endcsname{<verified discovery audit count>}
+% Unset fields remain visibly bracketed; AI-proxy values must never fill these fields.
+\newcommand{\HumanField}[1]{\ifcsname HV#1\endcsname\csname HV#1\endcsname\else\textcolor{OCblue}{\textbf{[#1]}}\fi}
+\title{Role-Playing Language Models Use Information Their Characters Cannot Access}
+\author{Anonymous ACL submission}
+\begin{document}
+\maketitle
+\begin{abstract}
+Role-playing systems often supply a language model with information its character cannot access. We ask whether declaring that boundary is sufficient to keep the information out of character speech. Across hearing, comprehension, visibility, and private communication, paired access interventions and counterfactual facts reveal distinct profiles in eleven models. In a four-model confirmation cohort, matched responses retain a 63.95-point target-minus-foil use difference even when independent access judgments are correct. This influence persists through intervening dialogue and affects proposed search choices. Instruction-based controls help unevenly, and self-filtering can discard accessible facts. We introduce a deterministic character-view compiler that keeps accessible content and observable occurrences while omitting inaccessible content. Compilation reduces pooled leakage by 64.05 points, preserves accessible use within the prespecified margin, and retains occurrences lost by whole-event deletion. The automatic measurements support constructing character-specific inputs.
+
+\end{abstract}
+
+\section{Introduction}
+A character can hear that someone spoke without understanding the words, notice an object being put away without seeing its destination, or observe a private message being sent without receiving it. A role-playing system may nevertheless provide the language model with every detail of these events. The character's spoken response must respect an information boundary that the generator's input has already crossed. This raises a practical question for interactive fiction and simulation: \emph{should inaccessible content remain inside the generator's context at all?}
+
+We study \emph{character information-access boundaries} in four channels: \textsc{Hear}, \textsc{Understand}, \textsc{See}, and \textsc{Receive}. We separate two questions: can a model identify what the character can access, and does its generated speech respect that access? A matched intervention changes the character's access while keeping the event and question fixed. Counterfactual facts then let us track which content enters the response.
+
+Perspective judgments and downstream behavior can diverge, and perspective filtering can improve reasoning \citep{wilf-etal-2024-think,gu2026simpletom,han2026charm}. We examine this gap in a character's own open-ended speech by pairing an independent access probe with a role-playing response. Delayed responses and fixed-choice search questions test whether the content also influences later speech and proposed actions. All three tasks keep the original event in context unless the input is explicitly filtered.
+
+Filtering also has a preservation requirement. Removing an entire foreign-language utterance hides its content but loses the observable fact that someone spoke. We implement a deterministic character-view compiler that maps a fully described event to accessible content, an observable event shell, or nothing. It uses explicit access metadata and predetermined shells. Comparing this projection with whole-event deletion evaluates both suppression of inaccessible content and preservation of partial observations.
+
+Our contributions are threefold:
+\begin{itemize}
+\item A paired four-channel evaluation separates declared access, content use, and occurrence retention. Eleven models provide discovery and representation comparisons, six provide method comparisons, and four form a prespecified original-character confirmation cohort.
+\item Access recognition does not ensure bounded generation: high independent judgment accuracy in both access states coexists with inaccessible-content use. Prompting, delayed responses, and proposed search choices expose this gap in character behavior.
+\item Character-view compilation removes inaccessible content while preserving accessible use within a five-point margin. Its advantage over deletion is retention of the designed observable occurrence, with a 67.75-point gain on confirmation scenes.
+\end{itemize}
+The confirmation uses a locally frozen pre-generation plan. We separate automatic canary effects from semantic-use audits, multilingual stimulus assessment, and word-form guessability, because each tests a different property of the measurement.
+
+\section{Related Work}
+\paragraph{Perspective inference and application.}
+FANToM evaluates theory of mind in interactions with asymmetric information access \citep{kim-etal-2023-fantom}. PercepToM separates perception inference from reasoning about beliefs \citep{jung-etal-2024-perceptions}. SimpleToM distinguishes explicit mental-state inference from its application in behavior prediction and judgment \citep{gu2026simpletom}. These distinctions motivate the use of separate access probes and role-playing outputs. Our probes concern an event's declared accessibility, and our generation endpoint measures use of specific event content.
+
+\paragraph{Character knowledge boundaries.}
+TimeChara studies point-in-time character hallucination \citep{ahn-etal-2024-timechara}. CHARM separates boundary awareness from compliance for temporal and cross-universe knowledge \citep{han2026charm}. Perspective-bounded memory restricts information available to book-based role-playing agents \citep{tang2026staying}. Our paired manipulation addresses current-event access across perception and communication, with the event's content already present in the model's input. The distinction between the model's knowledge and the character's knowledge is shared with these settings; the controlled access intervention and partial-observation endpoint define our evaluation.
+
+\paragraph{Perspective filtering.}
+SimToM first filters context to a character's perspective and then answers a mental-state question \citep{wilf-etal-2024-think}. MENTOR maintains separate role memories and uses a knowledge graph to filter role-admissible information under identity switching \citep{zhu2026mentor}. We compare a prompted two-stage filter with a deterministic projection given explicit access metadata. The projection preserves an event shell when its occurrence is observable but its content is not. This operationalizes a useful distinction within perspective filtering, rather than claiming context filtering as a new general principle. PrivacyLens provides a related evaluation of norm awareness and information disclosure in action \citep{shao2024privacylens}; our experiment instead concerns fictional access rights and observations.
+
+\section{Evaluating Character Information Access}
+\label{sec:design}
+\subsection{World Content and Character Access}
+Let $W$ contain a scene, its participants, and an event $e$. The event contains a proposition with a location and an object. For character $c$, $a_c(e)$ indicates access to that content, while $s_c(e)$ describes an observable occurrence without revealing it. The full-context generator receives $W$ even when $a_c(e)=0$. Its task is to produce one short English spoken response as $c$.
+
+The four channels vary how content becomes unavailable. \textsc{Hear} states that the character cannot hear an English utterance. \textsc{Understand} presents Chinese, Japanese, or Spanish speech that the character hears but does not understand. \textsc{See} describes an action whose item and destination are not visible to the character, while its coarse occurrence is visible. \textsc{Receive} presents a private message whose content the character cannot access, while message sending is observable. Accessible controls flip the relevant Boolean. The event text and observable shell remain fixed within each pair.
+
+Table~\ref{tab:accesscases} illustrates the distinction between content access and occurrence access. An empty observation is appropriate for unheard speech; the other inaccessible conditions retain an observable occurrence. These are specified scene semantics, not an inference from arbitrary narrative text.
+
+% ACCESS_CASES_TABLE
+
+Each scene has counterfactual versions A and B with different location--object pairs. The counterpart's values form the foil. A content question asks what information the character obtained; a planning question asks what to do to retrieve the item. Questions and response instructions are identical across access states. The scene establishes that no earlier shared fact supplies the target content.
+
+\subsection{Scenes and State Representations}
+The discovery set contains 96 controlled scenes, balanced across social, search, planning, and coordination contexts. They use the names Kerry, Rogue, and Panam with compact task-specific descriptions. Language is balanced across Chinese, Japanese, and Spanish. These language assignments affect the comprehension boundary; the other three channels use English content. The scenes are template-generated and reuse a finite canary vocabulary.
+
+Three state representations encode the boundary. R1 uses language repertoires or exhaustive audience, observer, and recipient membership. R2 uses a direct character-specific access Boolean. R3 retains that Boolean and adds an explicit prose instruction that inaccessible content must not influence the response. R3 therefore measures the addition of a prose rule, not a replacement with unstructured prose. The paired representation experiment uses a frozen balanced subset of 24 discovery scenes.
+
+The independent confirmation set contains 96 new scene specifications in four original fictional communities, with two characters per community and 12 scenes per character. Names, persona descriptions, and scene IDs differ from discovery. The set shares the event schema, task structure, canary vocabulary, and generation code; it tests replication across original characters and scene specifications rather than across an independently authored measurement instrument.
+
+% Keep ordinary paragraph spacing in the measurement column.
+\raggedbottom
+\subsection{Content Use and Access Judgments}
+For each response, the fixed rule scorer determines whether a target canary or foil canary is used. Its primary score is
+\begin{equation}
+ D = I(\text{target use})-I(\text{foil use}).
+ \label{eq:netuse}
+\end{equation}
+Target use requires at least one of the location or object canaries. Both-canary use is reported separately for translation probes. The scorer applies fixed dictionary, echo, refusal, and output-validity rules; denial flags do not veto lexical canary matches. Appendix~\ref{app:prompts} specifies the rule. $D$ is a net use difference, not the proportion of all semantic errors. Aggregation weights models and skeletons equally. Values are $100D$ in percentage points.
+
+A scored response using only the target has $D=1$; using only the foil gives $D=-1$. Using both or neither gives zero. Thus a low aggregate score can reflect several response patterns, which the retained target and foil indicators distinguish. Accessible target use is evaluated separately: it asks whether the response recovers information the character was permitted to obtain, rather than treating every zero-use response as successful role-play.
+
+A separate Yes/No probe asks whether the character could hear, understand, see, or receive the content. The model answers it as an evaluator in an independent call. We condition role-playing scores on the correctness of this matched probe without placing the probe's answer into the role-playing conversation. This measures coexistence of an explicit access judgment and content use across calls; it does not reveal a model's internal knowledge state.
+
+Translation probes request an English rendering of each foreign sentence. The frozen plan defines an unconditional primary estimand and a capability-conditioned secondary analysis. The latter retains comprehension responses from model--language units with at least .85 both-canary translation use. Eligibility is fixed from the observed diagnostic, not recomputed on bootstrap draws. No additional item-level translation filter was specified. Both results retain equal model weights, with eligible-response ratios recomputed within each draw.
+
+\section{Character-View Compilation}
+\label{sec:view}
+The compiler constructs the character's observations before generation:
+\begin{equation}
+\Pi_c(e)=
+\begin{cases}
+ e, & a_c(e)=1,\\
+ s_c(e), & a_c(e)=0\text{ and }s_c(e)\ne\varnothing,\\
+\varnothing, & \text{otherwise}.
+\end{cases}
+\label{eq:projection}
+\end{equation}
+The implementation uses supplied scene metadata and the shells in Table~\ref{tab:accesscases}. It performs no additional model call or narrative access inference. Accessible events remain intact; partially observable inaccessible events contribute only their shell; unobserved events are omitted. No shell contains the location or object. Applying Equation~\ref{eq:projection} to every event constructs the observation list passed to the same role-playing generator.
+\flushbottom
+
+For an illustrative placement, the world states that Alex puts a glove in a church. If both values are visible, compilation retains the full event. If the character sees only the coarse action, it retains ``Alex appears to put something away.'' Hard removal instead supplies an empty observation list. The projected character can report noticing an action without being given the hidden object or destination. Full context still supplies both values, together with a flag instructing the model that they are inaccessible. This example illustrates the input transformation; it is not a quoted model response. The comparison therefore changes which evidence reaches the generator, while preserving the final role-playing task.
+
+We compare five methods on a frozen 48-scene discovery subset: full context with R2, full context with R3, prompted self-filtering, hard removal, and character-view compilation. Self-filtering first asks the same model to list only events and facts accessible to the character, then generates from that list. Hard removal discards the entire inaccessible event. Compilation retains a shell when available. Hard removal and compilation both preserve the full event when its content is accessible.
+
+Three endpoints evaluate the tradeoff. Forbidden-content leakage is $D$ on inaccessible scenes. Accessible-content use is the target-hit rate on accessible controls. Observable-event retention asks whether the character noticed the actor doing or saying anything, followed by a short description. Its primary score compares the initial Yes/No answer with the original scene's observable occurrence.
+
+The retention comparison requires two reference points. When hard removal deletes an observable event, answering No can be correct for the actual empty input but fails to preserve the original observation. We therefore report original-scene retention and actual-input correctness separately. The primary method comparison uses retention on the three partially observable boundaries, excluding \textsc{Hear}. It evaluates the information delivered by the whole pipeline through a direct occurrence question.
+
+\section{Experimental Setup}
+\subsection{Data and Model Cohorts}
+The core models are Gemma-4-31B, GLM-4.7-Flash, Nemotron-3-Nano-30B, and Qwen3.5-9B. They were selected before the new outcomes and constitute the prespecified confirmation and persistence cohorts. All eleven discovery models are complete; the six-model method roster additionally includes Qwen3.8-27B and Falcon-H1-34B. Figure~\ref{fig:discoveryheatmap} compares their common baseline. The main confirmation and behavior analyses retain the four-model core.
+
+Table~\ref{tab:cohorts} separates the matched subsets and their model scopes. The complete campaign contains 220,088 actual generation calls and 206,264 scored endpoints, including 3,000 calibration responses. Intermediate self-filter calls account for their difference. All 62,208 confirmation responses completed; 26 discovery truncations remain in their planned denominators. Detailed cohort and failure accounting appears in Appendix~\ref{app:accounting}. There are no missing chunks or result-dependent retries.
+
+% COHORT_TABLE
+
+\subsection{Inference and Measurement}
+\label{sec:measurement}
+
+Inference uses pinned public checkpoints and tokenizers, vLLM 0.29.0, BF16, temperature 0, top-$p$ 1, seed 20261001, a maximum of 400 output tokens, and an 8,192-token context limit. Thinking is disabled through the supported template options. Tensor parallelism is one; runtime records and hardware allocation appear in Appendix~\ref{app:models}. Incomplete, refused, or unusable endpoints receive zero use and remain in planned denominators.
+
+\paragraph{Human measurement audit.}
+Two annotators independently assessed semantic use on \HumanField{N-D} discovery and \HumanField{N-C} confirmation replies, and occurrence on \HumanField{N-O} confirmation replies.\footnote{Human-study completion template: bracketed fields denote unsupplied observations. The final-tense human-study passages are fill-in text, not completed human results.} Model identities, conditions, automatic scores, and candidate assignments were hidden; adjudication used \HumanField{ADJ}. Table~\ref{tab:humanaudit} reports target/foil confusion counts, weighted precision/recall/F1, and independent agreement. Two reviewers per language assessed stimuli, and \HumanField{N-G} non-speakers completed the guessing task. Appendix~\ref{app:validation} specifies populations, weights, qualifications, exclusions, and human sensitivities, separately from frozen automatic tests.
+
+\subsection{Statistical Analysis}
+The new inputs, scorer, model cohorts, hypotheses, exclusions, and analysis code were locked locally at 22:53:04 UTC on 1 October 2026, before any new response. This is a local pre-generation lock, not external preregistration. A separate 20-scene calibration set tested execution and response formatting on three models. Its gate did not select models or prompts by the leakage effect.
+
+The three confirmation families are: positive full-context leakage in each of the four boundaries; positive pooled leakage conditional on a correct independent access probe; and a joint compilation benefit. The third requires lower inaccessible $D$ than full context, accessible target use no more than five points below full context, and greater partial-event retention than hard removal. Boundary and method conjunctions use intersection--union tests. We apply Holm correction across these three families \citep{holm1979}.
+
+Inference uses 2,000 paired skeleton bootstrap draws with seed 20261001, keeping model and condition comparisons paired within each sampled skeleton. Tests use the frozen one-sided centered-bootstrap rule; displayed 95\% intervals are separate, unadjusted two-sided percentile intervals. The four models form a fixed cohort, not a random sample of model families. The conditional analysis recomputes each model's numerator and eligible denominator in every draw; empty-model and undefined-draw counts are reported.
+
+Generation calls are not independent scene samples. Resampling whole skeletons preserves dependencies among versions, access states, methods, and questions. Model averaging gives each checkpoint equal weight despite unequal eligible-response counts.
+
+Exploratory representation, mitigation, delay, and decision comparisons use their frozen matched subsets. The delay experiment inserts zero, two, or four fixed neutral exchanges while retaining the original event in context. The decision experiment asks for option 1 or 2. Deterministic scene-ID parity fixes option order across A/B within a scene, with location A first in 18 scenes and second in 14. Its endpoint is the A-minus-B difference in choosing the same location A. Invalid answers remain in the denominator. These analyses report descriptive paired intervals and do not enlarge the confirmation family.
+
+% CONFIRMATORY_TABLE
+
+\section{Results}
+\subsection{Inaccessible Content Enters Character Speech}
+On the original-character set, pooled full-context leakage is positive across all four channels: 72.27 points for hearing, 47.20 for comprehension, 69.27 for visibility, and 67.58 for private communication. Their conjunction passes the frozen criterion (Table~\ref{tab:confirm}). Hearing, visibility, and reception establish that the phenomenon extends beyond foreign-language speech.
+
+The eleven-model discovery heatmap shows contrasting boundary profiles. Mistral's comprehension score is 0.26, yet hearing and reception reach 75.52 and 84.64. Gemma-31B is low across discovery boundaries, whereas Gemma-12B reaches 83.33 for hearing and 71.09 for reception. Reliable control on one channel cannot be inferred from a low score on another. Appendix~\ref{app:models} gives the numerical discovery baseline.
+
+Accessible controls help interpret low leakage. Gemma-4-31B averages 2.86 points of inaccessible $D$ and 87.63\% accessible target use across discovery boundaries. Its comprehension control reaches 98.44\%, while its visual control reaches 66.93\%. Qwen3.8-27B averages 15.10 points and 84.31\%, respectively. Thus boundary compliance and allowed-content use vary separately; leakage alone does not rank overall utility.
+
+\paragraph{Semantic measurement sensitivity.}
+The confirmation audit separated each method and access state (Appendix~\ref{app:validation}). For full-context responses paired with correct access probes, human-derived $D$ was \HumanField{FS-D} points [\HumanField{FS-L}, \HumanField{FS-U}]; automatic-minus-human bias was \HumanField{FS-BIAS} points. This gave \HumanField{C-interpretation}. Target, foil, and simultaneous use were reported separately, including for inaccessible character view. Rare-foil recall alone does not determine the size or direction of bias in $D$.
+
+% DISCOVERY_HEATMAP
+
+Comprehension leakage persists in the capability-conditioned secondary analysis: 50.98 points [48.36, 53.67], compared with the unconditional primary value of 47.20 [44.86, 49.61]. Three Japanese model--language units fall below the translation threshold (Table~\ref{tab:translate}). Restricting the analysis to eligible units raises the net-use estimate. Recovering the event's content and respecting a character who cannot understand it are separate requirements; the unconditional result remains the primary estimate.
+
+The confirmation retains these contrasting profiles (Table~\ref{tab:modeldetail}). Gemma-31B has zero comprehension net use, whereas GLM reaches 71.09 on the same original-character scenes. Nemotron and Qwen9 show high pooled net use even in responses paired with correct access judgments. The cohort-level finding therefore coexists with large model differences: the positive pooled tests describe the fixed four-model cohort, without asserting a positive effect for every checkpoint and channel.
+
+% BEHAVIOR_FIGURE
+
+\subsection{Access Judgments and Generation Diverge}
+Independent probe accuracy ranges from 95.18\% to 100\% for inaccessible content and 93.36\% to 99.35\% for accessible content, with 768 probes per model in each state. All 6,144 answers are valid (Table~\ref{tab:probecontrols}); always answering No would score 50\% on this balanced set. Conditioning role-playing responses on a correct matched probe yields 63.95 points [62.73, 65.19]. Explicit access judgments and access-violating generation therefore coexist across independent calls.
+
+Every comprehension probe is correct, leaving its net-use score unchanged under conditioning; leakage also persists among capability-eligible responses. Table~\ref{tab:stateboundary} gives each boundary's estimate and denominator. Appendix~\ref{app:prompts} traces a real A/B example: Qwen answers No to both hearing probes but states each hidden fact in character speech. Compiled inputs omit the unheard event, and both replies omit the canaries.
+
+\subsection{Prompting Has Channel-Dependent Effects}
+Direct Boolean flags help unevenly. Relative to repertoire or membership descriptions, they lower inaccessible $D$ by 17.52, 28.60, and 32.86 points for hearing, comprehension, and visibility, but by 3.41 [0.57, 6.34] for reception. Equivalent declared access states produce different behavior, with different sensitivity across channels.
+
+Prose reminders can reduce leakage in some channels, but comprehension effects vary across cohorts. The eleven-model contrast is $-3.98$ points [$-8.05$, $-0.09$], compared with +5.73 [0.00, 11.98] in the four-core subset. The six-model method subset also lacks a stable comprehension improvement. These results do not establish prose reminders as a reliable general solution (Appendix~\ref{app:explore}).
+
+The five-method comparison covers all six prespecified models on 48 matched scenes. Character view reduces inaccessible $D$ by 31.08--57.12 points across boundaries. Self-filtering also reduces leakage, but lowers accessible target use by 28.56 points for comprehension and 41.15 for reception. View has smaller losses of 3.73 and 3.30, with intervals $[-5.73,-1.73]$ and $[-5.30,-1.56]$. These descriptive channel intervals extend below the five-point margin; the independent confirmation's pooled noninferiority finding cannot be generalized to each discovery channel.
+
+\paragraph{Self-filtering can discard accessible content.}
+Qwen3.8-27B's accessible target use drops from 85.94\% under full context to 0.00\% under self-filtering for comprehension, and from 91.67\% to 2.08\% for reception. A post-hoc exact-string audit of the original first-stage records finds that 190 of 192 accessible comprehension calls and 180 of 192 reception calls return only the predetermined public event shell. In one allowed comprehension scene, the event locates a mirror in a stairwell; the filter returns ``Casey says something in Japanese,'' and the final answer is ``I haven't heard anything about it yet.'' This illustrates allowed content being lost before the final response. The counts retain separate calls for the two questions and are mechanical string matches, not new semantic or human labels.
+
+Self-filtering uses two calls by the same checkpoint; each other method uses one. Compilation constructs observations from fixed metadata. Wall-clock speed was not benchmarked.
+
+\subsection{Influence Persists and Changes Choices}
+On the 32-scene delay subset, full-context net use remains between 50.78 and 71.09 points after four neutral exchanges. For comprehension, the four-exchange minus immediate difference is +15.62 points [8.59, 22.66]. Other four-exchange changes have intervals spanning zero. Compilation remains near zero over the same delays. Because the inaccessible event remains in the context and the intervening turns are scripted, these findings establish delayed contextual influence, not an isolated latent-memory mechanism.
+
+In the fixed-choice task, switching inaccessible content from B to A changes selection of location A by 49.22--63.28 points under full context. Compilation contrasts are 0.00--0.78 points (Figure~\ref{fig:behavior}). Effects remain positive with A in either option position; an additional equal-position sensitivity gives 49.11--63.00 points for full context and 0.00--0.89 for compilation (Table~\ref{tab:choiceorder}). Valid-choice rates are 99.61--100\% and 96.88--100\%, respectively, with invalid choices retained. These are generated search choices, without executed actions in an environment.
+
+
+% METHOD_TABLE
+
+\subsection{Projection Retains Observable Event Shells}
+On confirmation scenes, full context yields 64.08 points of pooled inaccessible $D$. Hard removal and compilation both reduce it to 0.03. Their functional difference is observable-event retention: compilation scores 100.00\%, compared with 32.25\% for hard removal and 73.26\% for full context (Table~\ref{tab:methods}). The compiler-minus-deletion gain is 67.75 points [65.36, 70.05], a prespecified component of the frozen joint method test. Hard removal's actual-input correctness is 67.75\%; its original-scene retention measures a different reference.
+
+Compilation changes accessible target use by +0.49 points [$-0.18$, 1.19] relative to full context. The lower bound exceeds the prespecified $-5$-point margin, supporting pooled noninferiority. All three frozen families have Holm-adjusted $p=0.0015$ at the resolution of the 2,000-draw bootstrap.
+
+This advantage is specific to suppression, pooled allowed use versus full context, and shell retention versus deletion. Accessible input schemas differ across methods. In discovery visibility controls, Prose+flag reaches 96.61\% target use versus view's 80.47\%, alongside higher leakage. The comparison establishes this tradeoff; it does not rank compilation above every prompting method on every endpoint.
+
+The observable-shell retention check directly asks about encoded occurrences. Every partial-observation scene contains an event, so an always-positive response can score 100\%. It measures shell availability; selective awareness and interaction quality require further tasks.
+
+\paragraph{Lexical-block sensitivity.}
+Resampling the twelve reused lexical pairings as blocks gives wider intervals: leakage reduction and shell-retention gains remain positive; the accessible-use difference includes zero. This descriptive sensitivity addresses dependence among scenes sharing words, leaving frozen tests unchanged. Appendix~\ref{app:accounting} reports intervals and procedure; unseen vocabulary remains outside the evaluation.
+
+\section{Discussion and Conclusion}
+The results favor constructing character-specific inputs. Accurate independent access judgments coexist with inaccessible-content use in speech. Channel-specific profiles, uneven prompting effects, delayed influence, and changed search proposals show why an access question alone is an insufficient compliance test.
+
+An information interface should withhold inaccessible content, retain accessible facts, and preserve observable occurrences. Suppressing all content can satisfy only the first requirement. The separate control and shell-retention endpoints expose this tradeoff: self-filtering loses allowed facts in some channels, and whole-event deletion removes observations that compilation retains.
+
+Projection and whole-event deletion both suppress target content in confirmation, but projection preserves the designed shell. This benefit depends on correct access metadata and shell semantics. Within this scene family, interfaces can be evaluated by what they withhold and preserve.
+
+\clearpage
+% Evaluate the page guard after a complete reference pass; PDF export is also checked independently.
+% The submission PDF is built with pdfLaTeX; XeTeX is supported for editor preview.
+\ifdefined\pdftexversion
+\expandafter\ifx\csname r@app:accounting\endcsname\relax
+\else
+\ifnum\value{page}>9\PackageError{access-paper}{Main content exceeds eight pages}{Compress the main text and its floats before submission.}\fi
+\fi
+\else
+\PackageWarningNoLine{access-paper}{Submission pagination is verified with pdfLaTeX; this preview engine may use different page breaks}
+\fi
+% Avoid stretching paragraph spacing on the non-main-text pages.
+\raggedbottom
+\section*{Limitations}
+\paragraph{Measurement and human validation.}
+The scorer uses a finite canary dictionary, fixed echo/refusal handling, and an output-validity gate; denial flags do not exclude matched content. Paraphrase, mixed denial and assertion, untranslated echoes, and multiple same-type values may be misclassified. Representative human audits estimate error by method and access state; enriched foil cases identify mechanisms without estimating prevalence. Human sensitivities remain separate from frozen automatic tests. Rare positives and unresolved labels limit foil-specific precision, and the original bootstrap intervals omit annotation uncertainty. Fluent stimulus assessment and non-speaker word guessing test different properties; neither establishes general language competence.
+
+\paragraph{Scenario and model coverage.}
+The scene sets are generated from shared templates and contain short interactions. Both sets reuse the same 12 target--foil lexical pairings, with four pairings and eight active sentences per language. Language and lexical pairing are not crossed, so language-unit differences cannot isolate a language effect. Original characters remove reliance on familiar names but do not make the instrument independently authored or test unseen vocabulary. The four core models were chosen before these outcomes partly for contrasting behavior in earlier exploratory work. All eleven discovery models and the six-model method cohort are complete. Seed uses an H100 allocation with the same software and decoding protocol; hardware invariance was not separately tested. The fixed-cohort bootstrap does not support population-wide inference over models, natural dialogues, or cultures, and omits uncertainty from template and vocabulary selection.
+
+\paragraph{Mechanism and deployment.}
+The compiler receives explicit, correct access metadata and predetermined event shells. Applying it to ambiguous natural narratives requires an upstream access and observation inference system whose errors are not tested here. Greedy generation on one software stack does not establish temperature or implementation invariance. The delay test retains the original event in context, the choice task is textual, and the awareness question directly elicits occurrence. Near-zero $D$ does not guarantee absence of every semantic disclosure, and a zero-width bootstrap interval at perfect observed awareness does not imply certainty outside these scenes.
+
+\section*{Ethical Considerations}
+The material consists of fictional scenes, invented location--object facts, and public model checkpoints. No private personal information is needed for the benchmark. Existing character names appear in discovery; confirmation characters and communities are original. The study evaluates access consistency in fictional role-play, and its scores should not be treated as validation of a real privacy or authorization system. Human-study ethics review or exemption was \HumanField{ETHICS}. Participants provided \HumanField{CONSENT} and received \HumanField{PAY}; recruitment and reviewer qualifications were \HumanField{RECRUIT}. Annotation records used anonymous participant identifiers. These human-study statements follow the completion-template convention in Section~\ref{sec:measurement}.
+
+\paragraph{AI assistance.}
+Generative AI assisted with code preparation, experiment orchestration, literature lookup, statistical-report formatting, and manuscript drafting. Separate AI agents produced provisional annotation judgments, retained as diagnostic records rather than human reference labels. Run manifests, response hashes, and independent re-scoring link the reported automatic results to the frozen analysis. The authors retain responsibility for the manuscript, evidence, and disclosures.
+
+% INLINE_BIBLIOGRAPHY
+\appendix
+% Stack appendix float-page tables from the top with ordinary positive spacing.
+\setcounter{dbltopnumber}{3}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{18pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpsep}{18pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother
+\section{Model Cohorts and Reproducibility}
+\label{app:models}
+The model registry records exact repository identities and pinned revisions. Table~\ref{tab:roster} distinguishes the four core models and seven completed discovery extensions. All runs share the generation protocol in the main text. Raw chunks, pre-generation intent records, rendered-input hashes, runtime metadata, merged responses, and scores are retained. Local and remote response hashes match, and independent local re-scoring exactly reproduces every score file.
+
+Ten models ran on H200 GPUs; Seed-OSS-36B ran on one Slurm-allocated H100. Its transfer preserved the checkpoint pin, software versions, and decoding protocol. Hardware identity and occupancy were checked before loading. Operational repairs are logged separately from the scientific protocol; no output-based retry or model replacement was performed.
+
+% MODEL_ROSTER
+% BOUNDARY_FIGURE
+% MODEL_DETAIL
+
+The seven additional discovery models are Qwen3.8-27B, gpt-oss-20b, Phi-4, Gemma-4-12B, Falcon-H1-34B, Mistral-Small-24B, and Seed-OSS-36B. Table~\ref{tab:discoverybaseline} compares all eleven checkpoints on the same full-context R2 baseline. These discovery measurements supplement the four-model confirmation without changing its prespecified cohort or tests.
+
+% DISCOVERY_BASELINE_TABLE
+% TRANSLATION_TABLE
+% CAPABILITY_STATE_TABLE
+% PROBE_CONTROL_TABLE
+
+\section{Prompt and Projection Details}
+\label{app:prompts}
+Each system prompt requests one short English spoken turn and supplies a character description and a JSON scene state. The final user message asks either what information the character obtained or what to do next to retrieve the item. R1 uses membership sets or a language repertoire; R2 uses the applicable direct Boolean; R3 adds the access/use prose rule to R2. No content, question, or shell is changed within an accessible--inaccessible pair except the access field.
+
+\subsection{A Saved Counterfactual Input--Output Case}
+Tables~\ref{tab:caseinput} and \ref{tab:caseoutput} reproduce confirmation scene C001 for Qwen3.5-9B. The role-playing prefix, character description, scene JSON, and question are exact saved messages. B replaces only the proposition, and the accessible control flips only the hearing Boolean. The evaluator prefix and question form a separate probe call; its answer never enters the role-playing input. This case was selected to illustrate failure rather than estimate its prevalence. All eight role-playing and four probe records are complete and independently re-score exactly.
+
+% CASE_INPUT_TABLE
+% CASE_OUTPUT_TABLE
+
+\subsection{Fixed Endpoint Rules}
+The scorer first strips reasoning blocks, normalizes text, removes foreign canary forms and romanizations from its English matching copy, and masks listed names and idioms. It matches fixed aliases separately for place and object; eligible foreign-language output uses a separate matching copy with verbatim stimulus spans removed. For each type, exactly the target value gives a target label, exactly the foil gives a foil label, neither gives none, and two or more distinct values give a multi-value label. Target and foil indicators each require their label in at least one type. A multi-value label supplies neither indicator for that type; thus naming both places can be missed even when their joint semantics constitute disclosure.
+
+Only complete, nonempty responses without a matched out-of-character refusal contribute canary hits. Other planned outputs receive zero use and remain in denominators. Negation, attribution, and admission are diagnostic flags, without a general semantic scope parser or a denial veto. In Table~\ref{tab:caseoutput}, both place and object are exact target aliases and no foil is present, so each full-context response scores $(T,F,D)=(1,0,1)$. Inaccessible view responses score $(0,0,0)$. A state probe is valid only when its entire answer is Yes or No, allowing an optional period or exclamation mark; correctness compares this answer with the frozen expected state. The occurrence decoder accepts a leading Yes or No and uses the original-scene reference. These rules define automatic measurements, with the human audit estimating their semantic error separately.
+
+\subsection{Other Prompt Conditions}
+
+Self-filtering first asks the model to list events and facts the character can personally perceive and understand, retaining observable occurrences without inaccessible content. The second call receives the resulting list and the role-playing question. Only the second call supplies the final endpoint. A failed or unusable second stage stays in the planned denominator. Both stages are preserved for audit.
+
+For delay zero, two, or four, the same world context precedes fixed neutral exchanges about readiness and keeping the conversation brief. These are scripted turns, not sampled conversations. In the decision task, both versions list the same two candidate locations in the same order; only the event's version changes. Scene-ID parity determines order, with 18 A-first and 14 A-second scenes. This approximate balance is deterministic, not randomized. The paired outcome tracks fixed location A. Order-stratified and equal-position estimates address the remaining imbalance descriptively.
+
+\section{Exploratory Results in Completed Cohorts}
+\label{app:explore}
+The representation table uses all eleven models and the frozen 24-scene subset. The method table uses all six prespecified method models and 48 matched scenes. The persistence and decision tables use the four core models and 32 scenes. Intervals are paired skeleton-bootstrap intervals; these are descriptive comparisons and receive no additional confirmatory interpretation.
+% REPRESENTATION_TABLE
+% DISCOVERY_METHOD_TABLE
+
+% DELAY_TABLE
+% DECISION_TABLE
+% CHOICE_ORDER_TABLE
+
+\section{Human Evaluation and Measurement Sensitivity}
+\label{app:validation}
+\textbf{Completion-template convention.} Bracketed fields in this section, Section~\ref{sec:measurement}, the semantic-sensitivity paragraph, and human-study ethics statements require real study data. The final-tense wording specifies the completed-study report; it does not assert that those observations are available. AI diagnostics below retain their original provenance.
+
+\subsection{Representative Response Audits}
+Two annotators independently evaluated semantic use, including resolved paraphrases, asserted content inside mixed denial/assertion, refusals, and untranslated echoes. Candidate identities were randomly swapped. Annotators saw neither target/foil assignments nor model identities, experimental conditions, automatic labels, or the other annotator's answers. They supplied evidence spans and uncertainty flags before adjudication through \HumanField{ADJ}. Reviewer qualifications were \HumanField{ANN-QUAL}; original labels and adjudication decisions were retained.
+
+The discovery semantic packet sampled two responses per core model, boundary, method, access state, and content/planning question cell from the 48-scene method subset: 640 candidate items, of which \HumanField{N-D} were completed. The original-character occurrence packet sampled two per model, boundary, three-method condition, and access state: 192 candidates, of which \HumanField{N-O} were completed. The separate confirmation semantic audit covered \HumanField{C-FRAME}, using \HumanField{C-SAMPLING} to obtain \HumanField{N-C} responses. Its response identifiers and sampling weights were recorded independently. The discovery semantic sample does not validate confirmation content use. These audits cover the four-model core, without extrapolating annotation accuracy to the seven additional discovery models.
+
+We compared the fixed scorer with adjudicated human labels, reporting target and foil use separately by confirmation method and access state (Table~\ref{tab:humanaudit}). Confusion counts are unweighted audit counts; precision, recall, and F1 use each audit's inverse inclusion weights. Agreement is Cohen's $\kappa$ before adjudication on paired resolved labels. \HumanField{U-D}, \HumanField{U-C}, and \HumanField{U-O} discovery, confirmation, and occurrence items remained unresolved. They were reported separately rather than treated as negative. Discovery cells and confirmation model--boundary strata were retained in \HumanField{C-STRATA}, with their positive counts, sample sizes, and inclusion weights.
+
+% HUMAN_AUDIT_TABLE
+
+Table~\ref{tab:humanbias} reports human use rates and automatic-minus-human bias within each condition. Full-context inaccessible responses also have a separate correct-probe subset matching the frozen H2 eligibility rule. This prevents accessible controls or easier removal/view responses from diluting the measurement error associated with the 63.95-point state-conditioned estimate. Within the same weighted population,
+\begin{equation}
+\begin{split}
+ D_{\rm auto}-D_{\rm human}
+ &= [P_{\rm auto}(T)-P_{\rm human}(T)]\\
+ &\quad-[P_{\rm auto}(F)-P_{\rm human}(F)].
+\end{split}
+\label{eq:measurementbias}
+\end{equation}
+Relative foil recall is therefore insufficient to assess the absolute bias in $D$. We retained $P(T\land F)$ and the union $P(T\lor F)=P(T)+P(F)-P(T\land F)$, since near-zero net use can conceal simultaneous disclosures. Priority checks covered target leakage in full-context inaccessible replies and any semantic disclosure in inaccessible view replies. Table intervals used \HumanField{C-CI}; the supported interpretation and scope were \HumanField{C-interpretation} and \HumanField{C-SCOPE}. Human shell retention under full, removal, and view was \HumanField{O-FULL}, \HumanField{O-HARD}, and \HumanField{O-VIEW}\%, with actual-input correctness kept separate. These sensitivities do not replace frozen tests.
+
+% HUMAN_BIAS_TABLE
+
+\subsection{Foil and Choice Diagnostics}
+The enriched 192-response semantic packet included all 41 machine foil-positive responses in the four-core discovery method population, AI-flagged foil-positive or uncertain cases, and 64 randomly sampled remaining controls. Selection categories overlap; source overlaps were deduplicated. Human reviewers completed \HumanField{N-F} cases and identified \HumanField{F-ERRORS} foil errors with \HumanField{F-TYPES} as their main mechanisms. This outcome-informed sample characterizes errors without estimating population precision, recall, F1, or prevalence. It remains separate from the representative audits.
+
+The choice audit sampled 128 responses with both counterfactual versions in each sampled model--boundary--method--access stratum. Annotators decoded the selected option or labeled the response uncommitted or unresolved. They completed \HumanField{N-Q} cases; scorer agreement was \mbox{\HumanField{Q-AGREE}}\%, with \HumanField{U-Q} unresolved cases. Any human-derived choice contrast was reported as \HumanField{Q-EFFECT}, separately from the fixed automatic decoder and the frozen option-position sensitivity.
+
+\subsection{Multilingual Stimulus Review}
+The inventory contained 24 deduplicated sentences forming 12 A/B pairs: eight sentences and four pairs per language, linked to all source scenes. Two reviewers per language independently assessed sentence meaning, naturalness, lexical clues, and pair matchedness. Their fluent/native qualifications were \HumanField{LANG-QUAL}. Naturalness and matchedness used five-point scales; meaning and clue judgments were binary with an unresolved option. The paired forms repeat each pair from both sentence orientations; matchedness was adjudicated once per distinct pair, resolving duplicate ratings through \HumanField{PAIR-RESOLVE}. Sentence outcomes use eight units per language and matchedness uses four (Table~\ref{tab:humanlanguage}). Disagreements were resolved through \HumanField{LANG-ADJ}. The review identified \HumanField{LANG-ISSUES}; stimulus exclusions were separate sensitivities that left the frozen campaign intact.
+
+% HUMAN_LANGUAGE_TABLE
+
+\subsection{Non-Speaker Word-Form Guessability}
+A separate participant group completed the 96-question, eight-option word-meaning questionnaire. It covered all 48 active v2 canary--language pairs with their written or romanized forms. Participants received no translations or answer key and were instructed not to consult external resources. The existing scoring rule excluded non-English-dominant participants, answers for languages a participant reported knowing, and Chinese/Japanese answers from participants able to read Chinese characters. Of \HumanField{G-RECRUIT} recruited participants, \HumanField{N-G} contributed eligible answers; participant- and language-specific exclusions were \HumanField{G-EXCLUDE}. Chinese, Japanese, and Spanish active-item accuracy was \HumanField{G-ZH}, \HumanField{G-JA}, and \HumanField{G-ES}\%, respectively, relative to the 12.5\% uniform-guessing reference. Participant/item uncertainty was summarized by \HumanField{G-CI}. Items with conspicuous word-form cues were \HumanField{G-ITEMS}; the associated sensitivity gave \HumanField{G-EFFECT}. Word guessing measures recoverability without language competence and is distinct from fluent stimulus review.
+
+\subsection{AI Screening and Earlier Materials}
+Two AI annotators independently evaluated the 640 discovery semantic items and 192 confirmation occurrence items. Their results are screening diagnostics, excluded from human reference labels and all human fields above. Target-use F1 was 98.36/98.55\%, whereas foil recall was 11.11/16.67\% and F1 was 20.00/28.57\% for A/B. Pooled weighted precision/recall/F1 was 97.06/97.35/97.20\% and 97.99/97.71/97.85\%, excluding 72 and 16 uncertain semantic rows, respectively. The high pooled F1 conceals weaker rare-foil detection, and different exclusions prevent treating these as one shared reference set. The agents disagreed on primary semantic labels for 17 items; uncertainty added cases to a 99-item review queue.
+
+% NATIVE_PROXY_STATUS
+
+The earlier two-boundary project generated 760,508 records and prepared separate 360-response, 220-response, and 3,211-response review packets. Its automatic effects and provisional AI reviews remain separate from the four-boundary campaign and the human-study reporting template.
+
+\section{Frozen Inference and Failure Accounting}
+\label{app:accounting}
+The completed campaign contains all 220,088 planned generation calls and 206,264 scored endpoints including calibration. Intermediate self-filter calls account for their difference. The core snapshot contains 151,864 calls and 142,648 endpoints. The seven discovery extensions add 68,224 calls and 63,616 endpoints, including one retained Qwen3.8-27B truncation and 11 Seed truncations. All 6,336 Mistral responses and all confirmation endpoints are complete. Discovery truncations are retained under the original zero-use rule; no result-dependent regeneration was performed.
+
+For a contrast, bootstrap draws resample scene skeletons and retain all models, versions, and conditions attached to each selected skeleton. The centered one-sided test compares the observed contrast with its fixed null; two-sided percentile intervals are reported separately. The noninferiority null for accessible target use is ${-}.05$. Boundary and method conjunctions take the maximum component $p$ before Holm adjustment across the three families. The minimum unadjusted Monte Carlo $p$ with 2,000 draws is $1/2001$; the reported adjusted value of approximately .0015 reflects this resolution. It is not an exact population probability.
+
+The primary state-conditioned analysis includes an endpoint when its independent state probe is correct, recomputes model-specific eligible ratios on every bootstrap draw, and averages across nonempty models. All four models are nonempty in confirmation; no draw is wholly undefined. The .85 capability-conditioned secondary retains all three Gemma language units and the Chinese/Spanish units of the other core models. Its 96-skeleton bootstrap resamples eligible-response ratios with equal model weights and fixed observed eligibility. No new confirmatory $p$-value is assigned. Applying this additional comprehension eligibility to the pooled state-correct endpoint yields 65.93 [64.82, 67.14], with 5,684 eligible responses; the frozen value remains 63.95 [62.73, 65.19]. The gate's sampling uncertainty and broader language competence are not covered by these conditional intervals.
+
+The three ineligible Japanese units are GLM at 62.5\% both-canary translation use, Nemotron at 75.0\%, and Qwen9 at 62.5\% (Table~\ref{tab:translate}). The remaining nine model--language units contribute 1,152 comprehension endpoints. Their net-use estimate is 50.98 [48.36, 53.67], with equal model weights; the unconditional primary remains 47.20 [44.86, 49.61]. The diagnostic measures canary recovery rather than general fluency. For the other boundaries, state-correct net use ranges from 67.58 to 72.19 points (Table~\ref{tab:stateboundary}).
+
+The post-hoc lexical bootstrap averages values within the 12 pairings (eight scene specifications each), then resamples blocks using 2,000 draws and the original seed. Confirmation point estimates and frozen tests are unchanged. The full-minus-view leakage-reduction interval widens from [62.81, 65.27] to [60.94, 67.09]; accessible view-minus-full use from [$-0.18$, 1.19] to [$-0.52$, 1.58]; the 67.75-point retention improvement has interval [62.76, 72.40]. These descriptive intervals assess sensitivity to the resampling unit, excluding uncertainty over unseen vocabulary.
+\end{document}
