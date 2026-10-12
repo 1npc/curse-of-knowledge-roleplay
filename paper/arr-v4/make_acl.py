@@ -21,7 +21,7 @@ NAMES = {"FIG_EXAMPLE": "fig1-example", "FIG_DESIGN": "fig2-design", "FIG_S1": "
          "FIG_S2": "fig5-study2", "FIG_FRONTIER": "fig6-format", "FIG_WHY": "fig7-why", "FIG_REMEDY": "fig8-remedies",
          "FIG_S1M": "figA-listfirst-per-model", "FIG_BRIDGEFULL": "figB-bridge-all-models"}
 # Main-text figures drawn on a reduced grid, then set to the full text or column width.
-SHRINK = {"FIG_S1": (0.88, 0.92), "FIG_FACTORS": (1, 1), "FIG_S2": (0.88, 0.92), "FIG_FRONTIER": (0.88, 0.92), "FIG_WHY": (1, 1),
+SHRINK = {"FIG_S1": (0.88, 0.94), "FIG_FACTORS": (1, 1), "FIG_S2": (0.88, 0.94), "FIG_FRONTIER": (0.88, 0.92), "FIG_WHY": (1, 1),
           "FIG_REMEDY": (0.88, 0.92)}
 TIKZ = re.compile(r"\\begin\{tikzpicture\}.*\\end\{tikzpicture\}", re.S)
 

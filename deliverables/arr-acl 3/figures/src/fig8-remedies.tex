@@ -1,0 +1,170 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{fontspec}\setmainfont{Arial}\setsansfont{Arial}\usepackage{amsmath,amssymb,xcolor}
+\usepackage{tikz,pgfplots,fontawesome5}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{plotmarks,arrows.meta,calc,positioning,shapes.callouts,backgrounds,fit}
+\pgfsetplotmarksize{1.7pt}
+\tikzset{every picture/.append style={font=\sffamily\scriptsize},
+  card/.style={rounded corners=2pt,draw=black!18,fill=black!2,inner sep=3pt,align=left},
+  chip/.style={rounded corners=1.5pt,inner sep=1.5pt,font=\sffamily\tiny\bfseries,text=white},
+  panel/.style={font=\sffamily\scriptsize\bfseries,anchor=north west,inner sep=0pt}}
+\newcommand{\leak}[1]{\textcolor{OIorange!85!black}{\textbf{#1}}}
+\definecolor{OIblue}{HTML}{5B7FAF}\definecolor{OIorange}{HTML}{D2876C}\definecolor{OIgreen}{HTML}{68A595}
+\definecolor{OIsky}{HTML}{9CC2DD}\definecolor{OIpurple}{HTML}{B497B6}\definecolor{OIgray}{HTML}{9A9A9A}
+\begin{document}
+\begin{tikzpicture}[x=0.88cm,y=0.92cm]
+\node[panel] at (-0.75,3.55) {(a) List-first prompt, Study 1};
+\draw[black!9] (0,0.000)--(3.4,0.000);
+\draw[black!9] (0,0.750)--(3.4,0.750);
+\draw[black!9] (0,1.500)--(3.4,1.500);
+\draw[black!9] (0,2.250)--(3.4,2.250);
+\draw[black!9] (0,3.000)--(3.4,3.000);
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (0.850,0)--(0.850,3.0);
+\draw[black!9] (1.700,0)--(1.700,3.0);
+\draw[black!9] (2.550,0)--(2.550,3.0);
+\draw[black!9] (3.400,0)--(3.400,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(3.4,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.850,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.700,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.550,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.400,0) {100};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.750) {25};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,2.250) {75};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,3.000) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.7,-0.3) {hidden values in the first-step list (\%)};
+\node[anchor=south,rotate=90,font=\sffamily\scriptsize] at (-0.55,1.5) {net use after the prompt (pp)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.197,0.129)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(2.057,0.943)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.000,0.000)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(0.006,0.003)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.000,0.003)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(0.000,0.000)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(3.080,1.754)};
+\node[anchor=east,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (3.000,1.754) {GLM-4.7-Flash};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(3.066,2.141)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.081,0.184)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(0.900,0.669)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.520,1.357)};
+\node[anchor=south west,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (0.490,1.417) {Mistral-24B};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(2.181,1.589)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(1.056,1.055)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(1.328,1.042)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.291,0.300)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(1.682,1.260)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(1.816,1.527)};
+\node[anchor=north west,font=\sffamily\tiny,text=black!60,inner sep=1pt] at (1.846,1.477) {Qwen3.5-9B};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(3.170,2.495)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.024,0.003)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(0.449,0.016)};
+\path[OIblue,opacity=.9] plot[mark=*] coordinates {(0.000,0.002)};
+\path[OIorange,opacity=.9] plot[mark=triangle*] coordinates {(0.000,0.010)};
+\path[OIblue] plot[mark=*] coordinates {(0.125,2.850)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.220,2.850) {cannot understand};
+\path[OIorange] plot[mark=triangle*] coordinates {(2.330,2.850)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.425,2.850) {cannot hear};
+\begin{scope}[xshift=5.148cm]
+\node[panel] at (-1.75,3.55) {(b) Net use of inaccessible content (pp)};
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (1.100,0)--(1.100,3.0);
+\draw[black!9] (2.200,0)--(2.200,3.0);
+\draw[black!9] (3.300,0)--(3.300,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(3.3,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.100,0) {20};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.200,0) {40};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.300,0) {60};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.700) {full context};
+\fill[OIorange!55] (0,2.560) rectangle (2.621,2.840);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(3.146,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(1.704,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(2.511,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(3.122,2.700)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,2.700) {48};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.100) {flag + prose rule};
+\fill[OIpurple!55] (0,1.960) rectangle (1.720,2.240);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(1.891,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(1.776,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(1.494,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(1.719,2.100)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,2.100) {31};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.500) {self-filter prompt};
+\fill[OIsky!55] (0,1.360) rectangle (1.055,1.640);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(2.626,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(0.110,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(1.222,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(0.263,1.500)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,1.500) {19};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.900) {event removal};
+\fill[black!22] (0,0.760) rectangle (0.020,1.040);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(0.005,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(0.000,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(0.000,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(0.000,0.900)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,0.900) {0};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.300) {character view};
+\fill[OIgreen!55] (0,0.160) rectangle (0.020,0.440);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(0.005,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(0.000,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(0.000,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(0.000,0.300)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,0.300) {0};
+\end{scope}
+\begin{scope}[xshift=9.152cm]
+\node[panel] at (-0.1,3.55) {(c) Permitted use (\%)};
+\draw[black!9] (0.000,0)--(0.000,3.0);
+\draw[black!9] (0.825,0)--(0.825,3.0);
+\draw[black!9] (1.650,0)--(1.650,3.0);
+\draw[black!9] (2.475,0)--(2.475,3.0);
+\draw[black!9] (3.300,0)--(3.300,3.0);
+\draw[black!45,line width=.4pt] (0,3.0)--(0,0)--(3.3,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.825,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.650,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.475,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (3.300,0) {100};
+\fill[OIorange!55] (0,2.560) rectangle (2.926,2.840);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(2.959,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(3.019,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(2.618,2.700)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(3.108,2.700)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,2.700) {89};
+\fill[OIpurple!55] (0,1.960) rectangle (3.155,2.240);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(3.082,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(3.154,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(3.188,2.100)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(3.194,2.100)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,2.100) {96};
+\fill[OIsky!55] (0,1.360) rectangle (2.401,1.640);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(3.085,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(2.077,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(2.690,1.500)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(1.750,1.500)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,1.500) {73};
+\fill[black!22] (0,0.760) rectangle (2.873,1.040);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(2.939,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(2.896,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(2.658,0.900)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(2.999,0.900)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,0.900) {87};
+\fill[OIgreen!55] (0,0.160) rectangle (2.872,0.440);
+\path[black!65] plot[mark size=1.36pt,mark=triangle*] coordinates {(2.936,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=*] coordinates {(2.896,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=square*] coordinates {(2.655,0.300)};
+\path[black!65] plot[mark size=1.36pt,mark=diamond*] coordinates {(2.999,0.300)};
+\node[anchor=west,font=\sffamily\tiny\bfseries,text=black!70] at (3.320,0.300) {87};
+\end{scope}
+\path[black!65] plot[mark=triangle*] coordinates {(6.075,-0.450)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (6.170,-0.450) {Hear};
+\path[black!65] plot[mark=*] coordinates {(6.935,-0.450)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (7.030,-0.450) {Understand};
+\path[black!65] plot[mark=square*] coordinates {(8.455,-0.450)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (8.550,-0.450) {See};
+\path[black!65] plot[mark=diamond*] coordinates {(9.205,-0.450)};
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (9.300,-0.450) {Receive};
+\node[anchor=west,font=\sffamily\tiny,text=black!60] at (10.4,-0.45) {bars: mean over channels, number at right};
+\end{tikzpicture}
+\end{document}

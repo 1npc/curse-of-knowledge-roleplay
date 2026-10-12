@@ -208,7 +208,7 @@ def study1():
         if r["D"] == "D0" and r["cell"] in ("C-T-", "Einaud_S"):
             probe[(r["model"], r["cell"])].append(float(r["mean"]))
     w, h = 3.0, top - 0.1
-    L.append(r"\begin{scope}[xshift=5.0cm]")
+    L.append(r"\begin{scope}[xshift=5.4cm]")
     L.append(f"\\node[panel] at (-0.75,{top + 1.05:.2f}) {{(b) Reads the state, still leaks}};")
     fl, X, Y = frame(w, h, (0, 100), (0, 100), [0, 25, 50, 75, 100], [0, 25, 50, 75, 100], "State probe answered correctly (\\%)", "Net use (pp)", grid="xy")
     L += fl
@@ -227,7 +227,7 @@ def study1():
     # (c) by question
     d = load(RA / "by_question.json")
     qs = [("content", "What did they say?"), ("task", "What is the task?"), ("check", "Did you catch it?"), ("plan", "What do we do next?")]
-    L.append(r"\begin{scope}[xshift=10.6cm]")
+    L.append(r"\begin{scope}[xshift=10.95cm]")
     L.append(f"\\node[panel] at (-1.9,{top + 1.05:.2f}) {{(c) By the companion's question}};")
     w2 = 3.0
     fl, X, _ = frame(w2, h, (0, 100), (0, 1), [0, 25, 50, 75, 100], [], "Net use, cannot understand (pp)", grid="x")
@@ -296,7 +296,7 @@ def study2():
     # (c) persistence
     per = {(r[2], r[3], int(r[5])): 100 * float(r[7]) for r in pd if r[0] == "persistence"}
     colors = {"Hear": ("OIorange", "triangle*"), "Understand": ("OIblue", "*"), "See": ("OIpurple", "square*"), "Receive": ("OIsky", "diamond*")}
-    L.append(r"\begin{scope}[xshift=6.75cm]")
+    L.append(r"\begin{scope}[xshift=6.95cm]")
     L.append(f"\\node[panel] at (-0.4,{H + 0.85:.2f}) {{(c) Persistence}};")
     w = 2.2
     fl, X, Y = frame(w, H, (0, 4), (0, 100), [0, 2, 4], [0, 25, 50, 75, 100], "neutral exchanges", "net use (pp)")
@@ -318,7 +318,7 @@ def study2():
     L.append(r"\end{scope}")
     # (d) search choice
     dec = {(r[2], r[3]): tuple(100 * float(x) for x in r[7:10]) for r in pd if r[0] == "decision"}
-    L.append(r"\begin{scope}[xshift=10.95cm]")
+    L.append(r"\begin{scope}[xshift=11.15cm]")
     L.append(f"\\node[panel] at (-0.35,{H + 0.85:.2f}) {{(d) Choosing where to search}};")
     w = 2.75
     fl, X, Y = frame(w, H, (0, 80), (0, 4), [0, 20, 40, 60, 80], [], "change in choosing A (pp)", grid="x")
@@ -368,12 +368,12 @@ def models():
     ho = load(RA / "hosted.json")
     rs = load(RA / "hosted_reasoning.json")
     cols = [("repertoire", "reper-\\\\toire"), ("understood_flag", "compr.\\\\flag"), ("prose", "+ sen-\\\\tence"),
-            ("inaudible_flag", "audib.\\\\flag"), ("fluent_control_use", "control\\\\use (\\%)")]
+            ("inaudible_flag", "audib.\\\\flag"), ("fluent_control_use", "permitted\\\\use (\\%)")]
     rows = [(NAMES[m], ho[m]["study1"]) for m in ["gpt6sol", "gemini38flash", "grok47", "opus55", "gemini31pro", "sonnet55", "deepseekv4pro"]]
     rows.append(("11 open-weight models", {k: sum(v[k] for v in op.values()) / len(op) for k, _ in cols if k in next(iter(op.values()))}))
     cw, rh = 0.66, H / len(rows)
     L.append(r"\begin{scope}[xshift=8.75cm]")
-    L.append(f"\\node[panel] at (-2.25,{H + 0.85:.2f}) {{(c) Proprietary models, Study 1 core cells (pp)}};")
+    L.append(f"\\node[panel] at (-2.25,{H + 0.85:.2f}) {{(c) Proprietary models (pp)}};")
     for j, (_, lab) in enumerate(cols):
         L.append(f"\\node[font=\\sffamily\\tiny,align=center,anchor=south] at ({(j + 0.5) * cw:.3f},{H + 0.03:.3f}) {{{lab}}};")
     for i, (name, d) in enumerate(rows):

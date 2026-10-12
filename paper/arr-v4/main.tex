@@ -850,7 +850,7 @@ In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) is pres
 \fill[OIorange!29!white] (1.652,-0.068) rectangle (2.448,0.178);\node[text=black!80,font=\sffamily\tiny\bfseries] at (2.050,0.055) {34};
 \fill[OIorange!61!white] (2.472,-0.068) rectangle (3.268,0.178);\node[text=black!80,font=\sffamily\tiny\bfseries] at (2.870,0.055) {72};
 \fill[OIorange!39!white] (3.292,-0.068) rectangle (4.088,0.178);\node[text=black!80,font=\sffamily\tiny\bfseries] at (3.690,0.055) {46};
-\begin{scope}[xshift=5.0cm]
+\begin{scope}[xshift=5.4cm]
 \node[panel] at (-0.75,4.29) {(b) Reads the state, still leaks};
 \draw[black!9] (0,0.000)--(3.0,0.000);
 \draw[black!9] (0,0.785)--(3.0,0.785);
@@ -904,7 +904,7 @@ In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) is pres
 \path[OIblue] plot[mark=*] coordinates {(0.150,0.534)};\node[anchor=west,font=\sffamily\tiny] at (0.240,0.534) {repertoire (understand)};
 \path[OIorange] plot[mark=triangle*] coordinates {(0.150,0.220)};\node[anchor=west,font=\sffamily\tiny] at (0.240,0.220) {audibility flag (hear)};
 \end{scope}
-\begin{scope}[xshift=10.6cm]
+\begin{scope}[xshift=10.95cm]
 \node[panel] at (-1.9,4.29) {(c) By the companion's question};
 \draw[black!9] (0.000,0)--(0.000,3.14);
 \draw[black!9] (0.750,0)--(0.750,3.14);
@@ -1080,12 +1080,12 @@ Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language
 \path[OIorange] plot[mark=square*] coordinates {(1.230,-0.950)};
 \node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.325,-0.950) {Gemma-4};
 \begin{scope}[xshift=8.75cm]
-\node[panel] at (-2.25,3.45) {(c) Proprietary models, Study 1 core cells (pp)};
+\node[panel] at (-2.25,3.45) {(c) Proprietary models (pp)};
 \node[font=\sffamily\tiny,align=center,anchor=south] at (0.330,2.630) {reper-\\toire};
 \node[font=\sffamily\tiny,align=center,anchor=south] at (0.990,2.630) {compr.\\flag};
 \node[font=\sffamily\tiny,align=center,anchor=south] at (1.650,2.630) {+ sen-\\tence};
 \node[font=\sffamily\tiny,align=center,anchor=south] at (2.310,2.630) {audib.\\flag};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (2.970,2.630) {control\\use (\%)};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.970,2.630) {permitted\\use (\%)};
 \node[anchor=east,font=\sffamily\tiny] at (-0.05,2.438) {GPT-6 Sol};
 \fill[OIorange!0!white] (0.012,2.287) rectangle (0.648,2.588);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.438) {0};
 \fill[OIorange!1!white] (0.672,2.287) rectangle (1.308,2.588);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.438) {1};
@@ -1242,7 +1242,7 @@ Study~2 asks whether the failure extends to content hidden for other reasons and
 \fill[OIblue] (0.05,-0.92) rectangle (0.2,-0.8);\node[anchor=west,font=\sffamily\tiny] at (0.22,-0.86) {membership list};
 \fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\node[anchor=west,font=\sffamily\tiny] at (0.22,-1.11) {flag + prose rule};
 \end{scope}
-\begin{scope}[xshift=6.75cm]
+\begin{scope}[xshift=6.95cm]
 \node[panel] at (-0.4,3.85) {(c) Persistence};
 \draw[black!9] (0,0.000)--(2.2,0.000);
 \draw[black!9] (0,0.750)--(2.2,0.750);
@@ -1282,7 +1282,7 @@ Study~2 asks whether the failure extends to content hidden for other reasons and
 \node[anchor=west,font=\sffamily\tiny,text=OIorange] at (2.320,2.286) {Hear};
 \draw[OIgreen,line width=.9pt,densely dashed] (0,0.000)--(2.2,0.000);\node[anchor=south west,font=\sffamily\tiny,text=OIgreen] at (0.05,0.000) {character view, all channels};
 \end{scope}
-\begin{scope}[xshift=10.95cm]
+\begin{scope}[xshift=11.15cm]
 \node[panel] at (-0.35,3.85) {(d) Choosing where to search};
 \draw[black!9] (0.000,0)--(0.000,3.0);
 \draw[black!9] (0.688,0)--(0.688,3.0);
@@ -1780,7 +1780,7 @@ One explanation for this curse of knowledge lies in what models have read. Ficti
 
 The proprietary models that comply show that the boundary is learnable. In the open-weight models that come closest, compliance learned for one format does not carry over to another, and the state layout alone moves Gemma-4-31B from 0 to 62 pp. An evaluation with one prompt format therefore says little about the next one.
 
-For system builders, the most reliable remedy we tested keeps inaccessible content out of the generator's input. The character view does this when the access state is known. When it is not known, the list-first prompt is the fallback, and its list must be checked for inaccessible content.
+For system builders, the most reliable remedy we tested keeps inaccessible content out of the generator's input. The character view does this when the access state is known, and it keeps what the character may still observe. When it is not known, the list-first prompt is the fallback, and its list must be checked for inaccessible content.
 
 \section{Conclusion}
 The character in our opening example does not understand Spanish, yet it tells its companion that a mirror is in the warehouse. Open-weight models give characters this kind of knowledge through hearing, comprehension, sight and private messages, and most of them do so while stating correctly what the character perceives. This is the curse of knowledge that psychologists describe in people. Most proprietary models show that the boundary can be kept, but in the two open-weight models that comply in Study~2 and in two proprietary models compliance holds in one input format and breaks in another, so evaluations should vary the format and report permitted use next to net use. Prompted filters and thinking help some models and fail others. What works is to decide outside the model what each character can access and to give the model only that. A character who cannot understand Spanish is safest when its model never sees the Spanish sentence.
