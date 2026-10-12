@@ -334,7 +334,7 @@ def study2():
     L.append(f"\\fill[OIgreen] (0.05,-1.17) rectangle (0.2,-1.05);\\node[anchor=west,font=\\sffamily\\tiny] at (0.22,-1.11) {{character view}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), for 11 open-weight models and four channels. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (11 models, 24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
+          r"\caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), per model and channel. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}",
           r"\label{fig:s2}", r"\end{figure*}"]
     return "\n".join(L)
 
