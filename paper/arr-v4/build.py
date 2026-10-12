@@ -285,7 +285,7 @@ def added():
         s1, br = ho[m]["study1"], ho[m]["bridge"]
         rows.append(NAMES2[m] + " & " + " & ".join(f(s1[k]) for k in ("repertoire", "inaudible_flag", "understood_flag", "prose", "fluent_control_use",
                     "state_probe_correct", "translation_both_canaries")) + f" & {f(br['base']['unheard_net'])} $\\to$ {f(br['all']['unheard_net'])}" + r"\\")
-    ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends "
+    ins["HOSTED_TABLE"] = table(rows, "lrrrrrrrr", "Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 scenes per cell) and on both ends "
                                 "of the bridge. Leakage is net use in pp, control use and probes are percentages.", "tab:hosted", True)
     hc = json.loads((ROOT / "analysis/results/added-1006/hosted_ci.json").read_text())
     cells = [("repertoire", "Repertoire"), ("inaudible_flag", "Audibility flag"), ("understood_flag", "Compr. flag"), ("prose", "Prose sentence")]
@@ -296,7 +296,7 @@ def added():
     rows.append(r"\midrule")
     rows.append("Claude Opus 5.5, complete replies only & " + " & ".join(cell(hc["opus55"].get(k + "_complete_only", hc["opus55"][k])) for k, _ in cells) + r"\\")
     ins["HOSTED_CI"] = table(rows, "lrrrr", "Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\\% intervals from 2,000 skeleton-bootstrap draws "
-                             "(288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.", "tab:hostedci", True)
+                             "(288 scenes, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.", "tab:hostedci", True)
     ext = json.loads((ROOT / "analysis/results/added-1006/v2-extension.json").read_text())
     chans = ["Hear", "Understand", "See", "Receive"]
     per = ext["per_model_full_context"]
@@ -551,9 +551,31 @@ LATE_FIXES = ((r"\textbf{Version} & \textbf{Access} & \textbf{Probe}", r"\textbf
               ("Confirmation cohort. Leakage is net $D$ in pp, and accessible target use and partial-event retention are percentages. Retention excludes Hear. Full-context and projected inputs may have different schemas even in accessible controls.",
                "Confirmation set. Net use $D$ is in pp, and permitted use and partial-event retention are percentages. Retention excludes Hear."))
 
+# One name per concept across the appendix tables (channel, permitted use, event removal, Nemotron-3-Nano).
+TERM_FIXES = ((r"\textbf{Boundary} &", r"\textbf{Channel} &"),
+              ("Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points, and state correctness is a percentage. Every model has eligible role endpoints.",
+               "Per-model results of the Study 2 confirmation set. Channel columns and conditional $D$ are net use in pp, and state correctness is a percentage."),
+              (r"\textbf{Control} & \textbf{State}", r"\textbf{Permitted} & \textbf{State}"),
+              ("Accessible target use", "Permitted use"),
+              ("View minus full accessible use", "View minus full, permitted use"),
+              ("View minus hard event retention", "View minus event removal, retention"),
+              ("Hard removal &", "Event removal &"),
+              ("Nemotron-3-Nano-30B &", "Nemotron-3-Nano &"),
+              ("Both canaries required", "Object and place both required"),
+              (r"\textbf{Fixed-A choice contrast}", r"\textbf{Change in choosing A}"),
+              ("Fixed-A decision contrast (pp) and response validity. The choice of location A is tracked across versions, independently of its option number.",
+               "Change in choosing place A (pp) when the hidden fact switches from B to A, and the share of valid choices. Place A is tracked across versions, independently of its option number."),
+              ("Full replies score $(T,F,D)=(1,0,1)$ in all four rows, inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.",
+               "All four full-context replies name the target and not the foil ($D=1$). Under the character view, the inaccessible replies name neither ($D=0$) and the accessible replies name the target ($D=1$)."),
+              ("Format ablation from Study 1 toward Study 2 (96 skeletons, content question).",
+               "Format ablation from Study 1 toward Study 2 (96 scenes, one language per skeleton, content question)."))
+
 
 def late_fixes(body):
     for x, y in LATE_FIXES:
+        assert x in body, x
+        body = body.replace(x, y)
+    for x, y in TERM_FIXES:
         assert x in body, x
         body = body.replace(x, y)
     return body

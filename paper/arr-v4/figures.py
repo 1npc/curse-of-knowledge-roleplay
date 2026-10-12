@@ -390,7 +390,7 @@ def models():
     L.append(f"\\node[anchor=north west,font=\\sffamily\\tiny\\itshape,text=black!65] at (0,-0.12) {{Claude Sonnet 5.5 with high reasoning, repertoire {100 * rs['sonnet55-high']['net']:.0f}}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell).}",
+          r"\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 scenes per cell).}",
           r"\label{fig:models}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -466,7 +466,7 @@ def input_format():
     L += legend([("box", "OIorange!40", "discovery scenes"), ("box", "OIorange", "new scenes")], 0.0, -1.3)
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}",
+          r"\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 scenes). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}",
           r"\label{fig:format}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -498,7 +498,7 @@ def remedy():
     est = load(ROOT / "analysis/h200-v2-20261002/method-six-descriptive-results.json")["descriptive_estimates"]
     v = {(r["boundary"], r["method"], r["metric"]): 100 * r["estimate"] for r in est}
     meth = [("full", "OIorange", "full context"), ("prose", "OIpurple", "flag + prose rule"), ("self_filter", "OIsky", "self-filter prompt"),
-            ("hard", "black", "event removed"), ("view", "OIgreen", "character view")]
+            ("hard", "black", "event removal"), ("view", "OIgreen", "character view")]
     marks = {"Hear": "triangle*", "Understand": "*", "See": "square*", "Receive": "diamond*"}
     rh = H / len(meth)
     for k, (metric, title, x0, xr, ticks) in enumerate((("D", "(b) Net use of inaccessible content (pp)", 5.85, (0, 60), [0, 20, 40, 60]),

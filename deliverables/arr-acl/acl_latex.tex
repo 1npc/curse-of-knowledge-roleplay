@@ -109,7 +109,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Role-playing language models speak as characters in games and agent simulations, where the system records what each character can hear, see and understand. We test whether characters respect these boundaries in 480 scenes, each with a counterfactual twin that changes only the hidden fact, so mentions of the twin's fact measure guessing. Across 11 open-weight models, characters use content from speech they cannot understand or hear at 67 and 72 percentage points (pp) above this baseline, although most models correctly state what the character perceives. This is a curse of knowledge. The leak extends to hidden actions and private messages and changes where characters search. Five of six proprietary models rarely leak, but compliance in strong models depends on input format. Changing only the scene layout or character description raises the rate in the strongest open-weight models from under 10 to over 60 pp, and combined changes raise two proprietary models from near zero to 13 and 21 pp. Writing the line as the scene's author leaks nearly as much as role-play, and thinking rarely helps. Giving models only what the character observes stops the leak without hiding what it may report. We will release the scenes, prompts and scorer.
+Role-playing language models speak as characters in games and agent simulations, where the system records what each character can hear, see and understand. We test whether characters respect these boundaries in 480 scenes, each with a counterfactual twin that changes only the hidden fact, so mentions of the twin's fact measure guessing. Across 11 open-weight models, characters use content from speech they cannot understand or hear at 67 and 72 percentage points (pp) above this baseline, although most models correctly state what the character perceives. This is a curse of knowledge. The leak extends to hidden actions and private messages and changes where characters search. Five of six proprietary models rarely leak, but compliance in strong models depends on input format. Changing only the scene layout or character description raises the rate in two otherwise compliant open-weight models from under 10 to over 60 pp, and combined changes raise two proprietary models from near zero to 13 and 21 pp. Writing the line as the scene's author leaks nearly as much as role-play, and thinking rarely helps. Giving models only what the character observes stops the leak without hiding what it may report. We will release the scenes, prompts and scorer.
 \end{abstract}
 
 \section{Introduction}
@@ -128,7 +128,7 @@ Earlier work has found the same gap between knowing and doing. Models answer wha
 
 To measure this, we pair each scene with a twin that hides a different fact, and mentions of the twin's fact give a baseline for guessing (Section~\ref{sec:measure}). Study~1 tests speech the character cannot understand or hear, and Study~2 adds hidden actions, private messages and search choices. Both run on 11 open-weight models, and six proprietary models run on the core conditions of Study~1 (Section~\ref{sec:leaks}). Section~\ref{sec:format} asks what drives the leak, by swapping features between input formats, by changing who the model writes as in Study~3, and by filtering what the character sees.
 
-Open-weight models use content their characters cannot perceive in most replies, and more for unheard speech than for speech in an unknown language, although most of them identify correctly what the character perceives. Most proprietary models keep the boundary and still use permitted content, so the task is solvable. Yet this compliance is fragile. Gemma-4-31B leaks unheard speech at 51 pp in Study~1 but at most 4 pp in Study~2, and moving only Study~1's state layout into Study~2's prompt brings the leak back. For the strongest open-weight models and two proprietary models, incidental details such as the state layout or the character description decide whether the boundary holds, and the detail that matters differs by model. Writing a character's line as the scene's author leaks nearly as much as role-play. We examine when this curse of knowledge appears, how the input format changes it, and which filters prevent it, and we will release the items, prompts, scorer and all responses.
+Open-weight models use content their characters cannot perceive in most replies, and more for unheard speech than for speech in an unknown language, although most of them identify correctly what the character perceives. Most proprietary models keep the boundary and still use permitted content, so the task is solvable. Yet this compliance is fragile. Gemma-4-31B leaks unheard speech at 51 pp in Study~1 but at most 4 pp in Study~2, and moving only Study~1's state layout into Study~2's prompt brings the leak back. For Gemma-4-31B, Qwen3.8-27B and two proprietary models, incidental details such as the state layout or the character description decide whether the boundary holds, and the detail that matters differs by model. Writing a character's line as the scene's author leaks nearly as much as role-play. We examine when this curse of knowledge appears, how the input format changes it, and which filters prevent it, and we will release the scenes, prompts, scorer and all responses.
 
 \section{Related Work}
 Role-playing agents are trained and evaluated for consistency with a persona \citep{shao-etal-2023-character,wang-etal-2024-rolellm}, and benchmarks score that consistency through dialogue quality or psychological interviews \citep{tu-etal-2024-charactereval,wang-etal-2024-incharacter}. Work on character hallucination tests whether a role answers beyond its time period or fictional world \citep{ahn-etal-2024-timechara,han2026charm}. ReverieMem tags the facts of a novel by which characters can see them, so that retrieval gives a book character only facts within its perspective \citep{tang2026staying}, and MENTOR keeps a separate memory for each role so that information does not flow between roles \citep{zhu2026mentor}. These systems control what enters the model's context. We measure what happens when inaccessible content is already in the context and the scene state marks it as inaccessible.
@@ -139,7 +139,7 @@ ConfAIde and PrivacyLens find that models disclose information in context agains
 
 \section{Measurement}
 \label{sec:measure}
-Each scene contains one fact that names an object and a place, and version B replaces both values while keeping the character, the state and the question (Figure~\ref{fig:example}). A reply uses the target when it names at least one value of its own version, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and scene skeletons and reported in percentage points (pp). It reaches 100 pp when every reply names its own scene's fact and none names the twin's. A guess that ignores the hidden fact cancels across the pair. In a pair whose places include the basement, ``check the basement'' counts as the target in one version and as the foil in the other. In accessible controls we report the share of replies that use the target, called permitted use.
+Each scene comes in two twin versions, A and B, which differ only in one fact that names an object and a place, and the character, the state and the question stay the same (Figure~\ref{fig:example}). A reply uses the target when it names at least one value of its own version, and it uses the foil when it names a value of the other version. Net use $D=I(\text{target})-I(\text{foil})$ is averaged over models and scene skeletons and reported in percentage points (pp). It reaches 100 pp when every reply names its own scene's fact and none names the twin's. A guess that ignores the hidden fact cancels across the pair. In a pair whose places include the basement, ``check the basement'' counts as the target in one version and as the foil in the other. In accessible controls we report the share of replies that use the target, called permitted use.
 
 \begin{figure}[t]
 \centering
@@ -158,7 +158,7 @@ The open-weight models are 11 checkpoints of at most 40B parameters from nine fa
 \label{sec:leaks}
 \subsection{Study 1: Language and Hearing}
 \label{sec:s1}
-In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) is present when a short utterance is spoken, either to them or between two other characters, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's language repertoire. The speech is either in Chinese, Japanese or Spanish, which are not in the repertoire, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}a, and controls make the same speech accessible through fluency, a working translator or audibility. The design has 96 skeletons in three languages, and each of the 288 items appears in 143 prompts that cross conditions, controls, questions, versions and probes. Every model passed the translation probe for every language. Eight tests with thresholds given in Table~\ref{tab:s1} cover net use under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, net use when the state is read correctly, and the perspective filter, and all eight pass.
+In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) is present when a short utterance is spoken, either to them or between two other characters, and a companion who missed it asks about it. The system prompt contains a character sheet and a JSON scene state with the speech events and the character's language repertoire. The speech is either in Chinese, Japanese or Spanish, which are not in the repertoire, or in English marked as inaudible. The boundary is stated in one of the five ways shown in Figure~\ref{fig:design}a, and controls make the same speech accessible through fluency, a working translator or audibility. Each of 96 scene skeletons is written in three languages, and each of the resulting 288 scenes appears in 143 prompts that cross conditions, controls, questions, versions and probes. Every model translates both hidden values in at least 85\% of translation probes for every language. Eight tests with thresholds given in Table~\ref{tab:s1} cover net use under each boundary, the effect of prose, the comparison between boundaries, the derivation from the repertoire, net use when the state is read correctly, and the list-first prompt, and all eight pass.
 
 \begin{figure*}[t]
 \centering
@@ -192,14 +192,14 @@ Characters use inaccessible content in most replies under both boundaries (Figur
 
 In a present-day setting with original characters, net use under the repertoire is 50.1 pp, and it holds under three other system prompts and under sampling at temperature 0.7, which moves four models' estimates by at most 4 pp. Requiring both the object and the place still gives 47.8 and 54.5 pp. The question also does not need to ask for the content. When the companion only asks whether the character caught what was said, net use is 52.7 pp, and when the companion asks what to do next it is 50.1 pp, against 81.7 pp when the companion asks what was said (Figure~\ref{fig:s1}c).
 
-Which boundary leaks more depends on how each is stated. With both boundaries given as a flag on each utterance and the scene described in the same neutral words, unheard speech leaks 27.1 pp more than speech marked as not understood. Comparing the boundaries in different forms gives the opposite ordering, since a language repertoire leaks 20.3 pp more than inaudibility narrated in the scene. Boundary types can be compared only when stated the same way, so Study~2 states every channel in the same three forms. The form also matters within the language boundary. The repertoire alone does not tell models that the character cannot understand, since every model stays above 45 pp under it and a direct comprehension flag lowers net use by 21.6 pp. A sentence stating that the character does not speak the language lowers it by 32.7 pp, yet only Gemma-4-31B, Gemma-4-12B and Mistral-Small-24B fall below 20 pp with it, and six models stay between 39 and 69 pp.
+Which boundary leaks more depends on how each is stated. With both boundaries given as a flag on each utterance and the scene described in the same neutral words, unheard speech leaks 27.1 pp more than speech marked as not understood. Narrating the inaudibility in the scene instead lowers net use by 25.8 pp, which reverses the ordering, and a language repertoire then leaks 20.3 pp more. Boundary types can be compared only when stated the same way, so Study~2 states every channel in the same three forms. The form also matters within the language boundary. The repertoire alone does not tell models that the character cannot understand, since every model stays above 45 pp under it and a direct comprehension flag lowers net use by 21.6 pp. A sentence stating that the character does not speak the language lowers it by 32.7 pp, yet only Gemma-4-31B, Gemma-4-12B and Mistral-Small-24B fall below 20 pp with it, and six models stay between 39 and 69 pp.
 
-Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language boundary, ten of the 11 answer the state probe correctly for 87--100\% of items, and on exactly those items net use is 68.4 pp, against 66.7 pp over all items. GLM-4.7-Flash is the exception, since it answers that the character understands in all 288 items, so its 50 pp under the repertoire reflects a misreading of the state. For hearing, nine models answer correctly for at least 87\% of items, while Phi-4 and Nemotron-3-Nano do so for only 34\% and 54\%, so part of their net use for unheard speech comes from misreading the flag. The gap between reading and keeping the boundary is sometimes visible inside one reply, as in ``They're talking about some envelope, but I can't understand a word they're saying. Something about the parking lot, though.'' Scale does not remove the failure (Figure~\ref{fig:models}a, b). Within Qwen3.5, net use under the repertoire rises from 13.9 pp at 0.8B to 82.7 pp at 9B, and within Gemma-4 from 12.8 pp at E2B to 69.7 pp at 12B. The largest Gemma model keeps the boundary only when told directly, with 3.1 pp under the comprehension flag against 45.7 pp under the repertoire.
+Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language boundary, ten of the 11 answer the state probe correctly for 87--100\% of scenes, and on exactly those scenes net use is 68.4 pp, against 66.7 pp over all scenes. GLM-4.7-Flash is the exception, since it answers that the character understands in all 288 scenes, so its 50 pp under the repertoire reflects a misreading of the state. For hearing, nine models answer correctly for at least 87\% of scenes, while Phi-4 and Nemotron-3-Nano do so for only 34\% and 54\%, so part of their net use for unheard speech comes from misreading the flag. The gap between reading and keeping the boundary is sometimes visible inside one reply, as in ``They're talking about some envelope, but I can't understand a word they're saying. Something about the parking lot, though.'' Scale does not remove the failure (Figure~\ref{fig:models}a, b). Within Qwen3.5, net use under the repertoire rises from 13.9 pp at 0.8B to 82.7 pp at 9B, and within Gemma-4 from 12.8 pp at E2B to 69.7 pp at 12B. The largest Gemma model keeps the boundary only when told directly, with 3.1 pp under the comprehension flag against 45.7 pp under the repertoire.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig4-models.pdf}
-\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell).}
+\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 scenes per cell).}
 \label{fig:models}
 \end{figure*}
 \subsection{Study 2: Four Channels}
@@ -221,12 +221,12 @@ Leaked facts also persist and guide behavior. With the event kept in the convers
 
 \subsection{Proprietary Models}
 \label{sec:proprietary}
-We ran six proprietary models and DeepSeek-V4-Pro on the core Study~1 conditions with the content question. Five of the six proprietary models rarely use inaccessible content (Figure~\ref{fig:models}c, Appendix Tables~\ref{tab:hosted} and~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and its permitted use in the fluent control stays at 100\%. Every proprietary model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open-weight models, at 71.2 and 78.3 pp.
+We ran six proprietary models and DeepSeek-V4-Pro on the core Study~1 conditions with the content question. Five of the six proprietary models rarely use inaccessible content (Figure~\ref{fig:models}c, Appendix Tables~\ref{tab:hosted} and~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and its permitted use in the fluent control stays at 100\%. Every proprietary model answers the state probe correctly in at least 96\% of scenes and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open-weight models, at 71.2 and 78.3 pp.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig6-format.pdf}
-\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}
+\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 scenes). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}
 \label{fig:format}
 \end{figure*}
 \begin{figure}[t]
@@ -264,7 +264,7 @@ Thinking does not close the gap for most open-weight models. With thinking enabl
 \label{sec:remedy}
 If models leak because they write from the whole scene, giving them only the character's view should help. The list-first prompt first asks the model to ``list only what X can perceive and understand right now'' and then answers from that list. In Study~1 it lowers net use by 64.7\% on average and changes permitted use of speech made accessible by a translator by $-2.0$ pp (Appendix Figure~\ref{fig:s1m}). The prompt works only when the list is clean (Figure~\ref{fig:remedy}a). Gemma-4-31B, Gemma-4-12B, Qwen3.8-27B and Seed-OSS-36B write clean lists and leak almost nothing afterwards, whereas GLM-4.7-Flash and Qwen3.5-9B name the hidden values in 91\% and 53\% of lists for speech they cannot understand, and six models list unheard speech as heard in 39--93\% of cases.
 
-A system that knows what the character can access builds the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all open-weight models this lowers mean net use over the four channels from 60.7 pp to zero and changes permitted use by $+0.6$ pp [0.2, 1.0], and the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). Removing the event entirely also stops the leak, but the character then cannot report that anything happened (32\% compared with 100\% under the view). Self-filtering, the prompted counterpart, fails in the opposite direction and drops permitted content along with the inaccessible. Across the six models in Study~2's method comparison, it lowers permitted use by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character understands Japanese, so its permitted use falls from 86\% to 0\%.
+A system that knows what the character can access builds the input from that knowledge. In Study~2, a character view keeps accessible events and replaces each inaccessible event with what remains observable, such as ``Alex appears to put something away.'' Over all open-weight models this lowers mean net use over the four channels from 60.7 pp to zero and changes permitted use by $+0.6$ pp [0.2, 1.0], and the leaked facts no longer move search choices (Figure~\ref{fig:s2}d). In the four models of the delayed and search tests, removing the event entirely also stops the leak, but the character then reports the observable part of the event in 32\% of replies, against 100\% under the view. Self-filtering, the prompted counterpart, fails in the opposite direction and drops permitted content along with the inaccessible. Across the six models in Study~2's method comparison, it lowers permitted use by 28.6 pp for comprehension and 41.2 pp for private messages, against 3.7 and 3.3 pp for the character view (Figure~\ref{fig:remedy}b). Qwen3.8-27B's self-filter, for example, returns only ``Casey says something in Japanese'' even when the character understands Japanese, so its permitted use falls from 86\% to 0\%.
 
 \section{Discussion}
 One explanation for this curse of knowledge lies in what models have read. Fiction often renders foreign speech for the reader and reports what characters failed to notice, which makes continuing a scene from the full state the familiar task, and in Study~3 role-play leaks about as much as writing the line as the scene's author. Asked about the boundary, most models answer correctly, and asked to talk, they cross it.
@@ -274,7 +274,7 @@ The proprietary models that comply show that the boundary is learnable. In the o
 For system builders, the most reliable remedy we tested keeps inaccessible content out of the generator's input. The character view does this when the access state is known. When it is not known, a prompted filter is the fallback, and its intermediate list must be checked for inaccessible content.
 
 \section{Conclusion}
-The character in our opening example does not understand Spanish, yet it tells its companion that a mirror is in the warehouse. Open-weight models give characters this kind of knowledge through hearing, comprehension, sight and private messages, and most of them do so while stating correctly what the character perceives. This is the curse of knowledge that psychologists describe in people. Most proprietary models show that the boundary can be kept, but in the strongest open-weight models and two proprietary models compliance holds in one input format and breaks in another, so evaluations should vary the format and report permitted use next to net use. Prompted filters and thinking help some models and fail others. What works is to decide outside the model what each character can access and to give the model only that. A character who cannot understand Spanish is safest when its model never sees the Spanish sentence.
+The character in our opening example does not understand Spanish, yet it tells its companion that a mirror is in the warehouse. Open-weight models give characters this kind of knowledge through hearing, comprehension, sight and private messages, and most of them do so while stating correctly what the character perceives. This is the curse of knowledge that psychologists describe in people. Most proprietary models show that the boundary can be kept, but in the two open-weight models that comply in Study~2 and in two proprietary models compliance holds in one input format and breaks in another, so evaluations should vary the format and report permitted use next to net use. Prompted filters and thinking help some models and fail others. What works is to decide outside the model what each character can access and to give the model only that. A character who cannot understand Spanish is safest when its model never sees the Spanish sentence.
 
 \FloatBarrier
 \section*{Limitations}
@@ -301,7 +301,7 @@ Open-weight models decode with temperature 0 and at most 400 new tokens. Mistral
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
 \toprule
-\textbf{Model} & \textbf{Repertoire} & \textbf{Audibility} & \textbf{Compr.} & \textbf{Prose} & \textbf{Control} & \textbf{State} & \textbf{Transl.} & \textbf{Bridge}\\
+\textbf{Model} & \textbf{Repertoire} & \textbf{Audibility} & \textbf{Compr.} & \textbf{Prose} & \textbf{Permitted} & \textbf{State} & \textbf{Transl.} & \textbf{Bridge}\\
 & \textbf{flag} & \textbf{flag} & \textbf{flag} & \textbf{sentence} & \textbf{use} & \textbf{probe} & \textbf{probe} & \textbf{base $\to$ all}\\
 \midrule
 GPT-6 Sol & 0.2 & 0.0 & 0.9 & 0.2 & 100.0 & 100.0 & 97.9 & 0.0 $\to$ 0.0\\
@@ -313,7 +313,7 @@ Grok 4.7 & 1.0 & 0.0 & 1.0 & 0.3 & 100.0 & 100.0 & 99.3 & 0.0 $\to$ 0.0\\
 DeepSeek-V4-Pro & 71.2 & 78.3 & 43.4 & 21.2 & 93.8 & 100.0 & 96.2 & 6.2 $\to$ 67.2\\
 \bottomrule
 \end{tabular*}
-\caption{Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 items per cell) and on both ends of the bridge. Net use is in pp, and permitted use and probes are percentages.}
+\caption{Proprietary models and DeepSeek-V4-Pro on Study 1 core conditions (content question, 288 scenes per cell) and on both ends of the bridge. Net use is in pp, and permitted use and probes are percentages.}
 \label{tab:hosted}
 \end{table*}
 
@@ -333,7 +333,7 @@ Twenty-six truncated discovery replies count as non-use. Restricted to model and
 
 \section{Format Experiments}
 \label{app:format}
-The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, Table~\ref{tab:hostedswaps} the single-feature swaps for Claude Sonnet 5.5 and Gemini 3.1 Pro, and Table~\ref{tab:ablation} the ablation.
+The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 scenes, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, Table~\ref{tab:hostedswaps} the single-feature swaps for Claude Sonnet 5.5 and Gemini 3.1 Pro, and Table~\ref{tab:ablation} the ablation.
 
 % Tables and figures follow the appendix text, so the text reads in one piece and the floats pack onto shared pages.
 \begin{table*}[!tp]
@@ -353,7 +353,7 @@ DeepSeek-V4-Pro & 71.2 [65.1, 76.7] & 78.3 [72.0, 84.0] & 43.4 [36.5, 50.5] & 21
 Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [3.5, 7.7] & 1.2 [0.0, 3.0]\\
 \bottomrule
 \end{tabular*}
-\caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
+\caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\% intervals from 2,000 skeleton-bootstrap draws (288 scenes, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
 \label{tab:hostedci}
 \end{table*}
 \begin{table*}[!tp]
@@ -444,7 +444,7 @@ Exclude truncated & 66.7 & 72.2 & 64.7 & -2.0 & 8/8\\
 Exclude language/echo flags & 67.0 & 72.2 & 64.8 & -2.3 & 8/8\\
 Complete responses only & 66.7 & 72.2 & 64.7 & -1.9 & 8/8\\
 Worst-case failed list-first reply & 66.7 & 72.2 & 64.6 & -2.0 & 8/8\\
-Both canaries required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
+Object and place both required & 47.8 & 54.5 & 61.9 & 1.3 & 8/8\\
 \bottomrule
 \end{tabular*}
 \caption{Study 1 scoring and conditioning sensitivities.}
@@ -507,8 +507,8 @@ Channel, Receive & 67.6 & [65.8, 69.3] & 0 & ---\\
 State-correct net use & 64.0 & [62.7, 65.2] & 0 & 0.0015\\
 \midrule
 View, full minus view net use & 64.1 & [62.8, 65.3] & 0 & 0.0015\\
-View minus full accessible use & 0.5 & [-0.2, 1.2] & $-5$ & ---\\
-View minus hard event retention & 67.8 & [65.4, 70.1] & 0 & ---\\
+View minus full, permitted use & 0.5 & [-0.2, 1.2] & $-5$ & ---\\
+View minus event removal, retention & 67.8 & [65.4, 70.1] & 0 & ---\\
 \bottomrule
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:confirm exceeds its column}{Revise the table layout.}\fi
@@ -524,13 +524,13 @@ View minus hard event retention & 67.8 & [65.4, 70.1] & 0 & ---\\
 \midrule
 Gemma-4-31B & 5.5 & 0.0 & 16.4 & 22.4 & 100.0 & 11.1\\
 GLM-4.7-Flash & 87.2 & 71.1 & 66.4 & 52.6 & 99.9 & 69.3\\
-Nemotron-3-Nano-30B & 99.0 & 66.4 & 97.7 & 99.0 & 95.2 & 90.0\\
+Nemotron-3-Nano & 99.0 & 66.4 & 97.7 & 99.0 & 95.2 & 90.0\\
 Qwen3.5-9B & 97.4 & 51.3 & 96.6 & 96.4 & 100.0 & 85.4\\
 \bottomrule
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:modeldetail exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Confirmation model detail. Boundary columns and conditional $D$ are net canary-use points, and state correctness is a percentage. Every model has eligible role endpoints.}
+\caption{Per-model results of the Study 2 confirmation set. Channel columns and conditional $D$ are net use in pp, and state correctness is a percentage.}
 \label{tab:modeldetail}
 \end{table*}
 \begin{table*}[!tp]
@@ -547,10 +547,10 @@ GLM-4.7-Flash & Hear & 191 (99.5\%) & 192 (100.0\%) & 1 & 0\\
 GLM-4.7-Flash & Understand & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 GLM-4.7-Flash & See & 192 (100.0\%) & 178 (92.7\%) & 0 & 14\\
 GLM-4.7-Flash & Receive & 192 (100.0\%) & 190 (99.0\%) & 0 & 2\\
-Nemotron-3-Nano-30B & Hear & 155 (80.7\%) & 192 (100.0\%) & 37 & 0\\
-Nemotron-3-Nano-30B & Understand & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
-Nemotron-3-Nano-30B & See & 192 (100.0\%) & 141 (73.4\%) & 0 & 51\\
-Nemotron-3-Nano-30B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
+Nemotron-3-Nano & Hear & 155 (80.7\%) & 192 (100.0\%) & 37 & 0\\
+Nemotron-3-Nano & Understand & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
+Nemotron-3-Nano & See & 192 (100.0\%) & 141 (73.4\%) & 0 & 51\\
+Nemotron-3-Nano & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 Qwen3.5-9B & Hear & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 Qwen3.5-9B & Understand & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 Qwen3.5-9B & See & 192 (100.0\%) & 175 (91.2\%) & 0 & 17\\
@@ -566,7 +566,7 @@ Qwen3.5-9B & Receive & 192 (100.0\%) & 192 (100.0\%) & 0 & 0\\
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrlr@{}}
 \toprule
-\textbf{Boundary} & \textbf{State-correct $D$ [95\% CI]} & \textbf{$N$} & \textbf{Capability-eligible $D$ [95\% CI]} & \textbf{$N$}\\
+\textbf{Channel} & \textbf{State-correct $D$ [95\% CI]} & \textbf{$N$} & \textbf{Capability-eligible $D$ [95\% CI]} & \textbf{$N$}\\
 \midrule
 Hear & 72.2 [70.8, 73.5] & 1460 & 72.2 [70.8, 73.5] & 1460\\
 Understand & 47.2 [44.9, 49.6] & 1536 & 51.0 [48.4, 53.7] & 1152\\
@@ -588,7 +588,7 @@ Receive & 67.6 [65.8, 69.3] & 1536 & 67.6 [65.8, 69.3] & 1536\\
 \midrule
 Gemma-4-31B & 100.0 & 100.0 & 100.0\\
 GLM-4.7-Flash & 100.0 & 62.5 & 100.0\\
-Nemotron-3-Nano-30B & 100.0 & 75.0 & 87.5\\
+Nemotron-3-Nano & 100.0 & 75.0 & 87.5\\
 Qwen3.5-9B & 100.0 & 62.5 & 100.0\\
 \bottomrule
 \end{tabular}\end{lrbox}
@@ -600,7 +600,7 @@ Qwen3.5-9B & 100.0 & 62.5 & 100.0\\
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular}{@{}lll@{}}
 \toprule
-\textbf{Boundary} & \textbf{Membership minus flag} & \textbf{Prose+flag minus flag}\\
+\textbf{Channel} & \textbf{Membership minus flag} & \textbf{Prose+flag minus flag}\\
 \midrule
 Hear & 17.5 [15.0, 20.1] & -37.6 [-41.3, -33.9]\\
 Understand & 28.6 [25.5, 31.8] & -4.0 [-8.1, -0.1]\\
@@ -621,7 +621,7 @@ Receive & 3.4 [0.6, 6.3] & -37.9 [-41.4, -34.1]\\
 \textbf{Method} & \textbf{Net use} & \textbf{Permitted use} & \textbf{Event retention}\\
 \midrule
 Full context & 64.1 & 92.8 & 73.3\\
-Hard removal & 0.0 & 93.3 & 32.3\\
+Event removal & 0.0 & 93.3 & 32.3\\
 Character view & 0.0 & 93.3 & 100.0\\
 \bottomrule
 \end{tabular*}\end{lrbox}
@@ -634,27 +634,27 @@ Character view & 0.0 & 93.3 & 100.0\\
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llll@{}}
 \toprule
-\textbf{Boundary} & \textbf{Method} & \textbf{Inaccessible $D$} & \textbf{Accessible target use}\\
+\textbf{Channel} & \textbf{Method} & \textbf{Inaccessible $D$} & \textbf{Permitted use}\\
 \midrule
 Hear & Full & 57.2 [54.7, 59.6] & 89.7 [86.6, 92.1]\\
 Hear & Prose+flag & 34.4 [31.2, 37.6] & 93.4 [90.7, 95.7]\\
 Hear & Self-filter & 47.7 [44.6, 50.9] & 93.5 [91.1, 95.7]\\
-Hear & Hard removal & 0.1 [0.0, 0.3] & 89.1 [85.4, 92.0]\\
+Hear & Event removal & 0.1 [0.0, 0.3] & 89.1 [85.4, 92.0]\\
 Hear & Character view & 0.1 [0.0, 0.3] & 89.0 [85.3, 92.0]\\
 Understand & Full & 31.0 [27.7, 33.9] & 91.5 [88.5, 94.0]\\
 Understand & Prose+flag & 32.3 [29.3, 35.1] & 95.6 [93.7, 97.3]\\
 Understand & Self-filter & 2.0 [0.9, 3.4] & 62.9 [59.6, 66.1]\\
-Understand & Hard removal & 0.0 [0.0, 0.0] & 87.8 [84.1, 91.0]\\
+Understand & Event removal & 0.0 [0.0, 0.0] & 87.8 [84.1, 91.0]\\
 Understand & Character view & -0.1 [-0.3, 0.0] & 87.8 [84.2, 91.0]\\
 See & Full & 45.7 [41.5, 49.5] & 79.3 [75.2, 83.2]\\
 See & Prose+flag & 27.2 [24.6, 29.6] & 96.6 [95.2, 97.7]\\
 See & Self-filter & 22.2 [19.8, 24.6] & 81.5 [78.2, 84.5]\\
-See & Hard removal & 0.0 [0.0, 0.0] & 80.6 [76.4, 84.4]\\
+See & Event removal & 0.0 [0.0, 0.0] & 80.6 [76.4, 84.4]\\
 See & Character view & -0.1 [-0.3, 0.0] & 80.5 [76.4, 84.4]\\
 Receive & Full & 56.8 [53.7, 59.6] & 94.2 [91.0, 96.6]\\
 Receive & Prose+flag & 31.3 [29.2, 33.4] & 96.8 [95.6, 97.8]\\
 Receive & Self-filter & 4.8 [3.2, 6.6] & 53.0 [48.9, 57.2]\\
-Receive & Hard removal & -0.1 [-0.3, 0.0] & 90.9 [87.6, 93.7]\\
+Receive & Event removal & -0.1 [-0.3, 0.0] & 90.9 [87.6, 93.7]\\
 Receive & Character view & 0.0 [-0.3, 0.3] & 90.9 [87.6, 93.7]\\
 \bottomrule
 \end{tabular*}\end{lrbox}
@@ -667,7 +667,7 @@ Receive & Character view & 0.0 [-0.3, 0.3] & 90.9 [87.6, 93.7]\\
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
-\textbf{Boundary} & \textbf{Method} & \textbf{Delay 0} & \textbf{Delay 2} & \textbf{Delay 4}\\
+\textbf{Channel} & \textbf{Method} & \textbf{Delay 0} & \textbf{Delay 2} & \textbf{Delay 4}\\
 \midrule
 Hear & full & 69.1 [65.2, 72.7] & 68.8 [65.6, 71.9] & 71.1 [68.0, 73.8]\\
 Hear & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
@@ -688,7 +688,7 @@ Receive & view & -0.4 [-1.2, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrr@{}}
 \toprule
-\textbf{Boundary} & \textbf{Method} & \textbf{Fixed-A choice contrast} & \textbf{95\% CI} & \textbf{Valid choices (\%)}\\
+\textbf{Channel} & \textbf{Method} & \textbf{Change in choosing A} & \textbf{95\% CI} & \textbf{Valid choices (\%)}\\
 \midrule
 Hear & full & 63.3 & [53.9, 71.1] & 99.6\\
 Hear & view & 0.8 & [0.0, 2.3] & 96.9\\
@@ -702,7 +702,7 @@ Receive & view & 0.0 & [0.0, 0.0] & 97.7\\
 \end{tabular*}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:decision exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{Fixed-A decision contrast (pp) and response validity. The choice of location A is tracked across versions, independently of its option number.}
+\caption{Change in choosing place A (pp) when the hidden fact switches from B to A, and the share of valid choices. Place A is tracked across versions, independently of its option number.}
 \label{tab:decision}
 \end{table*}
 \begin{table*}[!tp]
@@ -741,14 +741,14 @@ B & Yes & Yes & Alex mentioned the broom is in the stairwell. & Alex just told m
 \end{tabularx}\end{lrbox}
 \ifdim\wd\OCtable>\linewidth\PackageError{access-paper}{Table tab:caseoutput exceeds its column}{Revise the table layout.}\fi
 \usebox{\OCtable}
-\caption{All saved content replies and independent probe answers for scene C001, Qwen3.5-9B, access flag, no delay. Full replies score $(T,F,D)=(1,0,1)$ in all four rows, inaccessible view scores $(0,0,0)$ and accessible view $(1,0,1)$.}
+\caption{All saved content replies and independent probe answers for scene C001, Qwen3.5-9B, access flag, no delay. All four full-context replies name the target and not the foil ($D=1$). Under the character view, the inaccessible replies name neither ($D=0$) and the accessible replies name the target ($D=1$).}
 \label{tab:caseoutput}
 \end{table*}
 \begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{lrbox}{\OCtable}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
 \toprule
-\textbf{Boundary} & \textbf{Method} & \textbf{A first (18 scenes)} & \textbf{A second (14 scenes)} & \textbf{Equal-position effect}\\
+\textbf{Channel} & \textbf{Method} & \textbf{A first (18 scenes)} & \textbf{A second (14 scenes)} & \textbf{Equal-position effect}\\
 \midrule
 Hear & full & 65.3 [56.9, 72.2] & 60.7 [42.9, 75.0] & 63.0 [53.3, 71.2]\\
 Hear & view & 0.0 [0.0, 0.0] & 1.8 [0.0, 5.4] & 0.9 [0.0, 2.7]\\
@@ -802,7 +802,7 @@ Seed-OSS-36B & 69.8 & 67.2 & 95.3 & 37.0 & 31.8\\
 Phi-4 & 88.5 & 89.6 & 66.1 & 69.8 & 49.5\\
 \bottomrule
 \end{tabular*}
-\caption{Format ablation from Study 1 toward Study 2 (96 skeletons, content question). Net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
+\caption{Format ablation from Study 1 toward Study 2 (96 scenes, one language per skeleton, content question). Net use (pp) when one Study 2 feature is added (a field naming the channel, the direct question, a minimal context) and with all three.}
 \label{tab:ablation}
 \end{table*}
 
