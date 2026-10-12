@@ -1,0 +1,385 @@
+{
+  "captured_utc": "2026-10-02T17:46:30Z",
+  "models": {
+    "gemma4_31b": {
+      "status": "finished",
+      "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+      "gpu": "0",
+      "pid": 2645610,
+      "started_unix": 1790897112.4063258,
+      "original_controller_pid": 2607363,
+      "worker_slot": "2",
+      "phase": "confirmatory",
+      "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+      "finished_unix": 1790898558.5143178,
+      "continuation": "hardware authorization only; original discovery child retained"
+    },
+    "qwen35_9b": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790902058.4796898,
+      "worker_slot": "1",
+      "finished_unix": 1790902688.4951015
+    },
+    "glm47_flash": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790911151.6721182,
+      "worker_slot": "1",
+      "finished_unix": 1790911880.192537
+    },
+    "nemotron3_nano30b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790919805.1054497,
+      "worker_slot": "1",
+      "finished_unix": 1790920294.3011513
+    },
+    "qwen38_27b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790927109.6520672,
+      "worker_slot": "1",
+      "finished_unix": 1790927731.6002357
+    },
+    "gpt_oss_20b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790929175.8246174,
+      "worker_slot": "1",
+      "finished_unix": 1790929355.2681925
+    },
+    "phi4": {
+      "status": "finished",
+      "gpu": "2",
+      "pid": 2645609,
+      "started_unix": 1790934488.37321,
+      "worker_slot": "1",
+      "finished_unix": 1790934593.393086
+    },
+    "gemma4_12b": {
+      "status": "finished",
+      "gpu": "4",
+      "pid": 2645610,
+      "started_unix": 1790953290.5606928,
+      "worker_slot": "2",
+      "finished_unix": 1790953490.0286725
+    },
+    "falcon_h1_34b": {
+      "status": "finished",
+      "gpu": "5",
+      "pid": 2645609,
+      "started_unix": 1790961140.7786353,
+      "worker_slot": "1",
+      "finished_unix": 1790962061.2272954
+    },
+    "mistral_small3": {
+      "status": "pending"
+    },
+    "seed_oss_36b": {
+      "status": "pending"
+    }
+  },
+  "actual_records_in_completed_phases": 207416,
+  "processes": {
+    "finalizer": {
+      "pid": 2567062,
+      "alive": true,
+      "command": "python3 /data/qianru/over-comprehension-v2-20261001/code/harness/h200_finalize_v2.py --root /data/qianru/over-comprehension-v2-20261001 "
+    },
+    "worker_1": {
+      "pid": 4078039,
+      "alive": true,
+      "command": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py --root /data/qianru/over-comprehension-v2-20261001 --slot 1 "
+    },
+    "worker_2": {
+      "pid": 4078040,
+      "alive": true,
+      "command": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py --root /data/qianru/over-comprehension-v2-20261001 --slot 2 "
+    },
+    "weight_supplier": {
+      "pid": 3823525,
+      "alive": true,
+      "command": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_resume_weights_v2.py --root /data/qianru/over-comprehension-v2-20261001 "
+    }
+  },
+  "gpu_policy": {
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a"
+  },
+  "gpu5_worker_launch": {
+    "started_unix": 1790963139.6933155,
+    "restriction": {
+      "5": "GPU-63686987-a70f-607d-9886-af187b67a14a"
+    },
+    "retired_idle_controllers": [
+      {
+        "slot": 1,
+        "pid": 2645609,
+        "command": [
+          "python3",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_idle_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      {
+        "slot": 2,
+        "pid": 2645610,
+        "command": [
+          "python3",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_idle_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2",
+          "--finish-gemma-child",
+          "2622306"
+        ]
+      }
+    ],
+    "workers": {
+      "1": {
+        "pid": 4078039,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      "2": {
+        "pid": 4078040,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2"
+        ]
+      }
+    },
+    "queue_models_at_transition": {
+      "gemma4_31b": {
+        "status": "finished",
+        "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+        "gpu": "0",
+        "pid": 2645610,
+        "started_unix": 1790897112.4063258,
+        "original_controller_pid": 2607363,
+        "worker_slot": "2",
+        "phase": "confirmatory",
+        "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+        "finished_unix": 1790898558.5143178,
+        "continuation": "hardware authorization only; original discovery child retained"
+      },
+      "qwen35_9b": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790902058.4796898,
+        "worker_slot": "1",
+        "finished_unix": 1790902688.4951015
+      },
+      "glm47_flash": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790911151.6721182,
+        "worker_slot": "1",
+        "finished_unix": 1790911880.192537
+      },
+      "nemotron3_nano30b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790919805.1054497,
+        "worker_slot": "1",
+        "finished_unix": 1790920294.3011513
+      },
+      "qwen38_27b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790927109.6520672,
+        "worker_slot": "1",
+        "finished_unix": 1790927731.6002357
+      },
+      "gpt_oss_20b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790929175.8246174,
+        "worker_slot": "1",
+        "finished_unix": 1790929355.2681925
+      },
+      "phi4": {
+        "status": "finished",
+        "gpu": "2",
+        "pid": 2645609,
+        "started_unix": 1790934488.37321,
+        "worker_slot": "1",
+        "finished_unix": 1790934593.393086
+      },
+      "gemma4_12b": {
+        "status": "finished",
+        "gpu": "4",
+        "pid": 2645610,
+        "started_unix": 1790953290.5606928,
+        "worker_slot": "2",
+        "finished_unix": 1790953490.0286725
+      },
+      "falcon_h1_34b": {
+        "status": "finished",
+        "gpu": "5",
+        "pid": 2645609,
+        "started_unix": 1790961140.7786353,
+        "worker_slot": "1",
+        "finished_unix": 1790962061.2272954
+      },
+      "mistral_small3": {
+        "status": "pending"
+      },
+      "seed_oss_36b": {
+        "status": "pending"
+      }
+    },
+    "amendment_sha256": "589c27202fdb14428abd3b9d0919e7652bae48b6afcb48c8e807527df958e61e"
+  },
+  "pending_weight_transport": {
+    "mistral_small3": {
+      "verified_bytes": 28794432715,
+      "total_bytes": 47176997457,
+      "error": null
+    }
+  },
+  "gpu": [
+    "0, GPU-eac35845-029e-df8d-5318-af5d76434077, 141224, 100",
+    "1, GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 141182, 100",
+    "2, GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 141380, 100",
+    "3, GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 142962, 100",
+    "4, GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 100090, 100",
+    "5, GPU-63686987-a70f-607d-9886-af187b67a14a, 109681, 100",
+    "6, GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 129957, 100",
+    "7, GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 121175, 100"
+  ],
+  "recovery": {
+    "pid": 3823525,
+    "started_unix": 1790952792.4307218,
+    "supplier_sha256": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4",
+    "order": [
+      "gemma4_12b",
+      "falcon_h1_34b",
+      "mistral_small3",
+      "seed_oss_36b"
+    ],
+    "models": {
+      "gemma4_12b": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790952792.4311783,
+            "child_pid": 3823526,
+            "returncode": 0,
+            "finished_unix": 1790953278.0136027
+          }
+        ],
+        "status": "verified"
+      },
+      "falcon_h1_34b": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790953278.015393,
+            "child_pid": 3830465,
+            "returncode": 0,
+            "finished_unix": 1790956072.151539,
+            "error": "RuntimeError('Range download failed model-00010-of-00014.safetensors #15 curl=28')"
+          },
+          {
+            "attempt": 2,
+            "started_unix": 1790956102.1543033,
+            "child_pid": 3895788,
+            "returncode": 0,
+            "finished_unix": 1790960961.6342037
+          }
+        ],
+        "status": "verified"
+      },
+      "mistral_small3": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790960961.6371477,
+            "child_pid": 4004651
+          }
+        ],
+        "status": "downloading"
+      }
+    }
+  },
+  "free_gib": 102.11581039428711,
+  "gpu_compute_apps": [
+    "GPU-eac35845-029e-df8d-5318-af5d76434077, 3614809, 141198",
+    "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 3614810, 141156",
+    "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 3614811, 141354",
+    "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 3614812, 142936",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 4058979, 95464",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 4068488, 4592",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 4058982, 96168",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 4068491, 13480",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 3988958, 6362",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 4009367, 5092",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 4058976, 95462",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 4068494, 22984",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 4058985, 95464",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 4068497, 22984",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 4074268, 2686"
+  ],
+  "supplier_tail": {
+    "weight-recovery-mistral_small3-1.log": [
+      "RANGE_DONE mistral_small3 model-00006-of-00010.safetensors 63 67108864",
+      "RANGE_DONE mistral_small3 model-00006-of-00010.safetensors 68 67108864",
+      "RANGE_DONE mistral_small3 model-00006-of-00010.safetensors 69 67108864",
+      "RANGE_DONE mistral_small3 model-00006-of-00010.safetensors 70 67108864",
+      "FILE_VERIFIED mistral_small3 model-00006-of-00010.safetensors 4781592816 1229.8"
+    ],
+    "weight-recovery-supervisor.log": [],
+    "weight-recovery-falcon_h1_34b-2.log": [
+      "FILE_VERIFIED falcon_h1_34b special_tokens_map.json 18983 0.81",
+      "FILE_VERIFIED falcon_h1_34b tokenizer.json 21756262 67.78",
+      "FILE_VERIFIED falcon_h1_34b tokenizer_config.json 202258 1.01",
+      "MODEL_WEIGHTS_READY falcon_h1_34b 4859.37",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-falcon_h1_34b-1.log": [
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 17 67108864",
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 22 67108864",
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 6 67108864",
+      "MODEL_PREPARATION_FAILED falcon_h1_34b RuntimeError('Range download failed model-00010-of-00014.safetensors #15 curl=28')",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-gemma4_12b-1.log": [
+      "FILE_VERIFIED gemma4_12b processor_config.json 1382 1.13",
+      "FILE_VERIFIED gemma4_12b tokenizer.json 32169626 218.96",
+      "FILE_VERIFIED gemma4_12b tokenizer_config.json 3089 0.48",
+      "MODEL_WEIGHTS_READY gemma4_12b 485.52",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ]
+  }
+}

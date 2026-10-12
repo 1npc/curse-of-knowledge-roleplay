@@ -1,0 +1,15 @@
+{
+ "model": "gemma4_31b",
+ "run_sha256": "5294b442e065f9521ec8b18d5bffb9db8bd11027279d318288fa756e98c3f70e",
+ "records": 21664,
+ "planned": 21664,
+ "status": {
+  "complete": 21664
+ },
+ "responses_sha256": "0127f5d8e98d2e6afbf9a1ad9964d1f70ffe04a954edbe3d74796ee6375ef77b",
+ "interrupted_chunks": 0,
+ "generation_seconds": 566.5,
+ "notes": {},
+ "run_id": "access-v2-discovery-gemma4_31b",
+ "finished": "2026-10-02T01:40:18+0200"
+}

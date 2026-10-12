@@ -1,0 +1,84 @@
+{
+  "verified_at_utc": "2026-10-02T15:30:38.588529+00:00",
+  "new_archive_sha256": "9ca0a466f415ea23998b0e66d34fb481a10819b6e286489d95809dcd3680fce7",
+  "all_archive_file_digests_match": true,
+  "scientific_inputs_and_code_unchanged": true,
+  "models": {
+    "qwen38_27b": {
+      "discovery": {
+        "actual_records": 18272,
+        "scored_endpoints": 15968,
+        "status_counts": {
+          "complete": 18271,
+          "truncated": 1
+        },
+        "physical_gpu_uuid": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "43326806e68b114f3125d98bdd90478de0e17e64c1ec728936b40003cff28c1a",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "687017bcd8947762ca8a3428aa41f18a5348c9c12eb25d3f6cfef8520083c1f4",
+        "scores_sha256": "72df6395859ccc709b0c9c25bf82ea0394ac7467adf6da97c9c206d9b7efeca3",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    },
+    "gpt_oss_20b": {
+      "discovery": {
+        "actual_records": 6336,
+        "scored_endpoints": 6336,
+        "status_counts": {
+          "complete": 6336
+        },
+        "physical_gpu_uuid": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "3c6a8343bc72021d294e1da68b7cc79736f0e28d2029829d062cbe55b07dc4b0",
+        "scores_sha256": "3966655058ee8eff783f1ddfa39ec9a1b9d2118c08d0b81208dfd4b5f2d69e5f",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    },
+    "phi4": {
+      "discovery": {
+        "actual_records": 6336,
+        "scored_endpoints": 6336,
+        "status_counts": {
+          "complete": 6336
+        },
+        "physical_gpu_uuid": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "739aca4102810a4acd239bdb0e577e423e4a2df3d3f6b1155cea8a86e5200f73",
+        "scores_sha256": "78b707fd82f89d056193c74f171501714da5103fe8895c28ca144115c019fdc4",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    },
+    "gemma4_12b": {
+      "discovery": {
+        "actual_records": 6336,
+        "scored_endpoints": 6336,
+        "status_counts": {
+          "complete": 6336
+        },
+        "physical_gpu_uuid": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "496e2d21028d1ddc27b0a8b5444b367f75c8301319ce9931326611593b8f09a2",
+        "scores_sha256": "1b94543f079c40fc3b64bbed5dd209f57fe19d3690df7c7f2a09917d59c62453",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    }
+  },
+  "total_actual_records": 37280,
+  "total_scored_endpoints_including_pilot": 34976,
+  "confirmatory_actual_records": 0,
+  "actual_human_annotations": 0,
+  "full_eleven_model_campaign_complete": false,
+  "analysis_score_files": [
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/extensions-four/scores/discovery/qwen38_27b.jsonl",
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/extensions-four/scores/discovery/gpt_oss_20b.jsonl",
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/extensions-four/scores/discovery/phi4.jsonl",
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/extensions-four/scores/discovery/gemma4_12b.jsonl"
+  ]
+}

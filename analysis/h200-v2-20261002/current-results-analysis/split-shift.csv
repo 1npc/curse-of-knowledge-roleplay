@@ -1,0 +1,21 @@
+model,boundary,discovery_D,confirmatory_D,confirmatory_minus_discovery,caution
+gemma4_31b,Hear,0.044270833333333336,0.0546875,0.010416666666666664,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+gemma4_31b,Understand,0.005208333333333333,0,-0.005208333333333333,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+gemma4_31b,See,0.033854166666666664,0.1640625,0.13020833333333334,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+gemma4_31b,Receive,0.03125,0.22395833333333334,0.19270833333333334,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+gemma4_31b,All,0.028645833333333332,0.11067708333333333,0.08203125,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+glm47_flash,Hear,0.8671875,0.8723958333333334,0.00520833333333337,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+glm47_flash,Understand,0.2682291666666667,0.7109375,0.4427083333333333,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+glm47_flash,See,0.4869791666666667,0.6640625,0.17708333333333331,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+glm47_flash,Receive,0.6640625,0.5260416666666666,-0.13802083333333337,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+glm47_flash,All,0.5716145833333334,0.693359375,0.12174479166666663,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+nemotron3_nano30b,Hear,0.9348958333333334,0.9895833333333334,0.0546875,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+nemotron3_nano30b,Understand,0.4635416666666667,0.6640625,0.20052083333333331,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+nemotron3_nano30b,See,0.7265625,0.9765625,0.25,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+nemotron3_nano30b,Receive,0.8776041666666666,0.9895833333333334,0.11197916666666674,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+nemotron3_nano30b,All,0.7506510416666666,0.9049479166666666,0.154296875,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+qwen35_9b,Hear,0.8828125,0.9739583333333334,0.09114583333333337,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+qwen35_9b,Understand,0.4661458333333333,0.5130208333333334,0.046875000000000056,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+qwen35_9b,See,0.7213541666666666,0.9661458333333334,0.24479166666666674,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+qwen35_9b,Receive,0.7630208333333334,0.9635416666666666,0.20052083333333326,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test
+qwen35_9b,All,0.7083333333333334,0.8541666666666666,0.14583333333333326,Different names/personas/context together; not a causal character-name effect or unseen-vocabulary test

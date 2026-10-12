@@ -1,0 +1,16 @@
+{
+ "model": "glm47_flash",
+ "run_sha256": "d487be530427cfa9592e9b067922731201b5bc921e169412f9778af9f47e50a8",
+ "records": 21664,
+ "planned": 21664,
+ "status": {
+  "complete": 21662,
+  "truncated": 2
+ },
+ "responses_sha256": "e82e0bab11216b8fea38580681cbde5634cdf9a61c1fe1fc291639e42786b08b",
+ "interrupted_chunks": 0,
+ "generation_seconds": 367.7,
+ "notes": {},
+ "run_id": "access-v2-discovery-glm47_flash",
+ "finished": "2026-10-02T05:26:54+0200"
+}

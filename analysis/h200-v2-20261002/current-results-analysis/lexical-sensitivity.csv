@@ -1,0 +1,12 @@
+metric,phase,estimate,scene_ci95,scene_count,lexical_block_ci95,lexical_blocks,scope
+nine_model_baseline_D_Hear,discovery,0.6820023148148148,"[0.6640624999999998, 0.699074074074074]",96,"[0.6599971064814815, 0.7028356481481483]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_H1_D_Hear,confirmatory,0.72265625,"[0.708984375, 0.7356770833333334]",96,"[0.6901041666666666, 0.7519694010416665]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+nine_model_baseline_D_Understand,discovery,0.34924768518518506,"[0.3298538773148147, 0.368923611111111]",96,"[0.3281177662037037, 0.37037760416666665]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_H1_D_Understand,confirmatory,0.4720052083333333,"[0.4485677083333333, 0.49609375]",96,"[0.4192708333333333, 0.5188802083333334]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+nine_model_baseline_D_See,discovery,0.48958333333333354,"[0.4664351851851852, 0.5115813078703706]",96,"[0.4675925925925926, 0.5109953703703703]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_H1_D_See,confirmatory,0.6927083333333334,"[0.672509765625, 0.7135416666666666]",96,"[0.6497233072916667, 0.7415527343749999]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+nine_model_baseline_D_Receive,discovery,0.6579861111111113,"[0.6385995370370369, 0.6767939814814813]",96,"[0.6319372106481481, 0.6799768518518516]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_H1_D_Receive,confirmatory,0.67578125,"[0.658203125, 0.693359375]",96,"[0.6360677083333334, 0.71875]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_full_minus_view_D,confirmatory,0.6404622395833334,"[0.6280924479166666, 0.6526692708333334]",96,"[0.609375, 0.6708984375]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_accessible_view_minus_full,confirmatory,0.0048828125,"[-0.0017903645833333333, 0.01188557942708331]",96,"[-0.0052124023437499995, 0.015787760416666668]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test
+four_core_partial_retention_view_minus_hard,confirmatory,0.677517361111111,"[0.6536458333333334, 0.7005208333333334]",96,"[0.6275607638888888, 0.7239583333333334]",12,Post-hoc descriptive 12-block bootstrap; not a replacement confirmatory test

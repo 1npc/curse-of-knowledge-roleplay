@@ -1,0 +1,10 @@
+{
+  "failed_job_id": "27482695",
+  "sacct": "27482695|FAILED|1:0\n27482695.batch|FAILED|1:0\n27482695.extern|COMPLETED|0:0\n",
+  "no_run_json_or_chunk_intents": true,
+  "no_generation_attempt": true,
+  "scope": "Slurm global/local GPU ID mapping only; frozen original runner and protocol untouched.",
+  "adapter_sha256": "cf249a91db13c8628bdc30e56c79c48d3ee81ff4dda88b8aa465173980a7035d",
+  "amendment_sha256": "49d7554a452ecedd33680c87e90d3567b1c463672c38d849a094a313ccd09017",
+  "repaired_unix": 1791022158.7904015
+}

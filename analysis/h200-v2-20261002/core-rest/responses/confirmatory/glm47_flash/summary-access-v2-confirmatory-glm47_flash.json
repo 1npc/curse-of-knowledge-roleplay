@@ -1,0 +1,15 @@
+{
+ "model": "glm47_flash",
+ "run_sha256": "4a278e997ce3a1b66589ef145cdce909e317062cd5cf0fb4cc4333e5c88844c0",
+ "records": 15552,
+ "planned": 15552,
+ "status": {
+  "complete": 15552
+ },
+ "responses_sha256": "4359a175b3a79b36804748dc8d50e7a8d644e6cbbc04173ada670233c52d10c9",
+ "interrupted_chunks": 0,
+ "generation_seconds": 202.0,
+ "notes": {},
+ "run_id": "access-v2-confirmatory-glm47_flash",
+ "finished": "2026-10-02T05:31:07+0200"
+}

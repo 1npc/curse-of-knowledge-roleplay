@@ -1,0 +1,388 @@
+{
+  "checked_at_utc": "2026-09-29T19:30:35.713804+00:00",
+  "scope": "generation metadata and checksums only; no response text or scores",
+  "generation_commit": "bdc38f98d968c754977904eeb9ffef03e5fd11ad",
+  "runs": {
+    "main-v1": [
+      {
+        "model": "qwen38_27b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48500,
+          "truncated": 12
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "0de66a59f561a7aff73142413b026957df3c7e1460eb4693de892b24065b12a2",
+        "responses_sha256": "ae66127b747f6cce3499a777a261b1b3e3570789e74dc63d1c6749411b2c9067",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gemma4_31b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48503,
+          "truncated": 9
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "ecfe587b633f535fb8e2b63a3937859bdd43429726f99ea4bd03fa5f795efcb1",
+        "responses_sha256": "9aa6c2e8d833bdf28d6620982ead3c9e69d1ab306acf2e3a8ae47d35e35dd39c",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "seed_oss_36b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48501,
+          "truncated": 11
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "48766df247cc2a45efc9d308c49f3d17fae98e84c47b8ecd2ddf6388f2a31b5d",
+        "responses_sha256": "61ddce3c330c9b96533cf1b62e13f70a23b3b6b60418cd289a4b1f7af8661a7f",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "falcon_h1_34b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48476,
+          "truncated": 36
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "2fb318f30f35b2c919284cd52c290b8103bad269c3d1b5c2703ed837473c7a75",
+        "responses_sha256": "3b7f6f7e78eb466c9c7667449401c3b6488729196b5b0d39cf0984a63f948c74",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "nemotron3_nano30b",
+        "expected": 48512,
+        "records": 48508,
+        "status": {
+          "complete": 48403,
+          "truncated": 101,
+          "unexpected_reasoning": 4
+        },
+        "disposition": "complete_with_generation_failures",
+        "errors": [],
+        "run_sha256": "1f3fc76d83f9640d8efe2e1b8f0f673845eeb1a3f140f144c1e8f5bcecaccabb",
+        "responses_sha256": "553c547a1f999eaed54d6c3e37849c7403b7569313016c02d040e2edff1d5e77",
+        "missing": 4,
+        "recorded_step2_skips": 4,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gpt_oss_20b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48439,
+          "truncated": 73
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "9ee49455a3ebd82bc18fe9cc85f2b1c48ba90d344810f8b3c1ba009cc5a26ae9",
+        "responses_sha256": "1fcd1ea78b82542e220ec28730374913fe253bacea34b6ea3d90709cd9576287",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gemma4_12b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48449,
+          "truncated": 63
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "e8330233aff012fabe4d6ed73479a40459a61e008e0d031afb57c27fabcd50ea",
+        "responses_sha256": "5599a6c91a01d8c65581e37e2cbb9ce271520e69aad844177c9dcbfe2ec5ef61",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "glm47_flash",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48360,
+          "truncated": 152
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "01456922dcc111d17e29accb35f8c311be9f04d9b25c9e1a6b21a582ed7474ca",
+        "responses_sha256": "2102a2fe18b9f36ec149d5d7cc24a171286d02514d20d2c6f9eb966c2d8696a4",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "mistral_small3",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48464,
+          "truncated": 48
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "afdd353403083fdd12424ba960d1fc46130fc61b28ed0365ffcf6b8fcc12b211",
+        "responses_sha256": "67ac052300dd57409066340463a68006210c641536693c7bc9917a737789143c",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "phi4",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48492,
+          "truncated": 20
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "f6c7884fbac925b5564a7a18116e1d1f4cf319462e599a15bacf854e03fae7fe",
+        "responses_sha256": "9e875f28daf2f25704dc9286306c607fef3929b5d195b9aa538434474cfb279c",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_9b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48510,
+          "truncated": 2
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "484e5c25468fcd18cc922ffb22285ef37214b40d48549fcd7444db6c87bb74bb",
+        "responses_sha256": "3678d1a72216b41c1a53c076602c4e410d07415f4db1b71cd377a0b5220eb6d2",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_4b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48497,
+          "truncated": 15
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "e0ceaffb8b07c16bf17f5a239738caea94af9bed570ee47c5b532a3e4989119f",
+        "responses_sha256": "967a1666a8f939969777e89e2f2236936c092126eab45a92ddde1b55c10e0430",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_2b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 47200,
+          "truncated": 1312
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "6fe1dc327342b563ca022212387e9c7c721c5ff67f5fb7c464ecfe60a69dc78c",
+        "responses_sha256": "a92bfbea169b99c854d6563b5932f5852898f19f87046eb7dc662a6d398d5597",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_08b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 46208,
+          "truncated": 2304
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "ed35660170d3c9de103c6a6048ff29c1764d2414eeeda1c035b0d40b7c3182fb",
+        "responses_sha256": "858e55adbd7f3969abf66303761b0a68a1f3bb543d2819ff8826f61135f29ac6",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gemma4_e2b",
+        "expected": 48512,
+        "records": 48512,
+        "status": {
+          "complete": 48372,
+          "truncated": 140
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "5dc537063e4a02ef9a8ea1174414d605efaaa00be4dd79828879fa2f2e885a70",
+        "responses_sha256": "b31b41e7c57885df8a7c8239e83d1ecf6d3e8c9c1dac7ed96cdd0da33533353f",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      }
+    ],
+    "main-fs-v1": [
+      {
+        "model": "gemma4_31b",
+        "expected": 1728,
+        "records": 1728,
+        "status": {
+          "complete": 1728
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "1fb83b0906b6d8e0b90c31190db37a43ba6cc98868a1219faf71b0314b20c7d6",
+        "responses_sha256": "4ee5d9a46d6bf24f39f5185dc8e380a8b9806cec370488cd22b79a58aa86bf9a",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen38_27b",
+        "expected": 1728,
+        "records": 1728,
+        "status": {
+          "complete": 1728
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "59ffd45ce40c3acf1aea2e44418041365e9021b6e8b592e394feb30828eb5f51",
+        "responses_sha256": "d5e74114ed85a5fb78770b96a9946569a4776cd85441c4a0ff1fdfbbd17648be",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_9b",
+        "expected": 1728,
+        "records": 1728,
+        "status": {
+          "complete": 1728
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "927a6a277db4d96fb62e2c9f7d4687ee309f528f28ce29f1d0631fe9834dfe67",
+        "responses_sha256": "d87ef040d148c12cca6606f6fca652866bbe9bd9581da722fe69046cd35771e1",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gemma4_12b",
+        "expected": 1728,
+        "records": 1728,
+        "status": {
+          "complete": 1728
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "b1f729ac56511966c0c155282a5cd95b612dcc0ad46de810dbfece59aad8f0ea",
+        "responses_sha256": "0d57b2378d0d91dfde4a57c94b6a9184f2c272e019e2b01b7edfe9be93686dd0",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      }
+    ],
+    "main-robust-v1": [
+      {
+        "model": "qwen38_27b",
+        "expected": 8640,
+        "records": 8640,
+        "status": {
+          "complete": 8622,
+          "truncated": 17,
+          "unexpected_reasoning": 1
+        },
+        "disposition": "complete_with_generation_failures",
+        "errors": [],
+        "run_sha256": "6b9dd35095002d11c0525363d33f96265aab12fe6e880035bba1a0b2aaa4c0b5",
+        "responses_sha256": "fcb07bb8c2c17bdf632f70c55d90681fae0d58dec1f0dc046635fd978f8ff4cd",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "gemma4_31b",
+        "expected": 8640,
+        "records": 8640,
+        "status": {
+          "complete": 8640
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "8acac4c699904efeefa8f9e5238001ee596db189f933b0f1d5eda9f037bd46dd",
+        "responses_sha256": "29c0645621e5b684c9bcb74e76be1aa6cf9838abd05b37c406547b7aa22464ec",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      },
+      {
+        "model": "qwen35_9b",
+        "expected": 8640,
+        "records": 8640,
+        "status": {
+          "complete": 8539,
+          "truncated": 101
+        },
+        "disposition": "complete",
+        "errors": [],
+        "run_sha256": "d0ef2a23f20dd6adc902859df645ce55eecc27012d66ffad46a8bb153a031eb6",
+        "responses_sha256": "edce36c9f763ce04ea51aa90d1c11cd308fd9680827eb8429334a02ac8bdcda6",
+        "missing": 0,
+        "recorded_step2_skips": 0,
+        "unexpected_missing": 0,
+        "unresolved_chunks": 0
+      }
+    ]
+  },
+  "all_accounted_for": true,
+  "records": 760508,
+  "expected": 760512,
+  "recorded_step2_skips": 4
+}

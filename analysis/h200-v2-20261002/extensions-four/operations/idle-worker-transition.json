@@ -1,0 +1,135 @@
+{
+  "time": 1790898007.8155975,
+  "user_authorization": "User: 别人用了你就别用了，挑没人用的跑",
+  "stopped_own_waiting_or_download_pids": [
+    2607364,
+    2587584,
+    2589614,
+    2607363
+  ],
+  "retained_generating_child": "2622306",
+  "queue_before": {
+    "models": {
+      "gemma4_31b": {
+        "status": "running",
+        "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+        "gpu": "7",
+        "pid": 2607363,
+        "started_unix": 1790897112.4063258
+      },
+      "qwen35_9b": {
+        "status": "running",
+        "gpu": "7",
+        "pid": 2567060,
+        "started_unix": 1790896190.1345658
+      },
+      "glm47_flash": {
+        "status": "running",
+        "gpu": "6",
+        "pid": 2567059,
+        "started_unix": 1790896274.139042
+      },
+      "nemotron3_nano30b": {
+        "status": "pending"
+      },
+      "qwen38_27b": {
+        "status": "pending"
+      },
+      "gpt_oss_20b": {
+        "status": "pending"
+      },
+      "phi4": {
+        "status": "pending"
+      },
+      "gemma4_12b": {
+        "status": "pending"
+      },
+      "falcon_h1_34b": {
+        "status": "pending"
+      },
+      "mistral_small3": {
+        "status": "pending"
+      },
+      "seed_oss_36b": {
+        "status": "pending"
+      }
+    }
+  },
+  "queue_after": {
+    "models": {
+      "gemma4_31b": {
+        "status": "running",
+        "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+        "gpu": "7",
+        "pid": 2607363,
+        "started_unix": 1790897112.4063258
+      },
+      "qwen35_9b": {
+        "status": "pending",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded"
+      },
+      "glm47_flash": {
+        "status": "pending",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded"
+      },
+      "nemotron3_nano30b": {
+        "status": "pending"
+      },
+      "qwen38_27b": {
+        "status": "pending"
+      },
+      "gpt_oss_20b": {
+        "status": "pending"
+      },
+      "phi4": {
+        "status": "pending"
+      },
+      "gemma4_12b": {
+        "status": "pending"
+      },
+      "falcon_h1_34b": {
+        "status": "pending"
+      },
+      "mistral_small3": {
+        "status": "pending"
+      },
+      "seed_oss_36b": {
+        "status": "pending"
+      }
+    }
+  },
+  "workers": [
+    {
+      "pid": 2645609,
+      "slot": "1",
+      "started_unix": 1790898007.8142812,
+      "command": [
+        "python3",
+        "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_idle_v2.py",
+        "--root",
+        "/data/qianru/over-comprehension-v2-20261001",
+        "--slot",
+        "1"
+      ],
+      "scope": "choose unused GPUs, maximum two worker slots"
+    },
+    {
+      "pid": 2645610,
+      "slot": "2",
+      "started_unix": 1790898007.8155165,
+      "command": [
+        "python3",
+        "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_idle_v2.py",
+        "--root",
+        "/data/qianru/over-comprehension-v2-20261001",
+        "--slot",
+        "2",
+        "--finish-gemma-child",
+        "2622306"
+      ],
+      "scope": "choose unused GPUs, maximum two worker slots"
+    }
+  ],
+  "scientific_plan_changes": false,
+  "no_other_jobs_terminated": true
+}

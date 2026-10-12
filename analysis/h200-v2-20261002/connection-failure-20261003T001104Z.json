@@ -1,0 +1,25 @@
+{
+  "checked_at_utc": "2026-10-03T00:11:04.383848+00:00",
+  "automation_id": "h200",
+  "status": "unavailable",
+  "reason": "Connection timed out during banner exchange to 192.168.1.105:22",
+  "previous_master_socket": "/private/tmp/oc-h200-20261002-jump.sock",
+  "previous_master_socket_exists": false,
+  "fresh_connection_attempted": true,
+  "fresh_connection_result": "same jump-host banner timeout",
+  "last_successful_remote_snapshot_utc": "2026-10-02T23:19:53Z",
+  "last_verified_models": 10,
+  "last_observed_actual_records": 213752,
+  "current_remote_experiment_state": "unknown; connection failure is not evidence of experiment failure",
+  "last_observed_seed_weight_progress": {
+    "verified_bytes": 29387575578,
+    "total_bytes": 72314506146,
+    "error": null
+  },
+  "new_visibility_failure": true,
+  "remote_mutations_performed": false,
+  "processes_restarted": false,
+  "generation_repeated": false,
+  "monitor_remains_active": true,
+  "next_action": "Continue the existing periodic read-only connectivity checks; do not restart jobs because visibility is unavailable."
+}

@@ -1,0 +1,28 @@
+{
+  "generator": "tools/analyze_access_v2_snapshot.py",
+  "generator_sha256": "11e713c3a51636a64969cc0a3c8a19e3fc2db75eb3fc6f8bef27b5cd130b4229",
+  "generated_files": {
+    "analysis/h200-v2-20261002/current-results-analysis/analysis.json": "2bbcaa4852f40b4468c298c11c50d3b671e8f150480c8c757c814815990daf59",
+    "analysis/h200-v2-20261002/current-results-analysis/baseline.csv": "c37efe9f2687bfd8e51ae2e7f343a5274bc8afacde5c862db5c76d923f2e8ab8",
+    "analysis/h200-v2-20261002/current-results-analysis/languages.csv": "09cfc1a3e40979f80f843d6331d060f512023e61fa8625118fcc23d32752695a",
+    "analysis/h200-v2-20261002/current-results-analysis/lexical-sensitivity.csv": "989ea906077b861d7050b45a30d288902c89ef151f82fd14f24ba9bec9156c9f",
+    "analysis/h200-v2-20261002/current-results-analysis/method-by-model.csv": "63021a7c188d482eca3a55fe128e262d403ae29360390f283cf8e628a22af542",
+    "analysis/h200-v2-20261002/current-results-analysis/method-costs.csv": "1089e3f1045e141a7d901555eb5d1e6498c56fc43977248e4e7391559b19dcc6",
+    "analysis/h200-v2-20261002/current-results-analysis/question-diagnostics.csv": "95aff4d2c79f6739462db06b4955b9a50f0dd3531e37e6be8c1e45e928fbb0c2",
+    "analysis/h200-v2-20261002/current-results-analysis/report.html": "e11d319f1dea7802be316457d8d15d909d957a110c6c3a36bdf2980e098b7bd7",
+    "analysis/h200-v2-20261002/current-results-analysis/representations.csv": "b1bcf5b985f05637896e1b7f23c7a0cbb730d10246a7835ea9b59d8e4e8cbb24",
+    "analysis/h200-v2-20261002/current-results-analysis/self-filter-step1.csv": "bbcf8d3f8bf984768d8e2145de354f4bfb13704623602a6ea032bf3d56bb151d",
+    "analysis/h200-v2-20261002/current-results-analysis/split-shift.csv": "a3faa11f105a1186b76ef48b753316fa7fe6c0ecafbb540a8fa1e13695880125",
+    "analysis/h200-v2-20261002/current-results-analysis/state-probes.csv": "6c2f82b6cdd157801818da179784b7fda76f782295c28b69eac6fbea023274bd"
+  },
+  "checks": {
+    "frozen_input_and_code_sha_match": true,
+    "all_source_sha_match": true,
+    "no_duplicate_scored_ids": true,
+    "balanced_baseline_E2_E3_grids": true,
+    "all_36_published_baseline_cells_match": true,
+    "all_40_six_method_cells_match": true,
+    "all_8_nine_model_E2_contrasts_match": true,
+    "original_confirmation_unchanged": true
+  }
+}

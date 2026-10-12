@@ -1,0 +1,32 @@
+{
+  "verified_at_utc": "2026-10-02T21:42:58.485450+00:00",
+  "new_archive_sha256": "b43bf736ef5e9c0bd0774dd791a1b4c0c9407764610ba23efb1f847add87a80c",
+  "all_archive_file_digests_match": true,
+  "scientific_inputs_and_code_unchanged": true,
+  "models": {
+    "mistral_small3": {
+      "discovery": {
+        "actual_records": 6336,
+        "scored_endpoints": 6336,
+        "status_counts": {
+          "complete": 6336
+        },
+        "physical_gpu_uuid": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "37e7b10dfa3e4a620277dcc4cf30a101562e2cefafba7c6d1f56bc36e256a146",
+        "scores_sha256": "9206e3b6f6444c2ba9d8363225e21057944b53c34b4be512f23365783d8e42e4",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    }
+  },
+  "total_actual_records": 6336,
+  "total_scored_endpoints_including_pilot": 6336,
+  "confirmatory_actual_records": 0,
+  "actual_human_annotations": 0,
+  "full_eleven_model_campaign_complete": false,
+  "analysis_score_files": [
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/mistral/scores/discovery/mistral_small3.jsonl"
+  ]
+}

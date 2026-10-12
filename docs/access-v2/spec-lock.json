@@ -1,0 +1,118 @@
+{
+  "version": "access-boundaries-v2-20261001",
+  "status": "locally frozen before any v2 response; NOT externally preregistered",
+  "annotation": "AI proxy review only; real human validation pending",
+  "main_models": [
+    "qwen38_27b",
+    "qwen35_9b",
+    "gemma4_31b",
+    "gemma4_12b",
+    "glm47_flash",
+    "mistral_small3",
+    "gpt_oss_20b",
+    "phi4",
+    "seed_oss_36b",
+    "nemotron3_nano30b",
+    "falcon_h1_34b"
+  ],
+  "pilot_models": [
+    "gemma4_31b",
+    "glm47_flash",
+    "qwen35_9b"
+  ],
+  "method_models": [
+    "gemma4_31b",
+    "glm47_flash",
+    "nemotron3_nano30b",
+    "qwen35_9b",
+    "qwen38_27b",
+    "falcon_h1_34b"
+  ],
+  "confirmatory_models": [
+    "gemma4_31b",
+    "glm47_flash",
+    "nemotron3_nano30b",
+    "qwen35_9b"
+  ],
+  "persistence_models": [
+    "gemma4_31b",
+    "glm47_flash",
+    "nemotron3_nano30b",
+    "qwen35_9b"
+  ],
+  "boundaries": [
+    "Hear",
+    "Understand",
+    "See",
+    "Receive"
+  ],
+  "representations": {
+    "R1": "language repertoire or audience/observer/recipient membership (no direct bool)",
+    "R2": "one boundary-specific direct bool",
+    "R3": "same bool plus explicit prose access/use rule"
+  },
+  "primary_estimand": "equal-model, equal-skeleton mean of same-response target-minus-foil on content and plan; unconditional; capability-conditioned secondary",
+  "bootstrap": {
+    "unit": "paired skeleton",
+    "replicates": 2000,
+    "seed": 20261001,
+    "shared_draws": true
+  },
+  "confirmatory_family": {
+    "H1": "all four full-context inaccessible leakage means >0 (intersection union)",
+    "H2": "pooled leakage >0 on independently correct access judgments; report empty units",
+    "H3": "view reduces forbidden leakage vs full, accessible target-use delta >=-.05, partial-event awareness improvement vs hard >0; intersection union"
+  },
+  "multiplicity": "Holm over three confirmatory tests; exploratory contrasts descriptive with CIs",
+  "failure_handling": "all planned denominators retained; incomplete/refused outputs zero use; missing self-filter stage2 explicitly materialized; no content-driven retries",
+  "capability_gate": 0.85,
+  "awareness": "first Yes/No versus accessible OR retained observable shell; partial-inaccessible and Hear reported separately",
+  "persistence": "0/2/4 fixed neutral conversation exchanges, same world context; evidence of delayed contextual influence, not a latent-memory mechanism",
+  "decision": "paired A-minus-B probability choosing fixed location A; invalid choices remain denominator, report valid response rate",
+  "plans": {
+    "pilot": {
+      "first_steps": 1000,
+      "second_steps": 0,
+      "sha256": "bf28da9df20be8340d6cb08af1f29957996367184a5f890f7d6b4167e90e8f02"
+    },
+    "discovery": {
+      "first_steps": 4800,
+      "second_steps": 0,
+      "sha256": "7a0141abf8ace2d5cf2dac829d631cf4dabf91cae8bd0446c4337132086725b7"
+    },
+    "discovery-extension": {
+      "first_steps": 15072,
+      "second_steps": 2304,
+      "sha256": "e22191174302b88e356186b295d85f3154978690a33fc205473d7eaa53655529"
+    },
+    "confirmatory": {
+      "first_steps": 15552,
+      "second_steps": 0,
+      "sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a"
+    }
+  },
+  "subsets": "E2 24, E3 48, E5/E6 32; deterministic domain/character/language-balanced selection seeds 20261001/2/3 recorded in code; confirmatory96 original-character scenes; pilot20 distinct calibration contexts",
+  "generation": {
+    "temperature": 0,
+    "top_p": 1,
+    "seed": 20261001,
+    "max_output_tokens": 400,
+    "max_model_len": 8192,
+    "thinking": "off where supported; gpt-oss low, analysis retained",
+    "precision": "bf16/native checkpoint",
+    "tensor_parallel_size": 1,
+    "gpus": [
+      6,
+      7
+    ]
+  },
+  "code_hashes": {
+    "oc_v2/design.py": "84644d2c9d264937ad7db92da89b82ea8f970475814746ed351f475a19ab37ba",
+    "oc/score.py": "18afb5359c0b11e115c9cddd568137c0d1deee3f4c3c413411ef00eeedbf8d8d",
+    "oc/patterns.py": "0a62926ae2a101ae70a8f30b0c515de8472886ee526f257ebf1e97ae5d2adeb4",
+    "data/valueset.json": "40f8feac8a73ad32da69d7c3b24d63ece7f76dd14e76e4052a4913d2f3c0eb62",
+    "data/mask.json": "7fe1bc6aa9c303a3b36462d9acf0bd1753b2be095114d22e7ddb754519eab65c",
+    "tools/build_access_v2.py": "98279ced4010c722a9e91da6eacd4682017a538ed31d7360625ee964595324b9"
+  },
+  "locked_at_utc": "2026-10-01T22:28:02.204089+00:00"
+}

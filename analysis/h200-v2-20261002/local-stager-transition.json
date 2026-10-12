@@ -1,0 +1,8 @@
+{
+  "time": 1790899162.088442,
+  "stopped_own_local_staging_pids": [
+    15380,
+    15030
+  ],
+  "reason": "Parallel official range retrieval on H200 measured much faster; retain source and all verification receipts; no generation process or other user job stopped"
+}

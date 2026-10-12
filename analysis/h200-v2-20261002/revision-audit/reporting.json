@@ -1,0 +1,778 @@
+{
+  "created_at_utc": "2026-10-04T18:01:17.586877+00:00",
+  "scope": "Descriptive reporting audit of saved confirmation controls and one selected illustration; no new tests",
+  "probe_controls": [
+    {
+      "model": "gemma4_31b",
+      "boundary": "Hear",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Understand",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "See",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 187,
+        "planned": 192,
+        "accuracy": 0.9739583333333334,
+        "yes": 187,
+        "no": 5,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "gemma4_31b",
+      "boundary": "Receive",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Hear",
+      "inaccessible": {
+        "correct": 191,
+        "planned": 192,
+        "accuracy": 0.9947916666666666,
+        "yes": 1,
+        "no": 191,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Understand",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "See",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 178,
+        "planned": 192,
+        "accuracy": 0.9270833333333334,
+        "yes": 178,
+        "no": 14,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "glm47_flash",
+      "boundary": "Receive",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 190,
+        "planned": 192,
+        "accuracy": 0.9895833333333334,
+        "yes": 190,
+        "no": 2,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Hear",
+      "inaccessible": {
+        "correct": 155,
+        "planned": 192,
+        "accuracy": 0.8072916666666666,
+        "yes": 37,
+        "no": 155,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Understand",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "See",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 141,
+        "planned": 192,
+        "accuracy": 0.734375,
+        "yes": 141,
+        "no": 51,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "boundary": "Receive",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Hear",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Understand",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "See",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 175,
+        "planned": 192,
+        "accuracy": 0.9114583333333334,
+        "yes": 175,
+        "no": 17,
+        "invalid": 0
+      }
+    },
+    {
+      "model": "qwen35_9b",
+      "boundary": "Receive",
+      "inaccessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 0,
+        "no": 192,
+        "invalid": 0
+      },
+      "accessible": {
+        "correct": 192,
+        "planned": 192,
+        "accuracy": 1.0,
+        "yes": 192,
+        "no": 0,
+        "invalid": 0
+      }
+    }
+  ],
+  "probe_model_summary": [
+    {
+      "model": "gemma4_31b",
+      "inaccessible": {
+        "correct": 768,
+        "planned": 768,
+        "accuracy": 1.0
+      },
+      "accessible": {
+        "correct": 763,
+        "planned": 768,
+        "accuracy": 0.9934895833333334
+      },
+      "balanced_accuracy": 0.9967447916666667
+    },
+    {
+      "model": "glm47_flash",
+      "inaccessible": {
+        "correct": 767,
+        "planned": 768,
+        "accuracy": 0.9986979166666666
+      },
+      "accessible": {
+        "correct": 752,
+        "planned": 768,
+        "accuracy": 0.9791666666666666
+      },
+      "balanced_accuracy": 0.9889322916666666
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "inaccessible": {
+        "correct": 731,
+        "planned": 768,
+        "accuracy": 0.9518229166666666
+      },
+      "accessible": {
+        "correct": 717,
+        "planned": 768,
+        "accuracy": 0.93359375
+      },
+      "balanced_accuracy": 0.9427083333333333
+    },
+    {
+      "model": "qwen35_9b",
+      "inaccessible": {
+        "correct": 768,
+        "planned": 768,
+        "accuracy": 1.0
+      },
+      "accessible": {
+        "correct": 751,
+        "planned": 768,
+        "accuracy": 0.9778645833333334
+      },
+      "balanced_accuracy": 0.9889322916666667
+    }
+  ],
+  "probe_total": {
+    "planned": 6144,
+    "per_state": 3072,
+    "inaccessible_correct": 3034,
+    "accessible_correct": 2983,
+    "invalid": 0,
+    "always_no_balanced_accuracy": 0.5
+  },
+  "stimulus_inventory": {
+    "zh": {
+      "individual_sentences": 8,
+      "counterfactual_pairs": 4,
+      "pairs": [
+        [
+          "外套在下水道里。",
+          "箱子在桥上。"
+        ],
+        [
+          "手套在教堂里。",
+          "扫帚在楼梯间里。"
+        ],
+        [
+          "枕头在废车场里。",
+          "钱包在码头上。"
+        ],
+        [
+          "椅子在地下室里。",
+          "锤子在船上。"
+        ]
+      ]
+    },
+    "ja": {
+      "individual_sentences": 8,
+      "counterfactual_pairs": 4,
+      "pairs": [
+        [
+          "かばんは桟橋にあります。",
+          "枕は質屋にあります。"
+        ],
+        [
+          "上着は倉庫にあります。",
+          "封筒は橋にあります。"
+        ],
+        [
+          "手袋は駐車場にあります。",
+          "鏡は階段室にあります。"
+        ],
+        [
+          "椅子は屋上にあります。",
+          "靴は船にあります。"
+        ]
+      ]
+    },
+    "es": {
+      "individual_sentences": 8,
+      "counterfactual_pairs": 4,
+      "pairs": [
+        [
+          "El espejo está en el sótano.",
+          "El martillo está en el estacionamiento."
+        ],
+        [
+          "El sobre está en la chatarrería.",
+          "La cartera está en el almacén."
+        ],
+        [
+          "El zapato está en la alcantarilla.",
+          "La caja está en el tejado."
+        ],
+        [
+          "La bolsa está en la iglesia.",
+          "La escoba está en la casa de empeño."
+        ]
+      ]
+    }
+  },
+  "illustrative_case": {
+    "model": "qwen35_9b",
+    "item": "C001",
+    "boundary": "Hear",
+    "selection": "Selected failure illustration, not randomly sampled or a prevalence estimate",
+    "records": [
+      {
+        "prompt_id": "C001.Hear.A.inaccessible.R2.full.content.delay0",
+        "version": "A",
+        "accessible": false,
+        "method": "full",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": false, \"boundary_channel\": \"Hear\", \"content\": \"The glove is in the church.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "I heard Alex mention the glove is in the church, though he wasn't speaking to me directly.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "4401bcb9f44d6a78d34eaa5ddf1864b69c181638f4d63e39f239771f7fddcd6d"
+      },
+      {
+        "prompt_id": "C001.Hear.A.inaccessible.R2.probe.state.delay0",
+        "version": "A",
+        "accessible": false,
+        "method": "probe",
+        "Q": "state",
+        "messages": [
+          {
+            "content": "Read the scene as an evaluator. Answer the access question with only Yes or No.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": false, \"boundary_channel\": \"Hear\", \"content\": \"The glove is in the church.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "Did Mira Sen hear the utterance?",
+            "role": "user"
+          }
+        ],
+        "text": "No",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": 1,
+        "raw_record_sha256": "51aceddd70b134f167b6fa5c58ebc807e45fc068c0d94f23b4cc9446d5bd63c8"
+      },
+      {
+        "prompt_id": "C001.Hear.B.inaccessible.R2.full.content.delay0",
+        "version": "B",
+        "accessible": false,
+        "method": "full",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": false, \"boundary_channel\": \"Hear\", \"content\": \"The broom is in the stairwell.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "I heard Alex mention the broom is in the stairwell, though they weren't speaking to me directly.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "48f092238dacd92ce53168e524c953fe15213a94da52206d674b6ced6550bcbe"
+      },
+      {
+        "prompt_id": "C001.Hear.B.inaccessible.R2.probe.state.delay0",
+        "version": "B",
+        "accessible": false,
+        "method": "probe",
+        "Q": "state",
+        "messages": [
+          {
+            "content": "Read the scene as an evaluator. Answer the access question with only Yes or No.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": false, \"boundary_channel\": \"Hear\", \"content\": \"The broom is in the stairwell.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "Did Mira Sen hear the utterance?",
+            "role": "user"
+          }
+        ],
+        "text": "No",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": 1,
+        "raw_record_sha256": "be5d0f1b33ba371f712fb9a1859cfd5b058932f1d0761259a3564e44474ba254"
+      },
+      {
+        "prompt_id": "C001.Hear.A.accessible.R2.full.content.delay0",
+        "version": "A",
+        "accessible": true,
+        "method": "full",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": true, \"boundary_channel\": \"Hear\", \"content\": \"The glove is in the church.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "Alex mentioned the glove is in the church.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "0b381d7894778b5e7dc8b5670aa2c02ee08ce8910e50f31c4108a2dbc7a2dd5d"
+      },
+      {
+        "prompt_id": "C001.Hear.A.accessible.R2.probe.state.delay0",
+        "version": "A",
+        "accessible": true,
+        "method": "probe",
+        "Q": "state",
+        "messages": [
+          {
+            "content": "Read the scene as an evaluator. Answer the access question with only Yes or No.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": true, \"boundary_channel\": \"Hear\", \"content\": \"The glove is in the church.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "Did Mira Sen hear the utterance?",
+            "role": "user"
+          }
+        ],
+        "text": "Yes",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": 1,
+        "raw_record_sha256": "4a56fa29d2e749fe86b7ad81c136ceb0be8eb1a22adaf2ada13f9ad5febba3cf"
+      },
+      {
+        "prompt_id": "C001.Hear.B.accessible.R2.full.content.delay0",
+        "version": "B",
+        "accessible": true,
+        "method": "full",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": true, \"boundary_channel\": \"Hear\", \"content\": \"The broom is in the stairwell.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "Alex mentioned the broom is in the stairwell.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "117a077993cd260662e60489f6bc8f2968f3d0a804d4c2e3b2bc8f66c8179866"
+      },
+      {
+        "prompt_id": "C001.Hear.B.accessible.R2.probe.state.delay0",
+        "version": "B",
+        "accessible": true,
+        "method": "probe",
+        "Q": "state",
+        "messages": [
+          {
+            "content": "Read the scene as an evaluator. Answer the access question with only Yes or No.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"events\": [{\"actor\": \"Alex\", \"audible_to_Mira Sen\": true, \"boundary_channel\": \"Hear\", \"content\": \"The broom is in the stairwell.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"observable_event_shell\": null, \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "Did Mira Sen hear the utterance?",
+            "role": "user"
+          }
+        ],
+        "text": "Yes",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": 1,
+        "raw_record_sha256": "8d10e22b5b5f461a44d4972d261bd00f97e24194bf0c30265218b8cd3685c57c"
+      },
+      {
+        "prompt_id": "C001.Hear.A.inaccessible.R2.view.content.delay0",
+        "version": "A",
+        "accessible": false,
+        "method": "view",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"observations\": [], \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "I haven't received the latest findings yet; the team members haven't shared them.",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": null,
+        "raw_record_sha256": "fc597db2f74ae7064ddeba4083ebc5dc352e5056bdaba1526de3868c3df08461"
+      },
+      {
+        "prompt_id": "C001.Hear.B.inaccessible.R2.view.content.delay0",
+        "version": "B",
+        "accessible": false,
+        "method": "view",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"observations\": [], \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "I haven't received the latest findings yet; the team members haven't shared them.",
+        "status": "complete",
+        "hit_t": 0,
+        "hit_f": 0,
+        "D": 0,
+        "state_correct": null,
+        "raw_record_sha256": "2bbc5ad2e71677ba76e9873792d2f909b26f13233fef88eaa63e89f3b736ff1c"
+      },
+      {
+        "prompt_id": "C001.Hear.A.accessible.R2.view.content.delay0",
+        "version": "A",
+        "accessible": true,
+        "method": "view",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"observations\": [{\"actor\": \"Alex\", \"boundary_channel\": \"Hear\", \"content\": \"The glove is in the church.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "Alex mentioned the glove is in the church.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "3f1a0f23ff18a6299ac0cb2dcf0ab66265185df634ca85da49f44ed702f3a913"
+      },
+      {
+        "prompt_id": "C001.Hear.B.accessible.R2.view.content.delay0",
+        "version": "B",
+        "accessible": true,
+        "method": "view",
+        "Q": "content",
+        "messages": [
+          {
+            "content": "You are role-playing Mira Sen. Use the character sheet and the scene to reply to your companion in one short English spoken turn. Return only the spoken words.\n[Character] Mira Sen is an original fictional volunteer in Harrowbay, a contemporary coastal civic district. They are practical, polite, and concise. They rely on their own observations. Their history and relations are defined only by this scene.\n[Scene state] {\"character_id\": \"Mira Sen\", \"observations\": [{\"actor\": \"Alex\", \"boundary_channel\": \"Hear\", \"content\": \"The broom is in the stairwell.\", \"event_id\": \"e1\", \"kind\": \"speech\", \"language\": \"English\"}], \"scene\": \"An original community team is preparing an activity. Its members have not shared the latest finding.\"}",
+            "role": "system"
+          },
+          {
+            "content": "What information did you get about the item and its location?",
+            "role": "user"
+          }
+        ],
+        "text": "Alex just told me the broom is in the stairwell.",
+        "status": "complete",
+        "hit_t": 1,
+        "hit_f": 0,
+        "D": 1,
+        "state_correct": null,
+        "raw_record_sha256": "3b936f77d3cce6e3761e1a3dbc41ac2c084b679d09738631475b10acde07d393"
+      }
+    ]
+  },
+  "source_sha256": {
+    "analysis/h200-v2-20261002/four-core-results.json": "7d71e362e943c719770f9a38d6524dba6832a0476002704a964bd8b1a87051f2",
+    "analysis/h200-v2-20261002/gemma4_31b/scores/confirmatory/gemma4_31b.jsonl": "2e942ed096db80fc84733a533d4579bcae4d76ceec826daf2c05a3329d52d690",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/qwen35_9b.jsonl": "36a26cd42f7aecc742cf93420c5d20254de0fedab2b8b97693ce36fc8f0b2a33",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/glm47_flash.jsonl": "032cc705ba5eb7343ffe97a64900c68a7a6a06d522afdd8c90397c41a52611c2",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/nemotron3_nano30b.jsonl": "c1c9cf8ef3b2fd5b5fb8a99cfd222da1217d2145828ff1b34f553f9a9e5b5e18",
+    "analysis/validation-access-v2/native-stimuli.csv": "6c48a28a6d71e9557471a0de8e3d89fa4a51109eac708b3882c21a25767e7145",
+    "analysis/validation-access-v2/native-review-A.csv": "9367277eb16d2751ae53bf569015b916c911ca2cda898d21d7ea087769095131",
+    "items/access-v2/confirmatory.jsonl": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+    "analysis/h200-v2-20261002/core-rest/responses/confirmatory/qwen35_9b/responses.jsonl": "06590abd29a25be9c10022b1a81525785f83abec78205b4aee21bb1164b7491f",
+    "items/access-v2/confirmatory-items.json": "6f81d64d1a5a63b59749c7c5da41b1828ab23e54808b1bb0e66919083aefb497",
+    "oc_v2/score.py": "b315c23a87a0b5f0fe2169db6fe7a8f17e8f03dbcd3d0d683801ddf14bb22070",
+    "oc/score.py": "18afb5359c0b11e115c9cddd568137c0d1deee3f4c3c413411ef00eeedbf8d8d"
+  },
+  "checks": {
+    "frozen_inputs_and_scoring_unchanged": true,
+    "balanced_state_denominators_checked": true,
+    "native_sentence_and_pair_units_verified": true,
+    "case_matches_raw_responses_and_exact_rescoring": true,
+    "no_new_generation_or_confirmatory_tests": true,
+    "actual_human_observations_zero": true
+  }
+}

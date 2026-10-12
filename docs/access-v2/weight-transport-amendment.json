@@ -1,0 +1,10 @@
+{
+  "created_at_utc": "2026-10-01T23:58:02.958928+00:00",
+  "scope": "transport only, scientific inputs and generation/scoring/analysis unchanged",
+  "reason": "Existing proxy single-stream 0.4MiB/s; 8-stream test measured 3.07MiB/s. Avoid slow local uplink; use 32 concurrent official HTTPS ranges on H200.",
+  "source": "official fixed repo and revision from frozen weights_reference.json",
+  "requirements": "Every Content-Range and frozen full-file SHA must match before original verifier creates readiness receipt. No model prompt retry. No new proxy or port forwarding.",
+  "code_sha256": {
+    "harness/h200_range_weights_v2.py": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4"
+  }
+}

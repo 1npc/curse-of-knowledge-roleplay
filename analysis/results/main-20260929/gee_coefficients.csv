@@ -1,0 +1,199 @@
+model,term,beta_log_odds,se,ci_low,ci_high,p
+qwen38_27b,Intercept,,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.language_prose]",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",,,,,
+qwen38_27b,C(canary)[T.place],,,,,
+qwen38_27b,C(lang)[T.ja],,,,,
+qwen38_27b,C(lang)[T.zh],,,,,
+qwen38_27b,C(question)[T.content],,,,,
+qwen38_27b,C(question)[T.plan],,,,,
+qwen38_27b,C(question)[T.task],,,,,
+qwen38_27b,C(character)[T.Panam],,,,,
+qwen38_27b,C(character)[T.Rogue],,,,,
+qwen38_27b,target,,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",,,,,
+qwen38_27b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",,,,,
+qwen35_9b,Intercept,-7.118333086845021,0.3712801099265374,-7.846028730477107,-6.390637443212935,6.292962527998438e-82
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",-1.3297956720343969,0.8613261973563014,-3.0179639977935864,0.35837265372479266,0.12261420407463866
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",-0.5251326433514844,0.6272321240878725,-1.7544850165102726,0.704219729807304,0.4024676949535029
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.language_prose]",-0.22576445001087855,0.559958392680524,-1.3232627325056427,0.8717338324838856,0.6868152529995653
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-0.6008256617392045,0.6446052446467969,-1.864228725492557,0.6625774020141479,0.35129357555002017
+qwen35_9b,C(canary)[T.place],-0.3554786428983972,0.021537509653082515,-0.39769138613512267,-0.31326589966167173,3.3720200180278285e-61
+qwen35_9b,C(lang)[T.ja],-0.05035951193940475,0.043837014134554465,-0.13627848083290478,0.035559456954095285,0.2506426922864742
+qwen35_9b,C(lang)[T.zh],0.0704040295466478,0.043935584306360916,-0.015708133333542804,0.1565161924268384,0.10905888953768708
+qwen35_9b,C(question)[T.content],1.147015240061085,0.050038167604083326,1.0489422337047027,1.245088246417467,2.752531623953173e-116
+qwen35_9b,C(question)[T.plan],0.3032049026716743,0.04685848945168109,0.21136395097642935,0.3950458543669193,9.758198125384981e-11
+qwen35_9b,C(question)[T.task],1.6461028647370466,0.05350558590823588,1.5412338433851904,1.7509718860889028,7.689388446086055e-208
+qwen35_9b,C(character)[T.Panam],-0.12948864167249338,0.04522814367563385,-0.21813417436433874,-0.04084310898064801,0.004196369076958927
+qwen35_9b,C(character)[T.Rogue],-0.6241906624831077,0.0440995855601074,-0.7106242619140608,-0.5377570630521546,1.7613800108364375e-45
+qwen35_9b,target,7.82173244250421,0.37388516280815065,7.08893098904634,8.55453389596208,3.510328863153983e-97
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",1.2969678022146913,0.8672283679291838,-0.4027685652979598,2.9967041697273427,0.13477564690620772
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-0.12071994824729151,0.6331077396986033,-1.3615883163901135,1.1201484198955303,0.8487775904403847
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-0.476839954049315,0.5667283862034042,-1.5876071800244937,0.6339272719258636,0.4001291328267581
+qwen35_9b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",0.08589870762533175,0.6518900582609127,-1.1917823284457747,1.363579743696438,0.8951672418620111
+gemma4_31b,Intercept,-8.470618199947273,0.965959548134237,-10.363864124812963,-6.577372275081584,1.8006307410562177e-18
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",0.9024699431324148,1.0148136805712082,-1.086528321805688,2.891468208070518,0.3738439167675619
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",0.8045076832948194,1.0870122496576928,-1.3259971767881202,2.935012543377759,0.45923378322053154
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.language_prose]",0.11109899582372593,1.1961157851487079,-2.233244864407591,2.4554428560550425,0.9259963962527092
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-0.6047713753128235,1.3905546591916622,-3.3302084258628506,2.1206656752372037,0.6636250159804106
+gemma4_31b,C(canary)[T.place],0.013853076728287773,0.018730028914098636,-0.022857105372739415,0.050563258829314964,0.4595314858741302
+gemma4_31b,C(lang)[T.ja],-0.5092025959497932,0.07245919718477561,-0.6512200127806396,-0.36718517911894694,2.1035856204884267e-12
+gemma4_31b,C(lang)[T.zh],-0.5547241501288485,0.07237337012058713,-0.6965733490049865,-0.41287495125271045,1.791728976650864e-14
+gemma4_31b,C(question)[T.content],0.35054200061896407,0.08144737833213504,0.19090807245277142,0.5101759287851567,1.6781158148264836e-05
+gemma4_31b,C(question)[T.plan],-0.011428075509033951,0.08399433381322767,-0.17605394468839505,0.15319779367032713,0.8917756704136706
+gemma4_31b,C(question)[T.task],0.5545494236632478,0.08224040275192955,0.3933611961953971,0.7157376511310984,1.5511819442946584e-11
+gemma4_31b,C(character)[T.Panam],0.11475606989488894,0.07188156195279632,-0.0261292026850765,0.25564134247485437,0.1103860317248629
+gemma4_31b,C(character)[T.Rogue],1.369048301760187,0.07385734574108911,1.2242905641139297,1.5138060394064445,1.0504719435038323e-76
+gemma4_31b,target,7.729057808347002,0.9687316535365812,5.830378656731369,9.627736959962634,1.4808227587048324e-15
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",-0.6053882523706655,1.020045483341492,-2.6046406623127414,1.3938641575714106,0.5528523167947867
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-4.386442059138821,1.097827626487942,-6.538144668288278,-2.2347394499893634,6.454004180159718e-05
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-5.779781426895322,1.2413952891986526,-8.212871484302365,-3.3466913694882776,3.2260745998971474e-06
+gemma4_31b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",-4.2521066347388485,1.4116574430503486,-7.018904381625434,-1.4853088878522631,0.002594148742751525
+gemma4_12b,Intercept,-7.337955627287699,0.5330775679813874,-8.38276846149742,-6.293142793077978,4.123518556706943e-43
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",-0.8293604050516715,0.9779287099309152,-2.7460654559639828,1.08734464586064,0.39639420221390553
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",0.8927922279679029,0.6203346160371795,-0.32304127782845204,2.1086257337642578,0.15009082968356946
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.language_prose]",-0.208184512477799,0.7720650317233851,-1.7214041683784083,1.3050351434228102,0.7874323437592405
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-0.6902200137884064,0.8913541922370621,-2.43724212804184,1.0568021004650272,0.43872391271808286
+gemma4_12b,C(canary)[T.place],-0.037740117623443196,0.023781336211409262,-0.08435068010204357,0.008870444855157172,0.11252086324026819
+gemma4_12b,C(lang)[T.ja],-0.2744271429697329,0.0508267374521433,-0.37404571782760687,-0.17480856811185896,6.691360305860211e-08
+gemma4_12b,C(lang)[T.zh],-0.19483036943549442,0.05045933589904158,-0.29372885048142494,-0.0959318883895639,0.0001128609556756944
+gemma4_12b,C(question)[T.content],0.9451211424732394,0.05508578144239914,0.8371549947858923,1.0530872901605866,5.54683832893168e-66
+gemma4_12b,C(question)[T.plan],-0.4341935815747415,0.06421222793793999,-0.5600472357001806,-0.3083399274493025,1.3623884455008744e-11
+gemma4_12b,C(question)[T.task],0.9892949940091671,0.05761461909613954,0.8763724155977399,1.1022175724205943,4.3854960379357706e-66
+gemma4_12b,C(character)[T.Panam],-0.5864452017841723,0.04892543768710145,-0.6823372975787497,-0.4905531059895948,4.1815933461425836e-33
+gemma4_12b,C(character)[T.Rogue],0.1267830204737136,0.05121558676316388,0.02640231497082607,0.22716372597660112,0.013305823422315618
+gemma4_12b,target,7.628371910730885,0.5325972837329818,6.58450041635038,8.67224340511139,1.5726911951159408e-46
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",1.2448364507822014,0.9836711860064304,-0.6831236464202026,3.172796547984605,0.20569194266278223
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-2.81176443096842,0.6266543525917272,-4.03998439280347,-1.5835444691333707,7.225127483458698e-06
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-2.7697539888578246,0.7780807058118251,-4.294764149314507,-1.2447438284011423,0.00037124216697997686
+gemma4_12b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",-1.3967748837828144,0.8963417053087726,-3.1535723440292234,0.36002257646359426,0.11916066749292185
+glm47_flash,Intercept,,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.flag_understand]",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.language_prose]",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",,,,,
+glm47_flash,C(canary)[T.place],,,,,
+glm47_flash,C(lang)[T.ja],,,,,
+glm47_flash,C(lang)[T.zh],,,,,
+glm47_flash,C(question)[T.content],,,,,
+glm47_flash,C(question)[T.plan],,,,,
+glm47_flash,C(question)[T.task],,,,,
+glm47_flash,C(character)[T.Panam],,,,,
+glm47_flash,C(character)[T.Rogue],,,,,
+glm47_flash,target,,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",,,,,
+glm47_flash,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",,,,,
+mistral_small3,Intercept,,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.flag_understand]",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.language_prose]",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",,,,,
+mistral_small3,C(canary)[T.place],,,,,
+mistral_small3,C(lang)[T.ja],,,,,
+mistral_small3,C(lang)[T.zh],,,,,
+mistral_small3,C(question)[T.content],,,,,
+mistral_small3,C(question)[T.plan],,,,,
+mistral_small3,C(question)[T.task],,,,,
+mistral_small3,C(character)[T.Panam],,,,,
+mistral_small3,C(character)[T.Rogue],,,,,
+mistral_small3,target,,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",,,,,
+mistral_small3,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",,,,,
+gpt_oss_20b,Intercept,-7.477343561239214,0.32876474294047503,-8.121710616789114,-6.832976505689314,1.6546383529375314e-114
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",-0.6384623365490781,0.5743456434271169,-1.7641591123437115,0.4872344392455551,0.26629540421823894
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",-0.4334730881172877,0.5484212233537837,-1.5083589342481005,0.6414127580135252,0.42929318750778567
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.language_prose]",-1.4964867433959501,0.8727281253639143,-3.2070024374043795,0.21402895061247929,0.08639607631953665
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-0.6938752478337519,0.6056381991766902,-1.8809043058817605,0.49315381021425664,0.2519223362200561
+gpt_oss_20b,C(canary)[T.place],-0.5141030334700452,0.021127705262197108,-0.5555125748599289,-0.4726934920801614,8.748813393032921e-131
+gpt_oss_20b,C(lang)[T.ja],0.2454447628926841,0.046013084235606405,0.15526077497328783,0.3356287508120804,9.594637624126058e-08
+gpt_oss_20b,C(lang)[T.zh],0.2931886564860056,0.04566228936805989,0.203692213872962,0.38268509909904924,1.3555556899637117e-10
+gpt_oss_20b,C(question)[T.content],1.3921141075585561,0.05039750086909531,1.2933368209443032,1.490891394172809,5.943499607003178e-168
+gpt_oss_20b,C(question)[T.plan],0.6554629547731011,0.05063638210266513,0.5562174695444689,0.7547084400017333,2.5238127025061694e-38
+gpt_oss_20b,C(question)[T.task],2.386455715487828,0.056918612217919363,2.2748972854907046,2.498014145484951,0.0
+gpt_oss_20b,C(character)[T.Panam],-0.6373307981380403,0.046788144183276745,-0.72903387564073,-0.5456277206353506,2.978441437475495e-42
+gpt_oss_20b,C(character)[T.Rogue],-0.5145189040418137,0.045661022718792396,-0.6040128640679119,-0.4250249440157154,1.8831757477605373e-29
+gpt_oss_20b,target,7.860967897443131,0.3321054505532288,7.210053175289355,8.511882619596907,7.3305340775463495e-124
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",0.35514872076796583,0.5830280149111274,-0.7875651904357257,1.4978626319716573,0.5424281951987557
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-0.8464158356907642,0.5574199301080435,-1.9389388229673634,0.24610715158583518,0.12890029785460613
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-0.3667131124654134,0.8787387801531219,-2.0890094733841926,1.355583248453366,0.6764461553038297
+gpt_oss_20b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",-0.14124982731853825,0.6129860378164153,-1.3426803844646198,1.0601807298275432,0.8177583429470315
+phi4,Intercept,,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.flag_understand]",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.language_prose]",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",,,,,
+phi4,C(canary)[T.place],,,,,
+phi4,C(lang)[T.ja],,,,,
+phi4,C(lang)[T.zh],,,,,
+phi4,C(question)[T.content],,,,,
+phi4,C(question)[T.plan],,,,,
+phi4,C(question)[T.task],,,,,
+phi4,C(character)[T.Panam],,,,,
+phi4,C(character)[T.Rogue],,,,,
+phi4,target,,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",,,,,
+phi4,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",,,,,
+seed_oss_36b,Intercept,-6.3517448710425635,0.3235025336646272,-6.985798185932689,-5.717691556152438,7.876308316287025e-86
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",-2.570773142461033,1.347910891270647,-5.212629943720787,0.0710836587987198,0.056491093225611085
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",0.35394341213960673,0.41818792884756123,-0.46568986717101196,1.1735766914502255,0.3973441086760723
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.language_prose]",-0.7809378287097576,0.5658866651295146,-1.8900553116950842,0.32817965427556917,0.1675789020285946
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-2.7147481207614943,1.5507193181983656,-5.754102134560799,0.3246058930378104,0.08000829031399437
+seed_oss_36b,C(canary)[T.place],-0.37227014235333655,0.021106995063762252,-0.4136390925001753,-0.33090119220649783,1.2743274843965462e-69
+seed_oss_36b,C(lang)[T.ja],0.07197829489100417,0.04535398706170562,-0.016913886305234424,0.16087047608724275,0.11250506723361857
+seed_oss_36b,C(lang)[T.zh],0.10113936090122216,0.04532745073864157,0.012299189942471214,0.18997953185997313,0.025660942302166784
+seed_oss_36b,C(question)[T.content],0.512461686248416,0.05044993852161055,0.4135816237237995,0.6113417487730326,3.0582008473015623e-24
+seed_oss_36b,C(question)[T.plan],-0.1647736657078296,0.050730149800211205,-0.2642029322465654,-0.0653443991690938,0.0011620204834635614
+seed_oss_36b,C(question)[T.task],1.355148520982338,0.05350009538597993,1.2502902608563597,1.4600067811083162,1.4992016596755057e-141
+seed_oss_36b,C(character)[T.Panam],-0.4100963067316589,0.04504889776802763,-0.4983905239002199,-0.32180208956309797,8.758003586436557e-20
+seed_oss_36b,C(character)[T.Rogue],-0.5233867071058472,0.045220516153964524,-0.6120172901299294,-0.434756124081765,5.575425079928901e-31
+seed_oss_36b,target,7.279661973840291,0.3269071399073587,6.638935753332872,7.92038819434771,7.501466428686325e-110
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",3.035409495711029,1.351011849855728,0.3874749273069673,5.683344064115091,0.024654890801264498
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-1.224271545479107,0.427129034115469,-2.0614290690968065,-0.38711402186140786,0.004153262988837497
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-0.9853265036566331,0.573097171536322,-2.1085763195095977,0.13792331219633136,0.08555958955959365
+seed_oss_36b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",2.28879884812946,1.5547683687568414,-0.7584911589360392,5.336088855194959,0.14098964998877264
+nemotron3_nano30b,Intercept,-9.89457878543489,0.4491315745751871,-10.774860495922022,-9.014297074947757,1.4704624614489267e-107
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",-0.8096903427056314,0.802786330700274,-2.38312263815923,0.7637419527479672,0.3131664777157659
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",0.43308554813748484,0.5796093256780531,-0.702927855295046,1.5690989515700158,0.4549413238296365
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.language_prose]",0.08490843553118058,0.6302291186168884,-1.1503179389663423,1.3201348100287036,0.8928282805968998
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",-1.0013668181422886,0.9219987448939417,-2.8084511519255475,0.8057175156409704,0.2774424382042593
+nemotron3_nano30b,C(canary)[T.place],-0.20066749121598706,0.024155071266071713,-0.24801056094148594,-0.1533244214904882,9.776540709649063e-17
+nemotron3_nano30b,C(lang)[T.ja],-0.12127844320987399,0.05046570599264574,-0.22018940940984683,-0.02236747700990116,0.01625294906566157
+nemotron3_nano30b,C(lang)[T.zh],-0.05819414055901114,0.050757505034243214,-0.15767702237123832,0.04128874125321604,0.2515829416696138
+nemotron3_nano30b,C(question)[T.content],3.466515416691114,0.07239462875483695,3.3246245516574855,3.608406281724742,0.0
+nemotron3_nano30b,C(question)[T.plan],2.2481044427674854,0.06986382244344398,2.111173866956034,2.385035018578937,3.5423192348861356e-227
+nemotron3_nano30b,C(question)[T.task],4.335441964507392,0.07681828041846386,4.184880901532904,4.486003027481879,0.0
+nemotron3_nano30b,C(character)[T.Panam],-0.3009707270373886,0.053826259070948956,-0.4064682562389709,-0.19547319783580624,2.2508739974126968e-08
+nemotron3_nano30b,C(character)[T.Rogue],-0.3988833769334138,0.050388879231826354,-0.49764376544913175,-0.30012298841769586,2.450777002165464e-15
+nemotron3_nano30b,target,7.708193276562335,0.4469187574919412,6.8322486078627405,8.584137945261931,1.1701907451435717e-66
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",1.8381903477157275,0.8128345557870303,0.2450638929835347,3.4313168024479204,0.02373097621188707
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",-0.8570174692666758,0.5884814385792229,-2.0104198944522724,0.296384955918921,0.14530409441386075
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",-1.0311916468375608,0.6389152494164775,-2.2834425248672825,0.22105923119216087,0.10653338983491666
+nemotron3_nano30b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",1.1587775447108415,0.9290587815745942,-0.6621442066960279,2.979699296117711,0.21230230187391808
+falcon_h1_34b,Intercept,,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.flag_understand]",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.language_prose]",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]",,,,,
+falcon_h1_34b,C(canary)[T.place],,,,,
+falcon_h1_34b,C(lang)[T.ja],,,,,
+falcon_h1_34b,C(lang)[T.zh],,,,,
+falcon_h1_34b,C(question)[T.content],,,,,
+falcon_h1_34b,C(question)[T.plan],,,,,
+falcon_h1_34b,C(question)[T.task],,,,,
+falcon_h1_34b,C(character)[T.Panam],,,,,
+falcon_h1_34b,C(character)[T.Rogue],,,,,
+falcon_h1_34b,target,,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.flag_inaudible]:target",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.flag_understand]:target",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.language_prose]:target",,,,,
+falcon_h1_34b,"C(condition, Treatment(reference=""language""))[T.narrated_inaudible]:target",,,,,

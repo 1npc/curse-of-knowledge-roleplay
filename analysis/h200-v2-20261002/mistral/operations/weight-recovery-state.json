@@ -1,0 +1,67 @@
+{
+  "pid": 3823525,
+  "started_unix": 1790952792.4307218,
+  "supplier_sha256": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4",
+  "order": [
+    "gemma4_12b",
+    "falcon_h1_34b",
+    "mistral_small3",
+    "seed_oss_36b"
+  ],
+  "models": {
+    "gemma4_12b": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_unix": 1790952792.4311783,
+          "child_pid": 3823526,
+          "returncode": 0,
+          "finished_unix": 1790953278.0136027
+        }
+      ],
+      "status": "verified"
+    },
+    "falcon_h1_34b": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_unix": 1790953278.015393,
+          "child_pid": 3830465,
+          "returncode": 0,
+          "finished_unix": 1790956072.151539,
+          "error": "RuntimeError('Range download failed model-00010-of-00014.safetensors #15 curl=28')"
+        },
+        {
+          "attempt": 2,
+          "started_unix": 1790956102.1543033,
+          "child_pid": 3895788,
+          "returncode": 0,
+          "finished_unix": 1790960961.6342037
+        }
+      ],
+      "status": "verified"
+    },
+    "mistral_small3": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_unix": 1790960961.6371477,
+          "child_pid": 4004651,
+          "returncode": 0,
+          "finished_unix": 1790967600.8520665
+        }
+      ],
+      "status": "verified"
+    },
+    "seed_oss_36b": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_unix": 1790967600.855697,
+          "child_pid": 4192051
+        }
+      ],
+      "status": "downloading"
+    }
+  }
+}

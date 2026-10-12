@@ -1,0 +1,613 @@
+{
+  "captured_utc": "2026-10-02T16:00:42Z",
+  "gpus": {
+    "exit_code": 0,
+    "lines": [
+      "0, GPU-eac35845-029e-df8d-5318-af5d76434077, 141224, 100",
+      "1, GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 141182, 100",
+      "2, GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 141262, 100",
+      "3, GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 142962, 100",
+      "4, GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 111324, 100",
+      "5, GPU-63686987-a70f-607d-9886-af187b67a14a, 124625, 14",
+      "6, GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 135227, 49",
+      "7, GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 103935, 0"
+    ],
+    "error": ""
+  },
+  "compute_apps": {
+    "exit_code": 0,
+    "lines": [
+      "GPU-eac35845-029e-df8d-5318-af5d76434077, 3614809, /home/jakubk/venvs/verlseed_qwen38/bin/python, 141198",
+      "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 3614810, /home/jakubk/venvs/verlseed_qwen38/bin/python, 141156",
+      "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 3614811, /home/jakubk/venvs/verlseed_qwen38/bin/python, 141236",
+      "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 3614812, /home/jakubk/venvs/verlseed_qwen38/bin/python, 142936",
+      "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 3875699, VLLM::Worker, 100588",
+      "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 3891136, /data/congfeng/venvs/bcp/bin/python, 10702",
+      "GPU-63686987-a70f-607d-9886-af187b67a14a, 3875692, VLLM::Worker, 100588",
+      "GPU-63686987-a70f-607d-9886-af187b67a14a, 3891139, /data/congfeng/venvs/bcp/bin/python, 24004",
+      "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 3875693, VLLM::Worker, 105202",
+      "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 3891142, /data/congfeng/venvs/bcp/bin/python, 25414",
+      "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 3900249, /opt/conda/envs/agent/bin/python, 4566",
+      "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 3875696, VLLM::Worker, 100588",
+      "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 3896644, /opt/conda/envs/agent/bin/python, 3312"
+    ],
+    "error": ""
+  },
+  "process_ancestry": {
+    "3614809": [
+      {
+        "pid": 3614809,
+        "ppid": 3614674,
+        "user": "jakubk",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614674,
+        "ppid": 3614616,
+        "user": "jakubk",
+        "name": "pt_elastic",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614616,
+        "ppid": 3542503,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "bash",
+        "script_paths": [
+          "experiments/06_exploration_sft.sh"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3542503,
+        "ppid": 329918,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "-bash",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 329918,
+        "ppid": 1,
+        "user": "jakubk",
+        "name": "tmux: server",
+        "cwd": "unavailable",
+        "executable": "tmux",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3614810": [
+      {
+        "pid": 3614810,
+        "ppid": 3614674,
+        "user": "jakubk",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614674,
+        "ppid": 3614616,
+        "user": "jakubk",
+        "name": "pt_elastic",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614616,
+        "ppid": 3542503,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "bash",
+        "script_paths": [
+          "experiments/06_exploration_sft.sh"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3542503,
+        "ppid": 329918,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "-bash",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 329918,
+        "ppid": 1,
+        "user": "jakubk",
+        "name": "tmux: server",
+        "cwd": "unavailable",
+        "executable": "tmux",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3614811": [
+      {
+        "pid": 3614811,
+        "ppid": 3614674,
+        "user": "jakubk",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614674,
+        "ppid": 3614616,
+        "user": "jakubk",
+        "name": "pt_elastic",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614616,
+        "ppid": 3542503,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "bash",
+        "script_paths": [
+          "experiments/06_exploration_sft.sh"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3542503,
+        "ppid": 329918,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "-bash",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 329918,
+        "ppid": 1,
+        "user": "jakubk",
+        "name": "tmux: server",
+        "cwd": "unavailable",
+        "executable": "tmux",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3614812": [
+      {
+        "pid": 3614812,
+        "ppid": 3614674,
+        "user": "jakubk",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614674,
+        "ppid": 3614616,
+        "user": "jakubk",
+        "name": "pt_elastic",
+        "cwd": "unavailable",
+        "executable": "/home/jakubk/venvs/verlseed_qwen38/bin/python",
+        "script_paths": [
+          "/mnt/efs-amsmt/jakubk/src/DeepResearchAgentPostTrain_qwen38/training/exploration_sft/sft_trainer.py",
+          "data.custom_cls.path=/mnt/efs-amsmt/jakubk/src/EvoAxiom_production_qwen_38/experiments/exploration_dataset.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3614616,
+        "ppid": 3542503,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "bash",
+        "script_paths": [
+          "experiments/06_exploration_sft.sh"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3542503,
+        "ppid": 329918,
+        "user": "jakubk",
+        "name": "bash",
+        "cwd": "unavailable",
+        "executable": "-bash",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 329918,
+        "ppid": 1,
+        "user": "jakubk",
+        "name": "tmux: server",
+        "cwd": "unavailable",
+        "executable": "tmux",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3875692": [
+      {
+        "pid": 3875692,
+        "ppid": 3871348,
+        "user": "congfeng",
+        "name": "VLLM::Worker",
+        "cwd": "unavailable",
+        "executable": "VLLM::Worker",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::Worker"
+      },
+      {
+        "pid": 3871348,
+        "ppid": 3870291,
+        "user": "congfeng",
+        "name": "VLLM::EngineCor",
+        "cwd": "unavailable",
+        "executable": "VLLM::EngineCore_DP1",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::EngineCore_DP1"
+      },
+      {
+        "pid": 3870291,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/vllm029/bin/python",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3875693": [
+      {
+        "pid": 3875693,
+        "ppid": 3871349,
+        "user": "congfeng",
+        "name": "VLLM::Worker",
+        "cwd": "unavailable",
+        "executable": "VLLM::Worker",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::Worker"
+      },
+      {
+        "pid": 3871349,
+        "ppid": 3870291,
+        "user": "congfeng",
+        "name": "VLLM::EngineCor",
+        "cwd": "unavailable",
+        "executable": "VLLM::EngineCore_DP2",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::EngineCore_DP2"
+      },
+      {
+        "pid": 3870291,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/vllm029/bin/python",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3875696": [
+      {
+        "pid": 3875696,
+        "ppid": 3871350,
+        "user": "congfeng",
+        "name": "VLLM::Worker",
+        "cwd": "unavailable",
+        "executable": "VLLM::Worker",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::Worker"
+      },
+      {
+        "pid": 3871350,
+        "ppid": 3870291,
+        "user": "congfeng",
+        "name": "VLLM::EngineCor",
+        "cwd": "unavailable",
+        "executable": "VLLM::EngineCore_DP3",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::EngineCore_DP3"
+      },
+      {
+        "pid": 3870291,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/vllm029/bin/python",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3875699": [
+      {
+        "pid": 3875699,
+        "ppid": 3871347,
+        "user": "congfeng",
+        "name": "VLLM::Worker",
+        "cwd": "unavailable",
+        "executable": "VLLM::Worker",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::Worker"
+      },
+      {
+        "pid": 3871347,
+        "ppid": 3870291,
+        "user": "congfeng",
+        "name": "VLLM::EngineCor",
+        "cwd": "unavailable",
+        "executable": "VLLM::EngineCore_DP0",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": "VLLM::EngineCore_DP0"
+      },
+      {
+        "pid": 3870291,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/vllm029/bin/python",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3891136": [
+      {
+        "pid": 3891136,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/bcp/bin/python",
+        "script_paths": [
+          "scripts/run_row.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3891139": [
+      {
+        "pid": 3891139,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/bcp/bin/python",
+        "script_paths": [
+          "scripts/run_row.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3891142": [
+      {
+        "pid": 3891142,
+        "ppid": 1,
+        "user": "congfeng",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/data/congfeng/venvs/bcp/bin/python",
+        "script_paths": [
+          "scripts/run_row.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3896644": [
+      {
+        "pid": 3896644,
+        "ppid": 3896642,
+        "user": "root",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/opt/conda/envs/agent/bin/python",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_1.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3896642,
+        "ppid": 3896640,
+        "user": "root",
+        "name": "bwrap",
+        "cwd": "unavailable",
+        "executable": "bwrap",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_1.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3896640,
+        "ppid": 3223023,
+        "user": "root",
+        "name": "bwrap",
+        "cwd": "unavailable",
+        "executable": "bwrap",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_1.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3223023,
+        "ppid": 3222942,
+        "user": "root",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/opt/conda/envs/agent/bin/python",
+        "script_paths": [
+          "/harness/runtime.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3222942,
+        "ppid": 1,
+        "user": "root",
+        "name": "containerd-shim",
+        "cwd": "unavailable",
+        "executable": "/usr/bin/containerd-shim-runc-v2",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ],
+    "3900249": [
+      {
+        "pid": 3900249,
+        "ppid": 3900248,
+        "user": "root",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/opt/conda/envs/agent/bin/python",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_0.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3900248,
+        "ppid": 3900245,
+        "user": "root",
+        "name": "bwrap",
+        "cwd": "unavailable",
+        "executable": "bwrap",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_0.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3900245,
+        "ppid": 3223023,
+        "user": "root",
+        "name": "bwrap",
+        "cwd": "unavailable",
+        "executable": "bwrap",
+        "script_paths": [
+          "/output/runs/20261002_092304_dog-breed-identification/workspace/runfile_0.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3223023,
+        "ppid": 3222942,
+        "user": "root",
+        "name": "python",
+        "cwd": "unavailable",
+        "executable": "/opt/conda/envs/agent/bin/python",
+        "script_paths": [
+          "/harness/runtime.py"
+        ],
+        "model_labels": [],
+        "worker_title": null
+      },
+      {
+        "pid": 3222942,
+        "ppid": 1,
+        "user": "root",
+        "name": "containerd-shim",
+        "cwd": "unavailable",
+        "executable": "/usr/bin/containerd-shim-runc-v2",
+        "script_paths": [],
+        "model_labels": [],
+        "worker_title": null
+      }
+    ]
+  }
+}

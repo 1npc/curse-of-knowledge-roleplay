@@ -1,9 +1,9 @@
-# Analysis plan (draft, to be frozen on 2026-10-03)
+# Analysis plan (locked before outcome inspection on 2026-09-29)
 
-Status: draft. Items marked **[open]** need the author's decision before the freeze. At the freeze
-this file, the scorer, the alias and mask tables, the regular-expression tables and
-`analysis/confirmatory.py` are committed together, and an anonymous OSF registration points to
-that commit. After the freeze, any added analysis is labelled post hoc.
+Status: the user advanced all work to 2026-09-29 and authorized scoring now. The roster and
+criteria below are retained from the draft, with the implementation details in section 10 fixed
+before inspecting main outcomes. This is a dated local analysis lock, **not an OSF preregistration**.
+Generation preceded this lock. Human validation is pending and all rule-scored findings are provisional.
 
 ## 1. Data
 
@@ -13,7 +13,7 @@ that commit. After the freeze, any added analysis is labelled post hoc.
   values that fail the word-form guessability test in a language). Values rotate over skeletons,
   languages and versions so that each value appears 8 times per language and version.
 - **Characters.** Kerry, Rogue and Panam, 32 skeletons each; language understanding is declared in
-  the state and manipulated within item (declared set). **[open]** Viktor is excluded by default.
+  the state and manipulated within item (declared set). Viktor is excluded.
 - **Cells per item.** 128 main prompts (17 real A cells, 9 swap B cells, 5 noise cells, spoken-only)
   x 4 questions, plus 15 out-of-character probes. Two cells were added on 9/28 after the pilot
   (section 8): E_inaud_S (English speech marked `audible_to_X: false` and nothing else) and
@@ -26,7 +26,7 @@ that commit. After the freeze, any added analysis is labelled post hoc.
   (exploratory); prompt-robustness arm on three models.
 - **Excluded.** Pilot skeletons P01 to P10 never enter confirmatory analyses; the scorer was tuned on
   them only.
-- **Models.** **[open]** Proposed confirmatory set, all at most 40B total parameters (author's
+- **Models.** Fixed confirmatory set, all at most 40B total parameters (author's
   decision 9/28), nine families: Qwen3.8-27B, Qwen3.5-9B, Gemma-4-31B, Gemma-4-12B, GLM-4.7-Flash,
   Mistral-Small-24B-Instruct-2501, gpt-oss-20b, Phi-4, Seed-OSS-36B, Nemotron-3-Nano-30B and
   Falcon-H1-34B. Qwen3.5-4B, 2B and 0.8B and Gemma-4-E2B form the exploratory scale arm. Decoding is greedy (temperature 0, top_p 1, seed 20260916), thinking is
@@ -82,9 +82,9 @@ cells use the capability-conditioned subset; English cells use every item.
   both boundaries given as a direct per-utterance flag, the inaudible one leaks more, so the failure
   is not specific to language (the pilot direction; the original H1b expected the opposite).
 - H5b is tested on models whose own OC_swap(C-T-, D0) lower bound exceeds 0.10. M1g is decomposed
-  into step-1 leakage (the perception list names a canary) and step-2 use. **[open]** In the pilot
+  into step-1 leakage (the perception list names a canary) and step-2 use. In the pilot
   the pooled C-T+ change was -0.061, just past the one-sided -0.05 margin, while the reduction was
-  0.63; the margin stays as set on 9/28 unless the author changes it before the freeze.
+  0.63; the margin is retained at -0.05; it is not relaxed after that pilot finding.
 - Per-model readout: "k of K models have an H1 lower bound above 0.10", and the same for H1i,
   Holm across models.
 - Secondary, outside the family: logit-scale dissociation index on the content question.
@@ -118,8 +118,10 @@ wrong-value calibration; cross-language foils in cells without a B version.
 - Miss audit: 220 replies with no hit, stratified by declaration strength; Rogan-Gladen correction
   per cell.
 - Fallbacks frozen now: if hit precision or recall fails, report misclassification-corrected
-  estimates and make U2 (both canaries) the primary hit measure; if A_explicit or N_deny fails, H2a
-  and H2b become descriptive and the family shrinks accordingly.
+  estimates and make U2 (both canaries) the primary hit measure; if A_explicit or N_deny fails, their exploratory marker-based results become descriptive.
+  The current H2a/H2b use canary hits, not those markers, so their family is not reduced. If the
+  canary audit fails, label all hit-based conclusions provisional and apply the specified U2 and
+  misclassification sensitivities when human labels become available. Missing human labels are not a pass.
 
 ## 8. Deviations from the proposal (so far)
 
@@ -153,8 +155,62 @@ wrong-value calibration; cross-language foils in cells without a B version.
 
 ## 9. What was seen before the freeze
 
-Only pilot items (P01 to P10) were generated and scored before the freeze: a smoke run (three
+Only pilot items (P01 to P10) were inspected and scored before the freeze: a smoke run (three
 models, 54 prompts each), the pilot (three models, 4,350 prompts each), the small-model pilot, the
 matched-cell runs (13 models), the pilot for the added models (4,890 prompts each) and the
 mitigation pilots (M1, FS, M1g). They informed scorer rules and the hypotheses in section 4 and are
-reported as pilot descriptives only. No main-set item has been shown to any model.
+reported as pilot descriptives only.
+
+Main-set generation was submitted on 2026-09-29 from commit
+`bdc38f98d968c754977904eeb9ffef03e5fd11ad`, before the planned 2026-10-03 analysis freeze.
+The main responses are held without inspection or scoring until that freeze. Operational audits
+may check IDs, counts, generation statuses and checksums, but do not expose response text or compute
+scientific outcomes. `main-run-registry.json` records the inputs, model roster and jobs;
+`main-generation-status.json` records the latest such audit. Generation before the freeze must be
+disclosed in any registration; neither generation nor this draft is itself a preregistration.
+
+
+## 10. Same-day execution lock, before viewing main outcomes
+
+- Authorization: the user requested scoring now and moving the remaining schedule to today,
+  superseding the 10/03 hold. Retain the 11 named models, three languages, G2 = 0.85, eight
+  hypotheses, B = 2000 and seed 20261003. Retain the H5b 50% reduction and -0.05 use-preservation margins.
+- Primary failure handling: every planned observation remains in the denominator. Truncated,
+  refused or non-complete generations have target and foil use set to zero. The four documented
+  skipped M1g second steps receive explicitly flagged missing placeholders in scored derivatives;
+  raw generation files remain unchanged. Translation recovery and state-probe correctness require
+  a complete, non-refused response. A sensitivity treats failed M1g responses as maximal leakage
+  in forbidden cells and zero useful content in C-T+; another excludes failed observations.
+- Hedge handling follows the existing scorer: a multi-value canary type gets zero credit, while a
+  unique hit in the other canary type can still yield U1. Sensitivity uses the existing 1/k soft
+  score. No alias or regex changes are made after outcome inspection.
+- Fast implementation aggregates numerators and denominators per skeleton before applying the
+  same bootstrap multiplicities. This preserves the row-level estimands. All foreign-language
+  primary contrasts are capability-conditioned; English cells retain all items in passing units.
+- H5b is an intersection-union test: its bootstrap tail probability is the maximum of the
+  component tail probabilities (reduction <= 0.5; retention <= -0.05), followed by Holm over all
+  eight tests. The earlier pilot script counted draws failing either component instead; this
+  conservative union count is replaced by the specified intersection-union rule before inspection.
+- Report two-sided 95% percentile intervals and unadjusted one-sided 95% lower bounds separately
+  from Holm-adjusted decisions. The lower95 column is not described as Holm-adjusted. Bootstrap
+  tail fractions are approximate inferential p-values, not exact finite-sample randomization tests.
+  Missing/undefined tests get p = 1; do not silently shrink the family. Relative reductions require
+  positive baseline leakage; report excluded units and invalid bootstrap draws.
+- H5b model eligibility uses the model's H1 5th bootstrap percentile from all 2000 draws (the
+  old pilot shortcut used 500). Eligibility and G2 selection are fixed for subsequent resampling.
+- Robustness: retain the three prompt variants, leave-one-character-out, and an additional
+  crossed skeleton-by-character weighted bootstrap; with only three characters the latter is
+  descriptive. GEE uses binary canary-use outcomes, an exchangeable correlation within replies,
+  and robust standard errors. Skeleton bootstrap remains the primary uncertainty estimate.
+- Exploratory BH correction covers the named contrast table as one family, q = 0.10; cell tables,
+  scale plots, calibration and language/mode breakdowns are descriptive. Non-Cyberpunk comparisons
+  use their own capability probes and independently resampled skeletons; they are not paired
+  causal estimates. Canon contrasts pair U versus D0 within the same canon item.
+- Sensitivities: unconditional item versions; 1/k hedge credit; exclude truncation; exclude L/echo;
+  complete generations only; worst-case failed mitigation; both-canary U2. Marker analyses also
+  report the variant that counts attributed reports as admissions. All are labeled sensitivity.
+- Human work: export deterministic blinded 360-response double-label and 220-response miss-audit
+  packets, plus the remaining flagged L/echo review queue. Labels stay blank. Kappa, AC1, precision,
+  recall and misclassification-corrected estimates are not asserted without completed human input.
+- E1 reasoning-on and hosted models were optional and have no generated main arm. They are reported
+  as not run, rather than expanding model scope or spending API funds during this analysis.

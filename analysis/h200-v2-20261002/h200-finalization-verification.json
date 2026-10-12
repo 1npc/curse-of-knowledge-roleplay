@@ -1,0 +1,451 @@
+{
+  "checked_at_utc": "2026-10-03T10:36:14.242600+00:00",
+  "h200_capture_utc": "2026-10-03T10:33:54.418772+00:00",
+  "scientific_result_non_float_fields_exact_match": true,
+  "numeric_values_match_within_machine_roundoff": true,
+  "numeric_absolute_tolerance": 1e-14,
+  "numeric_differing_fields": 71,
+  "numeric_maximum_absolute_difference": 2.220446049250313e-16,
+  "numeric_differences": [
+    {
+      "path": "exploratory_paired_contrasts/0/estimate",
+      "local": 0.22040719696969702,
+      "remote": 0.220407196969697,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/0/ci95/0",
+      "local": 0.2054924242424243,
+      "remote": 0.20549242424242423,
+      "absolute_difference": 8.326672684688674e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/1/estimate",
+      "local": 0.17518939393939395,
+      "remote": 0.17518939393939392,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/1/ci95/0",
+      "local": 0.14962121212121215,
+      "remote": 0.14962121212121213,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/4/estimate",
+      "local": 0.037326388888888895,
+      "remote": 0.0373263888888889,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/4/ci95/0",
+      "local": 0.0234375,
+      "remote": 0.023437500000000003,
+      "absolute_difference": 3.469446951953614e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/6/estimate",
+      "local": 0.038194444444444454,
+      "remote": 0.03819444444444445,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/6/ci95/0",
+      "local": 0.014756944444444456,
+      "remote": 0.014756944444444454,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/7/estimate",
+      "local": 0.5711805555555555,
+      "remote": 0.5711805555555556,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/7/ci95/0",
+      "local": 0.5460069444444445,
+      "remote": 0.5460069444444444,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/7/ci95/1",
+      "local": 0.5946180555555555,
+      "remote": 0.5946180555555556,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/9/estimate",
+      "local": 0.5711805555555555,
+      "remote": 0.5711805555555556,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/9/ci95/0",
+      "local": 0.5460069444444445,
+      "remote": 0.5460069444444444,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/9/ci95/1",
+      "local": 0.5946180555555555,
+      "remote": 0.5946180555555556,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/17/ci95/0",
+      "local": 0.587594696969697,
+      "remote": 0.5875946969696969,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/17/ci95/1",
+      "local": 0.629971590909091,
+      "remote": 0.6299715909090909,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/18/ci95/0",
+      "local": 0.2547348484848485,
+      "remote": 0.25473484848484845,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/19/ci95/1",
+      "local": -0.0009469696969697031,
+      "remote": -0.0009469696969697052,
+      "absolute_difference": 2.168404344971009e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/20/estimate",
+      "local": -0.013020833333333334,
+      "remote": -0.013020833333333336,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/20/ci95/0",
+      "local": -0.04687500000000002,
+      "remote": -0.046875,
+      "absolute_difference": 2.0816681711721685e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/21/estimate",
+      "local": 0.0407986111111111,
+      "remote": 0.040798611111111105,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/21/ci95/1",
+      "local": 0.05989583333333329,
+      "remote": 0.05989583333333332,
+      "absolute_difference": 3.469446951953614e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/22/ci95/1",
+      "local": 0.3229166666666666,
+      "remote": 0.3229166666666667,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/23/ci95/0",
+      "local": -0.322048611111111,
+      "remote": -0.3220486111111111,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/23/ci95/1",
+      "local": -0.2473958333333333,
+      "remote": -0.24739583333333334,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/24/estimate",
+      "local": 0.30989583333333337,
+      "remote": 0.3098958333333333,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/24/ci95/0",
+      "local": 0.27688802083333336,
+      "remote": 0.2768880208333333,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/25/estimate",
+      "local": -0.037326388888888895,
+      "remote": -0.0373263888888889,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/25/ci95/0",
+      "local": -0.057291666666666685,
+      "remote": -0.05729166666666668,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/26/ci95/1",
+      "local": 0.3402777777777779,
+      "remote": 0.34027777777777773,
+      "absolute_difference": 1.6653345369377348e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/27/ci95/0",
+      "local": -0.05729166666666669,
+      "remote": -0.057291666666666685,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/35/estimate",
+      "local": 0.3285984848484849,
+      "remote": 0.32859848484848486,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/35/ci95/1",
+      "local": 0.368371212121212,
+      "remote": 0.3683712121212121,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/36/estimate",
+      "local": -0.17518939393939392,
+      "remote": -0.17518939393939395,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/37/ci95/0",
+      "local": 0.14670138888888887,
+      "remote": 0.1467013888888889,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/38/estimate",
+      "local": 0.1727430555555556,
+      "remote": 0.17274305555555558,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/38/ci95/0",
+      "local": 0.13973524305555554,
+      "remote": 0.13973524305555557,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/39/estimate",
+      "local": 0.23437500000000003,
+      "remote": 0.234375,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/40/estimate",
+      "local": 0.021701388888888895,
+      "remote": 0.02170138888888889,
+      "absolute_difference": 3.469446951953614e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/40/ci95/1",
+      "local": 0.05208333333333332,
+      "remote": 0.052083333333333336,
+      "absolute_difference": 1.3877787807814457e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/41/ci95/0",
+      "local": 0.41493055555555564,
+      "remote": 0.4149305555555556,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/43/ci95/0",
+      "local": 0.4166666666666666,
+      "remote": 0.4166666666666667,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/43/ci95/1",
+      "local": 0.49565972222222215,
+      "remote": 0.49565972222222227,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/44/estimate",
+      "local": 0.011284722222222222,
+      "remote": 0.011284722222222219,
+      "absolute_difference": 3.469446951953614e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/44/ci95/0",
+      "local": -0.015624999999999998,
+      "remote": -0.015625,
+      "absolute_difference": 1.734723475976807e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/44/ci95/1",
+      "local": 0.03645833333333334,
+      "remote": 0.036458333333333336,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/51/estimate",
+      "local": 0.2817234848484849,
+      "remote": 0.28172348484848486,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/51/ci95/0",
+      "local": 0.2687026515151515,
+      "remote": 0.26870265151515155,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/51/ci95/1",
+      "local": 0.2952178030303029,
+      "remote": 0.29521780303030304,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/52/estimate",
+      "local": 0.0340909090909091,
+      "remote": 0.03409090909090911,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/52/ci95/1",
+      "local": 0.06344696969696972,
+      "remote": 0.06344696969696971,
+      "absolute_difference": 1.3877787807814457e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/53/estimate",
+      "local": -0.37878787878787884,
+      "remote": -0.37878787878787873,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/54/estimate",
+      "local": 0.25520833333333337,
+      "remote": 0.2552083333333333,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/54/ci95/0",
+      "local": 0.2265407986111111,
+      "remote": 0.22654079861111112,
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/54/ci95/1",
+      "local": 0.282986111111111,
+      "remote": 0.2829861111111111,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/55/ci95/1",
+      "local": 0.04947916666666668,
+      "remote": 0.049479166666666664,
+      "absolute_difference": 1.3877787807814457e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/56/ci95/0",
+      "local": 0.4800347222222223,
+      "remote": 0.48003472222222227,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/56/ci95/1",
+      "local": 0.5546875000000001,
+      "remote": 0.5546875,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/57/estimate",
+      "local": -0.41145833333333326,
+      "remote": -0.4114583333333333,
+      "absolute_difference": 5.551115123125783e-17
+    },
+    {
+      "path": "exploratory_paired_contrasts/57/ci95/1",
+      "local": -0.37063802083333336,
+      "remote": -0.37063802083333347,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/58/estimate",
+      "local": 0.5685763888888887,
+      "remote": 0.568576388888889,
+      "absolute_difference": 2.220446049250313e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/59/estimate",
+      "local": -0.032986111111111126,
+      "remote": -0.03298611111111112,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/59/ci95/0",
+      "local": -0.0529513888888889,
+      "remote": -0.052951388888888895,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/59/ci95/1",
+      "local": -0.015625000000000007,
+      "remote": -0.01562500000000001,
+      "absolute_difference": 3.469446951953614e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/60/estimate",
+      "local": 0.5677083333333333,
+      "remote": 0.5677083333333334,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/60/ci95/0",
+      "local": 0.5364583333333335,
+      "remote": 0.5364583333333334,
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/60/ci95/1",
+      "local": 0.5954861111111113,
+      "remote": 0.595486111111111,
+      "absolute_difference": 2.220446049250313e-16
+    },
+    {
+      "path": "exploratory_paired_contrasts/61/estimate",
+      "local": -0.032986111111111126,
+      "remote": -0.03298611111111112,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/61/ci95/0",
+      "local": -0.0529513888888889,
+      "remote": -0.052951388888888895,
+      "absolute_difference": 6.938893903907228e-18
+    },
+    {
+      "path": "exploratory_paired_contrasts/61/ci95/1",
+      "local": -0.015625000000000007,
+      "remote": -0.01562500000000001,
+      "absolute_difference": 3.469446951953614e-18
+    },
+    {
+      "path": "confirmatory/H3_components/partial_event_retention_improvement/estimate",
+      "local": 0.677517361111111,
+      "remote": 0.6775173611111112,
+      "absolute_difference": 1.1102230246251565e-16
+    }
+  ],
+  "all_score_digests_exactly_match_local": true,
+  "original_finalizer_completed_normally": true,
+  "no_missing_phases_materialized": true,
+  "all_models_finished": true,
+  "remote_report_sha256": "ef60a31f1f594ef8cd02d2a7b5496b28d6ac4de149af4282fb3f24ff5f22c486",
+  "receipt": {
+    "finalized_unix": 1791023511.828269,
+    "all_models_finished": true,
+    "report": "/data/qianru/over-comprehension-v2-20261001/analysis/results.json",
+    "report_sha256": "ef60a31f1f594ef8cd02d2a7b5496b28d6ac4de149af4282fb3f24ff5f22c486",
+    "source_sha256": "964763c834be4900e19d3eb4ef133088cf8d99ed6b49a487e22903a5bde110a1"
+  },
+  "local_four_core_confirmation_exactly_unchanged": true,
+  "actual_human_annotations": 0
+}

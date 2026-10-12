@@ -1,0 +1,15 @@
+{
+ "model": "qwen35_9b",
+ "run_sha256": "23b8fd9f3022066ba1651dab364804d12b8b107882b35e9f4c18b1bf53eeef26",
+ "records": 15552,
+ "planned": 15552,
+ "status": {
+  "complete": 15552
+ },
+ "responses_sha256": "06590abd29a25be9c10022b1a81525785f83abec78205b4aee21bb1164b7491f",
+ "interrupted_chunks": 0,
+ "generation_seconds": 146.2,
+ "notes": {},
+ "run_id": "access-v2-confirmatory-qwen35_9b",
+ "finished": "2026-10-02T02:57:54+0200"
+}

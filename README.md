@@ -40,3 +40,28 @@ python3 tools/make_review_packet.py items/pilot/skeletons.json pilot
 ```
 
 提示文件（`items/**/prompts.jsonl`）可由条目和代码复现，不进 git；清单（`*.manifest.json`）记录条数和 SHA-256。
+
+## 主实验接续（9/29）
+
+运行清单与生成版本见 `docs/main-run-registry.json`，接手记录见
+`docs/handoff-2026-09-29.md`。用户已将统计提前到今天：主生成、全量评分和分析已完成。
+方法在查看主结果前本地锁定；这不是 OSF 预注册。人工核对尚未完成。
+
+- [主结果与统计说明](docs/main-results.md)
+- [可分发的空白核对包](deliverables/human-review-20260929.zip)
+- [英文工作稿](paper/manuscript.md)及[主张自审](paper/claim-evidence-review.md)
+- [ARR 匿名 LaTeX 全文](paper/arr/main.tex)、[Overleaf 源码包](deliverables/over-comprehension-arr-source.zip)及[ACL 改稿说明](paper/arr/revision-notes.md)。内置编译通过，正文含浮动图表通过 8 页上限检查；独立 PDF 导出待远端传输授权。
+- [机器可读结果和四幅图](analysis/results/main-20260929/)
+
+原始输出与评分文件都已同步回本机；22 份评分文件与远端分析清单按 SHA-256 校验。
+
+```bash
+bash tools/sync_run.sh main-v1
+bash tools/sync_run.sh main-fs-v1
+bash tools/sync_run.sh main-robust-v1
+python3 tools/audit_generation.py --out docs/main-generation-status.json
+```
+
+审计退出码 0 表示全部计划记录已核对（允许运行器明确记录的生成失败）；1 表示仍有缺失或不一致，
+2 表示审计输入有误。截断与格式异常保留，不因输出内容选择性重跑。`all_accounted_for` 不等于所有回复有效，
+须同时报告 `status` 与 `recorded_step2_skips`。

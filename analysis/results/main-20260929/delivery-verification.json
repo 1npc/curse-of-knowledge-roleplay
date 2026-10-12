@@ -1,0 +1,51 @@
+{
+  "locked_sources_unchanged": true,
+  "scored_sha256_matches": 22,
+  "blank_blinded_packets": {
+    "annotator-A.csv": 360,
+    "annotator-B.csv": 360,
+    "adjudicated.csv": 360,
+    "miss-audit.csv": 220,
+    "language-echo-review.csv": 3211
+  },
+  "sampling_quotas_and_no_overlap": true,
+  "independent_point_estimates_match": {
+    "H1": 0.6669622501517625,
+    "H1i": 0.7217487373737376,
+    "H2a": 0.32673296079598607,
+    "H2b": 0.25804924242424243,
+    "H3": 0.21577089895200202,
+    "H4": 0.27055738617397695,
+    "H5a": 0.6840130279023032,
+    "H5b_reduction": 0.6467614702686588,
+    "H5b_retention": -0.01956178532907702
+  },
+  "H5a_units": 30,
+  "state_correct_counts": {
+    "qwen38_27b": 288,
+    "qwen35_9b": 250,
+    "gemma4_31b": 275,
+    "gemma4_12b": 288,
+    "glm47_flash": 0,
+    "mistral_small3": 288,
+    "gpt_oss_20b": 288,
+    "phi4": 288,
+    "seed_oss_36b": 288,
+    "nemotron3_nano30b": 277,
+    "falcon_h1_34b": 288
+  },
+  "response_denominators": {
+    "L": 24444,
+    "I": 25344,
+    "F": 24444,
+    "LP": 24444,
+    "IP": 25344,
+    "PC": 21768,
+    "BL": 12222,
+    "ML": 12222,
+    "BI": 12672,
+    "MI": 12672,
+    "BT": 6096,
+    "MT": 6096
+  }
+}

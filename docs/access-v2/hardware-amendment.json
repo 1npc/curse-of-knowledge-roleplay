@@ -1,0 +1,45 @@
+{
+  "created_at_utc": "2026-10-01T23:38:25.729736+00:00",
+  "authorization": "User: 别人用了你就别用了，挑没人用的跑",
+  "scope": "hardware allocation and exact-weight transport only, after Gemma generation began",
+  "allowed_gpu_uuid": {
+    "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+    "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+    "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+    "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+    "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+    "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+    "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+  },
+  "concurrent_worker_slots": 2,
+  "idle_requirement": "No compute app, memory <100MiB, utilization <=5%; checked immediately before engine start; no termination of other jobs",
+  "frozen_scientific_changes": false,
+  "original_final_lock_sha256": "99ad6d103db2026555cf20b9e9ce6876c584e45db095a86a06382526014e772f",
+  "operational_code_sha256": {
+    "harness/h200_generate_idle_v2.py": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+    "harness/h200_queue_idle_v2.py": "98398fe66a898fae55b938e6d65ea49cb6097facd5be7af5a10e5bef4e451b48",
+    "tools/stage_h200_weights_v2.py": "f773095b2f55e09f7cd3726c6abc086a59afa2cf42126e88435fef5722dcab3f"
+  },
+  "generation_diff": [
+    "--- harness/h200_generate_v2.py",
+    "+++ harness/h200_generate_idle_v2.py",
+    "@@ -115,13 +115,13 @@",
+    "         return {\"error\": repr(e)}",
+    " ",
+    " ",
+    "-ALLOWED_GPU = {\"6\": \"GPU-18a3d1e0-628c-7817-3018-0844b06e30c9\", \"7\": \"GPU-00ecc257-2646-98af-1e10-3b94f6004c00\"}",
+    "+ALLOWED_GPU = {'0': 'GPU-eac35845-029e-df8d-5318-af5d76434077', '1': 'GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d', '2': 'GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81', '3': 'GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b', '4': 'GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0', '5': 'GPU-63686987-a70f-607d-9886-af187b67a14a', '6': 'GPU-18a3d1e0-628c-7817-3018-0844b06e30c9', '7': 'GPU-00ecc257-2646-98af-1e10-3b94f6004c00'}",
+    " ",
+    " ",
+    " def validate_gpu():",
+    "     physical = os.environ.get(\"OC_PHYSICAL_GPU\")",
+    "     if physical not in ALLOWED_GPU or os.environ.get(\"CUDA_VISIBLE_DEVICES\") != ALLOWED_GPU[physical]:",
+    "-        raise SystemExit(\"Only the authorized physical H200 GPU 6 or 7 UUID may be visible\")",
+    "+        raise SystemExit(\"Only a verified, authorized physical H200 GPU UUID may be visible\")",
+    "     rows = subprocess.check_output([\"nvidia-smi\", \"--query-gpu=index,uuid,memory.used,utilization.gpu\", \"--format=csv,noheader,nounits\"], text=True)",
+    "     row = next(x.split(\", \") for x in rows.splitlines() if x.startswith(physical+\", \"))",
+    "     apps = subprocess.check_output([\"nvidia-smi\", \"--query-compute-apps=gpu_uuid\", \"--format=csv,noheader\"], text=True)"
+  ],
+  "provenance": "Original runner remains preserved for ongoing discovery; subsequent runs bind the derived runner hash, with only GPU allowlist/error wording changed. Plans, tokenizer, weights, protocol, scorer, analysis and endpoints are unchanged."
+}

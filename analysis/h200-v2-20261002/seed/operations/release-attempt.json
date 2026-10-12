@@ -1,0 +1,6 @@
+{
+  "attempt_unix": 1791021756.3503504,
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Access/permission denied for job 27482596\nslurm_suspend error:Access/permission denied\n"
+}

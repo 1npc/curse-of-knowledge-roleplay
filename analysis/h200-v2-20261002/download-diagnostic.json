@@ -1,0 +1,161 @@
+{
+  "checked_utc": "2026-10-02T14:47:11Z",
+  "free_gib": 73.53439331054688,
+  "supplier_pid": 2674540,
+  "supplier_pgid": 2674540,
+  "supplier_cmd": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_range_weights_v2.py --root /data/qianru/over-comprehension-v2-20261001 --workers 32 ",
+  "weights": {
+    "gemma4_12b": {
+      "complete_files": 5,
+      "partial": [
+        {
+          "file": "model.safetensors",
+          "receipt_chunks": 351,
+          "receipt_bytes": 23555211264,
+          "file_bytes": 23919549408,
+          "HTTP_statuses": [
+            "200",
+            "403",
+            "200",
+            "403",
+            "502",
+            "200",
+            "403",
+            "200",
+            "403",
+            "200",
+            "403"
+          ]
+        }
+      ]
+    },
+    "falcon_h1_34b": {
+      "complete_files": 13,
+      "partial": [
+        {
+          "file": "model-00001-of-00014.safetensors",
+          "receipt_chunks": 73,
+          "receipt_bytes": 4834755040,
+          "file_bytes": 4834755040,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00002-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4941250728,
+          "file_bytes": 4941250728,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00003-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4941250792,
+          "file_bytes": 4941250792,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00004-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4961865088,
+          "file_bytes": 4961865088,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00005-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4941198896,
+          "file_bytes": 4941198896,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00006-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4941250824,
+          "file_bytes": 4941250824,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00007-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4941250824,
+          "file_bytes": 4941250824,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00008-of-00014.safetensors",
+          "receipt_chunks": 74,
+          "receipt_bytes": 4961865088,
+          "file_bytes": 4961865088,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00009-of-00014.safetensors",
+          "receipt_chunks": 73,
+          "receipt_bytes": 4874090032,
+          "file_bytes": 4941198896,
+          "HTTP_statuses": [
+            "200",
+            "206"
+          ]
+        }
+      ]
+    },
+    "mistral_small3": {
+      "complete_files": 9,
+      "partial": [
+        {
+          "file": "model-00001-of-00010.safetensors",
+          "receipt_chunks": 72,
+          "receipt_bytes": 4781571736,
+          "file_bytes": 4781571736,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00002-of-00010.safetensors",
+          "receipt_chunks": 72,
+          "receipt_bytes": 4781592784,
+          "file_bytes": 4781592784,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00003-of-00010.safetensors",
+          "receipt_chunks": 72,
+          "receipt_bytes": 4781592800,
+          "file_bytes": 4781592800,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00004-of-00010.safetensors",
+          "receipt_chunks": 73,
+          "receipt_bytes": 4886471600,
+          "file_bytes": 4886471600,
+          "HTTP_statuses": []
+        },
+        {
+          "file": "model-00005-of-00010.safetensors",
+          "receipt_chunks": 0,
+          "receipt_bytes": 0,
+          "file_bytes": 4781592824,
+          "HTTP_statuses": [
+            "200",
+            "206",
+            "200",
+            "206",
+            "200",
+            "206",
+            "200",
+            "206",
+            "200",
+            "206",
+            "200",
+            "206"
+          ]
+        }
+      ]
+    },
+    "seed_oss_36b": {
+      "complete_files": 0,
+      "partial": []
+    }
+  }
+}

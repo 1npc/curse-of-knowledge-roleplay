@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "gpu": "6",
+  "pid": 2567059,
+  "started_unix": 1790896190.1256044,
+  "error": "CalledProcessError(1, ['/data/qianru/over-comprehension-v2-20261001/.venv/bin/python', 'harness/h200_generate_v2.py', '--prompts', '/data/qianru/over-comprehension-v2-20261001/code/items/access-v2/pilot.jsonl', '--model', 'gemma4_31b', '--models', '/data/qianru/over-comprehension-v2-20261001/code/harness/models.json', '--reference', '/data/qianru/over-comprehension-v2-20261001/code/harness/weights_reference.json', '--out', '/data/qianru/over-comprehension-v2-20261001/responses/pilot', '--run-id', 'access-v2-pilot-gemma4_31b', '--chunk', '256'])",
+  "failed_unix": 1790896273.7773273
+}

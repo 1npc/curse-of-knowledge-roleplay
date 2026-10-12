@@ -1,0 +1,9 @@
+{
+  "bundle": "/private/tmp/oc-snellius-seed-v2-20261003.tar.gz",
+  "bytes": 4078647,
+  "sha256": "2d720faeded0f89d632001d957fc1790cbdcb171543987226b66f8522a5409ec",
+  "files": 52,
+  "uncompressed_bytes": 246517591,
+  "amendment_sha256": "f7a2f4ed2255933de2950678bf85915d738ef0b68f87e1e8ee179975ee1d0f9f",
+  "destination": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/access-v2-seed-20261003"
+}

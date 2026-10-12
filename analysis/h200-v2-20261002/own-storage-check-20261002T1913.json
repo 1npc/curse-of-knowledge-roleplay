@@ -1,0 +1,54 @@
+{
+  "task_disk_usage": [
+    "3.7G\t/data/qianru/over-comprehension-v2-20261001/wheelhouse",
+    "2.5M\t/data/qianru/over-comprehension-v2-20261001/cache/xet",
+    "12K\t/data/qianru/over-comprehension-v2-20261001/cache/huggingface",
+    "2.5M\t/data/qianru/over-comprehension-v2-20261001/cache",
+    "3.0M\t/data/qianru/over-comprehension-v2-20261001/scores/pilot",
+    "144M\t/data/qianru/over-comprehension-v2-20261001/scores/discovery",
+    "73M\t/data/qianru/over-comprehension-v2-20261001/scores/confirmatory",
+    "219M\t/data/qianru/over-comprehension-v2-20261001/scores",
+    "56M\t/data/qianru/over-comprehension-v2-20261001/analysis",
+    "896K\t/data/qianru/over-comprehension-v2-20261001/operations/weight-recovery-initial",
+    "444K\t/data/qianru/over-comprehension-v2-20261001/operations/weight-recovery-attempts",
+    "2.5M\t/data/qianru/over-comprehension-v2-20261001/operations",
+    "4.0K\t/data/qianru/over-comprehension-v2-20261001/weights/seed_oss_36b",
+    "44G\t/data/qianru/over-comprehension-v2-20261001/weights/mistral_small3",
+    "44G\t/data/qianru/over-comprehension-v2-20261001/weights",
+    "4.3M\t/data/qianru/over-comprehension-v2-20261001/responses/pilot",
+    "224M\t/data/qianru/over-comprehension-v2-20261001/responses/discovery",
+    "88M\t/data/qianru/over-comprehension-v2-20261001/responses/confirmatory",
+    "315M\t/data/qianru/over-comprehension-v2-20261001/responses",
+    "276K\t/data/qianru/over-comprehension-v2-20261001/code/oc",
+    "235M\t/data/qianru/over-comprehension-v2-20261001/code/items",
+    "48K\t/data/qianru/over-comprehension-v2-20261001/code/oc_v2",
+    "40K\t/data/qianru/over-comprehension-v2-20261001/code/docs",
+    "168K\t/data/qianru/over-comprehension-v2-20261001/code/harness",
+    "48K\t/data/qianru/over-comprehension-v2-20261001/code/data",
+    "12K\t/data/qianru/over-comprehension-v2-20261001/code/tests",
+    "36K\t/data/qianru/over-comprehension-v2-20261001/code/tools",
+    "236M\t/data/qianru/over-comprehension-v2-20261001/code",
+    "12M\t/data/qianru/over-comprehension-v2-20261001/.venv/external",
+    "20K\t/data/qianru/over-comprehension-v2-20261001/.venv/share",
+    "7.9G\t/data/qianru/over-comprehension-v2-20261001/.venv/lib",
+    "23M\t/data/qianru/over-comprehension-v2-20261001/.venv/bin",
+    "8.0K\t/data/qianru/over-comprehension-v2-20261001/.venv/include",
+    "8.0G\t/data/qianru/over-comprehension-v2-20261001/.venv",
+    "1.1M\t/data/qianru/over-comprehension-v2-20261001/logs",
+    "57G\t/data/qianru/over-comprehension-v2-20261001"
+  ],
+  "error": "",
+  "free_bytes": 89508712448,
+  "cache_entries": [
+    {
+      "name": "cache/xet",
+      "symlink": false,
+      "directory": true
+    },
+    {
+      "name": "cache/huggingface",
+      "symlink": false,
+      "directory": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+ "model": "glm47_flash",
+ "run_sha256": "b8fabfc4a07513d02d0802b2fe22bd88ba441ec43848a34fc2886889f9bc5309",
+ "records": 1000,
+ "planned": 1000,
+ "status": {
+  "complete": 1000
+ },
+ "responses_sha256": "b62ac6fb0e1484c769fb644aad41f65410fa361b804e523ff17cc4222f6ababb",
+ "interrupted_chunks": 0,
+ "generation_seconds": 17.3,
+ "notes": {},
+ "run_id": "access-v2-pilot-glm47_flash",
+ "finished": "2026-10-02T05:20:02+0200"
+}

@@ -1,0 +1,15 @@
+{
+ "model": "gemma4_31b",
+ "run_sha256": "2ddac2cc38937c8706a639fb3465a721bcc3db96e4dc2a493166702fdcf22cad",
+ "records": 15552,
+ "planned": 15552,
+ "status": {
+  "complete": 15552
+ },
+ "responses_sha256": "2428a73c73d329944de1eaddd10d85bcdc08eeb78d8e98fea5108d4e4786ebf3",
+ "interrupted_chunks": 0,
+ "generation_seconds": 371.1,
+ "notes": {},
+ "run_id": "access-v2-confirmatory-gemma4_31b",
+ "finished": "2026-10-02T01:49:06+0200"
+}

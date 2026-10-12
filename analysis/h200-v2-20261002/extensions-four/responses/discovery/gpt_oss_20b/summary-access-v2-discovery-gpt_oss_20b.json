@@ -1,0 +1,15 @@
+{
+ "model": "gpt_oss_20b",
+ "run_sha256": "78f4a59f366e5f884053446c95663cabc44ba5e0e6093530c4fec9beba25f43f",
+ "records": 6336,
+ "planned": 6336,
+ "status": {
+  "complete": 6336
+ },
+ "responses_sha256": "3c6a8343bc72021d294e1da68b7cc79736f0e28d2029829d062cbe55b07dc4b0",
+ "interrupted_chunks": 0,
+ "generation_seconds": 130.4,
+ "notes": {},
+ "run_id": "access-v2-discovery-gpt_oss_20b",
+ "finished": "2026-10-02T10:22:27+0200"
+}

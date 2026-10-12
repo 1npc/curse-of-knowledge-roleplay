@@ -1,0 +1,24 @@
+{
+  "verification_job_id": "27482595",
+  "submitted_unix": 1791021519.4703693,
+  "h200_reservation_confirmed": true,
+  "generation_job_id": "27483028",
+  "generation_released": true,
+  "root": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/access-v2-seed-20261003",
+  "generation_held": false,
+  "reservation_received_unix": 1791021630.1430597,
+  "previous_generation_job_id": "27482596",
+  "scheduling_repair": "Unstarted held job cancelled after user release was denied; scientific files unchanged.",
+  "replacement_submitted_unix": 1791022225.08312,
+  "start_delay_reason": "Two-minute begin barrier allows the durable job-ID receipts to be updated before the adapter checks them.",
+  "previous_generation_job_ids": [
+    "27482596",
+    "27482695"
+  ],
+  "dependency_submission_repair": {
+    "recorded_unix": 1791022224.5785184,
+    "scope": "Submission only; completed staging dependency was purged from Slurm active controller, with COMPLETED/0:0 retained in accounting. Verify existing full-file receipt instead.",
+    "verification_sacct": "27482595|COMPLETED|0:0\n27482595.batch|COMPLETED|0:0\n27482595.extern|COMPLETED|0:0\n",
+    "no_generation_attempt": true
+  }
+}

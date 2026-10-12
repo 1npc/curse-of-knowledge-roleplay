@@ -1,0 +1,15 @@
+{
+ "model": "falcon_h1_34b",
+ "run_sha256": "12ee2e83f19c444d5979f0d871687e7f4ed7287b6b183415dac066ca464f4398",
+ "records": 18272,
+ "planned": 18272,
+ "status": {
+  "complete": 18272
+ },
+ "responses_sha256": "1d423a7e975eb34b03d2decbec8c303ad1be7d3df0059a52f7a2f5116e4dbda0",
+ "interrupted_chunks": 0,
+ "generation_seconds": 785.9,
+ "notes": {},
+ "run_id": "access-v2-discovery-falcon_h1_34b",
+ "finished": "2026-10-02T19:27:25+0200"
+}

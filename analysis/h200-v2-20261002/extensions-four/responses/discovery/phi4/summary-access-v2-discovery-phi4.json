@@ -1,0 +1,15 @@
+{
+ "model": "phi4",
+ "run_sha256": "1095af9f527afd61933ce7800a6104874dd64f80b04357cfbb0d2fa7520c0a07",
+ "records": 6336,
+ "planned": 6336,
+ "status": {
+  "complete": 6336
+ },
+ "responses_sha256": "739aca4102810a4acd239bdb0e577e423e4a2df3d3f6b1155cea8a86e5200f73",
+ "interrupted_chunks": 0,
+ "generation_seconds": 67.9,
+ "notes": {},
+ "run_id": "access-v2-discovery-phi4",
+ "finished": "2026-10-02T11:49:46+0200"
+}

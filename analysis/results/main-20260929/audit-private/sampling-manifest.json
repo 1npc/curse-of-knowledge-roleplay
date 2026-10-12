@@ -1,0 +1,47 @@
+{
+  "seed": 2026092901,
+  "certification": 360,
+  "miss_audit": 220,
+  "flagged_queue": 3211,
+  "strata_population": {
+    "mitigation": 31676,
+    "inaudible": 63360,
+    "noise": 63360,
+    "understand": 38016,
+    "translator": 38016,
+    "ct_boundary": 13399,
+    "ct_remaining": 37933,
+    "ct_other_hit": 36628,
+    "offline": 50688,
+    "ct_d1_deny_hit": 744
+  },
+  "strata_sample": {
+    "ct_boundary": 50,
+    "ct_d1_deny_hit": 60,
+    "ct_other_hit": 60,
+    "ct_remaining": 30,
+    "understand": 30,
+    "translator": 30,
+    "inaudible": 20,
+    "offline": 20,
+    "noise": 30,
+    "mitigation": 30
+  },
+  "miss_population": {
+    "C+T-": 8414,
+    "D0": 8442,
+    "D1": 16756,
+    "U": 7203
+  },
+  "miss_sample": {
+    "U": 60,
+    "D0": 60,
+    "D1": 60,
+    "C+T-": 40
+  },
+  "positive_in_certification": 237,
+  "d1_deny_positive": 72,
+  "human_labels_completed": 0,
+  "labels_are_blank": true,
+  "same_source_overlap_cert_miss": 0
+}

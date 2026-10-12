@@ -20,6 +20,8 @@ to all units, so the correlation induced by shared items across models is kept.
 One-sided lower bounds come from the bootstrap at the Holm-adjusted level. Truncated and refusal
 replies count as "not used" (hit_t = hit_f = 0) in the primary analysis.
 Usage: python3 analysis/confirmatory.py <items.json> <run_dir> [<run_dir> ...] [--B 2000]
+For the combined main run, pass --models with the frozen confirmatory roster explicitly.
+Only skeletons in <items.json> enter the capability gates or the hypothesis tests.
 """
 from __future__ import annotations
 
@@ -34,17 +36,35 @@ GATE_G2 = 0.85
 LANGS = ("zh", "ja", "es")
 
 
-def load_runs(runs: list[Path]) -> dict[str, list[dict]]:
+def load_runs(runs: list[Path], models=None, item_ids=None) -> dict[str, list[dict]]:
     out = defaultdict(dict)
+    found = set()
     for run in runs:
         for d in sorted(p for p in run.iterdir() if (p / "scored.jsonl").exists()):
+            if models is not None and d.name not in models:
+                continue
+            found.add(d.name)
             for l in (d / "scored.jsonl").read_text(encoding="utf-8").splitlines():
                 if not l.strip():
                     continue
                 r = json.loads(l)
-                if r["status"] == "truncated" or r["score"]["R"]:  # primary analysis: counted as not used
-                    r["score"] = dict(r["score"], hit_t=False, hit_f=False, LD_deny=False)
+                if item_ids is not None and r["item"] not in item_ids:
+                    continue
+                previous = out[d.name].get(r["prompt_id"])
+                if previous is not None:
+                    # Compare original records, before the primary-analysis transformation.
+                    if previous != r:
+                        raise ValueError(f"conflicting duplicate scored prompt for model {d.name}")
+                    continue
                 out[d.name][r["prompt_id"]] = r
+    if models is not None and set(models) - found:
+        raise ValueError("requested models have no scored files: " + ", ".join(sorted(set(models) - found)))
+    for records in out.values():
+        for pid, r in records.items():
+            if r["status"] == "truncated" or r["score"]["R"]:  # primary analysis: counted as not used
+                records[pid] = dict(r, score=dict(r["score"], hit_t=False, hit_f=False, LD_deny=False))
+    if models is not None and set(models) - out.keys():
+        raise ValueError("requested models have no records within the selected skeleton set")
     return {m: list(v.values()) for m, v in out.items()}
 
 
@@ -144,9 +164,13 @@ def main():
     ap.add_argument("runs", type=Path, nargs="+")
     ap.add_argument("--B", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=20261003)
+    ap.add_argument("--models", nargs="+", help="explicit frozen model keys; omit only for pilot/exploratory runs")
     a = ap.parse_args()
-    skeletons = sorted(it["id"] for it in json.loads(a.items.read_text(encoding="utf-8"))["items"])
-    units = Units(load_runs(a.runs))
+    items = json.loads(a.items.read_text(encoding="utf-8"))["items"]
+    if any(it.get("set") == "main" for it in items) and not a.models:
+        ap.error("main-set confirmatory analysis requires --models with the frozen roster")
+    skeletons = sorted(it["id"] for it in items)
+    units = Units(load_runs(a.runs, models=a.models, item_ids=set(skeletons)))
     rng = random.Random(a.seed)
     weights = []
     for _ in range(a.B):

@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-10-02T17:45:16.710775+00:00",
+  "authorization": "User: 你就用gpu5吧，别的不要抢别人的哈",
+  "scope": "Subsequent H200 inference allocation only; GPU 5 occupied means wait, even if other GPUs are idle",
+  "allowed_gpu_uuid": {
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a"
+  },
+  "concurrent_worker_slots": 2,
+  "max_concurrent_inference": 1,
+  "idle_requirement": "No compute app; memory <100MiB; utilization <=5%; recheck before launch; use existing per-GPU and slot locks",
+  "frozen_scientific_changes": false,
+  "parent_hardware_amendment_sha256": "54984626259599db001744591a80b4a010f73c33730c1ebcd589fe32b711660e",
+  "original_final_lock_sha256": "99ad6d103db2026555cf20b9e9ce6876c584e45db095a86a06382526014e772f",
+  "operational_code_sha256": {
+    "harness/h200_queue_gpu5_v2.py": "8ebd46e381b07453b4d26a15c45b933a210613fd5614f29964ba6be249021e2f",
+    "harness/h200_queue_idle_v2.py": "98398fe66a898fae55b938e6d65ea49cb6097facd5be7af5a10e5bef4e451b48",
+    "harness/h200_generate_idle_v2.py": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663"
+  },
+  "implementation": "Wrapper retains original queue audit, then returns only GPU 5. Original generation and queue sources remain unchanged. Replace only verified idle own controllers with no child or running model, under the queue lock; no generation repeated."
+}

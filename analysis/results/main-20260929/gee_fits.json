@@ -1,0 +1,117 @@
+[
+  {
+    "model": "qwen38_27b",
+    "converged": false,
+    "n_canary_observations": 45024,
+    "reply_clusters": 11256,
+    "working_correlation": null,
+    "finite": false,
+    "warnings": [
+      "invalid value encountered in divide",
+      "overflow encountered in exp",
+      "overflow encountered in square"
+    ]
+  },
+  {
+    "model": "qwen35_9b",
+    "converged": true,
+    "n_canary_observations": 45168,
+    "reply_clusters": 11292,
+    "working_correlation": 0.04367697740779825,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "gemma4_31b",
+    "converged": true,
+    "n_canary_observations": 45552,
+    "reply_clusters": 11388,
+    "working_correlation": 0.06989953856605638,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "gemma4_12b",
+    "converged": true,
+    "n_canary_observations": 45216,
+    "reply_clusters": 11304,
+    "working_correlation": 0.04635289469670013,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "glm47_flash",
+    "converged": false,
+    "n_canary_observations": 44736,
+    "reply_clusters": 11184,
+    "working_correlation": null,
+    "finite": false,
+    "warnings": [
+      "invalid value encountered in divide",
+      "overflow encountered in exp"
+    ]
+  },
+  {
+    "model": "mistral_small3",
+    "converged": false,
+    "n_canary_observations": 45024,
+    "reply_clusters": 11256,
+    "working_correlation": null,
+    "finite": false,
+    "warnings": [
+      "invalid value encountered in divide",
+      "overflow encountered in exp"
+    ]
+  },
+  {
+    "model": "gpt_oss_20b",
+    "converged": true,
+    "n_canary_observations": 45456,
+    "reply_clusters": 11364,
+    "working_correlation": 0.05196283680991734,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "phi4",
+    "converged": false,
+    "n_canary_observations": 45312,
+    "reply_clusters": 11328,
+    "working_correlation": null,
+    "finite": false,
+    "warnings": [
+      "invalid value encountered in divide",
+      "overflow encountered in exp"
+    ]
+  },
+  {
+    "model": "seed_oss_36b",
+    "converged": true,
+    "n_canary_observations": 44352,
+    "reply_clusters": 11088,
+    "working_correlation": 0.047263730419187876,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "nemotron3_nano30b",
+    "converged": true,
+    "n_canary_observations": 44976,
+    "reply_clusters": 11244,
+    "working_correlation": 0.04117818843710476,
+    "finite": true,
+    "warnings": []
+  },
+  {
+    "model": "falcon_h1_34b",
+    "converged": false,
+    "n_canary_observations": 45264,
+    "reply_clusters": 11316,
+    "working_correlation": null,
+    "finite": false,
+    "warnings": [
+      "invalid value encountered in divide",
+      "overflow encountered in exp"
+    ]
+  }
+]

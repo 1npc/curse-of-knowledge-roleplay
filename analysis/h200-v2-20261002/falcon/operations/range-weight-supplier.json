@@ -1,0 +1,15 @@
+{
+  "pid": 2674540,
+  "started_unix": 1790899167.3545358,
+  "command": [
+    "python3",
+    "-u",
+    "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_range_weights_v2.py",
+    "--root",
+    "/data/qianru/over-comprehension-v2-20261001",
+    "--workers",
+    "32"
+  ],
+  "source_sha256": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4",
+  "scope": "exact official pinned model bytes; existing proxy; no model outputs or scientific methods changed"
+}

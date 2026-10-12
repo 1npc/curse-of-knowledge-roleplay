@@ -1,0 +1,9 @@
+{
+  "PATH_prefix": [
+    "/data/qianru/over-comprehension-v2-20261001/.venv/bin",
+    "/usr/local/cuda/bin"
+  ],
+  "CUDA_HOME": "/usr/local/cuda",
+  "reason": "engine JIT requires installed ninja and existing CUDA toolchain; first warmup failed before any prompt intent or response",
+  "unchanged": "frozen prompts, tokenizer, weights, temperature, seed, precision, scoring, statistical endpoints"
+}

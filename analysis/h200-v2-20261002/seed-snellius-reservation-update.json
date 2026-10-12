@@ -1,0 +1,9 @@
+{
+  "model": "seed_oss_36b",
+  "previous_external_generation_job_id": "27482596",
+  "external_generation_job_id": "27482695",
+  "updated_unix": 1791021896.960637,
+  "h200_status": "external_reserved",
+  "no_h200_generation_attempt": true,
+  "reason": "Snellius user hold release denied; unstarted held job cancelled, same configuration replacement only."
+}

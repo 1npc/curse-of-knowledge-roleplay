@@ -1,0 +1,15 @@
+{
+ "model": "qwen35_9b",
+ "run_sha256": "6b14126acbbe04f484544c544aaabe0e3549d80f1b311aafab058fd615ad66b6",
+ "records": 1000,
+ "planned": 1000,
+ "status": {
+  "complete": 1000
+ },
+ "responses_sha256": "2ac77eac17985bb6e81d82f8fc4516850d55a17cdff0dc2f14d02e37e84deb23",
+ "interrupted_chunks": 0,
+ "generation_seconds": 9.6,
+ "notes": {},
+ "run_id": "access-v2-pilot-qwen35_9b",
+ "finished": "2026-10-02T02:48:56+0200"
+}

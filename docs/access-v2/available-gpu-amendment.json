@@ -1,0 +1,29 @@
+{
+  "created_at_utc": "2026-10-02T22:26:15.970399+00:00",
+  "authorization": "User: 不用纠结gpu5，看看有没有其他的gpu，只要空闲就用",
+  "scope": "Subsequent H200 inference may use any verified idle physical GPU 0–7; supersedes GPU 5-only allocation. Other jobs must not be terminated or preempted.",
+  "allowed_gpu_uuid": {
+    "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+    "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+    "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+    "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+    "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+    "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+    "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+  },
+  "concurrent_worker_slots": 2,
+  "max_concurrent_inference": 2,
+  "max_concurrent_inference_per_gpu": 1,
+  "idle_requirement": "No compute app; memory <100MiB; utilization <=5%; recheck identity and occupancy immediately before launch; retain existing per-GPU and slot locks",
+  "frozen_scientific_changes": false,
+  "supersedes_gpu5_amendment_sha256": "589c27202fdb14428abd3b9d0919e7652bae48b6afcb48c8e807527df958e61e",
+  "parent_hardware_amendment_sha256": "54984626259599db001744591a80b4a010f73c33730c1ebcd589fe32b711660e",
+  "original_final_lock_sha256": "99ad6d103db2026555cf20b9e9ce6876c584e45db095a86a06382526014e772f",
+  "operational_code_sha256": {
+    "harness/h200_queue_available_v2.py": "352132ce12c60a061172049c8d169fb3224081368737abc857739f9d180d2645",
+    "harness/h200_queue_idle_v2.py": "98398fe66a898fae55b938e6d65ea49cb6097facd5be7af5a10e5bef4e451b48",
+    "harness/h200_generate_idle_v2.py": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663"
+  },
+  "implementation": "New audit-only wrapper returns the original eight-GPU allowlist. Replace only verified own waiting controllers with no child and no running model, under the queue lock. Preserve prior receipts and every generated record. Original queue, generator, supplier, scientific plans and scoring remain unchanged."
+}

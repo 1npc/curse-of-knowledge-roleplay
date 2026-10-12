@@ -1,0 +1,9 @@
+{
+  "model": "seed_oss_36b",
+  "previous_external_generation_job_id": "27482695",
+  "external_generation_job_id": "27483028",
+  "updated_unix": 1791022323.1748798,
+  "h200_status": "external_reserved",
+  "no_h200_generation_attempt": true,
+  "reason": "Hardware GPU-number preflight failed before any model load or response. Adapter only repaired; completed weight verification unchanged."
+}

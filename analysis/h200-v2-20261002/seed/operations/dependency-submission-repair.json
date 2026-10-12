@@ -1,0 +1,6 @@
+{
+  "recorded_unix": 1791022224.5785184,
+  "scope": "Submission only; completed staging dependency was purged from Slurm active controller, with COMPLETED/0:0 retained in accounting. Verify existing full-file receipt instead.",
+  "verification_sacct": "27482595|COMPLETED|0:0\n27482595.batch|COMPLETED|0:0\n27482595.extern|COMPLETED|0:0\n",
+  "no_generation_attempt": true
+}

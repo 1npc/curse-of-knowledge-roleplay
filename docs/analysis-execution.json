@@ -1,0 +1,38 @@
+{
+  "first_outcome_inspection_not_before_utc": "2026-09-29T20:00:30.533190+00:00",
+  "scoring_job": "27373721",
+  "analysis_job": "27373837",
+  "methods_lock": "docs/analysis-lock.json",
+  "script_sha256": {
+    "analysis/full_analysis.py": "41ec96145c8d80b75e3c813310d6eb51d4e604cb1ada9c605443ee0349e89b98",
+    "analysis/test_numerics.py": "30b433432ca080d749f18180aee95682c0b9aee10fe38f513ec8204f35811c7e"
+  },
+  "numeric_validation": "three synthetic tests passed, including equality with row-level reference over 13 resamples",
+  "user_confirmed_human_labels_absent": true,
+  "postprocessing_job": "27373936",
+  "secondary_job": "27374105",
+  "all_analysis_jobs_completed": true,
+  "post_hoc_supplements": [
+    "secondary_checks.py: calibration, original-proposal contrast, DI implementation",
+    "gee_check.py --target-only: convergence diagnostic; original failures preserved"
+  ],
+  "raw_records": 760508,
+  "scored_records": 760512,
+  "synthetic_missing": 4,
+  "human_labels_completed": 0,
+  "post_hoc_script_sha256": {
+    "analysis/secondary_checks.py": "6d226276cfcacbce9e5eebe52bd52bb574f1bafffdeb7938cf3d0aed8c375b04",
+    "analysis/gee_check.py": "752679871be6d4340adc1ee4b69e7bad1bf78abbf545ce8ae8f25c817b8e3624",
+    "analysis/plot_results.py": "df543afeef76fc04ded6db9bda75ad4c0c3b1c37291399682dc189d405fefb47"
+  },
+  "verification": {
+    "local_tests": 42,
+    "local_tests_passed": true,
+    "remote_numeric_tests": 3,
+    "independent_primary_points_match": true,
+    "scored_file_hashes_matched": 22,
+    "public_package_has_no_answer_keys": true,
+    "figures_visually_checked": 4
+  },
+  "delivery_completed_utc": "2026-09-29T20:24:35.972269+00:00"
+}

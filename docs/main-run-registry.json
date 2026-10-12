@@ -1,0 +1,126 @@
+{
+  "generation_commit": "bdc38f98d968c754977904eeb9ffef03e5fd11ad",
+  "runner_sha256": "bb1f76a3dd07165155b9416c66b7494def19a67c263111007b505bc7060e2a0a",
+  "remote_code": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/code/bdc38f9",
+  "remote_runs": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/runs",
+  "analysis_status": "Draft; preserve no-scoring/no-inspection hold until the analysis plan is frozen. Generation is not preregistration.",
+  "proposed_confirmatory_models": [
+    "qwen38_27b",
+    "qwen35_9b",
+    "gemma4_31b",
+    "gemma4_12b",
+    "glm47_flash",
+    "mistral_small3",
+    "gpt_oss_20b",
+    "phi4",
+    "seed_oss_36b",
+    "nemotron3_nano30b",
+    "falcon_h1_34b"
+  ],
+  "exploratory_scale_models": [
+    "qwen35_4b",
+    "qwen35_2b",
+    "qwen35_08b",
+    "gemma4_e2b"
+  ],
+  "runs": {
+    "main-v1": {
+      "plan": "items/main/plan_all.jsonl",
+      "plan_sha256": "cc9919028ac9d7324bbc8bd288ea342b5e2e6f410c8739664ef781b31c2c3ba6",
+      "models": [
+        "qwen38_27b",
+        "gemma4_31b",
+        "seed_oss_36b",
+        "falcon_h1_34b",
+        "nemotron3_nano30b",
+        "gpt_oss_20b",
+        "gemma4_12b",
+        "glm47_flash",
+        "mistral_small3",
+        "phi4",
+        "qwen35_9b",
+        "qwen35_4b",
+        "qwen35_2b",
+        "qwen35_08b",
+        "gemma4_e2b"
+      ],
+      "jobs": [
+        "27344470",
+        "27344476",
+        "27344485",
+        "27344487",
+        "27363639"
+      ]
+    },
+    "main-fs-v1": {
+      "plan": "items/main/mitigation_fs.jsonl",
+      "plan_sha256": "80b0cbcca27f2539bb8e1d3c1dfe6d5049b17ce12c7d173972811332f1456171",
+      "models": [
+        "gemma4_31b",
+        "qwen38_27b",
+        "qwen35_9b",
+        "gemma4_12b"
+      ],
+      "jobs": [
+        "27344494"
+      ]
+    },
+    "main-robust-v1": {
+      "plan": "items/main/robustness.jsonl",
+      "plan_sha256": "1809995b1da23733a2a543929ef81d5979b13ab2714b200553dc4ade38cc8deb",
+      "models": [
+        "qwen38_27b",
+        "gemma4_31b",
+        "qwen35_9b"
+      ],
+      "jobs": [
+        "27344496"
+      ]
+    }
+  },
+  "main_job_models": {
+    "27344470": [
+      "qwen38_27b",
+      "gemma4_31b",
+      "seed_oss_36b"
+    ],
+    "27344476": [
+      "falcon_h1_34b",
+      "nemotron3_nano30b",
+      "gpt_oss_20b"
+    ],
+    "27344485": [
+      "gemma4_12b",
+      "glm47_flash",
+      "mistral_small3"
+    ],
+    "27344487": [
+      "phi4",
+      "qwen35_9b",
+      "qwen35_4b"
+    ],
+    "27363639": [
+      "qwen35_2b",
+      "qwen35_08b",
+      "gemma4_e2b"
+    ]
+  },
+  "superseded_jobs": [
+    {
+      "job": "27344491",
+      "replacement": "27363639",
+      "reason": "Original still PENDING; scheduler denied changing its time limit. Submitted identical inputs/code at 02:00:00 instead of 08:00:00; cancelled original before it started.",
+      "cancelled_at": "2026-09-29T17:58:34+02:00"
+    }
+  ],
+  "completion_audit_job": "27364497",
+  "completion_audit_dependency": "afterany:27363639",
+  "scale_started_at": "2026-09-29T18:05:45+02:00",
+  "scale_finished_at": "2026-09-29T19:22:54+02:00",
+  "completion_audit_finished_at": "2026-09-29T19:23:48+02:00",
+  "completion_audit_state": "COMPLETED",
+  "generation_state": "COMPLETED_WITH_RECORDED_GENERATION_FAILURES",
+  "records": 760508,
+  "planned_records": 760512,
+  "recorded_step2_skips": 4
+}

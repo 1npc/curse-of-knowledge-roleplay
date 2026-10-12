@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-10-02T14:52:12.498202+00:00",
+  "scope": "Operational weight transport recovery only; original frozen supplier and scientific code unchanged",
+  "reason": "Single original pass skipped Gemma 12B curl=22 (remaining headers include 403) and Falcon curl=56; resume verified chunks and refresh original signed URLs",
+  "model_order": [
+    "gemma4_12b",
+    "falcon_h1_34b",
+    "mistral_small3",
+    "seed_oss_36b"
+  ],
+  "maximum_transport_attempts_per_model": 3,
+  "requirements": "Stop only the identified task-owned supplier process group; preserve old receipts and partial downloads; retain original Content-Range and full SHA verification; no inference retry; existing idle-GPU workers unchanged",
+  "code_sha256": {
+    "harness/h200_resume_weights_v2.py": "09adb53c401f3a6583f06dfecf08c389161471aba3e4f6ec98825a319f54831c",
+    "harness/h200_range_weights_v2.py": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4"
+  }
+}

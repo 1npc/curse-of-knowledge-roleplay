@@ -1,0 +1,25 @@
+model,boundary,accessible_role_endpoints,stage1_exact_public_shell_only,stage1_complete,stage2_target_hit,note
+gemma4_31b,Hear,192,0,192,0.9583333333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+gemma4_31b,Understand,192,18,192,0.8229166666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+gemma4_31b,See,192,12,192,0.8854166666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+gemma4_31b,Receive,192,0,192,0.7395833333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+glm47_flash,Hear,192,0,192,0.9166666666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+glm47_flash,Understand,192,10,192,0.7708333333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+glm47_flash,See,192,0,192,0.8541666666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+glm47_flash,Receive,192,0,192,0.4895833333333333,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+nemotron3_nano30b,Hear,192,0,192,0.9583333333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+nemotron3_nano30b,Understand,192,123,192,0.2760416666666667,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+nemotron3_nano30b,See,192,0,192,0.9010416666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+nemotron3_nano30b,Receive,192,0,184,0.59375,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen35_9b,Hear,192,0,192,0.9947916666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen35_9b,Understand,192,2,192,0.9479166666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen35_9b,See,192,0,192,0.9791666666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen35_9b,Receive,192,0,192,0.953125,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen38_27b,Hear,192,0,192,0.8541666666666666,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen38_27b,Understand,192,190,192,0,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen38_27b,See,192,82,192,0.4375,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+qwen38_27b,Receive,192,180,192,0.020833333333333332,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+falcon_h1_34b,Hear,192,0,192,0.9270833333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+falcon_h1_34b,Understand,192,0,192,0.9583333333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+falcon_h1_34b,See,192,6,192,0.8333333333333334,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.
+falcon_h1_34b,Receive,192,0,192,0.3854166666666667,Exact-string match only; duplicated question-specific stage1 calls retained. Not human or semantic certification.

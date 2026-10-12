@@ -1,0 +1,128 @@
+{
+  "checked_at_utc": "2026-10-02T23:21:13.335809+00:00",
+  "automation_id": "h200",
+  "remote_snapshot_utc": "2026-10-02T23:19:53Z",
+  "previous_snapshot_utc": "2026-10-02T22:59:54Z",
+  "completed_models": 10,
+  "actual_records": 213752,
+  "locally_verified_models": 10,
+  "new_completed_models": [],
+  "new_weight_ready": [],
+  "pending_models": [
+    "seed_oss_36b"
+  ],
+  "all_task_processes_alive": true,
+  "actual_process_commands_checked": {
+    "finalizer": true,
+    "worker_1": true,
+    "worker_2": true,
+    "weight_supplier": true,
+    "download_seed_oss_36b": true
+  },
+  "launch_receipt_pids_match": true,
+  "phase_counts_and_response_hashes_match_latest_local_audit": true,
+  "pinned_weight_revisions_match": true,
+  "gpu_policy": {
+    "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+    "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+    "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+    "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+    "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+    "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+    "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+  },
+  "gpu_policy_integrity_checked": true,
+  "gpu5_used_gib": 128.0830078125,
+  "gpu5_utilization": 100,
+  "gpu5_compute_processes": 4,
+  "storage_wait": null,
+  "seed_weight_progress": {
+    "verified_bytes": 29387575578,
+    "total_bytes": 72314506146,
+    "error": null
+  },
+  "newly_whole_file_verified_bytes": 4886550176,
+  "new_failure": false,
+  "action": "Routine monitoring: original recovery supplier automatically retried a transient curl=56 range error within the three-attempt cap, reused pinned files and verified the previously failing sixth shard. No manual restart or duplicate generation. Any-idle controllers remain healthy, all GPUs occupied.",
+  "user_notification": "DONT_NOTIFY: ten-model audit unchanged; transient network failure already recovered, Seed downloading normally on automatic attempt 3/3; no user action required.",
+  "monitor_remains_active": true,
+  "free_gib": 86.09831619262695,
+  "ARR_source_updated_to_ten_models": true,
+  "gpu_policy_changed_by_user": false,
+  "controller_transition_completed": true,
+  "worker_launch_path": "/data/qianru/over-comprehension-v2-20261001/operations/available-gpu-worker-launch.json",
+  "retired_own_waiting_worker_pids": [
+    4078039,
+    4078040
+  ],
+  "current_worker_pids": {
+    "1": 218775,
+    "2": 218776
+  },
+  "gpu_status": {
+    "0": {
+      "uuid": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+      "used_gib": 139.283203125,
+      "utilization": 100,
+      "compute_processes": 1,
+      "idle": false
+    },
+    "1": {
+      "uuid": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+      "used_gib": 137.990234375,
+      "utilization": 100,
+      "compute_processes": 1,
+      "idle": false
+    },
+    "2": {
+      "uuid": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+      "used_gib": 138.06640625,
+      "utilization": 100,
+      "compute_processes": 1,
+      "idle": false
+    },
+    "3": {
+      "uuid": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+      "used_gib": 139.611328125,
+      "utilization": 100,
+      "compute_processes": 1,
+      "idle": false
+    },
+    "4": {
+      "uuid": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+      "used_gib": 134.2294921875,
+      "utilization": 100,
+      "compute_processes": 4,
+      "idle": false
+    },
+    "5": {
+      "uuid": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+      "used_gib": 128.0830078125,
+      "utilization": 100,
+      "compute_processes": 4,
+      "idle": false
+    },
+    "6": {
+      "uuid": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+      "used_gib": 121.9765625,
+      "utilization": 100,
+      "compute_processes": 2,
+      "idle": false
+    },
+    "7": {
+      "uuid": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00",
+      "used_gib": 119.92578125,
+      "utilization": 100,
+      "compute_processes": 2,
+      "idle": false
+    }
+  },
+  "idle_gpus": [],
+  "automation_prompt_matches_active_gpu_policy": true,
+  "seed_download_attempt": 3,
+  "new_transport_failures": [
+    "RuntimeError('Range download failed model-00006-of-00015.safetensors #1 curl=56')"
+  ],
+  "transport_failure_already_recovered": true
+}

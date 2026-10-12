@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-10-03T10:40:37.357929+00:00",
+  "automation_id": "h200",
+  "remote_snapshot_utc": "2026-10-03T10:39:35Z",
+  "snellius_snapshot_utc": "2026-10-03T10:26:25.084527+00:00",
+  "completed_models": 11,
+  "actual_records": 220088,
+  "scored_endpoints_including_pilot": 206264,
+  "pending_models": [],
+  "all_model_and_phase_counts_and_response_hashes_match_local_audit": true,
+  "seed_cluster": "snellius",
+  "seed_generation_job_id": "27483028",
+  "seed_slurm_completed_exit0": true,
+  "seed_status_counts": {
+    "complete": 6325,
+    "truncated": 11
+  },
+  "seed_frozen_scorer_recomputed_exact_match": true,
+  "h200_mirrored_seed_evidence_verified_before_queue_finish": true,
+  "h200_original_finalizer_completed": true,
+  "h200_no_missing_phases_materialized": true,
+  "h200_result_machine_roundoff_max_absolute_difference": 2.220446049250313e-16,
+  "task_processes_exited_normally_after_completion": true,
+  "monitor_status": "PAUSED",
+  "monitor_remains_active": false,
+  "monitor_interval_minutes_retained": 20,
+  "ARR_source_updated_to_eleven_models": true,
+  "ARR_native_compile_current_source_success": true,
+  "source_package_verified": true,
+  "actual_human_annotations": 0,
+  "remaining_items": [
+    "real human annotations",
+    "native-stimulus review",
+    "guessability questionnaire",
+    "PDF export and visual review",
+    "submission metadata and checklist"
+  ],
+  "action": "Campaign complete: all eleven models audited and aggregated, Seed mirrored safely, current ARR source and package delivered; monitor paused and chat retained."
+}

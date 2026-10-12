@@ -1,0 +1,15 @@
+{
+ "model": "gemma4_31b",
+ "run_sha256": "b3b6e5e73c4618a80a82d3da8388299e25dca985be79a63d2515dd5d4daa0270",
+ "records": 1000,
+ "planned": 1000,
+ "status": {
+  "complete": 1000
+ },
+ "responses_sha256": "769671b8356bacdc3ebc29834e42a3851a6763c44a472c17b739883833d1ced3",
+ "interrupted_chunks": 0,
+ "generation_seconds": 23.3,
+ "notes": {},
+ "run_id": "access-v2-pilot-gemma4_31b",
+ "finished": "2026-10-02T01:28:35+0200"
+}

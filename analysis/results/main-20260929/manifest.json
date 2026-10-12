@@ -1,0 +1,269 @@
+{
+  "finished_utc": "2026-09-29T19:58:19.409754+00:00",
+  "source_scored_files": [
+    {
+      "run": "main-v1",
+      "model": "falcon_h1_34b",
+      "sha256": "5c034909533a1db0ce452db9f221216cccf04da8096394cb1a56875bfaac8440"
+    },
+    {
+      "run": "main-v1",
+      "model": "gemma4_12b",
+      "sha256": "f7b012b56c543a23329b144a22eab20ab3d9665c5eb8e15c7fe93561ee642aca"
+    },
+    {
+      "run": "main-v1",
+      "model": "gemma4_31b",
+      "sha256": "1e612b19f6267d1d47b844edead24f017f00ef2e7eed61705d031ca777b46ec4"
+    },
+    {
+      "run": "main-v1",
+      "model": "gemma4_e2b",
+      "sha256": "47824e8d65304889f0a4bfe12e6580d57e23a0476d28b3f8c32a86751583c51c"
+    },
+    {
+      "run": "main-v1",
+      "model": "glm47_flash",
+      "sha256": "ea21251b70e82f0567a495a5e0a26fde427bb3445911a981a75b77acd8a2cc20"
+    },
+    {
+      "run": "main-v1",
+      "model": "gpt_oss_20b",
+      "sha256": "23c0f8f562670746c35e6834adbcf2ad4440683737d72d8a6867a12eb8ab118c"
+    },
+    {
+      "run": "main-v1",
+      "model": "mistral_small3",
+      "sha256": "cb27bb989280b524cbcac8cf0d54f0a08d1a4ec4a2ecd2746d718ba001907766"
+    },
+    {
+      "run": "main-v1",
+      "model": "nemotron3_nano30b",
+      "sha256": "cacef134b6790bfdc1d923e4b0e729746b878b15df9fb3310e377947f627ba02"
+    },
+    {
+      "run": "main-v1",
+      "model": "phi4",
+      "sha256": "95e522f28cf06b5e653312ee9bbdfecb55c4dd73468f5d462cae444deb0fdcf9"
+    },
+    {
+      "run": "main-v1",
+      "model": "qwen35_08b",
+      "sha256": "adf8d620d7cfcf5a95717634e722f95f63f460dba63d93afbe44f3dd87f751a8"
+    },
+    {
+      "run": "main-v1",
+      "model": "qwen35_2b",
+      "sha256": "141217764be2aab7d2b4748b269548e7faebdc27110d24ab9f5efd93201983e4"
+    },
+    {
+      "run": "main-v1",
+      "model": "qwen35_4b",
+      "sha256": "e875d0ed2db41c4abcdb5744c613fafd61795e80caa26208a71e93c1a9ae7e64"
+    },
+    {
+      "run": "main-v1",
+      "model": "qwen35_9b",
+      "sha256": "c9412eea0cc4002274f866616126064a659970728f5a0dcb28e31f6ee15b14f1"
+    },
+    {
+      "run": "main-v1",
+      "model": "qwen38_27b",
+      "sha256": "ebf73f564cc9c72a1ed65de88606d9e8c6aab55bf2d122ec163dee8c9457ea57"
+    },
+    {
+      "run": "main-v1",
+      "model": "seed_oss_36b",
+      "sha256": "8eb80c3085e491cc28f0ab29ee11fef548883cf00487255a8c5c11137934916a"
+    },
+    {
+      "run": "main-fs-v1",
+      "model": "gemma4_12b",
+      "sha256": "3c34b9d9dbbcd2a6e1ed9c2280656dc6b418b6562658c960c607861272cdfab6"
+    },
+    {
+      "run": "main-fs-v1",
+      "model": "gemma4_31b",
+      "sha256": "fecdef5795c7ab4a9348d9a7bd581741106ed20f9085fd6d1974413433286cb5"
+    },
+    {
+      "run": "main-fs-v1",
+      "model": "qwen35_9b",
+      "sha256": "6812f870c4ce42e33320509e4b2d5f4710651e6cd1213469779b3b3c0870bd4e"
+    },
+    {
+      "run": "main-fs-v1",
+      "model": "qwen38_27b",
+      "sha256": "59c9966c4011820c89e83536a5e6f6c6b5ad8a26c0eca43e3de2c8345f59aacf"
+    },
+    {
+      "run": "main-robust-v1",
+      "model": "gemma4_31b",
+      "sha256": "0cfc105b6347053709a2a0d2c90c5fef54574b1b059be5f28d11a062f9f76ade"
+    },
+    {
+      "run": "main-robust-v1",
+      "model": "qwen35_9b",
+      "sha256": "a3507989ec6dd24ad1b69be6a0bfce13a8d5ef60389ee099d73fc4a849769a80"
+    },
+    {
+      "run": "main-robust-v1",
+      "model": "qwen38_27b",
+      "sha256": "d06f68b7b7016bf62af92360f392a8ad9f1f74285c12db1028e7d8c0ed91208f"
+    }
+  ],
+  "B": 2000,
+  "seed": 20261003,
+  "confirmatory_models": [
+    "qwen38_27b",
+    "qwen35_9b",
+    "gemma4_31b",
+    "gemma4_12b",
+    "glm47_flash",
+    "mistral_small3",
+    "gpt_oss_20b",
+    "phi4",
+    "seed_oss_36b",
+    "nemotron3_nano30b",
+    "falcon_h1_34b"
+  ],
+  "passing_units": [
+    [
+      "falcon_h1_34b",
+      "es"
+    ],
+    [
+      "falcon_h1_34b",
+      "ja"
+    ],
+    [
+      "falcon_h1_34b",
+      "zh"
+    ],
+    [
+      "gemma4_12b",
+      "es"
+    ],
+    [
+      "gemma4_12b",
+      "ja"
+    ],
+    [
+      "gemma4_12b",
+      "zh"
+    ],
+    [
+      "gemma4_31b",
+      "es"
+    ],
+    [
+      "gemma4_31b",
+      "ja"
+    ],
+    [
+      "gemma4_31b",
+      "zh"
+    ],
+    [
+      "glm47_flash",
+      "es"
+    ],
+    [
+      "glm47_flash",
+      "ja"
+    ],
+    [
+      "glm47_flash",
+      "zh"
+    ],
+    [
+      "gpt_oss_20b",
+      "es"
+    ],
+    [
+      "gpt_oss_20b",
+      "ja"
+    ],
+    [
+      "gpt_oss_20b",
+      "zh"
+    ],
+    [
+      "mistral_small3",
+      "es"
+    ],
+    [
+      "mistral_small3",
+      "ja"
+    ],
+    [
+      "mistral_small3",
+      "zh"
+    ],
+    [
+      "nemotron3_nano30b",
+      "es"
+    ],
+    [
+      "nemotron3_nano30b",
+      "ja"
+    ],
+    [
+      "nemotron3_nano30b",
+      "zh"
+    ],
+    [
+      "phi4",
+      "es"
+    ],
+    [
+      "phi4",
+      "ja"
+    ],
+    [
+      "phi4",
+      "zh"
+    ],
+    [
+      "qwen35_9b",
+      "es"
+    ],
+    [
+      "qwen35_9b",
+      "ja"
+    ],
+    [
+      "qwen35_9b",
+      "zh"
+    ],
+    [
+      "qwen38_27b",
+      "es"
+    ],
+    [
+      "qwen38_27b",
+      "ja"
+    ],
+    [
+      "qwen38_27b",
+      "zh"
+    ],
+    [
+      "seed_oss_36b",
+      "es"
+    ],
+    [
+      "seed_oss_36b",
+      "ja"
+    ],
+    [
+      "seed_oss_36b",
+      "zh"
+    ]
+  ],
+  "scored_records": 760512,
+  "synthetic_missing": 4,
+  "human_validated": false,
+  "registration": "not preregistered; locally locked before outcome inspection",
+  "analysis_script_sha256": "41ec96145c8d80b75e3c813310d6eb51d4e604cb1ada9c605443ee0349e89b98"
+}

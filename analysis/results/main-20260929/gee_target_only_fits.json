@@ -1,0 +1,123 @@
+[
+  {
+    "model": "qwen38_27b",
+    "converged": true,
+    "n_canary_observations": 22512,
+    "reply_clusters": 11256,
+    "working_correlation": 0.5942564133921148,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "qwen35_9b",
+    "converged": true,
+    "n_canary_observations": 22584,
+    "reply_clusters": 11292,
+    "working_correlation": 0.45901574479238844,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "gemma4_31b",
+    "converged": true,
+    "n_canary_observations": 22776,
+    "reply_clusters": 11388,
+    "working_correlation": 0.5588497891253654,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "gemma4_12b",
+    "converged": true,
+    "n_canary_observations": 22608,
+    "reply_clusters": 11304,
+    "working_correlation": 0.439609754418725,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "glm47_flash",
+    "converged": true,
+    "n_canary_observations": 22368,
+    "reply_clusters": 11184,
+    "working_correlation": 0.41557215335498604,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "mistral_small3",
+    "converged": true,
+    "n_canary_observations": 22512,
+    "reply_clusters": 11256,
+    "working_correlation": 0.47811247391383155,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "gpt_oss_20b",
+    "converged": true,
+    "n_canary_observations": 22728,
+    "reply_clusters": 11364,
+    "working_correlation": 0.49806743105076784,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "phi4",
+    "converged": true,
+    "n_canary_observations": 22656,
+    "reply_clusters": 11328,
+    "working_correlation": 0.43849923654450357,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "seed_oss_36b",
+    "converged": true,
+    "n_canary_observations": 22176,
+    "reply_clusters": 11088,
+    "working_correlation": 0.5058284462449789,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "nemotron3_nano30b",
+    "converged": true,
+    "n_canary_observations": 22488,
+    "reply_clusters": 11244,
+    "working_correlation": 0.5069496718382523,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  },
+  {
+    "model": "falcon_h1_34b",
+    "converged": true,
+    "n_canary_observations": 22632,
+    "reply_clusters": 11316,
+    "working_correlation": 0.5211144242848087,
+    "finite": true,
+    "warnings": [],
+    "formula": "use ~ C(condition, Treatment(reference=\"language\")) + C(canary) + C(lang) + C(question) + C(character)",
+    "post_hoc_target_only": true
+  }
+]

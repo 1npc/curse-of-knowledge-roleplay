@@ -1,0 +1,16 @@
+{
+ "model": "seed_oss_36b",
+ "run_sha256": "a44414853664911f84f546227f27d213a92bf51b415e644dfdfed4bafa1df1f6",
+ "records": 6336,
+ "planned": 6336,
+ "status": {
+  "complete": 6325,
+  "truncated": 11
+ },
+ "responses_sha256": "a15d6258d2ca3ddbd95f53eb963709d527fdccdaadf6996b4ef3a46963f1cd22",
+ "interrupted_chunks": 0,
+ "generation_seconds": 438.7,
+ "notes": {},
+ "run_id": "access-v2-discovery-seed_oss_36b",
+ "finished": "2026-10-03T12:23:35+0200"
+}

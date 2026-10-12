@@ -1,0 +1,32 @@
+{
+  "cross_foil_cells": [
+    [
+      "C+T+",
+      "D0"
+    ],
+    [
+      "C+T-",
+      "D1"
+    ],
+    [
+      "C-T+",
+      "D0"
+    ],
+    [
+      "C-T+",
+      "D1"
+    ],
+    [
+      "C-T+",
+      "D2"
+    ],
+    [
+      "C-T-",
+      "D2"
+    ]
+  ],
+  "cross_foil_rows": 73152,
+  "overlapping_canary_types_removed": 0,
+  "cross_foil_rule": "Average hits against each other-language A pair; drop any type identical to target. Descriptive equal unit averages.",
+  "no_new_confirmatory_tests": true
+}

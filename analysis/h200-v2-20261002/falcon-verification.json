@@ -1,0 +1,32 @@
+{
+  "verified_at_utc": "2026-10-02T17:36:12.557601+00:00",
+  "new_archive_sha256": "c30f6b6f79ee1c76ebd73dea5887a75be5f90638312b67b18aec42e6466a7b4d",
+  "all_archive_file_digests_match": true,
+  "scientific_inputs_and_code_unchanged": true,
+  "models": {
+    "falcon_h1_34b": {
+      "discovery": {
+        "actual_records": 18272,
+        "scored_endpoints": 15968,
+        "status_counts": {
+          "complete": 18272
+        },
+        "physical_gpu_uuid": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+        "no_missing_or_duplicate_ids": true,
+        "frozen_plan_sha256": "43326806e68b114f3125d98bdd90478de0e17e64c1ec728936b40003cff28c1a",
+        "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+        "responses_sha256": "1d423a7e975eb34b03d2decbec8c303ad1be7d3df0059a52f7a2f5116e4dbda0",
+        "scores_sha256": "939bf41956114a8caaca09a5514ee34ee804f9f9a616e5c1da659c413a5156f4",
+        "frozen_scorer_recomputed_exact_match": true
+      }
+    }
+  },
+  "total_actual_records": 18272,
+  "total_scored_endpoints_including_pilot": 15968,
+  "confirmatory_actual_records": 0,
+  "actual_human_annotations": 0,
+  "full_eleven_model_campaign_complete": false,
+  "analysis_score_files": [
+    "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/falcon/scores/discovery/falcon_h1_34b.jsonl"
+  ]
+}

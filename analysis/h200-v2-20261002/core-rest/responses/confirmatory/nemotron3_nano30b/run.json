@@ -1,0 +1,40 @@
+{
+ "version": "oc-generation-access-v2",
+ "model": "nemotron3_nano30b",
+ "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+ "revision": "bf77c3174f68ad409e1c2aa60daeb46e32d1c606",
+ "weights_path": "/data/qianru/over-comprehension-v2-20261001/weights/nemotron3_nano30b",
+ "location": "auto",
+ "chat_template_sha256": "ab7813c3abdd9cb655905a410728b26c7884eca45ddfab8d9f931553485a7862",
+ "chat_template_source": "tokenizer",
+ "tokenizer": "auto",
+ "chat_template_kwargs": {
+  "enable_thinking": false
+ },
+ "engine": {
+  "vllm": "0.29.0",
+  "torch": "2.13.0+cu130",
+  "transformers": "5.17.0"
+ },
+ "protocol": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "seed": 20261001,
+  "max_output_tokens": 400,
+  "max_model_len": 8192,
+  "dtype": "bfloat16",
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "max_num_seqs": 256,
+  "gpu_memory_utilization": 0.85,
+  "tensor_parallel_size": 1,
+  "thinking": "disabled via chat template",
+  "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+ },
+ "prompts_file": "/data/qianru/over-comprehension-v2-20261001/code/items/access-v2/confirmatory.jsonl",
+ "prompts_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+ "subset_sha256": null,
+ "n_prompts": 15552,
+ "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+ "chunk": 256
+}

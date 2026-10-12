@@ -1,0 +1,66 @@
+{
+  "runtime": {
+    "torch": "2.13.0+cu130",
+    "vllm": "0.29.0",
+    "cuda": "13.0",
+    "transformers": "5.17.0"
+  },
+  "installed_source_checks": {
+    ".venv/lib/python3.12/site-packages/vllm/platforms/cuda.py": [
+      "237:     def supported_dtypes(self) -> list[torch.dtype]:",
+      "238:         if self.has_device_capability(80):",
+      "239:             # Ampere and Hopper or later NVIDIA GPUs.",
+      "240:             return [torch.bfloat16, torch.float16, torch.float32]",
+      "241:         if self.has_device_capability(60):",
+      "242:             # Pascal, Volta and Turing NVIDIA GPUs, BF16 is not supported",
+      "243:             return [torch.float16, torch.float32]",
+      "244:         # Kepler and Maxwell NVIDIA GPUs, only FP32 is supported,",
+      "245:         # though vLLM doesn't support these GPUs.",
+      "246:         return [torch.float32]",
+      "620: ",
+      "621:     @classmethod",
+      "622:     def check_if_supports_dtype(cls, dtype: torch.dtype):",
+      "623:         if dtype == torch.bfloat16:  # noqa: SIM102",
+      "624:             if not cls.has_device_capability(80):",
+      "625:                 capability = cls.get_device_capability()",
+      "626:                 gpu_name = cls.get_device_name()",
+      "627: ",
+      "628:                 if capability is None:",
+      "629:                     compute_str = \"does not have a compute capability\""
+    ],
+    ".venv/lib/python3.12/site-packages/vllm/platforms/interface.py": [
+      "184:         # Be careful with the order of the dtypes. The first dtype will",
+      "185:         # be used as the default dtype fallback for the current platform,",
+      "186:         # when encountering unsupported dtypes in \"auto\" dtype.",
+      "187:         return [torch.bfloat16, torch.float16, torch.float32]",
+      "188: ",
+      "189:     def is_cuda(self) -> bool:",
+      "190:         return self._enum == PlatformEnum.CUDA",
+      "191: ",
+      "192:     def is_rocm(self) -> bool:",
+      "193:         return self._enum == PlatformEnum.ROCM"
+    ]
+  },
+  "checked_at_utc": "2026-10-02T16:31:24.708351+00:00",
+  "v100_capability_snapshot": [
+    "0, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1550, 0",
+    "1, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "2, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "3, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "4, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "5, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "6, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0",
+    "7, Tesla V100-PCIE-32GB, 7.0, 570.124.06, 1, 0"
+  ],
+  "frozen_protocol": {
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 1,
+    "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85"
+  },
+  "conclusion": "The unchanged locked H200 execution stack cannot be deployed to these compute-capability-7.0 V100 GPUs: installed vLLM requires capability >=8.0 for the explicitly requested bfloat16, and CUDA 13 dropped Volta compilation/library support. Alternative precision/runtime/model parallelism is a protocol change, not an operational copy.",
+  "actions": "Read-only inspection; no V100 workload, environment installation, protocol change, or inference retry. Existing H200 download and idle-card queue continue.",
+  "official_sources": [
+    "https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/index.html",
+    "https://docs.vllm.ai/en/latest/getting_started/installation/gpu/"
+  ]
+}

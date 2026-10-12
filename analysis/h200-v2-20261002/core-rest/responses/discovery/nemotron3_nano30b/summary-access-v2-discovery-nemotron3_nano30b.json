@@ -1,0 +1,16 @@
+{
+ "model": "nemotron3_nano30b",
+ "run_sha256": "2589ae723366326f2e248c7f1b4fb8ec48f5d26867c9f722801daf1d08d24a23",
+ "records": 21664,
+ "planned": 21664,
+ "status": {
+  "complete": 21652,
+  "truncated": 12
+ },
+ "responses_sha256": "d5d74d75e35ea3e4e9a96da3f65969febf1aa990c8f47b36b3c6fe0ef226909a",
+ "interrupted_chunks": 0,
+ "generation_seconds": 224.9,
+ "notes": {},
+ "run_id": "access-v2-discovery-nemotron3_nano30b",
+ "finished": "2026-10-02T07:48:37+0200"
+}

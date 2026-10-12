@@ -1,0 +1,50 @@
+{
+  "archive_receipt": {
+    "archive": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/access-v2-seed-20261003/analysis/seed-complete.tar.gz",
+    "bytes": 2442570,
+    "sha256": "b4b4e24758781b07ffdd918200477c07fb7e2494829332162526d47003239edf",
+    "generation_job_id": "27483028",
+    "records": 6336
+  },
+  "local_verification": {
+    "verified_at_utc": "2026-10-03T10:27:10.052374+00:00",
+    "cluster": "snellius",
+    "generation_job_id": "27483028",
+    "new_archive_sha256": "b4b4e24758781b07ffdd918200477c07fb7e2494829332162526d47003239edf",
+    "all_archive_file_digests_match": true,
+    "scientific_inputs_and_code_unchanged": true,
+    "hardware_amendment_sha256": "49d7554a452ecedd33680c87e90d3567b1c463672c38d849a094a313ccd09017",
+    "slurm_completed_exit0": true,
+    "all_weight_files_match_pinned_h200_snapshot": true,
+    "models": {
+      "seed_oss_36b": {
+        "discovery": {
+          "actual_records": 6336,
+          "scored_endpoints": 6336,
+          "status_counts": {
+            "complete": 6325,
+            "truncated": 11
+          },
+          "physical_gpu_uuid": "GPU-cb59b7eb-abf4-d24c-d4fa-a8b81f869da5",
+          "hardware_cluster": "snellius",
+          "slurm_job_id": "27483028",
+          "no_missing_or_duplicate_ids": true,
+          "all_chunk_intent_bindings_match": true,
+          "frozen_plan_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+          "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85",
+          "responses_sha256": "a15d6258d2ca3ddbd95f53eb963709d527fdccdaadf6996b4ef3a46963f1cd22",
+          "scores_sha256": "dd260fbeb8565507c655137654d556273ce8f6d61f6ebe69dc3a34338b5abfe1",
+          "frozen_scorer_recomputed_exact_match": true
+        }
+      }
+    },
+    "total_actual_records": 6336,
+    "total_scored_endpoints_including_pilot": 6336,
+    "confirmatory_actual_records": 0,
+    "actual_human_annotations": 0,
+    "full_eleven_model_campaign_complete": false,
+    "analysis_score_files": [
+      "/Users/xiaozhang/code/ OverComprehension/analysis/h200-v2-20261002/seed/scores/discovery/seed_oss_36b.jsonl"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-10-03T11:13:02.564911+00:00",
+  "selection_seed": 20261003,
+  "actual_human_annotations": 0,
+  "original_packet_preserved": {
+    "analysis/validation-access-v2/blind-content-A.csv": true,
+    "analysis/validation-access-v2/blind-content-B.csv": true,
+    "analysis/validation-access-v2/blind-awareness-A.csv": true,
+    "analysis/validation-access-v2/blind-awareness-B.csv": true,
+    "analysis/validation-access-v2/native-stimuli.csv": true,
+    "analysis/validation-access-v2/organizer-key.jsonl": true,
+    "analysis/validation-access-v2/manifest.json": true,
+    "analysis/validation-access-v2/protocol.md": true
+  },
+  "original_unique_responses": 832,
+  "supplemental_foil_responses": 192,
+  "foil_selection_reason_counts": {
+    "machine_foil_positive_census": 41,
+    "AI_proxy_foil_positive": 12,
+    "AI_proxy_disagreement_or_uncertainty": 85,
+    "random_remaining_control": 64
+  },
+  "foil_negative_remaining_population_by_boundary": {
+    "Hear": 7650,
+    "Understand": 7645,
+    "See": 7643,
+    "Receive": 7654
+  },
+  "supplemental_choice_responses": 128,
+  "native_stimuli_per_form": 24,
+  "native_reviewer_slots": 6,
+  "guessability_question_count": 96,
+  "active_canary_language_pairs": 48,
+  "guessability_active_coverage_complete": true,
+  "foil_inference": "Outcome-informed diagnostic enrichment; no pooled or population F1; retain sample overlaps and separate reports",
+  "source_sha256": {
+    "analysis/h200-v2-20261002/gemma4_31b/scores/discovery/gemma4_31b.jsonl": "24cc3cb508cb4e727691bee6c3762e27073a100ce781076e3f96258fe9d3da4d",
+    "analysis/h200-v2-20261002/gemma4_31b/scores/confirmatory/gemma4_31b.jsonl": "2e942ed096db80fc84733a533d4579bcae4d76ceec826daf2c05a3329d52d690",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/qwen35_9b.jsonl": "a51fec12b976899f011429935ba8ae892a9a7802299279e9447298d0a63ad92e",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/qwen35_9b.jsonl": "36a26cd42f7aecc742cf93420c5d20254de0fedab2b8b97693ce36fc8f0b2a33",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/glm47_flash.jsonl": "6cd13e53386ae304c5ef90a720e624fd75b9781403d81ffed324744bdaf3a823",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/glm47_flash.jsonl": "032cc705ba5eb7343ffe97a64900c68a7a6a06d522afdd8c90397c41a52611c2",
+    "analysis/h200-v2-20261002/core-rest/scores/discovery/nemotron3_nano30b.jsonl": "b94d175d357bdc6bfa30ca2a2eab8318669c37d9bf1ad6cd698179e5570c6900",
+    "analysis/h200-v2-20261002/core-rest/scores/confirmatory/nemotron3_nano30b.jsonl": "c1c9cf8ef3b2fd5b5fb8a99cfd222da1217d2145828ff1b34f553f9a9e5b5e18",
+    "analysis/validation-access-v2/blind-content-A.csv": "af72536dc738f9c53900f0c0da784a31be93c8268280d8f182e2381b53880437",
+    "analysis/validation-access-v2/blind-content-B.csv": "af72536dc738f9c53900f0c0da784a31be93c8268280d8f182e2381b53880437",
+    "analysis/validation-access-v2/blind-awareness-A.csv": "e7667b921f08fa9616b8aa6d59bf53c68491c5251f0086627e54401e9eac87fb",
+    "analysis/validation-access-v2/blind-awareness-B.csv": "e7667b921f08fa9616b8aa6d59bf53c68491c5251f0086627e54401e9eac87fb",
+    "analysis/validation-access-v2/native-stimuli.csv": "6c48a28a6d71e9557471a0de8e3d89fa4a51109eac708b3882c21a25767e7145",
+    "analysis/validation-access-v2/organizer-key.jsonl": "cbf0e917a80e33ac0d9ea295e05c24f3fd3691918b4c286fdfdc97bac108f987",
+    "analysis/validation-access-v2/manifest.json": "bcf4bb09db64dbefb98d5c3a4fcb6a823f7e600847413dfee55d16ee001f43be",
+    "analysis/validation-access-v2/protocol.md": "21506451805c624f6da0819999ad76238b4be3c2848a72ec51adddf4d1b0f8cd",
+    "docs/guessability/items.csv": "9325e9c95a1281f4d1b8a3e73af0b4345bc79e0a6c4222b44a9c177f5093cc39",
+    "docs/guessability/answer_key.json": "c0ed8445645f218f62d4b877dd0b5286e93598409cb9ae554face04ee6d9c0e8"
+  },
+  "files": {
+    "blind-choice-B.csv": "a14e9c609b3399e4bc93d201ad62b29af98aa73f30e03f9a8b1c1e3c92b50f27",
+    "blind-choice-A.csv": "a14e9c609b3399e4bc93d201ad62b29af98aa73f30e03f9a8b1c1e3c92b50f27",
+    "organizer-extension-key.jsonl": "3e2bb4b905f5bd910af92aaf1e6272b8e3356471af9e9a3e1c4bfe1c9601efc1",
+    "blind-foil-B.csv": "baeb05443689ffb0a1e2d93bf0efc0b9c90dcc5afffddf4fd46ca723b142aa26",
+    "blind-foil-A.csv": "baeb05443689ffb0a1e2d93bf0efc0b9c90dcc5afffddf4fd46ca723b142aa26",
+    "extension-protocol.md": "b38f1b9b2beb713e9aa34ab6e612f4995058878c87fec2b80b0ac18348a1a48e",
+    "guessability-responses.csv": "1a7ba0b4aa12264e838a81da8a66c4ac94092c29c8b8297a201b277e85b22c28",
+    "native-review-B.csv": "9367277eb16d2751ae53bf569015b916c911ca2cda898d21d7ea087769095131",
+    "native-review-A.csv": "9367277eb16d2751ae53bf569015b916c911ca2cda898d21d7ea087769095131",
+    "native-reviewer-profiles.csv": "e4f9ec63a3565d367c49c05f4f29c78f8ef3adfd006220065feb6ee92eb09109"
+  },
+  "stimulus_counting_units": {
+    "individual_sentences": 24,
+    "counterfactual_pairs": 12,
+    "per_language_sentences": 8,
+    "per_language_pairs": 4,
+    "matchedness_unit": "distinct reciprocal pair; original two orientations preserved"
+  }
+}

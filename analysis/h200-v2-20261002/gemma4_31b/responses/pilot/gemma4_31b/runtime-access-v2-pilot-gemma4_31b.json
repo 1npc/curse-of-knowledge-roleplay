@@ -1,0 +1,38 @@
+{
+ "run_id": "access-v2-pilot-gemma4_31b",
+ "run_sha256": "b3b6e5e73c4618a80a82d3da8388299e25dca985be79a63d2515dd5d4daa0270",
+ "host": "gpu-server-aiscientist",
+ "gpu": {
+  "nvidia_smi": [
+   "GPU-eac35845-029e-df8d-5318-af5d76434077, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-63686987-a70f-607d-9886-af187b67a14a, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, NVIDIA H200, 143771 MiB, 595.58.03",
+   "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, NVIDIA H200, 143771 MiB, 595.58.03"
+  ]
+ },
+ "cuda_visible_devices": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00",
+ "slurm_job": null,
+ "started": "2026-10-02T01:25:22+0200",
+ "load_seconds": 170.2,
+ "sampling": "SamplingParams(n=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=0.0, top_p=1.0, top_k=0, min_p=0.0, seed=20261001, stop=[], stop_token_ids=[], bad_words=[], thinking_token_budget=None, include_stop_str_in_output=False, ignore_eos=False, max_tokens=400, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, structured_outputs=None, extra_args=None)",
+ "status": "finished",
+ "summary": {
+  "model": "gemma4_31b",
+  "run_sha256": "b3b6e5e73c4618a80a82d3da8388299e25dca985be79a63d2515dd5d4daa0270",
+  "records": 1000,
+  "planned": 1000,
+  "status": {
+   "complete": 1000
+  },
+  "responses_sha256": "769671b8356bacdc3ebc29834e42a3851a6763c44a472c17b739883833d1ced3",
+  "interrupted_chunks": 0,
+  "generation_seconds": 23.3,
+  "notes": {},
+  "run_id": "access-v2-pilot-gemma4_31b",
+  "finished": "2026-10-02T01:28:35+0200"
+ }
+}

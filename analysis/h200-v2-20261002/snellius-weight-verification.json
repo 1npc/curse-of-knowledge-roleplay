@@ -1,0 +1,122 @@
+{
+  "verified_at_utc": "2026-10-03T10:09:44.747633+00:00",
+  "model": "seed_oss_36b",
+  "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+  "verification_job_id": "27482595",
+  "slurm_verification_completed_exit0": true,
+  "all_27_file_bytes_and_hashes_match_h200_verified_snapshot": true,
+  "all_frozen_official_hashes_match": true,
+  "files": {
+    ".gitattributes": {
+      "bytes": 1626,
+      "sha256": "4239c717e80d0c20eb6cb7aec97e97d4c87219be33dcf96aa49c21401c2baea9"
+    },
+    "LICENSE.txt": {
+      "bytes": 11356,
+      "sha256": "41fe2167e8a52d375dd36304db345312bd629addb2e109e47104a7d34a2cf116"
+    },
+    "MODEL_CARD.md": {
+      "bytes": 4829,
+      "sha256": "b87d901f379de25a6e8eb0c3812a849e6eac9d8177d3c23597f5639ab66f0104"
+    },
+    "README.md": {
+      "bytes": 19944,
+      "sha256": "a8b639d3654d3453bed9037cd1470ea6bc43289b1058a71840f8e11a99a6ca49"
+    },
+    "chat_template.jinja": {
+      "bytes": 7705,
+      "sha256": "3f9e0dc4adeb8032287d0129dc75b6298fee8698a52ab41e863dbc89929330d3"
+    },
+    "config.json": {
+      "bytes": 770,
+      "sha256": "09f91799169531b687cbd15e6338aee6105fcbb058193c04faa7ae0344506132"
+    },
+    "generation_config.json": {
+      "bytes": 172,
+      "sha256": "99c964d4affb46130f92a457c72deacf1b3152df9eb7aa0b05494ec5b1e7915b"
+    },
+    "model-00001-of-00015.safetensors": {
+      "bytes": 4954686296,
+      "sha256": "834c2453087fdbce45b786e250d736727ec5f52d13721577d2bf3517b828ffcc"
+    },
+    "model-00002-of-00015.safetensors": {
+      "bytes": 4991407840,
+      "sha256": "3aa39357bfeb0a0601db504c6ee068f45c580df160f9da98ee9d0ec1815e9576"
+    },
+    "model-00003-of-00015.safetensors": {
+      "bytes": 4834167328,
+      "sha256": "724dfc23348ea55f35135c582ed4b59b57a021d1448cedb479884a3b3fe89ed5"
+    },
+    "model-00004-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "19752faebe38e21395701abacdaf0f9b06432be692efb60020b28752ef444d15"
+    },
+    "model-00005-of-00015.safetensors": {
+      "bytes": 4834167360,
+      "sha256": "8aa1816ca29458caf3269e5c3d1dd639736f945b4970368c6b7e7d27e52a143d"
+    },
+    "model-00006-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "e4ab51a947e938e0e92f2f0062ad652801e0b416a1f3bdb68874c880c3083bc6"
+    },
+    "model-00007-of-00015.safetensors": {
+      "bytes": 4834167360,
+      "sha256": "d68e5465e342cf2c45001685b0623af71f67a13e73fc8417e163ad78da96cdd0"
+    },
+    "model-00008-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "d6328108446b779b73867a033ba16421974f44d64c1d40d01eba98ac0786a06a"
+    },
+    "model-00009-of-00015.safetensors": {
+      "bytes": 4834167360,
+      "sha256": "7928067d17eb6e3b208317c1bb9c03ae8d0ddf233e846c284ed29896dcabe4d4"
+    },
+    "model-00010-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "2aab66b2b8ea7246faae1170444920f487ad45c7e1081a5dc97ec0b80ec2897c"
+    },
+    "model-00011-of-00015.safetensors": {
+      "bytes": 4834167360,
+      "sha256": "74340de3038f2469c7d7bcfa127f32baaa0f708a00698b6583d013f012feab07"
+    },
+    "model-00012-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "7ec20d327302f1a82685a660ee792f6319f861f8099882d3c53b59b5f18e487d"
+    },
+    "model-00013-of-00015.safetensors": {
+      "bytes": 4834167360,
+      "sha256": "b4efea0bf1a26fc0da3eb1fc4c963956fec43dc276270dfa8dd556477f758ce6"
+    },
+    "model-00014-of-00015.safetensors": {
+      "bytes": 4886550176,
+      "sha256": "a2b5aeb2cc06fb4b5f06fc7bd88144ceae69f1d754944575e2a0fe177cd9ae45"
+    },
+    "model-00015-of-00015.safetensors": {
+      "bytes": 4031898896,
+      "sha256": "e6b61535f8efaf570381bcb2d389cf660c1bce9f6b8976c3a92a251eac8d0285"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 63285,
+      "sha256": "a8a22e2d4f7e9dfe7e867f72d30cb16bdf1b0cc6e0bff4b80aae4b4b77cedea0"
+    },
+    "special_tokens_map.json": {
+      "bytes": 432,
+      "sha256": "2566e3f4a6db47cc6051b180e9f00314805857e16f2c6ac1d08fdbbb353d5f36"
+    },
+    "thinking_budget.png": {
+      "bytes": 190266,
+      "sha256": "3acc41ada52728454bd060fe5eddc8d3d0495cfdbdcb9eff41a0f49582442ab5"
+    },
+    "tokenizer.json": {
+      "bytes": 11883696,
+      "sha256": "f6bd848f52451824a3033a9f1e67eea5b399a13c90f845a332d3a29537e05827"
+    },
+    "tokenizer_config.json": {
+      "bytes": 23849,
+      "sha256": "97d6fdf939d37045baeaa69fbaeacb2b88733e35869840f913a372c8aa92ee87"
+    }
+  },
+  "bytes": 72314506146,
+  "no_new_download": true,
+  "scientific_protocol_unchanged": true
+}

@@ -1,0 +1,40 @@
+{
+ "version": "oc-generation-access-v2",
+ "model": "gemma4_12b",
+ "repo": "google/gemma-4-12B-it",
+ "revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+ "weights_path": "/data/qianru/over-comprehension-v2-20261001/weights/gemma4_12b",
+ "location": "auto",
+ "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+ "chat_template_source": "tokenizer",
+ "tokenizer": "auto",
+ "chat_template_kwargs": {
+  "enable_thinking": false
+ },
+ "engine": {
+  "vllm": "0.29.0",
+  "torch": "2.13.0+cu130",
+  "transformers": "5.17.0"
+ },
+ "protocol": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "seed": 20261001,
+  "max_output_tokens": 400,
+  "max_model_len": 8192,
+  "dtype": "bfloat16",
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "max_num_seqs": 256,
+  "gpu_memory_utilization": 0.85,
+  "tensor_parallel_size": 1,
+  "thinking": "disabled via chat template",
+  "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+ },
+ "prompts_file": "/data/qianru/over-comprehension-v2-20261001/code/items/access-v2/model-plans/discovery-gemma4_12b.jsonl",
+ "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+ "subset_sha256": null,
+ "n_prompts": 6336,
+ "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+ "chunk": 256
+}

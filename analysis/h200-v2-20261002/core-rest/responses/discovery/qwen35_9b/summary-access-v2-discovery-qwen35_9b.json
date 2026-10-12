@@ -1,0 +1,15 @@
+{
+ "model": "qwen35_9b",
+ "run_sha256": "c889bbecc46f336371ecf93c2f90283c0d717e940d14f6dc888f209f023a560d",
+ "records": 21664,
+ "planned": 21664,
+ "status": {
+  "complete": 21664
+ },
+ "responses_sha256": "ef8f77fef50e910389c50bdba27a6a572039bdbd3f7c2b2453992befef13e165",
+ "interrupted_chunks": 0,
+ "generation_seconds": 223.9,
+ "notes": {},
+ "run_id": "access-v2-discovery-qwen35_9b",
+ "finished": "2026-10-02T02:53:59+0200"
+}

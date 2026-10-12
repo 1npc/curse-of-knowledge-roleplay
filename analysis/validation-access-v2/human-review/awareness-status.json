@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-10-03T11:28:13.584494+00:00",
+  "label_type": "supplied_human_forms",
+  "task": "awareness",
+  "provenance": "Input provenance, recruitment, independence and competence must be verified by the research team; this tool does not certify identity.",
+  "metric_scope": "Original stratified task audit; inverse sampling weights for per-annotator metrics",
+  "adjudicated_gold_provided": false,
+  "annotators": {
+    "annotator_A": {
+      "source_sha256": "e7667b921f08fa9616b8aa6d59bf53c68491c5251f0086627e54401e9eac87fb",
+      "planned_rows": 192,
+      "populated_rows": 0,
+      "excluded": {
+        "blank_or_uncertain_rows": 192
+      },
+      "metrics": {}
+    },
+    "annotator_B": {
+      "source_sha256": "e7667b921f08fa9616b8aa6d59bf53c68491c5251f0086627e54401e9eac87fb",
+      "planned_rows": 192,
+      "populated_rows": 0,
+      "excluded": {
+        "blank_or_uncertain_rows": 192
+      },
+      "metrics": {}
+    }
+  },
+  "independent_agreement_by_field": {
+    "acknowledges_occurrence": {
+      "defined_pairs": 0,
+      "agreement": null,
+      "kappa": null
+    },
+    "claims_content_knowledge": {
+      "defined_pairs": 0,
+      "agreement": null,
+      "kappa": null
+    },
+    "uncertain": {
+      "defined_pairs": 0,
+      "agreement": null,
+      "kappa": null
+    }
+  },
+  "status": "pending_real_human_labels"
+}

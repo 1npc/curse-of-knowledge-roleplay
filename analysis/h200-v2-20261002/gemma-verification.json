@@ -1,0 +1,52 @@
+{
+  "verified_at_utc": "2026-10-02T00:05:09.895757+00:00",
+  "archive_sha256": "2ef193c6a508981f9f94e15f1041c481c923fe173ed681085b0ef587bf01ca54",
+  "all_archive_file_digests_match": true,
+  "model": "gemma4_31b",
+  "phases": {
+    "pilot": {
+      "actual_records": 1000,
+      "planned_records": 1000,
+      "scored_endpoints": 1000,
+      "status_counts": {
+        "complete": 1000
+      },
+      "physical_gpu_uuid": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00",
+      "no_missing_or_duplicate_ids": true,
+      "frozen_plan_sha256": "bf28da9df20be8340d6cb08af1f29957996367184a5f890f7d6b4167e90e8f02",
+      "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85",
+      "responses_sha256": "769671b8356bacdc3ebc29834e42a3851a6763c44a472c17b739883833d1ced3"
+    },
+    "discovery": {
+      "actual_records": 21664,
+      "planned_records": 21664,
+      "scored_endpoints": 19360,
+      "status_counts": {
+        "complete": 21664
+      },
+      "physical_gpu_uuid": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00",
+      "no_missing_or_duplicate_ids": true,
+      "frozen_plan_sha256": "02694c4709175918dec8d3ace124749527694df0892aca59e703fd88725d69d7",
+      "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85",
+      "responses_sha256": "0127f5d8e98d2e6afbf9a1ad9964d1f70ffe04a954edbe3d74796ee6375ef77b"
+    },
+    "confirmatory": {
+      "actual_records": 15552,
+      "planned_records": 15552,
+      "scored_endpoints": 15552,
+      "status_counts": {
+        "complete": 15552
+      },
+      "physical_gpu_uuid": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+      "no_missing_or_duplicate_ids": true,
+      "frozen_plan_sha256": "1fbed052dd6e6de51a0739bda0e4f070651a15b110691ca4b0183957c9c06f9a",
+      "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+      "responses_sha256": "2428a73c73d329944de1eaddd10d85bcdc08eeb78d8e98fea5108d4e4786ebf3"
+    }
+  },
+  "actual_human_annotations": 0,
+  "full_campaign_complete": false,
+  "scientific_inputs_unchanged": true,
+  "total_actual_records": 38216,
+  "total_scored_endpoints": 35912
+}

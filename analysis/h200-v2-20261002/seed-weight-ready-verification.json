@@ -1,0 +1,30 @@
+{
+  "verified_at_utc": "2026-10-03T01:12:11.868311+00:00",
+  "model": "seed_oss_36b",
+  "repo": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+  "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+  "whole_model_weights_ready": true,
+  "files": 27,
+  "weight_shards": 15,
+  "verified_bytes": 72314506146,
+  "all_file_sizes_match_frozen_reference": true,
+  "all_final_verifier_hashes_match_transport_receipt": true,
+  "all_frozen_official_hashes_match": true,
+  "transport_receipt_sha256_matches": true,
+  "downloaded_range_records_contiguous": true,
+  "downloaded_range_records": 718,
+  "reused_official_hash_verified_files": [
+    "model-00001-of-00015.safetensors",
+    "model-00002-of-00015.safetensors",
+    "model-00003-of-00015.safetensors",
+    "model-00004-of-00015.safetensors",
+    "model-00005-of-00015.safetensors"
+  ],
+  "content_range_validation": "Original fixed-SHA supplier requires HTTP 206 and exact offset/end/total before recording each range; no source change or relaxed check. Reused files require matching frozen whole-file SHA.",
+  "supplier_source_sha256": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4",
+  "receipt_file_sha256": "646ab014f655b7a303ea516f379160bae0a8c34025fb0843898f5808ba7f6a0d",
+  "attempts_used": 3,
+  "supplier_completed_normally": true,
+  "no_manual_restart_or_new_attempt": true,
+  "inference_complete": false
+}

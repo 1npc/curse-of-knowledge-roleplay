@@ -1,0 +1,32 @@
+{
+  "slurm_job_id": "27483028",
+  "slurm_job_gpus": "0",
+  "slurm_binding": "sole GPU visible inside the one-GPU Slurm allocation",
+  "physical_index": "0",
+  "physical_gpu_uuid": "GPU-cb59b7eb-abf4-d24c-d4fa-a8b81f869da5",
+  "name": "NVIDIA H100",
+  "memory_total_mib": 95830.0,
+  "memory_used_mib_before_load": 0.0,
+  "utilization_before_load": 0.0,
+  "no_compute_process_before_load": true,
+  "engine": {
+    "torch": "2.13.0+cu130",
+    "transformers": "5.17.0",
+    "vllm": "0.29.0"
+  },
+  "frozen_protocol": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": 20261001,
+    "max_output_tokens": 400,
+    "max_model_len": 8192,
+    "dtype": "bfloat16",
+    "enforce_eager": true,
+    "prefix_caching": false,
+    "max_num_seqs": 256,
+    "gpu_memory_utilization": 0.85,
+    "tensor_parallel_size": 1,
+    "thinking": "disabled via chat template",
+    "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+  }
+}

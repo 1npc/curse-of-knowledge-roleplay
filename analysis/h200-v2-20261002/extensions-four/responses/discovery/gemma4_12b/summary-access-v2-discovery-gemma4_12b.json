@@ -1,0 +1,15 @@
+{
+ "model": "gemma4_12b",
+ "run_sha256": "a02a1a3e4acaa35a4cf8a2785010edc9cf13d08ddcf1e176b7b01293be296065",
+ "records": 6336,
+ "planned": 6336,
+ "status": {
+  "complete": 6336
+ },
+ "responses_sha256": "496e2d21028d1ddc27b0a8b5444b367f75c8301319ce9931326611593b8f09a2",
+ "interrupted_chunks": 0,
+ "generation_seconds": 89.2,
+ "notes": {},
+ "run_id": "access-v2-discovery-gemma4_12b",
+ "finished": "2026-10-02T17:04:40+0200"
+}

@@ -1,0 +1,6651 @@
+{
+  "cells": [
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.109375,
+      "ci95": [
+        0.0625,
+        0.16145833333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6614583333333334,
+      "ci95": [
+        0.5989583333333334,
+        0.7239583333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6875,
+      "ci95": [
+        0.6197916666666666,
+        0.75
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6875,
+      "ci95": [
+        0.6197916666666666,
+        0.75
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.036458333333333336
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.07946026986506746,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.4322916666666667,
+      "ci95": [
+        0.3541666666666667,
+        0.515625
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9010416666666666,
+      "ci95": [
+        0.84375,
+        0.953125
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9166666666666666,
+      "ci95": [
+        0.8541666666666666,
+        0.96875
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9166666666666666,
+      "ci95": [
+        0.8541666666666666,
+        0.96875
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.1875,
+      "ci95": [
+        0.13541666666666666,
+        0.25
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.140625,
+      "ci95": [
+        0.08854166666666667,
+        0.19270833333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.953125,
+      "ci95": [
+        0.921875,
+        0.9791666666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.96875,
+      "ci95": [
+        0.9427083333333334,
+        0.9895833333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9010416666666666,
+      "ci95": [
+        0.859375,
+        0.9375
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 0.9739583333333334,
+      "ci95": [
+        0.9479166666666666,
+        0.9947916666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.96875,
+      "ci95": [
+        0.9427083333333334,
+        0.9895833333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9010416666666666,
+      "ci95": [
+        0.859375,
+        0.9375
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9114583333333334,
+      "ci95": [
+        0.8697916666666666,
+        0.9479166666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9479166666666666,
+      "ci95": [
+        0.9165364583333333,
+        0.9791666666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9479166666666666,
+      "ci95": [
+        0.9165364583333333,
+        0.9791666666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "confirmatory",
+      "boundary": "Understand",
+      "representation": "none",
+      "method": "probe",
+      "Q": "translate",
+      "delay": 0,
+      "accessible": true,
+      "metric": "U2",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.7916666666666666,
+      "ci95": [
+        0.625,
+        0.9166666666666666
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9375,
+      "ci95": [
+        0.8333333333333334,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.9375,
+      "ci95": [
+        0.875,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.875,
+      "ci95": [
+        0.7708333333333334,
+        0.9583333333333334
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.953125,
+      "ci95": [
+        0.9114583333333334,
+        0.984375
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.421875,
+      "ci95": [
+        0.328125,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.08854166666666667,
+      "ci95": [
+        0.046875,
+        0.140625
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0009995002498750624,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8177083333333334,
+      "ci95": [
+        0.7604166666666666,
+        0.875
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.046875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.25837081459270367,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.984375,
+      "ci95": [
+        0.953125,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.046875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.25837081459270367,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.96875,
+      "ci95": [
+        0.921875,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9375,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8854166666666666,
+      "ci95": [
+        0.7916666666666666,
+        0.9583333333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8125,
+      "ci95": [
+        0.71875,
+        0.8958333333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.875,
+      "ci95": [
+        0.7916666666666666,
+        0.9479166666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9375,
+      "ci95": [
+        0.8541666666666666,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9479166666666666,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9375,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8854166666666666,
+      "ci95": [
+        0.7916666666666666,
+        0.9583333333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.3125,
+      "ci95": [
+        0.15625,
+        0.46875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0009995002498750624,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8455882352941176,
+      "ci95": [
+        0.7720588235294118,
+        0.9117647058823529
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.953125,
+      "ci95": [
+        0.875,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.984375,
+      "ci95": [
+        0.953125,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.08333333333333333,
+      "ci95": [
+        0.020833333333333332,
+        0.16666666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.031484257871064465,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9344262295081968,
+      "ci95": [
+        0.8688524590163934,
+        0.9836065573770492
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Hear",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9098360655737705,
+      "ci95": [
+        0.8524590163934426,
+        0.9590163934426229
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.16666666666666666,
+      "ci95": [
+        0.041666666666666664,
+        0.3125
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.02148925537231384,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9166666666666666,
+      "ci95": [
+        0.8125,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.25,
+      "ci95": [
+        0.08333333333333333,
+        0.4166666666666667
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.010994502748625687,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.71875,
+      "ci95": [
+        0.59375,
+        0.8229166666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9375,
+      "ci95": [
+        0.890625,
+        0.974088541666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.453125,
+        0.546875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0625,
+      "ci95": [
+        0.026041666666666668,
+        0.10416666666666667
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.004497751124437781,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9947916666666666,
+      "ci95": [
+        0.984375,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.0,
+        0.078125
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.1294352823588206,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.96875,
+      "ci95": [
+        0.921875,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.046875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.25837081459270367,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.984375,
+      "ci95": [
+        0.953125,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8333333333333334,
+      "ci95": [
+        0.71875,
+        0.9270833333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.90625,
+      "ci95": [
+        0.8125,
+        0.9791666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9166666666666666,
+      "ci95": [
+        0.84375,
+        0.9791666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.75,
+      "ci95": [
+        0.625,
+        0.8645833333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.7291666666666666,
+      "ci95": [
+        0.6041666666666666,
+        0.84375
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8333333333333334,
+      "ci95": [
+        0.71875,
+        0.9270833333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.375,
+      "ci95": [
+        0.21875,
+        0.5625
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9852941176470589,
+      "ci95": [
+        0.9632352941176471,
+        1.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.921875,
+      "ci95": [
+        0.828125,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9375,
+      "ci95": [
+        0.84375,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9918032786885246,
+      "ci95": [
+        0.9754098360655737,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Receive",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.4583333333333333,
+      "ci95": [
+        0.2916666666666667,
+        0.6458333333333334
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.75,
+      "ci95": [
+        0.5833333333333334,
+        0.8958333333333334
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.5625,
+      "ci95": [
+        0.3958333333333333,
+        0.7291666666666666
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6875,
+      "ci95": [
+        0.5208333333333334,
+        0.8333333333333334
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.6875,
+      "ci95": [
+        0.5625,
+        0.8020833333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.036458333333333336
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.079960019990005,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6979166666666666,
+      "ci95": [
+        0.609375,
+        0.7864583333333334
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.53125,
+      "ci95": [
+        0.4375,
+        0.625
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.515625,
+      "ci95": [
+        0.5,
+        0.546875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        0.020833333333333332,
+        0.08346354166666595
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0034982508745627187,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.640625,
+      "ci95": [
+        0.5625,
+        0.7135416666666666
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.0,
+        0.078125
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.1294352823588206,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.671875,
+      "ci95": [
+        0.53125,
+        0.8125
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.046875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.25837081459270367,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6875,
+      "ci95": [
+        0.546875,
+        0.828125
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6770833333333334,
+      "ci95": [
+        0.5416666666666666,
+        0.7916666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.5729166666666666,
+      "ci95": [
+        0.4583333333333333,
+        0.6875
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 0.9583333333333334,
+      "ci95": [
+        0.9270833333333334,
+        0.984375
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.8333333333333334,
+      "ci95": [
+        0.7291666666666666,
+        0.9375
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9270833333333334,
+      "ci95": [
+        0.84375,
+        0.9895833333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.90625,
+      "ci95": [
+        0.8125,
+        0.9791666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8645833333333334,
+      "ci95": [
+        0.7708333333333334,
+        0.9375
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6770833333333334,
+      "ci95": [
+        0.5416666666666666,
+        0.7916666666666666
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.34375,
+      "ci95": [
+        0.1875,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.53125,
+      "ci95": [
+        0.46875,
+        0.59375
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.6323529411764706,
+      "ci95": [
+        0.5367647058823529,
+        0.7279411764705882
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.71875,
+      "ci95": [
+        0.578125,
+        0.859375
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.71875,
+      "ci95": [
+        0.578125,
+        0.8441406249999979
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9918032786885246,
+      "ci95": [
+        0.9754098360655737,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "See",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R1",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9166666666666666,
+      "ci95": [
+        0.8125,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.041666666666666664,
+      "ci95": [
+        0.0,
+        0.10416666666666667
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.1409295352323838,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R1",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 24,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 48,
+      "complete": 48
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9479166666666666,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.421875,
+        0.578125
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.010416666666666666,
+      "ci95": [
+        0.0,
+        0.026041666666666668
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.1344327836081959,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9895833333333334,
+      "ci95": [
+        0.96875,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.015625,
+      "ci95": [
+        0.0,
+        0.046875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.2613693153423288,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "full",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.875,
+      "ci95": [
+        0.78125,
+        0.9583333333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "hard",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9479166666666666,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": false,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "probe",
+      "Q": "state",
+      "delay": 0,
+      "accessible": true,
+      "metric": "state_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 0.9479166666666666,
+      "ci95": [
+        0.875,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 0.8125,
+      "ci95": [
+        0.7080729166666667,
+        0.90625
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8229166666666666,
+      "ci95": [
+        0.72890625,
+        0.90625
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "self_filter",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.8229166666666666,
+      "ci95": [
+        0.72890625,
+        0.90625
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.875,
+      "ci95": [
+        0.78125,
+        0.9583333333333334
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": false,
+      "metric": "choose_A",
+      "estimate": 0.4375,
+      "ci95": [
+        0.28125,
+        0.59375
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "decision",
+      "delay": 0,
+      "accessible": true,
+      "metric": "choose_A",
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9779411764705882,
+      "ci95": [
+        0.9558823529411765,
+        1.0
+      ],
+      "n_skeletons": 68,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 136,
+      "complete": 136
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 2,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.875,
+      "ci95": [
+        0.75,
+        0.96875
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R2",
+      "method": "view",
+      "Q": "plan",
+      "delay": 4,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.890625,
+      "ci95": [
+        0.765625,
+        0.984375
+      ],
+      "n_skeletons": 32,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 64,
+      "complete": 64
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": false,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "awareness",
+      "delay": 0,
+      "accessible": true,
+      "metric": "awareness_correct",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 48,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 96,
+      "complete": 96
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "content",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 0.9672131147540983,
+      "ci95": [
+        0.9180327868852459,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": false,
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 1.0,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "R3",
+      "method": "full",
+      "Q": "plan",
+      "delay": 0,
+      "accessible": true,
+      "metric": "D",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 61,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 122,
+      "complete": 122
+    },
+    {
+      "model": "gemma4_31b",
+      "set": "discovery",
+      "boundary": "Understand",
+      "representation": "none",
+      "method": "probe",
+      "Q": "translate",
+      "delay": 0,
+      "accessible": true,
+      "metric": "U2",
+      "estimate": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "n_skeletons": 96,
+      "p_one_sided": 0.0004997501249375312,
+      "null": 0.0,
+      "planned": 192,
+      "complete": 192
+    }
+  ],
+  "exploratory_paired_contrasts": [
+    {
+      "contrast": "E1 accessible-minus-inaccessible Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.8411458333333334,
+      "ci95": [
+        0.796875,
+        0.8828125
+      ],
+      "n_skeletons": 96
+    },
+    {
+      "contrast": "E2 R1-minus-R2 Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.8229166666666666,
+      "ci95": [
+        0.7291666666666666,
+        0.90625
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.041666666666666664,
+      "ci95": [
+        -0.09375,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E3 forbidden leak reduction prose Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.005208333333333333,
+        0.0625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta prose Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.041666666666666664,
+      "ci95": [
+        -0.010416666666666666,
+        0.08854166666666667
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction self_filter Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.005208333333333333,
+        0.0625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta self_filter Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.08333333333333333,
+      "ci95": [
+        0.0,
+        0.16145833333333334
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction hard Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.005208333333333333,
+        0.0625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta hard Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.026041666666666668,
+      "ci95": [
+        -0.078125,
+        0.020833333333333332
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction view Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.005208333333333333,
+        0.0625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta view Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.026041666666666668,
+      "ci95": [
+        -0.078125,
+        0.020833333333333332
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 full Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.078125,
+      "ci95": [
+        -0.15625,
+        -0.015625
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 full Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.078125,
+      "ci95": [
+        -0.15625,
+        -0.015625
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B full Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.46875,
+      "ci95": [
+        0.21875,
+        0.6875
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 view Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 view Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B view Hear",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E1 accessible-minus-inaccessible Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.9791666666666666,
+      "ci95": [
+        0.9583333333333334,
+        0.9947916666666666
+      ],
+      "n_skeletons": 96
+    },
+    {
+      "contrast": "E2 R1-minus-R2 Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.010416666666666666,
+      "ci95": [
+        -0.020833333333333332,
+        0.041666666666666664
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E3 forbidden leak reduction prose Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        0.0,
+        0.015625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta prose Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction self_filter Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        0.0,
+        0.015625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta self_filter Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.16666666666666666,
+      "ci95": [
+        -0.2604166666666667,
+        -0.08333333333333333
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction hard Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        0.0,
+        0.015625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta hard Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.0625,
+      "ci95": [
+        -0.11458333333333333,
+        -0.020833333333333332
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction view Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        0.0,
+        0.015625
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta view Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.0625,
+      "ci95": [
+        -0.11458333333333333,
+        -0.020833333333333332
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 full Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.015625,
+      "ci95": [
+        -0.046875,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 full Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        -0.046875,
+        0.046875
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B full Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.6875,
+      "ci95": [
+        0.5,
+        0.875
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 view Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 view Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B view Understand",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E1 accessible-minus-inaccessible See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.6354166666666666,
+      "ci95": [
+        0.5598958333333334,
+        0.7083333333333334
+      ],
+      "n_skeletons": 96
+    },
+    {
+      "contrast": "E2 R1-minus-R2 See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.46875,
+      "ci95": [
+        0.3229166666666667,
+        0.6145833333333334
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.041666666666666664,
+      "ci95": [
+        -0.10416666666666667,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E3 forbidden leak reduction prose See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        0.020833333333333332,
+        0.09375
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta prose See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.3802083333333333,
+      "ci95": [
+        0.2708333333333333,
+        0.4897135416666659
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction self_filter See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        0.020833333333333332,
+        0.09375
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta self_filter See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.265625,
+      "ci95": [
+        0.17708333333333334,
+        0.3645833333333333
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction hard See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        0.020833333333333332,
+        0.09375
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta hard See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        -0.06770833333333333,
+        0.08333333333333333
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction view See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.052083333333333336,
+      "ci95": [
+        0.020833333333333332,
+        0.09375
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta view See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.005208333333333333,
+      "ci95": [
+        -0.06770833333333333,
+        0.08333333333333333
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 full See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.015625,
+      "ci95": [
+        -0.046875,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 full See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.03125,
+      "ci95": [
+        -0.078125,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B full See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.75,
+      "ci95": [
+        0.59375,
+        0.90625
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 view See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 view See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B view See",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E1 accessible-minus-inaccessible Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.9348958333333334,
+      "ci95": [
+        0.9036458333333334,
+        0.9609375
+      ],
+      "n_skeletons": 96
+    },
+    {
+      "contrast": "E2 R1-minus-R2 Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.19791666666666666,
+      "ci95": [
+        0.0625,
+        0.3541666666666667
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E2 R3-minus-R2 Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.010416666666666666,
+      "ci95": [
+        -0.03125,
+        0.0
+      ],
+      "n_skeletons": 24
+    },
+    {
+      "contrast": "E3 forbidden leak reduction prose Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.01028645833333334,
+        0.057291666666666664
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta prose Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": 0.046875,
+      "ci95": [
+        0.015625,
+        0.08854166666666667
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction self_filter Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.01028645833333334,
+        0.057291666666666664
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta self_filter Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.20833333333333334,
+      "ci95": [
+        -0.3126302083333333,
+        -0.11458333333333333
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction hard Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.01028645833333334,
+        0.057291666666666664
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta hard Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.036458333333333336,
+      "ci95": [
+        -0.06770833333333333,
+        -0.010416666666666666
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 forbidden leak reduction view Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.03125,
+      "ci95": [
+        0.01028645833333334,
+        0.057291666666666664
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E3 accessible use delta view Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "hit_t",
+      "estimate": -0.036458333333333336,
+      "ci95": [
+        -0.06770833333333333,
+        -0.010416666666666666
+      ],
+      "n_skeletons": 48
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 full Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.046875,
+      "ci95": [
+        -0.125,
+        0.015625
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 full Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": -0.0625,
+      "ci95": [
+        -0.125,
+        -0.015625
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B full Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.375,
+      "ci95": [
+        0.0625,
+        0.6875
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay2-minus-delay0 view Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E5 delay4-minus-delay0 view Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "D",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    },
+    {
+      "contrast": "E6 fixed-A choice A-minus-B view Receive",
+      "models": [
+        "gemma4_31b"
+      ],
+      "metric": "choose_A",
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_skeletons": 32
+    }
+  ],
+  "cell_caution": "Descriptive cells cover their planned union. Scientific contrasts use the frozen paired E2/E3/E5/E6 skeleton subsets, never compare unmatched union cells.",
+  "source_sha256": {
+    "analysis/h200-v2-20261002/gemma4_31b/scores/discovery/gemma4_31b.jsonl": "24cc3cb508cb4e727691bee6c3762e27073a100ce781076e3f96258fe9d3da4d",
+    "analysis/h200-v2-20261002/gemma4_31b/scores/confirmatory/gemma4_31b.jsonl": "2e942ed096db80fc84733a533d4579bcae4d76ceec826daf2c05a3329d52d690"
+  },
+  "annotation_status": "AI proxy only; real human assessment pending",
+  "confirmatory": null
+}

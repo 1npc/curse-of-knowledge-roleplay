@@ -1,0 +1,46 @@
+{
+  "python": "3.12.3 (main, Jan  8 2026, 11:30:50) [GCC 13.3.0]",
+  "executable": "/usr/bin/python3",
+  "packages": {
+    "torch": null,
+    "transformers": null,
+    "vllm": null,
+    "accelerate": null,
+    "safetensors": null
+  },
+  "directories": {
+    "/home/qianru": [
+      ".cache"
+    ],
+    "/mnt": [
+      "scratch5",
+      "scratch1",
+      "efs-amsmt",
+      "scratch2",
+      "bakup_disk",
+      "mergedHD",
+      "scratch3",
+      "scratch4"
+    ]
+  },
+  "mounts": [
+    {
+      "path": "/home/qianru",
+      "free_gib": 432.13
+    },
+    {
+      "path": "/mnt",
+      "free_gib": 6.85
+    }
+  ],
+  "gpus": [
+    "0, GPU-7dc67bae-d704-bc61-12c4-2bd7a28e6e93, 1550, 0",
+    "1, GPU-6b1a6268-223d-be5d-0ef2-10e6ebcf7a3b, 1, 0",
+    "2, GPU-c3e4c5ba-40bc-7eff-0ffa-cfa771313e0e, 1, 0",
+    "3, GPU-4bad87bb-60ca-ace2-4aba-e343925f1e40, 1, 0",
+    "4, GPU-a166d3fd-1e69-655f-b133-8d80b9188a6b, 1, 0",
+    "5, GPU-f8a76cdb-edf1-9b1b-b07b-6089f396effa, 1, 0",
+    "6, GPU-e82c3336-6c8d-e4a1-3eed-69e8b87c3d8f, 1, 0",
+    "7, GPU-33fdf1a6-7816-7ab2-dca6-dd34cf5970eb, 1, 0"
+  ]
+}

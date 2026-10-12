@@ -1,0 +1,17 @@
+{
+  "reserved_unix": 1791021598.9756474,
+  "model": "seed_oss_36b",
+  "previous_queue_record": {
+    "status": "pending"
+  },
+  "previous_queue_sha256": "18e181e56e4695734513a992511c45ff1a6f9c482f818353c570d19955fee37b",
+  "destination": "qmeng1@snellius.surf.nl",
+  "remote_root": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/access-v2-seed-20261003",
+  "verification_job_id": "27482595",
+  "generation_job_id": "27482596",
+  "reason": "User requested Snellius for the final experiment; prevent the existing H200 workers from claiming the same Seed plan.",
+  "no_h200_generation_attempt": true,
+  "other_model_records_unchanged": true,
+  "h200_workers_not_stopped": true,
+  "reserved_queue_sha256": "ea8acd9bba6c0c31dc2c13ab6ff2530b6fe0b2fccb67f4574f50e2d9c535a469"
+}

@@ -1,0 +1,371 @@
+{
+  "status": "secondary/descriptive; implementation completed after main inspection",
+  "DI_definition": "[logit A(D1)-logit A(U)] - [logit target(D1)-logit target(U)], Q-content, capability-conditioned",
+  "estimates": {
+    "sensitivity_SU": {
+      "point": 0.7570211472152907,
+      "ci95": [
+        0.7402591825768423,
+        0.7739094948141622
+      ],
+      "lower95": 0.7434122169310053,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "english_ceiling": {
+      "point": 0.8452493686868686,
+      "ci95": [
+        0.8282039141414141,
+        0.8607185132575758
+      ],
+      "lower95": 0.8308080808080809,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "DSI": {
+      "point": 0.09005889706352825,
+      "ci95": [
+        0.0808083622676868,
+        0.0988944824495096
+      ],
+      "lower95": 0.08224137250977825,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "leakage_ratio_OC_SU": {
+      "point": 0.8899106069521362,
+      "ci95": [
+        0.8789006556644248,
+        0.9019494597762737
+      ],
+      "lower95": 0.8805656734254694,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "channel_ignoring_N_deny": {
+      "point": 0.018744449450828055,
+      "ci95": [
+        0.015309990967146957,
+        0.022330742687102608
+      ],
+      "lower95": 0.015922374190502315,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "SU_minus_translator": {
+      "point": -0.028929900410292943,
+      "ci95": [
+        -0.03630574840210883,
+        -0.021410463865694913
+      ],
+      "lower95": -0.035015084782273914,
+      "p_one": 1.0,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "deny_use_original_proposal_Q_content_plan_nonrefusal": {
+      "point": 0.050001360564789654,
+      "ci95": [
+        0.04225828893770297,
+        0.057684005745975354
+      ],
+      "lower95": 0.04332160814056164,
+      "p_one": 0.495752123938031,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "no_admission_share_D1_minus_U": {
+      "point": 0.00323449443970282,
+      "ci95": [
+        0.00165875563277622,
+        0.00500976175096734
+      ],
+      "lower95": 0.0018612194839636954,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    },
+    "H1_exclude_channel_claims": {
+      "point": 0.6669869980062867,
+      "ci95": [
+        0.6485746489992281,
+        0.6850930023596643
+      ],
+      "lower95": 0.6517890628520335,
+      "p_one": 0.0004997501249375312,
+      "p_two": 0.0009995002498750624,
+      "valid_draws": 2000
+    }
+  },
+  "DI": [
+    {
+      "model": "qwen38_27b",
+      "components": {
+        "U_admission": 0.0,
+        "U_target": 0.6391391391391391,
+        "D1_admission": 0.0,
+        "D1_target": 0.19125792459125793
+      },
+      "absolute_DID": {
+        "point": 0.4478812145478812,
+        "ci95": [
+          0.3658913234253602,
+          0.5263692748259061
+        ],
+        "lower95": 0.3794602303433703,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "qwen35_9b",
+      "components": {
+        "U_admission": 0.016051177667926724,
+        "U_target": 0.8907047664310185,
+        "D1_admission": 0.0,
+        "D1_target": 0.8007409213939619
+      },
+      "absolute_DID": {
+        "point": 0.07391266736912984,
+        "ci95": [
+          0.028312790861892933,
+          0.12165143973424512
+        ],
+        "lower95": 0.034707888586232145,
+        "p_one": 0.0014992503748125937,
+        "p_two": 0.0029985007496251873,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "gemma4_31b",
+      "components": {
+        "U_admission": 0.0034904013961605585,
+        "U_target": 0.5614658787433656,
+        "D1_admission": 0.0,
+        "D1_target": 0.007112472732018979
+      },
+      "absolute_DID": {
+        "point": 0.5508630046151861,
+        "ci95": [
+          0.48302213214276063,
+          0.6240968000802242
+        ],
+        "lower95": 0.4920911685091539,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "gemma4_12b",
+      "components": {
+        "U_admission": 0.001763668430335097,
+        "U_target": 0.9105868604370279,
+        "D1_admission": 0.0,
+        "D1_target": 0.12243692157318105
+      },
+      "absolute_DID": {
+        "point": 0.7863862704335116,
+        "ci95": [
+          0.7393243826651432,
+          0.8343072687949108
+        ],
+        "lower95": 0.7457673542243141,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "glm47_flash",
+      "components": {
+        "U_admission": 0.014592732314819555,
+        "U_target": 0.6953381270600095,
+        "D1_admission": 0.0,
+        "D1_target": 0.2956847380886437
+      },
+      "absolute_DID": {
+        "point": 0.38506065665654626,
+        "ci95": [
+          0.32252798747280625,
+          0.4481351436732761
+        ],
+        "lower95": 0.33250218367451956,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "mistral_small3",
+      "components": {
+        "U_admission": 0.0018315018315018317,
+        "U_target": 0.9891814204314203,
+        "D1_admission": 0.0,
+        "D1_target": 0.2995624745624746
+      },
+      "absolute_DID": {
+        "point": 0.6877874440374439,
+        "ci95": [
+          0.6074271748398841,
+          0.7617201833052305
+        ],
+        "lower95": 0.6223053083670004,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "gpt_oss_20b",
+      "components": {
+        "U_admission": 0.0,
+        "U_target": 0.9749573082624933,
+        "D1_admission": 0.0,
+        "D1_target": 0.25232224286438104
+      },
+      "absolute_DID": {
+        "point": 0.7226350653981122,
+        "ci95": [
+          0.6704978358726275,
+          0.771590701385524
+        ],
+        "lower95": 0.6806410883905245,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "phi4",
+      "components": {
+        "U_admission": 0.0017452006980802793,
+        "U_target": 0.9710849807837191,
+        "D1_admission": 0.0,
+        "D1_target": 0.8826577871544247
+      },
+      "absolute_DID": {
+        "point": 0.08668199293121413,
+        "ci95": [
+          0.050039809101097295,
+          0.12565979974357966
+        ],
+        "lower95": 0.05621110832493449,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "seed_oss_36b",
+      "components": {
+        "U_admission": 0.009374908705372598,
+        "U_target": 0.9573461724346468,
+        "D1_admission": 0.0,
+        "D1_target": 0.31104554000297663
+      },
+      "absolute_DID": {
+        "point": 0.6369257237262976,
+        "ci95": [
+          0.5719294980313698,
+          0.7069830634840224
+        ],
+        "lower95": 0.5792597572039406,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "components": {
+        "U_admission": 0.0036836910176959634,
+        "U_target": 0.7771612009337785,
+        "D1_admission": 0.0,
+        "D1_target": 0.3097417702867927
+      },
+      "absolute_DID": {
+        "point": 0.4637357396292899,
+        "ci95": [
+          0.39839139525699946,
+          0.5249420233575106
+        ],
+        "lower95": 0.41055833672190156,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "falcon_h1_34b",
+      "components": {
+        "U_admission": 0.0,
+        "U_target": 0.958660090296246,
+        "D1_admission": 0.0,
+        "D1_target": 0.32380996557197933
+      },
+      "absolute_DID": {
+        "point": 0.6348501247242666,
+        "ci95": [
+          0.5542768091147391,
+          0.7067359310882118
+        ],
+        "lower95": 0.5698496062038217,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    },
+    {
+      "model": "POOLED",
+      "components": {
+        "U_admission": 0.0047757529147175095,
+        "U_target": 0.8477841768138968,
+        "D1_admission": 0.0,
+        "D1_target": 0.3451247962565538
+      },
+      "absolute_DID": {
+        "point": 0.49788362764262556,
+        "ci95": [
+          0.4719884789486412,
+          0.5230046694902413
+        ],
+        "lower95": 0.47667287369743955,
+        "p_one": 0.0004997501249375312,
+        "p_two": 0.0009995002498750624,
+        "valid_draws": 2000
+      },
+      "logit_DI": null,
+      "reason": "At least one rate < .05 or at 1; logit index suppressed, not imputed."
+    }
+  ]
+}

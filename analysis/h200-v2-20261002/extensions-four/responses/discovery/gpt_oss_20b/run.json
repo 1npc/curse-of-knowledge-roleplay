@@ -1,0 +1,40 @@
+{
+ "version": "oc-generation-access-v2",
+ "model": "gpt_oss_20b",
+ "repo": "openai/gpt-oss-20b",
+ "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+ "weights_path": "/data/qianru/over-comprehension-v2-20261001/weights/gpt_oss_20b",
+ "location": "auto",
+ "chat_template_sha256": "a4c9919cbbd4acdd51ccffe22da049264b1b73e59055fa58811a99efbd7c8146",
+ "chat_template_source": "tokenizer",
+ "tokenizer": "auto",
+ "chat_template_kwargs": {
+  "reasoning_effort": "low"
+ },
+ "engine": {
+  "vllm": "0.29.0",
+  "torch": "2.13.0+cu130",
+  "transformers": "5.17.0"
+ },
+ "protocol": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "seed": 20261001,
+  "max_output_tokens": 400,
+  "max_model_len": 8192,
+  "dtype": "bfloat16",
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "max_num_seqs": 256,
+  "gpu_memory_utilization": 0.85,
+  "tensor_parallel_size": 1,
+  "thinking": "disabled via chat template",
+  "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+ },
+ "prompts_file": "/data/qianru/over-comprehension-v2-20261001/code/items/access-v2/model-plans/discovery-gpt_oss_20b.jsonl",
+ "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+ "subset_sha256": null,
+ "n_prompts": 6336,
+ "runner_sha256": "08e64d7a0c6c4144c750719ee2fd71a2f2c7288d3a81adc9085f7eb118395663",
+ "chunk": 256
+}

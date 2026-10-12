@@ -1,0 +1,734 @@
+{
+  "captured_utc": "2026-10-03T07:34:57Z",
+  "models": {
+    "gemma4_31b": {
+      "status": "finished",
+      "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+      "gpu": "0",
+      "pid": 2645610,
+      "started_unix": 1790897112.4063258,
+      "original_controller_pid": 2607363,
+      "worker_slot": "2",
+      "phase": "confirmatory",
+      "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+      "finished_unix": 1790898558.5143178,
+      "continuation": "hardware authorization only; original discovery child retained"
+    },
+    "qwen35_9b": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790902058.4796898,
+      "worker_slot": "1",
+      "finished_unix": 1790902688.4951015
+    },
+    "glm47_flash": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790911151.6721182,
+      "worker_slot": "1",
+      "finished_unix": 1790911880.192537
+    },
+    "nemotron3_nano30b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790919805.1054497,
+      "worker_slot": "1",
+      "finished_unix": 1790920294.3011513
+    },
+    "qwen38_27b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790927109.6520672,
+      "worker_slot": "1",
+      "finished_unix": 1790927731.6002357
+    },
+    "gpt_oss_20b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790929175.8246174,
+      "worker_slot": "1",
+      "finished_unix": 1790929355.2681925
+    },
+    "phi4": {
+      "status": "finished",
+      "gpu": "2",
+      "pid": 2645609,
+      "started_unix": 1790934488.37321,
+      "worker_slot": "1",
+      "finished_unix": 1790934593.393086
+    },
+    "gemma4_12b": {
+      "status": "finished",
+      "gpu": "4",
+      "pid": 2645610,
+      "started_unix": 1790953290.5606928,
+      "worker_slot": "2",
+      "finished_unix": 1790953490.0286725
+    },
+    "falcon_h1_34b": {
+      "status": "finished",
+      "gpu": "5",
+      "pid": 2645609,
+      "started_unix": 1790961140.7786353,
+      "worker_slot": "1",
+      "finished_unix": 1790962061.2272954
+    },
+    "mistral_small3": {
+      "status": "finished",
+      "gpu": "5",
+      "pid": 4078039,
+      "started_unix": 1790976994.262681,
+      "worker_slot": "1",
+      "finished_unix": 1790977177.8996892
+    },
+    "seed_oss_36b": {
+      "status": "pending"
+    }
+  },
+  "actual_records_in_completed_phases": 213752,
+  "processes": {
+    "finalizer": {
+      "pid": 2567062,
+      "alive": true,
+      "command": "python3 /data/qianru/over-comprehension-v2-20261001/code/harness/h200_finalize_v2.py --root /data/qianru/over-comprehension-v2-20261001 "
+    },
+    "worker_1": {
+      "pid": 218775,
+      "alive": true,
+      "command": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py --root /data/qianru/over-comprehension-v2-20261001 --slot 1 ",
+      "matches_launch_command": true
+    },
+    "worker_2": {
+      "pid": 218776,
+      "alive": true,
+      "command": "python3 -u /data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py --root /data/qianru/over-comprehension-v2-20261001 --slot 2 ",
+      "matches_launch_command": true
+    },
+    "weight_supplier": {
+      "pid": 3823525,
+      "alive": false,
+      "command": ""
+    }
+  },
+  "gpu_policy": {
+    "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+    "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+    "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+    "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+    "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+    "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+    "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+    "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+  },
+  "worker_launch": {
+    "started_unix": 1790980233.729052,
+    "restriction": {
+      "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+      "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+      "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+      "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+      "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+      "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+      "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+      "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+    },
+    "policy": "any_verified_idle",
+    "amendment_path": "docs/access-v2/available-gpu-amendment.json",
+    "supersedes_launch_sha256": "98a758b56e2dde279aff3feb872f633f3a3695525432e3a860d7b3f916c05644",
+    "retired_idle_controllers": [
+      {
+        "slot": 1,
+        "pid": 4078039,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      {
+        "slot": 2,
+        "pid": 4078040,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2"
+        ]
+      }
+    ],
+    "workers": {
+      "1": {
+        "pid": 218775,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      "2": {
+        "pid": 218776,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2"
+        ]
+      }
+    },
+    "queue_models_at_transition": {
+      "gemma4_31b": {
+        "status": "finished",
+        "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+        "gpu": "0",
+        "pid": 2645610,
+        "started_unix": 1790897112.4063258,
+        "original_controller_pid": 2607363,
+        "worker_slot": "2",
+        "phase": "confirmatory",
+        "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+        "finished_unix": 1790898558.5143178,
+        "continuation": "hardware authorization only; original discovery child retained"
+      },
+      "qwen35_9b": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790902058.4796898,
+        "worker_slot": "1",
+        "finished_unix": 1790902688.4951015
+      },
+      "glm47_flash": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790911151.6721182,
+        "worker_slot": "1",
+        "finished_unix": 1790911880.192537
+      },
+      "nemotron3_nano30b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790919805.1054497,
+        "worker_slot": "1",
+        "finished_unix": 1790920294.3011513
+      },
+      "qwen38_27b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790927109.6520672,
+        "worker_slot": "1",
+        "finished_unix": 1790927731.6002357
+      },
+      "gpt_oss_20b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790929175.8246174,
+        "worker_slot": "1",
+        "finished_unix": 1790929355.2681925
+      },
+      "phi4": {
+        "status": "finished",
+        "gpu": "2",
+        "pid": 2645609,
+        "started_unix": 1790934488.37321,
+        "worker_slot": "1",
+        "finished_unix": 1790934593.393086
+      },
+      "gemma4_12b": {
+        "status": "finished",
+        "gpu": "4",
+        "pid": 2645610,
+        "started_unix": 1790953290.5606928,
+        "worker_slot": "2",
+        "finished_unix": 1790953490.0286725
+      },
+      "falcon_h1_34b": {
+        "status": "finished",
+        "gpu": "5",
+        "pid": 2645609,
+        "started_unix": 1790961140.7786353,
+        "worker_slot": "1",
+        "finished_unix": 1790962061.2272954
+      },
+      "mistral_small3": {
+        "status": "finished",
+        "gpu": "5",
+        "pid": 4078039,
+        "started_unix": 1790976994.262681,
+        "worker_slot": "1",
+        "finished_unix": 1790977177.8996892
+      },
+      "seed_oss_36b": {
+        "status": "pending"
+      }
+    },
+    "queue_unchanged_at_transition": true,
+    "weight_supplier_unchanged": true,
+    "amendment_sha256": "4cc7b39df405edd60abf10cc44fffec68bcd4da730d881c7505e9d927dc97ba9"
+  },
+  "worker_launch_path": "/data/qianru/over-comprehension-v2-20261001/operations/available-gpu-worker-launch.json",
+  "pending_weight_transport": {},
+  "weights_verified": {
+    "gemma4_31b": {
+      "ok": true,
+      "revision": "842da3794eaa0b77d5f08bae87a17459d91ff475",
+      "matches_pinned_revision": true,
+      "path_exists": true
+    },
+    "qwen35_9b": {
+      "ok": true,
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "glm47_flash": {
+      "ok": true,
+      "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "nemotron3_nano30b": {
+      "ok": true,
+      "revision": "bf77c3174f68ad409e1c2aa60daeb46e32d1c606",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "qwen38_27b": {
+      "ok": true,
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "gpt_oss_20b": {
+      "ok": true,
+      "revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "phi4": {
+      "ok": true,
+      "revision": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "gemma4_12b": {
+      "ok": true,
+      "revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "falcon_h1_34b": {
+      "ok": true,
+      "revision": "6e6890e26cba1f58b1e6ee70d654ddf054f9fce8",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "mistral_small3": {
+      "ok": true,
+      "revision": "9527884be6e5616bdd54de542f9ae13384489724",
+      "matches_pinned_revision": true,
+      "path_exists": false
+    },
+    "seed_oss_36b": {
+      "ok": true,
+      "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+      "matches_pinned_revision": true,
+      "path_exists": true
+    }
+  },
+  "phase_summaries": [
+    {
+      "model": "glm47_flash",
+      "run_sha256": "b8fabfc4a07513d02d0802b2fe22bd88ba441ec43848a34fc2886889f9bc5309",
+      "records": 1000,
+      "planned": 1000,
+      "status": {
+        "complete": 1000
+      },
+      "responses_sha256": "b62ac6fb0e1484c769fb644aad41f65410fa361b804e523ff17cc4222f6ababb",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "gemma4_31b",
+      "run_sha256": "b3b6e5e73c4618a80a82d3da8388299e25dca985be79a63d2515dd5d4daa0270",
+      "records": 1000,
+      "planned": 1000,
+      "status": {
+        "complete": 1000
+      },
+      "responses_sha256": "769671b8356bacdc3ebc29834e42a3851a6763c44a472c17b739883833d1ced3",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "qwen35_9b",
+      "run_sha256": "6b14126acbbe04f484544c544aaabe0e3549d80f1b311aafab058fd615ad66b6",
+      "records": 1000,
+      "planned": 1000,
+      "status": {
+        "complete": 1000
+      },
+      "responses_sha256": "2ac77eac17985bb6e81d82f8fc4516850d55a17cdff0dc2f14d02e37e84deb23",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "phi4",
+      "run_sha256": "1095af9f527afd61933ce7800a6104874dd64f80b04357cfbb0d2fa7520c0a07",
+      "records": 6336,
+      "planned": 6336,
+      "status": {
+        "complete": 6336
+      },
+      "responses_sha256": "739aca4102810a4acd239bdb0e577e423e4a2df3d3f6b1155cea8a86e5200f73",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "mistral_small3",
+      "run_sha256": "11ea9605fefd10c2e9a7a388c01656e3dbcf915be2b4d42bc54071c9b1d0f98c",
+      "records": 6336,
+      "planned": 6336,
+      "status": {
+        "complete": 6336
+      },
+      "responses_sha256": "37e7b10dfa3e4a620277dcc4cf30a101562e2cefafba7c6d1f56bc36e256a146",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "gpt_oss_20b",
+      "run_sha256": "78f4a59f366e5f884053446c95663cabc44ba5e0e6093530c4fec9beba25f43f",
+      "records": 6336,
+      "planned": 6336,
+      "status": {
+        "complete": 6336
+      },
+      "responses_sha256": "3c6a8343bc72021d294e1da68b7cc79736f0e28d2029829d062cbe55b07dc4b0",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "qwen38_27b",
+      "run_sha256": "e8d0e3c64340eae87e6a9ed49ad13adbe8e40bf0119891986a75e636cda8d882",
+      "records": 18272,
+      "planned": 18272,
+      "status": {
+        "complete": 18271,
+        "truncated": 1
+      },
+      "responses_sha256": "687017bcd8947762ca8a3428aa41f18a5348c9c12eb25d3f6cfef8520083c1f4",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "gemma4_12b",
+      "run_sha256": "a02a1a3e4acaa35a4cf8a2785010edc9cf13d08ddcf1e176b7b01293be296065",
+      "records": 6336,
+      "planned": 6336,
+      "status": {
+        "complete": 6336
+      },
+      "responses_sha256": "496e2d21028d1ddc27b0a8b5444b367f75c8301319ce9931326611593b8f09a2",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "glm47_flash",
+      "run_sha256": "d487be530427cfa9592e9b067922731201b5bc921e169412f9778af9f47e50a8",
+      "records": 21664,
+      "planned": 21664,
+      "status": {
+        "complete": 21662,
+        "truncated": 2
+      },
+      "responses_sha256": "e82e0bab11216b8fea38580681cbde5634cdf9a61c1fe1fc291639e42786b08b",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "gemma4_31b",
+      "run_sha256": "5294b442e065f9521ec8b18d5bffb9db8bd11027279d318288fa756e98c3f70e",
+      "records": 21664,
+      "planned": 21664,
+      "status": {
+        "complete": 21664
+      },
+      "responses_sha256": "0127f5d8e98d2e6afbf9a1ad9964d1f70ffe04a954edbe3d74796ee6375ef77b",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "run_sha256": "2589ae723366326f2e248c7f1b4fb8ec48f5d26867c9f722801daf1d08d24a23",
+      "records": 21664,
+      "planned": 21664,
+      "status": {
+        "complete": 21652,
+        "truncated": 12
+      },
+      "responses_sha256": "d5d74d75e35ea3e4e9a96da3f65969febf1aa990c8f47b36b3c6fe0ef226909a",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "qwen35_9b",
+      "run_sha256": "c889bbecc46f336371ecf93c2f90283c0d717e940d14f6dc888f209f023a560d",
+      "records": 21664,
+      "planned": 21664,
+      "status": {
+        "complete": 21664
+      },
+      "responses_sha256": "ef8f77fef50e910389c50bdba27a6a572039bdbd3f7c2b2453992befef13e165",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "falcon_h1_34b",
+      "run_sha256": "12ee2e83f19c444d5979f0d871687e7f4ed7287b6b183415dac066ca464f4398",
+      "records": 18272,
+      "planned": 18272,
+      "status": {
+        "complete": 18272
+      },
+      "responses_sha256": "1d423a7e975eb34b03d2decbec8c303ad1be7d3df0059a52f7a2f5116e4dbda0",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "glm47_flash",
+      "run_sha256": "4a278e997ce3a1b66589ef145cdce909e317062cd5cf0fb4cc4333e5c88844c0",
+      "records": 15552,
+      "planned": 15552,
+      "status": {
+        "complete": 15552
+      },
+      "responses_sha256": "4359a175b3a79b36804748dc8d50e7a8d644e6cbbc04173ada670233c52d10c9",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "gemma4_31b",
+      "run_sha256": "2ddac2cc38937c8706a639fb3465a721bcc3db96e4dc2a493166702fdcf22cad",
+      "records": 15552,
+      "planned": 15552,
+      "status": {
+        "complete": 15552
+      },
+      "responses_sha256": "2428a73c73d329944de1eaddd10d85bcdc08eeb78d8e98fea5108d4e4786ebf3",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "nemotron3_nano30b",
+      "run_sha256": "f014075ce717bcf525fac41faf60c42690c4b6cb70eeb9cf2f2587747a34f481",
+      "records": 15552,
+      "planned": 15552,
+      "status": {
+        "complete": 15552
+      },
+      "responses_sha256": "f122e161c59acd183e639de7dcea764aab92328f1c2cbd2af12f8216a37b826a",
+      "interrupted_chunks": 0
+    },
+    {
+      "model": "qwen35_9b",
+      "run_sha256": "23b8fd9f3022066ba1651dab364804d12b8b107882b35e9f4c18b1bf53eeef26",
+      "records": 15552,
+      "planned": 15552,
+      "status": {
+        "complete": 15552
+      },
+      "responses_sha256": "06590abd29a25be9c10022b1a81525785f83abec78205b4aee21bb1164b7491f",
+      "interrupted_chunks": 0
+    }
+  ],
+  "gpu_policy_integrity": {
+    "amendment_matches_launch": true,
+    "source_digests_match": {
+      "harness/h200_queue_available_v2.py": true,
+      "harness/h200_queue_idle_v2.py": true,
+      "harness/h200_generate_idle_v2.py": true
+    },
+    "allowed_gpu_uuid": {
+      "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+      "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+      "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+      "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+      "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+      "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+      "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+      "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+    }
+  },
+  "gpu": [
+    "0, GPU-eac35845-029e-df8d-5318-af5d76434077, 142626, 100",
+    "1, GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 141444, 100",
+    "2, GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 142580, 100",
+    "3, GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 142964, 100",
+    "4, GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 97800, 0",
+    "5, GPU-63686987-a70f-607d-9886-af187b67a14a, 98454, 0",
+    "6, GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 98414, 0",
+    "7, GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 98952, 0"
+  ],
+  "recovery": {
+    "pid": 3823525,
+    "started_unix": 1790952792.4307218,
+    "supplier_sha256": "6c515328325baaa9b68273357afe61e3afbb4fb91199ca1709b987ad680862b4",
+    "order": [
+      "gemma4_12b",
+      "falcon_h1_34b",
+      "mistral_small3",
+      "seed_oss_36b"
+    ],
+    "models": {
+      "gemma4_12b": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790952792.4311783,
+            "child_pid": 3823526,
+            "returncode": 0,
+            "finished_unix": 1790953278.0136027
+          }
+        ],
+        "status": "verified"
+      },
+      "falcon_h1_34b": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790953278.015393,
+            "child_pid": 3830465,
+            "returncode": 0,
+            "finished_unix": 1790956072.151539,
+            "error": "RuntimeError('Range download failed model-00010-of-00014.safetensors #15 curl=28')"
+          },
+          {
+            "attempt": 2,
+            "started_unix": 1790956102.1543033,
+            "child_pid": 3895788,
+            "returncode": 0,
+            "finished_unix": 1790960961.6342037
+          }
+        ],
+        "status": "verified"
+      },
+      "mistral_small3": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790960961.6371477,
+            "child_pid": 4004651,
+            "returncode": 0,
+            "finished_unix": 1790967600.8520665
+          }
+        ],
+        "status": "verified"
+      },
+      "seed_oss_36b": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "started_unix": 1790967600.855697,
+            "child_pid": 4192051,
+            "returncode": 0,
+            "finished_unix": 1790980473.764682,
+            "error": "RuntimeError('Range download failed model-00004-of-00015.safetensors #64 curl=56')"
+          },
+          {
+            "attempt": 2,
+            "started_unix": 1790980503.767721,
+            "child_pid": 221805,
+            "returncode": 0,
+            "finished_unix": 1790982036.8575342,
+            "error": "RuntimeError('Range download failed model-00006-of-00015.safetensors #1 curl=56')"
+          },
+          {
+            "attempt": 3,
+            "started_unix": 1790982096.860604,
+            "child_pid": 239507,
+            "returncode": 0,
+            "finished_unix": 1790989602.0163682
+          }
+        ],
+        "status": "verified"
+      }
+    },
+    "finished_unix": 1790989602.0200007
+  },
+  "free_gib": 49.03207015991211,
+  "gpu_compute_apps": [
+    "GPU-eac35845-029e-df8d-5318-af5d76434077, 3614809, 142600",
+    "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 3614810, 141418",
+    "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 3614811, 142554",
+    "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 3614812, 142938",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 286216, 97570",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 286207, 98226",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 286210, 98186",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 286213, 98724"
+  ],
+  "supplier_tail": {
+    "weight-recovery-mistral_small3-1.log": [
+      "FILE_VERIFIED mistral_small3 tekken.json 14801223 55.94",
+      "FILE_VERIFIED mistral_small3 tokenizer.json 17078037 64.92",
+      "FILE_VERIFIED mistral_small3 tokenizer_config.json 199695 0.74",
+      "MODEL_WEIGHTS_READY mistral_small3 6639.12",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-supervisor.log": [],
+    "weight-recovery-seed_oss_36b-1.log": [
+      "RANGE_DONE seed_oss_36b model-00004-of-00015.safetensors 69 67108864",
+      "RANGE_DONE seed_oss_36b model-00004-of-00015.safetensors 67 67108864",
+      "RANGE_DONE seed_oss_36b model-00004-of-00015.safetensors 70 67108864",
+      "MODEL_PREPARATION_FAILED seed_oss_36b RuntimeError('Range download failed model-00004-of-00015.safetensors #64 curl=56')",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-seed_oss_36b-3.log": [
+      "FILE_VERIFIED seed_oss_36b thinking_budget.png 190266 1.04",
+      "FILE_VERIFIED seed_oss_36b tokenizer.json 11883696 20.75",
+      "FILE_VERIFIED seed_oss_36b tokenizer_config.json 23849 0.27",
+      "MODEL_WEIGHTS_READY seed_oss_36b 7505.06",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-falcon_h1_34b-2.log": [
+      "FILE_VERIFIED falcon_h1_34b special_tokens_map.json 18983 0.81",
+      "FILE_VERIFIED falcon_h1_34b tokenizer.json 21756262 67.78",
+      "FILE_VERIFIED falcon_h1_34b tokenizer_config.json 202258 1.01",
+      "MODEL_WEIGHTS_READY falcon_h1_34b 4859.37",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-seed_oss_36b-2.log": [
+      "RANGE_DONE seed_oss_36b model-00006-of-00015.safetensors 56 67108864",
+      "RANGE_DONE seed_oss_36b model-00006-of-00015.safetensors 50 67108864",
+      "RANGE_DONE seed_oss_36b model-00006-of-00015.safetensors 55 67108864",
+      "MODEL_PREPARATION_FAILED seed_oss_36b RuntimeError('Range download failed model-00006-of-00015.safetensors #1 curl=56')",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-falcon_h1_34b-1.log": [
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 17 67108864",
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 22 67108864",
+      "RANGE_DONE falcon_h1_34b model-00010-of-00014.safetensors 6 67108864",
+      "MODEL_PREPARATION_FAILED falcon_h1_34b RuntimeError('Range download failed model-00010-of-00014.safetensors #15 curl=28')",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ],
+    "weight-recovery-gemma4_12b-1.log": [
+      "FILE_VERIFIED gemma4_12b processor_config.json 1382 1.13",
+      "FILE_VERIFIED gemma4_12b tokenizer.json 32169626 218.96",
+      "FILE_VERIFIED gemma4_12b tokenizer_config.json 3089 0.48",
+      "MODEL_WEIGHTS_READY gemma4_12b 485.52",
+      "WEIGHT_SUPPLIER_PASS_FINISHED"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-10-03T09:35:17.709758+00:00",
+  "automation_id": "h200",
+  "status": "available",
+  "reason": null,
+  "remote_snapshot_utc": "2026-10-03T09:34:59Z",
+  "last_successful_remote_snapshot_utc": "2026-10-03T09:34:59Z",
+  "last_verified_models": 10,
+  "current_observed_actual_records": 213752,
+  "visibility_restored": false,
+  "remote_mutations_performed": false,
+  "processes_restarted": false,
+  "generation_repeated": false,
+  "monitor_remains_active": true
+}

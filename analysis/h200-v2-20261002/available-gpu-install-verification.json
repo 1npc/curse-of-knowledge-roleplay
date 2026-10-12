@@ -1,0 +1,295 @@
+{
+  "launch": {
+    "started_unix": 1790980233.729052,
+    "restriction": {
+      "0": "GPU-eac35845-029e-df8d-5318-af5d76434077",
+      "1": "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d",
+      "2": "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81",
+      "3": "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b",
+      "4": "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0",
+      "5": "GPU-63686987-a70f-607d-9886-af187b67a14a",
+      "6": "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9",
+      "7": "GPU-00ecc257-2646-98af-1e10-3b94f6004c00"
+    },
+    "policy": "any_verified_idle",
+    "amendment_path": "docs/access-v2/available-gpu-amendment.json",
+    "supersedes_launch_sha256": "98a758b56e2dde279aff3feb872f633f3a3695525432e3a860d7b3f916c05644",
+    "retired_idle_controllers": [
+      {
+        "slot": 1,
+        "pid": 4078039,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      {
+        "slot": 2,
+        "pid": 4078040,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_gpu5_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2"
+        ]
+      }
+    ],
+    "workers": {
+      "1": {
+        "pid": 218775,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "1"
+        ]
+      },
+      "2": {
+        "pid": 218776,
+        "command": [
+          "python3",
+          "-u",
+          "/data/qianru/over-comprehension-v2-20261001/code/harness/h200_queue_available_v2.py",
+          "--root",
+          "/data/qianru/over-comprehension-v2-20261001",
+          "--slot",
+          "2"
+        ]
+      }
+    },
+    "queue_models_at_transition": {
+      "gemma4_31b": {
+        "status": "finished",
+        "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+        "gpu": "0",
+        "pid": 2645610,
+        "started_unix": 1790897112.4063258,
+        "original_controller_pid": 2607363,
+        "worker_slot": "2",
+        "phase": "confirmatory",
+        "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+        "finished_unix": 1790898558.5143178,
+        "continuation": "hardware authorization only; original discovery child retained"
+      },
+      "qwen35_9b": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790902058.4796898,
+        "worker_slot": "1",
+        "finished_unix": 1790902688.4951015
+      },
+      "glm47_flash": {
+        "status": "finished",
+        "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790911151.6721182,
+        "worker_slot": "1",
+        "finished_unix": 1790911880.192537
+      },
+      "nemotron3_nano30b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790919805.1054497,
+        "worker_slot": "1",
+        "finished_unix": 1790920294.3011513
+      },
+      "qwen38_27b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790927109.6520672,
+        "worker_slot": "1",
+        "finished_unix": 1790927731.6002357
+      },
+      "gpt_oss_20b": {
+        "status": "finished",
+        "gpu": "0",
+        "pid": 2645609,
+        "started_unix": 1790929175.8246174,
+        "worker_slot": "1",
+        "finished_unix": 1790929355.2681925
+      },
+      "phi4": {
+        "status": "finished",
+        "gpu": "2",
+        "pid": 2645609,
+        "started_unix": 1790934488.37321,
+        "worker_slot": "1",
+        "finished_unix": 1790934593.393086
+      },
+      "gemma4_12b": {
+        "status": "finished",
+        "gpu": "4",
+        "pid": 2645610,
+        "started_unix": 1790953290.5606928,
+        "worker_slot": "2",
+        "finished_unix": 1790953490.0286725
+      },
+      "falcon_h1_34b": {
+        "status": "finished",
+        "gpu": "5",
+        "pid": 2645609,
+        "started_unix": 1790961140.7786353,
+        "worker_slot": "1",
+        "finished_unix": 1790962061.2272954
+      },
+      "mistral_small3": {
+        "status": "finished",
+        "gpu": "5",
+        "pid": 4078039,
+        "started_unix": 1790976994.262681,
+        "worker_slot": "1",
+        "finished_unix": 1790977177.8996892
+      },
+      "seed_oss_36b": {
+        "status": "pending"
+      }
+    },
+    "queue_unchanged_at_transition": true,
+    "weight_supplier_unchanged": true,
+    "amendment_sha256": "4cc7b39df405edd60abf10cc44fffec68bcd4da730d881c7505e9d927dc97ba9"
+  },
+  "policy_logs": {
+    "1": [
+      "GPU_POLICY any_verified_idle; occupied GPUs excluded; existing locks retained"
+    ],
+    "2": [
+      "GPU_POLICY any_verified_idle; occupied GPUs excluded; existing locks retained"
+    ]
+  },
+  "gpu": [
+    "0, GPU-eac35845-029e-df8d-5318-af5d76434077, 142624, 100",
+    "1, GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 141302, 100",
+    "2, GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 141380, 100",
+    "3, GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 142962, 100",
+    "4, GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 136607, 100",
+    "5, GPU-63686987-a70f-607d-9886-af187b67a14a, 129903, 100",
+    "6, GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 123240, 100",
+    "7, GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 122182, 100"
+  ],
+  "gpu_compute_apps": [
+    "GPU-eac35845-029e-df8d-5318-af5d76434077, 3614809, 142598",
+    "GPU-9c1c0f75-f324-fa5f-eb4c-0eea4430711d, 3614810, 141276",
+    "GPU-aa894bfe-9735-49ef-b927-3976eb8b9b81, 3614811, 141354",
+    "GPU-cc260ef9-4a13-a1a9-3692-a076fb1a1d0b, 3614812, 142936",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 169061, 97058",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 179435, 6984",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 179441, 6992",
+    "GPU-5138e53e-9416-9f95-6ba1-88b2031e57a0, 179450, 25326",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 169064, 72734",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 179456, 25396",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 179438, 15756",
+    "GPU-63686987-a70f-607d-9886-af187b67a14a, 179444, 15770",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 169071, 97578",
+    "GPU-18a3d1e0-628c-7817-3018-0844b06e30c9, 179447, 25428",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 169070, 96540",
+    "GPU-00ecc257-2646-98af-1e10-3b94f6004c00, 179453, 25408"
+  ],
+  "queue_models_after": {
+    "gemma4_31b": {
+      "status": "finished",
+      "preflight_repair": "venv ninja and system CUDA in PATH; zero prompt attempts at failure; original run.json and failure log preserved",
+      "gpu": "0",
+      "pid": 2645610,
+      "started_unix": 1790897112.4063258,
+      "original_controller_pid": 2607363,
+      "worker_slot": "2",
+      "phase": "confirmatory",
+      "hardware_transition": "original discovery completed without interruption; confirmatory started on verified unused GPU 0",
+      "finished_unix": 1790898558.5143178,
+      "continuation": "hardware authorization only; original discovery child retained"
+    },
+    "qwen35_9b": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790902058.4796898,
+      "worker_slot": "1",
+      "finished_unix": 1790902688.4951015
+    },
+    "glm47_flash": {
+      "status": "finished",
+      "preparation_resumed": "same fixed weights now staged through faster official download; occupied GPUs excluded",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790911151.6721182,
+      "worker_slot": "1",
+      "finished_unix": 1790911880.192537
+    },
+    "nemotron3_nano30b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790919805.1054497,
+      "worker_slot": "1",
+      "finished_unix": 1790920294.3011513
+    },
+    "qwen38_27b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790927109.6520672,
+      "worker_slot": "1",
+      "finished_unix": 1790927731.6002357
+    },
+    "gpt_oss_20b": {
+      "status": "finished",
+      "gpu": "0",
+      "pid": 2645609,
+      "started_unix": 1790929175.8246174,
+      "worker_slot": "1",
+      "finished_unix": 1790929355.2681925
+    },
+    "phi4": {
+      "status": "finished",
+      "gpu": "2",
+      "pid": 2645609,
+      "started_unix": 1790934488.37321,
+      "worker_slot": "1",
+      "finished_unix": 1790934593.393086
+    },
+    "gemma4_12b": {
+      "status": "finished",
+      "gpu": "4",
+      "pid": 2645610,
+      "started_unix": 1790953290.5606928,
+      "worker_slot": "2",
+      "finished_unix": 1790953490.0286725
+    },
+    "falcon_h1_34b": {
+      "status": "finished",
+      "gpu": "5",
+      "pid": 2645609,
+      "started_unix": 1790961140.7786353,
+      "worker_slot": "1",
+      "finished_unix": 1790962061.2272954
+    },
+    "mistral_small3": {
+      "status": "finished",
+      "gpu": "5",
+      "pid": 4078039,
+      "started_unix": 1790976994.262681,
+      "worker_slot": "1",
+      "finished_unix": 1790977177.8996892
+    },
+    "seed_oss_36b": {
+      "status": "pending"
+    }
+  }
+}

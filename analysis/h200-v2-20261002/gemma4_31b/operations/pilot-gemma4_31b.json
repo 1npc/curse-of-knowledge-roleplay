@@ -1,0 +1,8 @@
+{
+  "model": "gemma4_31b",
+  "pass": true,
+  "bad_statuses": 0,
+  "truncated_fraction": 0.0,
+  "probe_format_valid_fraction": 1.0,
+  "criterion": "execution/interface only; no leakage effect selection"
+}

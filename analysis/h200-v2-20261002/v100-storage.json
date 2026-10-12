@@ -1,0 +1,10 @@
+{
+  "/mnt/efs-amsmt/qianru": {
+    "free_gib": 11021.9,
+    "directories": [
+      "automata-supervision",
+      "eviact_archive",
+      "nb_campaign_runs"
+    ]
+  }
+}

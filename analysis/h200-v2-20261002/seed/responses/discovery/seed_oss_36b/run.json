@@ -1,0 +1,40 @@
+{
+ "version": "oc-generation-access-v2",
+ "model": "seed_oss_36b",
+ "repo": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+ "revision": "497f1dca95ebdec98e41d517b9f060ee753c902f",
+ "weights_path": "/scratch-shared/qmeng1/over-comprehension/weights/seed_oss_36b",
+ "location": "auto",
+ "chat_template_sha256": "3f9e0dc4adeb8032287d0129dc75b6298fee8698a52ab41e863dbc89929330d3",
+ "chat_template_source": "tokenizer",
+ "tokenizer": "auto",
+ "chat_template_kwargs": {
+  "thinking_budget": 0
+ },
+ "engine": {
+  "vllm": "0.29.0",
+  "torch": "2.13.0+cu130",
+  "transformers": "5.17.0"
+ },
+ "protocol": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "seed": 20261001,
+  "max_output_tokens": 400,
+  "max_model_len": 8192,
+  "dtype": "bfloat16",
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "max_num_seqs": 256,
+  "gpu_memory_utilization": 0.85,
+  "tensor_parallel_size": 1,
+  "thinking": "disabled via chat template",
+  "retry": "none; a chunk with an intent but no result is recorded as interrupted_uncertain"
+ },
+ "prompts_file": "/gpfs/work4/0/prjs1226/qmeng1/over-comprehension/access-v2-seed-20261003/code/items/access-v2/model-plans/discovery-seed_oss_36b.jsonl",
+ "prompts_sha256": "5fab830810d614487ab1efb45fcf7d0222630d37b9c43f6e0702edf7840fc021",
+ "subset_sha256": null,
+ "n_prompts": 6336,
+ "runner_sha256": "bf8f4df2fd4081dbc8bf8ec4be8551c7e7f282b1c475d1a58494cfc904d24d85",
+ "chunk": 256
+}
