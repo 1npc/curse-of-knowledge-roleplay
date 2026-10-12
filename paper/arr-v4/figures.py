@@ -168,7 +168,7 @@ def design():
         L.append(sprite(ic, x + 0.875 - w / 2, -1.08 - h / 2 + 0.12, px, rc))
         L.append(f"\\node[font=\\sffamily\\scriptsize\\bfseries,align=center] at ({x + 0.875:.3f},-1.62) {{{name}}};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Study 3 reruns Study 1's core cells with the model writing as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}",
+          r"\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Study 3 uses Study 1's core cells with the model writing as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}",
           r"\label{fig:design}", r"\end{figure}"]
     return "\n".join(L)
 
