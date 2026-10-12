@@ -162,8 +162,8 @@ In Study~1, a character from a role-playing game (Kerry, Rogue or Panam) is pres
 
 \begin{figure*}[t]
 \centering
-\includegraphics{figures/fig3-study1.pdf}
-\caption{Study 1, 11 open-weight models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. Models that read the boundary correctly still leak. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar. Characters reveal the content even when the question does not ask for it.}
+\includegraphics[width=\linewidth]{figures/fig3-study1.pdf}
+\caption{Study 1, 11 open-weight models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar.}
 \label{fig:s1}
 \end{figure*}
 \begin{table}[t]
@@ -198,8 +198,8 @@ Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language
 
 \begin{figure*}[t]
 \centering
-\includegraphics{figures/fig4-models.pdf}
-\caption{Leaks across models. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell). Five of six stay at or below 9 pp in every cell while using permitted content in the fluent control.}
+\includegraphics[width=\linewidth]{figures/fig4-models.pdf}
+\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell).}
 \label{fig:models}
 \end{figure*}
 \subsection{Study 2: Four Channels}
@@ -208,7 +208,7 @@ Study~2 asks whether the failure extends to content hidden for other reasons and
 
 \begin{figure*}[t]
 \centering
-\includegraphics{figures/fig5-study2.pdf}
+\includegraphics[width=\linewidth]{figures/fig5-study2.pdf}
 \caption{Study 2. (a) Net use of inaccessible content under full context in the confirmation set (96 scenes with invented characters), per model and channel. (b) Change in net use when the access flag is replaced by a membership list or supplemented by a prose rule (24 scenes). (c) Net use after zero, two and four neutral exchanges (four models, 32 scenes). (d) Change in choosing place A when the hidden fact switches from B to A (four models). Bars show 95\% bootstrap intervals.}
 \label{fig:s2}
 \end{figure*}
@@ -225,13 +225,13 @@ We ran six proprietary models and DeepSeek-V4-Pro on the core Study~1 conditions
 
 \begin{figure*}[t]
 \centering
-\includegraphics{figures/fig6-format.pdf}
-\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still leaks unheard speech at about 50 pp. (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}
+\includegraphics[width=\linewidth]{figures/fig6-format.pdf}
+\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}
 \label{fig:format}
 \end{figure*}
 \begin{figure}[t]
 \centering
-\includegraphics{figures/fig7-why.pdf}
+\includegraphics[width=\linewidth]{figures/fig7-why.pdf}
 \caption{Study 3, framings and thinking (Study 1 core cells). (a) Pooled net use as narrator, as author and with a perspective rule, against role-play, with permitted use at right. (b) Thinking off (circle) and on (dot).}
 \label{fig:why}
 \end{figure}
@@ -244,8 +244,8 @@ Gemma-4-31B and Qwen3.8-27B leak unheard speech at 51 and 60 pp in Study~1, yet 
 
 \begin{figure*}[t]
 \centering
-\includegraphics{figures/fig8-remedies.pdf}
-\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers net use and permitted use, while removing the event and the character view stop the leak and keep permitted use.}
+\includegraphics[width=\linewidth]{figures/fig8-remedies.pdf}
+\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel.}
 \label{fig:remedy}
 \end{figure*}
 Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes net use by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still leaks unheard speech at 50 pp (Figure~\ref{fig:format}a, b). Because the two formats organize the state differently (Appendix~\ref{app:format}), we compare channels only within Study~2.

@@ -20,6 +20,9 @@ FIG1 = Path(sys.argv[3]) if len(sys.argv) > 3 else None
 NAMES = {"FIG_EXAMPLE": "fig1-example", "FIG_DESIGN": "fig2-design", "FIG_S1": "fig3-study1", "FIG_FACTORS": "fig4-models",
          "FIG_S2": "fig5-study2", "FIG_FRONTIER": "fig6-format", "FIG_WHY": "fig7-why", "FIG_REMEDY": "fig8-remedies",
          "FIG_S1M": "figA-listfirst-per-model", "FIG_BRIDGEFULL": "figB-bridge-all-models"}
+# Main-text figures drawn on a reduced grid, then set to the full text or column width.
+SHRINK = {"FIG_S1": (0.88, 0.94), "FIG_FACTORS": (1, 1), "FIG_S2": (0.88, 0.94), "FIG_FRONTIER": (0.88, 0.94), "FIG_WHY": (1, 1),
+          "FIG_REMEDY": (0.88, 0.94)}
 TIKZ = re.compile(r"\\begin\{tikzpicture\}.*\\end\{tikzpicture\}", re.S)
 
 # preamble for the standalone figure sources: the TikZ set-up of the paper, without the review line numbers
@@ -70,11 +73,18 @@ def main():
             (OUT / "figures" / "src" / f"{name}.tex").unlink(missing_ok=True)
             ins[key] = code.replace(tikz, f"\\includegraphics[width=\\linewidth]{{figures/{name}.pdf}}")
             continue
-        (OUT / "figures" / "src" / f"{name}.tex").write_text(FIG_PRE + "\\begin{document}\n" + tikz + "\n\\end{document}\n")
+        if key in SHRINK:
+            # Drawing the figure on a smaller grid and scaling it to the text width enlarges its labels.
+            fx, fy = SHRINK[key]
+            src = tikz.replace("x=1cm,y=1cm", f"x={fx}cm,y={fy}cm", 1)
+            src = re.sub(r"([xy])shift=(-?[\d.]+)cm", lambda m: f"{m.group(1)}shift={float(m.group(2)) * (fx if m.group(1) == 'x' else fy):.3f}cm", src)
+        else:
+            src = tikz
+        (OUT / "figures" / "src" / f"{name}.tex").write_text(FIG_PRE + "\\begin{document}\n" + src + "\n\\end{document}\n")
         subprocess.run(["xelatex", "-interaction=nonstopmode", f"{name}.tex"], cwd=OUT / "figures" / "src", capture_output=True)
         shutil.copy(OUT / "figures" / "src" / f"{name}.pdf", OUT / "figures" / f"{name}.pdf")
         # Appendix figures fill the one-column text width like the appendix tables.
-        opt = "[width=\\linewidth]" if key in ("FIG_S1M", "FIG_BRIDGEFULL") else ""
+        opt = "[width=\\linewidth]" if key in ("FIG_S1M", "FIG_BRIDGEFULL") or key in SHRINK else ""
         ins[key] = code.replace(tikz, f"\\includegraphics{opt}{{figures/{name}.pdf}}")
     for k, v in ins.items():
         body = body.replace(f"% INSERT {k}\n", v + "\n")

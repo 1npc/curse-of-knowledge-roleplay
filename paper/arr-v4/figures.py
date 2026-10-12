@@ -244,7 +244,7 @@ def study1():
         L.append(f"\\node[anchor=south,font=\\sffamily\\tiny\\bfseries,text=OIblue] at ({X(mu):.3f},{y + 0.14:.3f}) {{{mu:.0f}}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Study 1, 11 open-weight models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. Models that read the boundary correctly still leak. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar. Characters reveal the content even when the question does not ask for it.}",
+          r"\caption{Study 1, 11 open-weight models. (a) Net use under the five ways of stating the boundary (96 skeletons in three languages). (b) Each model's state-probe accuracy against its net use. (c) Net use for each of the companion's questions, with models as dots and the mean as a bar.}",
           r"\label{fig:s1}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -277,7 +277,7 @@ def study2():
     res = load(ROOT / "analysis/h200-v2-20261002/eleven-model-results.json")["exploratory_paired_contrasts"]
     rep = {r["contrast"]: r for r in res if r["contrast"].startswith("E2")}
     L.append(r"\begin{scope}[xshift=3.15cm]")
-    L.append(f"\\node[panel] at (0,{H + 0.85:.2f}) {{(b) State format vs. flag}};")
+    L.append(f"\\node[panel] at (0,{H + 0.85:.2f}) {{(b) Access format}};")
     w = 2.8
     fl, X, Y = frame(w, H, (-45, 45), (0, 4), [-40, -20, 0, 20, 40], [], "change in net use (pp)", grid="x")
     L += [l for l in fl if "anchor=east" not in l]
@@ -390,7 +390,7 @@ def models():
     L.append(f"\\node[anchor=north west,font=\\sffamily\\tiny\\itshape,text=black!65] at (0,-0.12) {{Claude Sonnet 5.5 with high reasoning, repertoire {100 * rs['sonnet55-high']['net']:.0f}}};")
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Leaks across models. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell). Five of six stay at or below 9 pp in every cell while using permitted content in the fluent control.}",
+          r"\caption{Leaks across models. (a, b) Net use by model size in two families. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell).}",
           r"\label{fig:models}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -455,7 +455,7 @@ def input_format():
         L.append(f"\\begin{{scope}}[yshift={y0:.3f}cm]")
         fl, X, Y = frame(2.9, hh - 0.15, (0, 4), (0, 100), [], [0, 50, 100], "", "")
         L += fl
-        L.append(f"\\node[anchor=south west,font=\\sffamily\\tiny\\bfseries] at (0.03,{hh - 0.17:.3f}) {{{NAMES[m]}}};")
+        L.append(f"\\node[anchor=north west,font=\\sffamily\\tiny\\bfseries] at (0.03,{hh - 0.15:.3f}) {{{NAMES[m]}}};")
         for j, (sw, lab) in enumerate(swaps):
             for data, col, dx in ((br, "OIorange!40", -0.12), (rep, "OIorange", 0.12)):
                 v = 100 * data[m][f"{sw}:inaccessible"]["estimate"]
@@ -466,7 +466,7 @@ def input_format():
     L += legend([("box", "OIorange!40", "discovery scenes"), ("box", "OIorange", "new scenes")], 0.0, -1.3)
     L.append(r"\end{scope}")
     L += [r"\end{tikzpicture}",
-          r"\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still leaks unheard speech at about 50 pp. (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}",
+          r"\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes.}",
           r"\label{fig:format}", r"\end{figure*}"]
     return "\n".join(L)
 
@@ -521,7 +521,7 @@ def remedy():
     L += legend([(mk, "black!65", c) for c, mk in marks.items()], 6.0, -0.45, step=0.11)
     L.append(r"\node[anchor=west,font=\sffamily\tiny,text=black!60] at (10.4,-0.45) {bars: mean over channels, number at right};")
     L += [r"\end{tikzpicture}",
-          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers net use and permitted use, while removing the event and the character view stop the leak and keep permitted use.}",
+          r"\caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel.}",
           r"\label{fig:remedy}", r"\end{figure*}"]
     return "\n".join(L)
 
