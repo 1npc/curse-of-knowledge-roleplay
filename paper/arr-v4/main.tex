@@ -453,7 +453,7 @@ This mismatch comes from how role-playing systems are built. Games and agent sim
 
 Prior work shows that models recognize a character's perspective and still fail to act on it. They answer what a story character knows yet mispredict the character's behavior \citep{gu2026simpletom}, and they recognize the limits of a role's knowledge yet answer beyond them \citep{han2026charm}. These studies pose closed questions about a short story or about knowledge stored in the model's parameters. We study a setting closer to deployment, where the inaccessible content sits in the model's own input, the system states the character's boundary, and the model speaks freely as the character. Does that content reach the character's speech and choices? Does the answer change with the format of the input?
 
-We measure this with counterfactual scenes, in which a twin with a different hidden fact gives a baseline for guessing (Section~\ref{sec:measure}). Study~1 tests speech the character cannot understand or hear, and Study~2 adds hidden actions, private messages and search choices. Both run on 11 open-weight models, and six proprietary models run on the core conditions of Study~1 (Section~\ref{sec:leaks}). We then swap features between input formats, change who the model writes as in Study~3, and filter what the character sees (Section~\ref{sec:format}).
+We measure this with counterfactual scenes, in which a twin with a different hidden fact gives a baseline for guessing (Section~\ref{sec:measure}). Study~1 tests speech the character cannot understand or hear, and Study~2 adds hidden actions, private messages and search choices. Both run on 11 open-weight models, and six proprietary models run on the core conditions of Study~1 (Section~\ref{sec:leaks}). Section~\ref{sec:format} swaps features between input formats, changes who the model writes as in Study~3, and tests filters on what the character sees.
 
 The results separate recognizing a boundary from keeping it. Open-weight models use content their characters cannot perceive in most replies, more for unheard speech than for speech in an unknown language, although most of them correctly identify what the character perceives. Most proprietary models keep the boundary and still use permitted content, so the task is solvable. Yet compliance is fragile. Gemma-4-31B leaks unheard speech at 51 pp in Study~1 and at most 4 pp in Study~2, and moving Study~1's state layout alone into Study~2's prompt brings the leak back. For the strongest open-weight models and two proprietary models, compliance depends on incidental parts of the input, such as the scene layout or the character description, and the feature that matters differs by model. Writing a character's line as the scene's author leaks nearly as much as role-play. We examine when role-playing models use inaccessible content, how the input format changes this, and which filters prevent it. We will release the items, prompts, scorer and all responses.
 
@@ -749,7 +749,7 @@ Each scene contains one fact that names an object and a place. Version B replace
 \fill[fill={rgb,255:red,104;green,165;blue,149}] (6.6875,-1.1525) rectangle (6.7445,-1.0955);
 \node[font=\sffamily\scriptsize\bfseries,align=center] at (6.605,-1.62) {perspective\\rule};
 \end{tikzpicture}
-\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Study 3 reruns Study 1's core cells with the model writing as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}
+\caption{Design. (a) Study 1 states the boundary in five ways. The sentence is added to the repertoire for comprehension and to the flag for hearing. (b) Study 2's four channels, with what the character view keeps (green). (c) Study 3 uses Study 1's core cells with the model writing as the character, the scene's author or a narrator, or under a perspective rule, and runs role-play with thinking on.}
 \label{fig:design}
 \end{figure}
 
@@ -1011,13 +1011,13 @@ In a present-day setting with original characters, net use under the repertoire 
 
 The comparison between boundaries runs against intuition. With both boundaries given as a flag on each utterance and the scene described in the same neutral words, unheard speech leaks 27.1 pp more than speech marked as not understood. Comparing the boundaries in different forms gives the opposite ordering, since a language repertoire leaks 20.3 pp more than inaudibility narrated in the scene. Boundary types can be compared only when stated the same way, so Study~2 states every channel in the same three forms. The form also matters within the language boundary. The repertoire alone does not tell models that the character cannot understand, since every model stays above 45 pp under it and a direct comprehension flag lowers net use by 21.6 pp. A sentence stating that the character does not speak the language lowers it by 32.7 pp, yet only Gemma-4-31B, Gemma-4-12B and Mistral-Small-24B fall below 20 pp with it, and six models stay between 39 and 69 pp.
 
-Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language boundary, ten of the 11 answer the state probe correctly for 87--100\% of items, and on exactly those items net use is 68.4 pp, against 66.7 pp over all items. GLM-4.7-Flash is the exception, since it answers that the character understands in all 288 items, so its 50 pp under the repertoire reflects a misreading of the state. For hearing, nine models answer correctly for at least 87\% of items, while Phi-4 and Nemotron-3-Nano do so for only 34\% and 54\%, so part of their net use for unheard speech comes from misreading the flag. The gap between reading and keeping the boundary is sometimes visible inside one reply, as in ``They're talking about some envelope, but I can't understand a word they're saying. Something about the parking lot, though.'' Scale does not remove the failure (Figure~\ref{fig:factors}a, b). Within Qwen3.5, net use under the repertoire rises from 13.9 pp at 0.8B to 82.7 pp at 9B, and within Gemma-4 from 12.8 pp at E2B to 69.7 pp at 12B. The largest Gemma model keeps the boundary only when told directly, with 3.1 pp under the comprehension flag against 45.7 pp under the repertoire.
+Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language boundary, ten of the 11 answer the state probe correctly for 87--100\% of items, and on exactly those items net use is 68.4 pp, against 66.7 pp over all items. GLM-4.7-Flash is the exception, since it answers that the character understands in all 288 items, so its 50 pp under the repertoire reflects a misreading of the state. For hearing, nine models answer correctly for at least 87\% of items, while Phi-4 and Nemotron-3-Nano do so for only 34\% and 54\%, so part of their net use for unheard speech comes from misreading the flag. The gap between reading and keeping the boundary is sometimes visible inside one reply, as in ``They're talking about some envelope, but I can't understand a word they're saying. Something about the parking lot, though.'' Scale does not remove the failure (Figure~\ref{fig:models}a, b). Within Qwen3.5, net use under the repertoire rises from 13.9 pp at 0.8B to 82.7 pp at 9B, and within Gemma-4 from 12.8 pp at E2B to 69.7 pp at 12B. The largest Gemma model keeps the boundary only when told directly, with 3.1 pp under the comprehension flag against 45.7 pp under the repertoire.
 
 \begin{figure*}[t]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm]
 \begin{scope}[xshift=0.0cm]
-\node[panel] at (-0.55,3.10) {(a) Scale: repertoire};
+\node[panel] at (-0.55,3.10) {(a) Scale, repertoire};
 \draw[black!9] (0,0.000)--(2.6,0.000);
 \draw[black!9] (0,0.650)--(2.6,0.650);
 \draw[black!9] (0,1.300)--(2.6,1.300);
@@ -1046,7 +1046,7 @@ Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language
 \path[OIorange] plot[mark=square*] coordinates {(2.376,1.189)};
 \end{scope}
 \begin{scope}[xshift=3.35cm]
-\node[panel] at (-0.55,3.10) {(b) Scale: comprehension flag};
+\node[panel] at (-0.55,3.10) {(b) Scale, comprehension flag};
 \draw[black!9] (0,0.000)--(2.6,0.000);
 \draw[black!9] (0,0.650)--(2.6,0.650);
 \draw[black!9] (0,1.300)--(2.6,1.300);
@@ -1075,105 +1075,70 @@ Most models read the boundary correctly (Figure~\ref{fig:s1}b). For the language
 \path[OIorange] plot[mark=square*] coordinates {(2.376,0.081)};
 \node[anchor=west,font=\sffamily\tiny,text=OIorange] at (2.436,0.201) {Gemma-4};
 \end{scope}
-\begin{scope}[xshift=8.3cm]
-\node[panel] at (-1.6,3.10) {(c) Ablation: comprehension flag};
-\draw[black!9] (0.000,0)--(0.000,2.6);
-\draw[black!9] (0.650,0)--(0.650,2.6);
-\draw[black!9] (1.300,0)--(1.300,2.6);
-\draw[black!9] (1.950,0)--(1.950,2.6);
-\draw[black!9] (2.600,0)--(2.600,2.6);
-\draw[black!45,line width=.4pt] (0,2.6)--(0,0)--(2.6,0);
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.650,0) {25};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.300,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.950,0) {75};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.600,0) {100};
-\node[anchor=north,font=\sffamily\scriptsize] at (1.3,-0.3) {net use (pp)};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.275) {Gemma-4-31B};
-\draw[black!20,line width=1.1pt] (0.000,2.275)--(0.163,2.275);
-\fill[black!45] (0.163,2.185) circle (1.5pt);
-\fill[OIsky] (0.081,2.230) circle (1.5pt);
-\fill[OIpurple] (0.041,2.275) circle (1.5pt);
-\fill[OIgreen] (0.081,2.320) circle (1.5pt);
-\fill[OIorange] (0.000,2.365) circle (1.5pt);
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.625) {Qwen3.8-27B};
-\draw[black!20,line width=1.1pt] (0.311,1.625)--(1.029,1.625);
-\fill[black!45] (0.934,1.535) circle (1.5pt);
-\fill[OIsky] (0.894,1.580) circle (1.5pt);
-\fill[OIpurple] (1.029,1.625) circle (1.5pt);
-\fill[OIgreen] (0.311,1.670) circle (1.5pt);
-\fill[OIorange] (0.366,1.715) circle (1.5pt);
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.975) {Seed-OSS-36B};
-\draw[black!20,line width=1.1pt] (0.826,0.975)--(2.478,0.975);
-\fill[black!45] (1.815,0.885) circle (1.5pt);
-\fill[OIsky] (1.747,0.930) circle (1.5pt);
-\fill[OIpurple] (2.478,0.975) circle (1.5pt);
-\fill[OIgreen] (0.961,1.020) circle (1.5pt);
-\fill[OIorange] (0.826,1.065) circle (1.5pt);
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.325) {Phi-4};
-\draw[black!20,line width=1.1pt] (1.286,0.325)--(2.329,0.325);
-\fill[black!45] (2.302,0.235) circle (1.5pt);
-\fill[OIsky] (2.329,0.280) circle (1.5pt);
-\fill[OIpurple] (1.720,0.325) circle (1.5pt);
-\fill[OIgreen] (1.815,0.370) circle (1.5pt);
-\fill[OIorange] (1.286,0.415) circle (1.5pt);
-\end{scope}
-\begin{scope}[xshift=11.2cm]
-\node[panel] at (-0.1,3.10) {(d) Ablation: audibility flag};
-\draw[black!9] (0.000,0)--(0.000,2.6);
-\draw[black!9] (0.650,0)--(0.650,2.6);
-\draw[black!9] (1.300,0)--(1.300,2.6);
-\draw[black!9] (1.950,0)--(1.950,2.6);
-\draw[black!9] (2.600,0)--(2.600,2.6);
-\draw[black!45,line width=.4pt] (0,2.6)--(0,0)--(2.6,0);
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.650,0) {25};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.300,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.950,0) {75};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.600,0) {100};
-\node[anchor=north,font=\sffamily\scriptsize] at (1.3,-0.3) {net use (pp)};
-\draw[black!20,line width=1.1pt] (1.300,2.275)--(1.422,2.275);
-\fill[black!45] (1.354,2.185) circle (1.5pt);
-\fill[OIsky] (1.354,2.230) circle (1.5pt);
-\fill[OIpurple] (1.327,2.275) circle (1.5pt);
-\fill[OIgreen] (1.422,2.320) circle (1.5pt);
-\fill[OIorange] (1.300,2.365) circle (1.5pt);
-\draw[black!20,line width=1.1pt] (0.853,1.625)--(2.085,1.625);
-\fill[black!45] (1.855,1.535) circle (1.5pt);
-\fill[OIsky] (1.923,1.580) circle (1.5pt);
-\fill[OIpurple] (2.085,1.625) circle (1.5pt);
-\fill[OIgreen] (1.341,1.670) circle (1.5pt);
-\fill[OIorange] (0.853,1.715) circle (1.5pt);
-\draw[black!20,line width=1.1pt] (2.167,0.975)--(2.600,0.975);
-\fill[black!45] (2.343,0.885) circle (1.5pt);
-\fill[OIsky] (2.289,0.930) circle (1.5pt);
-\fill[OIpurple] (2.600,0.975) circle (1.5pt);
-\fill[OIgreen] (2.261,1.020) circle (1.5pt);
-\fill[OIorange] (2.167,1.065) circle (1.5pt);
-\draw[black!20,line width=1.1pt] (2.451,0.325)--(2.600,0.325);
-\fill[black!45] (2.573,0.235) circle (1.5pt);
-\fill[OIsky] (2.600,0.280) circle (1.5pt);
-\fill[OIpurple] (2.451,0.325) circle (1.5pt);
-\fill[OIgreen] (2.600,0.370) circle (1.5pt);
-\fill[OIorange] (2.451,0.415) circle (1.5pt);
-\end{scope}
 \path[OIblue] plot[mark=*] coordinates {(0.075,-0.950)};
 \node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.950) {Qwen3.5};
 \path[OIorange] plot[mark=square*] coordinates {(1.230,-0.950)};
 \node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.325,-0.950) {Gemma-4};
-\fill[black!45] (6.550,-1.010) rectangle (6.700,-0.890);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (6.720,-0.950) {Study 1 prompt};
-\fill[OIsky] (8.230,-1.010) rectangle (8.380,-0.890);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (8.400,-0.950) {+ channel field};
-\fill[OIpurple] (10.000,-1.010) rectangle (10.150,-0.890);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (10.170,-0.950) {+ direct question};
-\fill[OIgreen] (11.950,-1.010) rectangle (12.100,-0.890);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (12.120,-0.950) {+ minimal context};
-\fill[OIorange] (13.900,-1.010) rectangle (14.050,-0.890);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (14.070,-0.950) {all three};
+\begin{scope}[xshift=8.75cm]
+\node[panel] at (-2.25,3.10) {(c) Proprietary models, Study 1 core cells (pp)};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.330,2.630) {reper-\\toire};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (0.990,2.630) {compr.\\flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (1.650,2.630) {+ sen-\\tence};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.310,2.630) {audib.\\flag};
+\node[font=\sffamily\tiny,align=center,anchor=south] at (2.970,2.630) {control\\use (\%)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.438) {GPT-6 Sol};
+\fill[OIorange!0!white] (0.012,2.287) rectangle (0.648,2.588);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.438) {0};
+\fill[OIorange!1!white] (0.672,2.287) rectangle (1.308,2.588);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.438) {1};
+\fill[OIorange!0!white] (1.332,2.287) rectangle (1.968,2.588);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.438) {0};
+\fill[OIorange!0!white] (1.992,2.287) rectangle (2.628,2.588);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.438) {0};
+\fill[OIblue!55!white] (2.652,2.287) rectangle (3.288,2.588);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.438) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.113) {Gemini 3.8 Flash};
+\fill[OIorange!0!white] (0.012,1.962) rectangle (0.648,2.263);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.113) {0};
+\fill[OIorange!0!white] (0.672,1.962) rectangle (1.308,2.263);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.113) {0};
+\fill[OIorange!0!white] (1.332,1.962) rectangle (1.968,2.263);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.113) {0};
+\fill[OIorange!0!white] (1.992,1.962) rectangle (2.628,2.263);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.113) {0};
+\fill[OIblue!54!white] (2.652,1.962) rectangle (3.288,2.263);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.113) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.788) {Grok 4.7};
+\fill[OIorange!1!white] (0.012,1.637) rectangle (0.648,1.938);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.788) {1};
+\fill[OIorange!1!white] (0.672,1.637) rectangle (1.308,1.938);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.788) {1};
+\fill[OIorange!0!white] (1.332,1.637) rectangle (1.968,1.938);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.788) {0};
+\fill[OIorange!0!white] (1.992,1.637) rectangle (2.628,1.938);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.788) {0};
+\fill[OIblue!55!white] (2.652,1.637) rectangle (3.288,1.938);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.788) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.463) {Claude Opus 5.5};
+\fill[OIorange!2!white] (0.012,1.312) rectangle (0.648,1.613);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.463) {2};
+\fill[OIorange!5!white] (0.672,1.312) rectangle (1.308,1.613);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.463) {5};
+\fill[OIorange!1!white] (1.332,1.312) rectangle (1.968,1.613);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.463) {1};
+\fill[OIorange!2!white] (1.992,1.312) rectangle (2.628,1.613);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.463) {2};
+\fill[OIblue!55!white] (2.652,1.312) rectangle (3.288,1.613);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.463) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.138) {Gemini 3.1 Pro};
+\fill[OIorange!1!white] (0.012,0.987) rectangle (0.648,1.288);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.138) {2};
+\fill[OIorange!0!white] (0.672,0.987) rectangle (1.308,1.288);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.138) {0};
+\fill[OIorange!0!white] (1.332,0.987) rectangle (1.968,1.288);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.138) {0};
+\fill[OIorange!8!white] (1.992,0.987) rectangle (2.628,1.288);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.138) {9};
+\fill[OIblue!55!white] (2.652,0.987) rectangle (3.288,1.288);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.138) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.812) {Claude Sonnet 5.5};
+\fill[OIorange!22!white] (0.012,0.662) rectangle (0.648,0.963);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.812) {26};
+\fill[OIorange!30!white] (0.672,0.662) rectangle (1.308,0.963);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.812) {36};
+\fill[OIorange!18!white] (1.332,0.662) rectangle (1.968,0.963);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.812) {22};
+\fill[OIorange!7!white] (1.992,0.662) rectangle (2.628,0.963);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.812) {8};
+\fill[OIblue!54!white] (2.652,0.662) rectangle (3.288,0.963);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.812) {99};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.488) {DeepSeek-V4-Pro};
+\fill[OIorange!61!white] (0.012,0.337) rectangle (0.648,0.638);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.488) {71};
+\fill[OIorange!37!white] (0.672,0.337) rectangle (1.308,0.638);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.488) {43};
+\fill[OIorange!18!white] (1.332,0.337) rectangle (1.968,0.638);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.488) {21};
+\fill[OIorange!67!white] (1.992,0.337) rectangle (2.628,0.638);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.488) {78};
+\fill[OIblue!52!white] (2.652,0.337) rectangle (3.288,0.638);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.488) {94};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.083) {11 open-weight models};
+\fill[OIorange!69!white] (0.012,-0.068) rectangle (0.648,0.233);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.083) {82};
+\fill[OIorange!47!white] (0.672,-0.068) rectangle (1.308,0.233);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.083) {55};
+\fill[OIorange!29!white] (1.332,-0.068) rectangle (1.968,0.233);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.083) {34};
+\fill[OIorange!74!white] (1.992,-0.068) rectangle (2.628,0.233);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.083) {87};
+\fill[OIblue!49!white] (2.652,-0.068) rectangle (3.288,0.233);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.083) {88};
+\node[anchor=north west,font=\sffamily\tiny\itshape,text=black!65] at (0,-0.12) {Claude Sonnet 5.5 with high reasoning, repertoire 3};
+\end{scope}
 \end{tikzpicture}
-\caption{What changes net use within Study~1. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c, d) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still leaks unheard speech at about 50 pp.}
-\label{fig:factors}
+\caption{Leaks across models. (a, b) Net use by model size in two families. Net use rises from the smallest models to mid-size ones, and Gemma-4-31B falls to 3 pp only when the flag is explicit. (c) Proprietary models on the Study 1 core cells with the content question (288 items per cell). Five of six stay at or below 9 pp in every cell while using permitted content in the fluent control.}
+\label{fig:models}
 \end{figure*}
 \subsection{Study 2: Four Channels}
 \label{sec:s2}
@@ -1359,159 +1324,192 @@ Leaked facts also persist and guide behavior. With the event kept in the convers
 
 \subsection{Proprietary Models}
 \label{sec:proprietary}
-We ran six proprietary models and DeepSeek-V4-Pro on the core Study~1 conditions with the content question. Five of the six proprietary models rarely use inaccessible content (Figure~\ref{fig:frontier}a, Appendix Tables~\ref{tab:hosted} and~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and its permitted use in the fluent control stays at 100\%. Every proprietary model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open-weight models, at 71.2 and 78.3 pp.
+We ran six proprietary models and DeepSeek-V4-Pro on the core Study~1 conditions with the content question. Five of the six proprietary models rarely use inaccessible content (Figure~\ref{fig:models}c, Appendix Tables~\ref{tab:hosted} and~\ref{tab:hostedci}). GPT-6 Sol, Gemini 3.8 Flash and Grok 4.7 stay at or below 1.0 pp in all four cells, Claude Opus 5.5 at or below 5.4 pp and Gemini 3.1 Pro at or below 9.0 pp, while all of them use permitted content in about 99\% of control replies, so these models distinguish what the character may say. Claude Sonnet 5.5 reaches 26.0 pp under the repertoire and 35.8 pp with a comprehension flag. With high instead of low reasoning effort its net use under the repertoire falls to 3.0 pp (a change of $-23.1$ pp [$-28.3$, $-17.7$]), and its permitted use in the fluent control stays at 100\%. Every proprietary model answers the state probe correctly in at least 96\% of items and translates both hidden values in at least 92\%, so the leaks do not come from misreading. DeepSeek-V4-Pro behaves like the smaller open-weight models, at 71.2 and 78.3 pp.
 
 \begin{figure*}[t]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm]
-\node[panel] at (-2.25,3.75) {(a) Study 1 core cells, net use (pp)};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (0.330,2.930) {reper-\\toire};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (0.990,2.930) {compr.\\flag};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (1.650,2.930) {+ sen-\\tence};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (2.310,2.930) {audib.\\flag};
-\node[font=\sffamily\tiny,align=center,anchor=south] at (2.970,2.930) {control\\use (\%)};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.719) {GPT-6 Sol};
-\fill[OIorange!0!white] (0.012,2.550) rectangle (0.648,2.888);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.719) {0};
-\fill[OIorange!1!white] (0.672,2.550) rectangle (1.308,2.888);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.719) {1};
-\fill[OIorange!0!white] (1.332,2.550) rectangle (1.968,2.888);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.719) {0};
-\fill[OIorange!0!white] (1.992,2.550) rectangle (2.628,2.888);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.719) {0};
-\fill[OIblue!55!white] (2.652,2.550) rectangle (3.288,2.888);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.719) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.356) {Gemini 3.8 Flash};
-\fill[OIorange!0!white] (0.012,2.187) rectangle (0.648,2.525);\node[font=\sffamily\tiny,text=black!80] at (0.330,2.356) {0};
-\fill[OIorange!0!white] (0.672,2.187) rectangle (1.308,2.525);\node[font=\sffamily\tiny,text=black!80] at (0.990,2.356) {0};
-\fill[OIorange!0!white] (1.332,2.187) rectangle (1.968,2.525);\node[font=\sffamily\tiny,text=black!80] at (1.650,2.356) {0};
-\fill[OIorange!0!white] (1.992,2.187) rectangle (2.628,2.525);\node[font=\sffamily\tiny,text=black!80] at (2.310,2.356) {0};
-\fill[OIblue!54!white] (2.652,2.187) rectangle (3.288,2.525);\node[font=\sffamily\tiny,text=black!80] at (2.970,2.356) {99};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.994) {Grok 4.7};
-\fill[OIorange!1!white] (0.012,1.825) rectangle (0.648,2.163);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.994) {1};
-\fill[OIorange!1!white] (0.672,1.825) rectangle (1.308,2.163);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.994) {1};
-\fill[OIorange!0!white] (1.332,1.825) rectangle (1.968,2.163);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.994) {0};
-\fill[OIorange!0!white] (1.992,1.825) rectangle (2.628,2.163);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.994) {0};
-\fill[OIblue!55!white] (2.652,1.825) rectangle (3.288,2.163);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.994) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.631) {Claude Opus 5.5};
-\fill[OIorange!2!white] (0.012,1.462) rectangle (0.648,1.800);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.631) {2};
-\fill[OIorange!5!white] (0.672,1.462) rectangle (1.308,1.800);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.631) {5};
-\fill[OIorange!1!white] (1.332,1.462) rectangle (1.968,1.800);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.631) {1};
-\fill[OIorange!2!white] (1.992,1.462) rectangle (2.628,1.800);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.631) {2};
-\fill[OIblue!55!white] (2.652,1.462) rectangle (3.288,1.800);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.631) {99};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.269) {Gemini 3.1 Pro};
-\fill[OIorange!1!white] (0.012,1.099) rectangle (0.648,1.438);\node[font=\sffamily\tiny,text=black!80] at (0.330,1.269) {2};
-\fill[OIorange!0!white] (0.672,1.099) rectangle (1.308,1.438);\node[font=\sffamily\tiny,text=black!80] at (0.990,1.269) {0};
-\fill[OIorange!0!white] (1.332,1.099) rectangle (1.968,1.438);\node[font=\sffamily\tiny,text=black!80] at (1.650,1.269) {0};
-\fill[OIorange!8!white] (1.992,1.099) rectangle (2.628,1.438);\node[font=\sffamily\tiny,text=black!80] at (2.310,1.269) {9};
-\fill[OIblue!55!white] (2.652,1.099) rectangle (3.288,1.438);\node[font=\sffamily\tiny,text=black!80] at (2.970,1.269) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.906) {Claude Sonnet 5.5};
-\fill[OIorange!22!white] (0.012,0.737) rectangle (0.648,1.076);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.906) {26};
-\fill[OIorange!30!white] (0.672,0.737) rectangle (1.308,1.076);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.906) {36};
-\fill[OIorange!18!white] (1.332,0.737) rectangle (1.968,1.076);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.906) {22};
-\fill[OIorange!7!white] (1.992,0.737) rectangle (2.628,1.076);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.906) {8};
-\fill[OIblue!54!white] (2.652,0.737) rectangle (3.288,1.076);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.906) {99};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.544) {DeepSeek-V4-Pro};
-\fill[OIorange!61!white] (0.012,0.374) rectangle (0.648,0.713);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.544) {71};
-\fill[OIorange!37!white] (0.672,0.374) rectangle (1.308,0.713);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.544) {43};
-\fill[OIorange!18!white] (1.332,0.374) rectangle (1.968,0.713);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.544) {21};
-\fill[OIorange!67!white] (1.992,0.374) rectangle (2.628,0.713);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.544) {78};
-\fill[OIblue!52!white] (2.652,0.374) rectangle (3.288,0.713);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.544) {94};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.101) {11 open-weight models};
-\fill[OIorange!69!white] (0.012,-0.068) rectangle (0.648,0.270);\node[font=\sffamily\tiny,text=black!80] at (0.330,0.101) {82};
-\fill[OIorange!47!white] (0.672,-0.068) rectangle (1.308,0.270);\node[font=\sffamily\tiny,text=black!80] at (0.990,0.101) {55};
-\fill[OIorange!29!white] (1.332,-0.068) rectangle (1.968,0.270);\node[font=\sffamily\tiny,text=black!80] at (1.650,0.101) {34};
-\fill[OIorange!74!white] (1.992,-0.068) rectangle (2.628,0.270);\node[font=\sffamily\tiny,text=black!80] at (2.310,0.101) {87};
-\fill[OIblue!49!white] (2.652,-0.068) rectangle (3.288,0.270);\node[font=\sffamily\tiny,text=black!80] at (2.970,0.101) {88};
-\node[anchor=north west,font=\sffamily\tiny\itshape,text=black!65] at (0,-0.1) {Claude Sonnet 5.5 with high reasoning: repertoire 3};
-\begin{scope}[xshift=5.55cm]
-\node[panel] at (-1.75,3.75) {(b) All four features swapped in};
-\draw[black!9] (0.000,0)--(0.000,2.9);
-\draw[black!9] (0.613,0)--(0.613,2.9);
-\draw[black!9] (1.225,0)--(1.225,2.9);
-\draw[black!9] (1.838,0)--(1.838,2.9);
-\draw[black!9] (2.450,0)--(2.450,2.9);
-\draw[black!45,line width=.4pt] (0,2.9)--(0,0)--(2.45,0);
+\begin{scope}[xshift=1.55cm]
+\node[panel] at (-1.55,3.10) {(a) Into Study 1, comprehension flag};
+\draw[black!9] (0.000,0)--(0.000,2.6);
+\draw[black!9] (0.600,0)--(0.600,2.6);
+\draw[black!9] (1.200,0)--(1.200,2.6);
+\draw[black!9] (1.800,0)--(1.800,2.6);
+\draw[black!9] (2.400,0)--(2.400,2.6);
+\draw[black!45,line width=.4pt] (0,2.6)--(0,0)--(2.4,0);
 \node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.613,0) {25};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.225,0) {50};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.838,0) {75};
-\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.450,0) {100};
-\node[anchor=north,font=\sffamily\scriptsize] at (1.225,-0.3) {net use of unheard speech (pp)};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.658) {Gemma-4-31B};
-\fill[black!25] (0,2.673) rectangle (0.020,2.803);
-\fill[OIorange] (0,2.513) rectangle (2.450,2.643);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.450,2.578) {100};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.175) {Qwen3.8-27B};
-\fill[black!25] (0,2.190) rectangle (0.230,2.320);
-\fill[OIorange] (0,2.030) rectangle (1.901,2.160);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.901,2.095) {78};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.692) {DeepSeek-V4-Pro};
-\fill[black!25] (0,1.707) rectangle (0.153,1.837);
-\fill[OIorange] (0,1.547) rectangle (1.646,1.677);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.646,1.612) {67};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.208) {Gemini 3.1 Pro};
-\fill[black!25] (0,1.223) rectangle (0.020,1.353);
-\fill[OIorange] (0,1.063) rectangle (0.523,1.193);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.523,1.128) {21};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.725) {Claude Sonnet 5.5};
-\fill[black!25] (0,0.740) rectangle (0.020,0.870);
-\fill[OIorange] (0,0.580) rectangle (0.319,0.710);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.319,0.645) {13};
-\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.242) {other 4 proprietary};
-\fill[black!25] (0,0.257) rectangle (0.020,0.387);
-\fill[OIorange] (0,0.097) rectangle (0.026,0.227);
-\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.026,0.162) {1};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.600,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.200,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.800,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.400,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.2,-0.3) {net use (pp)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.275) {Gemma-4-31B};
+\draw[black!20,line width=1.1pt] (0.000,2.275)--(0.150,2.275);
+\fill[black!45] (0.150,2.185) circle (1.5pt);
+\fill[OIsky] (0.075,2.230) circle (1.5pt);
+\fill[OIpurple] (0.037,2.275) circle (1.5pt);
+\fill[OIgreen] (0.075,2.320) circle (1.5pt);
+\fill[OIorange] (0.000,2.365) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.625) {Qwen3.8-27B};
+\draw[black!20,line width=1.1pt] (0.288,1.625)--(0.950,1.625);
+\fill[black!45] (0.862,1.535) circle (1.5pt);
+\fill[OIsky] (0.825,1.580) circle (1.5pt);
+\fill[OIpurple] (0.950,1.625) circle (1.5pt);
+\fill[OIgreen] (0.288,1.670) circle (1.5pt);
+\fill[OIorange] (0.337,1.715) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.975) {Seed-OSS-36B};
+\draw[black!20,line width=1.1pt] (0.762,0.975)--(2.288,0.975);
+\fill[black!45] (1.675,0.885) circle (1.5pt);
+\fill[OIsky] (1.613,0.930) circle (1.5pt);
+\fill[OIpurple] (2.288,0.975) circle (1.5pt);
+\fill[OIgreen] (0.888,1.020) circle (1.5pt);
+\fill[OIorange] (0.762,1.065) circle (1.5pt);
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.325) {Phi-4};
+\draw[black!20,line width=1.1pt] (1.188,0.325)--(2.150,0.325);
+\fill[black!45] (2.125,0.235) circle (1.5pt);
+\fill[OIsky] (2.150,0.280) circle (1.5pt);
+\fill[OIpurple] (1.588,0.325) circle (1.5pt);
+\fill[OIgreen] (1.675,0.370) circle (1.5pt);
+\fill[OIorange] (1.188,0.415) circle (1.5pt);
 \end{scope}
-\begin{scope}[xshift=9.6cm]
-\node[panel] at (-0.45,3.75) {(c) One feature at a time (pp)};
-\begin{scope}[yshift=1.600cm]
-\draw[black!9] (0,0.000)--(3.3,0.000);
-\draw[black!9] (0,0.575)--(3.3,0.575);
-\draw[black!9] (0,1.150)--(3.3,1.150);
-\draw[black!45,line width=.4pt] (0,1.1500000000000001)--(0,0)--(3.3,0);
+\begin{scope}[xshift=4.3cm]
+\node[panel] at (-0.05,3.10) {(b) Into Study 1, audibility flag};
+\draw[black!9] (0.000,0)--(0.000,2.6);
+\draw[black!9] (0.600,0)--(0.600,2.6);
+\draw[black!9] (1.200,0)--(1.200,2.6);
+\draw[black!9] (1.800,0)--(1.800,2.6);
+\draw[black!9] (2.400,0)--(2.400,2.6);
+\draw[black!45,line width=.4pt] (0,2.6)--(0,0)--(2.4,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.600,0) {25};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.200,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.800,0) {75};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.400,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.2,-0.3) {net use (pp)};
+\draw[black!20,line width=1.1pt] (1.200,2.275)--(1.312,2.275);
+\fill[black!45] (1.250,2.185) circle (1.5pt);
+\fill[OIsky] (1.250,2.230) circle (1.5pt);
+\fill[OIpurple] (1.225,2.275) circle (1.5pt);
+\fill[OIgreen] (1.312,2.320) circle (1.5pt);
+\fill[OIorange] (1.200,2.365) circle (1.5pt);
+\draw[black!20,line width=1.1pt] (0.787,1.625)--(1.925,1.625);
+\fill[black!45] (1.712,1.535) circle (1.5pt);
+\fill[OIsky] (1.775,1.580) circle (1.5pt);
+\fill[OIpurple] (1.925,1.625) circle (1.5pt);
+\fill[OIgreen] (1.238,1.670) circle (1.5pt);
+\fill[OIorange] (0.787,1.715) circle (1.5pt);
+\draw[black!20,line width=1.1pt] (2.000,0.975)--(2.400,0.975);
+\fill[black!45] (2.162,0.885) circle (1.5pt);
+\fill[OIsky] (2.113,0.930) circle (1.5pt);
+\fill[OIpurple] (2.400,0.975) circle (1.5pt);
+\fill[OIgreen] (2.087,1.020) circle (1.5pt);
+\fill[OIorange] (2.000,1.065) circle (1.5pt);
+\draw[black!20,line width=1.1pt] (2.263,0.325)--(2.400,0.325);
+\fill[black!45] (2.375,0.235) circle (1.5pt);
+\fill[OIsky] (2.400,0.280) circle (1.5pt);
+\fill[OIpurple] (2.263,0.325) circle (1.5pt);
+\fill[OIgreen] (2.400,0.370) circle (1.5pt);
+\fill[OIorange] (2.263,0.415) circle (1.5pt);
+\end{scope}
+\fill[black!45] (0.000,-1.010) rectangle (0.150,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.950) {Study 1 prompt};
+\fill[OIsky] (1.680,-1.010) rectangle (1.830,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (1.850,-0.950) {+ channel field};
+\fill[OIpurple] (3.450,-1.010) rectangle (3.600,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (3.620,-0.950) {+ direct question};
+\fill[OIgreen] (5.400,-1.010) rectangle (5.550,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (5.570,-0.950) {+ minimal context};
+\fill[OIorange] (7.350,-1.010) rectangle (7.500,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (7.520,-0.950) {all three};
+\begin{scope}[xshift=9.0cm]
+\node[panel] at (-1.75,3.10) {(c) Into Study 2, all four};
+\draw[black!9] (0.000,0)--(0.000,2.6);
+\draw[black!9] (1.125,0)--(1.125,2.6);
+\draw[black!9] (2.250,0)--(2.250,2.6);
+\draw[black!45,line width=.4pt] (0,2.6)--(0,0)--(2.25,0);
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.000,0) {0};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.125,0) {50};
+\node[anchor=north,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.250,0) {100};
+\node[anchor=north,font=\sffamily\scriptsize] at (1.125,-0.3) {net use of unheard speech (pp)};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,2.383) {Gemma-4-31B};
+\fill[black!25] (0,2.398) rectangle (0.020,2.528);
+\fill[OIorange] (0,2.238) rectangle (2.250,2.368);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (2.250,2.303) {100};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.950) {Qwen3.8-27B};
+\fill[black!25] (0,1.965) rectangle (0.211,2.095);
+\fill[OIorange] (0,1.805) rectangle (1.746,1.935);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.746,1.870) {78};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.517) {DeepSeek-V4-Pro};
+\fill[black!25] (0,1.532) rectangle (0.141,1.662);
+\fill[OIorange] (0,1.372) rectangle (1.512,1.502);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (1.512,1.437) {67};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,1.083) {Gemini 3.1 Pro};
+\fill[black!25] (0,1.098) rectangle (0.020,1.228);
+\fill[OIorange] (0,0.938) rectangle (0.480,1.068);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.480,1.003) {21};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.650) {Claude Sonnet 5.5};
+\fill[black!25] (0,0.665) rectangle (0.020,0.795);
+\fill[OIorange] (0,0.505) rectangle (0.293,0.635);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.293,0.570) {13};
+\node[anchor=east,font=\sffamily\tiny] at (-0.05,0.217) {other 4 proprietary};
+\fill[black!25] (0,0.232) rectangle (0.020,0.362);
+\fill[OIorange] (0,0.072) rectangle (0.023,0.202);
+\node[anchor=west,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0.023,0.137) {1};
+\fill[black!25] (-1.750,-1.010) rectangle (-1.600,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (-1.580,-0.950) {Study 2 prompt};
+\fill[OIorange] (0.140,-1.010) rectangle (0.290,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.310,-0.950) {+ all four};
+\end{scope}
+\begin{scope}[xshift=12.25cm]
+\node[panel] at (-0.3,3.10) {(d) Into Study 2, one at a time (pp)};
+\begin{scope}[yshift=1.450cm]
+\draw[black!9] (0,0.000)--(2.9,0.000);
+\draw[black!9] (0,0.500)--(2.9,0.500);
+\draw[black!9] (0,1.000)--(2.9,1.000);
+\draw[black!45,line width=.4pt] (0,1.0000000000000002)--(0,0)--(2.9,0);
 \node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.575) {50};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.150) {100};
-\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,1.130) {Gemma-4-31B};
-\fill[OIorange!40] (0.162,0) rectangle (0.402,0.009);
-\fill[OIorange] (0.422,0) rectangle (0.662,0.009);
-\fill[OIorange!40] (0.987,0) rectangle (1.228,0.012);
-\fill[OIorange] (1.247,0) rectangle (1.487,0.009);
-\fill[OIorange!40] (1.812,0) rectangle (2.053,0.707);
-\fill[OIorange] (2.072,0) rectangle (2.312,1.102);
-\fill[OIorange!40] (2.637,0) rectangle (2.877,0.162);
-\fill[OIorange] (2.897,0) rectangle (3.137,0.096);
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.000) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,0.980) {Gemma-4-31B};
+\fill[OIorange!40] (0.133,0) rectangle (0.352,0.008);
+\fill[OIorange] (0.372,0) rectangle (0.593,0.008);
+\fill[OIorange!40] (0.857,0) rectangle (1.077,0.010);
+\fill[OIorange] (1.097,0) rectangle (1.318,0.008);
+\fill[OIorange!40] (1.582,0) rectangle (1.802,0.615);
+\fill[OIorange] (1.823,0) rectangle (2.042,0.958);
+\fill[OIorange!40] (2.308,0) rectangle (2.527,0.141);
+\fill[OIorange] (2.548,0) rectangle (2.768,0.083);
 \end{scope}
 \begin{scope}[yshift=0.000cm]
-\draw[black!9] (0,0.000)--(3.3,0.000);
-\draw[black!9] (0,0.575)--(3.3,0.575);
-\draw[black!9] (0,1.150)--(3.3,1.150);
-\draw[black!45,line width=.4pt] (0,1.1500000000000001)--(0,0)--(3.3,0);
+\draw[black!9] (0,0.000)--(2.9,0.000);
+\draw[black!9] (0,0.500)--(2.9,0.500);
+\draw[black!9] (0,1.000)--(2.9,1.000);
+\draw[black!45,line width=.4pt] (0,1.0000000000000002)--(0,0)--(2.9,0);
 \node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.000) {0};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.575) {50};
-\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.150) {100};
-\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,1.130) {Qwen3.8-27B};
-\fill[OIorange!40] (0.162,0) rectangle (0.402,0.114);
-\fill[OIorange] (0.422,0) rectangle (0.662,0.120);
-\node[anchor=north,font=\sffamily\tiny] at (0.412,-0.02) {system};
-\fill[OIorange!40] (0.987,0) rectangle (1.228,0.779);
-\fill[OIorange] (1.247,0) rectangle (1.487,0.827);
-\node[anchor=north,font=\sffamily\tiny] at (1.237,-0.02) {sheet};
-\fill[OIorange!40] (1.812,0) rectangle (2.053,0.222);
-\fill[OIorange] (2.072,0) rectangle (2.312,0.144);
-\node[anchor=north,font=\sffamily\tiny] at (2.062,-0.02) {state};
-\fill[OIorange!40] (2.637,0) rectangle (2.877,0.102);
-\fill[OIorange] (2.897,0) rectangle (3.137,0.009);
-\node[anchor=north,font=\sffamily\tiny] at (2.887,-0.02) {question};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,0.500) {50};
+\node[anchor=east,font=\sffamily\tiny,text=black!70,inner sep=1.5pt] at (0,1.000) {100};
+\node[anchor=south west,font=\sffamily\tiny\bfseries] at (0.03,0.980) {Qwen3.8-27B};
+\fill[OIorange!40] (0.133,0) rectangle (0.352,0.099);
+\fill[OIorange] (0.372,0) rectangle (0.593,0.104);
+\node[anchor=north,font=\sffamily\tiny] at (0.362,-0.02) {system};
+\fill[OIorange!40] (0.857,0) rectangle (1.077,0.677);
+\fill[OIorange] (1.097,0) rectangle (1.318,0.719);
+\node[anchor=north,font=\sffamily\tiny] at (1.087,-0.02) {sheet};
+\fill[OIorange!40] (1.582,0) rectangle (1.802,0.193);
+\fill[OIorange] (1.823,0) rectangle (2.042,0.125);
+\node[anchor=north,font=\sffamily\tiny] at (1.812,-0.02) {state};
+\fill[OIorange!40] (2.308,0) rectangle (2.527,0.089);
+\fill[OIorange] (2.548,0) rectangle (2.768,0.008);
+\node[anchor=north,font=\sffamily\tiny] at (2.538,-0.02) {question};
 \end{scope}
-\fill[OIorange!40] (0.000,-0.560) rectangle (0.150,-0.440);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.500) {discovery scenes};
-\fill[OIorange] (2.100,-0.560) rectangle (2.250,-0.440);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.270,-0.500) {new scenes};
+\fill[OIorange!40] (0.000,-1.010) rectangle (0.150,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (0.170,-0.950) {discovery scenes};
+\fill[OIorange] (2.100,-1.010) rectangle (2.250,-0.890);
+\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (2.270,-0.950) {new scenes};
 \end{scope}
-\fill[black!25] (4.000,-0.910) rectangle (4.150,-0.790);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (4.170,-0.850) {Study 2 prompt};
-\fill[OIorange] (5.890,-0.910) rectangle (6.040,-0.790);
-\node[anchor=west,font=\sffamily\tiny,inner sep=1pt] at (6.060,-0.850) {+ all four};
 \end{tikzpicture}
-\caption{Compliance depends on the input format. (a) Study 1 core cells with the content question (288 items per cell). Five of six proprietary models stay at or below 9 pp in every cell while using permitted content in the fluent control. (b) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (c) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}
-\label{fig:frontier}
+\caption{Compliance depends on the input format. (a, b) Adding Study~2's features to Study~1's prompts one at a time (four models, 96 skeletons). The minimal context lowers net use for most models, the direct question raises it for Seed-OSS-36B, and Gemma-4-31B still leaks unheard speech at about 50 pp. (c) Swapping Study 1's system prompt, character sheet, state layout and question into Study 2's hearing prompts. (d) Swapping one feature at a time, on the discovery scenes and on 96 new scenes. A different feature breaks each model, and both effects replicate.}
+\label{fig:format}
 \end{figure*}
 \begin{figure}[t]
 \centering
@@ -1757,15 +1755,15 @@ Gemma-4-31B and Qwen3.8-27B leak unheard speech at 51 and 60 pp in Study~1, yet 
 \caption{Remedies. (a) The list-first prompt in Study 1. Each point is one model and boundary, and models whose first-step list omits the hidden values also leave them out of the answer. (b, c) Five methods in Study 2 (six models, 48 scenes), with one marker per channel. Self-filtering lowers net use and permitted use, while removing the event and the character view stop the leak and keep permitted use.}
 \label{fig:remedy}
 \end{figure*}
-Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes net use by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still leaks unheard speech at 50 pp (Figure~\ref{fig:factors}c, d). Because the two formats organize the state differently (Appendix~\ref{app:format}), we compare channels only within Study~2.
+Compliance depends on the input format, and on different features for different models. Starting from Study~1's prompts, adding Study~2's channel field or its direct question changes net use by at most 4 pp, and removing the character sheet and scene description lowers it by 11.0 pp for unheard speech and 21.5 pp for speech not understood, yet Gemma-4-31B still leaks unheard speech at 50 pp (Figure~\ref{fig:format}a, b). Because the two formats organize the state differently (Appendix~\ref{app:format}), we compare channels only within Study~2.
 
-The reverse direction locates the cause. Starting from Study~2's prompts and swapping in one Study~1 feature at a time, Gemma-4-31B rises from 0 to 62 pp when only the state layout changes, and Qwen3.8-27B rises from 9 to 68 pp when only the character sheet changes (Figure~\ref{fig:frontier}c, Appendix Figure~\ref{fig:bridgefull}). Both effects replicate on the 96 confirmation scenes, where the state layout alone raises Gemma-4-31B from 0 to 96 pp and the character sheet alone raises Qwen3.8-27B from 6 to 72 pp. Across the 11 open-weight models the feature with the largest effect differs, and for Falcon-H1-34B and Seed-OSS-36B it is the question, which alone raises them from 31 and 60 pp to 100 pp.
+The reverse direction locates the cause. Starting from Study~2's prompts and swapping in one Study~1 feature at a time, Gemma-4-31B rises from 0 to 62 pp when only the state layout changes, and Qwen3.8-27B rises from 9 to 68 pp when only the character sheet changes (Figure~\ref{fig:format}d, Appendix Figure~\ref{fig:bridgefull}). Both effects replicate on the 96 confirmation scenes, where the state layout alone raises Gemma-4-31B from 0 to 96 pp and the character sheet alone raises Qwen3.8-27B from 6 to 72 pp. Across the 11 open-weight models the feature with the largest effect differs, and for Falcon-H1-34B and Seed-OSS-36B it is the question, which alone raises them from 31 and 60 pp to 100 pp.
 
-With all four features swapped, Gemma-4-31B, Qwen3.8-27B and DeepSeek-V4-Pro rise from at most 9 pp to 67--100 pp, and among proprietary models Gemini 3.1 Pro rises from 0 to 21 pp and Claude Sonnet 5.5 from 0.5 to 13 pp, while the other four stay at or below 1 pp (Figure~\ref{fig:frontier}b). Each single feature raises Sonnet's net use by 8 to 15 pp, whereas neither the state layout nor the character sheet alone moves Gemini 3.1 Pro from zero (Appendix Table~\ref{tab:hostedswaps}). Over all 11 open-weight models the combined swap raises mean net use from 64 to 97 pp. Their permitted use for audible speech stays at 80--100\% in every variant.
+With all four features swapped, Gemma-4-31B, Qwen3.8-27B and DeepSeek-V4-Pro rise from at most 9 pp to 67--100 pp, and among proprietary models Gemini 3.1 Pro rises from 0 to 21 pp and Claude Sonnet 5.5 from 0.5 to 13 pp, while the other four stay at or below 1 pp (Figure~\ref{fig:format}c). Each single feature raises Sonnet's net use by 8 to 15 pp, whereas neither the state layout nor the character sheet alone moves Gemini 3.1 Pro from zero (Appendix Table~\ref{tab:hostedswaps}). Over all 11 open-weight models the combined swap raises mean net use from 64 to 97 pp. Their permitted use for audible speech stays at 80--100\% in every variant.
 
 \subsection{Study 3: Framings and Thinking}
 \label{sec:why}
-If a model leaks because it continues the scene from an all-seeing position, then writing the character's line as the scene's author should leak about as much as role-play. Study~3 reruns the Study~1 core cells with the content question under this author framing, as a narrator who describes the scene, and under the role-play prompt with one added rule that the character knows only what it could perceive and understand (11 models). On these prompts role-play leaks 82 and 87 pp, as in Figure~\ref{fig:s1}c. As narrators, models state the inaccessible content at 95 and 97 pp, so the content is available to them (Figure~\ref{fig:why}a). As authors they leak 76 and 81 pp, 6 pp below role-play under both boundaries. Permitted use is 88\% under role-play, 84\% as authors and 98\% as narrators. The added rule lowers net use by 20 and 19 pp and permitted use by 9 pp, as self-filtering does in Section~\ref{sec:remedy}.
+If a model leaks because it continues the scene from an all-seeing position, then writing the character's line as the scene's author should leak about as much as role-play. Study~3 uses the Study~1 core cells with the content question under this author framing, as a narrator who describes the scene, and under the role-play prompt with one added rule that the character knows only what it could perceive and understand (11 models). On these prompts role-play leaks 82 and 87 pp, as in Figure~\ref{fig:s1}c. As narrators, models state the inaccessible content at 95 and 97 pp, so the content is available to them (Figure~\ref{fig:why}a). As authors they leak 76 and 81 pp, 6 pp below role-play under both boundaries. Permitted use is 88\% under role-play, 84\% as authors and 98\% as narrators. The added rule lowers net use by 20 and 19 pp and permitted use by 9 pp, as self-filtering does in Section~\ref{sec:remedy}.
 
 Thinking does not close the gap for most open-weight models. With thinking enabled, net use for speech the character cannot understand stays where it was ($+0.8$ pp [$-1.5$, 3.1], seven models), and for unheard speech it falls by 8.5 pp [$-10.1$, $-6.7$], almost entirely because Qwen3.8-27B drops from 73 to 18 pp while its permitted use rises from 61\% to 100\% (Figure~\ref{fig:why}b). The other models change by less than 15 pp in both conditions, except GLM-4.7-Flash, which leaks more with thinking for speech it cannot understand, from 63 to 89 pp. Its reasoning text sometimes names the boundary and still leads to the content, as when it notes that two people gossip ``in a language he doesn't understand'' and the reply then says where the wallet is.
 
@@ -1804,7 +1802,7 @@ All scenes, facts and conversations are fictional. Study~1 uses names of charact
 \makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{10pt}\setlength{\@fpbot}{0pt plus 1fil}\setlength{\@dblfptop}{0pt}\setlength{\@dblfpsep}{14pt}\setlength{\@dblfpbot}{0pt plus 1fil}\makeatother
 \section{Models and Runs}
 \label{app:models}
-Open-weight models decode with temperature 0 and at most 400 new tokens. Mistral-Small-24B is the text-only Mistral-Small-24B-Instruct-2501. Proprietary models run with temperature 0 where the endpoint supports it. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. For the thinking runs of Study~3, thinking was enabled through each chat template, gpt-oss-20b ran at high reasoning effort and Seed-OSS-36B with a budget of 4,096 tokens, and replies could use up to 6,144 tokens. gpt-oss-20b's truncated replies were rerun with 10,240 tokens. Qwen3.5-9B reached the limit before answering in 97\% of prompts and is excluded. About 8--10\% of replies from Gemma-4-12B, GLM-4.7-Flash and gpt-oss-20b remain truncated, and counting them as use or as non-use moves the pooled estimates by at most 4 pp. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} lists the proprietary results with their probes, and Table~\ref{tab:hostedswaps} gives single-feature swaps for two proprietary models.
+Open-weight models decode with temperature 0 and at most 400 new tokens. Mistral-Small-24B is the text-only Mistral-Small-24B-Instruct-2501. Proprietary models run with temperature 0 where the endpoint supports it. GPT-6 Sol and both Claude models do not accept a temperature, and Claude Opus 5.5, Claude Sonnet 5.5 and Gemini 3.8 Flash require reasoning, which we set to the lowest effort. For the thinking runs of Study~3, thinking was enabled through each chat template, gpt-oss-20b ran at high reasoning effort and Seed-OSS-36B with a budget of 4,096 tokens, and replies could use up to 6,144 tokens, or 10,240 for gpt-oss-20b. Qwen3.5-9B reached the limit before answering in 97\% of prompts and is excluded. About 8--10\% of replies from Gemma-4-12B, GLM-4.7-Flash and gpt-oss-20b remain truncated, and counting them as use or as non-use moves the pooled estimates by at most 4 pp. Anthropic's endpoint returned no text for 65 of 3,936 Claude Opus 5.5 prompts because of its content filter. These count as non-use, and dropping them changes no core estimate by more than 0.1 pp (Table~\ref{tab:hostedci}). Table~\ref{tab:hosted} lists the proprietary results with their probes.
 
 \begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
@@ -1834,7 +1832,7 @@ In the first sample annotator and scorer agree on target use in 146 of 150 repli
 
 \section{Study 1 Details}
 \label{app:s1}
-A 10-skeleton pilot on 13 models showed that comparing a language repertoire with narrated inaudibility confounds the boundary with how it is stated, and matched flags reversed the comparison. Pilot items are excluded from all estimates. The pilot's filter named only incomprehension in its first step, and the list-first prompt names both boundaries. Figure~\ref{fig:s1m} shows the list-first prompt per model. Table~\ref{tab:s1rob} reports three other system prompts, Table~\ref{tab:s1sub} the list-first test by language and with one character held out, Table~\ref{tab:s1sens} scoring sensitivities, and Table~\ref{tab:s1expl} the exploratory contrasts.
+Figure~\ref{fig:s1m} shows the list-first prompt per model. Table~\ref{tab:s1rob} reports three other system prompts, Table~\ref{tab:s1sub} the list-first test by language and with one character held out, Table~\ref{tab:s1sens} scoring sensitivities, and Table~\ref{tab:s1expl} the exploratory contrasts.
 
 \section{Study 2 Details}
 \label{app:s2}
@@ -1842,7 +1840,7 @@ Twenty-six truncated discovery replies count as non-use. Restricted to model and
 
 \section{Format Experiments}
 \label{app:format}
-The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, and Table~\ref{tab:ablation} the ablation.
+The ablation starts from Study~1's flag-only prompts and adds Study~2's channel field, its direct question and a minimal context in a full factorial design (four models, 96 skeletons, content question, with matched accessible controls). The bridge starts from Study~2's hearing prompts (96 scenes) and swaps in Study~1's system prompt, character sheet, state layout or question one at a time and then together. The replication applies the same swaps to the 96 confirmation scenes. Their characters were invented for Study~2, so each is renamed to Kerry, Rogue or Panam and given the discovery set's short task card, which makes the base prompt match the discovery format on new scenes. Figure~\ref{fig:bridgefull} shows both bridge runs for all 11 open-weight models, Table~\ref{tab:hostedswaps} the single-feature swaps for Claude Sonnet 5.5 and Gemini 3.1 Pro, and Table~\ref{tab:ablation} the ablation.
 
 % Tables and figures follow the appendix text, so the text reads in one piece and the floats pack onto shared pages.
 \begin{table*}[!tp]
@@ -1864,19 +1862,6 @@ Claude Opus 5.5, complete replies only & 2.1 [0.5, 4.0] & 2.1 [0.9, 3.5] & 5.4 [
 \end{tabular*}
 \caption{Proprietary models and DeepSeek-V4-Pro on the Study 1 core cells, with net use (pp) and 95\% intervals from 2,000 skeleton-bootstrap draws (288 items, 576 replies per cell). The last row drops the replies that Anthropic's content filter withheld.}
 \label{tab:hostedci}
-\end{table*}
-\begin{table*}[!tp]
-\centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
-\toprule
-\textbf{Model} & \textbf{Base} & \textbf{Sys.} & \textbf{Sheet} & \textbf{State} & \textbf{Quest.} & \textbf{All}\\
-\midrule
-Claude Sonnet 5.5 & 0.5 & \textbf{9.9} & \textbf{15.1} & \textbf{8.9} & \textbf{9.4} & \textbf{13.0}\\
-Gemini 3.1 Pro & 0.0 & -- & 0.0 & 0.0 & -- & \textbf{21.4}\\
-\bottomrule
-\end{tabular*}
-\caption{Single-feature swaps for two proprietary models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). Bold marks a change from Base whose paired 95\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved the open-weight models most.}
-\label{tab:hostedswaps}
 \end{table*}
 \begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
@@ -2797,6 +2782,19 @@ Receive & view & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0] & 0.0 [0.0, 0.0]\\
 \caption{Bridge experiment for all 11 open-weight models. Net use of unheard speech (pp) under Study 2's hearing prompt (Base), with one Study 1 feature swapped in, and with all four. Outlined cells differ from Base with a paired 95\% skeleton-bootstrap interval that excludes zero. The last column gives the range of target use for the same speech when audible (\%). (a) 96 discovery scenes. (b) 96 confirmation scenes with each character renamed to a Study 1 persona.}
 \label{fig:bridgefull}
 \end{figure*}
+\begin{table*}[!tp]
+\centering\sffamily\footnotesize\renewcommand{\arraystretch}{1.12}\setlength{\tabcolsep}{3.2pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+\toprule
+\textbf{Model} & \textbf{Base} & \textbf{Sys.} & \textbf{Sheet} & \textbf{State} & \textbf{Quest.} & \textbf{All}\\
+\midrule
+Claude Sonnet 5.5 & 0.5 & \textbf{9.9} & \textbf{15.1} & \textbf{8.9} & \textbf{9.4} & \textbf{13.0}\\
+Gemini 3.1 Pro & 0.0 & -- & 0.0 & 0.0 & -- & \textbf{21.4}\\
+\bottomrule
+\end{tabular*}
+\caption{Single-feature swaps for two proprietary models on the discovery hearing prompts (192 unheard prompts per cell, net use in pp). Bold marks a change from Base whose paired 95\% interval excludes zero. Gemini 3.1 Pro was run on the two swaps that moved the open-weight models most.}
+\label{tab:hostedswaps}
+\end{table*}
 \begin{table*}[!tp]
 \centering\setlength{\tabcolsep}{4.5pt}\small
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}

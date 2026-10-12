@@ -17,8 +17,8 @@ import figures
 
 TPL, OUT = Path(sys.argv[1]), Path(sys.argv[2])
 FIG1 = Path(sys.argv[3]) if len(sys.argv) > 3 else None
-NAMES = {"FIG_EXAMPLE": "fig1-example", "FIG_DESIGN": "fig2-design", "FIG_S1": "fig3-study1", "FIG_FACTORS": "fig4-scale-ablation",
-         "FIG_S2": "fig5-study2", "FIG_FRONTIER": "fig6-frontier-format", "FIG_WHY": "fig7-why", "FIG_REMEDY": "fig8-remedies",
+NAMES = {"FIG_EXAMPLE": "fig1-example", "FIG_DESIGN": "fig2-design", "FIG_S1": "fig3-study1", "FIG_FACTORS": "fig4-models",
+         "FIG_S2": "fig5-study2", "FIG_FRONTIER": "fig6-format", "FIG_WHY": "fig7-why", "FIG_REMEDY": "fig8-remedies",
          "FIG_S1M": "figA-listfirst-per-model", "FIG_BRIDGEFULL": "figB-bridge-all-models"}
 TIKZ = re.compile(r"\\begin\{tikzpicture\}.*\\end\{tikzpicture\}", re.S)
 
